@@ -15,12 +15,7 @@ function Controller() {
             break;
 
           case 1:
-            var intent = Ti.Android.createIntent({
-                action: Ti.Android.ACTION_GET_CONTENT,
-                type: "vnd.android.cursor.item/phone"
-            });
-            intent.addCategory(Ti.Android.CATEGORY_LAUNCHER);
-            Ti.Android.currentActivity.startActivity(intent);
+            navigation("diyPaint");
             break;
 
           case 2:
