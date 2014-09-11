@@ -1,0 +1,7 @@
+<Alloy>
+	<Window id="colourSwatches">
+		<View class="container">
+			<Label>This is Colour Swatches page</Label>
+		</View>
+	</Window>
+</Alloy>

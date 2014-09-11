@@ -1,0 +1,7 @@
+<Alloy>
+	<Window id="brochure">
+		<View class="container">
+			<Label>This is Brochure</Label>
+		</View>
+	</Window>
+</Alloy>

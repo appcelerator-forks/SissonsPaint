@@ -1,0 +1,7 @@
+<Alloy>
+	<Window id="storeLocator">
+		<View class="container">
+			<Label>This is Store Locator page</Label>
+		</View>
+	</Window>
+</Alloy>

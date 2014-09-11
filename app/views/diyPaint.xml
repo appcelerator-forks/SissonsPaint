@@ -1,0 +1,7 @@
+<Alloy>
+	<Window id="diyPaint">
+		<View class="container">
+			<Label>This DIY Paint</Label>
+		</View>
+	</Window>
+</Alloy>
