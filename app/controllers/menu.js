@@ -7,7 +7,6 @@ function doMenuClick(e){
 			break;
 		case 1: 
 			navigation('diyPaint');
-			
 			break;
 		case 2: 
 			navigation('colourPicker');
