@@ -21,19 +21,19 @@ function Controller() {
         id: "home"
     });
     $.__views.home && $.addTopLevelView($.__views.home);
-    $.__views.__alloyId10 = Ti.UI.createView({
+    $.__views.__alloyId17 = Ti.UI.createView({
         backgroundColor: "white",
-        id: "__alloyId10"
+        id: "__alloyId17"
     });
-    $.__views.home.add($.__views.__alloyId10);
-    $.__views.__alloyId11 = Ti.UI.createLabel({
+    $.__views.home.add($.__views.__alloyId17);
+    $.__views.__alloyId18 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
         text: "This is home page",
-        id: "__alloyId11"
+        id: "__alloyId18"
     });
-    $.__views.__alloyId10.add($.__views.__alloyId11);
+    $.__views.__alloyId17.add($.__views.__alloyId18);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

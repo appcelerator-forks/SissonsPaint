@@ -20,4 +20,4 @@ var btnShareChooser = Ti.UI.createButton({
     title: "Media Share"
 });
 btnShareChooser.addEventListener( "click", app.sharer.chooser.bind( null, MESSAGE ) );
-Ti.UI.currentWindow.add( btnShareChooser );
+$.colourPicker.add( btnShareChooser );

@@ -21,19 +21,19 @@ function Controller() {
         id: "colourSwatches"
     });
     $.__views.colourSwatches && $.addTopLevelView($.__views.colourSwatches);
-    $.__views.__alloyId6 = Ti.UI.createView({
+    $.__views.__alloyId13 = Ti.UI.createView({
         backgroundColor: "white",
-        id: "__alloyId6"
+        id: "__alloyId13"
     });
-    $.__views.colourSwatches.add($.__views.__alloyId6);
-    $.__views.__alloyId7 = Ti.UI.createLabel({
+    $.__views.colourSwatches.add($.__views.__alloyId13);
+    $.__views.__alloyId14 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
         text: "This is Colour Swatches page",
-        id: "__alloyId7"
+        id: "__alloyId14"
     });
-    $.__views.__alloyId6.add($.__views.__alloyId7);
+    $.__views.__alloyId13.add($.__views.__alloyId14);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

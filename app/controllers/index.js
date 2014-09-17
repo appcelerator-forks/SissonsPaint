@@ -2,7 +2,11 @@
 if (OS_ANDROID) {
     // Load module
     var TiDrawerLayout = require('com.tripvi.drawerlayout');
-
+	var API = require('api');
+	
+	// Load API function
+	API.loadStoreLocator();
+	
     // define menu and main content view
     var menuTable = Alloy.createController('menu').getView();
     var contentView = Alloy.createController('main').getView();

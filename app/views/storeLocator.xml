@@ -1,7 +1,5 @@
 <Alloy>
 	<Window id="storeLocator">
-		<View class="container">
-			<Label>This is Store Locator page</Label>
-		</View>
+		<View id="table2Container" height="auto"></View>	
 	</Window>
 </Alloy>

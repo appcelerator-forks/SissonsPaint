@@ -24,21 +24,23 @@ function Controller() {
         exitOnClose: "true"
     });
     $.__views.mainWindow && $.addTopLevelView($.__views.mainWindow);
-    $.__views.__alloyId12 = Ti.UI.createView({
-        id: "__alloyId12"
+    $.__views.__alloyId19 = Ti.UI.createView({
+        id: "__alloyId19"
     });
-    $.__views.mainWindow.add($.__views.__alloyId12);
-    $.__views.__alloyId13 = Ti.UI.createLabel({
+    $.__views.mainWindow.add($.__views.__alloyId19);
+    $.__views.__alloyId20 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
         text: "GEOMILANO HERE",
-        id: "__alloyId13"
+        id: "__alloyId20"
     });
-    $.__views.__alloyId12.add($.__views.__alloyId13);
+    $.__views.__alloyId19.add($.__views.__alloyId20);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var TiDrawerLayout = require("com.tripvi.drawerlayout");
+    var API = require("api");
+    API.loadStoreLocator();
     var menuTable = Alloy.createController("menu").getView();
     var contentView = Alloy.createController("main").getView();
     var drawer = TiDrawerLayout.createDrawer({

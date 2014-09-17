@@ -21,40 +21,24 @@ function Controller() {
         id: "colourPicker"
     });
     $.__views.colourPicker && $.addTopLevelView($.__views.colourPicker);
-    $.__views.__alloyId4 = Ti.UI.createView({
+    $.__views.__alloyId11 = Ti.UI.createView({
         backgroundColor: "white",
-        id: "__alloyId4"
+        id: "__alloyId11"
     });
-    $.__views.colourPicker.add($.__views.__alloyId4);
-    $.__views.__alloyId5 = Ti.UI.createLabel({
+    $.__views.colourPicker.add($.__views.__alloyId11);
+    $.__views.__alloyId12 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
         text: "This is Colour Picker",
-        id: "__alloyId5"
+        id: "__alloyId12"
     });
-    $.__views.__alloyId4.add($.__views.__alloyId5);
+    $.__views.__alloyId11.add($.__views.__alloyId12);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
     var app = {
         sharer: {
-            fb: function(content) {
-                try {
-                    var intFB = Ti.Android.createIntent({
-                        action: Ti.Android.ACTION_SEND,
-                        packageName: [ "com.facebook.katana", "com.instagram.android" ],
-                        className: "com.facebook.katana.ShareLinkActivity",
-                        flags: 805306368,
-                        type: "text/plain"
-                    });
-                    intFB.putExtra(Ti.Android.EXTRA_TEXT, "http://www.google.com");
-                    intFB.addCategory(Ti.Android.CATEGORY_LAUNCHER);
-                    Ti.Android.currentActivity.startActivity(intFB);
-                } catch (x) {
-                    app.sharer.fallbackFB(content);
-                }
-            },
             chooser: function() {
                 var intShare = Ti.Android.createIntent({
                     action: Ti.Android.ACTION_SEND,
@@ -62,33 +46,15 @@ function Controller() {
                 });
                 intShare.putExtra(Ti.Android.EXTRA_TEXT, "itten kontent");
                 Ti.Android.currentActivity.startActivity(intShare);
-            },
-            fallbackFB: function(content) {
-                app.sharer._openWebViewWindow(String.format("http://m.facebook.com/sharer.php?u=%s&t=%s", content, content));
-            },
-            fallbackTwitter: function(content) {
-                app.sharer._openWebViewWindow(String.format("http://m.twitter.com/?status=%s", content));
-            },
-            _openWebViewWindow: function(url) {
-                var webViewWin = Ti.UI.createWindow({
-                    modal: true
-                });
-                var webView = Ti.UI.createWebView({
-                    url: url,
-                    canGoBack: true,
-                    canGoForward: true
-                });
-                webViewWin.add(webView);
-                webViewWin.open();
             }
         }
     };
-    var MESSAGE = "http://google.com is great search engine";
+    var MESSAGE = "#sissons_paint";
     var btnShareChooser = Ti.UI.createButton({
-        title: "Share to Chooser"
+        title: "Media Share"
     });
     btnShareChooser.addEventListener("click", app.sharer.chooser.bind(null, MESSAGE));
-    Ti.UI.currentWindow.add(btnShareChooser);
+    $.colourPicker.add(btnShareChooser);
     _.extend($, exports);
 }
 

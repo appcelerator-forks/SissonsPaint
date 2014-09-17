@@ -1,7 +1,0 @@
-<Alloy>
-	<Window id="diyPaint">
-		<View class="container">
-			<Label>This is About Us</Label>
-		</View>
-	</Window>
-</Alloy>
