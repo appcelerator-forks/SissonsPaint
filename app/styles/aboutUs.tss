@@ -1,0 +1,47 @@
+".container": {
+	backgroundColor:"#FFFFFF",
+	layout: 'vertical',
+	width: Ti.UI.FILL,
+	fullscreen: true,
+},
+".title_header":{
+	font: {
+        fontSize: '18'
+    },
+    
+    color: '#CC2228',
+    left: '10',
+    right: '10'
+},
+".aboutContent" : {
+	font: {
+        fontSize: '18'
+   },
+   color: '#6E6E6E',
+   bottom: 10
+},
+".description_content":{
+	font: {
+        fontSize: '14'
+    },
+    
+    color: '#6E6E6E',
+    left: '10',
+    textAlign: "left",
+    right: '10'
+},
+".hr" :{
+	width: Ti.UI.FILL,
+	height: '1',
+	backgroundColor: '#6E6E6E',
+},
+".inputField" :{
+	color: "#848484", 
+	width: "80%",
+	borderColor:'#BDBDBD',
+	textAlign:"center",
+	height:40,
+	keyboardType: Titanium.UI.KEYBOARD_DEFAULT,
+    returnKeyType: Titanium.UI.RETURNKEY_NEXT,
+	clearButtonMode: Titanium.UI.INPUT_BUTTONMODE_ONFOCUS
+}

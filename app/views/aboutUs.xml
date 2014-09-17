@@ -1,0 +1,31 @@
+<Alloy>
+	<Window id="aboutUs" class="container">
+		<View layout="vertical"  top=10 left=10 bottom=10 right=10 >
+			<ScrollView id="main" layout="vertical" >
+				
+				<Label class="aboutContent">It was in 1959 that SISSONS PAINTS (EAST) SDN BHD first started in Malaysia, although SISSONS' technology in paint making goes back 185 years when Sissons Brothers founded a company in HULL, England in 1803. SISSONS' well-known trademark of 'THE MEN AND PLANK' has been in use since 1910. </Label>	
+				<View class="hr"></View>
+				<Label class="title_header" bottom=5>Contact Information:</Label>
+				
+				<View layout="horizontal" height="25">
+					<Label class="description_content" >Tel: +603-7727 6697</Label>	
+					<Label class="description_content" >Fax: +603-7726 9299</Label>	
+				</View>
+				<View height="25" bottom=10>
+					<Label class="description_content" >mktg.bsp@boustead.com.my</Label>	
+				</View>
+				<ScrollView layout="vertical" showVerticalScrollIndicator="true" id="formScrollView" showHorizontalScrollIndicator="true" height="300" width="100%"  backgroundColor="#848484">
+					<TextField id="username" top="10" class="inputField" hintText="Enter Your Name" />
+					<TextField id="phone"  class="inputField" hintText="Enter Your Phone Number" />
+					<TextField id="email"  class="inputField" hintText="Enter Your Email" />
+					<TextArea id="message" borderRadius="2" color="#888" textAlign="left" hintText="Leave your message here" width="80%" height="100" />
+			        <Button id="contactButton" borderRadius="3" backgroundColor="#ffffff"  title="Submit" onClick="submitContactForm" width="80%" top="20" height="40" color="#807C7C" />
+	               
+				</ScrollView>
+			</ScrollView>
+			
+		</View>
+		
+		 
+	</Window>
+</Alloy>
