@@ -15,9 +15,73 @@ var KEY = "06b53047cf294f7207789ff5293ad2dc";
 
 var getStoreLocatorList = "http://" + API_DOMAIN + "/api/getStore?user=" + USER + "&key=" + KEY;
 
+var getBrochureList = "http://" + API_DOMAIN + "/api/getBrochure?user=" + USER + "&key=" + KEY;
+
+var getColourList = "http://" + API_DOMAIN + "/api/getColourList?user=" + USER + "&key=" + KEY;
+
 exports.sendContactMsg = "http://" + API_DOMAIN + "/api/sendMessage?user=" + USER + "&key=" + KEY;
 
 exports.forgotPassword = "http://" + API_DOMAIN + "/api/doForgotPassword?user=" + USER + "&key=" + KEY;
+
+exports.loadColour = function() {
+    var url = getBrochureList;
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            var res = JSON.parse(this.responseText);
+            if ("success" == res.status) {
+                var library = Alloy.createCollection("colour");
+                library.resetColour();
+                var arr = res.data;
+                arr.forEach(function(entry) {
+                    var colour = Alloy.createModel("colour", {
+                        id: entry.id,
+                        name: entry.name,
+                        code: entry.code,
+                        rgb: entry.rgb,
+                        cmyk: entry.cmyk,
+                        sample: entry.sample
+                    });
+                    colour.save();
+                });
+            }
+        },
+        onerror: function() {},
+        timeout: 5e4
+    });
+    client.open("GET", url);
+    client.send();
+};
+
+exports.loadBrochure = function() {
+    var url = getBrochureList;
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            console.log("ready ");
+            var res = JSON.parse(this.responseText);
+            if ("success" == res.status) {
+                var library = Alloy.createCollection("brochure");
+                library.resetBrochure();
+                var arr = res.data;
+                arr.forEach(function(entry) {
+                    var brochure = Alloy.createModel("brochure", {
+                        id: entry.b_id,
+                        title: entry.b_title,
+                        cover: entry.cover,
+                        content: entry.attachment,
+                        status: entry.b_status,
+                        format: entry.b_format
+                    });
+                    brochure.save();
+                });
+                console.log("saved brochure done");
+            }
+        },
+        onerror: function() {},
+        timeout: 5e4
+    });
+    client.open("GET", url);
+    client.send();
+};
 
 exports.loadStoreLocator = function() {
     var url = getStoreLocatorList;

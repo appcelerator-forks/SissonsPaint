@@ -18,46 +18,41 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.aboutUs = Ti.UI.createWindow({
+    $.__views.aboutUs = Ti.UI.createView({
         backgroundColor: "#FFFFFF",
         layout: "vertical",
         width: Ti.UI.FILL,
         fullscreen: true,
-        id: "aboutUs"
-    });
-    $.__views.aboutUs && $.addTopLevelView($.__views.aboutUs);
-    $.__views.__alloyId0 = Ti.UI.createView({
-        layout: "vertical",
         top: "10",
         left: "10",
         bottom: "10",
         right: "10",
-        id: "__alloyId0"
+        id: "aboutUs"
     });
-    $.__views.aboutUs.add($.__views.__alloyId0);
+    $.__views.aboutUs && $.addTopLevelView($.__views.aboutUs);
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical"
     });
-    $.__views.__alloyId0.add($.__views.main);
-    $.__views.__alloyId1 = Ti.UI.createLabel({
+    $.__views.aboutUs.add($.__views.main);
+    $.__views.__alloyId0 = Ti.UI.createLabel({
         font: {
             fontSize: "18"
         },
         color: "#6E6E6E",
         bottom: 10,
         text: "It was in 1959 that SISSONS PAINTS (EAST) SDN BHD first started in Malaysia, although SISSONS' technology in paint making goes back 185 years when Sissons Brothers founded a company in HULL, England in 1803. SISSONS' well-known trademark of 'THE MEN AND PLANK' has been in use since 1910.",
-        id: "__alloyId1"
+        id: "__alloyId0"
     });
-    $.__views.main.add($.__views.__alloyId1);
-    $.__views.__alloyId2 = Ti.UI.createView({
+    $.__views.main.add($.__views.__alloyId0);
+    $.__views.__alloyId1 = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: "1",
         backgroundColor: "#6E6E6E",
-        id: "__alloyId2"
+        id: "__alloyId1"
     });
-    $.__views.main.add($.__views.__alloyId2);
-    $.__views.__alloyId3 = Ti.UI.createLabel({
+    $.__views.main.add($.__views.__alloyId1);
+    $.__views.__alloyId2 = Ti.UI.createLabel({
         font: {
             fontSize: "18"
         },
@@ -66,16 +61,16 @@ function Controller() {
         right: "10",
         text: "Contact Information:",
         bottom: "5",
+        id: "__alloyId2"
+    });
+    $.__views.main.add($.__views.__alloyId2);
+    $.__views.__alloyId3 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "25",
         id: "__alloyId3"
     });
     $.__views.main.add($.__views.__alloyId3);
-    $.__views.__alloyId4 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "25",
-        id: "__alloyId4"
-    });
-    $.__views.main.add($.__views.__alloyId4);
-    $.__views.__alloyId5 = Ti.UI.createLabel({
+    $.__views.__alloyId4 = Ti.UI.createLabel({
         font: {
             fontSize: "14"
         },
@@ -84,10 +79,10 @@ function Controller() {
         textAlign: "left",
         right: "10",
         text: "Tel: +603-7727 6697",
-        id: "__alloyId5"
+        id: "__alloyId4"
     });
-    $.__views.__alloyId4.add($.__views.__alloyId5);
-    $.__views.__alloyId6 = Ti.UI.createLabel({
+    $.__views.__alloyId3.add($.__views.__alloyId4);
+    $.__views.__alloyId5 = Ti.UI.createLabel({
         font: {
             fontSize: "14"
         },
@@ -96,16 +91,16 @@ function Controller() {
         textAlign: "left",
         right: "10",
         text: "Fax: +603-7726 9299",
-        id: "__alloyId6"
+        id: "__alloyId5"
     });
-    $.__views.__alloyId4.add($.__views.__alloyId6);
-    $.__views.__alloyId7 = Ti.UI.createView({
+    $.__views.__alloyId3.add($.__views.__alloyId5);
+    $.__views.__alloyId6 = Ti.UI.createView({
         height: "25",
         bottom: "10",
-        id: "__alloyId7"
+        id: "__alloyId6"
     });
-    $.__views.main.add($.__views.__alloyId7);
-    $.__views.__alloyId8 = Ti.UI.createLabel({
+    $.__views.main.add($.__views.__alloyId6);
+    $.__views.__alloyId7 = Ti.UI.createLabel({
         font: {
             fontSize: "14"
         },
@@ -114,9 +109,9 @@ function Controller() {
         textAlign: "left",
         right: "10",
         text: "mktg.bsp@boustead.com.my",
-        id: "__alloyId8"
+        id: "__alloyId7"
     });
-    $.__views.__alloyId7.add($.__views.__alloyId8);
+    $.__views.__alloyId6.add($.__views.__alloyId7);
     $.__views.formScrollView = Ti.UI.createScrollView({
         layout: "vertical",
         showVerticalScrollIndicator: "true",
@@ -215,7 +210,13 @@ function Controller() {
         var client = Ti.Network.createHTTPClient({
             onload: function() {
                 var res = JSON.parse(this.responseText);
-                "success" == res.status && COMM.createAlert("Message Sent", "Your messages successfully sent to admin.");
+                if ("success" == res.status) {
+                    COMM.createAlert("Message Sent", "Your messages successfully sent to admin.");
+                    $.username.value = "";
+                    $.phone.value = "";
+                    $.email.value = "";
+                    $.message.value = "";
+                }
             },
             onerror: function() {
                 COMM.createAlert("Network declined", "Failed to contact with server. Please make sure your device are connected to internet.");

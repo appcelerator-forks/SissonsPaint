@@ -54,11 +54,8 @@ function generateStoreTable(details){
 function addClickEvent(table){
 	table.addEventListener('click', function(e){ 
 		var nav = Alloy.createController("storeLocatorByState",{state:e.source.id}).getView(); 
-		nav.open();
+		Alloy.Globals.Drawer.setCenterWindow(nav);  
 	});
 }
 
-/** close all editProfile eventListener when close the page**/
-$.storeLocator.addEventListener("close", function(){
-	$.storeLocator.close(); 
-});
+ 

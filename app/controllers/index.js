@@ -1,55 +1,58 @@
-// Android only
-if (OS_ANDROID) {
-    // Load module
-    var TiDrawerLayout = require('com.tripvi.drawerlayout');
-	var API = require('api');
-	
-	// Load API function
-	API.loadStoreLocator();
-	
-    // define menu and main content view
-    var menuTable = Alloy.createController('menu').getView();
-    var contentView = Alloy.createController('main').getView();
+$.drawer.open();
+var API = require('api');
+var flag =0;	
+// Load API function
+API.loadStoreLocator();
+API.loadBrochure();
+API.loadColour();
 
-    var drawer = TiDrawerLayout.createDrawer({
-            leftView: menuTable,
-            centerView: contentView,
-            leftDrawerWidth: "240",
-            width: Ti.UI.FILL,
-            height: Ti.UI.FILL
-    });
-
-    // we'll keep global pointers
-    Alloy.CFG.drawer=drawer;
-    Alloy.CFG.contentView=contentView;
-
-    drawer.addEventListener('draweropen', function(e) {
-            // drawer is open
-    });
-
-    drawer.addEventListener('drawerclose', function(e) {
-            // drawer is closed
-    });
-
-    drawer.addEventListener('drawerslide', function(e) {
-            // drawer is sliding
-            // slide offset: e.offset
-    });
-
-    $.mainWindow.addEventListener('open',function(){
-        var activity=$.mainWindow.getActivity();
-        if (activity){
-            var actionBar=activity.getActionBar();
-            if (actionBar){
-                actionBar.displayHomeAsUp=true;
-                actionBar.title="Sissons Paint"
-                actionBar.onHomeIconItemSelected=function(){
-                  drawer.toggleLeftWindow();  
-                }
-            }    
-        }
-    });
-
-    $.mainWindow.add(drawer);
-    $.mainWindow.open();
+function toggle(e) {
+   //var fn = 'toggle' + e.source.title + 'Window'; 
+   //$.drawer[fn]();
+   $.drawer['toggleLeftWindow']();
 }
+Alloy.Globals.Drawer = $.drawer;
+function doMenuClick(e){
+	switch(e.index){
+		case 0:
+			navigation('home');
+			break;
+		case 1: 
+			navigation('diyPaint');
+			break;
+		case 2: 
+			navigation('colourPicker');
+			break;
+		case 3: 
+			navigation('colourSwatches');
+			break;
+		case 4: 
+			navigation('brochure');
+			break;
+		case 5: 
+			navigation('storeLocator');
+			break;
+		case 6: 
+			navigation('aboutUs');
+			break;
+	}
+	 
+}
+
+function navigation(target){
+	var win = Alloy.createController(target).getView();
+	Alloy.Globals.Drawer.setCenterWindow(win); 
+	Alloy.Globals.Drawer.closeLeftWindow();
+}
+
+
+$.drawer.addEventListener('android:back', function (e) {
+	if(flag == 1){
+		var nav = Alloy.createController("storeLocator").getView(); 
+		Alloy.Globals.Drawer.setCenterWindow(nav);  
+	}else{
+		var nav = Alloy.createController("home").getView(); 
+		Alloy.Globals.Drawer.setCenterWindow(nav);  
+	}
+  	
+});

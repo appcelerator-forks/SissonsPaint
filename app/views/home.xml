@@ -1,7 +1,0 @@
-<Alloy>
-	<Window id="home">
-		<View class="container">
-			<Label>This is home page</Label>
-		</View>
-	</Window>
-</Alloy>

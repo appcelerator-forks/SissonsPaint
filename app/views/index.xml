@@ -1,8 +1,56 @@
 <Alloy>
-    <Window id="mainWindow" platform="android" navBarHidden="false" backgroundColor="white" exitOnClose="true">
-        <!-- add header bar here -->
-        <View>
-        	<Label>GEOMILANO HERE</Label>
+    <Widget id="drawer" src="nl.fokkezb.drawer">
+
+        <Window module="xp.ui" role="leftWindow" id="mainWindow">
+            <TableView id="menuTable" backgroundColor="#F7F8E0" onClick="doMenuClick">
+		    	<TableViewRow height="50">
+					<Label width="Ti.UI.FILL" left="10">Home</Label>
+				</TableViewRow>
+				
+				<TableViewRow height="50">
+					<Label width="Ti.UI.FILL" left="10">DIY Paint</Label>
+				</TableViewRow>
+				
+				<TableViewRow height="50">
+					<Label width="Ti.UI.FILL" left="10">Colour Picker</Label>
+				</TableViewRow>
+				
+				<TableViewRow height="50">
+					<Label width="Ti.UI.FILL" left="10">Colour Swatches</Label>
+				</TableViewRow>
+				
+				<TableViewRow height="50">
+					<Label width="Ti.UI.FILL" left="10">Brochure</Label>
+				</TableViewRow>
+				
+				<TableViewRow height="50">
+					<Label width="Ti.UI.FILL" left="10">Store Locator</Label>
+				</TableViewRow>
+				<TableViewRow height="50">
+					<Label width="Ti.UI.FILL" left="10">About Us</Label>
+				</TableViewRow>
+		    </TableView>
+        </Window>
+
+        <NavigationWindow platform="ios" role="centerWindow">
+            <Window>
+                
+                <Label>I am center</Label>
+                <RightNavButton>
+                    <Button onClick="toggle">Right</Button>
+                </RightNavButton>
+                <View layout="vertical" class="popupView" id="menu">
+				 	 <Button onClick="toggle">Left</Button>
+				</View>
+            </Window>
+        </NavigationWindow>
+        
+        <View platform="android" role="centerWindow">
+        	<View layout="vertical" class="popupView" id="menu">
+		 		<Button onClick="toggle">Left</Button>
+			</View>
+            <Label>I am center</Label>
         </View>
-    </Window>
+
+    </Widget>
 </Alloy>

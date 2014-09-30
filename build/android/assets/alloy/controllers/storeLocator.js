@@ -52,7 +52,7 @@ function Controller() {
             var nav = Alloy.createController("storeLocatorByState", {
                 state: e.source.id
             }).getView();
-            nav.open();
+            Alloy.Globals.Drawer.setCenterWindow(nav);
         });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
@@ -64,24 +64,18 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.storeLocator = Ti.UI.createWindow({
-        id: "storeLocator"
-    });
-    $.__views.storeLocator && $.addTopLevelView($.__views.storeLocator);
     $.__views.table2Container = Ti.UI.createView({
+        backgroundColor: "#ffffff",
         id: "table2Container",
         height: "auto"
     });
-    $.__views.storeLocator.add($.__views.table2Container);
+    $.__views.table2Container && $.addTopLevelView($.__views.table2Container);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
     var library = Alloy.createCollection("storeLocator");
     var details = library.getStoreStateList();
     generateStoreTable(details);
-    $.storeLocator.addEventListener("close", function() {
-        $.storeLocator.close();
-    });
     _.extend($, exports);
 }
 

@@ -127,15 +127,12 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.storeLocatorByState = Ti.UI.createWindow({
-        id: "storeLocatorByState"
-    });
-    $.__views.storeLocatorByState && $.addTopLevelView($.__views.storeLocatorByState);
     $.__views.tableContainer = Ti.UI.createView({
+        backgroundColor: "white",
         id: "tableContainer",
         height: "auto"
     });
-    $.__views.storeLocatorByState.add($.__views.tableContainer);
+    $.__views.tableContainer && $.addTopLevelView($.__views.tableContainer);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -158,9 +155,6 @@ function Controller() {
             exports.Install();
         } else Ti.Platform.canOpenURL(url) ? Ti.Platform.openURL(url) : exports.Install();
     };
-    $.storeLocatorByState.addEventListener("android:back", function() {
-        $.storeLocatorByState.close();
-    });
     _.extend($, exports);
 }
 

@@ -9,7 +9,8 @@ var xhr = new XHR();
 var USER  = 'mobile';
 var KEY   = '06b53047cf294f7207789ff5293ad2dc';
 var getStoreLocatorList	  = "http://"+API_DOMAIN+"/api/getStore?user="+USER+"&key="+KEY;
-
+var getBrochureList	      = "http://"+API_DOMAIN+"/api/getBrochure?user="+USER+"&key="+KEY;
+var getColourList	      = "http://"+API_DOMAIN+"/api/getColourList?user="+USER+"&key="+KEY;
 
 exports.sendContactMsg    = "http://"+API_DOMAIN+"/api/sendMessage?user="+USER+"&key="+KEY;
 
@@ -17,6 +18,87 @@ exports.forgotPassword    = "http://"+API_DOMAIN+"/api/doForgotPassword?user="+U
 /*********************
 **** API FUNCTION*****
 **********************/
+//load Colour and save to local db
+exports.loadColour = function (ex){
+	 var url = getBrochureList;
+	 var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) {
+	       var res = JSON.parse(this.responseText);
+	       if(res.status == "success"){
+		       	/**reset current category**/
+		       	var library = Alloy.createCollection('colour'); 
+				library.resetColour();
+				
+				/**load new set of category from API**/
+		       	var arr = res.data;
+		       
+		       	arr.forEach(function(entry) {
+					var colour = Alloy.createModel('colour', {
+				        id: entry.id,
+					    name: entry.name,
+					    code: entry.code,
+					    rgb: entry.rgb,
+					    cmyk: entry.cmyk,
+					    sample: entry.sample
+				    });
+				    colour.save();
+				});
+	       }
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) {
+	     },
+	     timeout : 50000  // in milliseconds
+	 });
+	 // Prepare the connection.
+	 client.open("GET", url);
+	 // Send the request.
+	 client.send(); 
+};
+
+//load Brochure and save to local db
+exports.loadBrochure = function (ex){
+	 var url = getBrochureList;
+	 var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) {
+	     	   console.log("ready ");
+	       var res = JSON.parse(this.responseText);
+	       
+	       if(res.status == "success"){
+		       	/**reset current category**/
+		       	var library = Alloy.createCollection('brochure'); 
+				library.resetBrochure();
+				
+				/**load new set of category from API**/
+		       	var arr = res.data;
+		       
+		       	arr.forEach(function(entry) {
+					var brochure = Alloy.createModel('brochure', {
+				        id: entry.b_id,
+					    title: entry.b_title,
+					    cover: entry.cover,
+					    content: entry.attachment,
+					    status: entry.b_status,
+					    format: entry.b_format
+				    });
+				    brochure.save();
+				});
+				
+				console.log("saved brochure done");
+	       }
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) {
+	     },
+	     timeout : 50000  // in milliseconds
+	 });
+	 // Prepare the connection.
+	 client.open("GET", url);
+	 // Send the request.
+	 client.send(); 
+};
 
 //load store locator to db
 exports.loadStoreLocator = function (ex){

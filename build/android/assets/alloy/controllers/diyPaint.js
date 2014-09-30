@@ -17,23 +17,19 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.diyPaint = Ti.UI.createWindow({
+    $.__views.diyPaint = Ti.UI.createView({
+        backgroundColor: "white",
         id: "diyPaint"
     });
     $.__views.diyPaint && $.addTopLevelView($.__views.diyPaint);
-    $.__views.__alloyId15 = Ti.UI.createView({
-        backgroundColor: "white",
-        id: "__alloyId15"
-    });
-    $.__views.diyPaint.add($.__views.__alloyId15);
-    $.__views.__alloyId16 = Ti.UI.createLabel({
+    $.__views.__alloyId10 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
         text: "This DIY Paint",
-        id: "__alloyId16"
+        id: "__alloyId10"
     });
-    $.__views.__alloyId15.add($.__views.__alloyId16);
+    $.__views.diyPaint.add($.__views.__alloyId10);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

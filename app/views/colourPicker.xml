@@ -1,7 +1,6 @@
 <Alloy>
-	<Window id="colourPicker">
+	 
 		<View class="container">
 			<Label>This is Colour Picker</Label>
-		</View>
-	</Window>
+		</View> 
 </Alloy>

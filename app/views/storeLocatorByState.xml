@@ -1,5 +1,3 @@
 <Alloy>
-	<Window id="storeLocatorByState">
-		<View id="tableContainer" height="auto"></View>	
-	</Window>
+	<View id="tableContainer" height="auto" class="container"></View>	
 </Alloy>

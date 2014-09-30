@@ -18,17 +18,18 @@ function Controller() {
     var $ = this;
     var exports = {};
     $.__views.main = Ti.UI.createView({
+        backgroundColor: "white",
         id: "main"
     });
     $.__views.main && $.addTopLevelView($.__views.main);
-    $.__views.__alloyId21 = Ti.UI.createLabel({
+    $.__views.__alloyId31 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
         text: "THIS IS MAIN",
-        id: "__alloyId21"
+        id: "__alloyId31"
     });
-    $.__views.main.add($.__views.__alloyId21);
+    $.__views.main.add($.__views.__alloyId31);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

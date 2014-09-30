@@ -1,7 +1,7 @@
 <Alloy>
-	<Window id="brochure">
-		<View class="container">
-			<Label>This is Brochure</Label>
+	 
+		<View id="brochureView" layout="vertical" class="container">
+			<ScrollView id="scrollview" layout="vertical"></ScrollView>
 		</View>
-	</Window>
+	 
 </Alloy>
