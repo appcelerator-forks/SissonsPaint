@@ -1,0 +1,9 @@
+<Alloy>
+	
+	<View class="container"> 
+		<View layout="vertical" class="popupView" >
+			<Button onClick="toggle">Menu</Button>
+		</View>
+	</View> 
+	
+</Alloy>
