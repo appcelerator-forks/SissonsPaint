@@ -1,8 +1,7 @@
 var args = arguments[0] || {};
 var state   = args.state;
 var library = Alloy.createCollection('storeLocator'); 
-var details = library.getStoreByState(state);
-var flag = 1;
+var details = library.getStoreByState(state); 
 console.log(details);
 generateStoreTable(details);
 
@@ -159,4 +158,3 @@ function addClickEvent(table){
 		NavigateTo("3.100118","101.686962");
 	});
 }
-
