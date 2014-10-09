@@ -1,5 +1,11 @@
 <Alloy>
 	<View class="container">
-			<Label>This is Colour Swatches page</Label>
-		</View>
+		<Label>COLOR CATEGORIES</Label>
+		<Label>ECOGLOS is base on long oilmodifield alkyd. It is fungus resistant high gloss architectural paint that
+			decorates and protects the interior and exterior of building. It has excellent coverage, good application and flow
+			properties. With the proper primer and undercoat, EcoGloss will dry to an attractive smooth finish
+			on wooden and metal substrates.</Label>
+			
+		
+	</View>
 </Alloy>
