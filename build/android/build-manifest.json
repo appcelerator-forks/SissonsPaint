@@ -2,7 +2,7 @@
 	"target": "device",
 	"deployType": "test",
 	"classname": "SissionsPaint",
-	"platformPath": "/Users/geomilano/Library/Application Support/Titanium/mobilesdk/osx/3.2.3.GA/android",
+	"platformPath": "/Users/tankeanmeng/Library/Application Support/Titanium/mobilesdk/osx/3.2.3.GA/android",
 	"modulesHash": "238afb115a8c0cdc44bf7d65d7c0ebc5",
 	"modulesManifestHash": "bd5be7e6c2f09fd854d8bf9390dec340",
 	"modulesNativeHash": "39b592ad582de3af3b040981876791cc",
@@ -20,14 +20,14 @@
 	"icon": "appicon.png",
 	"fullscreen": false,
 	"navbar-hidden": false,
-	"skipJSMinification": true,
+	"skipJSMinification": false,
 	"mergeCustomAndroidManifest": false,
 	"encryptJS": true,
-	"minSDK": 10,
+	"minSDK": 14,
 	"targetSDK": "16",
 	"propertiesHash": "320857e9943785652fbd60df5a0c4a1a",
 	"activitiesHash": "d41d8cd98f00b204e9800998ecf8427e",
 	"servicesHash": "d41d8cd98f00b204e9800998ecf8427e",
 	"jssFilesHash": "d41d8cd98f00b204e9800998ecf8427e",
-	"jarLibHash": "2ec6e66f41d4dc37be8298857b7bef72"
+	"jarLibHash": "a02e298aea5392edca838468b94a6b25"
 }

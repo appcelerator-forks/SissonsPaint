@@ -1,56 +1,47 @@
 <Alloy>
-    <Widget id="drawer" src="nl.fokkezb.drawer">
+    <Widget id="drawer" src="nl.fokkezb.drawer" >
 
-        <Window module="xp.ui" role="leftWindow" id="mainWindow">
-            <TableView id="menuTable" backgroundColor="#F7F8E0" onClick="doMenuClick">
+        <Window module="xp.ui" title="test" role="leftWindow" id="mainWindow" backgroundColor="black" fullscreen="true">
+            <ImageView id="logo" image="/images/menu_logo.png" width="150" top="30"/>
+            <TableView id="menuTable" top="100" onClick="doMenuClick" separatorColor="black">
 		    	<TableViewRow height="50">
-					<Label width="Ti.UI.FILL" left="10">Home</Label>
+					<Label width="Ti.UI.FILL" left="30" color="white">Home</Label>
 				</TableViewRow>
 				
 				<TableViewRow height="50">
-					<Label width="Ti.UI.FILL" left="10">DIY Paint</Label>
+					<Label width="Ti.UI.FILL" left="30" color="white">DIY Paint</Label>
 				</TableViewRow>
 				
 				<TableViewRow height="50">
-					<Label width="Ti.UI.FILL" left="10">Colour Picker</Label>
+					<Label width="Ti.UI.FILL" left="30" color="white">Colour Picker</Label>
 				</TableViewRow>
 				
 				<TableViewRow height="50">
-					<Label width="Ti.UI.FILL" left="10">Colour Swatches</Label>
+					<Label width="Ti.UI.FILL" left="30" color="white">Colour Swatches</Label>
 				</TableViewRow>
 				
 				<TableViewRow height="50">
-					<Label width="Ti.UI.FILL" left="10">Brochure</Label>
+					<Label width="Ti.UI.FILL" left="30" color="white">Brochure</Label>
 				</TableViewRow>
 				
 				<TableViewRow height="50">
-					<Label width="Ti.UI.FILL" left="10">Store Locator</Label>
+					<Label width="Ti.UI.FILL" left="30" color="white">Store Locator</Label>
 				</TableViewRow>
+				
 				<TableViewRow height="50">
-					<Label width="Ti.UI.FILL" left="10">About Us</Label>
+					<Label width="Ti.UI.FILL" left="30" color="white">About Us</Label>
 				</TableViewRow>
 		    </TableView>
+		    <Label id="tnc" color="white" bottom="20">TERM & CONDITIONS | 2014 COPYRIGHT</Label>
         </Window>
-
-        <NavigationWindow platform="ios" role="centerWindow">
-            <Window>
-                
-                <Label>I am center</Label>
-                <RightNavButton>
-                    <Button onClick="toggle">Right</Button>
-                </RightNavButton>
-                <View layout="vertical" class="popupView" id="menu">
-				 	 <Button onClick="toggle">Left</Button>
-				</View>
-            </Window>
-        </NavigationWindow>
         
-        <View platform="android" role="centerWindow">
+        <Window id="centerWindow" module="xp.ui" platform="android" role="centerWindow">
         	<View layout="vertical" class="popupView" id="menu">
-		 		<Button onClick="toggle">Left</Button>
+		 		<!--<Button onClick="toggle">Left</Button>-->
+		 		<Require src="toggle"></Require>
 			</View>
             <Label>I am center</Label>
-        </View>
+        </Window>
 
     </Widget>
 </Alloy>
