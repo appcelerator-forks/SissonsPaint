@@ -1,1 +1,1 @@
-module.exports=[{isApi:!0,priority:1000.0032,key:"Label",style:{width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000"}},{isClass:!0,priority:10000.0031,key:"container",style:{backgroundColor:"#ffffff"}}];
+/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/alloy/styles/storeLocator.js
