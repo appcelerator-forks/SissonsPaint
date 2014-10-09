@@ -1,4 +1,7 @@
-$.drawer.open();
+$.drawer.open({
+	navBarHidden: true,
+	fullscreen: true
+});
 var API = require('api');
 var flag =0;	
 // Load API function

@@ -1,7 +1,1 @@
-function WPATH(s) {
-    var index = s.lastIndexOf("/");
-    var path = -1 === index ? "nl.fokkezb.drawer/" + s : s.substring(0, index) + "/nl.fokkezb.drawer/" + s.substring(index + 1);
-    return true && 0 !== path.indexOf("/") ? "/" + path : path;
-}
-
-module.exports = [];
+function WPATH(e){var t=e.lastIndexOf("/"),i=-1===t?"nl.fokkezb.drawer/"+e:e.substring(0,t)+"/nl.fokkezb.drawer/"+e.substring(t+1);return 0!==i.indexOf("/")?"/"+i:i}module.exports=[];

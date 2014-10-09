@@ -8,9 +8,6 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function toggle() {
-        $.drawer["toggleLeftWindow"]();
-    }
     function doMenuClick(e) {
         switch (e.index) {
           case 0:
@@ -49,165 +46,190 @@ function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
     if (arguments[0]) {
-        __processArg(arguments[0], "__parentSymbol");
-        __processArg(arguments[0], "$model");
-        __processArg(arguments[0], "__itemTemplate");
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
     }
     var $ = this;
     var exports = {};
     var __defers = {};
     $.__views.mainWindow = require("xp.ui").createWindow({
-        backgroundColor: "white",
+        backgroundColor: "black",
+        fullscreen: "true",
+        title: "test",
         role: "leftWindow",
         id: "mainWindow"
     });
-    var __alloyId13 = [];
-    $.__views.__alloyId14 = Ti.UI.createTableViewRow({
+    $.__views.logo = Ti.UI.createImageView({
+        id: "logo",
+        image: "/images/menu_logo.png",
+        width: "150",
+        top: "30"
+    });
+    $.__views.mainWindow.add($.__views.logo);
+    var __alloyId18 = [];
+    $.__views.__alloyId19 = Ti.UI.createTableViewRow({
         height: "50",
-        id: "__alloyId14"
-    });
-    __alloyId13.push($.__views.__alloyId14);
-    $.__views.__alloyId15 = Ti.UI.createLabel({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        text: "Home",
-        left: "10",
-        id: "__alloyId15"
-    });
-    $.__views.__alloyId14.add($.__views.__alloyId15);
-    $.__views.__alloyId16 = Ti.UI.createTableViewRow({
-        height: "50",
-        id: "__alloyId16"
-    });
-    __alloyId13.push($.__views.__alloyId16);
-    $.__views.__alloyId17 = Ti.UI.createLabel({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        text: "DIY Paint",
-        left: "10",
-        id: "__alloyId17"
-    });
-    $.__views.__alloyId16.add($.__views.__alloyId17);
-    $.__views.__alloyId18 = Ti.UI.createTableViewRow({
-        height: "50",
-        id: "__alloyId18"
-    });
-    __alloyId13.push($.__views.__alloyId18);
-    $.__views.__alloyId19 = Ti.UI.createLabel({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        text: "Colour Picker",
-        left: "10",
         id: "__alloyId19"
     });
-    $.__views.__alloyId18.add($.__views.__alloyId19);
-    $.__views.__alloyId20 = Ti.UI.createTableViewRow({
-        height: "50",
+    __alloyId18.push($.__views.__alloyId19);
+    $.__views.__alloyId20 = Ti.UI.createLabel({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        color: "white",
+        text: "Home",
+        left: "30",
         id: "__alloyId20"
     });
-    __alloyId13.push($.__views.__alloyId20);
-    $.__views.__alloyId21 = Ti.UI.createLabel({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        text: "Colour Swatches",
-        left: "10",
+    $.__views.__alloyId19.add($.__views.__alloyId20);
+    $.__views.__alloyId21 = Ti.UI.createTableViewRow({
+        height: "50",
         id: "__alloyId21"
     });
-    $.__views.__alloyId20.add($.__views.__alloyId21);
-    $.__views.__alloyId22 = Ti.UI.createTableViewRow({
-        height: "50",
+    __alloyId18.push($.__views.__alloyId21);
+    $.__views.__alloyId22 = Ti.UI.createLabel({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        color: "white",
+        text: "DIY Paint",
+        left: "30",
         id: "__alloyId22"
     });
-    __alloyId13.push($.__views.__alloyId22);
-    $.__views.__alloyId23 = Ti.UI.createLabel({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        text: "Brochure",
-        left: "10",
+    $.__views.__alloyId21.add($.__views.__alloyId22);
+    $.__views.__alloyId23 = Ti.UI.createTableViewRow({
+        height: "50",
         id: "__alloyId23"
     });
-    $.__views.__alloyId22.add($.__views.__alloyId23);
-    $.__views.__alloyId24 = Ti.UI.createTableViewRow({
-        height: "50",
+    __alloyId18.push($.__views.__alloyId23);
+    $.__views.__alloyId24 = Ti.UI.createLabel({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        color: "white",
+        text: "Colour Picker",
+        left: "30",
         id: "__alloyId24"
     });
-    __alloyId13.push($.__views.__alloyId24);
-    $.__views.__alloyId25 = Ti.UI.createLabel({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        text: "Store Locator",
-        left: "10",
+    $.__views.__alloyId23.add($.__views.__alloyId24);
+    $.__views.__alloyId25 = Ti.UI.createTableViewRow({
+        height: "50",
         id: "__alloyId25"
     });
-    $.__views.__alloyId24.add($.__views.__alloyId25);
-    $.__views.__alloyId26 = Ti.UI.createTableViewRow({
-        height: "50",
-        id: "__alloyId26"
-    });
-    __alloyId13.push($.__views.__alloyId26);
-    $.__views.__alloyId27 = Ti.UI.createLabel({
+    __alloyId18.push($.__views.__alloyId25);
+    $.__views.__alloyId26 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
-        color: "#000",
-        text: "About Us",
-        left: "10",
+        color: "white",
+        text: "Colour Swatches",
+        left: "30",
+        id: "__alloyId26"
+    });
+    $.__views.__alloyId25.add($.__views.__alloyId26);
+    $.__views.__alloyId27 = Ti.UI.createTableViewRow({
+        height: "50",
         id: "__alloyId27"
     });
-    $.__views.__alloyId26.add($.__views.__alloyId27);
+    __alloyId18.push($.__views.__alloyId27);
+    $.__views.__alloyId28 = Ti.UI.createLabel({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        color: "white",
+        text: "Brochure",
+        left: "30",
+        id: "__alloyId28"
+    });
+    $.__views.__alloyId27.add($.__views.__alloyId28);
+    $.__views.__alloyId29 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId29"
+    });
+    __alloyId18.push($.__views.__alloyId29);
+    $.__views.__alloyId30 = Ti.UI.createLabel({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        color: "white",
+        text: "Store Locator",
+        left: "30",
+        id: "__alloyId30"
+    });
+    $.__views.__alloyId29.add($.__views.__alloyId30);
+    $.__views.__alloyId31 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId31"
+    });
+    __alloyId18.push($.__views.__alloyId31);
+    $.__views.__alloyId32 = Ti.UI.createLabel({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        color: "white",
+        text: "About Us",
+        left: "30",
+        id: "__alloyId32"
+    });
+    $.__views.__alloyId31.add($.__views.__alloyId32);
     $.__views.menuTable = Ti.UI.createTableView({
-        data: __alloyId13,
+        data: __alloyId18,
         id: "menuTable",
-        backgroundColor: "#F7F8E0"
+        top: "100",
+        separatorColor: "black"
     });
     $.__views.mainWindow.add($.__views.menuTable);
     doMenuClick ? $.__views.menuTable.addEventListener("click", doMenuClick) : __defers["$.__views.menuTable!click!doMenuClick"] = true;
-    $.__views.__alloyId28 = Ti.UI.createView({
-        role: "centerWindow",
-        id: "__alloyId28"
+    $.__views.tnc = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "white",
+        font: {
+            fontSize: 8
+        },
+        text: "TERM & CONDITIONS | 2014 COPYRIGHT",
+        id: "tnc",
+        bottom: "20"
+    });
+    $.__views.mainWindow.add($.__views.tnc);
+    $.__views.centerWindow = require("xp.ui").createWindow({
+        backgroundColor: "white",
+        fullscreen: true,
+        id: "centerWindow",
+        role: "centerWindow"
     });
     $.__views.menu = Ti.UI.createView({
-        left: 3,
-        top: 48,
-        width: "10%",
-        height: 30,
-        borderRadius: 5,
-        borderColor: "#CE1D1C",
-        borderWidth: 1,
         layout: "vertical",
         id: "menu"
     });
-    $.__views.__alloyId28.add($.__views.menu);
-    $.__views.__alloyId29 = Ti.UI.createButton({
-        title: "Left",
-        id: "__alloyId29"
+    $.__views.centerWindow.add($.__views.menu);
+    $.__views.__alloyId33 = Alloy.createController("toggle", {
+        id: "__alloyId33",
+        __parentSymbol: $.__views.menu
     });
-    $.__views.menu.add($.__views.__alloyId29);
-    toggle ? $.__views.__alloyId29.addEventListener("click", toggle) : __defers["$.__views.__alloyId29!click!toggle"] = true;
-    $.__views.__alloyId30 = Ti.UI.createLabel({
+    $.__views.__alloyId33.setParent($.__views.menu);
+    $.__views.__alloyId34 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
         text: "I am center",
-        id: "__alloyId30"
+        id: "__alloyId34"
     });
-    $.__views.__alloyId28.add($.__views.__alloyId30);
+    $.__views.centerWindow.add($.__views.__alloyId34);
     $.__views.drawer = Alloy.createWidget("nl.fokkezb.drawer", "widget", {
         openDrawerGestureMode: "OPEN_MODE_ALL",
         closeDrawerGestureMode: "CLOSE_MODE_MARGIN",
         leftDrawerWidth: 200,
         id: "drawer",
-        children: [ $.__views.mainWindow, $.__views.__alloyId28 ]
+        children: [ $.__views.mainWindow, $.__views.centerWindow ]
     });
     $.__views.drawer && $.addTopLevelView($.__views.drawer);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    $.drawer.open();
+    $.drawer.open({
+        navBarHidden: true,
+        fullscreen: true
+    });
     var API = require("api");
     var flag = 0;
     API.loadStoreLocator();
@@ -224,7 +246,6 @@ function Controller() {
         }
     });
     __defers["$.__views.menuTable!click!doMenuClick"] && $.__views.menuTable.addEventListener("click", doMenuClick);
-    __defers["$.__views.__alloyId29!click!toggle"] && $.__views.__alloyId29.addEventListener("click", toggle);
     _.extend($, exports);
 }
 
