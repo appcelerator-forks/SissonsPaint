@@ -232,9 +232,10 @@ function Controller() {
     });
     var API = require("api");
     var flag = 0;
+    API.loadColour();
     API.loadStoreLocator();
     API.loadBrochure();
-    API.loadColour();
+    API.loadCategory();
     Alloy.Globals.Drawer = $.drawer;
     $.drawer.addEventListener("android:back", function() {
         if (1 == flag) {

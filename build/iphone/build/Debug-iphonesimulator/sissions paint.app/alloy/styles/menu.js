@@ -1,1 +1,1 @@
-module.exports = [{"isClass":true,"priority":10000.003,"key":"container","style":{}}];
+/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/iphone/alloy/styles/menu.js

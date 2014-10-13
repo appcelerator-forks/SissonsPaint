@@ -17,6 +17,7 @@ NSString * const TI_APPLICATION_DESCRIPTION = @"not specified";
 NSString * const TI_APPLICATION_COPYRIGHT = @"2014 by geomilano";
 NSString * const TI_APPLICATION_GUID = @"dd994d5a-0863-4f41-a2be-0d8212f17462";
 BOOL const TI_APPLICATION_ANALYTICS = true;
+NSString * const TI_APPLICATION_BUILD_TYPE = @"";
 
 #ifdef TARGET_IPHONE_SIMULATOR
 NSString * const TI_APPLICATION_RESOURCE_DIR = @"";

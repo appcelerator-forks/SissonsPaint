@@ -1,11 +1,10 @@
 dependencies: \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/NetworkModule.m \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/NetworkModule.h \
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiNetworkCookieProxy.h \
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiProxy.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiBase.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiThreading.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiPublicAPI.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiModule.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiProxy.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiEvaluator.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/KrollContext.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/headers/TiCore/TiCore.h \
@@ -17,6 +16,8 @@ dependencies: \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/KrollCallback.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/KrollObject.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiBindingRunLoop.h \
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/NetworkModule.h \
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiModule.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiUtils.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiDimension.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiColor.h \
@@ -24,7 +25,7 @@ dependencies: \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiFile.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiBuffer.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiBlob.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/ASI/Reachability.h \
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/Reachability.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiApp.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiHost.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/Bridge.h \
@@ -43,9 +44,4 @@ dependencies: \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiRect.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiViewTemplate.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/SBJSON.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiNetworkSocketProxy.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/ASI/ASIHTTPRequest.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/ASI/ASIHTTPRequestConfig.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/ASI/ASIHTTPRequestDelegate.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/ASI/ASIProgressDelegate.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/ASI/ASICacheDelegate.h
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiNetworkSocketProxy.h

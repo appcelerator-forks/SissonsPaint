@@ -34,4 +34,5 @@ dependencies: \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiUIViewProxy.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiViewProxy.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiRect.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiViewTemplate.h
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiViewTemplate.h \
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/APSAnalytics/APSAnalytics.h

@@ -31,12 +31,11 @@ dependencies: \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiGradient.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiRect.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/ImageLoader.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/ASI/ASIHTTPRequest.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/ASI/ASIHTTPRequestConfig.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/ASI/ASIHTTPRequestDelegate.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/ASI/ASIProgressDelegate.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/ASI/ASICacheDelegate.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/ASI/ASINetworkQueue.h \
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/APSHTTPClient/APSHTTPClient.h \
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/APSHTTPClient/APSHTTPRequest.h \
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/APSHTTPClient/APSHTTPResponse.h \
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/APSHTTPClient/APSHTTPPostForm.h \
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/APSHTTPClient/APSHTTPHelper.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/Ti2DMatrix.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/Ti3DMatrix.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiViewProxy.h \

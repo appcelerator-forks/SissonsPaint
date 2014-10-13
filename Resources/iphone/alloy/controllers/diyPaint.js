@@ -11,9 +11,15 @@ function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "diyPaint";
     if (arguments[0]) {
-        __processArg(arguments[0], "__parentSymbol");
-        __processArg(arguments[0], "$model");
-        __processArg(arguments[0], "__itemTemplate");
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
     }
     var $ = this;
     var exports = {};
@@ -22,14 +28,14 @@ function Controller() {
         id: "diyPaint"
     });
     $.__views.diyPaint && $.addTopLevelView($.__views.diyPaint);
-    $.__views.__alloyId16 = Ti.UI.createLabel({
+    $.__views.__alloyId85 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
         text: "This DIY Paint",
-        id: "__alloyId16"
+        id: "__alloyId85"
     });
-    $.__views.diyPaint.add($.__views.__alloyId16);
+    $.__views.diyPaint.add($.__views.__alloyId85);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

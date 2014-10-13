@@ -14,7 +14,7 @@ function Controller() {
             width: "100%",
             backgroundColor: "#fffff6"
         });
-        for (var i = 0; details.length > i; i++) {
+        for (var i = 0; i < details.length; i++) {
             var row = Titanium.UI.createTableViewRow({
                 layout: "vertical",
                 touchEnabled: true,
@@ -122,7 +122,7 @@ function Controller() {
             infoViewContainer.add(infoView);
             infoViewContainer.add(rightForwardBtn);
             row.add(infoViewContainer);
-            details.length - 1 > i && row.add(separator);
+            i < details.length - 1 && row.add(separator);
             data.push(row);
         }
         TheTable.setData(data);
@@ -137,9 +137,15 @@ function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "storeLocatorByState";
     if (arguments[0]) {
-        __processArg(arguments[0], "__parentSymbol");
-        __processArg(arguments[0], "$model");
-        __processArg(arguments[0], "__itemTemplate");
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
     }
     var $ = this;
     var exports = {};

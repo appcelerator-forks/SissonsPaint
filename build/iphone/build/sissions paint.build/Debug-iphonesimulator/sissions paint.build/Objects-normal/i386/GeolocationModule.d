@@ -24,12 +24,11 @@ dependencies: \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiFile.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiBuffer.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiBlob.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/ASI/ASIFormDataRequest.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/ASI/ASIHTTPRequest.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/ASI/ASIHTTPRequestConfig.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/ASI/ASIHTTPRequestDelegate.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/ASI/ASIProgressDelegate.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/ASI/ASICacheDelegate.h \
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/APSHTTPClient/APSHTTPClient.h \
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/APSHTTPClient/APSHTTPRequest.h \
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/APSHTTPClient/APSHTTPResponse.h \
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/APSHTTPClient/APSHTTPPostForm.h \
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/APSHTTPClient/APSHTTPHelper.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiApp.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiHost.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/Bridge.h \
@@ -48,4 +47,5 @@ dependencies: \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiRect.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiViewTemplate.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/SBJSON.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/NSData+Additions.h
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/NSData+Additions.h \
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/APSAnalytics/APSAnalytics.h

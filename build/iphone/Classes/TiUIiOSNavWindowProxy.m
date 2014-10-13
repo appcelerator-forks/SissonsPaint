@@ -94,7 +94,6 @@
         [TiUtils configureController:navController withObject:self];
         if ([TiUtils isIOS7OrGreater]) {
             [navController.interactivePopGestureRecognizer addTarget:self action:@selector(popGestureStateHandler:)];
-           
         }
     }
     return navController;

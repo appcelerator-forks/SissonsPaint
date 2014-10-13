@@ -45,4 +45,5 @@ dependencies: \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiDebugger.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiConsole.h \
   /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/APIModule.h \
-  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiExceptionHandler.h
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/TiExceptionHandler.h \
+  /Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/iphone/Classes/APSAnalytics/APSAnalytics.h

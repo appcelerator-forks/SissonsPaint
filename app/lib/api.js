@@ -10,7 +10,7 @@ var USER  = 'mobile';
 var KEY   = '06b53047cf294f7207789ff5293ad2dc';
 var getStoreLocatorList	  = "http://"+API_DOMAIN+"/api/getStore?user="+USER+"&key="+KEY;
 var getBrochureList	      = "http://"+API_DOMAIN+"/api/getBrochure?user="+USER+"&key="+KEY;
-
+var getCategoryList       = "http://"+API_DOMAIN+"/api/getCategoryList?user="+USER+"&key="+KEY;
 var getColourList	      = "http://"+API_DOMAIN+"/api/getColourList?user="+USER+"&key="+KEY;
 
 exports.sendContactMsg    = "http://"+API_DOMAIN+"/api/sendMessage?user="+USER+"&key="+KEY;
@@ -60,8 +60,70 @@ exports.loadColour = function (ex){
 
 //load Category and save to local db
 exports.loadCategory = function(ex){
-	
-}
+	var url = getCategoryList;
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) { 
+	       var res = JSON.parse(this.responseText);
+	       
+	       if(res.status == "success"){
+		       	/**reset current category**/
+		       	var lib_cate = Alloy.createCollection('category'); 
+		       	var lib_type = Alloy.createCollection('category_type'); 
+		       	var lib_colour = Alloy.createCollection('category_colour'); 
+		       	
+				lib_cate.resetCategory();
+				lib_type.resetCategoryType();
+				lib_colour.resetCategoryColour();
+				
+				/**load new set of category from API**/
+		       	var arr = res.data;
+		       
+		       	arr.forEach(function(entry) {
+		       		
+		       		/***Category Info***/
+		       		var product_categroy = Alloy.createModel('category', { 
+		       			id: entry.id, 
+						name: entry.name, 
+						type: entry.type,
+						description : entry.description,
+					});
+					product_categroy.save();
+					    
+		       		/*** Category Type***/
+		       		var categories = entry.arr_category;
+		       		categories.forEach(function(category) {
+		       			var category_type = Alloy.createModel('category_type', { 
+						    cate_id: entry.id, 
+						    tag: category
+					    });
+					    category_type.save();
+		       		});
+					
+					/*** Category Colour***/
+					var colours = entry.arr_colour;
+		       		colours.forEach(function(colour) {
+		       			var category_colour = Alloy.createModel('category_colour', { 
+						    cate_id: entry.id, 
+						    colour_id: colour
+					    });
+					    category_colour.save();
+		       		});
+				});
+				
+		 
+	       }
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) {
+	     },
+	     timeout : 50000  // in milliseconds
+	 });
+	 // Prepare the connection.
+	 client.open("GET", url);
+	 // Send the request.
+	 client.send(); 
+};
 
 //load Brochure and save to local db
 exports.loadBrochure = function (ex){

@@ -1,1 +1,1 @@
-module.exports = [{"isApi":true,"priority":1000.0017,"key":"Label","style":{width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000",}},{"isClass":true,"priority":10000.0016,"key":"container","style":{backgroundColor:"white",}}];
+/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/iphone/alloy/styles/colourSwatches.js
