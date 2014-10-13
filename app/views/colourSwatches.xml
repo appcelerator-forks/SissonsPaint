@@ -1,4 +1,12 @@
 <Alloy>
+<<<<<<< HEAD
+	<View layout="vertical" class="container">
+		<View layout="horizontal" height="80">
+			<Require src="toggle"></Require>
+			<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Colour Swatches</Label>
+		</View>
+		<Label>This is Colour Swatches page</Label>
+=======
 	<View class="container">
 		<Require src="toggle"></Require>
 		 <Label class="title"  textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">COLOR CATEGORIES</Label>
@@ -107,5 +115,6 @@
 				</View>
 		</ScrollView>
 		 	
+>>>>>>> FETCH_HEAD
 	</View>
 </Alloy>

@@ -12,14 +12,14 @@ function Controller() {
         var data = [];
         var TheTable = Titanium.UI.createTableView({
             width: "100%",
-            backgroundColor: "#fffff6"
+            separatorColor: "#ffffff",
+            backgroundColor: "#FFFFFF"
         });
         for (var i = 0; i < details.length; i++) {
             var row = Titanium.UI.createTableViewRow({
                 layout: "vertical",
                 touchEnabled: true,
                 id: details[i].id,
-                backgroundSelectedColor: "#FFE1E1",
                 backgroundColor: "#FFFFFF"
             });
             var outlet_name = $.UI.create("Label", {
@@ -33,8 +33,8 @@ function Controller() {
                 textAlign: "left",
                 left: 20
             });
-            if ("" != details[i].area) var location = Titanium.UI.createLabel({
-                text: details[i].area,
+            if ("" != details[i].address) var location = Titanium.UI.createLabel({
+                text: details[i].address,
                 id: details[i].id,
                 font: {
                     fontSize: 12
@@ -44,16 +44,16 @@ function Controller() {
                 textAlign: "left",
                 left: 20
             });
-            "" == details[i].mobile && (details[i].mobile = "-");
             var infoViewContainer = Titanium.UI.createView({
                 layout: "horizontal",
-                height: 60,
+                height: 80,
                 width: "100%"
             });
             var infoView = Titanium.UI.createView({
                 layout: "vertical",
                 width: "80%"
             });
+            "" == details[i].mobile && (details[i].mobile = "-");
             var mobile = Titanium.UI.createLabel({
                 text: "TEL: " + details[i].mobile,
                 id: details[i].id,
@@ -77,6 +77,30 @@ function Controller() {
                 textAlign: "left",
                 left: 20
             });
+            ("" == details[i].email || null == details[i].email) && (details[i].email = "-");
+            var email = Titanium.UI.createLabel({
+                text: "E-mail: " + details[i].email,
+                id: details[i].id,
+                font: {
+                    fontSize: 12
+                },
+                width: "auto",
+                color: "#848484",
+                textAlign: "left",
+                left: 20
+            });
+            ("" == details[i].website || null == details[i].website) && (details[i].website = "-");
+            var website = Titanium.UI.createLabel({
+                text: "Website: " + details[i].website,
+                id: details[i].id,
+                font: {
+                    fontSize: 12
+                },
+                width: "auto",
+                color: "#848484",
+                textAlign: "left",
+                left: 20
+            });
             switch (details[i].category) {
               case 1:
                 var categoryName = "Branches";
@@ -89,17 +113,19 @@ function Controller() {
               case 3:
                 var categoryName = "Dealers";
             }
-            var cateType = Titanium.UI.createLabel({
-                text: categoryName,
-                id: details[i].id,
-                font: {
-                    fontSize: 12
-                },
-                width: "auto",
-                color: "#848484",
-                textAlign: "left",
-                left: 20
-            });
+            {
+                Titanium.UI.createLabel({
+                    text: categoryName,
+                    id: details[i].id,
+                    font: {
+                        fontSize: 12
+                    },
+                    width: "auto",
+                    color: "#848484",
+                    textAlign: "left",
+                    left: 20
+                });
+            }
             var rightForwardBtn = Titanium.UI.createImageView({
                 image: "/images/icon_store.png",
                 width: 40,
@@ -107,18 +133,18 @@ function Controller() {
                 right: 20
             });
             var separator = Titanium.UI.createImageView({
-                left: 0,
-                bottom: 0,
                 width: Titanium.UI.FILL,
                 height: 30,
+                bottom: -1,
                 touchEnabled: false,
                 image: "/images/scroll_up.png"
             });
             row.add(outlet_name);
-            "" != details[i].area && row.add(location);
+            "" != details[i].address && row.add(location);
             infoView.add(mobile);
             infoView.add(fax);
-            infoView.add(cateType);
+            infoView.add(email);
+            infoView.add(website);
             infoViewContainer.add(infoView);
             infoViewContainer.add(rightForwardBtn);
             row.add(infoViewContainer);
@@ -149,12 +175,40 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
+    $.__views.storeLocatorByState = Ti.UI.createView({
+        layout: "vertical",
+        backgroundColor: "white",
+        id: "storeLocatorByState"
+    });
+    $.__views.storeLocatorByState && $.addTopLevelView($.__views.storeLocatorByState);
+    $.__views.__alloyId73 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId73"
+    });
+    $.__views.storeLocatorByState.add($.__views.__alloyId73);
+    $.__views.__alloyId74 = Alloy.createController("toggle", {
+        id: "__alloyId74",
+        __parentSymbol: $.__views.__alloyId73
+    });
+    $.__views.__alloyId74.setParent($.__views.__alloyId73);
+    $.__views.stateName = Ti.UI.createLabel({
+        width: "75%",
+        height: Ti.UI.SIZE,
+        color: "black",
+        font: {
+            fontSize: 28
+        },
+        id: "stateName",
+        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
+    });
+    $.__views.__alloyId73.add($.__views.stateName);
     $.__views.tableContainer = Ti.UI.createView({
         backgroundColor: "white",
         id: "tableContainer",
         height: "auto"
     });
-    $.__views.tableContainer && $.addTopLevelView($.__views.tableContainer);
+    $.__views.storeLocatorByState.add($.__views.tableContainer);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -163,6 +217,7 @@ function Controller() {
     var details = library.getStoreByState(state);
     console.log(details);
     generateStoreTable(details);
+    $.stateName.text = state;
     NavigateTo = function(latitude, longitude) {
         var url = "waze://?ll=" + latitude + "," + longitude + "&navigate=yes";
         if (Ti.Android) try {

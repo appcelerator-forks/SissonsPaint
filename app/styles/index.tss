@@ -12,7 +12,7 @@
 	// width   : "10%",
     // height  : 30,
     // borderRadius : 5,
-    // borderColor : 'yellow',
+    // borderColor : '#CE1D1C',
     // borderWidth : 1
 // },
 "#tnc":{
@@ -26,4 +26,8 @@
 "Window": {
     backgroundColor: 'white',
 	fullscreen: true
+},
+
+".title":{
+	font:{fontSize:28},	
 }

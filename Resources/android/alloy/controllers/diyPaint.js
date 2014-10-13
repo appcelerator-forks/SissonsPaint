@@ -27,6 +27,37 @@ function Controller() {
     var $ = this;
     var exports = {};
     $.__views.diyPaint = Ti.UI.createView({
+<<<<<<< HEAD
+        backgroundColor: "white",
+        layout: "vertical",
+        id: "diyPaint"
+    });
+    $.__views.diyPaint && $.addTopLevelView($.__views.diyPaint);
+    $.__views.__alloyId27 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId27"
+    });
+    $.__views.diyPaint.add($.__views.__alloyId27);
+    $.__views.__alloyId28 = Alloy.createController("toggle", {
+        id: "__alloyId28",
+        __parentSymbol: $.__views.__alloyId27
+    });
+    $.__views.__alloyId28.setParent($.__views.__alloyId27);
+    $.__views.__alloyId29 = Ti.UI.createLabel({
+        width: "75%",
+        height: Ti.UI.SIZE,
+        color: "black",
+        font: {
+            fontSize: 28
+        },
+        text: "DIY Paint",
+        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+        id: "__alloyId29"
+    });
+    $.__views.__alloyId27.add($.__views.__alloyId29);
+    $.__views.__alloyId30 = Ti.UI.createLabel({
+=======
         id: "diyPaint"
     });
     $.__views.diyPaint && $.addTopLevelView($.__views.diyPaint);
@@ -95,6 +126,26 @@ function Controller() {
         image: "/images/power-icons.png"
     });
     $.__views.toolbar.add($.__views.settings);
+<<<<<<< HEAD
+=======
+=======
+    $.__views.__alloyId85 = Ti.UI.createLabel({
+>>>>>>> FETCH_HEAD
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#000",
+        text: "This DIY Paint",
+<<<<<<< HEAD
+        id: "__alloyId30"
+    });
+    $.__views.diyPaint.add($.__views.__alloyId30);
+=======
+        id: "__alloyId85"
+    });
+    $.__views.diyPaint.add($.__views.__alloyId85);
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

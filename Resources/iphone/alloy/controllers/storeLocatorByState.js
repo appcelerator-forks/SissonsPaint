@@ -122,7 +122,15 @@ function Controller() {
             infoViewContainer.add(infoView);
             infoViewContainer.add(rightForwardBtn);
             row.add(infoViewContainer);
+<<<<<<< HEAD
             i < details.length - 1 && row.add(separator);
+=======
+<<<<<<< HEAD
+            i < details.length - 1 && row.add(separator);
+=======
+            details.length - 1 > i && row.add(separator);
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
             data.push(row);
         }
         TheTable.setData(data);

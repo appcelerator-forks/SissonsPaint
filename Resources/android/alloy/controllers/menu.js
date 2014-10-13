@@ -59,6 +59,187 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    var __alloyId55 = [];
+    $.__views.__alloyId56 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId56"
+    });
+    __alloyId55.push($.__views.__alloyId56);
+    $.__views.__alloyId57 = Ti.UI.createLabel({
+        text: "Home",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId57"
+    });
+    $.__views.__alloyId56.add($.__views.__alloyId57);
+    $.__views.__alloyId58 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId58"
+    });
+    __alloyId55.push($.__views.__alloyId58);
+    $.__views.__alloyId59 = Ti.UI.createLabel({
+        text: "DIY Paint",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId59"
+    });
+    $.__views.__alloyId58.add($.__views.__alloyId59);
+    $.__views.__alloyId60 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId60"
+    });
+    __alloyId55.push($.__views.__alloyId60);
+    $.__views.__alloyId61 = Ti.UI.createLabel({
+        text: "Colour Picker",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId61"
+    });
+    $.__views.__alloyId60.add($.__views.__alloyId61);
+    $.__views.__alloyId62 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId62"
+    });
+    __alloyId55.push($.__views.__alloyId62);
+    $.__views.__alloyId63 = Ti.UI.createLabel({
+        text: "Colour Swatches",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId63"
+    });
+    $.__views.__alloyId62.add($.__views.__alloyId63);
+    $.__views.__alloyId64 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId64"
+    });
+    __alloyId55.push($.__views.__alloyId64);
+    $.__views.__alloyId65 = Ti.UI.createLabel({
+        text: "Brochure",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId65"
+    });
+    $.__views.__alloyId64.add($.__views.__alloyId65);
+    $.__views.__alloyId66 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId66"
+    });
+    __alloyId55.push($.__views.__alloyId66);
+    $.__views.__alloyId67 = Ti.UI.createLabel({
+        text: "Store Locator",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId67"
+    });
+    $.__views.__alloyId66.add($.__views.__alloyId67);
+    $.__views.__alloyId68 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId68"
+    });
+    __alloyId55.push($.__views.__alloyId68);
+    $.__views.__alloyId69 = Ti.UI.createLabel({
+        text: "About Us",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId69"
+    });
+    $.__views.__alloyId68.add($.__views.__alloyId69);
+    $.__views.menuTable = Ti.UI.createTableView({
+        data: __alloyId55,
+=======
+<<<<<<< HEAD
+    var __alloyId37 = [];
+    $.__views.__alloyId38 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId38"
+    });
+    __alloyId37.push($.__views.__alloyId38);
+    $.__views.__alloyId39 = Ti.UI.createLabel({
+        text: "Home",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId39"
+    });
+    $.__views.__alloyId38.add($.__views.__alloyId39);
+    $.__views.__alloyId40 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId40"
+    });
+    __alloyId37.push($.__views.__alloyId40);
+    $.__views.__alloyId41 = Ti.UI.createLabel({
+        text: "DIY Paint",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId41"
+    });
+    $.__views.__alloyId40.add($.__views.__alloyId41);
+    $.__views.__alloyId42 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId42"
+    });
+    __alloyId37.push($.__views.__alloyId42);
+    $.__views.__alloyId43 = Ti.UI.createLabel({
+        text: "Colour Picker",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId43"
+    });
+    $.__views.__alloyId42.add($.__views.__alloyId43);
+    $.__views.__alloyId44 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId44"
+    });
+    __alloyId37.push($.__views.__alloyId44);
+    $.__views.__alloyId45 = Ti.UI.createLabel({
+        text: "Colour Swatches",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId45"
+    });
+    $.__views.__alloyId44.add($.__views.__alloyId45);
+    $.__views.__alloyId46 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId46"
+    });
+    __alloyId37.push($.__views.__alloyId46);
+    $.__views.__alloyId47 = Ti.UI.createLabel({
+        text: "Brochure",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId47"
+    });
+    $.__views.__alloyId46.add($.__views.__alloyId47);
+    $.__views.__alloyId48 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId48"
+    });
+    __alloyId37.push($.__views.__alloyId48);
+    $.__views.__alloyId49 = Ti.UI.createLabel({
+        text: "Store Locator",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId49"
+    });
+    $.__views.__alloyId48.add($.__views.__alloyId49);
+    $.__views.__alloyId50 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId50"
+    });
+    __alloyId37.push($.__views.__alloyId50);
+    $.__views.__alloyId51 = Ti.UI.createLabel({
+        text: "About Us",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId51"
+    });
+    $.__views.__alloyId50.add($.__views.__alloyId51);
+    $.__views.menuTable = Ti.UI.createTableView({
+        data: __alloyId37,
+=======
+>>>>>>> FETCH_HEAD
     var __alloyId106 = [];
     $.__views.__alloyId107 = Ti.UI.createTableViewRow({
         height: "50",
@@ -146,6 +327,11 @@ function Controller() {
     $.__views.__alloyId119.add($.__views.__alloyId120);
     $.__views.menuTable = Ti.UI.createTableView({
         data: __alloyId106,
+<<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
         id: "menuTable",
         backgroundColor: "#3F3D3D"
     });

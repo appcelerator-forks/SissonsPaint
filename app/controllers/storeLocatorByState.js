@@ -4,13 +4,15 @@ var library = Alloy.createCollection('storeLocator');
 var details = library.getStoreByState(state); 
 console.log(details);
 generateStoreTable(details);
+$.stateName.text = state;
 
 function generateStoreTable(details){
 	var data=[];
 	var TheTable = Titanium.UI.createTableView({
 		width:'100%',
-		//separatorColor: '#ffffff',
-		backgroundColor: '#fffff6', 
+		separatorColor: '#ffffff',
+		//backgroundColor: '#fffff6', 
+		backgroundColor: '#FFFFFF'
 	});
 	
 	for (var i=0; i< details.length; i++) {
@@ -20,7 +22,7 @@ function generateStoreTable(details){
 		    touchEnabled: true,
 		   // height: 180,
 		    id: details[i].id,
-		    backgroundSelectedColor: "#FFE1E1",
+		    //backgroundSelectedColor: "#FFE1E1",
 		    //backgroundColor: "#ECF6CE" 
 		    backgroundColor: "#FFFFFF" 
 		  });
@@ -36,9 +38,9 @@ function generateStoreTable(details){
 			left:20,
 		});
 		
-		if(details[i].area != ""){
+		if(details[i].address != ""){
 			var location =  Titanium.UI.createLabel({
-				text:details[i].area,
+				text:details[i].address,
 				id: details[i].id, 
 				font:{fontSize:12},
 				width:'auto',
@@ -50,13 +52,9 @@ function generateStoreTable(details){
 			});
 		}
 		
-		if(details[i].mobile == ""){
-			details[i].mobile = "-";
-		}
-		
 		var infoViewContainer = Titanium.UI.createView({
 			layout: "horizontal",
-			height: 60,
+			height: 80,
 			width: "100%",
 		});
 		
@@ -64,6 +62,10 @@ function generateStoreTable(details){
 			layout: "vertical",
 			width: "80%",
 		});
+		
+		if(details[i].mobile == ""){
+			details[i].mobile = "-";
+		}
 		
 		var mobile =  Titanium.UI.createLabel({
 			text:"TEL: "+details[i].mobile,
@@ -92,6 +94,35 @@ function generateStoreTable(details){
 			left:20
 		});
 		
+		if(details[i].email == "" || details[i].email == null){
+			details[i].email = "-";
+		}
+		var email =  Titanium.UI.createLabel({
+			text:"E-mail: "+details[i].email,
+			id: details[i].id, 
+			font:{fontSize:12},
+			width:'auto',
+			color: "#848484",
+			textAlign:'left',
+			//top:70,
+			//top:110,
+			left:20
+		});
+		
+		if(details[i].website == "" || details[i].website == null){
+			details[i].website = "-";
+		}
+		var website =  Titanium.UI.createLabel({
+			text:"Website: "+details[i].website,
+			id: details[i].id, 
+			font:{fontSize:12},
+			width:'auto',
+			color: "#848484",
+			textAlign:'left',
+			//top:70,
+			//top:110,
+			left:20
+		});
 		
 		switch(details[i].category){
 			
@@ -132,16 +163,17 @@ function generateStoreTable(details){
 		});		
 		
 		var separator = Titanium.UI.createImageView({
-			left : 0,
-			bottom : 0,
+			//left : 0,
+			//bottom : 0,
 			width : Titanium.UI.FILL,
 			height : 30,
+			bottom: -1,
 			touchEnabled : false,
 			image : "/images/scroll_up.png"
 		});
 		
 		row.add(outlet_name);
-		if(details[i].area != ""){
+		if(details[i].address != ""){
 			row.add(location);
 		}
 		//row.add(mobile);
@@ -149,7 +181,9 @@ function generateStoreTable(details){
 		//row.add(cateType);
 		infoView.add(mobile);
 		infoView.add(fax);
-		infoView.add(cateType);
+		infoView.add(email);
+		infoView.add(website);
+		//infoView.add(cateType);
 		infoViewContainer.add(infoView);
 		infoViewContainer.add(rightForwardBtn);
 		//row.add(rightForwardBtn);

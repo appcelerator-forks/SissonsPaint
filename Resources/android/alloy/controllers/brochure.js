@@ -36,6 +36,29 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.brochureView && $.addTopLevelView($.__views.brochureView);
+    $.__views.__alloyId16 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId16"
+    });
+    $.__views.brochureView.add($.__views.__alloyId16);
+    $.__views.__alloyId17 = Alloy.createController("toggle", {
+        id: "__alloyId17",
+        __parentSymbol: $.__views.__alloyId16
+    });
+    $.__views.__alloyId17.setParent($.__views.__alloyId16);
+    $.__views.__alloyId18 = Ti.UI.createLabel({
+        width: "75%",
+        height: Ti.UI.SIZE,
+        color: "black",
+        font: {
+            fontSize: 28
+        },
+        text: "Brochure",
+        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+        id: "__alloyId18"
+    });
+    $.__views.__alloyId16.add($.__views.__alloyId18);
     $.__views.scrollview = Ti.UI.createScrollView({
         id: "scrollview",
         layout: "vertical"

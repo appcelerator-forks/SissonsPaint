@@ -29,9 +29,27 @@ function Controller() {
         id: "colourSwatches"
     });
     $.__views.colourSwatches && $.addTopLevelView($.__views.colourSwatches);
+<<<<<<< HEAD
     $.__views.__alloyId14 = Alloy.createController("toggle", {
         id: "__alloyId14",
         __parentSymbol: $.__views.colourSwatches
+=======
+<<<<<<< HEAD
+    $.__views.__alloyId15 = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#000",
+        text: "This is Colour Swatches page",
+        id: "__alloyId15"
+    });
+=======
+    $.__views.__alloyId14 = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#000",
+        text: "COLOR CATEGORIES",
+        id: "__alloyId14"
+>>>>>>> FETCH_HEAD
     });
     $.__views.__alloyId14.setParent($.__views.colourSwatches);
     $.__views.__alloyId15 = Ti.UI.createLabel({
@@ -42,6 +60,7 @@ function Controller() {
         text: "COLOR CATEGORIES",
         id: "__alloyId15"
     });
+>>>>>>> FETCH_HEAD
     $.__views.colourSwatches.add($.__views.__alloyId15);
     $.__views.main = Ti.UI.createScrollView({
         backgroundColor: "white",
