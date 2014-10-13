@@ -1,1 +1,5 @@
+<<<<<<< HEAD
+module.exports = [{"isApi":true,"priority":1000.0019,"key":"Label","style":{width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000",}},{"isClass":true,"priority":10000.0018,"key":"container","style":{backgroundColor:"white",}},{"isClass":true,"priority":10000.002,"key":"title","style":{font:{fontSize:28,},}}];
+=======
 module.exports = [{"isApi":true,"priority":1000.0017,"key":"Label","style":{width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000",}},{"isClass":true,"priority":10000.0016,"key":"container","style":{backgroundColor:"white",layout:"vertical",}},{"isClass":true,"priority":10000.0018,"key":"title","style":{height:20,textAlign:"left",color:"black",width:"75%",}},{"isClass":true,"priority":10000.0019,"key":"aboutContent","style":{font:{fontSize:"12",},color:"#6E6E6E",textAlign:"Ti.UI.TEXT_ALIGNMENT_LEFT",width:"90%",bottom:10,}},{"isClass":true,"priority":10000.002,"key":"colorDesc","style":{font:{fontSize:"8",},color:"#6E6E6E",width:"100%",textAlign:Ti.UI.TEXT_ALIGNMENT_RIGHT,}},{"isId":true,"priority":100000.0021,"key":"main","style":{backgroundColor:"white",}}];
+>>>>>>> FETCH_HEAD

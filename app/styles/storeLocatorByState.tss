@@ -5,4 +5,8 @@
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
 	color: "#000"
-} 
+},
+
+".title":{
+	font:{fontSize:28},	
+}

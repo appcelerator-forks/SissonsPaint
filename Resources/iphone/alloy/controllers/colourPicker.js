@@ -28,14 +28,24 @@ function Controller() {
         id: "colourPicker"
     });
     $.__views.colourPicker && $.addTopLevelView($.__views.colourPicker);
+<<<<<<< HEAD
+    $.__views.__alloyId14 = Ti.UI.createLabel({
+=======
     $.__views.__alloyId13 = Ti.UI.createLabel({
+>>>>>>> FETCH_HEAD
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
         text: "This is Colour Picker",
+<<<<<<< HEAD
+        id: "__alloyId14"
+    });
+    $.__views.colourPicker.add($.__views.__alloyId14);
+=======
         id: "__alloyId13"
     });
     $.__views.colourPicker.add($.__views.__alloyId13);
+>>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

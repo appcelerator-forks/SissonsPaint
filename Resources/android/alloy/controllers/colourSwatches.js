@@ -29,6 +29,33 @@ function Controller() {
         id: "colourSwatches"
     });
     $.__views.colourSwatches && $.addTopLevelView($.__views.colourSwatches);
+<<<<<<< HEAD
+    $.__views.__alloyId23 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId23"
+    });
+    $.__views.colourSwatches.add($.__views.__alloyId23);
+    $.__views.__alloyId24 = Alloy.createController("toggle", {
+        id: "__alloyId24",
+        __parentSymbol: $.__views.__alloyId23
+    });
+    $.__views.__alloyId24.setParent($.__views.__alloyId23);
+    $.__views.__alloyId25 = Ti.UI.createLabel({
+        width: "75%",
+        height: Ti.UI.SIZE,
+        color: "black",
+        font: {
+            fontSize: 28
+        },
+        text: "Colour Swatches",
+        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+        id: "__alloyId25"
+    });
+    $.__views.__alloyId23.add($.__views.__alloyId25);
+    $.__views.__alloyId26 = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+=======
     $.__views.__alloyId14 = Alloy.createController("toggle", {
         id: "__alloyId14",
         __parentSymbol: $.__views.colourSwatches
@@ -102,6 +129,7 @@ function Controller() {
     $.__views.__alloyId18.add($.__views.__alloyId20);
     $.__views.__alloyId21 = Ti.UI.createLabel({
         width: "100%",
+>>>>>>> FETCH_HEAD
         height: Ti.UI.SIZE,
         color: "#6E6E6E",
         font: {
@@ -726,6 +754,30 @@ function Controller() {
     $.__views.__alloyId84 = Ti.UI.createLabel({
         width: "100%",
         height: Ti.UI.SIZE,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        color: "#000",
+<<<<<<< HEAD
+        text: "This is Colour Swatches page",
+        id: "__alloyId26"
+    });
+    $.__views.colourSwatches.add($.__views.__alloyId26);
+=======
+        text: "COLOR CATEGORIES",
+        id: "__alloyId14"
+    });
+    $.__views.colourSwatches.add($.__views.__alloyId14);
+    $.__views.__alloyId15 = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#000",
+        text: "ECOGLOS is base on long oilmodifield alkyd. It is fungus resistant high gloss architectural paint that\n			decorates and protects the interior and exterior of building. It has excellent coverage, good application and flow\n			properties. With the proper primer and undercoat, EcoGloss will dry to an attractive smooth finish\n			on wooden and metal substrates.",
+        id: "__alloyId15"
+    });
+    $.__views.colourSwatches.add($.__views.__alloyId15);
+=======
+>>>>>>> FETCH_HEAD
         color: "#6E6E6E",
         font: {
             fontSize: "8"
@@ -735,6 +787,11 @@ function Controller() {
         id: "__alloyId84"
     });
     $.__views.__alloyId81.add($.__views.__alloyId84);
+<<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

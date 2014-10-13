@@ -1,3 +1,9 @@
 <Alloy>
-	<View id="tableContainer" height="auto" class="container"></View>	
+	<View layout="vertical" backgroundColor="white">
+		<View layout="horizontal" height="80">
+			<Require src="toggle"></Require>
+			<Label id="stateName" class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER"></Label>
+		</View>
+		<View id="tableContainer" height="auto" class="container"></View>	
+	</View>
 </Alloy>

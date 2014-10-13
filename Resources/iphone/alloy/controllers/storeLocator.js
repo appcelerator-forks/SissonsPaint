@@ -76,6 +76,11 @@ function Controller() {
         height: "auto"
     });
     $.__views.table2Container && $.addTopLevelView($.__views.table2Container);
+    $.__views.__alloyId50 = Alloy.createController("toggle", {
+        id: "__alloyId50",
+        __parentSymbol: $.__views.table2Container
+    });
+    $.__views.__alloyId50.setParent($.__views.table2Container);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
