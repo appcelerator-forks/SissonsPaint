@@ -65,4 +65,4 @@ $.drawer.addEventListener('android:back', function (e) {
 });
 
 var module= require('dk.napp.drawer');
-Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_NONE);
+//Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_NONE);

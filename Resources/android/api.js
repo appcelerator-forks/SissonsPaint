@@ -52,6 +52,8 @@ exports.loadColour = function() {
     client.send();
 };
 
+exports.loadCategory = function() {};
+
 exports.loadBrochure = function() {
     var url = getBrochureList;
     var client = Ti.Network.createHTTPClient({

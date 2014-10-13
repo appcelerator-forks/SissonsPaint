@@ -1,3 +1,12 @@
+function __processArg(obj, key) {
+    var arg = null;
+    if (obj) {
+        arg = obj[key] || null;
+        delete obj[key];
+    }
+    return arg;
+}
+
 function Controller() {
     function generateStoreTable(details) {
         var data = [];
@@ -6,23 +15,24 @@ function Controller() {
             separatorColor: "#ffffff",
             backgroundColor: "#FFFFFF"
         });
-        for (var i = 0; details.length > i; i++) {
+        for (var i = 0; i < details.length; i++) {
             var row = Titanium.UI.createTableViewRow({
                 layout: "vertical",
-                touchEnabled: true,
+                touchEnabled: false,
                 id: details[i].id,
                 backgroundColor: "#FFFFFF"
             });
             var outlet_name = $.UI.create("Label", {
                 text: details[i].outlet,
                 id: details[i].id,
-                color: "#848484",
+                color: "black",
                 font: {
-                    fontSize: 18
+                    fontSize: 24
                 },
                 width: "auto",
                 textAlign: "left",
-                left: 20
+                left: 20,
+                bottom: 10
             });
             if ("" != details[i].address) var location = Titanium.UI.createLabel({
                 text: details[i].address,
@@ -33,7 +43,8 @@ function Controller() {
                 width: "auto",
                 color: "#848484",
                 textAlign: "left",
-                left: 20
+                left: 20,
+                bottom: 10
             });
             var infoViewContainer = Titanium.UI.createView({
                 layout: "horizontal",
@@ -123,6 +134,9 @@ function Controller() {
                 height: 40,
                 right: 20
             });
+            rightForwardBtn.addEventListener("click", function() {
+                NavigateTo("3.100118", "101.686962");
+            });
             var separator = Titanium.UI.createImageView({
                 width: Titanium.UI.FILL,
                 height: 30,
@@ -139,23 +153,25 @@ function Controller() {
             infoViewContainer.add(infoView);
             infoViewContainer.add(rightForwardBtn);
             row.add(infoViewContainer);
-            details.length - 1 > i && row.add(separator);
+            i < details.length - 1 && row.add(separator);
             data.push(row);
         }
         TheTable.setData(data);
-        addClickEvent(TheTable);
         $.tableContainer.add(TheTable);
-    }
-    function addClickEvent(table) {
-        table.addEventListener("click", function() {
-            NavigateTo("3.100118", "101.686962");
-        });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "storeLocatorByState";
-    arguments[0] ? arguments[0]["__parentSymbol"] : null;
-    arguments[0] ? arguments[0]["$model"] : null;
-    arguments[0] ? arguments[0]["__itemTemplate"] : null;
+    if (arguments[0]) {
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
+    }
     var $ = this;
     var exports = {};
     $.__views.storeLocatorByState = Ti.UI.createView({
@@ -164,17 +180,17 @@ function Controller() {
         id: "storeLocatorByState"
     });
     $.__views.storeLocatorByState && $.addTopLevelView($.__views.storeLocatorByState);
-    $.__views.__alloyId73 = Ti.UI.createView({
+    $.__views.__alloyId145 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId73"
+        id: "__alloyId145"
     });
-    $.__views.storeLocatorByState.add($.__views.__alloyId73);
-    $.__views.__alloyId74 = Alloy.createController("toggle", {
-        id: "__alloyId74",
-        __parentSymbol: $.__views.__alloyId73
+    $.__views.storeLocatorByState.add($.__views.__alloyId145);
+    $.__views.__alloyId146 = Alloy.createController("toggle", {
+        id: "__alloyId146",
+        __parentSymbol: $.__views.__alloyId145
     });
-    $.__views.__alloyId74.setParent($.__views.__alloyId73);
+    $.__views.__alloyId146.setParent($.__views.__alloyId145);
     $.__views.stateName = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -185,7 +201,7 @@ function Controller() {
         id: "stateName",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
-    $.__views.__alloyId73.add($.__views.stateName);
+    $.__views.__alloyId145.add($.__views.stateName);
     $.__views.tableContainer = Ti.UI.createView({
         backgroundColor: "white",
         id: "tableContainer",
@@ -202,7 +218,7 @@ function Controller() {
     generateStoreTable(details);
     $.stateName.text = state;
     NavigateTo = function(latitude, longitude) {
-        var url = "waze://?ll=" + latitude + "," + longitude + "&navigate=yes";
+        var url = "geo:" + latitude + "," + longitude;
         if (Ti.Android) try {
             Ti.API.info("Trying to Launch via Intent");
             var intent = Ti.Android.createIntent({

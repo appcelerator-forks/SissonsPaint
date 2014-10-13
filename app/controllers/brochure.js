@@ -11,6 +11,7 @@ var displayCover = function(){
    		var id = details[i].id; 
    		
    		imagepath = details[i].cover;
+   		
    		adImage = Utils.RemoteImage({
 			image: imagepath
 		});
@@ -31,7 +32,7 @@ var displayCover = function(){
 	 }
 };
 
-displayCover();
+//displayCover();
 
 
 function createAdImageEvent(adImage, id,content) {

@@ -1,65 +1,33 @@
+function __processArg(obj, key) {
+    var arg = null;
+    if (obj) {
+        arg = obj[key] || null;
+        delete obj[key];
+    }
+    return arg;
+}
+
 function Controller() {
-<<<<<<< HEAD
     function listState(e) {
         var nav = Alloy.createController("storeLocatorByState", {
             state: e.source.title
         }).getView();
         Alloy.Globals.Drawer.setCenterWindow(nav);
         Ti.API.info(e.source.title);
-=======
-    function generateStoreTable(details) {
-        var data = [];
-        var TheTable = Titanium.UI.createTableView({
-            width: "100%",
-            separatorColor: "#ffffff",
-            backgroundColor: "#fffff6"
-        });
-        for (var i = 0; details.length > i; i++) {
-            var row = Titanium.UI.createTableViewRow({
-                touchEnabled: true,
-                height: 50,
-                id: details[i].state,
-                backgroundSelectedColor: "#FFE1E1",
-                backgroundColor: "#ECF6CE"
-            });
-            var category_name = $.UI.create("Label", {
-                text: details[i].state,
-                id: details[i].state,
-                color: "#848484",
-                width: "auto",
-                textAlign: "left",
-                left: 20
-            });
-            var rightForwardBtn = Titanium.UI.createImageView({
-                image: "/images/btn-forward.png",
-                id: details[i].state,
-                width: 15,
-                height: 15,
-                right: 20,
-                top: 20
-            });
-            row.add(category_name);
-            row.add(rightForwardBtn);
-            data.push(row);
-        }
-        TheTable.setData(data);
-        addClickEvent(TheTable);
-        $.table2Container.add(TheTable);
-    }
-    function addClickEvent(table) {
-        table.addEventListener("click", function(e) {
-            var nav = Alloy.createController("storeLocatorByState", {
-                state: e.source.id
-            }).getView();
-            Alloy.Globals.Drawer.setCenterWindow(nav);
-        });
->>>>>>> FETCH_HEAD
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "storeLocator";
-    arguments[0] ? arguments[0]["__parentSymbol"] : null;
-    arguments[0] ? arguments[0]["$model"] : null;
-    arguments[0] ? arguments[0]["__itemTemplate"] : null;
+    if (arguments[0]) {
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
+    }
     var $ = this;
     var exports = {};
     var __defers = {};
@@ -70,18 +38,18 @@ function Controller() {
         width: "100%"
     });
     $.__views.mainWindow && $.addTopLevelView($.__views.mainWindow);
-    $.__views.__alloyId70 = Ti.UI.createView({
+    $.__views.__alloyId142 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId70"
+        id: "__alloyId142"
     });
-    $.__views.mainWindow.add($.__views.__alloyId70);
-    $.__views.__alloyId71 = Alloy.createController("toggle", {
-        id: "__alloyId71",
-        __parentSymbol: $.__views.__alloyId70
+    $.__views.mainWindow.add($.__views.__alloyId142);
+    $.__views.__alloyId143 = Alloy.createController("toggle", {
+        id: "__alloyId143",
+        __parentSymbol: $.__views.__alloyId142
     });
-    $.__views.__alloyId71.setParent($.__views.__alloyId70);
-    $.__views.__alloyId72 = Ti.UI.createLabel({
+    $.__views.__alloyId143.setParent($.__views.__alloyId142);
+    $.__views.__alloyId144 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -90,9 +58,9 @@ function Controller() {
         },
         text: "Store Locator",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-        id: "__alloyId72"
+        id: "__alloyId144"
     });
-    $.__views.__alloyId70.add($.__views.__alloyId72);
+    $.__views.__alloyId142.add($.__views.__alloyId144);
     $.__views.subWindow = Ti.UI.createView({
         id: "subWindow",
         layout: "vertical",
@@ -108,6 +76,7 @@ function Controller() {
     });
     $.__views.subWindow.add($.__views.row1);
     $.__views.zoneA = Ti.UI.createButton({
+        color: "black",
         title: "Johor",
         id: "zoneA",
         width: "40%",
@@ -117,6 +86,7 @@ function Controller() {
     $.__views.row1.add($.__views.zoneA);
     listState ? $.__views.zoneA.addEventListener("click", listState) : __defers["$.__views.zoneA!click!listState"] = true;
     $.__views.zoneB = Ti.UI.createButton({
+        color: "black",
         title: "Kedah",
         id: "zoneB",
         width: "40%",
@@ -133,6 +103,7 @@ function Controller() {
     });
     $.__views.subWindow.add($.__views.row2);
     $.__views.zoneC = Ti.UI.createButton({
+        color: "black",
         title: "Melaka",
         id: "zoneC",
         width: "40%",
@@ -142,6 +113,7 @@ function Controller() {
     $.__views.row2.add($.__views.zoneC);
     listState ? $.__views.zoneC.addEventListener("click", listState) : __defers["$.__views.zoneC!click!listState"] = true;
     $.__views.zoneD = Ti.UI.createButton({
+        color: "black",
         title: "Negeri Sembilan",
         id: "zoneD",
         width: "40%",
@@ -158,6 +130,7 @@ function Controller() {
     });
     $.__views.subWindow.add($.__views.row3);
     $.__views.zoneE = Ti.UI.createButton({
+        color: "black",
         title: "Pahang",
         id: "zoneE",
         width: "40%",
@@ -167,6 +140,7 @@ function Controller() {
     $.__views.row3.add($.__views.zoneE);
     listState ? $.__views.zoneE.addEventListener("click", listState) : __defers["$.__views.zoneE!click!listState"] = true;
     $.__views.zoneF = Ti.UI.createButton({
+        color: "black",
         title: "Penang",
         id: "zoneF",
         width: "40%",
@@ -183,6 +157,7 @@ function Controller() {
     });
     $.__views.subWindow.add($.__views.row4);
     $.__views.zoneG = Ti.UI.createButton({
+        color: "black",
         title: "Selangor",
         id: "zoneG",
         width: "40%",
@@ -192,6 +167,7 @@ function Controller() {
     $.__views.row4.add($.__views.zoneG);
     listState ? $.__views.zoneG.addEventListener("click", listState) : __defers["$.__views.zoneG!click!listState"] = true;
     $.__views.zoneH = Ti.UI.createButton({
+        color: "black",
         title: "Wilayah Persekutuan",
         id: "zoneH",
         width: "40%",

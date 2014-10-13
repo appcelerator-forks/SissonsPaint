@@ -1,12 +1,4 @@
 <Alloy>
-<<<<<<< HEAD
-	<View layout="vertical" class="container">
-		<View layout="horizontal" height="80">
-			<Require src="toggle"></Require>
-			<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">DIY Paint</Label>
-		</View>
-		<Label>This DIY Paint</Label>
-=======
 	<View id="diyPaint">
 		<View class="container">
 			<WebView id='canvas' url="/html/canvas-paint-bucket.html" disableBounce="true"/>
@@ -19,6 +11,5 @@
 				<ImageView width="16.6%" id="settings" mod="settings" left="83%" image="/images/power-icons.png" />
 			</View>
 		</View>
->>>>>>> FETCH_HEAD
 	</View>
 </Alloy>

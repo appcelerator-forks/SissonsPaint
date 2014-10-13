@@ -9,4 +9,8 @@
 
 ".title":{
 	font:{fontSize:28},	
+},
+
+".button":{
+	color: "black"
 }

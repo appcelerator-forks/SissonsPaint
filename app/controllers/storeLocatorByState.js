@@ -1,7 +1,8 @@
 var args = arguments[0] || {};
 var state   = args.state;
 var library = Alloy.createCollection('storeLocator'); 
-var details = library.getStoreByState(state); 
+var details = library.getStoreByState(state);
+var flag = 1;
 console.log(details);
 generateStoreTable(details);
 $.stateName.text = state;
@@ -19,7 +20,7 @@ function generateStoreTable(details){
 		
 	   var row = Titanium.UI.createTableViewRow({
 	   		layout: "vertical",
-		    touchEnabled: true,
+		    touchEnabled: false,
 		   // height: 180,
 		    id: details[i].id,
 		    //backgroundSelectedColor: "#FFE1E1",
@@ -30,12 +31,14 @@ function generateStoreTable(details){
 		var outlet_name = $.UI.create('Label', {
 			text: details[i].outlet , 
 			id: details[i].id, 
-			color: "#848484",
-			font: {fontSize: 18},//newly added
+			//color: "#848484",
+			color: "black",
+			font: {fontSize: 24},//newly added
 			width:'auto',
 			textAlign:'left',
 			//top:10,
 			left:20,
+			bottom: 10
 		});
 		
 		if(details[i].address != ""){
@@ -48,7 +51,8 @@ function generateStoreTable(details){
 				textAlign:'left',
 				//top:30,
 				//top:60,
-				left:20
+				left:20,
+				bottom:10
 			});
 		}
 		
@@ -161,6 +165,9 @@ function generateStoreTable(details){
 			//top:20
 			//bottom:40
 		});		
+		rightForwardBtn.addEventListener('click', function(e){
+			NavigateTo("3.100118","101.686962");
+		});
 		
 		var separator = Titanium.UI.createImageView({
 			//left : 0,
@@ -195,13 +202,14 @@ function generateStoreTable(details){
 	}
 	
 	TheTable.setData(data);
-	addClickEvent(TheTable);
+	//addClickEvent(TheTable);
 	
 	$.tableContainer.add(TheTable); 
 }
 
 NavigateTo = function(latitude, longitude){
-		  var url = 'waze://?ll='+latitude+','+longitude+'&navigate=yes';
+		  //var url = 'waze://?ll='+latitude+','+longitude+'&navigate=yes';
+		  var url = 'geo:'+latitude+','+longitude;
 			if (Ti.Android){
 				try {
 					Ti.API.info('Trying to Launch via Intent');
@@ -226,9 +234,14 @@ NavigateTo = function(latitude, longitude){
 				
 		};
 		
-function addClickEvent(table){
-	table.addEventListener('click', function(e){
-		
-		NavigateTo("3.100118","101.686962");
-	});
-}
+// function addClickEvent(table){
+	// table.addEventListener('click', function(e){
+// 		
+		// NavigateTo("3.100118","101.686962");
+	// });
+// }
+
+//$.rightForwardBtn.addEventListener('click', function(e){
+//	NavigateTo("3.100118","101.686962");
+//});
+
