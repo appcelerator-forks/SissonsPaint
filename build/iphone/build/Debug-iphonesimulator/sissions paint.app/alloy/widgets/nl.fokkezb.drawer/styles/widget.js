@@ -1,1 +1,0 @@
-/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/iphone/alloy/widgets/nl.fokkezb.drawer/styles/widget.js

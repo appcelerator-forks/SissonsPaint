@@ -92,6 +92,7 @@ exports.loadCategory = function() {
                         category_colour.save();
                     });
                 });
+                console.log("saved category done");
             }
         },
         onerror: function() {},
@@ -105,7 +106,6 @@ exports.loadBrochure = function() {
     var url = getBrochureList;
     var client = Ti.Network.createHTTPClient({
         onload: function() {
-            console.log("ready ");
             var res = JSON.parse(this.responseText);
             if ("success" == res.status) {
                 var library = Alloy.createCollection("brochure");
@@ -150,12 +150,14 @@ exports.loadStoreLocator = function() {
                         address: entry.f_address,
                         mobile: entry.f_mobile,
                         fax: entry.f_fax,
+                        email: entry.f_email,
                         latitude: entry.f_lat,
                         longitude: entry.f_lng,
                         category: entry.f_category
                     });
                     storeLocator.save();
                 });
+                console.log("saved store locator done");
             }
         },
         onerror: function() {},

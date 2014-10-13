@@ -110,7 +110,7 @@ exports.loadCategory = function(ex){
 					    category_colour.save();
 		       		});
 				});
-				
+				console.log("saved category done");
 		 
 	       }
 	     },
@@ -131,7 +131,7 @@ exports.loadBrochure = function (ex){
 	 var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
-	     	   console.log("ready ");
+	     	   
 	       var res = JSON.parse(this.responseText);
 	       
 	       if(res.status == "success"){
@@ -171,6 +171,7 @@ exports.loadBrochure = function (ex){
 //load store locator to db
 exports.loadStoreLocator = function (ex){
 	 var url = getStoreLocatorList;
+	 
 	 var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
@@ -183,8 +184,7 @@ exports.loadStoreLocator = function (ex){
 				library.resetStore();
 				
 				/**load new set of category from API**/
-		       	var arr = res.data;
-		        
+		       	var arr = res.data; 
 		       	arr.forEach(function(entry) {
 					var storeLocator = Alloy.createModel('storeLocator', {
 				        
@@ -195,12 +195,16 @@ exports.loadStoreLocator = function (ex){
 					    address: entry.f_address,
 					    mobile: entry.f_mobile,
 					    fax: entry.f_fax,
+					    email: entry.f_email,
 					    latitude: entry.f_lat,
 					    longitude: entry.f_lng,
 					    category: entry.f_category
 				    });
 				    storeLocator.save();
+				 
 				});
+				
+				console.log("saved store locator done");
 	       }
 	     },
 	     // function called when an error occurs, including a timeout

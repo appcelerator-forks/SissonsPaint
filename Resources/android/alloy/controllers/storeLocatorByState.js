@@ -79,7 +79,7 @@ function Controller() {
             });
             ("" == details[i].email || null == details[i].email) && (details[i].email = "-");
             var email = Titanium.UI.createLabel({
-                text: "E-mail: " + details[i].email,
+                text: "E-mail: -",
                 id: details[i].id,
                 font: {
                     fontSize: 12
@@ -91,7 +91,7 @@ function Controller() {
             });
             ("" == details[i].website || null == details[i].website) && (details[i].website = "-");
             var website = Titanium.UI.createLabel({
-                text: "Website: " + details[i].website,
+                text: "Website: -",
                 id: details[i].id,
                 font: {
                     fontSize: 12
@@ -181,17 +181,17 @@ function Controller() {
         id: "storeLocatorByState"
     });
     $.__views.storeLocatorByState && $.addTopLevelView($.__views.storeLocatorByState);
-    $.__views.__alloyId73 = Ti.UI.createView({
+    $.__views.__alloyId137 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId73"
+        id: "__alloyId137"
     });
-    $.__views.storeLocatorByState.add($.__views.__alloyId73);
-    $.__views.__alloyId74 = Alloy.createController("toggle", {
-        id: "__alloyId74",
-        __parentSymbol: $.__views.__alloyId73
+    $.__views.storeLocatorByState.add($.__views.__alloyId137);
+    $.__views.__alloyId138 = Alloy.createController("toggle", {
+        id: "__alloyId138",
+        __parentSymbol: $.__views.__alloyId137
     });
-    $.__views.__alloyId74.setParent($.__views.__alloyId73);
+    $.__views.__alloyId138.setParent($.__views.__alloyId137);
     $.__views.stateName = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -202,7 +202,7 @@ function Controller() {
         id: "stateName",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
-    $.__views.__alloyId73.add($.__views.stateName);
+    $.__views.__alloyId137.add($.__views.stateName);
     $.__views.tableContainer = Ti.UI.createView({
         backgroundColor: "white",
         id: "tableContainer",
@@ -213,9 +213,9 @@ function Controller() {
     _.extend($, $.__views);
     var args = arguments[0] || {};
     var state = args.state;
+    Ti.App.Properties.setString("module", "storeLocator");
     var library = Alloy.createCollection("storeLocator");
     var details = library.getStoreByState(state);
-    console.log(details);
     generateStoreTable(details);
     $.stateName.text = state;
     NavigateTo = function(latitude, longitude) {

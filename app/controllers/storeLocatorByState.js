@@ -1,8 +1,8 @@
 var args = arguments[0] || {};
 var state   = args.state;
-var library = Alloy.createCollection('storeLocator'); 
-var details = library.getStoreByState(state); 
-console.log(details);
+Ti.App.Properties.setString('module', 'storeLocator');
+var library = Alloy.createCollection('storeLocator');  
+var details = library.getStoreByState(state);  
 generateStoreTable(details);
 $.stateName.text = state;
 
@@ -98,7 +98,7 @@ function generateStoreTable(details){
 			details[i].email = "-";
 		}
 		var email =  Titanium.UI.createLabel({
-			text:"E-mail: "+details[i].email,
+			text:"E-mail: -",//+details[i].email,
 			id: details[i].id, 
 			font:{fontSize:12},
 			width:'auto',
@@ -113,7 +113,7 @@ function generateStoreTable(details){
 			details[i].website = "-";
 		}
 		var website =  Titanium.UI.createLabel({
-			text:"Website: "+details[i].website,
+			text:"Website: -",//+details[i].website
 			id: details[i].id, 
 			font:{fontSize:12},
 			width:'auto',
@@ -232,3 +232,4 @@ function addClickEvent(table){
 		NavigateTo("3.100118","101.686962");
 	});
 }
+

@@ -112,7 +112,7 @@ function Controller() {
         layout: "horizontal",
         height: "40",
         top: "10",
-        width: "80%",
+        width: "90%",
         horizontalWrap: "true",
         id: "__alloyId8"
     });
@@ -126,7 +126,7 @@ function Controller() {
         textAlign: "left",
         right: "10",
         text: "Name",
-        width: "20%",
+        width: "30%",
         id: "__alloyId9"
     });
     $.__views.__alloyId8.add($.__views.__alloyId9);
@@ -139,14 +139,14 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
         clearButtonMode: Titanium.UI.INPUT_BUTTONMODE_ONFOCUS,
         id: "name",
-        width: "70%"
+        width: "60%"
     });
     $.__views.__alloyId8.add($.__views.name);
     $.__views.__alloyId10 = Ti.UI.createView({
         layout: "horizontal",
         height: "40",
         top: "10",
-        width: "80%",
+        width: "90%",
         horizontalWrap: "true",
         id: "__alloyId10"
     });
@@ -160,7 +160,7 @@ function Controller() {
         textAlign: "left",
         right: "10",
         text: "Email",
-        width: "20%",
+        width: "30%",
         id: "__alloyId11"
     });
     $.__views.__alloyId10.add($.__views.__alloyId11);
@@ -173,14 +173,15 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
         clearButtonMode: Titanium.UI.INPUT_BUTTONMODE_ONFOCUS,
         id: "email",
-        width: "70%"
+        width: "60%"
     });
     $.__views.__alloyId10.add($.__views.email);
     $.__views.__alloyId12 = Ti.UI.createView({
         layout: "horizontal",
         height: "100",
         top: "10",
-        width: "80%",
+        bottom: "15",
+        width: "90%",
         horizontalWrap: "true",
         id: "__alloyId12"
     });
@@ -194,7 +195,7 @@ function Controller() {
         textAlign: "left",
         right: "10",
         text: "Message",
-        width: "20%",
+        width: "30%",
         top: "0",
         id: "__alloyId13"
     });
@@ -203,17 +204,18 @@ function Controller() {
         id: "message",
         color: "#888",
         textAlign: "left",
-        width: "70%",
-        height: "100"
+        width: "60%",
+        height: "100",
+        borderColor: "#888"
     });
     $.__views.__alloyId12.add($.__views.message);
     $.__views.__alloyId14 = Ti.UI.createView({
-        backgroundColor: "white",
+        backgroundColor: "green",
         height: "60",
         bottom: "0",
         id: "__alloyId14"
     });
-    $.__views.aboutUs.add($.__views.__alloyId14);
+    $.__views.__alloyId3.add($.__views.__alloyId14);
     $.__views.__alloyId15 = Ti.UI.createImageView({
         image: "/images/tool_bar.jpg",
         height: "60",

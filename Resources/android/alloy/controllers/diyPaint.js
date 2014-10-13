@@ -27,57 +27,26 @@ function Controller() {
     var $ = this;
     var exports = {};
     $.__views.diyPaint = Ti.UI.createView({
-<<<<<<< HEAD
-        backgroundColor: "white",
-        layout: "vertical",
         id: "diyPaint"
     });
     $.__views.diyPaint && $.addTopLevelView($.__views.diyPaint);
-    $.__views.__alloyId27 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "80",
-        id: "__alloyId27"
-    });
-    $.__views.diyPaint.add($.__views.__alloyId27);
-    $.__views.__alloyId28 = Alloy.createController("toggle", {
-        id: "__alloyId28",
-        __parentSymbol: $.__views.__alloyId27
-    });
-    $.__views.__alloyId28.setParent($.__views.__alloyId27);
-    $.__views.__alloyId29 = Ti.UI.createLabel({
-        width: "75%",
-        height: Ti.UI.SIZE,
-        color: "black",
-        font: {
-            fontSize: 28
-        },
-        text: "DIY Paint",
-        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-        id: "__alloyId29"
-    });
-    $.__views.__alloyId27.add($.__views.__alloyId29);
-    $.__views.__alloyId30 = Ti.UI.createLabel({
-=======
-        id: "diyPaint"
-    });
-    $.__views.diyPaint && $.addTopLevelView($.__views.diyPaint);
-    $.__views.__alloyId85 = Ti.UI.createView({
+    $.__views.__alloyId94 = Ti.UI.createView({
         backgroundColor: "white",
-        id: "__alloyId85"
+        id: "__alloyId94"
     });
-    $.__views.diyPaint.add($.__views.__alloyId85);
+    $.__views.diyPaint.add($.__views.__alloyId94);
     $.__views.canvas = Ti.UI.createWebView({
         id: "canvas",
         url: "/html/canvas-paint-bucket.html",
         disableBounce: "true"
     });
-    $.__views.__alloyId85.add($.__views.canvas);
+    $.__views.__alloyId94.add($.__views.canvas);
     $.__views.toolbar = Ti.UI.createView({
         height: Ti.UI.SIZE,
         bottom: "0",
         id: "toolbar"
     });
-    $.__views.__alloyId85.add($.__views.toolbar);
+    $.__views.__alloyId94.add($.__views.toolbar);
     $.__views.settings1 = Ti.UI.createImageView({
         width: "16.6%",
         id: "settings1",
@@ -126,26 +95,6 @@ function Controller() {
         image: "/images/power-icons.png"
     });
     $.__views.toolbar.add($.__views.settings);
-<<<<<<< HEAD
-=======
-=======
-    $.__views.__alloyId85 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        text: "This DIY Paint",
-<<<<<<< HEAD
-        id: "__alloyId30"
-    });
-    $.__views.diyPaint.add($.__views.__alloyId30);
-=======
-        id: "__alloyId85"
-    });
-    $.__views.diyPaint.add($.__views.__alloyId85);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
