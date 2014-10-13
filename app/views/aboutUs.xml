@@ -1,7 +1,11 @@
 <Alloy>
-<ScrollView layout="vertical"  top=10 left=10 right=10 backgroundColor="white" class="container" height="Titanium.UI.SIZE">
-	<ScrollView id="main" layout="vertical" height="240" >
-		<Label class="title" color="black" bottom="20" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">About US</Label>
+<View layout="vertical"  top="10" left="10" right="10" backgroundColor="white" class="container" height="Titanium.UI.SIZE">
+	<View layout="horizontal" height="80">
+		<Require src="toggle"></Require>
+		<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">About US</Label>
+	</View>
+	<ScrollView layout="vertical" height="Ti.UI.SIZE">
+	<ScrollView id="main" layout="vertical" height="180" >
 		<Label class="aboutContent" width="75%">It was in 1959 that SISSONS PAINTS (EAST) SDN BHD first started in Malaysia, although SISSONS' technology in paint making goes back 185 years when Sissons Brothers founded a company in HULL, England in 1803. SISSONS' well-known trademark of 'THE MEN AND PLANK' has been in use since 1910. </Label>	
 	</ScrollView>
 	<View layout="vertical" backgroundColor="white" height="Titanium.UI.SIZE">
@@ -24,12 +28,13 @@
 		<TextField id="phone"  class="inputField" hintText="Enter Your Phone Number" />
 		<TextField id="email"  class="inputField" hintText="Enter Your Email" />
 		<TextArea id="message" borderRadius="2" color="#888" textAlign="left" hintText="Leave your message here" width="80%" height="100" />-->
-		<View backgroundColor="white" height="60">
+		
+    </View>
+    </ScrollView>
+	<!--</ScrollView>-->
+	<View backgroundColor="white" height="60" bottom="0">
 			<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
         	<ImageView id="contactButton" image="/images/icon_email.png" onClick="submitContactForm" height="40" />
         </View>
-    </View>
-	<!--</ScrollView>-->
-	
-</ScrollView>
+</View>
 </Alloy>

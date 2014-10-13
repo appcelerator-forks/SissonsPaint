@@ -38,7 +38,10 @@
         <Window id="centerWindow" module="xp.ui" platform="android" role="centerWindow">
         	<View layout="vertical" class="popupView" id="menu">
 		 		<!--<Button onClick="toggle">Left</Button>-->
-		 		<Require src="toggle"></Require>
+		 		<View layout="horizontal" height="80">
+					<Require src="toggle"></Require>
+					<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Index</Label>
+				</View>
 			</View>
             <Label>I am center</Label>
         </Window>

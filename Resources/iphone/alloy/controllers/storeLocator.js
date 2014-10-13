@@ -15,7 +15,7 @@ function Controller() {
             separatorColor: "#ffffff",
             backgroundColor: "#fffff6"
         });
-        for (var i = 0; details.length > i; i++) {
+        for (var i = 0; i < details.length; i++) {
             var row = Titanium.UI.createTableViewRow({
                 touchEnabled: true,
                 height: 50,
@@ -58,9 +58,15 @@ function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "storeLocator";
     if (arguments[0]) {
-        __processArg(arguments[0], "__parentSymbol");
-        __processArg(arguments[0], "$model");
-        __processArg(arguments[0], "__itemTemplate");
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
     }
     var $ = this;
     var exports = {};
@@ -70,6 +76,11 @@ function Controller() {
         height: "auto"
     });
     $.__views.table2Container && $.addTopLevelView($.__views.table2Container);
+    $.__views.__alloyId50 = Alloy.createController("toggle", {
+        id: "__alloyId50",
+        __parentSymbol: $.__views.table2Container
+    });
+    $.__views.__alloyId50.setParent($.__views.table2Container);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

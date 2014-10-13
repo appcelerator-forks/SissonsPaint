@@ -1,5 +1,9 @@
 <Alloy>
-	<View class="container">
-			<Label>This DIY Paint</Label>
+	<View layout="vertical" class="container">
+		<View layout="horizontal" height="80">
+			<Require src="toggle"></Require>
+			<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">DIY Paint</Label>
 		</View>
+		<Label>This DIY Paint</Label>
+	</View>
 </Alloy>

@@ -13,4 +13,8 @@
 ".cell" :{
 	left: '2',
 	width: '104',
+},
+
+".title":{
+	font:{fontSize:28},	
 }

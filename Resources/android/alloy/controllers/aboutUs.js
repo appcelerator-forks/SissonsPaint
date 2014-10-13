@@ -24,7 +24,7 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.aboutUs = Ti.UI.createScrollView({
+    $.__views.aboutUs = Ti.UI.createView({
         backgroundColor: "white",
         layout: "vertical",
         width: Ti.UI.FILL,
@@ -36,26 +36,42 @@ function Controller() {
         id: "aboutUs"
     });
     $.__views.aboutUs && $.addTopLevelView($.__views.aboutUs);
-    $.__views.main = Ti.UI.createScrollView({
-        backgroundColor: "white",
-        id: "main",
-        layout: "vertical",
-        height: "240"
+    $.__views.__alloyId0 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId0"
     });
-    $.__views.aboutUs.add($.__views.main);
-    $.__views.__alloyId0 = Ti.UI.createLabel({
+    $.__views.aboutUs.add($.__views.__alloyId0);
+    $.__views.__alloyId1 = Alloy.createController("toggle", {
+        id: "__alloyId1",
+        __parentSymbol: $.__views.__alloyId0
+    });
+    $.__views.__alloyId1.setParent($.__views.__alloyId0);
+    $.__views.__alloyId2 = Ti.UI.createLabel({
         font: {
             fontSize: 28
         },
         text: "About US",
         color: "black",
-        bottom: "20",
         width: "75%",
-        textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-        id: "__alloyId0"
+        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+        id: "__alloyId2"
     });
-    $.__views.main.add($.__views.__alloyId0);
-    $.__views.__alloyId1 = Ti.UI.createLabel({
+    $.__views.__alloyId0.add($.__views.__alloyId2);
+    $.__views.__alloyId3 = Ti.UI.createScrollView({
+        layout: "vertical",
+        height: Ti.UI.SIZE,
+        id: "__alloyId3"
+    });
+    $.__views.aboutUs.add($.__views.__alloyId3);
+    $.__views.main = Ti.UI.createScrollView({
+        backgroundColor: "white",
+        id: "main",
+        layout: "vertical",
+        height: "180"
+    });
+    $.__views.__alloyId3.add($.__views.main);
+    $.__views.__alloyId4 = Ti.UI.createLabel({
         font: {
             fontSize: "14"
         },
@@ -63,24 +79,24 @@ function Controller() {
         bottom: 10,
         text: "It was in 1959 that SISSONS PAINTS (EAST) SDN BHD first started in Malaysia, although SISSONS' technology in paint making goes back 185 years when Sissons Brothers founded a company in HULL, England in 1803. SISSONS' well-known trademark of 'THE MEN AND PLANK' has been in use since 1910.",
         width: "75%",
-        id: "__alloyId1"
+        id: "__alloyId4"
     });
-    $.__views.main.add($.__views.__alloyId1);
-    $.__views.__alloyId2 = Ti.UI.createView({
+    $.__views.main.add($.__views.__alloyId4);
+    $.__views.__alloyId5 = Ti.UI.createView({
         layout: "vertical",
         backgroundColor: "white",
         height: Titanium.UI.SIZE,
-        id: "__alloyId2"
+        id: "__alloyId5"
     });
-    $.__views.aboutUs.add($.__views.__alloyId2);
-    $.__views.__alloyId3 = Ti.UI.createImageView({
+    $.__views.__alloyId3.add($.__views.__alloyId5);
+    $.__views.__alloyId6 = Ti.UI.createImageView({
         image: "/images/scroll_up.png",
         backgroundColor: "#white",
         width: Titanium.UI.FILL,
-        id: "__alloyId3"
+        id: "__alloyId6"
     });
-    $.__views.__alloyId2.add($.__views.__alloyId3);
-    $.__views.__alloyId4 = Ti.UI.createLabel({
+    $.__views.__alloyId5.add($.__views.__alloyId6);
+    $.__views.__alloyId7 = Ti.UI.createLabel({
         font: {
             fontSize: 28
         },
@@ -89,19 +105,19 @@ function Controller() {
         bottom: "10",
         width: "75%",
         textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-        id: "__alloyId4"
+        id: "__alloyId7"
     });
-    $.__views.__alloyId2.add($.__views.__alloyId4);
-    $.__views.__alloyId5 = Ti.UI.createView({
+    $.__views.__alloyId5.add($.__views.__alloyId7);
+    $.__views.__alloyId8 = Ti.UI.createView({
         layout: "horizontal",
         height: "40",
         top: "10",
         width: "80%",
         horizontalWrap: "true",
-        id: "__alloyId5"
+        id: "__alloyId8"
     });
-    $.__views.__alloyId2.add($.__views.__alloyId5);
-    $.__views.__alloyId6 = Ti.UI.createLabel({
+    $.__views.__alloyId5.add($.__views.__alloyId8);
+    $.__views.__alloyId9 = Ti.UI.createLabel({
         font: {
             fontSize: "14"
         },
@@ -111,9 +127,9 @@ function Controller() {
         right: "10",
         text: "Name",
         width: "20%",
-        id: "__alloyId6"
+        id: "__alloyId9"
     });
-    $.__views.__alloyId5.add($.__views.__alloyId6);
+    $.__views.__alloyId8.add($.__views.__alloyId9);
     $.__views.name = Ti.UI.createTextField({
         color: "#848484",
         borderColor: "#BDBDBD",
@@ -125,17 +141,17 @@ function Controller() {
         id: "name",
         width: "70%"
     });
-    $.__views.__alloyId5.add($.__views.name);
-    $.__views.__alloyId7 = Ti.UI.createView({
+    $.__views.__alloyId8.add($.__views.name);
+    $.__views.__alloyId10 = Ti.UI.createView({
         layout: "horizontal",
         height: "40",
         top: "10",
         width: "80%",
         horizontalWrap: "true",
-        id: "__alloyId7"
+        id: "__alloyId10"
     });
-    $.__views.__alloyId2.add($.__views.__alloyId7);
-    $.__views.__alloyId8 = Ti.UI.createLabel({
+    $.__views.__alloyId5.add($.__views.__alloyId10);
+    $.__views.__alloyId11 = Ti.UI.createLabel({
         font: {
             fontSize: "14"
         },
@@ -145,9 +161,9 @@ function Controller() {
         right: "10",
         text: "Email",
         width: "20%",
-        id: "__alloyId8"
+        id: "__alloyId11"
     });
-    $.__views.__alloyId7.add($.__views.__alloyId8);
+    $.__views.__alloyId10.add($.__views.__alloyId11);
     $.__views.email = Ti.UI.createTextField({
         color: "#848484",
         borderColor: "#BDBDBD",
@@ -159,17 +175,17 @@ function Controller() {
         id: "email",
         width: "70%"
     });
-    $.__views.__alloyId7.add($.__views.email);
-    $.__views.__alloyId9 = Ti.UI.createView({
+    $.__views.__alloyId10.add($.__views.email);
+    $.__views.__alloyId12 = Ti.UI.createView({
         layout: "horizontal",
         height: "100",
         top: "10",
         width: "80%",
         horizontalWrap: "true",
-        id: "__alloyId9"
+        id: "__alloyId12"
     });
-    $.__views.__alloyId2.add($.__views.__alloyId9);
-    $.__views.__alloyId10 = Ti.UI.createLabel({
+    $.__views.__alloyId5.add($.__views.__alloyId12);
+    $.__views.__alloyId13 = Ti.UI.createLabel({
         font: {
             fontSize: "14"
         },
@@ -180,9 +196,9 @@ function Controller() {
         text: "Message",
         width: "20%",
         top: "0",
-        id: "__alloyId10"
+        id: "__alloyId13"
     });
-    $.__views.__alloyId9.add($.__views.__alloyId10);
+    $.__views.__alloyId12.add($.__views.__alloyId13);
     $.__views.message = Ti.UI.createTextArea({
         id: "message",
         color: "#888",
@@ -190,26 +206,27 @@ function Controller() {
         width: "70%",
         height: "100"
     });
-    $.__views.__alloyId9.add($.__views.message);
-    $.__views.__alloyId11 = Ti.UI.createView({
+    $.__views.__alloyId12.add($.__views.message);
+    $.__views.__alloyId14 = Ti.UI.createView({
         backgroundColor: "white",
         height: "60",
-        id: "__alloyId11"
+        bottom: "0",
+        id: "__alloyId14"
     });
-    $.__views.__alloyId2.add($.__views.__alloyId11);
-    $.__views.__alloyId12 = Ti.UI.createImageView({
+    $.__views.aboutUs.add($.__views.__alloyId14);
+    $.__views.__alloyId15 = Ti.UI.createImageView({
         image: "/images/tool_bar.jpg",
         height: "60",
         width: Titanium.UI.FILL,
-        id: "__alloyId12"
+        id: "__alloyId15"
     });
-    $.__views.__alloyId11.add($.__views.__alloyId12);
+    $.__views.__alloyId14.add($.__views.__alloyId15);
     $.__views.contactButton = Ti.UI.createImageView({
         id: "contactButton",
         image: "/images/icon_email.png",
         height: "40"
     });
-    $.__views.__alloyId11.add($.__views.contactButton);
+    $.__views.__alloyId14.add($.__views.contactButton);
     submitContactForm ? $.__views.contactButton.addEventListener("click", submitContactForm) : __defers["$.__views.contactButton!click!submitContactForm"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);

@@ -25,17 +25,41 @@ function Controller() {
     var exports = {};
     $.__views.diyPaint = Ti.UI.createView({
         backgroundColor: "white",
+        layout: "vertical",
         id: "diyPaint"
     });
     $.__views.diyPaint && $.addTopLevelView($.__views.diyPaint);
-    $.__views.__alloyId15 = Ti.UI.createLabel({
+    $.__views.__alloyId27 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId27"
+    });
+    $.__views.diyPaint.add($.__views.__alloyId27);
+    $.__views.__alloyId28 = Alloy.createController("toggle", {
+        id: "__alloyId28",
+        __parentSymbol: $.__views.__alloyId27
+    });
+    $.__views.__alloyId28.setParent($.__views.__alloyId27);
+    $.__views.__alloyId29 = Ti.UI.createLabel({
+        width: "75%",
+        height: Ti.UI.SIZE,
+        color: "black",
+        font: {
+            fontSize: 28
+        },
+        text: "DIY Paint",
+        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+        id: "__alloyId29"
+    });
+    $.__views.__alloyId27.add($.__views.__alloyId29);
+    $.__views.__alloyId30 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
         text: "This DIY Paint",
-        id: "__alloyId15"
+        id: "__alloyId30"
     });
-    $.__views.diyPaint.add($.__views.__alloyId15);
+    $.__views.diyPaint.add($.__views.__alloyId30);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

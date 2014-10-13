@@ -11,9 +11,15 @@ function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "colourSwatches";
     if (arguments[0]) {
-        __processArg(arguments[0], "__parentSymbol");
-        __processArg(arguments[0], "$model");
-        __processArg(arguments[0], "__itemTemplate");
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
     }
     var $ = this;
     var exports = {};
@@ -22,14 +28,14 @@ function Controller() {
         id: "colourSwatches"
     });
     $.__views.colourSwatches && $.addTopLevelView($.__views.colourSwatches);
-    $.__views.__alloyId9 = Ti.UI.createLabel({
+    $.__views.__alloyId15 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
         text: "This is Colour Swatches page",
-        id: "__alloyId9"
+        id: "__alloyId15"
     });
-    $.__views.colourSwatches.add($.__views.__alloyId9);
+    $.__views.colourSwatches.add($.__views.__alloyId15);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

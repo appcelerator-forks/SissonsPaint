@@ -12,24 +12,25 @@ function Controller() {
         var data = [];
         var TheTable = Titanium.UI.createTableView({
             width: "100%",
-            separatorColor: "#ffffff",
             backgroundColor: "#fffff6"
         });
-        for (var i = 0; details.length > i; i++) {
+        for (var i = 0; i < details.length; i++) {
             var row = Titanium.UI.createTableViewRow({
+                layout: "vertical",
                 touchEnabled: true,
-                height: 120,
                 id: details[i].id,
                 backgroundSelectedColor: "#FFE1E1",
-                backgroundColor: "#ECF6CE"
+                backgroundColor: "#FFFFFF"
             });
             var outlet_name = $.UI.create("Label", {
                 text: details[i].outlet,
                 id: details[i].id,
                 color: "#848484",
+                font: {
+                    fontSize: 18
+                },
                 width: "auto",
                 textAlign: "left",
-                top: 10,
                 left: 20
             });
             if ("" != details[i].area) var location = Titanium.UI.createLabel({
@@ -41,10 +42,18 @@ function Controller() {
                 width: "auto",
                 color: "#848484",
                 textAlign: "left",
-                top: 30,
                 left: 20
             });
             "" == details[i].mobile && (details[i].mobile = "-");
+            var infoViewContainer = Titanium.UI.createView({
+                layout: "horizontal",
+                height: 60,
+                width: "100%"
+            });
+            var infoView = Titanium.UI.createView({
+                layout: "vertical",
+                width: "80%"
+            });
             var mobile = Titanium.UI.createLabel({
                 text: "TEL: " + details[i].mobile,
                 id: details[i].id,
@@ -54,7 +63,6 @@ function Controller() {
                 width: "auto",
                 color: "#848484",
                 textAlign: "left",
-                top: 50,
                 left: 20
             });
             "" == details[i].fax && (details[i].fax = "-");
@@ -67,7 +75,6 @@ function Controller() {
                 width: "auto",
                 color: "#848484",
                 textAlign: "left",
-                top: 70,
                 left: 20
             });
             switch (details[i].category) {
@@ -91,22 +98,31 @@ function Controller() {
                 width: "auto",
                 color: "#848484",
                 textAlign: "left",
-                top: 90,
                 left: 20
             });
             var rightForwardBtn = Titanium.UI.createImageView({
-                image: "/images/btn-forward.png",
-                width: 15,
-                height: 15,
-                right: 20,
-                top: 20
+                image: "/images/icon_store.png",
+                width: 40,
+                height: 40,
+                right: 20
+            });
+            var separator = Titanium.UI.createImageView({
+                left: 0,
+                bottom: 0,
+                width: Titanium.UI.FILL,
+                height: 30,
+                touchEnabled: false,
+                image: "/images/scroll_up.png"
             });
             row.add(outlet_name);
             "" != details[i].area && row.add(location);
-            row.add(mobile);
-            row.add(fax);
-            row.add(cateType);
-            row.add(rightForwardBtn);
+            infoView.add(mobile);
+            infoView.add(fax);
+            infoView.add(cateType);
+            infoViewContainer.add(infoView);
+            infoViewContainer.add(rightForwardBtn);
+            row.add(infoViewContainer);
+            i < details.length - 1 && row.add(separator);
             data.push(row);
         }
         TheTable.setData(data);
@@ -121,9 +137,15 @@ function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "storeLocatorByState";
     if (arguments[0]) {
-        __processArg(arguments[0], "__parentSymbol");
-        __processArg(arguments[0], "$model");
-        __processArg(arguments[0], "__itemTemplate");
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
     }
     var $ = this;
     var exports = {};
