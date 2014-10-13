@@ -13,6 +13,7 @@ function Controller() {
         id: "diyPaint"
     });
     $.__views.diyPaint && $.addTopLevelView($.__views.diyPaint);
+<<<<<<< HEAD
     $.__views.__alloyId16 = Ti.UI.createView({
         backgroundColor: "white",
         id: "__alloyId16"
@@ -78,6 +79,16 @@ function Controller() {
         image: "/images/power-icons.png"
     });
     $.__views.toolbar.add($.__views.settings);
+=======
+    $.__views.__alloyId85 = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#000",
+        text: "This DIY Paint",
+        id: "__alloyId85"
+    });
+    $.__views.diyPaint.add($.__views.__alloyId85);
+>>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

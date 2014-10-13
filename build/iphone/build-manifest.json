@@ -1,0 +1,23 @@
+{
+	"target": "simulator",
+	"deployType": "development",
+	"deviceFamily": "iphone",
+	"iosSdkPath": "/Users/geomilano/Library/Application Support/Titanium/mobilesdk/osx/3.2.3.GA/iphone",
+	"tiCoreHash": "77157e1ffaec640cf559356a147b6a4c",
+	"modulesHash": "238afb115a8c0cdc44bf7d65d7c0ebc5",
+	"modulesNativeHash": "de58cfec92ccaf52616905515d732d02",
+	"gitHash": "b958a70",
+	"name": "sissions paint",
+	"id": "sissons.mnc.com",
+	"analytics": true,
+	"publisher": "geomilano",
+	"url": "http://",
+	"version": "1.0",
+	"description": "not specified",
+	"copyright": "2014 by geomilano",
+	"guid": "dd994d5a-0863-4f41-a2be-0d8212f17462",
+	"skipJSMinification": true,
+	"forceCopy": false,
+	"forceCopyAll": false,
+	"encryptJS": false
+}

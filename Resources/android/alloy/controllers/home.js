@@ -12,7 +12,11 @@ function Controller() {
         id: "home"
     });
     $.__views.home && $.addTopLevelView($.__views.home);
+<<<<<<< HEAD
     $.__views.__alloyId17 = Ti.UI.createView({
+=======
+    $.__views.__alloyId86 = Ti.UI.createView({
+>>>>>>> FETCH_HEAD
         left: 3,
         top: 48,
         width: "20%",
@@ -20,6 +24,7 @@ function Controller() {
         borderWidth: 1,
         backgroundColor: "white",
         layout: "vertical",
+<<<<<<< HEAD
         id: "__alloyId17"
     });
     $.__views.home.add($.__views.__alloyId17);
@@ -33,6 +38,21 @@ function Controller() {
     _.extend($, $.__views);
     arguments[0] || {};
     __defers["$.__views.__alloyId18!click!toggle"] && $.__views.__alloyId18.addEventListener("click", toggle);
+=======
+        id: "__alloyId86"
+    });
+    $.__views.home.add($.__views.__alloyId86);
+    $.__views.__alloyId87 = Ti.UI.createButton({
+        title: "Menu",
+        id: "__alloyId87"
+    });
+    $.__views.__alloyId86.add($.__views.__alloyId87);
+    toggle ? $.__views.__alloyId87.addEventListener("click", toggle) : __defers["$.__views.__alloyId87!click!toggle"] = true;
+    exports.destroy = function() {};
+    _.extend($, $.__views);
+    arguments[0] || {};
+    __defers["$.__views.__alloyId87!click!toggle"] && $.__views.__alloyId87.addEventListener("click", toggle);
+>>>>>>> FETCH_HEAD
     _.extend($, exports);
 }
 

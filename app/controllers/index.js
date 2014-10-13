@@ -6,9 +6,10 @@ $.drawer.open({
 var API = require('api');
 var flag =0;	
 // Load API function
+API.loadColour();
 API.loadStoreLocator();
 API.loadBrochure();
-API.loadColour();
+API.loadCategory();
 
 function toggle(e) {
    //var fn = 'toggle' + e.source.title + 'Window'; 

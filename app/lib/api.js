@@ -10,6 +10,7 @@ var USER  = 'mobile';
 var KEY   = '06b53047cf294f7207789ff5293ad2dc';
 var getStoreLocatorList	  = "http://"+API_DOMAIN+"/api/getStore?user="+USER+"&key="+KEY;
 var getBrochureList	      = "http://"+API_DOMAIN+"/api/getBrochure?user="+USER+"&key="+KEY;
+
 var getColourList	      = "http://"+API_DOMAIN+"/api/getColourList?user="+USER+"&key="+KEY;
 
 exports.sendContactMsg    = "http://"+API_DOMAIN+"/api/sendMessage?user="+USER+"&key="+KEY;
@@ -56,6 +57,11 @@ exports.loadColour = function (ex){
 	 // Send the request.
 	 client.send(); 
 };
+
+//load Category and save to local db
+exports.loadCategory = function(ex){
+	
+}
 
 //load Brochure and save to local db
 exports.loadBrochure = function (ex){
