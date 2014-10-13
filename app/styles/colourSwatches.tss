@@ -7,11 +7,7 @@
 	height: Ti.UI.SIZE,
 	color: "#000"
 },
-<<<<<<< HEAD
-
-=======
  
->>>>>>> FETCH_HEAD
 ".title": { 
 	height: 20,
 	textAlign: "left",
@@ -36,8 +32,7 @@
    textAlign:Ti.UI.TEXT_ALIGNMENT_RIGHT,  
 },
 "#main" :{
-	backgroundColor: "white"
-<<<<<<< HEAD
+	backgroundColor: "white" 
 
 },
 
@@ -46,7 +41,4 @@
         fontSize: '28'
    }
 }
-=======
  
-}
->>>>>>> FETCH_HEAD
