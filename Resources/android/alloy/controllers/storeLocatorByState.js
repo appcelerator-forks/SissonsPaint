@@ -1,12 +1,3 @@
-function __processArg(obj, key) {
-    var arg = null;
-    if (obj) {
-        arg = obj[key] || null;
-        delete obj[key];
-    }
-    return arg;
-}
-
 function Controller() {
     function generateStoreTable(details) {
         var data = [];
@@ -14,7 +5,7 @@ function Controller() {
             width: "100%",
             backgroundColor: "#fffff6"
         });
-        for (var i = 0; i < details.length; i++) {
+        for (var i = 0; details.length > i; i++) {
             var row = Titanium.UI.createTableViewRow({
                 layout: "vertical",
                 touchEnabled: true,
@@ -122,7 +113,7 @@ function Controller() {
             infoViewContainer.add(infoView);
             infoViewContainer.add(rightForwardBtn);
             row.add(infoViewContainer);
-            i < details.length - 1 && row.add(separator);
+            details.length - 1 > i && row.add(separator);
             data.push(row);
         }
         TheTable.setData(data);
@@ -136,17 +127,9 @@ function Controller() {
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "storeLocatorByState";
-    if (arguments[0]) {
-        {
-            __processArg(arguments[0], "__parentSymbol");
-        }
-        {
-            __processArg(arguments[0], "$model");
-        }
-        {
-            __processArg(arguments[0], "__itemTemplate");
-        }
-    }
+    arguments[0] ? arguments[0]["__parentSymbol"] : null;
+    arguments[0] ? arguments[0]["$model"] : null;
+    arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
     $.__views.tableContainer = Ti.UI.createView({

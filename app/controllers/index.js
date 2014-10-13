@@ -2,6 +2,7 @@ $.drawer.open({
 	navBarHidden: true,
 	fullscreen: true
 });
+
 var API = require('api');
 var flag =0;	
 // Load API function
@@ -12,6 +13,8 @@ API.loadColour();
 function toggle(e) {
    //var fn = 'toggle' + e.source.title + 'Window'; 
    //$.drawer[fn]();
+   alert('a');
+   
    $.drawer['toggleLeftWindow']();
 }
 Alloy.Globals.Drawer = $.drawer;
@@ -59,3 +62,6 @@ $.drawer.addEventListener('android:back', function (e) {
 	}
   	
 });
+
+var module= require('dk.napp.drawer');
+Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_NONE);

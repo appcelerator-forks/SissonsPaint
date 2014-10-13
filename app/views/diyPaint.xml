@@ -1,5 +1,15 @@
 <Alloy>
-	<View class="container">
-			<Label>This DIY Paint</Label>
+	<View id="diyPaint">
+		<View class="container">
+			<WebView id='canvas' url="/html/canvas-paint-bucket.html" disableBounce="true"/>
+			<View bottom="0" id="toolbar">
+				<ImageView width="16.6%" id="settings1" mod="settings" left="0" image="/images/power-icons.png" />
+				<ImageView width="16.6%" id="settings" mod="settings" left="16.6%" image="/images/power-icons.png" />
+				<ImageView width="16.6%" id="settings" mod="settings" left="33.2%" image="/images/power-icons.png" />
+				<ImageView width="16.6%" id="settings" mod="settings" left="49.8%" image="/images/power-icons.png" />
+				<ImageView width="16.6%" id="settings" mod="settings" left="66.4%" image="/images/power-icons.png" />
+				<ImageView width="16.6%" id="settings" mod="settings" left="83%" image="/images/power-icons.png" />
+			</View>
 		</View>
+	</View>
 </Alloy>

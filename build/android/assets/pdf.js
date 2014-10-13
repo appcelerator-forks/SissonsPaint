@@ -1,1 +1,85 @@
-function exists(e){try{if(e.exists())return!0}catch(t){console.log(t)}return!1}function isPdf(e){try{var t=e.read();if(!t)return!1;if(t.slice||(t=t.text),!t)return!1;if(console.log("first few characters of pdf file: "+t.slice(0,5)),0===t.indexOf("%PDF"))return!0}catch(i){console.log(i)}return console.log("IS Pdf "),!1}function download(e,t,i){var r=Ti.Utils.md5HexDigest(e)+".pdf",o=Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory,r);if(console.log(o),exists(o))return console.log("File already exists and is pdf, returning"),i(null,o,r,e);var n=Ti.Network.createHTTPClient();return n.onload=function(t){try{var r=Ti.Utils.md5HexDigest(e)+".pdf",o=Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory,r);if(200!=t.source.status)throw new Error("http status "+t.source.status);return o.write(t.source.responseData),i(null,o,r,e)}catch(t){return i(t)}},n.onerror=function(e){return console.log("http error "+e.source.status),i(e)},n.setRequestHeader("Cookie",t),n.open("GET",e),n.send(),n}function copyToTemp(e,t,i){var r=Ti.Filesystem.getFile(Ti.Filesystem.tempDirectory,t);r.createDirectory();var o=i.split("/");o=o[o.length-1];var n=Ti.Filesystem.getFile(Ti.Filesystem.tempDirectory,t,o);return n.write(e.read()),n}function launch(e){console.log("launching pdf path: "+e.getNativePath());var t=Ti.Android.createIntent({action:Ti.Android.ACTION_VIEW,data:e.getNativePath(),type:"application/pdf"});Ti.Android.currentActivity.startActivity(t)}function pdf(e,t,i){return Ti.Filesystem.isExternalStoragePresent()?void download(e,t,function(e,t,r,o){if(e)return i(e);var n=copyToTemp(t,r,o);launch(n),i()}):i(new Error("external"))}module.exports=pdf;
+function exists(file) {
+    try {
+        if (file.exists()) return true;
+    } catch (e) {
+        console.log(e);
+    }
+    return false;
+}
+
+function isPdf(file) {
+    try {
+        var blob = file.read();
+        if (!blob) return false;
+        blob.slice || (blob = blob.text);
+        if (!blob) return false;
+        console.log("first few characters of pdf file: " + blob.slice(0, 5));
+        if (0 === blob.indexOf("%PDF")) return true;
+    } catch (e) {
+        console.log(e);
+    }
+    console.log("IS Pdf ");
+    return false;
+}
+
+function download(url, cookies, done) {
+    var base = Ti.Utils.md5HexDigest(url) + ".pdf";
+    var file = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, base);
+    console.log(file);
+    if (exists(file)) {
+        console.log("File already exists and is pdf, returning");
+        return done(null, file, base, url);
+    }
+    var client = Ti.Network.createHTTPClient();
+    client.onload = function(e) {
+        try {
+            var base = Ti.Utils.md5HexDigest(url) + ".pdf";
+            var file = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, base);
+            if (200 != e.source.status) throw new Error("http status " + e.source.status);
+            file.write(e.source.responseData);
+            return done(null, file, base, url);
+        } catch (e) {
+            return done(e);
+        }
+    };
+    client.onerror = function(e) {
+        console.log("http error " + e.source.status);
+        return done(e);
+    };
+    client.setRequestHeader("Cookie", cookies);
+    client.open("GET", url);
+    client.send();
+    return client;
+}
+
+function copyToTemp(srcFile, base, url) {
+    var tempdir = Ti.Filesystem.getFile(Ti.Filesystem.tempDirectory, base);
+    tempdir.createDirectory();
+    var filename = url.split("/");
+    filename = filename[filename.length - 1];
+    var tempFile = Ti.Filesystem.getFile(Ti.Filesystem.tempDirectory, base, filename);
+    tempFile.write(srcFile.read());
+    return tempFile;
+}
+
+function launch(file) {
+    console.log("launching pdf path: " + file.getNativePath());
+    var intent = Ti.Android.createIntent({
+        action: Ti.Android.ACTION_VIEW,
+        data: file.getNativePath(),
+        type: "application/pdf"
+    });
+    Ti.Android.currentActivity.startActivity(intent);
+}
+
+function pdf(url, cookies, done) {
+    if (!Ti.Filesystem.isExternalStoragePresent()) return done(new Error("external"));
+    download(url, cookies, function(err, file, base, url) {
+        if (err) return done(err);
+        var tempFile = copyToTemp(file, base, url);
+        launch(tempFile);
+        done();
+    });
+}
+
+module.exports = pdf;

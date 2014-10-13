@@ -1,1 +1,37 @@
-function toggle(){Alloy.Globals.Drawer.toggleLeftWindow()}var Alloy=require("alloy"),_=Alloy._,Backbone=Alloy.Backbone,Utils={_getExtension:function(e){var t=/(?:\.([^.]+))?$/,i=t.exec(e)[1];return i?i:""},RemoteImage:function(e){function t(){n.removeEventListener("load",t),a.write(Ti.UI.createImageView({image:n.image,width:"auto",height:"auto"}).toImage())}e=e||{};var i,a,o=!1;e.image&&(i=Ti.Utils.md5HexDigest(e.image)+this._getExtension(e.image),a=Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory,i),a.exists()?e.image=a:o=!0);var n=Ti.UI.createImageView(e);return!0===o&&n.addEventListener("load",t),n}};Alloy.createController("index");
+function toggle() {
+    Alloy.Globals.Drawer["toggleLeftWindow"]();
+}
+
+var Alloy = require("alloy"), _ = Alloy._, Backbone = Alloy.Backbone;
+
+var Utils = {
+    _getExtension: function(fn) {
+        var re = /(?:\.([^.]+))?$/;
+        var tmpext = re.exec(fn)[1];
+        return tmpext ? tmpext : "";
+    },
+    RemoteImage: function(a) {
+        function saveImage() {
+            image.removeEventListener("load", saveImage);
+            savedFile.write(Ti.UI.createImageView({
+                image: image.image,
+                width: "auto",
+                height: "auto"
+            }).toImage());
+        }
+        a = a || {};
+        var md5;
+        var needsToSave = false;
+        var savedFile;
+        if (a.image) {
+            md5 = Ti.Utils.md5HexDigest(a.image) + this._getExtension(a.image);
+            savedFile = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory, md5);
+            savedFile.exists() ? a.image = savedFile : needsToSave = true;
+        }
+        var image = Ti.UI.createImageView(a);
+        true === needsToSave && image.addEventListener("load", saveImage);
+        return image;
+    }
+};
+
+Alloy.createController("index");
