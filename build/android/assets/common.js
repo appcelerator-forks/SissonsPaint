@@ -1,1 +1,7 @@
-/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/common.js
+exports.createAlert = function(tt, msg) {
+    var box = Titanium.UI.createAlertDialog({
+        title: tt,
+        message: msg
+    });
+    box.show();
+};

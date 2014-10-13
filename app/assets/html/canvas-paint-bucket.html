@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create HTML5 Canvas JavaScript Paint Bucket Example</title>
+    <meta name="viewport" content="initial-scale=1.0, width=device-width, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no" /> 
+    <style>
+    	html {-webkit-text-size-adjust: none;}
+    	#parent{
+    	background-color:#5C0404;
+		
+		background:url("images/id.jpg")111px 11px no-repeat;
+		background-size: 267px 200px;
+		}
+		
+		#canvasDiv{
+		}
+    </style>
+  </head>
+  <body>
+   <div id="parent">
+    	<div id="canvasDiv"></div>
+        <a href="#" id="brush">Brush</a>
+    </div>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <style>
+    	* {
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			-webkit-text-size-adjust: none;
+			-webkit-user-select: none;
+			-webkit-touch-callout: none;	
+		}
+    </style>
+    <script type="text/javascript"> 
+
+var paintBucketApp = (function () {
+
+	"use strict";
+
+	var context,
+		isDrawing,
+		canvasWidth = 350,
+		canvasHeight = 220,
+		colorPurple = {
+			r: 203,
+			g: 53,
+			b: 148,
+			hex: "#CB3594"
+		},
+		colorGreen = {
+			r: 101,
+			g: 155,
+			b: 65,
+			hex: "#659B41"
+		},
+		colorYellow = {
+			r: 255,
+			g: 207,
+			b: 51,
+			hex: "#FFCF33"
+		},
+		colorBrown = {
+			r: 152,
+			g: 105,
+			b: 40,
+			hex: "#986928"
+		},
+		curColor = colorPurple,
+		curOutlineColor = new Array(),
+		outlineImage = new Image(),
+		swatchImage = new Image(),
+		backgroundImage = new Image(),
+		swatchStartX = 18,
+		swatchStartY = 19,
+		swatchImageWidth = 90,
+		swatchImageHeight = 46,
+		drawingAreaX = 111,
+		drawingAreaY = 11,
+		drawingAreaWidth = 250,
+		drawingAreaHeight = 200,
+		colorLayerData,
+		outlineLayerData,
+		totalLoadResources = 3,
+		curLoadResNum = 0,
+
+		// Clears the canvas.
+		clearCanvas = function () {
+
+			context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+		},
+		
+		 getPage = function (event){
+		 //when on mobile safari, the coordinates information is inside the targetTouches object
+		 if (event.targetTouches) event = event.targetTouches[0];
+		 if (event.pageX != null && event.pageY != null) return {pageX: event.pageX, pageY: event.pageY};
+		 var element = (!document.compatMode || document.compatMode == 'CSS1Compat') ? document.documentElement : document.body;
+		 return {pageX: event.clientX + element.scrollLeft, pageY: event.clientY + element.scrollTop};
+		},
+
+		// Draw a color swatch
+		drawColorSwatch = function (color, x, y) {
+
+			context.beginPath();
+			context.arc(x + 46, y + 23, 18, 0, Math.PI * 2, true);
+			context.closePath();
+			context.fillStyle = "rgb(" + color.r + "," + color.g + "," + color.b + ")";
+			context.fill();
+
+			if (curColor === color) {
+				context.drawImage(swatchImage, 0, 0, 59, swatchImageHeight, x, y, 59, swatchImageHeight);
+			} else {
+				context.drawImage(swatchImage, x, y, swatchImageWidth, swatchImageHeight);
+			}
+		},
+
+		// Draw the elements on the canvas
+		redraw = function () {
+
+			var locX,
+				locY;
+
+			// Make sure required resources are loaded before redrawing
+			if (curLoadResNum < totalLoadResources) {
+				return;
+			}
+
+			clearCanvas();
+
+			// Draw the current state of the color layer to the canvas
+			context.putImageData(colorLayerData, 0, 0);
+
+			// Draw the background
+			context.drawImage(backgroundImage, 0, 0, canvasWidth, canvasHeight);
+
+			// Draw the color swatches
+			locX = 52;
+			locY = 19;
+			drawColorSwatch(colorPurple, locX, locY);
+
+			locY += 46;
+			drawColorSwatch(colorGreen, locX, locY);
+
+			locY += 46;
+			drawColorSwatch(colorYellow, locX, locY);
+
+			locY += 46;
+			drawColorSwatch(colorBrown, locX, locY);
+
+			// Draw the outline image on top of everything. We could move this to a separate 
+			//   canvas so we did not have to redraw this everyime.
+			//context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
+		},
+		matchrange = function(a, b){
+			if((a >= (b-10)) && (a <= (b+10))){
+				return true;	
+			}
+		},
+
+		matchOutline = function (pixelPos) {
+			var r = outlineLayerData.data[pixelPos],
+			g = outlineLayerData.data[pixelPos + 1],
+			b = outlineLayerData.data[pixelPos + 2],
+			a = outlineLayerData.data[pixelPos + 3];
+			
+			// If current pixel matches the new color
+			if (matchrange(r, curOutlineColor.r) && matchrange(g, curOutlineColor.g) && matchrange(b, curOutlineColor.b) && matchrange(a, curOutlineColor.a) ) {
+				return true;
+			}
+			
+			return false;
+		},
+		matchOutlineColor = function (pixelPos) {
+			var r = colorLayerData.data[pixelPos],
+			g = colorLayerData.data[pixelPos + 1],
+			b = colorLayerData.data[pixelPos + 2],
+			a = colorLayerData.data[pixelPos + 3];
+			
+			// If current color matches the colorlayer
+			if (r === curColor.r && g === curColor.g && b === curColor.b) {
+				return false;
+			}
+			
+			var r = outlineLayerData.data[pixelPos],
+			g = outlineLayerData.data[pixelPos + 1],
+			b = outlineLayerData.data[pixelPos + 2];
+			
+			// If current pixel matches the new color
+			if (!matchrange(r, curOutlineColor.r) || !matchrange(g, curOutlineColor.g) || !matchrange(b, curOutlineColor.b)) {
+				return false;
+			}
+			
+			return true;
+		},
+
+		colorPixel = function (pixelPos, r, g, b, a) {
+
+			colorLayerData.data[pixelPos] = r;
+			colorLayerData.data[pixelPos + 1] = g;
+			colorLayerData.data[pixelPos + 2] = b;
+			colorLayerData.data[pixelPos + 3] = a !== undefined ? a : 255;
+		},
+
+		floodFill = function (startX, startY) {
+
+			var newPos,
+				x,
+				y,
+				pixelPos,
+				reachLeft,
+				reachRight,
+				drawingBoundLeft = drawingAreaX,
+				drawingBoundTop = drawingAreaY,
+				drawingBoundRight = drawingAreaX + drawingAreaWidth - 1,
+				drawingBoundBottom = drawingAreaY + drawingAreaHeight - 1,
+				pixelStack = [[startX, startY]];
+
+			while (pixelStack.length) {
+
+				newPos = pixelStack.pop();
+				x = newPos[0];
+				y = newPos[1];
+
+				// Get current pixel position
+				pixelPos = (y * canvasWidth + x) * 4;
+
+				// Go up as long as the color matches and are inside the canvas
+				while (y >= drawingBoundTop && matchOutline(pixelPos)) {
+					y -= 1;
+					pixelPos -= canvasWidth * 4;
+				}
+
+				pixelPos += canvasWidth * 4;
+				y += 1;
+				reachLeft = false;
+				reachRight = false;
+
+				// Go down as long as the color matches and in inside the canvas
+				while (y <= drawingBoundBottom && matchOutline(pixelPos)) {
+					y += 1;
+
+					colorPixel(pixelPos, curColor.r, curColor.g, curColor.b);
+
+					if (x > drawingBoundLeft) {
+						if (matchOutlineColor(pixelPos - 4)) {
+							if (!reachLeft) {
+								// Add pixel to stack
+								pixelStack.push([x - 1, y]);
+								reachLeft = true;
+							}
+						} else if (reachLeft) {
+							reachLeft = false;
+						}
+					}
+
+					if (x < drawingBoundRight) {
+						if (matchOutlineColor(pixelPos + 4)) {
+							if (!reachRight) {
+								// Add pixel to stack
+								pixelStack.push([x + 1, y]);
+								reachRight = true;
+							}
+						} else if (reachRight) {
+							reachRight = false;
+						}
+					}
+
+					pixelPos += canvasWidth * 4;
+				}
+			}
+		},
+
+		// Start painting with paint bucket tool starting from pixel specified by startX and startY
+		paintAt = function (startX, startY) {
+			
+			var pixelPos = (startY * canvasWidth + startX) * 4,
+				r = colorLayerData.data[pixelPos],
+				g = colorLayerData.data[pixelPos + 1],
+				b = colorLayerData.data[pixelPos + 2],
+				a = colorLayerData.data[pixelPos + 3];
+
+			if (r === curColor.r && g === curColor.g && b === curColor.b) {
+				// Return because trying to fill with the same color
+				return;
+			}
+			
+			r = outlineLayerData.data[pixelPos],
+			g = outlineLayerData.data[pixelPos + 1],
+			b = outlineLayerData.data[pixelPos + 2],
+			a = outlineLayerData.data[pixelPos + 3];
+			//set start x,y outline color
+			curOutlineColor = {
+				r: r,
+				g: g,
+				b: b,
+				a: a
+			};
+			
+			floodFill(startX, startY);
+
+			redraw();
+		},
+		PaintMouseFunction = function(e){
+				var mouseX = e.pageX - this.offsetLeft,
+					mouseY = e.pageY - this.offsetTop;
+
+				if (mouseX < drawingAreaX) { // Left of the drawing area
+					if (mouseX > swatchStartX) {
+						if (mouseY > swatchStartY && mouseY < swatchStartY + swatchImageHeight) {
+							curColor = colorPurple;
+							redraw();
+						} else if (mouseY > swatchStartY + swatchImageHeight && mouseY < swatchStartY + swatchImageHeight * 2) {
+							curColor = colorGreen;
+							redraw();
+						} else if (mouseY > swatchStartY + swatchImageHeight * 2 && mouseY < swatchStartY + swatchImageHeight * 3) {
+							curColor = colorYellow;
+							redraw();
+						} else if (mouseY > swatchStartY + swatchImageHeight * 3 && mouseY < swatchStartY + swatchImageHeight * 4) {
+							curColor = colorBrown;
+							redraw();
+						}
+					}
+				} else if ((mouseY > drawingAreaY && mouseY < drawingAreaY + drawingAreaHeight) && (mouseX <= drawingAreaX + drawingAreaWidth)) {
+					// Mouse click location on drawing area
+					paintAt(mouseX, mouseY);
+				}
+		},
+		BrushMouseDownFunction = function(e){
+
+			isDrawing = true;
+			var page = getPage(e);
+			var startX = page.pageX;
+			var startY = page.pageY;
+			context.lineWidth = 10;
+			context.lineJoin = context.lineCap = 'round';
+			context.moveTo(startX, startY);
+			e.preventDefault();
+			e.stopPropagation();
+		},
+		BrushMouseMoveFunction = function(e){
+			var page = getPage(e);
+			var startX = page.pageX;
+			var startY = page.pageY;
+			 if (isDrawing) {
+				context.lineTo(startX, startY);
+				context.strokeStyle = curColor.hex;
+				context.stroke();
+			  }
+			e.preventDefault();
+			e.stopPropagation();
+		},
+		BrushMouseUpFunction = function(e){
+			 isDrawing = false;
+			 e.preventDefault();
+			e.stopPropagation();
+		},
+		BrushMouseFunction = function(e){
+			$('#canvasDiv').on("touchstart", "#canvas", BrushMouseDownFunction);
+			$('#canvasDiv').on("touchmove", "#canvas", BrushMouseMoveFunction);
+			$('#canvasDiv').on("touchend", "#canvas", BrushMouseUpFunction);
+		},
+		// Add mouse event listeners to the canvas
+		createPaintMouseEvents = function () {
+			$('#canvasDiv').on("mousedown", "#canvas", PaintMouseFunction);
+		},
+		// Add mouse event listeners to the canvas
+		createBrushMouseEvents = function () {
+			$('#canvasDiv').off("mousedown", "#canvas", PaintMouseFunction);
+			BrushMouseFunction();
+			
+		},
+
+		// Calls the redraw function after all neccessary resources are loaded.
+		resourceLoaded = function () {
+
+			curLoadResNum += 1;
+			if (curLoadResNum === totalLoadResources) {
+				createPaintMouseEvents();
+				redraw();
+			}
+		},
+		getPage = function(event){
+		 //when on mobile safari, the coordinates information is inside the targetTouches object
+		 if (event.targetTouches) event = event.targetTouches[0];
+		 if (event.pageX != null && event.pageY != null) return {pageX: event.pageX, pageY: event.pageY};
+		 var element = (!document.compatMode || document.compatMode == 'CSS1Compat') ? document.documentElement : document.body;
+		 return {pageX: event.clientX + element.scrollLeft, pageY: event.clientY + element.scrollTop};
+		},
+
+		// Creates a canvas element, loads images, adds events, and draws the canvas for the first time.
+		init = function () {
+
+			// Create the canvas (Neccessary for IE because it doesn't know what a canvas element is)
+			var canvas = document.createElement('canvas');
+			canvas.setAttribute('width', canvasWidth);
+			canvas.setAttribute('height', canvasHeight);
+			canvas.setAttribute('id', 'canvas');
+			document.getElementById('canvasDiv').appendChild(canvas);
+
+			if (typeof G_vmlCanvasManager !== "undefined") {
+				canvas = G_vmlCanvasManager.initElement(canvas);
+			}
+			context = canvas.getContext("2d"); // Grab the 2d canvas context
+			// Note: The above code is a workaround for IE 8 and lower. Otherwise we could have used:
+			//     context = document.getElementById('canvas').getContext("2d");
+
+			// Load images
+			backgroundImage.onload = resourceLoaded;
+			backgroundImage.src = "images/background.png";
+
+			swatchImage.onload = resourceLoaded;
+			swatchImage.src = "images/paint-outline.png";
+
+			outlineImage.onload = function () {
+				context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
+
+				// Test for cross origin security error (SECURITY_ERR: DOM Exception 18)
+				try {
+					outlineLayerData = context.getImageData(0, 0, canvasWidth, canvasHeight);
+				} catch (ex) {
+					alert(ex);
+					window.alert("Application cannot be run locally. Please run on a server.");
+					return;
+				}
+				clearCanvas();
+				colorLayerData = context.getImageData(0, 0, canvasWidth, canvasHeight);
+				resourceLoaded();
+			};
+			outlineImage.src = "images/id.jpg";
+		};
+
+	return {
+		init: init,
+		createBrushMouseEvents: createBrushMouseEvents
+	};
+}());
+    $(document).ready(function () {
+		paintBucketApp.init();
+		$("#brush").click(function(e) {
+            paintBucketApp.createBrushMouseEvents();
+		});
+});
+
+</script>
+  </body>
+</html>

@@ -1,12 +1,3 @@
-function __processArg(obj, key) {
-    var arg = null;
-    if (obj) {
-        arg = obj[key] || null;
-        delete obj[key];
-    }
-    return arg;
-}
-
 function Controller() {
     function doMenuClick(e) {
         switch (e.index) {
@@ -45,20 +36,101 @@ function Controller() {
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "menu";
-    if (arguments[0]) {
-        {
-            __processArg(arguments[0], "__parentSymbol");
-        }
-        {
-            __processArg(arguments[0], "$model");
-        }
-        {
-            __processArg(arguments[0], "__itemTemplate");
-        }
-    }
+    arguments[0] ? arguments[0]["__parentSymbol"] : null;
+    arguments[0] ? arguments[0]["$model"] : null;
+    arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
     var __defers = {};
+<<<<<<< HEAD
+    var __alloyId37 = [];
+    $.__views.__alloyId38 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId38"
+    });
+    __alloyId37.push($.__views.__alloyId38);
+    $.__views.__alloyId39 = Ti.UI.createLabel({
+        text: "Home",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId39"
+    });
+    $.__views.__alloyId38.add($.__views.__alloyId39);
+    $.__views.__alloyId40 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId40"
+    });
+    __alloyId37.push($.__views.__alloyId40);
+    $.__views.__alloyId41 = Ti.UI.createLabel({
+        text: "DIY Paint",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId41"
+    });
+    $.__views.__alloyId40.add($.__views.__alloyId41);
+    $.__views.__alloyId42 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId42"
+    });
+    __alloyId37.push($.__views.__alloyId42);
+    $.__views.__alloyId43 = Ti.UI.createLabel({
+        text: "Colour Picker",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId43"
+    });
+    $.__views.__alloyId42.add($.__views.__alloyId43);
+    $.__views.__alloyId44 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId44"
+    });
+    __alloyId37.push($.__views.__alloyId44);
+    $.__views.__alloyId45 = Ti.UI.createLabel({
+        text: "Colour Swatches",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId45"
+    });
+    $.__views.__alloyId44.add($.__views.__alloyId45);
+    $.__views.__alloyId46 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId46"
+    });
+    __alloyId37.push($.__views.__alloyId46);
+    $.__views.__alloyId47 = Ti.UI.createLabel({
+        text: "Brochure",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId47"
+    });
+    $.__views.__alloyId46.add($.__views.__alloyId47);
+    $.__views.__alloyId48 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId48"
+    });
+    __alloyId37.push($.__views.__alloyId48);
+    $.__views.__alloyId49 = Ti.UI.createLabel({
+        text: "Store Locator",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId49"
+    });
+    $.__views.__alloyId48.add($.__views.__alloyId49);
+    $.__views.__alloyId50 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId50"
+    });
+    __alloyId37.push($.__views.__alloyId50);
+    $.__views.__alloyId51 = Ti.UI.createLabel({
+        text: "About Us",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId51"
+    });
+    $.__views.__alloyId50.add($.__views.__alloyId51);
+    $.__views.menuTable = Ti.UI.createTableView({
+        data: __alloyId37,
+=======
     var __alloyId106 = [];
     $.__views.__alloyId107 = Ti.UI.createTableViewRow({
         height: "50",
@@ -146,6 +218,7 @@ function Controller() {
     $.__views.__alloyId119.add($.__views.__alloyId120);
     $.__views.menuTable = Ti.UI.createTableView({
         data: __alloyId106,
+>>>>>>> FETCH_HEAD
         id: "menuTable",
         backgroundColor: "#3F3D3D"
     });
