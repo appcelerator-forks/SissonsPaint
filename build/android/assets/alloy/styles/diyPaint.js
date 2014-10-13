@@ -1,1 +1,1 @@
-module.exports = [{"isApi":true,"priority":1000.0019,"key":"Label","style":{width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000",}},{"isClass":true,"priority":10000.0018,"key":"container","style":{backgroundColor:"white",}},{"isId":true,"priority":100000.002,"key":"toolbar","style":{height:Ti.UI.SIZE,}},{"isId":true,"priority":100000.0021,"key":"canvas","style":{}}];
+/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/alloy/styles/diyPaint.js

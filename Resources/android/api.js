@@ -68,11 +68,13 @@ exports.loadCategory = function() {
                 lib_colour.resetCategoryColour();
                 var arr = res.data;
                 arr.forEach(function(entry) {
-                    var product_categroy = Alloy.createModel("category", {
+                    var product_category = Alloy.createModel("category", {
+                        id: entry.id,
                         name: entry.name,
-                        type: entry.type
+                        type: entry.type,
+                        description: entry.description
                     });
-                    product_categroy.save();
+                    product_category.save();
                     var categories = entry.arr_category;
                     categories.forEach(function(category) {
                         var category_type = Alloy.createModel("category_type", {

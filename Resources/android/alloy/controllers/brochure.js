@@ -1,3 +1,12 @@
+function __processArg(obj, key) {
+    var arg = null;
+    if (obj) {
+        arg = obj[key] || null;
+        delete obj[key];
+    }
+    return arg;
+}
+
 function Controller() {
     function createAdImageEvent(adImage, id, content) {
         adImage.addEventListener("click", function() {
@@ -8,9 +17,17 @@ function Controller() {
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "brochure";
-    arguments[0] ? arguments[0]["__parentSymbol"] : null;
-    arguments[0] ? arguments[0]["$model"] : null;
-    arguments[0] ? arguments[0]["__itemTemplate"] : null;
+    if (arguments[0]) {
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
+    }
     var $ = this;
     var exports = {};
     $.__views.brochureView = Ti.UI.createView({
@@ -34,13 +51,13 @@ function Controller() {
         var counter = 0;
         var imagepath, adImage, row, cell = "";
         var last = details.length - 1;
-        for (var i = 0; details.length > i; i++) {
+        for (var i = 0; i < details.length; i++) {
             var id = details[i].id;
             imagepath = details[i].cover;
             adImage = Utils.RemoteImage({
                 image: imagepath
             });
-            0 == counter % 3 && (row = $.UI.create("View", {
+            counter % 3 == 0 && (row = $.UI.create("View", {
                 classes: [ "row" ],
                 textAlign: "center"
             }));
@@ -51,7 +68,7 @@ function Controller() {
             createAdImageEvent(adImage, id, details[i].content);
             cell.add(adImage);
             row.add(cell);
-            (2 == counter % 3 || last == counter) && $.scrollview.add(row);
+            (counter % 3 == 2 || last == counter) && $.scrollview.add(row);
             counter++;
         }
     };

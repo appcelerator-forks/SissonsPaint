@@ -1,9 +1,26 @@
+function __processArg(obj, key) {
+    var arg = null;
+    if (obj) {
+        arg = obj[key] || null;
+        delete obj[key];
+    }
+    return arg;
+}
+
 function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "home";
-    arguments[0] ? arguments[0]["__parentSymbol"] : null;
-    arguments[0] ? arguments[0]["$model"] : null;
-    arguments[0] ? arguments[0]["__itemTemplate"] : null;
+    if (arguments[0]) {
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
+    }
     var $ = this;
     var exports = {};
     var __defers = {};
@@ -12,11 +29,7 @@ function Controller() {
         id: "home"
     });
     $.__views.home && $.addTopLevelView($.__views.home);
-<<<<<<< HEAD
-    $.__views.__alloyId17 = Ti.UI.createView({
-=======
     $.__views.__alloyId86 = Ti.UI.createView({
->>>>>>> FETCH_HEAD
         left: 3,
         top: 48,
         width: "20%",
@@ -24,21 +37,6 @@ function Controller() {
         borderWidth: 1,
         backgroundColor: "white",
         layout: "vertical",
-<<<<<<< HEAD
-        id: "__alloyId17"
-    });
-    $.__views.home.add($.__views.__alloyId17);
-    $.__views.__alloyId18 = Ti.UI.createButton({
-        title: "Menu",
-        id: "__alloyId18"
-    });
-    $.__views.__alloyId17.add($.__views.__alloyId18);
-    toggle ? $.__views.__alloyId18.addEventListener("click", toggle) : __defers["$.__views.__alloyId18!click!toggle"] = true;
-    exports.destroy = function() {};
-    _.extend($, $.__views);
-    arguments[0] || {};
-    __defers["$.__views.__alloyId18!click!toggle"] && $.__views.__alloyId18.addEventListener("click", toggle);
-=======
         id: "__alloyId86"
     });
     $.__views.home.add($.__views.__alloyId86);
@@ -52,7 +50,6 @@ function Controller() {
     _.extend($, $.__views);
     arguments[0] || {};
     __defers["$.__views.__alloyId87!click!toggle"] && $.__views.__alloyId87.addEventListener("click", toggle);
->>>>>>> FETCH_HEAD
     _.extend($, exports);
 }
 

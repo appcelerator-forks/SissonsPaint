@@ -82,13 +82,13 @@ exports.loadCategory = function(ex){
 		       	arr.forEach(function(entry) {
 		       		
 		       		/***Category Info***/
-		       		var product_categroy = Alloy.createModel('category', { 
+		       		var product_category = Alloy.createModel('category', { 
 		       			id: entry.id, 
 						name: entry.name, 
 						type: entry.type,
 						description : entry.description,
 					});
-					product_categroy.save();
+					product_category.save();
 					    
 		       		/*** Category Type***/
 		       		var categories = entry.arr_category;

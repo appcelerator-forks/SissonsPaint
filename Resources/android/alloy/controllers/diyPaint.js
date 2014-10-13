@@ -1,36 +1,52 @@
+function __processArg(obj, key) {
+    var arg = null;
+    if (obj) {
+        arg = obj[key] || null;
+        delete obj[key];
+    }
+    return arg;
+}
+
 function Controller() {
     function PixelsToDPUnits(ThePixels) {
         return ThePixels / (Titanium.Platform.displayCaps.dpi / 160);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "diyPaint";
-    arguments[0] ? arguments[0]["__parentSymbol"] : null;
-    arguments[0] ? arguments[0]["$model"] : null;
-    arguments[0] ? arguments[0]["__itemTemplate"] : null;
+    if (arguments[0]) {
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
+    }
     var $ = this;
     var exports = {};
     $.__views.diyPaint = Ti.UI.createView({
         id: "diyPaint"
     });
     $.__views.diyPaint && $.addTopLevelView($.__views.diyPaint);
-<<<<<<< HEAD
-    $.__views.__alloyId16 = Ti.UI.createView({
+    $.__views.__alloyId85 = Ti.UI.createView({
         backgroundColor: "white",
-        id: "__alloyId16"
+        id: "__alloyId85"
     });
-    $.__views.diyPaint.add($.__views.__alloyId16);
+    $.__views.diyPaint.add($.__views.__alloyId85);
     $.__views.canvas = Ti.UI.createWebView({
         id: "canvas",
         url: "/html/canvas-paint-bucket.html",
         disableBounce: "true"
     });
-    $.__views.__alloyId16.add($.__views.canvas);
+    $.__views.__alloyId85.add($.__views.canvas);
     $.__views.toolbar = Ti.UI.createView({
         height: Ti.UI.SIZE,
         bottom: "0",
         id: "toolbar"
     });
-    $.__views.__alloyId16.add($.__views.toolbar);
+    $.__views.__alloyId85.add($.__views.toolbar);
     $.__views.settings1 = Ti.UI.createImageView({
         width: "16.6%",
         id: "settings1",
@@ -79,16 +95,6 @@ function Controller() {
         image: "/images/power-icons.png"
     });
     $.__views.toolbar.add($.__views.settings);
-=======
-    $.__views.__alloyId85 = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        text: "This DIY Paint",
-        id: "__alloyId85"
-    });
-    $.__views.diyPaint.add($.__views.__alloyId85);
->>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
