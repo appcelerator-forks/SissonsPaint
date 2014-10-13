@@ -6,7 +6,16 @@
 	height: Ti.UI.SIZE,
 	color: "#000"
 },
+<<<<<<< HEAD
 
 ".title":{
 	font:{fontSize:28},	
 }
+=======
+"#toolbar" :{
+	height: Ti.UI.SIZE,
+	//backgroundColor:"yellow"
+},
+"#canvas":{
+}
+>>>>>>> FETCH_HEAD

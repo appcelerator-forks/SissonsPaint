@@ -1,1 +1,81 @@
-function WPATH(e){var t=e.lastIndexOf("/"),i=-1===t?"nl.fokkezb.drawer/"+e:e.substring(0,t)+"/nl.fokkezb.drawer/"+e.substring(t+1);return 0!==i.indexOf("/")?"/"+i:i}function __processArg(e,t){var i=null;return e&&(i=e[t]||null,delete e[t]),i}function Controller(){new(require("alloy/widget"))("nl.fokkezb.drawer"),this.__widgetId="nl.fokkezb.drawer",require("alloy/controllers/BaseController").apply(this,Array.prototype.slice.call(arguments)),this.__controllerPath="widget",arguments[0]&&(__processArg(arguments[0],"__parentSymbol"),__processArg(arguments[0],"$model"),__processArg(arguments[0],"__itemTemplate"));var e=this,t={};t.destroy=function(){},_.extend(e,e.__views);var i=arguments[0]||{};e.module=require("dk.napp.drawer"),i.children&&_.each(i.children,function(e){if(e){var t=e.role;t&&(i[t]=e)}}),_.each(["closeDrawerGestureMode","openDrawerGestureMode","centerHiddenInteractionMode","animationMode","statusBarStyle"],function(t){i[t]&&"string"==typeof i[t]&&(i[t]=e.module[i[t]])}),delete i.id,delete i.__parentSymbol,delete i.children,e.instance=e.module.createDrawer(i),e.addTopLevelView(e.instance),_.each(["centerWindow","leftWindow","rightWindow","closeDrawerGestureMode","openDrawerGestureMode","leftDrawerWidth","rightDrawerWidth","orientationModes","centerHiddenInteractionMode","animationMode","animationVelocity","showShadow","shadowWidth","shouldStretchDrawer","fading","parallaxAmount","statusBarStyle"],function(i){var r=i[0].toUpperCase()+i.substring(1),o=t["get"+r]||(e["get"+r]=function(){return e.instance[i]}),n=t["set"+r]||(e["set"+r]=function(t){e.instance[i]=t});Object.defineProperty(e,i,{get:o,set:n})}),_.each(["toggleLeftWindow","toggleRightWindow","bounceLeftWindow","bounceRightWindow","isAnyWindowOpen","isLeftWindowOpen","isRightWindowOpen","open","close"],function(i){t[i]||(t[i]=function(){return e.instance[i]()})}),t.on=function(t,i){return e.instance.addEventListener(t,i)},t.off=function(t,i){return e.instance.removeEventListener(t,i)},t.trigger=function(t,i){return e.instance.fireEvent(t,i)},t.addEventListener=t.on,t.removeEventListener=t.off,t.fireEvent=t.trigger,t.closeLeftWindow=function(){return e.instance.isLeftWindowOpen()?e.instance.toggleLeftWindow():void 0},t.closeRightWindow=function(){return e.instance.isRightWindowOpen()?e.instance.toggleRightWindow():void 0},t.openLeftWindow=function(){return e.instance.isLeftWindowOpen()?void 0:e.instance.toggleLeftWindow()},t.openRightWindow=function(){return e.instance.isRightWindowOpen()?void 0:e.instance.toggleRightWindow()},_.extend(e,t)}var Alloy=require("alloy"),Backbone=Alloy.Backbone,_=Alloy._;module.exports=Controller;
+function WPATH(s) {
+    var index = s.lastIndexOf("/");
+    var path = -1 === index ? "nl.fokkezb.drawer/" + s : s.substring(0, index) + "/nl.fokkezb.drawer/" + s.substring(index + 1);
+    return true && 0 !== path.indexOf("/") ? "/" + path : path;
+}
+
+function Controller() {
+    new (require("alloy/widget"))("nl.fokkezb.drawer");
+    this.__widgetId = "nl.fokkezb.drawer";
+    require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
+    this.__controllerPath = "widget";
+    arguments[0] ? arguments[0]["__parentSymbol"] : null;
+    arguments[0] ? arguments[0]["$model"] : null;
+    arguments[0] ? arguments[0]["__itemTemplate"] : null;
+    var $ = this;
+    var exports = {};
+    exports.destroy = function() {};
+    _.extend($, $.__views);
+    var args = arguments[0] || {};
+    $.module = require("dk.napp.drawer");
+    args.children && _.each(args.children, function(child) {
+        if (!child) return;
+        var role = child.role;
+        role && (args[role] = child);
+    });
+    _.each([ "closeDrawerGestureMode", "openDrawerGestureMode", "centerHiddenInteractionMode", "animationMode", "statusBarStyle" ], function(arg) {
+        args[arg] && "string" == typeof args[arg] && (args[arg] = $.module[args[arg]]);
+    });
+    delete args.id;
+    delete args.__parentSymbol;
+    delete args.children;
+    $.instance = $.module.createDrawer(args);
+    $.addTopLevelView($.instance);
+    _.each([ "centerWindow", "leftWindow", "rightWindow", "closeDrawerGestureMode", "openDrawerGestureMode", "leftDrawerWidth", "rightDrawerWidth", "orientationModes", "centerHiddenInteractionMode", "animationMode", "animationVelocity", "showShadow", "shadowWidth", "shouldStretchDrawer", "fading", "parallaxAmount", "statusBarStyle" ], function(key) {
+        var cc = key[0].toUpperCase() + key.substring(1);
+        var get = exports["get" + cc] || ($["get" + cc] = function() {
+            return $.instance[key];
+        });
+        var set = exports["set" + cc] || ($["set" + cc] = function(val) {
+            $.instance[key] = val;
+        });
+        Object.defineProperty($, key, {
+            get: get,
+            set: set
+        });
+    });
+    _.each([ "toggleLeftWindow", "toggleRightWindow", "bounceLeftWindow", "bounceRightWindow", "isAnyWindowOpen", "isLeftWindowOpen", "isRightWindowOpen", "open", "close" ], function(fn) {
+        exports[fn] || (exports[fn] = function() {
+            return $.instance[fn]();
+        });
+    });
+    exports.on = function(event, callback) {
+        return $.instance.addEventListener(event, callback);
+    };
+    exports.off = function(event, callback) {
+        return $.instance.removeEventListener(event, callback);
+    };
+    exports.trigger = function(event, args) {
+        return $.instance.fireEvent(event, args);
+    };
+    exports.addEventListener = exports.on;
+    exports.removeEventListener = exports.off;
+    exports.fireEvent = exports.trigger;
+    exports.closeLeftWindow = function() {
+        if ($.instance.isLeftWindowOpen()) return $.instance.toggleLeftWindow();
+    };
+    exports.closeRightWindow = function() {
+        if ($.instance.isRightWindowOpen()) return $.instance.toggleRightWindow();
+    };
+    exports.openLeftWindow = function() {
+        if (!$.instance.isLeftWindowOpen()) return $.instance.toggleLeftWindow();
+    };
+    exports.openRightWindow = function() {
+        if (!$.instance.isRightWindowOpen()) return $.instance.toggleRightWindow();
+    };
+    _.extend($, exports);
+}
+
+var Alloy = require("alloy"), Backbone = Alloy.Backbone, _ = Alloy._;
+
+module.exports = Controller;

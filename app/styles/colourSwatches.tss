@@ -1,12 +1,41 @@
 ".container": {
-	backgroundColor:"white"
+	backgroundColor:"white",
+	layout: "vertical"
 },
 "Label": {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
 	color: "#000"
 },
+<<<<<<< HEAD
 
 ".title":{
 	font:{fontSize:28},	
+=======
+".title": { 
+	height: 20,
+	textAlign: "left",
+	color: "black",
+	width: "75%"
+},
+".aboutContent" : {
+	font: {
+        fontSize: '12'
+   },
+   color: '#6E6E6E',
+   textAlign: "Ti.UI.TEXT_ALIGNMENT_LEFT",
+   width:"90%",
+   bottom: 10
+},
+".colorDesc" : {
+	font: {
+        fontSize: '8'
+   },
+   color: '#6E6E6E',
+   width: "100%",
+   textAlign:Ti.UI.TEXT_ALIGNMENT_RIGHT,  
+},
+"#main" :{
+	backgroundColor: "white"
+>>>>>>> FETCH_HEAD
 }

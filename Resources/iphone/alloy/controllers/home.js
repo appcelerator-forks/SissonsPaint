@@ -29,10 +29,20 @@ function Controller() {
     });
     $.__views.home && $.addTopLevelView($.__views.home);
     $.__views.__alloyId17 = Ti.UI.createView({
+<<<<<<< HEAD
+=======
+        left: 3,
+        top: 48,
+        width: "20%",
+        height: 50,
+        borderWidth: 1,
+        backgroundColor: "white",
+>>>>>>> FETCH_HEAD
         layout: "vertical",
         id: "__alloyId17"
     });
     $.__views.home.add($.__views.__alloyId17);
+<<<<<<< HEAD
     $.__views.__alloyId18 = Alloy.createController("toggle", {
         id: "__alloyId18",
         __parentSymbol: $.__views.__alloyId17
@@ -41,6 +51,18 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
+=======
+    $.__views.__alloyId18 = Ti.UI.createButton({
+        title: "Menu",
+        id: "__alloyId18"
+    });
+    $.__views.__alloyId17.add($.__views.__alloyId18);
+    toggle ? $.__views.__alloyId18.addEventListener("click", toggle) : __defers["$.__views.__alloyId18!click!toggle"] = true;
+    exports.destroy = function() {};
+    _.extend($, $.__views);
+    arguments[0] || {};
+    __defers["$.__views.__alloyId18!click!toggle"] && $.__views.__alloyId18.addEventListener("click", toggle);
+>>>>>>> FETCH_HEAD
     _.extend($, exports);
 }
 
