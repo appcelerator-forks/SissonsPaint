@@ -125,7 +125,11 @@ function Controller() {
 <<<<<<< HEAD
             i < details.length - 1 && row.add(separator);
 =======
+<<<<<<< HEAD
+            i < details.length - 1 && row.add(separator);
+=======
             details.length - 1 > i && row.add(separator);
+>>>>>>> FETCH_HEAD
 >>>>>>> FETCH_HEAD
             data.push(row);
         }

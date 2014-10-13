@@ -15,6 +15,9 @@ function Controller() {
     this.__controllerPath = "toggle";
     if (arguments[0]) {
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
         {
             __processArg(arguments[0], "__parentSymbol");
         }
@@ -24,10 +27,13 @@ function Controller() {
         {
             __processArg(arguments[0], "__itemTemplate");
         }
+<<<<<<< HEAD
+=======
 =======
         __processArg(arguments[0], "__parentSymbol");
         __processArg(arguments[0], "$model");
         __processArg(arguments[0], "__itemTemplate");
+>>>>>>> FETCH_HEAD
 >>>>>>> FETCH_HEAD
     }
     var $ = this;

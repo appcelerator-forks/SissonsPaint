@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "/Users/tankeanmeng/Documents/Titanium_Studio_Workspace/SissonsPaint/build/android/gen/android/support/v7/appcompat/R.java"
 "/Users/tankeanmeng/Documents/Titanium_Studio_Workspace/SissonsPaint/build/android/gen/sissons/mnc/com/ApplicationStylesheet.java"
 "/Users/tankeanmeng/Documents/Titanium_Studio_Workspace/SissonsPaint/build/android/gen/sissons/mnc/com/AssetCryptImpl.java"
@@ -7,3 +8,14 @@
 "/Users/tankeanmeng/Documents/Titanium_Studio_Workspace/SissonsPaint/build/android/gen/sissons/mnc/com/SissionsPaintAppInfo.java"
 "/Users/tankeanmeng/Documents/Titanium_Studio_Workspace/SissonsPaint/build/android/gen/sissons/mnc/com/SissionsPaintApplication.java"
 "/Users/tankeanmeng/Documents/Titanium_Studio_Workspace/SissonsPaint/build/android/gen/ti/modules/titanium/ui/R.java"
+=======
+"/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/android/gen/android/support/v7/appcompat/R.java"
+"/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/android/gen/sissons/mnc/com/ApplicationStylesheet.java"
+"/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/android/gen/sissons/mnc/com/AssetCryptImpl.java"
+"/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/android/gen/sissons/mnc/com/IndexActivity.java"
+"/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/android/gen/sissons/mnc/com/R.java"
+"/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/android/gen/sissons/mnc/com/SissionsPaintActivity.java"
+"/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/android/gen/sissons/mnc/com/SissionsPaintAppInfo.java"
+"/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/android/gen/sissons/mnc/com/SissionsPaintApplication.java"
+"/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/build/android/gen/ti/modules/titanium/ui/R.java"
+>>>>>>> FETCH_HEAD

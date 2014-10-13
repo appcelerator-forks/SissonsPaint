@@ -2,7 +2,7 @@ $.drawer.open({
 	navBarHidden: true,
 	fullscreen: true
 });
-
+Ti.App.Properties.setString('module', 'index');
 var API = require('api');
 var flag =0;	
 // Load API function
@@ -54,7 +54,9 @@ function navigation(target){
 
 
 $.drawer.addEventListener('android:back', function (e) {
-	if(flag == 1){
+	mod = Ti.App.Properties.getString('module');
+	if(mod == "storeLocator"){
+		Ti.App.Properties.setString('module', 'index');
 		var nav = Alloy.createController("storeLocator").getView(); 
 		Alloy.Globals.Drawer.setCenterWindow(nav);  
 	}else{

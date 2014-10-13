@@ -41,9 +41,9 @@ exports.definition = {
                 collection.trigger('sync');
                 return listArr;
 			},
-			resetCategoryColour : function(cate_id){
+			resetCategoryColour : function(){
 				var collection = this;
-                var sql = "DELETE FROM " + collection.config.adapter.collection_name+ " WHERE cate_id='"+ cate_id+ "'" ;
+                var sql = "DELETE FROM " + collection.config.adapter.collection_name;
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 db.execute(sql);
                 db.close();

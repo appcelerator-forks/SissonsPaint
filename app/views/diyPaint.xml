@@ -11,5 +11,9 @@
 				<ImageView width="16.6%" id="settings" mod="settings" left="83%" image="/images/power-icons.png" />
 			</View>
 		</View>
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> FETCH_HEAD
 	</View>
 </Alloy>

@@ -7,7 +7,11 @@
 	height: Ti.UI.SIZE,
 	color: "#000"
 },
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> FETCH_HEAD
 ".title": { 
 	height: 20,
 	textAlign: "left",
@@ -33,6 +37,7 @@
 },
 "#main" :{
 	backgroundColor: "white"
+<<<<<<< HEAD
 
 },
 
@@ -41,3 +46,7 @@
         fontSize: '28'
    }
 }
+=======
+ 
+}
+>>>>>>> FETCH_HEAD

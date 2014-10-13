@@ -5,36 +5,33 @@
 		<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">About US</Label>
 	</View>
 	<ScrollView layout="vertical" height="Ti.UI.SIZE">
-	<ScrollView id="main" layout="vertical" height="180" >
-		<Label class="aboutContent" width="75%">It was in 1959 that SISSONS PAINTS (EAST) SDN BHD first started in Malaysia, although SISSONS' technology in paint making goes back 185 years when Sissons Brothers founded a company in HULL, England in 1803. SISSONS' well-known trademark of 'THE MEN AND PLANK' has been in use since 1910. </Label>	
-	</ScrollView>
-	<View layout="vertical" backgroundColor="white" height="Titanium.UI.SIZE">
-		<ImageView image="/images/scroll_up.png" backgroundColor="#white" width="Titanium.UI.FILL" />
-	
-		<Label class="title" color="black" bottom="10" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Email</Label>
-		<View layout="horizontal" height="40" top="10" width="80%" horizontalWrap="true">
-			<Label class="description_content" color="#6E6E6E" width="20%">Name</Label>	
-			<TextField id="name" class="inputField" width="70%" />
-		</View>
-		<View layout="horizontal" height="40" top="10" width="80%" horizontalWrap="true">
-			<Label class="description_content" color="#6E6E6E" width="20%">Email</Label>	
-			<TextField id="email" class="inputField" width="70%" />
-		</View>
-		<View layout="horizontal" height="100" top="10" width="80%" horizontalWrap="true">
-			<Label class="description_content" color="#6E6E6E" width="20%" top="0">Message</Label>	
-			<TextArea id="message" color="#888" textAlign="left" width="70%" height="100" />
-		</View>
-		<!--<TextField id="username" top="10" class="inputField" hintText="Enter Your Name" />
-		<TextField id="phone"  class="inputField" hintText="Enter Your Phone Number" />
-		<TextField id="email"  class="inputField" hintText="Enter Your Email" />
-		<TextArea id="message" borderRadius="2" color="#888" textAlign="left" hintText="Leave your message here" width="80%" height="100" />-->
+		<ScrollView id="main" layout="vertical" height="180" >
+			<Label class="aboutContent" width="75%">It was in 1959 that SISSONS PAINTS (EAST) SDN BHD first started in Malaysia, although SISSONS' technology in paint making goes back 185 years when Sissons Brothers founded a company in HULL, England in 1803. SISSONS' well-known trademark of 'THE MEN AND PLANK' has been in use since 1910. </Label>	
+		</ScrollView>
+		<View layout="vertical" backgroundColor="white" height="Titanium.UI.SIZE">
+			<ImageView image="/images/scroll_up.png" backgroundColor="#white" width="Titanium.UI.FILL" />
 		
-    </View>
+			<Label class="title" color="black" bottom="10" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Email</Label>
+			<View layout="horizontal" height="40" top="10" width="90%" horizontalWrap="true">
+				<Label class="description_content" color="#6E6E6E" width="30%">Name</Label>	
+				<TextField id="name" class="inputField" width="60%" />
+			</View>
+			<View layout="horizontal" height="40" top="10" width="90%" horizontalWrap="true">
+				<Label class="description_content" color="#6E6E6E" width="30%">Email</Label>	
+				<TextField id="email" class="inputField" width="60%" />
+			</View>
+			<View  layout="horizontal" height="100" top="10" bottom="15" width="90%" horizontalWrap="true">
+				<Label class="description_content" color="#6E6E6E" width="30%" top="0">Message</Label>	
+				<TextArea id="message" color="#888" textAlign="left" width="60%" height="100" borderColor="#888" />
+			</View>
+			 
+	    </View>
+	    <View backgroundColor="green" height="60" bottom="0">
+			<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
+			<ImageView id="contactButton" image="/images/icon_email.png" onClick="submitContactForm" height="40" />
+	    </View>
     </ScrollView>
 	<!--</ScrollView>-->
-	<View backgroundColor="white" height="60" bottom="0">
-			<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
-        	<ImageView id="contactButton" image="/images/icon_email.png" onClick="submitContactForm" height="40" />
-        </View>
+	
 </View>
 </Alloy>
