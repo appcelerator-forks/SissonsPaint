@@ -38,33 +38,18 @@ function Controller() {
         width: "100%"
     });
     $.__views.mainWindow && $.addTopLevelView($.__views.mainWindow);
-<<<<<<< HEAD
-    $.__views.__alloyId142 = Ti.UI.createView({
+    $.__views.__alloyId138 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId142"
+        id: "__alloyId138"
     });
-    $.__views.mainWindow.add($.__views.__alloyId142);
-    $.__views.__alloyId143 = Alloy.createController("toggle", {
-        id: "__alloyId143",
-        __parentSymbol: $.__views.__alloyId142
+    $.__views.mainWindow.add($.__views.__alloyId138);
+    $.__views.__alloyId139 = Alloy.createController("toggle", {
+        id: "__alloyId139",
+        __parentSymbol: $.__views.__alloyId138
     });
-    $.__views.__alloyId143.setParent($.__views.__alloyId142);
-    $.__views.__alloyId144 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId134 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "80",
-        id: "__alloyId134"
-    });
-    $.__views.mainWindow.add($.__views.__alloyId134);
-    $.__views.__alloyId135 = Alloy.createController("toggle", {
-        id: "__alloyId135",
-        __parentSymbol: $.__views.__alloyId134
-    });
-    $.__views.__alloyId135.setParent($.__views.__alloyId134);
-    $.__views.__alloyId136 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId139.setParent($.__views.__alloyId138);
+    $.__views.__alloyId140 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -73,15 +58,9 @@ function Controller() {
         },
         text: "Store Locator",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-<<<<<<< HEAD
-        id: "__alloyId144"
+        id: "__alloyId140"
     });
-    $.__views.__alloyId142.add($.__views.__alloyId144);
-=======
-        id: "__alloyId136"
-    });
-    $.__views.__alloyId134.add($.__views.__alloyId136);
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId138.add($.__views.__alloyId140);
     $.__views.subWindow = Ti.UI.createView({
         id: "subWindow",
         layout: "vertical",
@@ -101,6 +80,7 @@ function Controller() {
         title: "Johor",
         id: "zoneA",
         width: "40%",
+        height: "65",
         left: "10%",
         top: "5%"
     });
@@ -111,6 +91,7 @@ function Controller() {
         title: "Kedah",
         id: "zoneB",
         width: "40%",
+        height: "65",
         right: "10%",
         top: "5%"
     });
@@ -128,6 +109,7 @@ function Controller() {
         title: "Melaka",
         id: "zoneC",
         width: "40%",
+        height: "65",
         left: "10%",
         top: "5%"
     });
@@ -138,6 +120,7 @@ function Controller() {
         title: "Negeri Sembilan",
         id: "zoneD",
         width: "40%",
+        height: "65",
         right: "10%",
         top: "5%"
     });
@@ -155,6 +138,7 @@ function Controller() {
         title: "Pahang",
         id: "zoneE",
         width: "40%",
+        height: "65",
         left: "10%",
         top: "5%"
     });
@@ -165,6 +149,7 @@ function Controller() {
         title: "Penang",
         id: "zoneF",
         width: "40%",
+        height: "65",
         right: "10%",
         top: "5%"
     });
@@ -182,6 +167,7 @@ function Controller() {
         title: "Selangor",
         id: "zoneG",
         width: "40%",
+        height: "65",
         left: "10%",
         top: "5%"
     });
@@ -192,6 +178,7 @@ function Controller() {
         title: "Wilayah Persekutuan",
         id: "zoneH",
         width: "40%",
+        height: "65",
         right: "10%",
         top: "5%"
     });

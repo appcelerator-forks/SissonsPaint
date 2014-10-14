@@ -6,8 +6,8 @@
 				<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Brochure</Label>
 			</View>
 			<ScrollView id="scrollview" layout="vertical">
-				<View layout="vertical" height="Ti.UI.SIZE" width="80%">
-					<View layout="horizontal" height="Ti.UI.SIZE" bottom="0">
+				<View id="mainView" layout="vertical" height="Ti.UI.SIZE" width="80%">
+					<!--<View layout="horizontal" height="Ti.UI.SIZE" bottom="0">
 						<ImageView id="img0" image="http://sissons.playlab.com.my/public/images/default_cover.jpg" bottom="0" width="30%" right="3%" />
 						<ImageView id="img1" image="http://sissons.playlab.com.my/public/brochure/1/0/9ad5a6d26_150.png" bottom="0" width="30%" left="1.5%" right="1.5%" />
 						<ImageView id="img2" image="http://sissons.playlab.com.my/public/brochure/8/ca59fb2f4_150.png" bottom="0" width="30%" left="3%" />
@@ -24,7 +24,7 @@
 						<ImageView id="img7" image="/images/app_icon.png" bottom="0" width="30%" left="1.5%" right="1.5%" />
 						<ImageView id="img8" image="/images/app_icon.png" bottom="0" width="30%" left="3%" />
 					</View>
-					<ImageView image="/images/wood_rack.png" top="0" />
+					<ImageView image="/images/wood_rack.png" top="0" />-->
 				</View>
 			</ScrollView>
 		</View>

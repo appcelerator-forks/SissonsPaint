@@ -1,15 +1,9 @@
 <Alloy>
-<<<<<<< HEAD
 	<View class="container">
 		<View layout="horizontal" height="80">
 			<Require src="toggle"></Require>
 			<Label id="titleLabel" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Colour Swatches</Label>
 		</View>
-=======
- 
-	<View class="container">
-		<Require src="toggle"></Require>
->>>>>>> FETCH_HEAD
 		 <Label class="title"  textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">COLOR CATEGORIES</Label>
 		 <ScrollView id="main" layout="vertical" height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">
 				<Label class="aboutContent">
@@ -114,10 +108,6 @@
 					
 					
 				</View>
-		</ScrollView>
-<<<<<<< HEAD
-=======
-		 	 
->>>>>>> FETCH_HEAD
+		</ScrollView> 	 
 	</View>
 </Alloy>

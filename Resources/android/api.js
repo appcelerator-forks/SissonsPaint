@@ -54,9 +54,6 @@ exports.loadColour = function() {
     client.send();
 };
 
-<<<<<<< HEAD
-exports.loadCategory = function() {};
-=======
 exports.loadCategory = function() {
     var url = getCategoryList;
     var client = Ti.Network.createHTTPClient({
@@ -104,7 +101,6 @@ exports.loadCategory = function() {
     client.open("GET", url);
     client.send();
 };
->>>>>>> FETCH_HEAD
 
 exports.loadBrochure = function() {
     var url = getBrochureList;
