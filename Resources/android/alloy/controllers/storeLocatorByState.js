@@ -19,6 +19,7 @@ function Controller() {
             var row = Titanium.UI.createTableViewRow({
                 layout: "vertical",
                 touchEnabled: false,
+                selectedBackgroundColor: "transparent",
                 id: details[i].id,
                 backgroundColor: "#FFFFFF"
             });
@@ -48,7 +49,6 @@ function Controller() {
             });
             var infoViewContainer = Titanium.UI.createView({
                 layout: "horizontal",
-                height: 80,
                 width: "100%"
             });
             var infoView = Titanium.UI.createView({
@@ -135,17 +135,17 @@ function Controller() {
                 right: 20
             });
             rightForwardBtn.addEventListener("click", function() {
-                NavigateTo("3.100118", "101.686962");
+                NavigateTo("3.160146", "101.615076", "Menara UAC", "12, Jalan PJU 7/5 Mutiara Damansara 47820 Petaling Jaya, Selangor");
             });
             var separator = Titanium.UI.createImageView({
                 width: Titanium.UI.FILL,
                 height: 30,
-                bottom: -1,
                 touchEnabled: false,
                 image: "/images/scroll_up.png"
             });
+            i > 0 && row.add(separator);
             row.add(outlet_name);
-            "" != details[i].address && row.add(location);
+            "" != details[i].address && infoView.add(location);
             infoView.add(mobile);
             infoView.add(fax);
             infoView.add(email);
@@ -153,7 +153,6 @@ function Controller() {
             infoViewContainer.add(infoView);
             infoViewContainer.add(rightForwardBtn);
             row.add(infoViewContainer);
-            i < details.length - 1 && row.add(separator);
             data.push(row);
         }
         TheTable.setData(data);
@@ -181,29 +180,29 @@ function Controller() {
     });
     $.__views.storeLocatorByState && $.addTopLevelView($.__views.storeLocatorByState);
 <<<<<<< HEAD
-    $.__views.__alloyId145 = Ti.UI.createView({
+    $.__views.__alloyId140 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId145"
+        id: "__alloyId140"
     });
-    $.__views.storeLocatorByState.add($.__views.__alloyId145);
-    $.__views.__alloyId146 = Alloy.createController("toggle", {
-        id: "__alloyId146",
-        __parentSymbol: $.__views.__alloyId145
+    $.__views.storeLocatorByState.add($.__views.__alloyId140);
+    $.__views.__alloyId141 = Alloy.createController("toggle", {
+        id: "__alloyId141",
+        __parentSymbol: $.__views.__alloyId140
     });
-    $.__views.__alloyId146.setParent($.__views.__alloyId145);
+    $.__views.__alloyId141.setParent($.__views.__alloyId140);
 =======
-    $.__views.__alloyId137 = Ti.UI.createView({
+    $.__views.__alloyId71 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId137"
+        id: "__alloyId71"
     });
-    $.__views.storeLocatorByState.add($.__views.__alloyId137);
-    $.__views.__alloyId138 = Alloy.createController("toggle", {
-        id: "__alloyId138",
-        __parentSymbol: $.__views.__alloyId137
+    $.__views.storeLocatorByState.add($.__views.__alloyId71);
+    $.__views.__alloyId72 = Alloy.createController("toggle", {
+        id: "__alloyId72",
+        __parentSymbol: $.__views.__alloyId71
     });
-    $.__views.__alloyId138.setParent($.__views.__alloyId137);
+    $.__views.__alloyId72.setParent($.__views.__alloyId71);
 >>>>>>> FETCH_HEAD
     $.__views.stateName = Ti.UI.createLabel({
         width: "75%",
@@ -216,9 +215,9 @@ function Controller() {
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
 <<<<<<< HEAD
-    $.__views.__alloyId145.add($.__views.stateName);
+    $.__views.__alloyId140.add($.__views.stateName);
 =======
-    $.__views.__alloyId137.add($.__views.stateName);
+    $.__views.__alloyId71.add($.__views.stateName);
 >>>>>>> FETCH_HEAD
     $.__views.tableContainer = Ti.UI.createView({
         backgroundColor: "white",
@@ -235,8 +234,8 @@ function Controller() {
     var details = library.getStoreByState(state);
     generateStoreTable(details);
     $.stateName.text = state;
-    NavigateTo = function(latitude, longitude) {
-        var url = "geo:" + latitude + "," + longitude;
+    NavigateTo = function(latitude, longitude, name, address) {
+        var url = "geo:" + latitude + "," + longitude + "?q=" + name + " (" + address + ")";
         if (Ti.Android) try {
             Ti.API.info("Trying to Launch via Intent");
             var intent = Ti.Android.createIntent({

@@ -6,14 +6,13 @@
 	height: Ti.UI.SIZE,
 	color: "#000"
 },
-".row" :{
-	layout: 'horizontal',
-	height: '154',
-},
-".cell" :{
-	left: '2',
-	width: '104',
-},
+// ".row" :{
+	// layout: 'horizontal'
+// },
+// ".cell" :{
+	// left: '2',
+	// width: '104',
+// },
 
 ".title":{
 	font:{fontSize:28},	

@@ -30,39 +30,69 @@ function Controller() {
         id: "diyPaint"
     });
     $.__views.diyPaint && $.addTopLevelView($.__views.diyPaint);
+    $.__views.__alloyId25 = Ti.UI.createView({
+        backgroundColor: "white",
+        id: "__alloyId25"
+    });
 <<<<<<< HEAD
-    $.__views.__alloyId102 = Ti.UI.createView({
-        backgroundColor: "white",
-        id: "__alloyId102"
+    $.__views.diyPaint.add($.__views.__alloyId95);
+    $.__views.toggle = Ti.UI.createView({
+        id: "toggle",
+        layout: "horizontal",
+        height: "80",
+        top: "0"
     });
-    $.__views.diyPaint.add($.__views.__alloyId102);
+    $.__views.__alloyId95.add($.__views.toggle);
+    $.__views.__alloyId96 = Alloy.createController("toggle", {
+        id: "__alloyId96",
+        __parentSymbol: $.__views.toggle
+    });
+    $.__views.__alloyId96.setParent($.__views.toggle);
+    $.__views.__alloyId97 = Ti.UI.createLabel({
 =======
-    $.__views.__alloyId94 = Ti.UI.createView({
-        backgroundColor: "white",
-        id: "__alloyId94"
+    $.__views.diyPaint.add($.__views.__alloyId25);
+    $.__views.__alloyId26 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId26"
     });
-    $.__views.diyPaint.add($.__views.__alloyId94);
+    $.__views.__alloyId25.add($.__views.__alloyId26);
+    $.__views.__alloyId27 = Alloy.createController("toggle", {
+        id: "__alloyId27",
+        __parentSymbol: $.__views.__alloyId26
+    });
+    $.__views.__alloyId27.setParent($.__views.__alloyId26);
+    $.__views.__alloyId28 = Ti.UI.createLabel({
+>>>>>>> FETCH_HEAD
+        width: "75%",
+        height: Ti.UI.SIZE,
+        color: "black",
+        font: {
+            fontSize: 28
+        },
+        text: "DIY Paint",
+        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+<<<<<<< HEAD
+        id: "__alloyId97"
+    });
+    $.__views.toggle.add($.__views.__alloyId97);
+=======
+        id: "__alloyId28"
+    });
+    $.__views.__alloyId26.add($.__views.__alloyId28);
 >>>>>>> FETCH_HEAD
     $.__views.canvas = Ti.UI.createWebView({
         id: "canvas",
         url: "/html/canvas-paint-bucket.html",
         disableBounce: "true"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId102.add($.__views.canvas);
-=======
-    $.__views.__alloyId94.add($.__views.canvas);
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId25.add($.__views.canvas);
     $.__views.toolbar = Ti.UI.createView({
         height: Ti.UI.SIZE,
         bottom: "0",
         id: "toolbar"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId102.add($.__views.toolbar);
-=======
-    $.__views.__alloyId94.add($.__views.toolbar);
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId25.add($.__views.toolbar);
     $.__views.settings1 = Ti.UI.createImageView({
         width: "16.6%",
         id: "settings1",
@@ -117,11 +147,12 @@ function Controller() {
     var pWidth = Ti.Platform.displayCaps.platformWidth;
     var pHeight = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight);
     var toolbarHeight = $.toolbar.rect.height;
+    var toggleHeight = $.toggle.getHeight();
     $.toolbar.addEventListener("postlayout", function() {
         console.log(pWidth);
         console.log(PixelsToDPUnits(pWidth));
         toolbarHeight = $.toolbar.rect.height;
-        var canvasHeight = pHeight - toolbarHeight - 48;
+        var canvasHeight = pHeight - toolbarHeight - 48 - toggleHeight;
         $.canvas.setBottom(toolbarHeight);
         $.canvas.setHeight(canvasHeight);
     });
