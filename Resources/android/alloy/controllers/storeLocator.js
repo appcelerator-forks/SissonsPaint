@@ -38,33 +38,18 @@ function Controller() {
         width: "100%"
     });
     $.__views.mainWindow && $.addTopLevelView($.__views.mainWindow);
-<<<<<<< HEAD
-    $.__views.__alloyId72 = Ti.UI.createView({
+    $.__views.__alloyId68 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId72"
+        id: "__alloyId68"
     });
-    $.__views.mainWindow.add($.__views.__alloyId72);
-    $.__views.__alloyId73 = Alloy.createController("toggle", {
-        id: "__alloyId73",
-        __parentSymbol: $.__views.__alloyId72
+    $.__views.mainWindow.add($.__views.__alloyId68);
+    $.__views.__alloyId69 = Alloy.createController("toggle", {
+        id: "__alloyId69",
+        __parentSymbol: $.__views.__alloyId68
     });
-    $.__views.__alloyId73.setParent($.__views.__alloyId72);
-    $.__views.__alloyId74 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId138 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "80",
-        id: "__alloyId138"
-    });
-    $.__views.mainWindow.add($.__views.__alloyId138);
-    $.__views.__alloyId139 = Alloy.createController("toggle", {
-        id: "__alloyId139",
-        __parentSymbol: $.__views.__alloyId138
-    });
-    $.__views.__alloyId139.setParent($.__views.__alloyId138);
-    $.__views.__alloyId140 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId69.setParent($.__views.__alloyId68);
+    $.__views.__alloyId70 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -73,15 +58,9 @@ function Controller() {
         },
         text: "Store Locator",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-<<<<<<< HEAD
-        id: "__alloyId74"
+        id: "__alloyId70"
     });
-    $.__views.__alloyId72.add($.__views.__alloyId74);
-=======
-        id: "__alloyId140"
-    });
-    $.__views.__alloyId138.add($.__views.__alloyId140);
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId68.add($.__views.__alloyId70);
     $.__views.subWindow = Ti.UI.createView({
         id: "subWindow",
         layout: "vertical",

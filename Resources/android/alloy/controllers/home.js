@@ -28,43 +28,23 @@ function Controller() {
         id: "home"
     });
     $.__views.home && $.addTopLevelView($.__views.home);
-<<<<<<< HEAD
-    $.__views.__alloyId33 = Ti.UI.createView({
+    $.__views.__alloyId29 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId33"
+        id: "__alloyId29"
     });
-    $.__views.home.add($.__views.__alloyId33);
-    $.__views.__alloyId34 = Ti.UI.createView({
+    $.__views.home.add($.__views.__alloyId29);
+    $.__views.__alloyId30 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId34"
+        id: "__alloyId30"
     });
-    $.__views.__alloyId33.add($.__views.__alloyId34);
-    $.__views.__alloyId35 = Alloy.createController("toggle", {
-        id: "__alloyId35",
-        __parentSymbol: $.__views.__alloyId34
+    $.__views.__alloyId29.add($.__views.__alloyId30);
+    $.__views.__alloyId31 = Alloy.createController("toggle", {
+        id: "__alloyId31",
+        __parentSymbol: $.__views.__alloyId30
     });
-    $.__views.__alloyId35.setParent($.__views.__alloyId34);
-    $.__views.__alloyId36 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId99 = Ti.UI.createView({
-        layout: "vertical",
-        id: "__alloyId99"
-    });
-    $.__views.home.add($.__views.__alloyId99);
-    $.__views.__alloyId100 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "80",
-        id: "__alloyId100"
-    });
-    $.__views.__alloyId99.add($.__views.__alloyId100);
-    $.__views.__alloyId101 = Alloy.createController("toggle", {
-        id: "__alloyId101",
-        __parentSymbol: $.__views.__alloyId100
-    });
-    $.__views.__alloyId101.setParent($.__views.__alloyId100);
-    $.__views.__alloyId102 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId31.setParent($.__views.__alloyId30);
+    $.__views.__alloyId32 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -73,15 +53,9 @@ function Controller() {
         },
         text: "Home",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-<<<<<<< HEAD
-        id: "__alloyId36"
+        id: "__alloyId32"
     });
-    $.__views.__alloyId34.add($.__views.__alloyId36);
-=======
-        id: "__alloyId102"
-    });
-    $.__views.__alloyId100.add($.__views.__alloyId102);
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId30.add($.__views.__alloyId32);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

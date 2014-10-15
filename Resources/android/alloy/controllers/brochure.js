@@ -3,8 +3,6 @@ function __processArg(obj, key) {
     if (obj) {
         arg = obj[key] || null;
         delete obj[key];
-<<<<<<< HEAD
-=======
     }
     return arg;
 }
@@ -16,7 +14,6 @@ function Controller() {
                 err && alert(err);
             });
         });
->>>>>>> FETCH_HEAD
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "brochure";
@@ -80,9 +77,6 @@ function Controller() {
     arguments[0] || {};
     var pdf = require("pdf");
     var library = Alloy.createCollection("brochure");
-<<<<<<< HEAD
-    library.getBrochureList();
-=======
     var details = library.getBrochureList();
     var displayCover = function() {
         var counter = 0;
@@ -138,7 +132,6 @@ function Controller() {
         }
     };
     displayCover();
->>>>>>> FETCH_HEAD
     _.extend($, exports);
 }
 
