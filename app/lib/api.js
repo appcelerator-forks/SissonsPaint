@@ -21,7 +21,7 @@ exports.forgotPassword    = "http://"+API_DOMAIN+"/api/doForgotPassword?user="+U
 **********************/
 //load Colour and save to local db
 exports.loadColour = function (ex){
-	 var url = getBrochureList;
+	 var url = getColourList;
 	 var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
@@ -39,8 +39,8 @@ exports.loadColour = function (ex){
 				        id: entry.id,
 					    name: entry.name,
 					    code: entry.code,
-					    rgb: entry.rgb,
-					    cmyk: entry.cmyk,
+					    rgb: entry.RGB,
+					    cmyk: entry.CMYK,
 					    sample: entry.sample
 				    });
 				    colour.save();
@@ -86,6 +86,7 @@ exports.loadCategory = function(ex){
 		       			id: entry.id, 
 						name: entry.name, 
 						type: entry.type,
+						image: entry.image,
 						description : entry.description,
 					});
 					product_category.save();

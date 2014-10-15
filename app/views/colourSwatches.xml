@@ -1,123 +1,13 @@
 <Alloy>
-<<<<<<< HEAD
-	<View class="container">
+ 
+	<View class="container" id="mainViewContainer">
 		<View layout="horizontal" height="80">
 			<Require src="toggle"></Require>
 			<Label id="titleLabel" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Colour Swatches</Label>
 		</View>
-=======
  
-	<View class="container">
-		<Require src="toggle"></Require>
->>>>>>> FETCH_HEAD
-		 <Label class="title"  textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">COLOR CATEGORIES</Label>
-		 <ScrollView id="main" layout="vertical" height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">
-				<Label class="aboutContent">
-					ECOGLOS is base on long oilmodifield alkyd. It is fungus resistant high gloss architectural paint that decorates and protects the interior and exterior of building. It has excellent coverage, good application and flow properties. With the proper primer and undercoat, EcoGloss will dry to an attractive smooth finish on wooden and metal substrates.
-				</Label>	
-				<View layout="horizontal" bottom="10" height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT">
-					<View layout="vertical" width="24%" height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT">
-						<View  width="95%" height="80" left="5" backgroundColor="#EB9CE7"></View>
-						<Label class="colorDesc">3027</Label>
-						<Label class="colorDesc">PRIMROSE</Label>
-					</View>
-					
-					<View layout="vertical" width="24%" height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT">
-						<View  width="95%" height="80" left="5" backgroundColor="#A2F2EA"></View>
-						<Label class="colorDesc" >3027</Label>
-						<Label class="colorDesc" >PRIMROSE</Label>
-					</View>
-					
-					<View layout="vertical" width="24%" height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT">
-						<View  width="95%" height="80" left="5" backgroundColor="#9CEBC4"></View>
-						<Label class="colorDesc">3027</Label>
-						<Label class="colorDesc">PRIMROSE</Label>
-					</View>
-					
-					<View layout="vertical" width="24%" height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT">
-						<View  width="95%" height="80" left="5" backgroundColor="#9CD2EB"></View>
-						<Label class="colorDesc">3027</Label>
-						<Label class="colorDesc">PRIMROSE</Label>
-					</View>
-				</View>
-				<View layout="horizontal" bottom="10"  height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">
-					
-					<View layout="vertical" width="24%" height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT">
-						<View  width="95%" height="80" left="5" backgroundColor="#DA953A"></View>
-						<Label class="colorDesc">3027</Label>
-						<Label class="colorDesc">PRIMROSE</Label>
-					</View>
-					<View layout="vertical" width="24%" height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT">
-						<View  width="95%" height="80" left="5" backgroundColor="#EBB79C"></View>
-						<Label class="colorDesc">3027</Label>
-						<Label class="colorDesc">PRIMROSE</Label>
-					</View>
-					<View layout="vertical" width="24%" height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT">
-						<View  width="95%" height="80" left="5" backgroundColor="#EBD19C"></View>
-						<Label class="colorDesc">3027</Label>
-						<Label class="colorDesc">PRIMROSE</Label>
-					</View>
-					<View layout="vertical" width="24%" height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT">
-						<View  width="95%" height="80" left="5" backgroundColor="#DCEB9C"></View>
-						<Label class="colorDesc">3027</Label>
-						<Label class="colorDesc">PRIMROSE</Label>
-					</View>
-					
-				</View>
-				<View layout="horizontal" bottom="10"  height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">
-					<View layout="vertical" width="24%" height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT">
-						
-						<View  width="95%" height="80" left="5" backgroundColor="#E14837"></View>
-						<Label class="colorDesc">3027</Label>
-						<Label class="colorDesc">PRIMROSE</Label>
-					</View>
-					<View layout="vertical" width="24%" height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT">
-						<View  width="95%" height="80" left="5" backgroundColor="#85F88B"></View>
-						<Label class="colorDesc">3027</Label>
-						<Label class="colorDesc">PRIMROSE</Label>
-					</View>
-					<View layout="vertical" width="24%" height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT">
-						<View  width="95%" height="80" left="5" backgroundColor="#F885C8"></View>
-						<Label class="colorDesc">3027</Label>
-						<Label class="colorDesc">PRIMROSE</Label>
-					</View>
-					<View layout="vertical" width="24%" height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT">
-						<View  width="95%" height="80" left="5" backgroundColor="#85D2F8"></View>
-						<Label class="colorDesc">3027</Label>
-						<Label class="colorDesc">PRIMROSE</Label>
-					</View>
-					
-				</View>
-				<View layout="horizontal" height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">
-					<View layout="vertical" width="24%" height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT">
-						<View  width="95%" height="80" left="5" backgroundColor="#FCD4D0"></View>
-						<Label class="colorDesc">3027</Label>
-						<Label class="colorDesc">PRIMROSE</Label>
-					</View>
-					<View layout="vertical" width="24%" height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT">
-						<View  width="95%" height="80" left="5" backgroundColor="#A2297C"></View>
-						<Label class="colorDesc">3027</Label>
-						<Label class="colorDesc">PRIMROSE</Label>
-					</View>
-					<View layout="vertical" width="24%" height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT">
-						<View  width="95%" height="80" left="5" backgroundColor="#2982A2"></View>
-						<Label class="colorDesc">3027</Label>
-						<Label class="colorDesc">PRIMROSE</Label>
-					</View>
-					<View layout="vertical" width="24%" height="Ti.UI.SIZE" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT">
-						<View  width="95%" height="80" left="5" backgroundColor="#85F8D2"></View>
-						<Label class="colorDesc">3027</Label>
-						<Label class="colorDesc">PRIMROSE</Label>
-					</View>
-					
-					
-					
-					
-				</View>
-		</ScrollView>
-<<<<<<< HEAD
-=======
-		 	 
->>>>>>> FETCH_HEAD
+		 <!--<Label class="title"  textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">COLOR CATEGORIES</Label>-->
+		
+ 		
 	</View>
 </Alloy>

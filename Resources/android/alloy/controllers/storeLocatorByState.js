@@ -180,31 +180,17 @@ function Controller() {
         id: "storeLocatorByState"
     });
     $.__views.storeLocatorByState && $.addTopLevelView($.__views.storeLocatorByState);
-<<<<<<< HEAD
-    $.__views.__alloyId145 = Ti.UI.createView({
+    $.__views.__alloyId75 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId145"
+        id: "__alloyId75"
     });
-    $.__views.storeLocatorByState.add($.__views.__alloyId145);
-    $.__views.__alloyId146 = Alloy.createController("toggle", {
-        id: "__alloyId146",
-        __parentSymbol: $.__views.__alloyId145
+    $.__views.storeLocatorByState.add($.__views.__alloyId75);
+    $.__views.__alloyId76 = Alloy.createController("toggle", {
+        id: "__alloyId76",
+        __parentSymbol: $.__views.__alloyId75
     });
-    $.__views.__alloyId146.setParent($.__views.__alloyId145);
-=======
-    $.__views.__alloyId137 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "80",
-        id: "__alloyId137"
-    });
-    $.__views.storeLocatorByState.add($.__views.__alloyId137);
-    $.__views.__alloyId138 = Alloy.createController("toggle", {
-        id: "__alloyId138",
-        __parentSymbol: $.__views.__alloyId137
-    });
-    $.__views.__alloyId138.setParent($.__views.__alloyId137);
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId76.setParent($.__views.__alloyId75);
     $.__views.stateName = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -215,11 +201,7 @@ function Controller() {
         id: "stateName",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
-<<<<<<< HEAD
-    $.__views.__alloyId145.add($.__views.stateName);
-=======
-    $.__views.__alloyId137.add($.__views.stateName);
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId75.add($.__views.stateName);
     $.__views.tableContainer = Ti.UI.createView({
         backgroundColor: "white",
         id: "tableContainer",

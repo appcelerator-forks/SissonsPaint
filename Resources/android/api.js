@@ -26,7 +26,7 @@ exports.sendContactMsg = "http://" + API_DOMAIN + "/api/sendMessage?user=" + USE
 exports.forgotPassword = "http://" + API_DOMAIN + "/api/doForgotPassword?user=" + USER + "&key=" + KEY;
 
 exports.loadColour = function() {
-    var url = getBrochureList;
+    var url = getColourList;
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
@@ -39,8 +39,8 @@ exports.loadColour = function() {
                         id: entry.id,
                         name: entry.name,
                         code: entry.code,
-                        rgb: entry.rgb,
-                        cmyk: entry.cmyk,
+                        rgb: entry.RGB,
+                        cmyk: entry.CMYK,
                         sample: entry.sample
                     });
                     colour.save();
@@ -54,9 +54,6 @@ exports.loadColour = function() {
     client.send();
 };
 
-<<<<<<< HEAD
-exports.loadCategory = function() {};
-=======
 exports.loadCategory = function() {
     var url = getCategoryList;
     var client = Ti.Network.createHTTPClient({
@@ -75,6 +72,7 @@ exports.loadCategory = function() {
                         id: entry.id,
                         name: entry.name,
                         type: entry.type,
+                        image: entry.image,
                         description: entry.description
                     });
                     product_category.save();
@@ -104,7 +102,6 @@ exports.loadCategory = function() {
     client.open("GET", url);
     client.send();
 };
->>>>>>> FETCH_HEAD
 
 exports.loadBrochure = function() {
     var url = getBrochureList;

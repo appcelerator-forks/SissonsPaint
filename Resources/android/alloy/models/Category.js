@@ -6,7 +6,8 @@ exports.definition = {
             id: "INTEGER",
             name: "TEXT",
             type: "TEXT",
-            description: "TEXT"
+            description: "TEXT",
+            image: "TEXT"
         },
         adapter: {
             type: "sql",
@@ -31,6 +32,7 @@ exports.definition = {
                         id: res.fieldByName("id"),
                         name: res.fieldByName("name"),
                         type: res.fieldByName("type"),
+                        image: res.fieldByName("image"),
                         description: res.fieldByName("description")
                     };
                     res.next();
@@ -51,6 +53,7 @@ exports.definition = {
                     id: res.fieldByName("id"),
                     name: res.fieldByName("name"),
                     type: res.fieldByName("type"),
+                    image: res.fieldByName("image"),
                     description: res.fieldByName("description")
                 });
                 res.close();
