@@ -5,3 +5,12 @@ Resources/
 Resources/*
 Resources
 Resources/android/alloy/models/Category.js
+
+Resources/android/alloy.js
+
+Resources/android/alloy/controllers/brochure.js
+
+Resources/android/alloy/controllers/diyPaint.js
+Resources/android/alloy/controllers/*.js
+
+Resources/android/alloy/styles/*.js
