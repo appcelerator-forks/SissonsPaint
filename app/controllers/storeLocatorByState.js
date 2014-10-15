@@ -21,7 +21,8 @@ function generateStoreTable(details){
 	   var row = Titanium.UI.createTableViewRow({
 	   		layout: "vertical",
 		    touchEnabled: false,
-		   // height: 180,
+		    selectedBackgroundColor:'transparent',
+		    //height: 300,
 		    id: details[i].id,
 		    //backgroundSelectedColor: "#FFE1E1",
 		    //backgroundColor: "#ECF6CE" 
@@ -58,7 +59,7 @@ function generateStoreTable(details){
 		
 		var infoViewContainer = Titanium.UI.createView({
 			layout: "horizontal",
-			height: 80,
+			//height: Ti.UI.SIZE,
 			width: "100%",
 		});
 		
@@ -166,7 +167,8 @@ function generateStoreTable(details){
 			//bottom:40
 		});		
 		rightForwardBtn.addEventListener('click', function(e){
-			NavigateTo("3.100118","101.686962");
+			//NavigateTo("3.100118","101.686962");
+			NavigateTo("3.160146","101.615076","Menara UAC", "12, Jalan PJU 7/5 Mutiara Damansara 47820 Petaling Jaya, Selangor");
 		});
 		
 		var separator = Titanium.UI.createImageView({
@@ -174,18 +176,23 @@ function generateStoreTable(details){
 			//bottom : 0,
 			width : Titanium.UI.FILL,
 			height : 30,
-			bottom: -1,
+			//bottom: -1,
 			touchEnabled : false,
 			image : "/images/scroll_up.png"
 		});
-		
+		if(i > 0){
+			row.add(separator);
+		} 
 		row.add(outlet_name);
-		if(details[i].address != ""){
-			row.add(location);
-		}
+		// if(details[i].address != ""){
+			// row.add(location);
+		// }
 		//row.add(mobile);
 		//row.add(fax);
 		//row.add(cateType);
+		if(details[i].address != ""){
+			infoView.add(location);
+		}
 		infoView.add(mobile);
 		infoView.add(fax);
 		infoView.add(email);
@@ -193,11 +200,12 @@ function generateStoreTable(details){
 		//infoView.add(cateType);
 		infoViewContainer.add(infoView);
 		infoViewContainer.add(rightForwardBtn);
+		
 		//row.add(rightForwardBtn);
-		row.add(infoViewContainer);
-		if(i < details.length-1){
-			row.add(separator);
-		}
+		row.add(infoViewContainer); 
+		//if(i < details.length-1){
+		//	row.add(separator);
+		//}
 		data.push(row);
 	}
 	
@@ -207,9 +215,9 @@ function generateStoreTable(details){
 	$.tableContainer.add(TheTable); 
 }
 
-NavigateTo = function(latitude, longitude){
+NavigateTo = function(latitude, longitude, name, address){
 		  //var url = 'waze://?ll='+latitude+','+longitude+'&navigate=yes';
-		  var url = 'geo:'+latitude+','+longitude;
+		  var url = 'geo:'+latitude+','+longitude+"?q="+name+" (" + address + ")";
 			if (Ti.Android){
 				try {
 					Ti.API.info('Trying to Launch via Intent');

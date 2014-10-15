@@ -30,23 +30,62 @@ function Controller() {
         id: "diyPaint"
     });
     $.__views.diyPaint && $.addTopLevelView($.__views.diyPaint);
+<<<<<<< HEAD
     $.__views.__alloyId32 = Ti.UI.createView({
         backgroundColor: "white",
         id: "__alloyId32"
     });
     $.__views.diyPaint.add($.__views.__alloyId32);
+=======
+    $.__views.__alloyId95 = Ti.UI.createView({
+        backgroundColor: "white",
+        id: "__alloyId95"
+    });
+    $.__views.diyPaint.add($.__views.__alloyId95);
+    $.__views.__alloyId96 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId96"
+    });
+    $.__views.__alloyId95.add($.__views.__alloyId96);
+    $.__views.__alloyId97 = Alloy.createController("toggle", {
+        id: "__alloyId97",
+        __parentSymbol: $.__views.__alloyId96
+    });
+    $.__views.__alloyId97.setParent($.__views.__alloyId96);
+    $.__views.__alloyId98 = Ti.UI.createLabel({
+        width: "75%",
+        height: Ti.UI.SIZE,
+        color: "black",
+        font: {
+            fontSize: 28
+        },
+        text: "About US",
+        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+        id: "__alloyId98"
+    });
+    $.__views.__alloyId96.add($.__views.__alloyId98);
+>>>>>>> FETCH_HEAD
     $.__views.canvas = Ti.UI.createWebView({
         id: "canvas",
         url: "/html/canvas-paint-bucket.html",
         disableBounce: "true"
     });
+<<<<<<< HEAD
     $.__views.__alloyId32.add($.__views.canvas);
+=======
+    $.__views.__alloyId95.add($.__views.canvas);
+>>>>>>> FETCH_HEAD
     $.__views.toolbar = Ti.UI.createView({
         height: Ti.UI.SIZE,
         bottom: "0",
         id: "toolbar"
     });
+<<<<<<< HEAD
     $.__views.__alloyId32.add($.__views.toolbar);
+=======
+    $.__views.__alloyId95.add($.__views.toolbar);
+>>>>>>> FETCH_HEAD
     $.__views.settings1 = Ti.UI.createImageView({
         width: "16.6%",
         id: "settings1",
