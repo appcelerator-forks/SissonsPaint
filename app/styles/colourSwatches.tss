@@ -20,7 +20,7 @@
    },
    color: '#6E6E6E',
    textAlign: "Ti.UI.TEXT_ALIGNMENT_LEFT",
-   width:"90%",
+   width:"100%",
    bottom: 10
 },
 ".colorDesc" : {
@@ -32,10 +32,13 @@
    textAlign:Ti.UI.TEXT_ALIGNMENT_RIGHT,  
 },
 "#main" :{
-	backgroundColor: "white" 
-
+	backgroundColor: "white", 
+	width:"95%"
 },
-
+"#main2" :{
+	backgroundColor: "white", 
+	width:"95%"
+},
 "#titleLabel": {
 	font: {
         fontSize: '28'

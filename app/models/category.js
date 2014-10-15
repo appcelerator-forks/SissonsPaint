@@ -4,7 +4,9 @@ exports.definition = {
 		    "id": "INTEGER",
 		    "name": "TEXT",
 		    "type": "TEXT",
-		    "description": "TEXT"
+		    "description": "TEXT",
+		    "image": "TEXT"
+		    
 		},
 		adapter: {
 			type: "sql",
@@ -34,7 +36,8 @@ exports.definition = {
 					    id: res.fieldByName('id'),
 					    name: res.fieldByName('name'),
 					    type: res.fieldByName('type'),
-					    description: res.fieldByName('description') 
+					    image: res.fieldByName('image'),
+					    description: res.fieldByName('description')
 					};
 					res.next();
 					count++;
@@ -57,6 +60,7 @@ exports.definition = {
 					    id: res.fieldByName('id'),
 					    name: res.fieldByName('name'),
 					    type: res.fieldByName('type'),
+					    image: res.fieldByName('image'),
 					    description: res.fieldByName('description') 
 					};
 					
