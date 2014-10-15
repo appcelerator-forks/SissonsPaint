@@ -2,3 +2,5 @@ build/
 build/*
 Resources/
 Resources/*
+
+Resources/android/alloy/models/Category.js
