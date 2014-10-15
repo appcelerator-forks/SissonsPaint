@@ -1,9 +1,9 @@
 <Alloy>
 	<View id="diyPaint">
 		<View class="container">
-			<View layout="horizontal" height="80">
+			<View id="toggle" layout="horizontal" height="80" top="0">
 				<Require src="toggle"></Require>
-				<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">About US</Label>
+				<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">DIY Paint</Label>
 			</View>
 			<WebView id='canvas' url="/html/canvas-paint-bucket.html" disableBounce="true"/>
 			<View bottom="0" id="toolbar">

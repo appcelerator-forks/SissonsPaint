@@ -62,7 +62,8 @@ function Controller() {
     $.__views.__alloyId16.add($.__views.__alloyId18);
     $.__views.scrollview = Ti.UI.createScrollView({
         id: "scrollview",
-        layout: "vertical"
+        layout: "vertical",
+        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.brochureView.add($.__views.scrollview);
     $.__views.mainView = Ti.UI.createView({
@@ -87,14 +88,12 @@ function Controller() {
             imagepath = details[i].cover;
             adImage = Utils.RemoteImage({
                 image: imagepath,
-                bottom: 0,
-                width: "100%"
+                bottom: 0
             });
             if (counter % 3 == 0) {
                 row = $.UI.create("View", {
                     textAlign: "center",
-                    backgroundColor: "red",
-                    bottom: "0",
+                    bottom: 0,
                     layout: "vertical",
                     height: Ti.UI.SIZE,
                     width: "100%"
@@ -102,25 +101,24 @@ function Controller() {
                 image = Ti.UI.createImageView({
                     image: "/images/wood_rack.png",
                     top: 0,
-                    backgroundColor: "green",
-                    width: "100%"
+                    width: "100%",
+                    right: 5,
+                    left: 5
                 });
                 cellWrapper = Titanium.UI.createView({
                     layout: "horizontal",
-                    backgroundColor: "blue",
                     height: Ti.UI.SIZE,
                     width: "100%",
-                    bottom: "0",
+                    bottom: 0,
                     left: "5%",
                     right: "5%"
                 });
             }
             cell = $.UI.create("View", {
-                top: 2,
-                backgroundColor: "yellow",
                 bottom: "0",
                 height: Ti.UI.SIZE,
-                right: "5"
+                width: "30%",
+                right: 5
             });
             createAdImageEvent(adImage, id, details[i].content);
             cell.add(adImage);

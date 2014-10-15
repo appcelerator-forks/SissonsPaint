@@ -5,7 +5,7 @@
 				<Require src="toggle"></Require>
 				<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Brochure</Label>
 			</View>
-			<ScrollView id="scrollview" layout="vertical">
+			<ScrollView id="scrollview" layout="vertical" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
 				<View id="mainView" layout="vertical" height="Ti.UI.SIZE" width="80%">
 					<!--<View layout="horizontal" height="Ti.UI.SIZE" bottom="0">
 						<ImageView id="img0" image="http://sissons.playlab.com.my/public/images/default_cover.jpg" bottom="0" width="30%" right="3%" />

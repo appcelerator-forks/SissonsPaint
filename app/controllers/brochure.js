@@ -16,15 +16,15 @@ var displayCover = function(){
    		adImage = Utils.RemoteImage({
 			image: imagepath,
 			bottom: 0,
-			width: "100%"
+			//width: "100%"
 		});
 		
    		if(counter%3 == 0){
-   			row = $.UI.create('View', {textAlign:'center',backgroundColor:'red', bottom: '0', layout: "vertical", height: Ti.UI.SIZE,  width: "100%"});
-   			image = Ti.UI.createImageView({image:'/images/wood_rack.png', top: 0, backgroundColor: "green", width: "100%"});
-   			cellWrapper = Titanium.UI.createView({layout: "horizontal", backgroundColor: "blue", height:Ti.UI.SIZE, width: "100%",bottom: "0", left: "5%", right: "5%"});
+   			row = $.UI.create('View', {textAlign:'center', bottom: 0, layout: "vertical", height: Ti.UI.SIZE,  width: "100%"});
+   			image = Ti.UI.createImageView({image:'/images/wood_rack.png', top: 0, width: "100%", right: 5, left: 5});
+   			cellWrapper = Titanium.UI.createView({layout: "horizontal", height: Ti.UI.SIZE, width: "100%",bottom: 0, left: "5%", right: "5%"});
    		}
-   		cell = $.UI.create('View', { top: 2, backgroundColor:'yellow', bottom: '0', height: Ti.UI.SIZE, right: "5"});
+   		cell = $.UI.create('View', {bottom: "0", height: Ti.UI.SIZE, width: "30%", right: 5});
    		
    		createAdImageEvent(adImage, id, details[i].content);
    		
