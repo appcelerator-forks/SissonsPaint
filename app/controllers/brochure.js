@@ -13,11 +13,15 @@ var displayCover = function(){
    		
    		imagepath = details[i].cover;
    		
-   		adImage = Utils.RemoteImage({
+   		Ti.API.info(imagepath);
+   		
+   		/*adImage = Utils.RemoteImage({
 			image: imagepath,
 			bottom: 0,
 			//width: "100%"
-		});
+		});*/
+		
+		adImage = Ti.UI.createImageView({image: imagepath, bottom: 0,});
 		
    		if(counter%3 == 0){
    			row = $.UI.create('View', {textAlign:'center', bottom: 0, layout: "vertical", height: Ti.UI.SIZE,  width: "100%"});
@@ -26,6 +30,9 @@ var displayCover = function(){
    		}
    		cell = $.UI.create('View', {bottom: "0", height: Ti.UI.SIZE, width: "30%", right: 5});
    		
+   		console.log("adImage:"+adImage);
+   		console.log("id:"+id);
+   		console.log("details:"+details[i].content);
    		createAdImageEvent(adImage, id, details[i].content);
    		
 		cell.add(adImage);
@@ -37,6 +44,7 @@ var displayCover = function(){
 		if(counter%3 == 2 || last == counter){
    			$.scrollview.add(row);
    		}
+   		
    		counter++;
 	 }
 };

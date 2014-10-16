@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+function Controller() {
+=======
 function __processArg(obj, key) {
     var arg = null;
     if (obj) {
@@ -15,19 +18,12 @@ function Controller() {
             });
         });
     }
+>>>>>>> FETCH_HEAD
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "brochure";
-    if (arguments[0]) {
-        {
-            __processArg(arguments[0], "__parentSymbol");
-        }
-        {
-            __processArg(arguments[0], "$model");
-        }
-        {
-            __processArg(arguments[0], "__itemTemplate");
-        }
-    }
+    arguments[0] ? arguments[0]["__parentSymbol"] : null;
+    arguments[0] ? arguments[0]["$model"] : null;
+    arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
     $.__views.brochureView = Ti.UI.createView({
@@ -37,18 +33,18 @@ function Controller() {
         backgroundImage: "/images/wood_background.jpg"
     });
     $.__views.brochureView && $.addTopLevelView($.__views.brochureView);
-    $.__views.__alloyId16 = Ti.UI.createView({
+    $.__views.__alloyId15 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId16"
+        id: "__alloyId15"
     });
-    $.__views.brochureView.add($.__views.__alloyId16);
-    $.__views.__alloyId17 = Alloy.createController("toggle", {
-        id: "__alloyId17",
-        __parentSymbol: $.__views.__alloyId16
+    $.__views.brochureView.add($.__views.__alloyId15);
+    $.__views.__alloyId16 = Alloy.createController("toggle", {
+        id: "__alloyId16",
+        __parentSymbol: $.__views.__alloyId15
     });
-    $.__views.__alloyId17.setParent($.__views.__alloyId16);
-    $.__views.__alloyId18 = Ti.UI.createLabel({
+    $.__views.__alloyId16.setParent($.__views.__alloyId15);
+    $.__views.__alloyId17 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -57,9 +53,9 @@ function Controller() {
         },
         text: "Brochure",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-        id: "__alloyId18"
+        id: "__alloyId17"
     });
-    $.__views.__alloyId16.add($.__views.__alloyId18);
+    $.__views.__alloyId15.add($.__views.__alloyId17);
     $.__views.scrollview = Ti.UI.createScrollView({
         id: "scrollview",
         layout: "vertical",
@@ -78,6 +74,9 @@ function Controller() {
     arguments[0] || {};
     var pdf = require("pdf");
     var library = Alloy.createCollection("brochure");
+<<<<<<< HEAD
+    library.getBrochureList();
+=======
     var details = library.getBrochureList();
     var displayCover = function() {
         var counter = 0;
@@ -86,7 +85,8 @@ function Controller() {
         for (var i = 0; i < details.length; i++) {
             var id = details[i].id;
             imagepath = details[i].cover;
-            adImage = Utils.RemoteImage({
+            Ti.API.info(imagepath);
+            adImage = Ti.UI.createImageView({
                 image: imagepath,
                 bottom: 0
             });
@@ -120,6 +120,9 @@ function Controller() {
                 width: "30%",
                 right: 5
             });
+            console.log("adImage:" + adImage);
+            console.log("id:" + id);
+            console.log("details:" + details[i].content);
             createAdImageEvent(adImage, id, details[i].content);
             cell.add(adImage);
             cellWrapper.add(cell);
@@ -130,6 +133,7 @@ function Controller() {
         }
     };
     displayCover();
+>>>>>>> FETCH_HEAD
     _.extend($, exports);
 }
 
