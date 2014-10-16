@@ -1,1 +1,1 @@
-/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/app.js
+function toggle(){Alloy.Globals.Drawer.toggleLeftWindow()}var Alloy=require("alloy"),_=Alloy._,Backbone=Alloy.Backbone;Alloy.createController("index");

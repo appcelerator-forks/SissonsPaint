@@ -158,7 +158,8 @@ function Controller() {
         data: __alloyId31,
         id: "menuTable",
         top: "100",
-        separatorColor: "black"
+        separatorColor: "black",
+        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.mainWindow.add($.__views.menuTable);
     doMenuClick ? $.__views.menuTable.addEventListener("click", doMenuClick) : __defers["$.__views.menuTable!click!doMenuClick"] = true;

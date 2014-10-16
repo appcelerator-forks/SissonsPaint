@@ -3,7 +3,7 @@
 
         <Window module="xp.ui" title="test" role="leftWindow" id="mainWindow" backgroundColor="black" fullscreen="true">
             <ImageView id="logo" image="/images/menu_logo.png" width="150" top="30"/>
-            <TableView id="menuTable" top="100" onClick="doMenuClick" separatorColor="black">
+            <TableView id="menuTable" top="100" onClick="doMenuClick" separatorColor="black" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
 				<TableViewRow height="50">
 					<Label width="Ti.UI.FILL" left="30" color="white">DIY Paint</Label>
 				</TableViewRow>
