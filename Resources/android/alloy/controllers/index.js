@@ -205,7 +205,7 @@ function Controller() {
         id: "__alloyId45"
     });
     $.__views.toggle.add($.__views.__alloyId45);
-    $.__views.__alloyId46 = Alloy.createController("diyPaint", {
+    $.__views.__alloyId46 = Alloy.createController("colourSwatches", {
         id: "__alloyId46",
         __parentSymbol: $.__views.centerWindow
     });
