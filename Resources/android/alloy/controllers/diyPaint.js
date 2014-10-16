@@ -30,40 +30,24 @@ function Controller() {
         id: "diyPaint"
     });
     $.__views.diyPaint && $.addTopLevelView($.__views.diyPaint);
-    $.__views.__alloyId25 = Ti.UI.createView({
+    $.__views.__alloyId24 = Ti.UI.createView({
         backgroundColor: "white",
-        id: "__alloyId25"
+        id: "__alloyId24"
     });
-<<<<<<< HEAD
-    $.__views.diyPaint.add($.__views.__alloyId95);
+    $.__views.diyPaint.add($.__views.__alloyId24);
     $.__views.toggle = Ti.UI.createView({
         id: "toggle",
         layout: "horizontal",
         height: "80",
         top: "0"
     });
-    $.__views.__alloyId95.add($.__views.toggle);
-    $.__views.__alloyId96 = Alloy.createController("toggle", {
-        id: "__alloyId96",
+    $.__views.__alloyId24.add($.__views.toggle);
+    $.__views.__alloyId25 = Alloy.createController("toggle", {
+        id: "__alloyId25",
         __parentSymbol: $.__views.toggle
     });
-    $.__views.__alloyId96.setParent($.__views.toggle);
-    $.__views.__alloyId97 = Ti.UI.createLabel({
-=======
-    $.__views.diyPaint.add($.__views.__alloyId25);
-    $.__views.__alloyId26 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "80",
-        id: "__alloyId26"
-    });
-    $.__views.__alloyId25.add($.__views.__alloyId26);
-    $.__views.__alloyId27 = Alloy.createController("toggle", {
-        id: "__alloyId27",
-        __parentSymbol: $.__views.__alloyId26
-    });
-    $.__views.__alloyId27.setParent($.__views.__alloyId26);
-    $.__views.__alloyId28 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId25.setParent($.__views.toggle);
+    $.__views.__alloyId26 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -72,27 +56,21 @@ function Controller() {
         },
         text: "DIY Paint",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-<<<<<<< HEAD
-        id: "__alloyId97"
+        id: "__alloyId26"
     });
-    $.__views.toggle.add($.__views.__alloyId97);
-=======
-        id: "__alloyId28"
-    });
-    $.__views.__alloyId26.add($.__views.__alloyId28);
->>>>>>> FETCH_HEAD
+    $.__views.toggle.add($.__views.__alloyId26);
     $.__views.canvas = Ti.UI.createWebView({
         id: "canvas",
         url: "/html/canvas-paint-bucket.html",
         disableBounce: "true"
     });
-    $.__views.__alloyId25.add($.__views.canvas);
+    $.__views.__alloyId24.add($.__views.canvas);
     $.__views.toolbar = Ti.UI.createView({
         height: Ti.UI.SIZE,
         bottom: "0",
         id: "toolbar"
     });
-    $.__views.__alloyId25.add($.__views.toolbar);
+    $.__views.__alloyId24.add($.__views.toolbar);
     $.__views.settings1 = Ti.UI.createImageView({
         width: "16.6%",
         id: "settings1",

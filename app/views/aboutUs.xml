@@ -4,7 +4,7 @@
 		<Require src="toggle"></Require>
 		<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">About US</Label>
 	</View>
-	<ScrollView layout="vertical" height="Ti.UI.SIZE">
+	<ScrollView id="mainScroll" layout="vertical" height="Ti.UI.SIZE">
 		<ScrollView id="main" layout="vertical" height="180" >
 			<Label class="aboutContent" width="75%">It was in 1959 that SISSONS PAINTS (EAST) SDN BHD first started in Malaysia, although SISSONS' technology in paint making goes back 185 years when Sissons Brothers founded a company in HULL, England in 1803. SISSONS' well-known trademark of 'THE MEN AND PLANK' has been in use since 1910. </Label>	
 		</ScrollView>

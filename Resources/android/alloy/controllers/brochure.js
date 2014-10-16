@@ -37,18 +37,18 @@ function Controller() {
         backgroundImage: "/images/wood_background.jpg"
     });
     $.__views.brochureView && $.addTopLevelView($.__views.brochureView);
-    $.__views.__alloyId16 = Ti.UI.createView({
+    $.__views.__alloyId15 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId16"
+        id: "__alloyId15"
     });
-    $.__views.brochureView.add($.__views.__alloyId16);
-    $.__views.__alloyId17 = Alloy.createController("toggle", {
-        id: "__alloyId17",
-        __parentSymbol: $.__views.__alloyId16
+    $.__views.brochureView.add($.__views.__alloyId15);
+    $.__views.__alloyId16 = Alloy.createController("toggle", {
+        id: "__alloyId16",
+        __parentSymbol: $.__views.__alloyId15
     });
-    $.__views.__alloyId17.setParent($.__views.__alloyId16);
-    $.__views.__alloyId18 = Ti.UI.createLabel({
+    $.__views.__alloyId16.setParent($.__views.__alloyId15);
+    $.__views.__alloyId17 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -57,9 +57,9 @@ function Controller() {
         },
         text: "Brochure",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-        id: "__alloyId18"
+        id: "__alloyId17"
     });
-    $.__views.__alloyId16.add($.__views.__alloyId18);
+    $.__views.__alloyId15.add($.__views.__alloyId17);
     $.__views.scrollview = Ti.UI.createScrollView({
         id: "scrollview",
         layout: "vertical",
@@ -86,7 +86,8 @@ function Controller() {
         for (var i = 0; i < details.length; i++) {
             var id = details[i].id;
             imagepath = details[i].cover;
-            adImage = Utils.RemoteImage({
+            Ti.API.info(imagepath);
+            adImage = Ti.UI.createImageView({
                 image: imagepath,
                 bottom: 0
             });
@@ -120,6 +121,9 @@ function Controller() {
                 width: "30%",
                 right: 5
             });
+            console.log("adImage:" + adImage);
+            console.log("id:" + id);
+            console.log("details:" + details[i].content);
             createAdImageEvent(adImage, id, details[i].content);
             cell.add(adImage);
             cellWrapper.add(cell);
