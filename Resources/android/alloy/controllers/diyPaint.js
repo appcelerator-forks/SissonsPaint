@@ -34,36 +34,20 @@ function Controller() {
         backgroundColor: "white",
         id: "__alloyId25"
     });
-<<<<<<< HEAD
-    $.__views.diyPaint.add($.__views.__alloyId95);
+    $.__views.diyPaint.add($.__views.__alloyId25);
     $.__views.toggle = Ti.UI.createView({
         id: "toggle",
         layout: "horizontal",
         height: "80",
         top: "0"
     });
-    $.__views.__alloyId95.add($.__views.toggle);
-    $.__views.__alloyId96 = Alloy.createController("toggle", {
-        id: "__alloyId96",
+    $.__views.__alloyId25.add($.__views.toggle);
+    $.__views.__alloyId26 = Alloy.createController("toggle", {
+        id: "__alloyId26",
         __parentSymbol: $.__views.toggle
     });
-    $.__views.__alloyId96.setParent($.__views.toggle);
-    $.__views.__alloyId97 = Ti.UI.createLabel({
-=======
-    $.__views.diyPaint.add($.__views.__alloyId25);
-    $.__views.__alloyId26 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "80",
-        id: "__alloyId26"
-    });
-    $.__views.__alloyId25.add($.__views.__alloyId26);
-    $.__views.__alloyId27 = Alloy.createController("toggle", {
-        id: "__alloyId27",
-        __parentSymbol: $.__views.__alloyId26
-    });
-    $.__views.__alloyId27.setParent($.__views.__alloyId26);
-    $.__views.__alloyId28 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId26.setParent($.__views.toggle);
+    $.__views.__alloyId27 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -72,15 +56,9 @@ function Controller() {
         },
         text: "DIY Paint",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-<<<<<<< HEAD
-        id: "__alloyId97"
+        id: "__alloyId27"
     });
-    $.__views.toggle.add($.__views.__alloyId97);
-=======
-        id: "__alloyId28"
-    });
-    $.__views.__alloyId26.add($.__views.__alloyId28);
->>>>>>> FETCH_HEAD
+    $.__views.toggle.add($.__views.__alloyId27);
     $.__views.canvas = Ti.UI.createWebView({
         id: "canvas",
         url: "/html/canvas-paint-bucket.html",

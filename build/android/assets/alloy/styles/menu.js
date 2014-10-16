@@ -1,1 +1,1 @@
-module.exports=[{isClass:!0,priority:10000.0039,key:"container",style:{}}];
+/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/alloy/styles/menu.js

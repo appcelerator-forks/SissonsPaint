@@ -21,25 +21,23 @@ function toggle(e) {
 Alloy.Globals.Drawer = $.drawer;
 function doMenuClick(e){
 	switch(e.index){
-		case 0:
-			navigation('home');
-			break;
-		case 1: 
+		
+		case 0: 
 			navigation('diyPaint');
 			break;
-		case 2: 
+		case 1: 
 			navigation('colourPicker');
 			break;
-		case 3: 
+		case 2: 
 			navigation('colourSwatches');
 			break;
-		case 4: 
+		case 3: 
 			navigation('brochure');
 			break;
-		case 5: 
+		case 4: 
 			navigation('storeLocator');
 			break;
-		case 6: 
+		case 5: 
 			navigation('aboutUs');
 			break;
 	}
@@ -60,11 +58,27 @@ $.drawer.addEventListener('android:back', function (e) {
 		var nav = Alloy.createController("storeLocator").getView(); 
 		Alloy.Globals.Drawer.setCenterWindow(nav);  
 	}else{
-		var nav = Alloy.createController("home").getView(); 
-		Alloy.Globals.Drawer.setCenterWindow(nav);  
+		//Alloy.Globals.Drawer['toggleLeftWindow']();
+		var dialog = Ti.UI.createAlertDialog({
+		    cancel: 1,
+		    buttonNames: ['Cancel','Confirm'],
+		    message: 'Would you like to exit Sissons Paint?',
+		    title: 'Exit app'
+		  });
+		  dialog.addEventListener('click', function(e){
+		  
+		    if (e.index === e.source.cancel){
+		      //Do nothing
+		    }
+		    if (e.index === 1){
+		    	var activity = Titanium.Android.currentActivity;
+				activity.finish();
+		    }
+		  });
+		  dialog.show(); 
 	}
   	
 });
 
 var module= require('dk.napp.drawer');
-//Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_NONE);
+//

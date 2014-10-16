@@ -4,10 +4,6 @@
         <Window module="xp.ui" title="test" role="leftWindow" id="mainWindow" backgroundColor="black" fullscreen="true">
             <ImageView id="logo" image="/images/menu_logo.png" width="150" top="30"/>
             <TableView id="menuTable" top="100" onClick="doMenuClick" separatorColor="black">
-		    	<TableViewRow height="50">
-					<Label width="Ti.UI.FILL" left="30" color="white">Home</Label>
-				</TableViewRow>
-				
 				<TableViewRow height="50">
 					<Label width="Ti.UI.FILL" left="30" color="white">DIY Paint</Label>
 				</TableViewRow>
@@ -36,14 +32,7 @@
         </Window>
         
         <Window id="centerWindow" module="xp.ui" platform="android" role="centerWindow">
-        	<View layout="vertical" class="popupView" id="menu">
-		 		<!--<Button onClick="toggle">Left</Button>-->
-		 		<View layout="horizontal" height="80">
-					<Require src="toggle"></Require>
-					<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Index</Label>
-				</View>
-			</View>
-            <Label>I am center</Label>
+        	<Require type="view" src="diyPaint" />
         </Window>
 
     </Widget>

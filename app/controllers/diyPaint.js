@@ -33,3 +33,5 @@ function DPUnitsToPixels(TheDPUnits)
 {
   return (TheDPUnits * (Titanium.Platform.displayCaps.dpi / 160));
 }
+
+//Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_NONE);
