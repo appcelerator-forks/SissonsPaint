@@ -34,26 +34,13 @@ function Controller() {
         backgroundColor: "white",
         id: "__alloyId24"
     });
-<<<<<<< HEAD
-    $.__views.diyPaint.add($.__views.__alloyId25);
-=======
     $.__views.diyPaint.add($.__views.__alloyId24);
->>>>>>> FETCH_HEAD
     $.__views.toggle = Ti.UI.createView({
         id: "toggle",
         layout: "horizontal",
         height: "80",
         top: "0"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId25.add($.__views.toggle);
-    $.__views.__alloyId26 = Alloy.createController("toggle", {
-        id: "__alloyId26",
-        __parentSymbol: $.__views.toggle
-    });
-    $.__views.__alloyId26.setParent($.__views.toggle);
-    $.__views.__alloyId27 = Ti.UI.createLabel({
-=======
     $.__views.__alloyId24.add($.__views.toggle);
     $.__views.__alloyId25 = Alloy.createController("toggle", {
         id: "__alloyId25",
@@ -61,7 +48,6 @@ function Controller() {
     });
     $.__views.__alloyId25.setParent($.__views.toggle);
     $.__views.__alloyId26 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -70,15 +56,9 @@ function Controller() {
         },
         text: "DIY Paint",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-<<<<<<< HEAD
-        id: "__alloyId27"
-    });
-    $.__views.toggle.add($.__views.__alloyId27);
-=======
         id: "__alloyId26"
     });
     $.__views.toggle.add($.__views.__alloyId26);
->>>>>>> FETCH_HEAD
     $.__views.canvas = Ti.UI.createWebView({
         id: "canvas",
         url: "/html/canvas-paint-bucket.html",

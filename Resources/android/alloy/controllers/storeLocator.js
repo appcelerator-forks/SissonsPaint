@@ -38,33 +38,18 @@ function Controller() {
         width: "100%"
     });
     $.__views.mainWindow && $.addTopLevelView($.__views.mainWindow);
-<<<<<<< HEAD
-    $.__views.__alloyId60 = Ti.UI.createView({
+    $.__views.__alloyId59 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId60"
+        id: "__alloyId59"
     });
-    $.__views.mainWindow.add($.__views.__alloyId60);
-    $.__views.__alloyId61 = Alloy.createController("toggle", {
-        id: "__alloyId61",
-        __parentSymbol: $.__views.__alloyId60
+    $.__views.mainWindow.add($.__views.__alloyId59);
+    $.__views.__alloyId60 = Alloy.createController("toggle", {
+        id: "__alloyId60",
+        __parentSymbol: $.__views.__alloyId59
     });
-    $.__views.__alloyId61.setParent($.__views.__alloyId60);
-    $.__views.__alloyId62 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId66 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "80",
-        id: "__alloyId66"
-    });
-    $.__views.mainWindow.add($.__views.__alloyId66);
-    $.__views.__alloyId67 = Alloy.createController("toggle", {
-        id: "__alloyId67",
-        __parentSymbol: $.__views.__alloyId66
-    });
-    $.__views.__alloyId67.setParent($.__views.__alloyId66);
-    $.__views.__alloyId68 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId60.setParent($.__views.__alloyId59);
+    $.__views.__alloyId61 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -73,15 +58,9 @@ function Controller() {
         },
         text: "Store Locator",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-<<<<<<< HEAD
-        id: "__alloyId62"
+        id: "__alloyId61"
     });
-    $.__views.__alloyId60.add($.__views.__alloyId62);
-=======
-        id: "__alloyId68"
-    });
-    $.__views.__alloyId66.add($.__views.__alloyId68);
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId59.add($.__views.__alloyId61);
     $.__views.subWindow = Ti.UI.createView({
         id: "subWindow",
         layout: "vertical",

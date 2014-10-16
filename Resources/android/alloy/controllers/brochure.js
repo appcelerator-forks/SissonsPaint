@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-function Controller() {
-=======
 function __processArg(obj, key) {
     var arg = null;
     if (obj) {
@@ -18,12 +15,24 @@ function Controller() {
             });
         });
     }
->>>>>>> FETCH_HEAD
+    function createVideoEvent(adImage, id, content) {
+        adImage.addEventListener("click", function() {
+            youtubePlayer.playVideo(content);
+        });
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "brochure";
-    arguments[0] ? arguments[0]["__parentSymbol"] : null;
-    arguments[0] ? arguments[0]["$model"] : null;
-    arguments[0] ? arguments[0]["__itemTemplate"] : null;
+    if (arguments[0]) {
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
+    }
     var $ = this;
     var exports = {};
     $.__views.brochureView = Ti.UI.createView({
@@ -73,11 +82,10 @@ function Controller() {
     _.extend($, $.__views);
     arguments[0] || {};
     var pdf = require("pdf");
+    var youtubePlayer = require("titutorial.youtubeplayer");
     var library = Alloy.createCollection("brochure");
-<<<<<<< HEAD
-    library.getBrochureList();
-=======
     var details = library.getBrochureList();
+    console.log(details);
     var displayCover = function() {
         var counter = 0;
         var imagepath, adImage, row, image, cellWrapper, cell = "";
@@ -85,7 +93,6 @@ function Controller() {
         for (var i = 0; i < details.length; i++) {
             var id = details[i].id;
             imagepath = details[i].cover;
-            Ti.API.info(imagepath);
             adImage = Ti.UI.createImageView({
                 image: imagepath,
                 bottom: 0
@@ -120,10 +127,7 @@ function Controller() {
                 width: "30%",
                 right: 5
             });
-            console.log("adImage:" + adImage);
-            console.log("id:" + id);
-            console.log("details:" + details[i].content);
-            createAdImageEvent(adImage, id, details[i].content);
+            "pdf" == details[i].format ? createAdImageEvent(adImage, id, details[i].content) : createVideoEvent(adImage, id, details[i].url);
             cell.add(adImage);
             cellWrapper.add(cell);
             row.add(cellWrapper);
@@ -133,7 +137,6 @@ function Controller() {
         }
     };
     displayCover();
->>>>>>> FETCH_HEAD
     _.extend($, exports);
 }
 

@@ -11,7 +11,7 @@
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
     <analytics>true</analytics>
-    <guid>dd994d5a-0863-4f41-a2be-0d8212f17462</guid>
+    <guid>D92F6F36-5C18-4D57-BA8B-367C7BB391F4</guid>
     <property name="ti.ui.defaultunit" type="string">dp</property>
     <ios>
         <plist>
@@ -64,6 +64,7 @@
     </mobileweb>
     <modules>
         <module platform="iphone">dk.napp.drawer</module>
+        <module platform="android">titutorial.youtubeplayer</module>
         <module platform="android">dk.napp.drawer</module>
     </modules>
     <deployment-targets>
@@ -74,7 +75,7 @@
         <target device="mobileweb">false</target>
         <target device="tizen">false</target>
     </deployment-targets>
-    <sdk-version>3.2.3.GA</sdk-version>
+    <sdk-version>3.3.0.GA</sdk-version>
     <plugins>
         <plugin version="1.0">ti.alloy</plugin>
     </plugins>
