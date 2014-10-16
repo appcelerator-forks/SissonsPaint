@@ -5,6 +5,7 @@ exports.definition = {
 		    "title": "TEXT",
 		    "cover": "TEXT",
 		    "content": "TEXT",
+		    "url": "TEXT",
 		    "status": "INTEGER",
 		    "format": "TEXT"
 		},
@@ -37,6 +38,7 @@ exports.definition = {
 					    title: res.fieldByName('title'),
 					    cover: res.fieldByName('cover'),
 					    content: res.fieldByName('content'),
+					    url: res.fieldByName('url'),
 					    status: res.fieldByName('status'),
 					    format: res.fieldByName('format')
 					};

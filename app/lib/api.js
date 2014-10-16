@@ -149,6 +149,7 @@ exports.loadBrochure = function (ex){
 					    title: entry.b_title,
 					    cover: entry.cover,
 					    content: entry.attachment,
+					    url: entry.b_url,
 					    status: entry.b_status,
 					    format: entry.b_format
 				    });
