@@ -122,13 +122,11 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
-    var pWidth = Ti.Platform.displayCaps.platformWidth;
+    Ti.Platform.displayCaps.platformWidth;
     var pHeight = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight);
     var toolbarHeight = $.toolbar.rect.height;
     var toggleHeight = $.toggle.getHeight();
     $.toolbar.addEventListener("postlayout", function() {
-        console.log(pWidth);
-        console.log(PixelsToDPUnits(pWidth));
         toolbarHeight = $.toolbar.rect.height;
         var canvasHeight = pHeight - toolbarHeight - 48 - toggleHeight;
         $.canvas.setBottom(toolbarHeight);

@@ -180,11 +180,35 @@ function Controller() {
         id: "centerWindow",
         role: "centerWindow"
     });
-    $.__views.__alloyId44 = Alloy.createController("diyPaint", {
+    $.__views.toggle = Ti.UI.createView({
+        id: "toggle",
+        layout: "horizontal",
+        height: "80",
+        top: "0"
+    });
+    $.__views.centerWindow.add($.__views.toggle);
+    $.__views.__alloyId44 = Alloy.createController("toggle", {
         id: "__alloyId44",
+        __parentSymbol: $.__views.toggle
+    });
+    $.__views.__alloyId44.setParent($.__views.toggle);
+    $.__views.__alloyId45 = Ti.UI.createLabel({
+        width: "75%",
+        height: Ti.UI.SIZE,
+        color: "black",
+        font: {
+            fontSize: 28
+        },
+        text: "DIY Paint",
+        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+        id: "__alloyId45"
+    });
+    $.__views.toggle.add($.__views.__alloyId45);
+    $.__views.__alloyId46 = Alloy.createController("diyPaint", {
+        id: "__alloyId46",
         __parentSymbol: $.__views.centerWindow
     });
-    $.__views.__alloyId44.setParent($.__views.centerWindow);
+    $.__views.__alloyId46.setParent($.__views.centerWindow);
     $.__views.drawer = Alloy.createWidget("nl.fokkezb.drawer", "widget", {
         openDrawerGestureMode: "OPEN_MODE_ALL",
         closeDrawerGestureMode: "CLOSE_MODE_MARGIN",
@@ -201,10 +225,12 @@ function Controller() {
     });
     Ti.App.Properties.setString("module", "index");
     var API = require("api");
-    API.loadColour();
-    API.loadStoreLocator();
-    API.loadBrochure();
-    API.loadCategory();
+    setTimeout(function() {
+        API.loadColour();
+        API.loadStoreLocator();
+        API.loadBrochure();
+        API.loadCategory();
+    }, 1500);
     Alloy.Globals.Drawer = $.drawer;
     $.drawer.addEventListener("android:back", function() {
         mod = Ti.App.Properties.getString("module");

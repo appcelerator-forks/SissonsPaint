@@ -4,9 +4,7 @@ var pHeight = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight);
 var toolbarHeight = $.toolbar.rect.height;
 var toggleHeight = $.toggle.getHeight();
 
-$.toolbar.addEventListener('postlayout', function(e) {
-	console.log(pWidth);
-	console.log(PixelsToDPUnits(pWidth));
+$.toolbar.addEventListener('postlayout', function(e) { 
 	toolbarHeight = $.toolbar.rect.height;
 	var canvasHeight = pHeight - toolbarHeight - 48 - toggleHeight;
 	$.canvas.setBottom(toolbarHeight);

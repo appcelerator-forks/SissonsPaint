@@ -12,7 +12,7 @@ var displayCover = function(){
    		var id = details[i].id; 
    		
    		imagepath = details[i].cover;
-		adImage = Ti.UI.createImageView({image: imagepath, bottom: 0,});
+		adImage = Ti.UI.createImageView({image: imagepath, bottom: 0, width:80});
    		
 		
    		if(counter%3 == 0){

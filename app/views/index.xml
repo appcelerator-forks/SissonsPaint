@@ -32,6 +32,10 @@
         </Window>
         
         <Window id="centerWindow" module="xp.ui" platform="android" role="centerWindow">
+        	<View id="toggle" layout="horizontal" height="80" top="0">
+				<Require src="toggle"></Require>
+				<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">DIY Paint</Label>
+			</View>
         	<Require type="view" src="diyPaint" />
         </Window>
 

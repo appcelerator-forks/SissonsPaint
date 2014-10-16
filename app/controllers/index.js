@@ -6,16 +6,16 @@ Ti.App.Properties.setString('module', 'index');
 var API = require('api');
 var flag =0;	
 // Load API function
-API.loadColour();
-API.loadStoreLocator();
-API.loadBrochure();
-API.loadCategory();
+
+setTimeout(function(){
+	API.loadColour();
+	API.loadStoreLocator();
+	API.loadBrochure();
+	API.loadCategory();
+}, 1500);
+
 
 function toggle(e) {
-   //var fn = 'toggle' + e.source.title + 'Window'; 
-   //$.drawer[fn]();
-   alert('a');
-   
    $.drawer['toggleLeftWindow']();
 }
 Alloy.Globals.Drawer = $.drawer;
@@ -80,5 +80,4 @@ $.drawer.addEventListener('android:back', function (e) {
   	
 });
 
-var module= require('dk.napp.drawer');
-//
+var module= require('dk.napp.drawer'); 

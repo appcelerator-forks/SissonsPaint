@@ -85,7 +85,6 @@ function Controller() {
     var youtubePlayer = require("titutorial.youtubeplayer");
     var library = Alloy.createCollection("brochure");
     var details = library.getBrochureList();
-    console.log(details);
     var displayCover = function() {
         var counter = 0;
         var imagepath, adImage, row, image, cellWrapper, cell = "";
@@ -95,7 +94,8 @@ function Controller() {
             imagepath = details[i].cover;
             adImage = Ti.UI.createImageView({
                 image: imagepath,
-                bottom: 0
+                bottom: 0,
+                width: 80
             });
             if (counter % 3 == 0) {
                 row = $.UI.create("View", {
