@@ -10,6 +10,7 @@ function __processArg(obj, key) {
 function Controller() {
     function createAdImageEvent(adImage, id, content) {
         adImage.addEventListener("click", function() {
+            library.updateDownloadedBrochure(id);
             pdf(content, true, function(err) {
                 err && alert(err);
             });
@@ -85,6 +86,7 @@ function Controller() {
     var youtubePlayer = require("titutorial.youtubeplayer");
     var library = Alloy.createCollection("brochure");
     var details = library.getBrochureList();
+    console.log(details);
     var displayCover = function() {
         var counter = 0;
         var imagepath, adImage, row, image, cellWrapper, cell = "";
@@ -95,7 +97,7 @@ function Controller() {
             adImage = Ti.UI.createImageView({
                 image: imagepath,
                 bottom: 0,
-                width: 80
+                width: 90
             });
             if (counter % 3 == 0) {
                 row = $.UI.create("View", {
@@ -127,11 +129,31 @@ function Controller() {
                 width: "30%",
                 right: 5
             });
-            "pdf" == details[i].format ? createAdImageEvent(adImage, id, details[i].content) : createVideoEvent(adImage, id, details[i].url);
             cell.add(adImage);
             cellWrapper.add(cell);
             row.add(cellWrapper);
             row.add(image);
+            if ("pdf" == details[i].format) {
+                if ("0" == details[i].isDownloaded) {
+                    downloadIcon = Ti.UI.createImageView({
+                        image: "/images/icon_download.png",
+                        width: 30,
+                        height: 30,
+                        top: 0,
+                        right: 0
+                    });
+                    cell.add(downloadIcon);
+                }
+                createAdImageEvent(adImage, id, details[i].content);
+            } else {
+                createVideoEvent(adImage, id, details[i].url);
+                playIcon = Ti.UI.createImageView({
+                    image: "/images/icon_play.png",
+                    width: 40,
+                    height: 40
+                });
+                cell.add(playIcon);
+            }
             (counter % 3 == 2 || last == counter) && $.scrollview.add(row);
             counter++;
         }

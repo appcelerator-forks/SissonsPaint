@@ -9,6 +9,7 @@ exports.definition = {
             content: "TEXT",
             url: "TEXT",
             status: "INTEGER",
+            isDownloaded: "INTEGER",
             format: "TEXT"
         },
         adapter: {
@@ -36,6 +37,7 @@ exports.definition = {
                         cover: res.fieldByName("cover"),
                         content: res.fieldByName("content"),
                         url: res.fieldByName("url"),
+                        isDownloaded: res.fieldByName("isDownloaded"),
                         status: res.fieldByName("status"),
                         format: res.fieldByName("format")
                     };
@@ -46,6 +48,25 @@ exports.definition = {
                 db.close();
                 collection.trigger("sync");
                 return listArr;
+            },
+            addBrochure: function(b_id, b_title, cover, attachment, b_url, b_status, b_format) {
+                var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id=" + b_id;
+                var sql_query = "";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                sql_query = res.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET title='" + b_title + "', cover='" + cover + "', content='" + attachment + "', status='" + b_status + "' WHERE id='" + b_id + "'" : "INSERT INTO " + collection.config.adapter.collection_name + " (id, title, cover,content, url,status, isDownloaded,format ) VALUES ('" + b_id + "','" + b_title + "','" + cover + "','" + attachment + "','" + b_url + "','" + b_status + "', 0, '" + b_format + "')";
+                db.execute(sql_query);
+                db.close();
+                collection.trigger("sync");
+            },
+            updateDownloadedBrochure: function(b_id) {
+                var collection = this;
+                sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET isDownloaded=1 WHERE id='" + b_id + "'";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                db.execute(sql_query);
+                db.close();
+                collection.trigger("sync");
             },
             resetBrochure: function() {
                 var collection = this;
