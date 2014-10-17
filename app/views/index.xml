@@ -36,7 +36,7 @@
 				<Require src="toggle"></Require>
 				<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">DIY Paint</Label>
 			</View>
-        	<Require type="view" src="diyPaint" />
+        	<Require type="view" src="colourSwatches" />
         </Window>
 
     </Widget>
