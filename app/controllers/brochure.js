@@ -10,13 +10,8 @@ var displayCover = function(){
 	for(var i=0; i< details.length; i++) {
    		var id = details[i].id; 
    		imagepath = details[i].cover;
-<<<<<<< HEAD
-   		console.log(imagepath);
-   		console.log(details[i].content);
-		adImage = Ti.UI.createImageView({image: imagepath, bottom: 0, width:80});
-=======
+
 		adImage = Ti.UI.createImageView({image: imagepath, bottom: 0, width:90});
->>>>>>> FETCH_HEAD
    		
    		if(counter%3 == 0){
    			row = $.UI.create('View', {textAlign:'center', bottom: 0, layout: "vertical", height: Ti.UI.SIZE,  width: "100%"});
@@ -24,15 +19,6 @@ var displayCover = function(){
    			cellWrapper = Titanium.UI.createView({layout: "horizontal", height: Ti.UI.SIZE, width: "100%",bottom: 0, left: "5%", right: "5%"});
    		}
    		cell = $.UI.create('View', {bottom: "0", height: Ti.UI.SIZE, width: "30%", right: 5});
-   		
-<<<<<<< HEAD
-   		if(details[i].format == "pdf"){
-   			createAdImageEvent(adImage, id, details[i].content, cell);
-   		}else{
-   			createVideoEvent(adImage, id, details[i].url);
-   		}
-=======
->>>>>>> FETCH_HEAD
    		
 		cell.add(adImage);
 		cellWrapper.add(cell); 
@@ -51,7 +37,7 @@ var displayCover = function(){
    				cell.add(downloadIcon);
    			}
    			/*** Image click event for PDF***/
-   			createAdImageEvent(adImage, id, details[i].content);
+   			createAdImageEvent(adImage, id, details[i].content, cell);
    		}else{
    			/*** Image click event for youtube***/
    			createVideoEvent(adImage, id, details[i].url);
@@ -71,31 +57,23 @@ var displayCover = function(){
 
 displayCover();
 
-<<<<<<< HEAD
-
 function createAdImageEvent(adImage, id,content, cell) {
     adImage.addEventListener( "click", function(){
     	var ind=Titanium.UI.createProgressBar({
-					width:150,
+					width: "80%",
 					height:100,
 					min:0,
 					max:1,
 					value:0,
-					style:Titanium.UI.iPhone.ProgressBarStyle.DEFAULT,
 					top:10,
-					message:'% Downloading',
+					message:'',
 					font:{fontSize:12, fontWeight:'bold'},
-					color:'black'
+					color:'red',
+					opacity: 1
 				});
-		cell.add(ind);		
+		cell.add(ind);	
+		library.updateDownloadedBrochure(id);
     	pdf(content,true, ind, function (err) {
-=======
-function createAdImageEvent(adImage, id,content) {
-    adImage.addEventListener( "click", function(){
-    	/*** update download status***/
-    	library.updateDownloadedBrochure(id);
-    	pdf(content,true, function (err) {
->>>>>>> FETCH_HEAD
 		    if (err) alert(err);
 		    else
 		    {
