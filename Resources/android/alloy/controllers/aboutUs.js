@@ -61,19 +61,21 @@ function Controller() {
     $.__views.mainScroll = Ti.UI.createScrollView({
         id: "mainScroll",
         layout: "vertical",
-        height: Ti.UI.SIZE
+        height: Ti.UI.SIZE,
+        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.aboutUs.add($.__views.mainScroll);
     $.__views.main = Ti.UI.createScrollView({
         backgroundColor: "white",
         id: "main",
         layout: "vertical",
-        height: "180"
+        height: "200",
+        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.mainScroll.add($.__views.main);
     $.__views.__alloyId3 = Ti.UI.createLabel({
         font: {
-            fontSize: "14"
+            fontSize: "16"
         },
         color: "#6E6E6E",
         bottom: 10,
@@ -236,8 +238,7 @@ function Controller() {
     var API = require("api");
     var COMM = require("common");
     var submitContactForm = function() {
-        var name = $.username.value;
-        var contact = $.phone.value;
+        var name = $.name.value;
         var email = $.email.value;
         var message = $.message.value;
         if ("" == name) {

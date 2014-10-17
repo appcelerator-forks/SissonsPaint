@@ -4,8 +4,8 @@ var API = require('api');
 var COMM = require('common');
 var submitContactForm = function(){
 	
-	var name 	   = $.username.value;
-	var contact    = $.phone.value;
+	var name 	   = $.name.value;
+	//var contact    = $.phone.value;
 	var email 	   = $.email.value;
 	var message    = $.message.value;
 	 

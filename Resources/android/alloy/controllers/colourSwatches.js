@@ -14,7 +14,8 @@ function Controller() {
             width: "95%",
             layout: "vertical",
             height: Ti.UI.SIZE,
-            textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT
+            textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+            overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
         });
         for (var i = 0; i < details.length; i++) {
             var colours = category_colour_lib.getCategoryColourByCategory(details[i]["id"]);

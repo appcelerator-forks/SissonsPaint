@@ -62,7 +62,8 @@ function Controller() {
     $.__views.canvas = Ti.UI.createWebView({
         id: "canvas",
         url: "/html/canvas-paint-bucket.html",
-        disableBounce: "true"
+        disableBounce: "true",
+        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.__alloyId24.add($.__views.canvas);
     $.__views.toolbar = Ti.UI.createView({

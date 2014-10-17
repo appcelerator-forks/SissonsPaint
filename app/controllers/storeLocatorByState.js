@@ -13,7 +13,8 @@ function generateStoreTable(details){
 		width:'100%',
 		separatorColor: '#ffffff',
 		//backgroundColor: '#fffff6', 
-		backgroundColor: '#FFFFFF'
+		backgroundColor: '#FFFFFF',
+		overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
 	});
 	
 	for (var i=0; i< details.length; i++) {

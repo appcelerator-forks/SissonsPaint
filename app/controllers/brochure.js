@@ -12,6 +12,8 @@ var displayCover = function(){
    		var id = details[i].id; 
    		
    		imagepath = details[i].cover;
+   		console.log(imagepath);
+   		console.log(details[i].content);
 		adImage = Ti.UI.createImageView({image: imagepath, bottom: 0, width:80});
    		
 		
@@ -23,7 +25,7 @@ var displayCover = function(){
    		cell = $.UI.create('View', {bottom: "0", height: Ti.UI.SIZE, width: "30%", right: 5});
    		
    		if(details[i].format == "pdf"){
-   			createAdImageEvent(adImage, id, details[i].content);
+   			createAdImageEvent(adImage, id, details[i].content, cell);
    		}else{
    			createVideoEvent(adImage, id, details[i].url);
    		}
@@ -45,10 +47,31 @@ var displayCover = function(){
 displayCover();
 
 
-function createAdImageEvent(adImage, id,content) {
+function createAdImageEvent(adImage, id,content, cell) {
     adImage.addEventListener( "click", function(){
-    	pdf(content,true, function (err) {
+    	var ind=Titanium.UI.createProgressBar({
+					width:150,
+					height:100,
+					min:0,
+					max:1,
+					value:0,
+					style:Titanium.UI.iPhone.ProgressBarStyle.DEFAULT,
+					top:10,
+					message:'% Downloading',
+					font:{fontSize:12, fontWeight:'bold'},
+					color:'black'
+				});
+		cell.add(ind);		
+    	pdf(content,true, ind, function (err) {
 		    if (err) alert(err);
+		    else
+		    {
+		    	
+				adImage.add(ind);
+				console.log('a');
+				ind.show();
+    	
+		    }
 		  });
 
     } );

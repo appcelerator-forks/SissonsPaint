@@ -13,7 +13,8 @@ function Controller() {
         var TheTable = Titanium.UI.createTableView({
             width: "100%",
             separatorColor: "#ffffff",
-            backgroundColor: "#FFFFFF"
+            backgroundColor: "#FFFFFF",
+            overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
         });
         for (var i = 0; i < details.length; i++) {
             var row = Titanium.UI.createTableViewRow({

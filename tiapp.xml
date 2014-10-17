@@ -8,6 +8,7 @@
     <description>not specified</description>
     <copyright>2014 by geomilano</copyright>
     <icon>appicon.png</icon>
+    <statusbar-hidden>true</statusbar-hidden>
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
     <analytics>true</analytics>
