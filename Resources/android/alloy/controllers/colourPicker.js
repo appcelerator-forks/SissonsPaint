@@ -29,18 +29,18 @@ function Controller() {
         id: "colourPicker"
     });
     $.__views.colourPicker && $.addTopLevelView($.__views.colourPicker);
-    $.__views.__alloyId18 = Ti.UI.createView({
+    $.__views.__alloyId21 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId18"
+        id: "__alloyId21"
     });
-    $.__views.colourPicker.add($.__views.__alloyId18);
-    $.__views.__alloyId19 = Alloy.createController("toggle", {
-        id: "__alloyId19",
-        __parentSymbol: $.__views.__alloyId18
+    $.__views.colourPicker.add($.__views.__alloyId21);
+    $.__views.__alloyId22 = Alloy.createController("toggle", {
+        id: "__alloyId22",
+        __parentSymbol: $.__views.__alloyId21
     });
-    $.__views.__alloyId19.setParent($.__views.__alloyId18);
-    $.__views.__alloyId20 = Ti.UI.createLabel({
+    $.__views.__alloyId22.setParent($.__views.__alloyId21);
+    $.__views.__alloyId23 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -49,17 +49,17 @@ function Controller() {
         },
         text: "Colour Picker",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-        id: "__alloyId20"
+        id: "__alloyId23"
     });
-    $.__views.__alloyId18.add($.__views.__alloyId20);
-    $.__views.__alloyId21 = Ti.UI.createLabel({
+    $.__views.__alloyId21.add($.__views.__alloyId23);
+    $.__views.__alloyId24 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
         text: "This is Colour Picker",
-        id: "__alloyId21"
+        id: "__alloyId24"
     });
-    $.__views.colourPicker.add($.__views.__alloyId21);
+    $.__views.colourPicker.add($.__views.__alloyId24);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
