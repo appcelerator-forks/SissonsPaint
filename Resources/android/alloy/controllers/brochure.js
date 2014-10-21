@@ -74,6 +74,7 @@ function Controller() {
         });
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> FETCH_HEAD
 =======
     function popWindow() {
@@ -119,6 +120,9 @@ function Controller() {
         });
     }
 >>>>>>> 21/10/2014
+=======
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "brochure";
     if (arguments[0]) {

@@ -67,6 +67,9 @@ function Controller() {
     $.__views.mainWindow.add($.__views.logo);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
     var __alloyId39 = [];
     $.__views.__alloyId40 = Ti.UI.createTableViewRow({
         height: "50",
@@ -104,16 +107,22 @@ function Controller() {
     });
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
     __alloyId32.push($.__views.__alloyId35);
 =======
     __alloyId34.push($.__views.__alloyId35);
 >>>>>>> FETCH_HEAD
     $.__views.__alloyId36 = Ti.UI.createLabel({
 >>>>>>> FETCH_HEAD
+<<<<<<< HEAD
 =======
     __alloyId35.push($.__views.__alloyId36);
     $.__views.__alloyId37 = Ti.UI.createLabel({
 >>>>>>> 21/10/2014
+=======
+>>>>>>> FETCH_HEAD
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
@@ -121,7 +130,21 @@ function Controller() {
         left: "30",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         id: "__alloyId41"
+=======
+        id: "__alloyId41"
+    });
+    $.__views.__alloyId40.add($.__views.__alloyId41);
+    $.__views.__alloyId42 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId42"
+    });
+    __alloyId39.push($.__views.__alloyId42);
+    $.__views.__alloyId43 = Ti.UI.createLabel({
+=======
+        id: "__alloyId36"
+>>>>>>> FETCH_HEAD
     });
     $.__views.__alloyId40.add($.__views.__alloyId41);
     $.__views.__alloyId42 = Ti.UI.createTableViewRow({
@@ -136,12 +159,15 @@ function Controller() {
         id: "__alloyId37"
 >>>>>>> 21/10/2014
     });
+<<<<<<< HEAD
     $.__views.__alloyId36.add($.__views.__alloyId37);
     $.__views.__alloyId38 = Ti.UI.createTableViewRow({
         height: "50",
         id: "__alloyId38"
     });
 <<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
 <<<<<<< HEAD
     __alloyId32.push($.__views.__alloyId37);
 =======
@@ -149,10 +175,13 @@ function Controller() {
 >>>>>>> FETCH_HEAD
     $.__views.__alloyId38 = Ti.UI.createLabel({
 >>>>>>> FETCH_HEAD
+<<<<<<< HEAD
 =======
     __alloyId35.push($.__views.__alloyId38);
     $.__views.__alloyId39 = Ti.UI.createLabel({
 >>>>>>> 21/10/2014
+=======
+>>>>>>> FETCH_HEAD
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
@@ -160,7 +189,21 @@ function Controller() {
         left: "30",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         id: "__alloyId43"
+=======
+        id: "__alloyId43"
+    });
+    $.__views.__alloyId42.add($.__views.__alloyId43);
+    $.__views.__alloyId44 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId44"
+    });
+    __alloyId39.push($.__views.__alloyId44);
+    $.__views.__alloyId45 = Ti.UI.createLabel({
+=======
+        id: "__alloyId38"
+>>>>>>> FETCH_HEAD
     });
     $.__views.__alloyId42.add($.__views.__alloyId43);
     $.__views.__alloyId44 = Ti.UI.createTableViewRow({
@@ -182,16 +225,22 @@ function Controller() {
     });
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
     __alloyId32.push($.__views.__alloyId39);
 =======
     __alloyId34.push($.__views.__alloyId39);
 >>>>>>> FETCH_HEAD
     $.__views.__alloyId40 = Ti.UI.createLabel({
 >>>>>>> FETCH_HEAD
+<<<<<<< HEAD
 =======
     __alloyId35.push($.__views.__alloyId40);
     $.__views.__alloyId41 = Ti.UI.createLabel({
 >>>>>>> 21/10/2014
+=======
+>>>>>>> FETCH_HEAD
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
@@ -199,7 +248,21 @@ function Controller() {
         left: "30",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         id: "__alloyId45"
+=======
+        id: "__alloyId45"
+    });
+    $.__views.__alloyId44.add($.__views.__alloyId45);
+    $.__views.__alloyId46 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId46"
+    });
+    __alloyId39.push($.__views.__alloyId46);
+    $.__views.__alloyId47 = Ti.UI.createLabel({
+=======
+        id: "__alloyId40"
+>>>>>>> FETCH_HEAD
     });
     $.__views.__alloyId44.add($.__views.__alloyId45);
     $.__views.__alloyId46 = Ti.UI.createTableViewRow({
@@ -214,12 +277,15 @@ function Controller() {
         id: "__alloyId41"
 >>>>>>> 21/10/2014
     });
+<<<<<<< HEAD
     $.__views.__alloyId40.add($.__views.__alloyId41);
     $.__views.__alloyId42 = Ti.UI.createTableViewRow({
         height: "50",
         id: "__alloyId42"
     });
 <<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
 <<<<<<< HEAD
     __alloyId32.push($.__views.__alloyId41);
 =======
@@ -227,10 +293,13 @@ function Controller() {
 >>>>>>> FETCH_HEAD
     $.__views.__alloyId42 = Ti.UI.createLabel({
 >>>>>>> FETCH_HEAD
+<<<<<<< HEAD
 =======
     __alloyId35.push($.__views.__alloyId42);
     $.__views.__alloyId43 = Ti.UI.createLabel({
 >>>>>>> 21/10/2014
+=======
+>>>>>>> FETCH_HEAD
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
@@ -238,7 +307,21 @@ function Controller() {
         left: "30",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         id: "__alloyId47"
+=======
+        id: "__alloyId47"
+    });
+    $.__views.__alloyId46.add($.__views.__alloyId47);
+    $.__views.__alloyId48 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId48"
+    });
+    __alloyId39.push($.__views.__alloyId48);
+    $.__views.__alloyId49 = Ti.UI.createLabel({
+=======
+        id: "__alloyId42"
+>>>>>>> FETCH_HEAD
     });
     $.__views.__alloyId46.add($.__views.__alloyId47);
     $.__views.__alloyId48 = Ti.UI.createTableViewRow({
@@ -260,16 +343,22 @@ function Controller() {
     });
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
     __alloyId32.push($.__views.__alloyId43);
 =======
     __alloyId34.push($.__views.__alloyId43);
 >>>>>>> FETCH_HEAD
     $.__views.__alloyId44 = Ti.UI.createLabel({
 >>>>>>> FETCH_HEAD
+<<<<<<< HEAD
 =======
     __alloyId35.push($.__views.__alloyId44);
     $.__views.__alloyId45 = Ti.UI.createLabel({
 >>>>>>> 21/10/2014
+=======
+>>>>>>> FETCH_HEAD
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
@@ -277,7 +366,21 @@ function Controller() {
         left: "30",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         id: "__alloyId49"
+=======
+        id: "__alloyId49"
+    });
+    $.__views.__alloyId48.add($.__views.__alloyId49);
+    $.__views.__alloyId50 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId50"
+    });
+    __alloyId39.push($.__views.__alloyId50);
+    $.__views.__alloyId51 = Ti.UI.createLabel({
+=======
+        id: "__alloyId44"
+>>>>>>> FETCH_HEAD
     });
     $.__views.__alloyId48.add($.__views.__alloyId49);
     $.__views.__alloyId50 = Ti.UI.createTableViewRow({
@@ -299,16 +402,22 @@ function Controller() {
     });
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
     __alloyId32.push($.__views.__alloyId45);
 =======
     __alloyId34.push($.__views.__alloyId45);
 >>>>>>> FETCH_HEAD
     $.__views.__alloyId46 = Ti.UI.createLabel({
 >>>>>>> FETCH_HEAD
+<<<<<<< HEAD
 =======
     __alloyId35.push($.__views.__alloyId46);
     $.__views.__alloyId47 = Ti.UI.createLabel({
 >>>>>>> 21/10/2014
+=======
+>>>>>>> FETCH_HEAD
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
@@ -316,6 +425,9 @@ function Controller() {
         left: "30",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
         id: "__alloyId51"
     });
     $.__views.__alloyId50.add($.__views.__alloyId51);
@@ -331,14 +443,20 @@ function Controller() {
     $.__views.menuTable = Ti.UI.createTableView({
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
         data: __alloyId32,
 =======
         data: __alloyId34,
 >>>>>>> FETCH_HEAD
 >>>>>>> FETCH_HEAD
+<<<<<<< HEAD
 =======
         data: __alloyId35,
 >>>>>>> 21/10/2014
+=======
+>>>>>>> FETCH_HEAD
         id: "menuTable",
         top: "100",
         separatorColor: "black",
@@ -434,10 +552,13 @@ function Controller() {
     $.__views.__alloyId47.setParent($.__views.toggle);
     $.__views.__alloyId48 = Ti.UI.createLabel({
 >>>>>>> FETCH_HEAD
+<<<<<<< HEAD
 =======
     $.__views.__alloyId48.setParent($.__views.toggle);
     $.__views.__alloyId49 = Ti.UI.createLabel({
 >>>>>>> 21/10/2014
+=======
+>>>>>>> FETCH_HEAD
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -448,6 +569,9 @@ function Controller() {
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
         id: "__alloyId49"
     });
     $.__views.__alloyId47.add($.__views.__alloyId49);
@@ -474,9 +598,12 @@ function Controller() {
     $.__views.__alloyId49.setParent($.__views.centerWindow);
 >>>>>>> FETCH_HEAD
 >>>>>>> FETCH_HEAD
+<<<<<<< HEAD
 =======
     $.__views.__alloyId50.setParent($.__views.centerWindow);
 >>>>>>> 21/10/2014
+=======
+>>>>>>> FETCH_HEAD
     $.__views.drawer = Alloy.createWidget("nl.fokkezb.drawer", "widget", {
         openDrawerGestureMode: "OPEN_MODE_ALL",
         closeDrawerGestureMode: "CLOSE_MODE_MARGIN",

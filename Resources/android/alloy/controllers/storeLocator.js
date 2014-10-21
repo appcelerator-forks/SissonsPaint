@@ -22,6 +22,9 @@ function Controller() {
     $.__views.mainWindow && $.addTopLevelView($.__views.mainWindow);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> FETCH_HEAD
@@ -58,10 +61,13 @@ function Controller() {
     $.__views.__alloyId66 = Ti.UI.createLabel({
 >>>>>>> FETCH_HEAD
 >>>>>>> FETCH_HEAD
+<<<<<<< HEAD
 =======
     $.__views.__alloyId66.setParent($.__views.__alloyId65);
     $.__views.__alloyId67 = Ti.UI.createLabel({
 >>>>>>> 21/10/2014
+=======
+>>>>>>> FETCH_HEAD
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -72,6 +78,9 @@ function Controller() {
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
         id: "__alloyId69"
     });
     $.__views.__alloyId67.add($.__views.__alloyId69);
@@ -86,11 +95,14 @@ function Controller() {
     $.__views.__alloyId64.add($.__views.__alloyId66);
 >>>>>>> FETCH_HEAD
 >>>>>>> FETCH_HEAD
+<<<<<<< HEAD
 =======
         id: "__alloyId67"
     });
     $.__views.__alloyId65.add($.__views.__alloyId67);
 >>>>>>> 21/10/2014
+=======
+>>>>>>> FETCH_HEAD
     $.__views.subWindow = Ti.UI.createView({
         id: "subWindow",
         layout: "vertical",

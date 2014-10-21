@@ -163,6 +163,9 @@ function Controller() {
     $.__views.storeLocatorByState && $.addTopLevelView($.__views.storeLocatorByState);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
     $.__views.__alloyId70 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
@@ -205,9 +208,12 @@ function Controller() {
     $.__views.__alloyId68.setParent($.__views.__alloyId67);
 >>>>>>> FETCH_HEAD
 >>>>>>> FETCH_HEAD
+<<<<<<< HEAD
 =======
     $.__views.__alloyId69.setParent($.__views.__alloyId68);
 >>>>>>> 21/10/2014
+=======
+>>>>>>> FETCH_HEAD
     $.__views.stateName = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -220,6 +226,9 @@ function Controller() {
     });
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
     $.__views.__alloyId70.add($.__views.stateName);
 =======
 <<<<<<< HEAD
@@ -228,9 +237,12 @@ function Controller() {
     $.__views.__alloyId67.add($.__views.stateName);
 >>>>>>> FETCH_HEAD
 >>>>>>> FETCH_HEAD
+<<<<<<< HEAD
 =======
     $.__views.__alloyId68.add($.__views.stateName);
 >>>>>>> 21/10/2014
+=======
+>>>>>>> FETCH_HEAD
     $.__views.tableContainer = Ti.UI.createView({
         backgroundColor: "white",
         id: "tableContainer",

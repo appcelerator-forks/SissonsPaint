@@ -74,6 +74,16 @@ function Controller() {
             Alloy.Globals.Drawer.setCenterWindow(nav);
         });
     }
+    function createColorEvent(subView, colour_details, details) {
+        subView.addEventListener("click", function() {
+            Ti.App.Properties.setString("from", "colourSwatches");
+            var nav = Alloy.createController("colourDetails", {
+                colour_details: colour_details,
+                details: details
+            }).getView();
+            Alloy.Globals.Drawer.setCenterWindow(nav);
+        });
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "colourSwatches";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
@@ -88,6 +98,21 @@ function Controller() {
     $.__views.mainViewContainer && $.addTopLevelView($.__views.mainViewContainer);
 <<<<<<< HEAD
     $.__views.__alloyId30 = Ti.UI.createView({
+<<<<<<< HEAD
+=======
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId30"
+    });
+    $.__views.mainViewContainer.add($.__views.__alloyId30);
+    $.__views.__alloyId31 = Alloy.createController("toggle", {
+        id: "__alloyId31",
+        __parentSymbol: $.__views.__alloyId30
+    });
+    $.__views.__alloyId31.setParent($.__views.__alloyId30);
+=======
+    $.__views.__alloyId25 = Ti.UI.createView({
+>>>>>>> FETCH_HEAD
         layout: "horizontal",
         height: "80",
         id: "__alloyId30"
@@ -117,9 +142,12 @@ function Controller() {
 <<<<<<< HEAD
     $.__views.__alloyId26.setParent($.__views.__alloyId25);
 >>>>>>> FETCH_HEAD
+<<<<<<< HEAD
 =======
     $.__views.__alloyId27.setParent($.__views.__alloyId26);
 >>>>>>> 21/10/2014
+=======
+>>>>>>> FETCH_HEAD
     $.__views.titleLabel = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -133,13 +161,19 @@ function Controller() {
     });
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
     $.__views.__alloyId30.add($.__views.titleLabel);
 =======
     $.__views.__alloyId25.add($.__views.titleLabel);
 >>>>>>> FETCH_HEAD
+<<<<<<< HEAD
 =======
     $.__views.__alloyId26.add($.__views.titleLabel);
 >>>>>>> 21/10/2014
+=======
+>>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
