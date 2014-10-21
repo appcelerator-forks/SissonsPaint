@@ -75,12 +75,12 @@ function Controller() {
     $.__views.mainScroll.add($.__views.main);
     $.__views.__alloyId3 = Ti.UI.createLabel({
         font: {
-            fontSize: "16"
+            fontSize: "14"
         },
         color: "#6E6E6E",
         bottom: 10,
         text: "It was in 1959 that SISSONS PAINTS (EAST) SDN BHD first started in Malaysia, although SISSONS' technology in paint making goes back 185 years when Sissons Brothers founded a company in HULL, England in 1803. SISSONS' well-known trademark of 'THE MEN AND PLANK' has been in use since 1910.",
-        width: "75%",
+        width: "85%",
         id: "__alloyId3"
     });
     $.__views.main.add($.__views.__alloyId3);

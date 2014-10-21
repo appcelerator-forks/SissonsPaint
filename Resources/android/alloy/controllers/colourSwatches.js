@@ -14,7 +14,6 @@ function Controller() {
             width: "95%",
             layout: "vertical",
             height: "80%",
-            zIndex: "-1",
             textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
             overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
         });
@@ -24,6 +23,7 @@ function Controller() {
                 width: "100%",
                 height: Ti.UI.SIZE,
                 touchEnabled: false,
+                top: 15,
                 image: details[i]["image"]
             });
             var description = $.UI.create("Label", {
@@ -45,6 +45,7 @@ function Controller() {
                     textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
                     layout: "vertical",
                     width: "25%",
+                    top: 3,
                     height: Ti.UI.SIZE
                 });
                 var colour_details = colour_lib.getColourById(colour.colour_id);
@@ -103,6 +104,7 @@ function Controller() {
         id: "mainViewContainer"
     });
     $.__views.mainViewContainer && $.addTopLevelView($.__views.mainViewContainer);
+<<<<<<< HEAD
     $.__views.__alloyId36 = Ti.UI.createView({
         layout: "vertical",
         id: "__alloyId36"
@@ -119,6 +121,24 @@ function Controller() {
         __parentSymbol: $.__views.__alloyId37
     });
     $.__views.__alloyId38.setParent($.__views.__alloyId37);
+=======
+    $.__views.__alloyId41 = Ti.UI.createView({
+        layout: "vertical",
+        id: "__alloyId41"
+    });
+    $.__views.mainViewContainer.add($.__views.__alloyId41);
+    $.__views.__alloyId42 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId42"
+    });
+    $.__views.__alloyId41.add($.__views.__alloyId42);
+    $.__views.__alloyId43 = Alloy.createController("toggle", {
+        id: "__alloyId43",
+        __parentSymbol: $.__views.__alloyId42
+    });
+    $.__views.__alloyId43.setParent($.__views.__alloyId42);
+>>>>>>> FETCH_HEAD
     $.__views.titleLabel = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -130,7 +150,11 @@ function Controller() {
         id: "titleLabel",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
+<<<<<<< HEAD
     $.__views.__alloyId37.add($.__views.titleLabel);
+=======
+    $.__views.__alloyId42.add($.__views.titleLabel);
+>>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

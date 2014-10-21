@@ -4,7 +4,7 @@
 "Label": {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
-	color: "#000"
+	color: "#6E6E6E"
 },
 
 ".title":{
@@ -13,12 +13,22 @@
 },
 
 ".cCode":{
-	font:{fontSize:14},	
-	textAlign :Ti.UI.TEXT_ALIGNMENT_LEFT
+	font:{fontSize:16, fontWeight:"bold"} ,  
+	textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT, 
+	width: "50",
+	height: Ti.UI.SIZE,
+	color: "#000000"
+},
+".cCodeTitle":{
+	font:{fontSize:16},	
+	width: "20",
+	left:10, 
+	textAlign :Ti.UI.TEXT_ALIGNMENT_LEFT,
+	color: "#000000"
 },
 ".titleLabel" : {
 	font:{fontSize:16, fontWeight:"bold"},	
 	textAlign :Ti.UI.TEXT_ALIGNMENT_LEFT,
-	color: "#6E6E6E"
+	color: "#000000"
 }
 

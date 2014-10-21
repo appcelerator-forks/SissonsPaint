@@ -4,15 +4,36 @@
 			<View layout="horizontal" height="80">
 				<Require src="toggle"></Require>
 			</View>
-			<View layout="vertical"  width="150" height="150" bottom="45" backgroundColor="#ffffff" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">
-			 	<Label class="title" left="10" id="colourCode" top="10" />
-			 	<Label class="title" left="10" id="colourName" />
-			 	<Label class="cCode" left="10" id="colourC" ></Label>
-			 	<Label class="cCode" left="10" id="colourM" ></Label>
-			 	<Label class="cCode" left="10" id="colourY" ></Label>
-			 	<Label class="cCode" left="10" id="colourK" bottom="10" ></Label>
+			<View height="60" bottom="0">
+				<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
+				<ImageView id="filterButton" image="/images/icon_favourite.png" onClick="popWindow" height="40" width="50" />
 			</View>
-			
+	
+			<View layout="vertical" backgroundColor="#ffffff" width="160" height="160">
+				<View layout="vertical"  width="150" top="5" height="150" bottom="45" id="boxDetails"  opacity="0.6" >
+				 	<Label class="title" left="10" id="colourCode" top="10" />
+				 	<Label class="title" left="10" id="colourName" />
+				 	<View layout="horizontal" width="100%" height="20"  >
+				 		<Label class="cCodeTitle" left="10" >C </Label>
+				 		<Label class="cCode" right="5" id="colourC" ></Label>
+				 	</View>
+				 	
+				 	<View layout="horizontal" width="100%" height="20" >
+				 		<Label class="cCodeTitle" left="10" >M </Label>
+				 		<Label class="cCode" right="10" id="colourM" ></Label>
+				 	</View>
+				 	
+				 	<View layout="horizontal" width="100%" height="20">
+				 		<Label class="cCodeTitle" left="10" >Y </Label>
+				 		<Label class="cCode" right="10" id="colourY" ></Label>
+				 	</View>
+				 	
+				 	<View layout="horizontal" width="100%" height="20">
+				 		<Label class="cCodeTitle" left="10" >K </Label>
+				 		<Label class="cCode" right="10" id="colourK"   ></Label>
+					</View>
+				</View>
+			</View>
 			<View  layout="vertical" bottom="0" height="Ti.UI.SIZE" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
 				<View layout="vertical" height="Titanium.UI.SIZE">
 					<ImageView image="/images/scroll_up.png" width="Titanium.UI.FILL" />
@@ -28,9 +49,6 @@
 			    
 		    </View>
 		</View>
-		<View height="60" bottom="0">
-				<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
-				<ImageView id="filterButton" image="/images/icon_favourite.png" onClick="popWindow" height="40" width="50" />
-		</View>
+		
 	</View> 
 </Alloy>

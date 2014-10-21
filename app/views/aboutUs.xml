@@ -6,7 +6,7 @@
 	</View>
 	<ScrollView id="mainScroll" layout="vertical" height="Ti.UI.SIZE" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
 		<ScrollView id="main" layout="vertical" height="200" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" >
-			<Label class="aboutContent" width="75%">It was in 1959 that SISSONS PAINTS (EAST) SDN BHD first started in Malaysia, although SISSONS' technology in paint making goes back 185 years when Sissons Brothers founded a company in HULL, England in 1803. SISSONS' well-known trademark of 'THE MEN AND PLANK' has been in use since 1910. </Label>	
+			<Label class="aboutContent" width="85%">It was in 1959 that SISSONS PAINTS (EAST) SDN BHD first started in Malaysia, although SISSONS' technology in paint making goes back 185 years when Sissons Brothers founded a company in HULL, England in 1803. SISSONS' well-known trademark of 'THE MEN AND PLANK' has been in use since 1910. </Label>	
 		</ScrollView>
 		<View layout="vertical" backgroundColor="white" height="Titanium.UI.SIZE">
 			<ImageView image="/images/scroll_up.png" backgroundColor="#white" width="Titanium.UI.FILL" />
