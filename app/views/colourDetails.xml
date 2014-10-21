@@ -39,7 +39,6 @@
 				<ImageView id="colourCategoryImage"/>
 				<Label id="colourCategoryDescription" class="aboutContent" width="95%"></Label>	
 			</ScrollView>
-			
 		    
 	    </View>
 	</View> 

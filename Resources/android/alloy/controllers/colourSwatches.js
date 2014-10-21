@@ -111,7 +111,8 @@ function Controller() {
     $.__views.mainViewContainer.add($.__views.__alloyId41);
     $.__views.__alloyId42 = Ti.UI.createView({
         layout: "horizontal",
-        height: "80",
+        height: "85",
+        bottom: "20",
         id: "__alloyId42"
     });
     $.__views.__alloyId41.add($.__views.__alloyId42);
