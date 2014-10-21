@@ -24,6 +24,7 @@ function generateTable(){
 			width : "100%",
 			height : Ti.UI.SIZE,
 			touchEnabled : false,
+			top:15,
 			image : details[i]['image']
 		});
 		
@@ -50,6 +51,7 @@ function generateTable(){
 				textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
 				layout: 'vertical',
 				width: "25%", 
+				top:3,
 				height: Ti.UI.SIZE
 			});
 			

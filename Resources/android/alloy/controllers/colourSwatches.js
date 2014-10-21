@@ -1,3 +1,12 @@
+function __processArg(obj, key) {
+    var arg = null;
+    if (obj) {
+        arg = obj[key] || null;
+        delete obj[key];
+    }
+    return arg;
+}
+
 function Controller() {
     function generateTable() {
         var TheScrollView = Titanium.UI.createScrollView({
@@ -8,12 +17,13 @@ function Controller() {
             textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
             overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
         });
-        for (var i = 0; details.length > i; i++) {
+        for (var i = 0; i < details.length; i++) {
             var colours = category_colour_lib.getCategoryColourByCategory(details[i]["id"]);
             var categoryHeader = Titanium.UI.createImageView({
                 width: "100%",
                 height: Ti.UI.SIZE,
                 touchEnabled: false,
+                top: 15,
                 image: details[i]["image"]
             });
             var description = $.UI.create("Label", {
@@ -35,6 +45,7 @@ function Controller() {
                     textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
                     layout: "vertical",
                     width: "25%",
+                    top: 3,
                     height: Ti.UI.SIZE
                 });
                 var colour_details = colour_lib.getColourById(colour.colour_id);
@@ -74,9 +85,17 @@ function Controller() {
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "colourSwatches";
-    arguments[0] ? arguments[0]["__parentSymbol"] : null;
-    arguments[0] ? arguments[0]["$model"] : null;
-    arguments[0] ? arguments[0]["__itemTemplate"] : null;
+    if (arguments[0]) {
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
+    }
     var $ = this;
     var exports = {};
     $.__views.mainViewContainer = Ti.UI.createView({
@@ -85,31 +104,17 @@ function Controller() {
         id: "mainViewContainer"
     });
     $.__views.mainViewContainer && $.addTopLevelView($.__views.mainViewContainer);
-<<<<<<< HEAD
-    $.__views.__alloyId30 = Ti.UI.createView({
+    $.__views.__alloyId41 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId30"
+        id: "__alloyId41"
     });
-    $.__views.mainViewContainer.add($.__views.__alloyId30);
-    $.__views.__alloyId31 = Alloy.createController("toggle", {
-        id: "__alloyId31",
-        __parentSymbol: $.__views.__alloyId30
+    $.__views.mainViewContainer.add($.__views.__alloyId41);
+    $.__views.__alloyId42 = Alloy.createController("toggle", {
+        id: "__alloyId42",
+        __parentSymbol: $.__views.__alloyId41
     });
-    $.__views.__alloyId31.setParent($.__views.__alloyId30);
-=======
-    $.__views.__alloyId25 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "80",
-        id: "__alloyId25"
-    });
-    $.__views.mainViewContainer.add($.__views.__alloyId25);
-    $.__views.__alloyId26 = Alloy.createController("toggle", {
-        id: "__alloyId26",
-        __parentSymbol: $.__views.__alloyId25
-    });
-    $.__views.__alloyId26.setParent($.__views.__alloyId25);
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId42.setParent($.__views.__alloyId41);
     $.__views.titleLabel = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -121,11 +126,7 @@ function Controller() {
         id: "titleLabel",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
-<<<<<<< HEAD
-    $.__views.__alloyId30.add($.__views.titleLabel);
-=======
-    $.__views.__alloyId25.add($.__views.titleLabel);
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId41.add($.__views.titleLabel);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

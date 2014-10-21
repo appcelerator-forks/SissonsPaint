@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 function __processArg(obj, key) {
     var arg = null;
     if (obj) {
@@ -9,7 +7,6 @@ function __processArg(obj, key) {
     return arg;
 }
 
->>>>>>> FETCH_HEAD
 function Controller() {
     function createAdImageEvent(adImage, id, content, cell, downloaded, downloadIcon) {
         adImage.addEventListener("click", function() {
@@ -66,14 +63,11 @@ function Controller() {
             });
         });
     }
-<<<<<<< HEAD
-=======
     function createVideoEvent(adImage, id, content) {
         adImage.addEventListener("click", function() {
             youtubePlayer.playVideo(content);
         });
     }
->>>>>>> FETCH_HEAD
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "brochure";
     if (arguments[0]) {
@@ -167,7 +161,7 @@ function Controller() {
         var counter = 0;
         var imagepath, adImage, row, image, cellWrapper, cell = "";
         var last = details.length - 1;
-        for (var i = 0; details.length > i; i++) {
+        for (var i = 0; i < details.length; i++) {
             var id = details[i].id;
             imagepath = details[i].cover;
             adImage = Ti.UI.createImageView({
@@ -176,7 +170,7 @@ function Controller() {
                 width: 90,
                 height: "auto"
             });
-            if (0 == counter % 3) {
+            if (counter % 3 == 0) {
                 row = $.UI.create("View", {
                     textAlign: "center",
                     bottom: 0,
@@ -210,9 +204,6 @@ function Controller() {
             cellWrapper.add(cell);
             row.add(cellWrapper);
             row.add(image);
-<<<<<<< HEAD
-            (2 == counter % 3 || last == counter) && $.scrollview.add(row);
-=======
             if ("pdf" == details[i].format) {
                 var downloadIcon = "";
                 if ("0" == details[i].isDownloaded) {
@@ -236,7 +227,6 @@ function Controller() {
                 cell.add(playIcon);
             }
             (counter % 3 == 2 || last == counter) && $.scrollview.add(row);
->>>>>>> FETCH_HEAD
             counter++;
         }
     };

@@ -4,7 +4,7 @@
 "Label": {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
-	color: "#000"
+	color: "#6E6E6E"
 },
 
 ".title":{
@@ -13,7 +13,17 @@
 },
 
 ".cCode":{
-	font:{fontSize:14},	
+	font:{fontSize:16, fontWeight:"bold"} , 
+	shadowColor: '#FFFFFF',
+	shadowOffset: {x:2, y:2},
+	shadowRadius: 1, 
+	textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT, 
+	width: "80",
+	height: Ti.UI.SIZE
+},
+".cCodeTitle":{
+	font:{fontSize:16},	
+	width: "50",
 	textAlign :Ti.UI.TEXT_ALIGNMENT_LEFT
 },
 ".titleLabel" : {

@@ -1,9 +1,5 @@
 function S4() {
-<<<<<<< HEAD
-    return (0 | 65536 * (1 + Math.random())).toString(16).substring(1);
-=======
     return (65536 * (1 + Math.random()) | 0).toString(16).substring(1);
->>>>>>> FETCH_HEAD
 }
 
 function guid() {
