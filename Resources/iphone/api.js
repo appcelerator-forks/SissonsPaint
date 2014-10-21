@@ -26,7 +26,7 @@ exports.sendContactMsg = "http://" + API_DOMAIN + "/api/sendMessage?user=" + USE
 exports.forgotPassword = "http://" + API_DOMAIN + "/api/doForgotPassword?user=" + USER + "&key=" + KEY;
 
 exports.loadColour = function() {
-    var url = getBrochureList;
+    var url = getColourList;
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
@@ -39,8 +39,8 @@ exports.loadColour = function() {
                         id: entry.id,
                         name: entry.name,
                         code: entry.code,
-                        rgb: entry.rgb,
-                        cmyk: entry.cmyk,
+                        rgb: entry.RGB,
+                        cmyk: entry.CMYK,
                         sample: entry.sample
                     });
                     colour.save();
@@ -68,11 +68,14 @@ exports.loadCategory = function() {
                 lib_colour.resetCategoryColour();
                 var arr = res.data;
                 arr.forEach(function(entry) {
-                    var product_categroy = Alloy.createModel("category", {
+                    var product_category = Alloy.createModel("category", {
+                        id: entry.id,
                         name: entry.name,
-                        type: entry.type
+                        type: entry.type,
+                        image: entry.image,
+                        description: entry.description
                     });
-                    product_categroy.save();
+                    product_category.save();
                     var categories = entry.arr_category;
                     categories.forEach(function(category) {
                         var category_type = Alloy.createModel("category_type", {
@@ -90,6 +93,7 @@ exports.loadCategory = function() {
                         category_colour.save();
                     });
                 });
+                console.log("saved category done");
             }
         },
         onerror: function() {},
@@ -103,22 +107,12 @@ exports.loadBrochure = function() {
     var url = getBrochureList;
     var client = Ti.Network.createHTTPClient({
         onload: function() {
-            console.log("ready ");
             var res = JSON.parse(this.responseText);
             if ("success" == res.status) {
                 var library = Alloy.createCollection("brochure");
-                library.resetBrochure();
                 var arr = res.data;
                 arr.forEach(function(entry) {
-                    var brochure = Alloy.createModel("brochure", {
-                        id: entry.b_id,
-                        title: entry.b_title,
-                        cover: entry.cover,
-                        content: entry.attachment,
-                        status: entry.b_status,
-                        format: entry.b_format
-                    });
-                    brochure.save();
+                    library.addBrochure(entry.b_id, entry.b_title, entry.cover, entry.attachment, entry.b_url, entry.b_status, entry.b_format);
                 });
                 console.log("saved brochure done");
             }
@@ -148,12 +142,14 @@ exports.loadStoreLocator = function() {
                         address: entry.f_address,
                         mobile: entry.f_mobile,
                         fax: entry.f_fax,
+                        email: entry.f_email,
                         latitude: entry.f_lat,
                         longitude: entry.f_lng,
                         category: entry.f_category
                     });
                     storeLocator.save();
                 });
+                console.log("saved store locator done");
             }
         },
         onerror: function() {},

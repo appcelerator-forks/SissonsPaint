@@ -45,10 +45,13 @@ exports.loadColour = function() {
                     });
                     colour.save();
                 });
+                Ti.App.Properties.setString("loadColour", "1");
             }
         },
-        onerror: function() {},
-        timeout: 5e4
+        onerror: function() {
+            Ti.App.Properties.setString("loadColour", "1");
+        },
+        timeout: 1e4
     });
     client.open("GET", url);
     client.send();
@@ -93,11 +96,13 @@ exports.loadCategory = function() {
                         category_colour.save();
                     });
                 });
-                console.log("saved category done");
+                Ti.App.Properties.setString("loadCategory", "1");
             }
         },
-        onerror: function() {},
-        timeout: 5e4
+        onerror: function() {
+            Ti.App.Properties.setString("loadCategory", "1");
+        },
+        timeout: 1e4
     });
     client.open("GET", url);
     client.send();
@@ -110,15 +115,32 @@ exports.loadBrochure = function() {
             var res = JSON.parse(this.responseText);
             if ("success" == res.status) {
                 var library = Alloy.createCollection("brochure");
+<<<<<<< HEAD
+                library.resetBrochure();
+                var arr = res.data;
+                arr.forEach(function(entry) {
+                    var brochure = Alloy.createModel("brochure", {
+                        id: entry.b_id,
+                        title: entry.b_title,
+                        cover: entry.cover,
+                        content: entry.attachment,
+                        status: entry.b_status,
+                        format: entry.b_format
+                    });
+                    brochure.save();
+=======
                 var arr = res.data;
                 arr.forEach(function(entry) {
                     library.addBrochure(entry.b_id, entry.b_title, entry.cover, entry.attachment, entry.b_url, entry.b_status, entry.b_format);
+>>>>>>> FETCH_HEAD
                 });
-                console.log("saved brochure done");
+                Ti.App.Properties.setString("loadBrochure", "1");
             }
         },
-        onerror: function() {},
-        timeout: 5e4
+        onerror: function() {
+            Ti.App.Properties.setString("loadBrochure", "1");
+        },
+        timeout: 1e4
     });
     client.open("GET", url);
     client.send();
@@ -149,11 +171,13 @@ exports.loadStoreLocator = function() {
                     });
                     storeLocator.save();
                 });
-                console.log("saved store locator done");
+                Ti.App.Properties.setString("loadStoreLocator", "1");
             }
         },
-        onerror: function() {},
-        timeout: 5e4
+        onerror: function() {
+            Ti.App.Properties.setString("loadStoreLocator", "1");
+        },
+        timeout: 1e4
     });
     client.open("GET", url);
     client.send();

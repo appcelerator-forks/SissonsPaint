@@ -10,6 +10,7 @@ exports.definition = {
             address: "TEXT",
             mobile: "TEXT",
             fax: "TEXT",
+            email: "TEXT",
             latitude: "TEXT",
             longitude: "TEXT",
             category: "INTEGER"
@@ -60,6 +61,7 @@ exports.definition = {
                         address: res.fieldByName("address"),
                         mobile: res.fieldByName("mobile"),
                         fax: res.fieldByName("fax"),
+                        email: res.fieldByName("email"),
                         latitude: res.fieldByName("latitude"),
                         longitude: res.fieldByName("longitude"),
                         category: res.fieldByName("category")
@@ -88,6 +90,7 @@ exports.definition = {
                         address: res.fieldByName("address"),
                         mobile: res.fieldByName("mobile"),
                         fax: res.fieldByName("fax"),
+                        email: res.fieldByName("email"),
                         latitude: res.fieldByName("latitude"),
                         longitude: res.fieldByName("longitude"),
                         category: res.fieldByName("category")
@@ -113,6 +116,7 @@ exports.definition = {
                     address: res.fieldByName("address"),
                     mobile: res.fieldByName("mobile"),
                     fax: res.fieldByName("fax"),
+                    email: res.fieldByName("email"),
                     latitude: res.fieldByName("latitude"),
                     longitude: res.fieldByName("longitude"),
                     category: res.fieldByName("category")

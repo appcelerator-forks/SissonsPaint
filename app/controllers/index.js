@@ -3,17 +3,49 @@ $.drawer.open({
 	fullscreen: true
 });
 Ti.App.Properties.setString('module', 'index');
+Ti.App.Properties.setString('from', 'index');
+
+Ti.App.Properties.setString('loadStoreLocator', '0');
+Ti.App.Properties.setString('loadBrochure', '0');
+Ti.App.Properties.setString('loadColour', '0');
+Ti.App.Properties.setString('loadCategory', '0');
+
 var API = require('api');
 var flag =0;	
+
+$.activityIndicator.show();
+$.loadingBar.opacity = "1";
+$.loadingBar.height = "120";
+$.loadingBar.top = "100";
+	
 // Load API function
 
 setTimeout(function(){
-	API.loadColour();
 	API.loadStoreLocator();
 	API.loadBrochure();
+	API.loadColour();
 	API.loadCategory();
+	checkLoadStatus();
 }, 1500);
 
+function checkLoadStatus(){
+	var loadStoreLocator = Ti.App.Properties.getString('loadStoreLocator');
+	var loadBrochure = Ti.App.Properties.getString('loadBrochure');
+	var loadColour = Ti.App.Properties.getString('loadColour');
+	var loadCategory = Ti.App.Properties.getString('loadCategory');
+
+	if(loadStoreLocator == "1" && loadBrochure == "1" && loadColour == "1" && loadCategory == "1"){
+		$.loadingBar.opacity = "0";
+		var nav = Alloy.createController("colourSwatches").getView(); 
+		Alloy.Globals.Drawer.setCenterWindow(nav);  
+	}else{
+		setTimeout(function(){
+			checkLoadStatus();
+		}, 1500);	
+	}
+	
+	
+}
 
 function toggle(e) {
    $.drawer['toggleLeftWindow']();
@@ -56,6 +88,11 @@ $.drawer.addEventListener('android:back', function (e) {
 	if(mod == "storeLocator"){
 		Ti.App.Properties.setString('module', 'index');
 		var nav = Alloy.createController("storeLocator").getView(); 
+		Alloy.Globals.Drawer.setCenterWindow(nav);  
+	}else if(mod == "colourDetails"){
+		from = Ti.App.Properties.getString('from');
+		Ti.App.Properties.setString('module', 'index');
+		var nav = Alloy.createController(from).getView(); 
 		Alloy.Globals.Drawer.setCenterWindow(nav);  
 	}else{
 		//Alloy.Globals.Drawer['toggleLeftWindow']();

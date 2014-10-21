@@ -1,12 +1,3 @@
-function __processArg(obj, key) {
-    var arg = null;
-    if (obj) {
-        arg = obj[key] || null;
-        delete obj[key];
-    }
-    return arg;
-}
-
 function Controller() {
     function generateStoreTable(details) {
         var data = [];
@@ -16,7 +7,7 @@ function Controller() {
             backgroundColor: "#FFFFFF",
             overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
         });
-        for (var i = 0; i < details.length; i++) {
+        for (var i = 0; details.length > i; i++) {
             var row = Titanium.UI.createTableViewRow({
                 layout: "vertical",
                 touchEnabled: false,
@@ -116,19 +107,17 @@ function Controller() {
               case 3:
                 var categoryName = "Dealers";
             }
-            {
-                Titanium.UI.createLabel({
-                    text: categoryName,
-                    id: details[i].id,
-                    font: {
-                        fontSize: 12
-                    },
-                    width: "auto",
-                    color: "#848484",
-                    textAlign: "left",
-                    left: 20
-                });
-            }
+            Titanium.UI.createLabel({
+                text: categoryName,
+                id: details[i].id,
+                font: {
+                    fontSize: 12
+                },
+                width: "auto",
+                color: "#848484",
+                textAlign: "left",
+                left: 20
+            });
             var rightForwardBtn = Titanium.UI.createImageView({
                 image: "/images/icon_store.png",
                 width: 40,
@@ -161,17 +150,9 @@ function Controller() {
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "storeLocatorByState";
-    if (arguments[0]) {
-        {
-            __processArg(arguments[0], "__parentSymbol");
-        }
-        {
-            __processArg(arguments[0], "$model");
-        }
-        {
-            __processArg(arguments[0], "__itemTemplate");
-        }
-    }
+    arguments[0] ? arguments[0]["__parentSymbol"] : null;
+    arguments[0] ? arguments[0]["$model"] : null;
+    arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
     $.__views.storeLocatorByState = Ti.UI.createView({
@@ -180,7 +161,37 @@ function Controller() {
         id: "storeLocatorByState"
     });
     $.__views.storeLocatorByState && $.addTopLevelView($.__views.storeLocatorByState);
+<<<<<<< HEAD
+<<<<<<< HEAD
+    $.__views.__alloyId70 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId70"
+    });
+    $.__views.storeLocatorByState.add($.__views.__alloyId70);
+    $.__views.__alloyId71 = Alloy.createController("toggle", {
+        id: "__alloyId71",
+        __parentSymbol: $.__views.__alloyId70
+    });
+    $.__views.__alloyId71.setParent($.__views.__alloyId70);
+=======
+<<<<<<< HEAD
+    $.__views.__alloyId70 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId70"
+    });
+    $.__views.storeLocatorByState.add($.__views.__alloyId70);
+    $.__views.__alloyId71 = Alloy.createController("toggle", {
+        id: "__alloyId71",
+        __parentSymbol: $.__views.__alloyId70
+    });
+    $.__views.__alloyId71.setParent($.__views.__alloyId70);
+=======
+    $.__views.__alloyId67 = Ti.UI.createView({
+=======
     $.__views.__alloyId68 = Ti.UI.createView({
+>>>>>>> 21/10/2014
         layout: "horizontal",
         height: "80",
         id: "__alloyId68"
@@ -190,7 +201,13 @@ function Controller() {
         id: "__alloyId69",
         __parentSymbol: $.__views.__alloyId68
     });
+<<<<<<< HEAD
+    $.__views.__alloyId68.setParent($.__views.__alloyId67);
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+=======
     $.__views.__alloyId69.setParent($.__views.__alloyId68);
+>>>>>>> 21/10/2014
     $.__views.stateName = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -201,7 +218,19 @@ function Controller() {
         id: "stateName",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
+<<<<<<< HEAD
+<<<<<<< HEAD
+    $.__views.__alloyId70.add($.__views.stateName);
+=======
+<<<<<<< HEAD
+    $.__views.__alloyId70.add($.__views.stateName);
+=======
+    $.__views.__alloyId67.add($.__views.stateName);
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+=======
     $.__views.__alloyId68.add($.__views.stateName);
+>>>>>>> 21/10/2014
     $.__views.tableContainer = Ti.UI.createView({
         backgroundColor: "white",
         id: "tableContainer",

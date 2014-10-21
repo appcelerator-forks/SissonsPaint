@@ -22,7 +22,7 @@ var submitContactForm = function(){
 		return;
 	}
 	
-	var url = API.sendContactMsg + "&name="+name+"&email="+email+"&contact="+contact+"&message="+message;
+	var url = API.sendContactMsg + "&name="+name+"&email="+email+"&message="+message;
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
@@ -30,7 +30,7 @@ var submitContactForm = function(){
 	         if(res.status == "success"){
 	         	COMM.createAlert('Message Sent','Your messages successfully sent to admin.');
 	         	$.username.value = "";
-				$.phone.value = "";
+			//	$.phone.value = "";
 				$.email.value = "";
 				$.message.value = "";
 	         }
