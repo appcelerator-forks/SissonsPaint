@@ -228,7 +228,8 @@ function Controller() {
     $.__views.contactButton = Ti.UI.createImageView({
         id: "contactButton",
         image: "/images/icon_email.png",
-        height: "40"
+        height: "40",
+        width: "50"
     });
     $.__views.__alloyId13.add($.__views.contactButton);
     submitContactForm ? $.__views.contactButton.addEventListener("click", submitContactForm) : __defers["$.__views.contactButton!click!submitContactForm"] = true;

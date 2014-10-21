@@ -13,7 +13,8 @@ function Controller() {
             backgroundColor: "white",
             width: "95%",
             layout: "vertical",
-            height: Ti.UI.SIZE,
+            height: "80%",
+            zIndex: "-1",
             textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
             overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
         });
@@ -72,6 +73,17 @@ function Controller() {
             TheScrollView.add(colourView);
         }
         $.mainViewContainer.add(TheScrollView);
+        $.mainViewContainer.add(bottomBar);
+    }
+    function createColorEvent(subView, colour_details, details) {
+        subView.addEventListener("click", function() {
+            Ti.App.Properties.setString("from", "colourSwatches");
+            var nav = Alloy.createController("colourDetails", {
+                colour_details: colour_details,
+                details: details
+            }).getView();
+            Alloy.Globals.Drawer.setCenterWindow(nav);
+        });
     }
     function createColorEvent(subView, colour_details, details) {
         subView.addEventListener("click", function() {
@@ -100,10 +112,10 @@ function Controller() {
     var exports = {};
     $.__views.mainViewContainer = Ti.UI.createView({
         backgroundColor: "white",
-        layout: "vertical",
         id: "mainViewContainer"
     });
     $.__views.mainViewContainer && $.addTopLevelView($.__views.mainViewContainer);
+<<<<<<< HEAD
     $.__views.__alloyId41 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
@@ -115,6 +127,60 @@ function Controller() {
         __parentSymbol: $.__views.__alloyId41
     });
     $.__views.__alloyId42.setParent($.__views.__alloyId41);
+=======
+<<<<<<< HEAD
+    $.__views.__alloyId30 = Ti.UI.createView({
+<<<<<<< HEAD
+=======
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId30"
+    });
+    $.__views.mainViewContainer.add($.__views.__alloyId30);
+    $.__views.__alloyId31 = Alloy.createController("toggle", {
+        id: "__alloyId31",
+        __parentSymbol: $.__views.__alloyId30
+    });
+    $.__views.__alloyId31.setParent($.__views.__alloyId30);
+=======
+    $.__views.__alloyId25 = Ti.UI.createView({
+>>>>>>> FETCH_HEAD
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId30"
+    });
+    $.__views.mainViewContainer.add($.__views.__alloyId30);
+    $.__views.__alloyId31 = Alloy.createController("toggle", {
+        id: "__alloyId31",
+        __parentSymbol: $.__views.__alloyId30
+    });
+    $.__views.__alloyId31.setParent($.__views.__alloyId30);
+=======
+    $.__views.__alloyId25 = Ti.UI.createView({
+        layout: "vertical",
+        id: "__alloyId25"
+    });
+    $.__views.mainViewContainer.add($.__views.__alloyId25);
+    $.__views.__alloyId26 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId26"
+    });
+    $.__views.__alloyId25.add($.__views.__alloyId26);
+    $.__views.__alloyId27 = Alloy.createController("toggle", {
+        id: "__alloyId27",
+        __parentSymbol: $.__views.__alloyId26
+    });
+<<<<<<< HEAD
+    $.__views.__alloyId26.setParent($.__views.__alloyId25);
+>>>>>>> FETCH_HEAD
+<<<<<<< HEAD
+=======
+    $.__views.__alloyId27.setParent($.__views.__alloyId26);
+>>>>>>> 21/10/2014
+=======
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
     $.__views.titleLabel = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -126,7 +192,25 @@ function Controller() {
         id: "titleLabel",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
+<<<<<<< HEAD
     $.__views.__alloyId41.add($.__views.titleLabel);
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
+    $.__views.__alloyId30.add($.__views.titleLabel);
+=======
+    $.__views.__alloyId25.add($.__views.titleLabel);
+>>>>>>> FETCH_HEAD
+<<<<<<< HEAD
+=======
+    $.__views.__alloyId26.add($.__views.titleLabel);
+>>>>>>> 21/10/2014
+=======
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -134,7 +218,148 @@ function Controller() {
     var category_colour_lib = Alloy.createCollection("category_colour");
     var colour_lib = Alloy.createCollection("colour");
     var details = library.getCategoryList();
+    var bottomBar = Titanium.UI.createView({
+        layout: "composite",
+        bottom: 0,
+        height: 60,
+        width: Ti.Platform.displayCaps.platformWidth
+    });
+    var buttonWrapper = Titanium.UI.createView({
+        layout: "horizontal",
+        left: (Ti.Platform.displayCaps.platformWidth - 120) / 2,
+        width: 120
+    });
+    var backgroundImg = Ti.UI.createImageView({
+        height: 60,
+        width: Ti.UI.FILL,
+        image: "/images/tool_bar.jpg"
+    });
+    var filterButton = Ti.UI.createImageView({
+        width: 50,
+        height: 40,
+        right: 10,
+        top: 10,
+        bottom: 10,
+        image: "/images/icon_filter.png",
+        onClick: "popWindow"
+    });
+    var searchButton = Ti.UI.createImageView({
+        width: 50,
+        height: 40,
+        left: 10,
+        top: 10,
+        bottom: 10,
+        image: "/images/icon_search.png"
+    });
+    buttonWrapper.add(filterButton);
+    buttonWrapper.add(searchButton);
+    bottomBar.add(backgroundImg);
+    bottomBar.add(buttonWrapper);
     generateTable();
+    filterButton.addEventListener("click", function() {
+        console.log("popWindow");
+        var row1 = Ti.UI.createTableViewRow({
+            title: "Interior",
+            width: 150,
+            left: 10,
+            touchEnabled: true,
+            height: 60
+        });
+        var row2 = Ti.UI.createTableViewRow({
+            title: "Exterior",
+            width: 150,
+            left: 10,
+            touchEnabled: true,
+            height: 60
+        });
+        var row3 = Ti.UI.createTableViewRow({
+            title: "Wood",
+            width: 150,
+            left: 10,
+            touchEnabled: true,
+            height: 60
+        });
+        var row4 = Ti.UI.createTableViewRow({
+            title: "Metal",
+            width: 150,
+            left: 10,
+            touchEnabled: true,
+            height: 60
+        });
+        var tableData = [];
+        tableData.push(row1);
+        tableData.push(row2);
+        tableData.push(row3);
+        tableData.push(row4);
+        var table = Titanium.UI.createTableView({
+            separatorColor: "transparent",
+            backgroundImage: "/images/pop_window.png",
+            height: Ti.UI.SIZE,
+            width: 150,
+            bottom: 60,
+            zIndex: 999,
+            center: filterButton.getCenter(),
+            overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
+            data: tableData
+        });
+        $.mainViewContainer.add(table);
+        table.addEventListener("click", function(e) {
+            console.log(e.index);
+            $.mainViewContainer.remove(table);
+        });
+    });
+    searchButton.addEventListener("click", function() {
+        console.log("searchBar");
+        var hintTextLabel = Ti.UI.createLabel({
+            text: "Enter Colour, Name or Colour Code",
+            color: "#A5A5A5",
+            font: {
+                fontSize: 14
+            },
+            backgroundColor: "transparent"
+        });
+        var textField = Ti.UI.createTextField({
+            borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+            color: "#336699",
+            hintText: "Enter Colour, Name or Colour Code",
+            backgroundColor: "white",
+            borderColor: "#A5A5A5",
+            borderRadius: 5,
+            font: hintTextLabel.font,
+            left: 10,
+            top: 10,
+            width: "70%",
+            height: 60
+        });
+        var searchButton = Ti.UI.createButton({
+            backgroundColor: "white",
+            color: "#A5A5A5",
+            textAlign: "Titanium.UI.TEXT_ALIGNMENT_CENTER",
+            title: "SEARCH",
+            borderColor: "#A5A5A5",
+            borderRadius: 5,
+            left: 5,
+            top: 10,
+            height: 60
+        });
+        var searchWrapper = Titanium.UI.createView({
+            layout: "horizontal"
+        });
+        var searchView = Titanium.UI.createView({
+            layout: "composite",
+            width: "100%",
+            height: 80,
+            bottom: 60,
+            backgroundColor: "#A5A5A5"
+        });
+        searchWrapper.add(textField);
+        searchWrapper.add(searchButton);
+        searchView.add(searchWrapper);
+        $.mainViewContainer.add(searchView);
+        searchButton.addEventListener("click", function() {
+            $.mainViewContainer.remove(searchView);
+        });
+    });
     _.extend($, exports);
 }
 
