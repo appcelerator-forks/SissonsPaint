@@ -104,6 +104,24 @@ function Controller() {
         id: "mainViewContainer"
     });
     $.__views.mainViewContainer && $.addTopLevelView($.__views.mainViewContainer);
+<<<<<<< HEAD
+    $.__views.__alloyId36 = Ti.UI.createView({
+        layout: "vertical",
+        id: "__alloyId36"
+    });
+    $.__views.mainViewContainer.add($.__views.__alloyId36);
+    $.__views.__alloyId37 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId37"
+    });
+    $.__views.__alloyId36.add($.__views.__alloyId37);
+    $.__views.__alloyId38 = Alloy.createController("toggle", {
+        id: "__alloyId38",
+        __parentSymbol: $.__views.__alloyId37
+    });
+    $.__views.__alloyId38.setParent($.__views.__alloyId37);
+=======
     $.__views.__alloyId41 = Ti.UI.createView({
         layout: "vertical",
         id: "__alloyId41"
@@ -121,6 +139,7 @@ function Controller() {
         __parentSymbol: $.__views.__alloyId42
     });
     $.__views.__alloyId43.setParent($.__views.__alloyId42);
+>>>>>>> FETCH_HEAD
     $.__views.titleLabel = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -132,7 +151,11 @@ function Controller() {
         id: "titleLabel",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
+<<<<<<< HEAD
+    $.__views.__alloyId37.add($.__views.titleLabel);
+=======
     $.__views.__alloyId42.add($.__views.titleLabel);
+>>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -173,6 +196,56 @@ function Controller() {
         bottom: 10,
         image: "/images/icon_search.png"
     });
+    var searchView = Titanium.UI.createView({
+        layout: "composite",
+        width: "100%",
+        height: 80,
+        bottom: 60,
+        backgroundColor: "#A5A5A5"
+    });
+    var tableData = [];
+    var row1 = Ti.UI.createTableViewRow({
+        title: "Interior",
+        width: 150,
+        left: 10,
+        touchEnabled: true,
+        height: 60
+    });
+    var row2 = Ti.UI.createTableViewRow({
+        title: "Exterior",
+        width: 150,
+        left: 10,
+        touchEnabled: true,
+        height: 60
+    });
+    var row3 = Ti.UI.createTableViewRow({
+        title: "Wood",
+        width: 150,
+        left: 10,
+        touchEnabled: true,
+        height: 60
+    });
+    var row4 = Ti.UI.createTableViewRow({
+        title: "Metal",
+        width: 150,
+        left: 10,
+        touchEnabled: true,
+        height: 60
+    });
+    tableData.push(row1);
+    tableData.push(row2);
+    tableData.push(row3);
+    tableData.push(row4);
+    var table = Titanium.UI.createTableView({
+        separatorColor: "transparent",
+        backgroundImage: "/images/pop_window.png",
+        height: Ti.UI.SIZE,
+        width: 150,
+        bottom: 60,
+        zIndex: 999,
+        center: filterButton.getCenter(),
+        data: tableData
+    });
     buttonWrapper.add(filterButton);
     buttonWrapper.add(searchButton);
     bottomBar.add(backgroundImg);
@@ -180,50 +253,7 @@ function Controller() {
     generateTable();
     filterButton.addEventListener("click", function() {
         console.log("popWindow");
-        var row1 = Ti.UI.createTableViewRow({
-            title: "Interior",
-            width: 150,
-            left: 10,
-            touchEnabled: true,
-            height: 60
-        });
-        var row2 = Ti.UI.createTableViewRow({
-            title: "Exterior",
-            width: 150,
-            left: 10,
-            touchEnabled: true,
-            height: 60
-        });
-        var row3 = Ti.UI.createTableViewRow({
-            title: "Wood",
-            width: 150,
-            left: 10,
-            touchEnabled: true,
-            height: 60
-        });
-        var row4 = Ti.UI.createTableViewRow({
-            title: "Metal",
-            width: 150,
-            left: 10,
-            touchEnabled: true,
-            height: 60
-        });
-        var tableData = [];
-        tableData.push(row1);
-        tableData.push(row2);
-        tableData.push(row3);
-        tableData.push(row4);
-        var table = Titanium.UI.createTableView({
-            separatorColor: "transparent",
-            backgroundImage: "/images/pop_window.png",
-            height: Ti.UI.SIZE,
-            width: 150,
-            bottom: 60,
-            zIndex: 999,
-            center: filterButton.getCenter(),
-            overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
-            data: tableData
-        });
+        $.mainViewContainer.remove(searchView);
         $.mainViewContainer.add(table);
         table.addEventListener("click", function(e) {
             console.log(e.index);
@@ -232,6 +262,7 @@ function Controller() {
     });
     searchButton.addEventListener("click", function() {
         console.log("searchBar");
+        $.mainViewContainer.remove(table);
         var hintTextLabel = Ti.UI.createLabel({
             text: "Enter Colour, Name or Colour Code",
             color: "#A5A5A5",
@@ -266,13 +297,6 @@ function Controller() {
         });
         var searchWrapper = Titanium.UI.createView({
             layout: "horizontal"
-        });
-        var searchView = Titanium.UI.createView({
-            layout: "composite",
-            width: "100%",
-            height: 80,
-            bottom: 60,
-            backgroundColor: "#A5A5A5"
         });
         searchWrapper.add(textField);
         searchWrapper.add(searchButton);
