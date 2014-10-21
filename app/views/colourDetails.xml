@@ -38,30 +38,17 @@
 			    <View layout="vertical" height="Titanium.UI.SIZE" backgroundColor="#ffffff">
 			    	<Label class="titleLabel" color="black" width="75%" >Colour Category</Label>
 			     </View>
-				<ScrollView bottom="0" id="main" backgroundColor="white" layout="vertical" height="250" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" >
+				<ScrollView bottom="0" id="main" backgroundColor="white" layout="vertical" height="300" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" >
 					<ImageView id="colourCategoryImage"/>
 					<Label id="colourCategoryDescription" class="aboutContent" width="95%"></Label>	
 				</ScrollView>
 				
 			    
 		    </View>
-<<<<<<< Updated upstream
-		    <View layout="vertical" height="Titanium.UI.SIZE" backgroundColor="#ffffff">
-		    	<Label class="titleLabel" color="black" width="75%" >Colour Category</Label>
-		     </View>
-			<ScrollView bottom="0" id="main" backgroundColor="white" layout="vertical" height="250" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" >
-				<ImageView id="colourCategoryImage"/>
-				<Label id="colourCategoryDescription" class="aboutContent" width="95%"></Label>	
-			</ScrollView>
-		    
-	    </View>
-
-=======
 		</View>
 		<View height="60" bottom="0">
 				<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
 				<ImageView id="filterButton" image="/images/icon_favourite.png" onClick="popWindow" height="40" width="50" />
 		</View>
->>>>>>> Stashed changes
 	</View> 
 </Alloy>

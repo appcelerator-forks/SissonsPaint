@@ -21,3 +21,6 @@ $.colourCategoryImage.image = category.image;
 $.colourCategoryImage.width = "90%";
 $.colourCategoryDescription.text = category.description;
  
+function popWindow(e){
+	alert("Successful");
+}
