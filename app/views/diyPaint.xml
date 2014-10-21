@@ -1,13 +1,13 @@
 <Alloy>
 	<View id="diyPaint">
 		<View class="container">
-			<View id="toggle" layout="horizontal" height="80" top="0">
+			<View backgroundColor="yellow" id="toggle" layout="horizontal" height="80" top="0">
 				<Require src="toggle"></Require>
 				<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">DIY Paint</Label>
 			</View>
-			<WebView id='canvas' url="/html/canvas-paint-bucket.html" disableBounce="true" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" />
-			<View bottom="0" id="toolbar">
-				<ImageView width="16.6%" id="settings1" mod="settings" left="0" image="/images/power-icons.png" />
+			<WebView backgroundColor="h" id='canvas' url="/html/canvas-paint-bucket.html" enableZoomControls="false"/>
+			<View bottom="0" backgroundColor="orange" id="toolbar">
+				<ImageView width="16.6%" id="settings" mod="settings" left="0" image="/images/power-icons.png" />
 				<ImageView width="16.6%" id="settings" mod="settings" left="16.6%" image="/images/power-icons.png" />
 				<ImageView width="16.6%" id="settings" mod="settings" left="33.2%" image="/images/power-icons.png" />
 				<ImageView width="16.6%" id="settings" mod="settings" left="49.8%" image="/images/power-icons.png" />

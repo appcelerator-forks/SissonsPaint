@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 function __processArg(obj, key) {
     var arg = null;
     if (obj) {
@@ -7,40 +9,71 @@ function __processArg(obj, key) {
     return arg;
 }
 
+>>>>>>> FETCH_HEAD
 function Controller() {
-    function createAdImageEvent(adImage, id, content, cell) {
+    function createAdImageEvent(adImage, id, content, cell, downloaded, downloadIcon) {
         adImage.addEventListener("click", function() {
             var ind = Titanium.UI.createProgressBar({
-                width: "80%",
-                height: 100,
+                width: "90%",
+                height: Ti.UI.FILL,
                 min: 0,
                 max: 1,
                 value: 0,
-                top: 10,
                 message: "",
                 font: {
-                    fontSize: 12,
+                    fontSize: 12
+                },
+                color: "red"
+            });
+            var imageHeight = adImage.size.height;
+            var imageWidth = adImage.size.width;
+            var gray = Titanium.UI.createView({
+                height: imageHeight,
+                width: imageWidth,
+                backgroundColor: "#A5A5A5",
+                opacity: .5,
+                bottom: 0
+            });
+            var label = Ti.UI.createLabel({
+                color: "black",
+                font: {
+                    fontSize: 8,
                     fontWeight: "bold"
                 },
-                color: "red",
-                opacity: 1
+                text: "",
+                top: 2,
+                textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+                width: imageWidth,
+                height: imageHeight
             });
-            cell.add(ind);
-            library.updateDownloadedBrochure(id);
-            pdf(content, true, ind, function(err) {
+            if ("0" == downloaded) {
+                cell.add(gray);
+                cell.add(ind);
+                cell.add(label);
+            } else {
+                cell.remove(gray);
+                cell.remove(ind);
+                cell.remove(label);
+            }
+            pdf(content, true, ind, label, function(err) {
                 if (err) alert(err); else {
-                    adImage.add(ind);
-                    console.log("a");
-                    ind.show();
+                    library.updateDownloadedBrochure(id);
+                    "" != downloadIcon && cell.remove(downloadIcon);
+                    cell.remove(gray);
+                    cell.remove(ind);
+                    cell.remove(label);
                 }
             });
         });
     }
+<<<<<<< HEAD
+=======
     function createVideoEvent(adImage, id, content) {
         adImage.addEventListener("click", function() {
             youtubePlayer.playVideo(content);
         });
     }
+>>>>>>> FETCH_HEAD
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "brochure";
     if (arguments[0]) {
@@ -59,22 +92,26 @@ function Controller() {
     $.__views.brochureView = Ti.UI.createView({
         backgroundColor: "white",
         id: "brochureView",
-        layout: "vertical",
         backgroundImage: "/images/wood_background.jpg"
     });
     $.__views.brochureView && $.addTopLevelView($.__views.brochureView);
     $.__views.__alloyId15 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "80",
+        layout: "vertical",
         id: "__alloyId15"
     });
     $.__views.brochureView.add($.__views.__alloyId15);
-    $.__views.__alloyId16 = Alloy.createController("toggle", {
-        id: "__alloyId16",
-        __parentSymbol: $.__views.__alloyId15
+    $.__views.__alloyId16 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId16"
     });
-    $.__views.__alloyId16.setParent($.__views.__alloyId15);
-    $.__views.__alloyId17 = Ti.UI.createLabel({
+    $.__views.__alloyId15.add($.__views.__alloyId16);
+    $.__views.__alloyId17 = Alloy.createController("toggle", {
+        id: "__alloyId17",
+        __parentSymbol: $.__views.__alloyId16
+    });
+    $.__views.__alloyId17.setParent($.__views.__alloyId16);
+    $.__views.__alloyId18 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -83,15 +120,15 @@ function Controller() {
         },
         text: "Brochure",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-        id: "__alloyId17"
+        id: "__alloyId18"
     });
-    $.__views.__alloyId15.add($.__views.__alloyId17);
+    $.__views.__alloyId16.add($.__views.__alloyId18);
     $.__views.scrollview = Ti.UI.createScrollView({
         id: "scrollview",
         layout: "vertical",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
-    $.__views.brochureView.add($.__views.scrollview);
+    $.__views.__alloyId15.add($.__views.scrollview);
     $.__views.mainView = Ti.UI.createView({
         id: "mainView",
         layout: "vertical",
@@ -99,6 +136,26 @@ function Controller() {
         width: "80%"
     });
     $.__views.scrollview.add($.__views.mainView);
+    $.__views.__alloyId19 = Ti.UI.createView({
+        backgroundColor: "green",
+        height: "60",
+        bottom: "0",
+        id: "__alloyId19"
+    });
+    $.__views.brochureView.add($.__views.__alloyId19);
+    $.__views.__alloyId20 = Ti.UI.createImageView({
+        image: "/images/tool_bar.jpg",
+        height: "60",
+        width: Titanium.UI.FILL,
+        id: "__alloyId20"
+    });
+    $.__views.__alloyId19.add($.__views.__alloyId20);
+    $.__views.filterButton = Ti.UI.createImageView({
+        id: "filterButton",
+        image: "/images/icon_filter.png",
+        height: "40"
+    });
+    $.__views.__alloyId19.add($.__views.filterButton);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -110,15 +167,16 @@ function Controller() {
         var counter = 0;
         var imagepath, adImage, row, image, cellWrapper, cell = "";
         var last = details.length - 1;
-        for (var i = 0; i < details.length; i++) {
+        for (var i = 0; details.length > i; i++) {
             var id = details[i].id;
             imagepath = details[i].cover;
             adImage = Ti.UI.createImageView({
                 image: imagepath,
                 bottom: 0,
-                width: 90
+                width: 90,
+                height: "auto"
             });
-            if (counter % 3 == 0) {
+            if (0 == counter % 3) {
                 row = $.UI.create("View", {
                     textAlign: "center",
                     bottom: 0,
@@ -152,7 +210,11 @@ function Controller() {
             cellWrapper.add(cell);
             row.add(cellWrapper);
             row.add(image);
+<<<<<<< HEAD
+            (2 == counter % 3 || last == counter) && $.scrollview.add(row);
+=======
             if ("pdf" == details[i].format) {
+                var downloadIcon = "";
                 if ("0" == details[i].isDownloaded) {
                     downloadIcon = Ti.UI.createImageView({
                         image: "/images/icon_download.png",
@@ -163,7 +225,7 @@ function Controller() {
                     });
                     cell.add(downloadIcon);
                 }
-                createAdImageEvent(adImage, id, details[i].content, cell);
+                createAdImageEvent(adImage, id, details[i].content, cell, details[i].isDownloaded, downloadIcon);
             } else {
                 createVideoEvent(adImage, id, details[i].url);
                 playIcon = Ti.UI.createImageView({
@@ -174,6 +236,7 @@ function Controller() {
                 cell.add(playIcon);
             }
             (counter % 3 == 2 || last == counter) && $.scrollview.add(row);
+>>>>>>> FETCH_HEAD
             counter++;
         }
     };

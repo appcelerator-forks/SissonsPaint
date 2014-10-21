@@ -1,4 +1,5 @@
 var ind = '';
+var label = '';
 // Checks to see if a file exists
 function exists (file) {
 
@@ -78,7 +79,7 @@ function download (url, cookies, done) {
   
   	client.ondatastream = function(e) {
 		ind.value = e.progress ;
-		ind.message = (ind.value*100).toFixed(0)+"% Downloading";
+		label.text = (ind.value*100).toFixed(0)+"% Downloading";
 		Ti.API.info('ONSENDSTREAM - PROGRESS: ' + e.progress);
 	};
 	
@@ -123,8 +124,9 @@ function launch (file) {
 }
  
 // do whole thing -- download url w/ cookies and launch pdf
-function pdf (url, cookies, inds, done) {
+function pdf (url, cookies, inds, labels, done) {
   ind = inds;
+  label = labels;
   if (!Ti.Filesystem.isExternalStoragePresent()) {
      
     return done(new Error("external"));

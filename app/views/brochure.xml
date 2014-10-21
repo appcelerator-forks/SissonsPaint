@@ -1,6 +1,7 @@
 <Alloy>
 	 
-		<View id="brochureView" layout="vertical" class="container" backgroundImage="/images/wood_background.jpg">
+		<View id="brochureView" class="container" backgroundImage="/images/wood_background.jpg">
+			<View layout="vertical">
 			<View layout="horizontal" height="80">
 				<Require src="toggle"></Require>
 				<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Brochure</Label>
@@ -10,6 +11,11 @@
 					
 				</View>
 			</ScrollView>
+			</View>
+			<View backgroundColor="green" height="60" bottom="0">
+				<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
+				<ImageView id="filterButton" image="/images/icon_filter.png" height="40" />
+		    </View>
 		</View>
 	 
 </Alloy>

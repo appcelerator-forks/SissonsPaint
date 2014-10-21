@@ -46,15 +46,19 @@ function download(url, cookies, done) {
         console.log("http error " + e.source.status);
         return done(e);
     };
+<<<<<<< HEAD
+=======
     client.ondatastream = function(e) {
         ind.value = e.progress;
-        ind.message = (100 * ind.value).toFixed(0) + "% Downloading";
+        label.text = (100 * ind.value).toFixed(0) + "% Downloading";
         Ti.API.info("ONSENDSTREAM - PROGRESS: " + e.progress);
     };
+>>>>>>> FETCH_HEAD
     client.setRequestHeader("Cookie", cookies);
     client.open("GET", url);
     client.send();
     return client;
+<<<<<<< HEAD
 }
 
 function copyToTemp(srcFile, base, url) {
@@ -67,6 +71,20 @@ function copyToTemp(srcFile, base, url) {
     return tempFile;
 }
 
+=======
+}
+
+function copyToTemp(srcFile, base, url) {
+    var tempdir = Ti.Filesystem.getFile(Ti.Filesystem.tempDirectory, base);
+    tempdir.createDirectory();
+    var filename = url.split("/");
+    filename = filename[filename.length - 1];
+    var tempFile = Ti.Filesystem.getFile(Ti.Filesystem.tempDirectory, base, filename);
+    tempFile.write(srcFile.read());
+    return tempFile;
+}
+
+>>>>>>> FETCH_HEAD
 function launch(file) {
     console.log("launching pdf path: " + file.getNativePath());
     var intent = Ti.Android.createIntent({
@@ -77,8 +95,13 @@ function launch(file) {
     Ti.Android.currentActivity.startActivity(intent);
 }
 
-function pdf(url, cookies, inds, done) {
+<<<<<<< HEAD
+function pdf(url, cookies, done) {
+=======
+function pdf(url, cookies, inds, labels, done) {
     ind = inds;
+    label = labels;
+>>>>>>> FETCH_HEAD
     if (!Ti.Filesystem.isExternalStoragePresent()) return done(new Error("external"));
     download(url, cookies, function(err, file, base, url) {
         if (err) return done(err);
@@ -88,6 +111,11 @@ function pdf(url, cookies, inds, done) {
     });
 }
 
+<<<<<<< HEAD
+=======
 var ind = "";
 
+var label = "";
+
+>>>>>>> FETCH_HEAD
 module.exports = pdf;

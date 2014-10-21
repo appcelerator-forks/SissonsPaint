@@ -2,14 +2,15 @@
 <html>
   <head>
     <title>Create HTML5 Canvas JavaScript Paint Bucket Example</title>
-    <meta name="viewport" content="initial-scale=1.0, width=device-width, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no" /> 
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0" />
     <style>
-    	html {-webkit-text-size-adjust: none;}
+    	html {-webkit-text-size-adjust: none; margin:0; padding:0; background: yellow}
+    	body {margin:0; padding:0;}
     	#parent{
-    	background-color:#5C0404;
+    	background-color:red;
 		
-		background:url("images/id.jpg")111px 11px no-repeat;
-		background-size: 267px 200px;
+		background:url("images/id.jpg") no-repeat;
+		background-size: 100% 100%;
 		}
 		
 		#canvasDiv{
@@ -19,9 +20,26 @@
   <body>
    <div id="parent">
     	<div id="canvasDiv"></div>
-        <a href="#" id="brush">Brush</a>
     </div>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+
+		var screenwidth = window.innerWidth;
+		var initCanvasSize = function(e){
+			paintBucketApp.init({
+				canvasWidth: screenwidth,
+				canvasHeight: e.height-5
+			});
+      	};
+		
+		var loadImage = function(e){
+			$('#parent').css('background', 'url("' + e.image + '")');
+			paintBucketApp.loadImage({image: e.image});
+		};
+		
+		Ti.App.addEventListener("web:initCanvasSize", initCanvasSize);
+		Ti.App.addEventListener("web:loadImage", loadImage);
+	</script>
     <style>
     	* {
 			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -134,16 +152,16 @@ var paintBucketApp = (function () {
 			// Draw the color swatches
 			locX = 52;
 			locY = 19;
-			drawColorSwatch(colorPurple, locX, locY);
+			//drawColorSwatch(colorPurple, locX, locY);
 
 			locY += 46;
-			drawColorSwatch(colorGreen, locX, locY);
+			//drawColorSwatch(colorGreen, locX, locY);
 
 			locY += 46;
-			drawColorSwatch(colorYellow, locX, locY);
+			//drawColorSwatch(colorYellow, locX, locY);
 
 			locY += 46;
-			drawColorSwatch(colorBrown, locX, locY);
+			//drawColorSwatch(colorBrown, locX, locY);
 
 			// Draw the outline image on top of everything. We could move this to a separate 
 			//   canvas so we did not have to redraw this everyime.
@@ -384,14 +402,23 @@ var paintBucketApp = (function () {
 		 var element = (!document.compatMode || document.compatMode == 'CSS1Compat') ? document.documentElement : document.body;
 		 return {pageX: event.clientX + element.scrollLeft, pageY: event.clientY + element.scrollTop};
 		},
-
+		loadImage = function(e){
+			outlineImage.src = e.image;
+			redraw();
+		},
 		// Creates a canvas element, loads images, adds events, and draws the canvas for the first time.
-		init = function () {
+		init = function (data) {
 
 			// Create the canvas (Neccessary for IE because it doesn't know what a canvas element is)
 			var canvas = document.createElement('canvas');
-			canvas.setAttribute('width', canvasWidth);
-			canvas.setAttribute('height', canvasHeight);
+			var canvasW = (!data.canvasWidth || data.canvasWidth.length)?canvasWidth:data.canvasWidth;
+			var canvasH = (!data.canvasHeight || data.canvasHeight.length)?canvasHeight:data.canvasHeight;
+
+			canvas.setAttribute('width', canvasW);
+			canvas.setAttribute('height', canvasH);
+			canvas.setAttribute('drawingAreaWidth', canvasW);
+			canvas.setAttribute('drawingAreaHeight', canvasH);
+		
 			canvas.setAttribute('id', 'canvas');
 			document.getElementById('canvasDiv').appendChild(canvas);
 
@@ -410,13 +437,13 @@ var paintBucketApp = (function () {
 			swatchImage.src = "images/paint-outline.png";
 
 			outlineImage.onload = function () {
+				alert(drawingAreaWidth);
 				context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
 
 				// Test for cross origin security error (SECURITY_ERR: DOM Exception 18)
 				try {
 					outlineLayerData = context.getImageData(0, 0, canvasWidth, canvasHeight);
 				} catch (ex) {
-					alert(ex);
 					window.alert("Application cannot be run locally. Please run on a server.");
 					return;
 				}
@@ -429,15 +456,21 @@ var paintBucketApp = (function () {
 
 	return {
 		init: init,
+		loadImage: loadImage,
 		createBrushMouseEvents: createBrushMouseEvents
 	};
 }());
     $(document).ready(function () {
-		paintBucketApp.init();
+		
 		$("#brush").click(function(e) {
             paintBucketApp.createBrushMouseEvents();
 		});
-});
+		
+      	$(window).unload(function() {
+		    Ti.App.removeEventListener("web:initCanvasSize", initCanvasSize);
+		    Ti.App.removeEventListener("web:loadImage", loadImage);
+		});
+	});
 
 </script>
   </body>
