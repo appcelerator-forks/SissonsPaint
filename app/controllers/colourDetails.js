@@ -21,8 +21,6 @@ $.colourCategoryImage.image = category.image;
 $.colourCategoryImage.width = "80%";
 $.colourCategoryDescription.text = category.description;
  
-function popWindow(){
-	
-	
-}
-
+function popWindow(e){
+	alert("To add favourite...");
+} 

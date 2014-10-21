@@ -28,6 +28,7 @@ function Controller() {
         id: "home"
     });
     $.__views.home && $.addTopLevelView($.__views.home);
+<<<<<<< HEAD
     $.__views.__alloyId49 = Ti.UI.createView({
         layout: "vertical",
         id: "__alloyId49"
@@ -45,6 +46,25 @@ function Controller() {
     });
     $.__views.__alloyId51.setParent($.__views.__alloyId50);
     $.__views.__alloyId52 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId50 = Ti.UI.createView({
+        layout: "vertical",
+        id: "__alloyId50"
+    });
+    $.__views.home.add($.__views.__alloyId50);
+    $.__views.__alloyId51 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId51"
+    });
+    $.__views.__alloyId50.add($.__views.__alloyId51);
+    $.__views.__alloyId52 = Alloy.createController("toggle", {
+        id: "__alloyId52",
+        __parentSymbol: $.__views.__alloyId51
+    });
+    $.__views.__alloyId52.setParent($.__views.__alloyId51);
+    $.__views.__alloyId53 = Ti.UI.createLabel({
+>>>>>>> FETCH_HEAD
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -53,9 +73,15 @@ function Controller() {
         },
         text: "Home",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+<<<<<<< HEAD
         id: "__alloyId52"
     });
     $.__views.__alloyId50.add($.__views.__alloyId52);
+=======
+        id: "__alloyId53"
+    });
+    $.__views.__alloyId51.add($.__views.__alloyId53);
+>>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
