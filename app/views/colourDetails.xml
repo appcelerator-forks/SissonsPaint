@@ -4,10 +4,7 @@
 			<View layout="horizontal" height="80">
 				<Require src="toggle"></Require>
 			</View>
-			<View height="60" bottom="0">
-				<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
-				<ImageView id="filterButton" image="/images/icon_favourite.png" onClick="popWindow" height="40" width="50" />
-			</View>
+			
 	
 			<View layout="vertical" backgroundColor="#ffffff" width="160" height="160">
 				<View layout="vertical"  width="150" top="5" height="150" bottom="45" id="boxDetails"  opacity="0.6" >
@@ -34,29 +31,21 @@
 					</View>
 				</View>
 			</View>
-			<View  layout="vertical" bottom="0" height="Ti.UI.SIZE" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
-				<View layout="vertical" height="Titanium.UI.SIZE">
-					<ImageView image="/images/scroll_up.png" width="Titanium.UI.FILL" />
-			    </View>
-			    <View layout="vertical" height="Titanium.UI.SIZE" backgroundColor="#ffffff">
-			    	<Label class="titleLabel" color="black" width="75%" >Colour Category</Label>
-			     </View>
-				<ScrollView bottom="0" id="main" backgroundColor="white" layout="vertical" height="250" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" >
-					<ImageView id="colourCategoryImage"/>
-					<Label id="colourCategoryDescription" class="aboutContent" width="95%"></Label>	
-				</ScrollView>
-				
-			    
-		    </View>
+			
+	    </View>
+	    <View layout="vertical" height="300" bottom="60">
+	    	<ImageView image="/images/scroll_up.png" width="Titanium.UI.FILL" />
 		    <View layout="vertical" height="Titanium.UI.SIZE" backgroundColor="#ffffff">
 		    	<Label class="titleLabel" color="black" width="75%" >Colour Category</Label>
 		     </View>
 			<ScrollView bottom="0" id="main" backgroundColor="white" layout="vertical" height="250" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" >
 				<ImageView id="colourCategoryImage"/>
-				<Label id="colourCategoryDescription" class="aboutContent" width="95%"></Label>	
+				<Label id="colourCategoryDescription" class="aboutContent" width="80%"></Label>	
 			</ScrollView>
-		    
 	    </View>
-
+		<View height="60" bottom="0">
+			<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
+			<ImageView id="filterButton" image="/images/icon_favourite.png" onClick="popWindow" height="40" width="50" />
+		</View>
 	</View> 
 </Alloy>

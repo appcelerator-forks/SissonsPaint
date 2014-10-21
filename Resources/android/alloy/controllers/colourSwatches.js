@@ -14,6 +14,7 @@ function Controller() {
             width: "95%",
             layout: "vertical",
             height: "80%",
+            top: 80,
             textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
             overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
         });
@@ -69,7 +70,14 @@ function Controller() {
                 colourView.add(subView);
                 counter++;
             });
+            var separator = Titanium.UI.createImageView({
+                width: Titanium.UI.FILL,
+                height: 30,
+                touchEnabled: false,
+                image: "/images/scroll_up.png"
+            });
             TheScrollView.add(colourView);
+            details.length != i + 1 && TheScrollView.add(separator);
         }
         $.mainViewContainer.add(TheScrollView);
         $.mainViewContainer.add(bottomBar);
@@ -104,42 +112,22 @@ function Controller() {
         id: "mainViewContainer"
     });
     $.__views.mainViewContainer && $.addTopLevelView($.__views.mainViewContainer);
-<<<<<<< HEAD
-    $.__views.__alloyId36 = Ti.UI.createView({
+    $.__views.__alloyId43 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId36"
+        id: "__alloyId43"
     });
-    $.__views.mainViewContainer.add($.__views.__alloyId36);
-    $.__views.__alloyId37 = Ti.UI.createView({
+    $.__views.mainViewContainer.add($.__views.__alloyId43);
+    $.__views.__alloyId44 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId37"
+        id: "__alloyId44"
     });
-    $.__views.__alloyId36.add($.__views.__alloyId37);
-    $.__views.__alloyId38 = Alloy.createController("toggle", {
-        id: "__alloyId38",
-        __parentSymbol: $.__views.__alloyId37
+    $.__views.__alloyId43.add($.__views.__alloyId44);
+    $.__views.__alloyId45 = Alloy.createController("toggle", {
+        id: "__alloyId45",
+        __parentSymbol: $.__views.__alloyId44
     });
-    $.__views.__alloyId38.setParent($.__views.__alloyId37);
-=======
-    $.__views.__alloyId41 = Ti.UI.createView({
-        layout: "vertical",
-        id: "__alloyId41"
-    });
-    $.__views.mainViewContainer.add($.__views.__alloyId41);
-    $.__views.__alloyId42 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "85",
-        bottom: "20",
-        id: "__alloyId42"
-    });
-    $.__views.__alloyId41.add($.__views.__alloyId42);
-    $.__views.__alloyId43 = Alloy.createController("toggle", {
-        id: "__alloyId43",
-        __parentSymbol: $.__views.__alloyId42
-    });
-    $.__views.__alloyId43.setParent($.__views.__alloyId42);
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId45.setParent($.__views.__alloyId44);
     $.__views.titleLabel = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -151,11 +139,7 @@ function Controller() {
         id: "titleLabel",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
-<<<<<<< HEAD
-    $.__views.__alloyId37.add($.__views.titleLabel);
-=======
-    $.__views.__alloyId42.add($.__views.titleLabel);
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId44.add($.__views.titleLabel);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -185,8 +169,7 @@ function Controller() {
         right: 10,
         top: 10,
         bottom: 10,
-        image: "/images/icon_filter.png",
-        onClick: "popWindow"
+        image: "/images/icon_filter.png"
     });
     var searchButton = Ti.UI.createImageView({
         width: 50,

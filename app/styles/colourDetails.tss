@@ -9,7 +9,8 @@
 
 ".title":{
 	font:{fontSize:18, fontWeight:"bold"},	
-	textAlign :Ti.UI.TEXT_ALIGNMENT_LEFT
+	textAlign :Ti.UI.TEXT_ALIGNMENT_LEFT,
+	color: "#000000"
 },
 
 ".cCode":{

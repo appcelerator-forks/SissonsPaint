@@ -69,18 +69,18 @@ function Controller() {
         backgroundColor: "white",
         id: "main",
         layout: "vertical",
-        height: "200",
+        height: Ti.UI.SIZE,
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.mainScroll.add($.__views.main);
     $.__views.__alloyId3 = Ti.UI.createLabel({
         font: {
-            fontSize: "14"
+            fontSize: "16"
         },
         color: "#6E6E6E",
         bottom: 10,
         text: "It was in 1959 that SISSONS PAINTS (EAST) SDN BHD first started in Malaysia, although SISSONS' technology in paint making goes back 185 years when Sissons Brothers founded a company in HULL, England in 1803. SISSONS' well-known trademark of 'THE MEN AND PLANK' has been in use since 1910.",
-        width: "85%",
+        width: "75%",
         id: "__alloyId3"
     });
     $.__views.main.add($.__views.__alloyId3);
@@ -228,8 +228,7 @@ function Controller() {
     $.__views.contactButton = Ti.UI.createImageView({
         id: "contactButton",
         image: "/images/icon_email.png",
-        height: "40",
-        width: "50"
+        height: "40"
     });
     $.__views.__alloyId13.add($.__views.contactButton);
     submitContactForm ? $.__views.contactButton.addEventListener("click", submitContactForm) : __defers["$.__views.contactButton!click!submitContactForm"] = true;
