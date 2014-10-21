@@ -1,30 +1,36 @@
 <Alloy> 
-	<View layout="vertical" class="container" id="colourDetails" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">
-		 <View layout="horizontal" height="80">
-			<Require src="toggle"></Require>
-		</View>
-		<View layout="vertical"  width="150" height="150" bottom="45" backgroundColor="#ffffff" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">
-		 	<Label class="title" left="10" id="colourCode" top="10" />
-		 	<Label class="title" left="10" id="colourName" />
-		 	<Label class="cCode" left="10" id="colourC" ></Label>
-		 	<Label class="cCode" left="10" id="colourM" ></Label>
-		 	<Label class="cCode" left="10" id="colourY" ></Label>
-		 	<Label class="cCode" left="10" id="colourK" bottom="10" ></Label>
-		</View>
-		
-		<View  layout="vertical" bottom="0" height="Ti.UI.SIZE" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
-			<View layout="vertical" height="Titanium.UI.SIZE">
-				<ImageView image="/images/scroll_up.png" width="Titanium.UI.FILL" />
-		    </View>
-		    <View layout="vertical" height="Titanium.UI.SIZE" backgroundColor="#ffffff">
-		    	<Label class="titleLabel" color="black" width="75%" >Colour Category</Label>
-		     </View>
-			<ScrollView bottom="0" id="main" backgroundColor="white" layout="vertical" height="250" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" >
-				<ImageView id="colourCategoryImage"/>
-				<Label id="colourCategoryDescription" class="aboutContent" width="95%"></Label>	
-			</ScrollView>
+	<View class="container" id="colourDetails" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">
+		<View layout="vertical">
+			<View layout="horizontal" height="80">
+				<Require src="toggle"></Require>
+			</View>
+			<View layout="vertical"  width="150" height="150" bottom="45" backgroundColor="#ffffff" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">
+			 	<Label class="title" left="10" id="colourCode" top="10" />
+			 	<Label class="title" left="10" id="colourName" />
+			 	<Label class="cCode" left="10" id="colourC" ></Label>
+			 	<Label class="cCode" left="10" id="colourM" ></Label>
+			 	<Label class="cCode" left="10" id="colourY" ></Label>
+			 	<Label class="cCode" left="10" id="colourK" bottom="10" ></Label>
+			</View>
 			
-		    
-	    </View>
+			<View  layout="vertical" bottom="0" height="Ti.UI.SIZE" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
+				<View layout="vertical" height="Titanium.UI.SIZE">
+					<ImageView image="/images/scroll_up.png" width="Titanium.UI.FILL" />
+			    </View>
+			    <View layout="vertical" height="Titanium.UI.SIZE" backgroundColor="#ffffff">
+			    	<Label class="titleLabel" color="black" width="75%" >Colour Category</Label>
+			     </View>
+				<ScrollView bottom="0" id="main" backgroundColor="white" layout="vertical" height="250" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" >
+					<ImageView id="colourCategoryImage"/>
+					<Label id="colourCategoryDescription" class="aboutContent" width="95%"></Label>	
+				</ScrollView>
+				
+			    
+		    </View>
+		</View>
+		<View height="60" bottom="0">
+				<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
+				<ImageView id="filterButton" image="/images/icon_favourite.png" onClick="popWindow" height="40" width="50" />
+		</View>
 	</View> 
 </Alloy>

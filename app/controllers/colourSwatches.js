@@ -45,6 +45,65 @@ var searchButton = Ti.UI.createImageView({
   	image:'/images/icon_search.png'
 });
 
+var searchView = Titanium.UI.createView({
+   		layout: 'composite',
+   		width: "100%",
+   		height: 80,
+   		bottom: 60,
+   		backgroundColor: '#A5A5A5'
+	});
+	
+var tableData = [];
+
+var row1 = Ti.UI.createTableViewRow({
+    title: 'Interior',
+    width: 150,
+    left: 10,
+    touchEnabled: true,
+    height: 60
+  });
+  
+var row2 = Ti.UI.createTableViewRow({
+    title: 'Exterior',
+    width: 150,
+    left: 10,
+    touchEnabled: true,
+    height: 60
+  });
+  
+var row3 = Ti.UI.createTableViewRow({
+    title: 'Wood',
+	width: 150,
+	left: 10,
+    touchEnabled: true,
+    height: 60
+  });
+
+var row4 = Ti.UI.createTableViewRow({
+    title: 'Metal',
+	width: 150,
+	left: 10,
+    touchEnabled: true,
+    height: 60
+  });
+
+tableData.push(row1);
+tableData.push(row2);
+tableData.push(row3);
+tableData.push(row4);
+
+var table = Titanium.UI.createTableView({
+		separatorColor: 'transparent',
+		backgroundImage: '/images/pop_window.png',
+		height: Ti.UI.SIZE,
+		width: 150,
+		bottom: 60,
+		zIndex: 999,
+		center: filterButton.getCenter(),
+		//overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
+		data: tableData
+	});
+
 buttonWrapper.add(filterButton);
 buttonWrapper.add(searchButton);
 bottomBar.add(backgroundImg);
@@ -150,56 +209,9 @@ function createColorEvent(subView, colour_details, details){
 filterButton.addEventListener('click', function(e){
 	console.log("popWindow");
 	
-	var row1 = Ti.UI.createTableViewRow({
-	    title: 'Interior',
-	    width: 150,
-	    left: 10,
-	    touchEnabled: true,
-	    height: 60
-	  });
-	  
-	var row2 = Ti.UI.createTableViewRow({
-	    title: 'Exterior',
-	    width: 150,
-	    left: 10,
-	    touchEnabled: true,
-	    height: 60
-	  });
-	  
-	var row3 = Ti.UI.createTableViewRow({
-	    title: 'Wood',
-		width: 150,
-		left: 10,
-	    touchEnabled: true,
-	    height: 60
-	  });
+	$.mainViewContainer.remove(searchView);
 	
-	var row4 = Ti.UI.createTableViewRow({
-	    title: 'Metal',
-		width: 150,
-		left: 10,
-	    touchEnabled: true,
-	    height: 60
-	  });
 	
-	var tableData = [];
-	
-	tableData.push(row1);
-	tableData.push(row2);
-	tableData.push(row3);
-	tableData.push(row4);
-	
-	var table = Titanium.UI.createTableView({
-		separatorColor: 'transparent',
-		backgroundImage: '/images/pop_window.png',
-		height: Ti.UI.SIZE,
-		width: 150,
-		bottom: 60,
-		zIndex: 999,
-		center: filterButton.getCenter(),
-		overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
-		data: tableData
-	});
 	
 	$.mainViewContainer.add(table);
 	//table.show();
@@ -223,6 +235,8 @@ searchButton.addEventListener('click', function(e){
 	// }
 	// else{
 	// searchToggle = "1";
+	
+	$.mainViewContainer.remove(table);
 	
 	var hintTextLabel = Ti.UI.createLabel({
 	    text : 'Enter Colour, Name or Colour Code',
@@ -252,14 +266,6 @@ searchButton.addEventListener('click', function(e){
 	
 	var searchWrapper = Titanium.UI.createView({
 		layout: 'horizontal',
-	});
-	
-	var searchView = Titanium.UI.createView({
-   		layout: 'composite',
-   		width: "100%",
-   		height: 80,
-   		bottom: 60,
-   		backgroundColor: '#A5A5A5'
 	});
 	
 	searchWrapper.add(textField);

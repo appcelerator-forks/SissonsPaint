@@ -1,9 +1,26 @@
+function __processArg(obj, key) {
+    var arg = null;
+    if (obj) {
+        arg = obj[key] || null;
+        delete obj[key];
+    }
+    return arg;
+}
+
 function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "main";
-    arguments[0] ? arguments[0]["__parentSymbol"] : null;
-    arguments[0] ? arguments[0]["$model"] : null;
-    arguments[0] ? arguments[0]["__itemTemplate"] : null;
+    if (arguments[0]) {
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
+    }
     var $ = this;
     var exports = {};
     $.__views.main = Ti.UI.createView({
@@ -11,56 +28,14 @@ function Controller() {
         id: "main"
     });
     $.__views.main && $.addTopLevelView($.__views.main);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> FETCH_HEAD
-    $.__views.__alloyId53 = Ti.UI.createLabel({
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId51 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId50 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
-<<<<<<< HEAD
-=======
-    $.__views.__alloyId51 = Ti.UI.createLabel({
->>>>>>> 21/10/2014
-=======
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId60 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
         text: "THIS IS MAIN",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> FETCH_HEAD
-        id: "__alloyId53"
+        id: "__alloyId60"
     });
-    $.__views.main.add($.__views.__alloyId53);
-=======
-<<<<<<< HEAD
-        id: "__alloyId51"
-    });
-    $.__views.main.add($.__views.__alloyId51);
-=======
-        id: "__alloyId50"
-    });
-    $.__views.main.add($.__views.__alloyId50);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
-<<<<<<< HEAD
-=======
-        id: "__alloyId51"
-    });
-    $.__views.main.add($.__views.__alloyId51);
->>>>>>> 21/10/2014
-=======
->>>>>>> FETCH_HEAD
+    $.__views.main.add($.__views.__alloyId60);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
