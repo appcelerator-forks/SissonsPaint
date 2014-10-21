@@ -68,6 +68,48 @@ function Controller() {
             youtubePlayer.playVideo(content);
         });
     }
+    function popWindow() {
+        console.log("popWindow");
+        var row1 = Ti.UI.createTableViewRow({
+            title: "LATEST",
+            width: 150,
+            left: 10,
+            touchEnabled: true,
+            height: 60
+        });
+        var row2 = Ti.UI.createTableViewRow({
+            title: "DOWNLOADED",
+            width: 150,
+            left: 10,
+            touchEnabled: true,
+            height: 60
+        });
+        var row3 = Ti.UI.createTableViewRow({
+            title: "VIDEO",
+            width: 150,
+            left: 10,
+            touchEnabled: true,
+            height: 60
+        });
+        var tableData = [];
+        tableData.push(row1);
+        tableData.push(row2);
+        tableData.push(row3);
+        var table = Titanium.UI.createTableView({
+            separatorColor: "transparent",
+            backgroundImage: "/images/pop_window.png",
+            height: Ti.UI.SIZE,
+            width: 150,
+            bottom: 60,
+            overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
+            data: tableData
+        });
+        $.brochureView.add(table);
+        table.addEventListener("click", function(e) {
+            console.log(e.index);
+            $.brochureView.remove(table);
+        });
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "brochure";
     if (arguments[0]) {
@@ -83,6 +125,7 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
+    var __defers = {};
     $.__views.brochureView = Ti.UI.createView({
         backgroundColor: "white",
         id: "brochureView",
@@ -131,7 +174,6 @@ function Controller() {
     });
     $.__views.scrollview.add($.__views.mainView);
     $.__views.__alloyId19 = Ti.UI.createView({
-        backgroundColor: "green",
         height: "60",
         bottom: "0",
         id: "__alloyId19"
@@ -147,9 +189,11 @@ function Controller() {
     $.__views.filterButton = Ti.UI.createImageView({
         id: "filterButton",
         image: "/images/icon_filter.png",
-        height: "40"
+        height: "40",
+        width: "50"
     });
     $.__views.__alloyId19.add($.__views.filterButton);
+    popWindow ? $.__views.filterButton.addEventListener("click", popWindow) : __defers["$.__views.filterButton!click!popWindow"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -231,6 +275,7 @@ function Controller() {
         }
     };
     displayCover();
+    __defers["$.__views.filterButton!click!popWindow"] && $.__views.filterButton.addEventListener("click", popWindow);
     _.extend($, exports);
 }
 

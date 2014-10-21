@@ -2,7 +2,7 @@
 <View layout="vertical"  top="10" left="10" right="10" backgroundColor="white" class="container" height="Titanium.UI.SIZE">
 	<View layout="horizontal" height="80">
 		<Require src="toggle"></Require>
-		<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">About US</Label>
+		<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">About Us</Label>
 	</View>
 	<ScrollView id="mainScroll" layout="vertical" height="Ti.UI.SIZE" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
 		<ScrollView id="main" layout="vertical" height="200" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" >
@@ -28,7 +28,7 @@
 	    </View>
 	    <View backgroundColor="green" height="60" bottom="0">
 			<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
-			<ImageView id="contactButton" image="/images/icon_email.png" onClick="submitContactForm" height="40" />
+			<ImageView id="contactButton" image="/images/icon_email.png" onClick="submitContactForm" height="40" width="50" />
 	    </View>
     </ScrollView>
 	<!--</ScrollView>-->

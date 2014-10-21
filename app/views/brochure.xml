@@ -12,9 +12,9 @@
 				</View>
 			</ScrollView>
 			</View>
-			<View backgroundColor="green" height="60" bottom="0">
+			<View height="60" bottom="0">
 				<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
-				<ImageView id="filterButton" image="/images/icon_filter.png" height="40" />
+				<ImageView id="filterButton" image="/images/icon_filter.png" onClick="popWindow" height="40" width="50" />
 		    </View>
 		</View>
 	 
