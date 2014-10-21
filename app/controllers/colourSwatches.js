@@ -4,7 +4,6 @@ var library = Alloy.createCollection('category');
 var category_colour_lib = Alloy.createCollection('category_colour');
 var colour_lib = Alloy.createCollection('colour'); 
 var details = library.getCategoryList();
-// var searchToggle = "0";
 
 var bottomBar = Titanium.UI.createView({
    layout: 'composite',
@@ -52,8 +51,6 @@ bottomBar.add(buttonWrapper);
 
 generateTable();
 
-
-
 function generateTable(){
 	var data=[];
 	var TheScrollView = Titanium.UI.createScrollView({
@@ -61,7 +58,6 @@ function generateTable(){
 		width:"95%",
 		layout: 'vertical',
 		height: "80%",
-		zIndex: "-1",
 		textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
 		overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
 	});

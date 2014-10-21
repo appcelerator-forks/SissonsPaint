@@ -14,7 +14,6 @@ function Controller() {
             width: "95%",
             layout: "vertical",
             height: "80%",
-            zIndex: "-1",
             textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
             overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
         });
@@ -85,16 +84,6 @@ function Controller() {
             Alloy.Globals.Drawer.setCenterWindow(nav);
         });
     }
-    function createColorEvent(subView, colour_details, details) {
-        subView.addEventListener("click", function() {
-            Ti.App.Properties.setString("from", "colourSwatches");
-            var nav = Alloy.createController("colourDetails", {
-                colour_details: colour_details,
-                details: details
-            }).getView();
-            Alloy.Globals.Drawer.setCenterWindow(nav);
-        });
-    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "colourSwatches";
     if (arguments[0]) {
@@ -115,72 +104,22 @@ function Controller() {
         id: "mainViewContainer"
     });
     $.__views.mainViewContainer && $.addTopLevelView($.__views.mainViewContainer);
-<<<<<<< HEAD
     $.__views.__alloyId41 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "80",
+        layout: "vertical",
         id: "__alloyId41"
     });
     $.__views.mainViewContainer.add($.__views.__alloyId41);
-    $.__views.__alloyId42 = Alloy.createController("toggle", {
-        id: "__alloyId42",
-        __parentSymbol: $.__views.__alloyId41
-    });
-    $.__views.__alloyId42.setParent($.__views.__alloyId41);
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId30 = Ti.UI.createView({
-<<<<<<< HEAD
-=======
+    $.__views.__alloyId42 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId30"
+        id: "__alloyId42"
     });
-    $.__views.mainViewContainer.add($.__views.__alloyId30);
-    $.__views.__alloyId31 = Alloy.createController("toggle", {
-        id: "__alloyId31",
-        __parentSymbol: $.__views.__alloyId30
+    $.__views.__alloyId41.add($.__views.__alloyId42);
+    $.__views.__alloyId43 = Alloy.createController("toggle", {
+        id: "__alloyId43",
+        __parentSymbol: $.__views.__alloyId42
     });
-    $.__views.__alloyId31.setParent($.__views.__alloyId30);
-=======
-    $.__views.__alloyId25 = Ti.UI.createView({
->>>>>>> FETCH_HEAD
-        layout: "horizontal",
-        height: "80",
-        id: "__alloyId30"
-    });
-    $.__views.mainViewContainer.add($.__views.__alloyId30);
-    $.__views.__alloyId31 = Alloy.createController("toggle", {
-        id: "__alloyId31",
-        __parentSymbol: $.__views.__alloyId30
-    });
-    $.__views.__alloyId31.setParent($.__views.__alloyId30);
-=======
-    $.__views.__alloyId25 = Ti.UI.createView({
-        layout: "vertical",
-        id: "__alloyId25"
-    });
-    $.__views.mainViewContainer.add($.__views.__alloyId25);
-    $.__views.__alloyId26 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "80",
-        id: "__alloyId26"
-    });
-    $.__views.__alloyId25.add($.__views.__alloyId26);
-    $.__views.__alloyId27 = Alloy.createController("toggle", {
-        id: "__alloyId27",
-        __parentSymbol: $.__views.__alloyId26
-    });
-<<<<<<< HEAD
-    $.__views.__alloyId26.setParent($.__views.__alloyId25);
->>>>>>> FETCH_HEAD
-<<<<<<< HEAD
-=======
-    $.__views.__alloyId27.setParent($.__views.__alloyId26);
->>>>>>> 21/10/2014
-=======
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId43.setParent($.__views.__alloyId42);
     $.__views.titleLabel = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -192,25 +131,7 @@ function Controller() {
         id: "titleLabel",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
-<<<<<<< HEAD
-    $.__views.__alloyId41.add($.__views.titleLabel);
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> FETCH_HEAD
-    $.__views.__alloyId30.add($.__views.titleLabel);
-=======
-    $.__views.__alloyId25.add($.__views.titleLabel);
->>>>>>> FETCH_HEAD
-<<<<<<< HEAD
-=======
-    $.__views.__alloyId26.add($.__views.titleLabel);
->>>>>>> 21/10/2014
-=======
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId42.add($.__views.titleLabel);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
