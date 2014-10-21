@@ -5,9 +5,7 @@ var toolbarHeight = $.toolbar.rect.height;
 var toggleHeight = $.toggle.getHeight();
 var canvasHeight = 0;
 
-$.toolbar.addEventListener('postlayout', function(e) {
-	console.log(pWidth);
-	console.log(PixelsToDPUnits(pWidth));
+$.toolbar.addEventListener('postlayout', function(e) { 
 	toolbarHeight = $.toolbar.rect.height;
 	canvasHeight = pHeight - toolbarHeight - 25 - toggleHeight;
 	console.log("page height: "+pHeight+", toolbar:"+toolbarHeight+", toggle"+toggleHeight+", canvas:"+canvasHeight);
@@ -31,8 +29,6 @@ function DPUnitsToPixels(TheDPUnits)
 {
   return (TheDPUnits * (Titanium.Platform.displayCaps.dpi / 160));
 }
-
-
 //Create a dialog with options
 var dialog = Titanium.UI.createOptionDialog({
     //title of dialog

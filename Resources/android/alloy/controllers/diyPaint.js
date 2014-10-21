@@ -13,11 +13,15 @@ function Controller() {
         id: "diyPaint"
     });
     $.__views.diyPaint && $.addTopLevelView($.__views.diyPaint);
-    $.__views.__alloyId25 = Ti.UI.createView({
+    $.__views.__alloyId27 = Ti.UI.createView({
         backgroundColor: "white",
-        id: "__alloyId25"
+        id: "__alloyId27"
     });
+<<<<<<< HEAD
     $.__views.diyPaint.add($.__views.__alloyId25);
+=======
+    $.__views.diyPaint.add($.__views.__alloyId27);
+>>>>>>> FETCH_HEAD
     $.__views.toggle = Ti.UI.createView({
         backgroundColor: "yellow",
         id: "toggle",
@@ -25,6 +29,7 @@ function Controller() {
         height: "80",
         top: "0"
     });
+<<<<<<< HEAD
     $.__views.__alloyId25.add($.__views.toggle);
     $.__views.__alloyId26 = Alloy.createController("toggle", {
         id: "__alloyId26",
@@ -32,6 +37,15 @@ function Controller() {
     });
     $.__views.__alloyId26.setParent($.__views.toggle);
     $.__views.__alloyId27 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId27.add($.__views.toggle);
+    $.__views.__alloyId28 = Alloy.createController("toggle", {
+        id: "__alloyId28",
+        __parentSymbol: $.__views.toggle
+    });
+    $.__views.__alloyId28.setParent($.__views.toggle);
+    $.__views.__alloyId29 = Ti.UI.createLabel({
+>>>>>>> FETCH_HEAD
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -40,24 +54,40 @@ function Controller() {
         },
         text: "DIY Paint",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+<<<<<<< HEAD
         id: "__alloyId27"
     });
     $.__views.toggle.add($.__views.__alloyId27);
+=======
+        id: "__alloyId29"
+    });
+    $.__views.toggle.add($.__views.__alloyId29);
+>>>>>>> FETCH_HEAD
     $.__views.canvas = Ti.UI.createWebView({
         backgroundColor: "h",
         id: "canvas",
         url: "/html/canvas-paint-bucket.html",
+<<<<<<< HEAD
         enableZoomControls: "false"
+=======
+        disableBounce: "true",
+        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
+>>>>>>> FETCH_HEAD
     });
-    $.__views.__alloyId25.add($.__views.canvas);
+    $.__views.__alloyId27.add($.__views.canvas);
     $.__views.toolbar = Ti.UI.createView({
         height: Ti.UI.SIZE,
         bottom: "0",
         backgroundColor: "orange",
         id: "toolbar"
     });
+<<<<<<< HEAD
     $.__views.__alloyId25.add($.__views.toolbar);
     $.__views.settings = Ti.UI.createImageView({
+=======
+    $.__views.__alloyId27.add($.__views.toolbar);
+    $.__views.settings1 = Ti.UI.createImageView({
+>>>>>>> FETCH_HEAD
         width: "16.6%",
         id: "settings",
         mod: "settings",
@@ -108,14 +138,12 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
-    var pWidth = Ti.Platform.displayCaps.platformWidth;
+    Ti.Platform.displayCaps.platformWidth;
     var pHeight = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight);
     var toolbarHeight = $.toolbar.rect.height;
     var toggleHeight = $.toggle.getHeight();
     var canvasHeight = 0;
     $.toolbar.addEventListener("postlayout", function() {
-        console.log(pWidth);
-        console.log(PixelsToDPUnits(pWidth));
         toolbarHeight = $.toolbar.rect.height;
         canvasHeight = pHeight - toolbarHeight - 25 - toggleHeight;
         console.log("page height: " + pHeight + ", toolbar:" + toolbarHeight + ", toggle" + toggleHeight + ", canvas:" + canvasHeight);

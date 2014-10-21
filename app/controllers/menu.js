@@ -2,25 +2,22 @@ var args = arguments[0] || {};
 
 function doMenuClick(e){
 	switch(e.index){
-		case 0:
-			navigation('home');
-			break;
-		case 1: 
+		case 0: 
 			navigation('diyPaint');
 			break;
-		case 2: 
+		case 1: 
 			navigation('colourPicker');
 			break;
-		case 3: 
+		case 2: 
 			navigation('colourSwatches');
 			break;
-		case 4: 
+		case 3: 
 			navigation('brochure');
 			break;
-		case 5: 
+		case 4: 
 			navigation('storeLocator');
 			break;
-		case 6: 
+		case 5: 
 			navigation('aboutUs');
 			break;
 	}

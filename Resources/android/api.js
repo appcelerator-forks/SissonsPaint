@@ -110,6 +110,7 @@ exports.loadBrochure = function() {
             var res = JSON.parse(this.responseText);
             if ("success" == res.status) {
                 var library = Alloy.createCollection("brochure");
+<<<<<<< HEAD
                 library.resetBrochure();
                 var arr = res.data;
                 arr.forEach(function(entry) {
@@ -122,6 +123,11 @@ exports.loadBrochure = function() {
                         format: entry.b_format
                     });
                     brochure.save();
+=======
+                var arr = res.data;
+                arr.forEach(function(entry) {
+                    library.addBrochure(entry.b_id, entry.b_title, entry.cover, entry.attachment, entry.b_url, entry.b_status, entry.b_format);
+>>>>>>> FETCH_HEAD
                 });
                 console.log("saved brochure done");
             }

@@ -4,7 +4,8 @@ function Controller() {
         var TheTable = Titanium.UI.createTableView({
             width: "100%",
             separatorColor: "#ffffff",
-            backgroundColor: "#FFFFFF"
+            backgroundColor: "#FFFFFF",
+            overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
         });
         for (var i = 0; details.length > i; i++) {
             var row = Titanium.UI.createTableViewRow({
@@ -160,6 +161,7 @@ function Controller() {
         id: "storeLocatorByState"
     });
     $.__views.storeLocatorByState && $.addTopLevelView($.__views.storeLocatorByState);
+<<<<<<< HEAD
     $.__views.__alloyId70 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
@@ -171,6 +173,19 @@ function Controller() {
         __parentSymbol: $.__views.__alloyId70
     });
     $.__views.__alloyId71.setParent($.__views.__alloyId70);
+=======
+    $.__views.__alloyId67 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId67"
+    });
+    $.__views.storeLocatorByState.add($.__views.__alloyId67);
+    $.__views.__alloyId68 = Alloy.createController("toggle", {
+        id: "__alloyId68",
+        __parentSymbol: $.__views.__alloyId67
+    });
+    $.__views.__alloyId68.setParent($.__views.__alloyId67);
+>>>>>>> FETCH_HEAD
     $.__views.stateName = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -181,7 +196,11 @@ function Controller() {
         id: "stateName",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
+<<<<<<< HEAD
     $.__views.__alloyId70.add($.__views.stateName);
+=======
+    $.__views.__alloyId67.add($.__views.stateName);
+>>>>>>> FETCH_HEAD
     $.__views.tableContainer = Ti.UI.createView({
         backgroundColor: "white",
         id: "tableContainer",

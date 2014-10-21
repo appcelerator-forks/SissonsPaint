@@ -5,7 +5,8 @@ function Controller() {
             width: "95%",
             layout: "vertical",
             height: Ti.UI.SIZE,
-            textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT
+            textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+            overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
         });
         for (var i = 0; details.length > i; i++) {
             var colours = category_colour_lib.getCategoryColourByCategory(details[i]["id"]);
@@ -73,17 +74,17 @@ function Controller() {
         id: "mainViewContainer"
     });
     $.__views.mainViewContainer && $.addTopLevelView($.__views.mainViewContainer);
-    $.__views.__alloyId23 = Ti.UI.createView({
+    $.__views.__alloyId25 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId23"
+        id: "__alloyId25"
     });
-    $.__views.mainViewContainer.add($.__views.__alloyId23);
-    $.__views.__alloyId24 = Alloy.createController("toggle", {
-        id: "__alloyId24",
-        __parentSymbol: $.__views.__alloyId23
+    $.__views.mainViewContainer.add($.__views.__alloyId25);
+    $.__views.__alloyId26 = Alloy.createController("toggle", {
+        id: "__alloyId26",
+        __parentSymbol: $.__views.__alloyId25
     });
-    $.__views.__alloyId24.setParent($.__views.__alloyId23);
+    $.__views.__alloyId26.setParent($.__views.__alloyId25);
     $.__views.titleLabel = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -95,7 +96,7 @@ function Controller() {
         id: "titleLabel",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
-    $.__views.__alloyId23.add($.__views.titleLabel);
+    $.__views.__alloyId25.add($.__views.titleLabel);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

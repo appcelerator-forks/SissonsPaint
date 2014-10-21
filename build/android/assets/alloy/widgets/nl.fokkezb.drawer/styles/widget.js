@@ -1,0 +1,1 @@
+function WPATH(e){var t=e.lastIndexOf("/"),i=-1===t?"nl.fokkezb.drawer/"+e:e.substring(0,t)+"/nl.fokkezb.drawer/"+e.substring(t+1);return 0!==i.indexOf("/")?"/"+i:i}module.exports=[];

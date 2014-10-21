@@ -1,24 +1,18 @@
 var args = arguments[0] || {};
-var pdf = require('pdf');
+var pdf = require('pdf'); 
+var youtubePlayer = require("titutorial.youtubeplayer");
 var library = Alloy.createCollection('brochure'); 
-var details = library.getBrochureList();
-//createFrame();
- 
+var details = library.getBrochureList();  
 var displayCover = function(){ 
    	var counter = 0;
    	var imagepath, adImage, row, image, cellWrapper, cell = '';
  	var last = details.length-1;
 	for(var i=0; i< details.length; i++) {
    		var id = details[i].id; 
-   		
    		imagepath = details[i].cover;
+
+		adImage = Ti.UI.createImageView({image: imagepath, bottom: 0, width:90, height: "auto"});
    		
-   		adImage = Utils.RemoteImage({
-			image: imagepath,
-			bottom: 0,
-			//width: "100%"
-		});
-		
    		if(counter%3 == 0){
    			row = $.UI.create('View', {textAlign:'center', bottom: 0, layout: "vertical", height: Ti.UI.SIZE,  width: "100%"});
    			image = Ti.UI.createImageView({image:'/images/wood_rack.png', top: 0, width: "100%", right: 5, left: 5});
@@ -26,94 +20,105 @@ var displayCover = function(){
    		}
    		cell = $.UI.create('View', {bottom: "0", height: Ti.UI.SIZE, width: "30%", right: 5});
    		
-   		createAdImageEvent(adImage, id, details[i].content);
-   		
 		cell.add(adImage);
-		cellWrapper.add(cell);
-		//row.add(cell);
+		cellWrapper.add(cell); 
 		row.add(cellWrapper);
 		row.add(image);
-		//row.add(wood);
+		if(details[i].format == "pdf"){
+			var downloadIcon = "";
+   			if(details[i].isDownloaded == "0"){
+   				/*** Add download icon for those haven't download***/
+   				downloadIcon = Ti.UI.createImageView({
+   					image: "/images/icon_download.png", 
+   					width:30, 
+   					height:30,
+   					top:0, 
+   					right:0
+   				});
+   				cell.add(downloadIcon);
+   			}
+   			/*** Image click event for PDF***/
+   			createAdImageEvent(adImage, id, details[i].content, cell, details[i].isDownloaded,downloadIcon);
+   		}else{
+   			/*** Image click event for youtube***/
+   			createVideoEvent(adImage, id, details[i].url);
+   			
+   			/*** Add play icon for youtube***/
+   			playIcon = Ti.UI.createImageView({image: "/images/icon_play.png", width:40, height:40});
+   			cell.add(playIcon);
+   		}
+	 
 		if(counter%3 == 2 || last == counter){
    			$.scrollview.add(row);
    		}
+   		
    		counter++;
 	 }
 };
 
 displayCover();
 
-
-function createAdImageEvent(adImage, id,content) {
+function createAdImageEvent(adImage, id,content, cell, downloaded, downloadIcon) {
     adImage.addEventListener( "click", function(){
-    	 pdf(content,true, function (err) {
+    	var ind=Titanium.UI.createProgressBar({
+					width: "90%",
+					height:Ti.UI.FILL,
+					min:0,
+					max:1,
+					value:0,
+					message:'',
+					font:{fontSize:12},
+					color:'red',
+					//backgroundColor: "#A6A5A5",
+					//opacity: "0.5"
+				});
+				var imageHeight = adImage.size.height;
+				var imageWidth = adImage.size.width;
+				var gray = Titanium.UI.createView({height: imageHeight, width: imageWidth, backgroundColor: "#A5A5A5", opacity:0.5, bottom: 0 });
+				var label = Ti.UI.createLabel({
+				  color: 'black',
+				  font: { fontSize:8, fontWeight:"bold" },
+				  text: '',
+				  top: 2,
+				  textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+				  width: imageWidth, height: imageHeight
+				});
+				
+		//cell.add(ind);
+		if(downloaded == "0")
+		{
+			cell.add(gray);
+			cell.add(ind);
+			cell.add(label);
+		}
+		else
+		{
+			cell.remove(gray);
+			cell.remove(ind);
+			cell.remove(label);
+		}
+		
+    	pdf(content,true, ind, label, function (err) {
 		    if (err) alert(err);
+		    else
+		    {
+		    	library.updateDownloadedBrochure(id);
+		    	if(downloadIcon != ""){
+		    		cell.remove(downloadIcon);
+		    	}
+		    	
+		    	cell.remove(gray);
+		    	cell.remove(ind);
+		    	cell.remove(label);
+		    	
+		    }
 		  });
 
     } );
 }
 
-/*function createFrame()
-{
-	var picture = details.length;
-	
-	var totalView = picture / 3;
-	if(picture%3 == 1 || picture%3 ==2)
-	{
-		totalView++;
-	}
-		
-	for(var j = 0; j < totalView; j++)
-	{
-		var viewContainer = new Array();
-		viewContainer[j] = Titanium.UI.createView({
-			layout: "horizontal",
-			height: "Ti.UI.SIZE",
-			bottom: "0"
-		});
-		
-		var imageWood = new Array();
-		imageWood[j] = Titanium.UI.createImageView({
-				top: "0",
-				image : "/images/wood_rack.png"
-			});
-			
-		for(var i = 0; i < picture; i++)
-		{
-			var imagePath = details[i].cover;
-			var image = new Array();
-			image[i] = Titanium.UI.createImageView({
-					width : "30%",
-					bottom: "0",
-					right: "4.5%",
-					image : imagePath
-				});
-			
-			if(j == 0)
-			{
-				viewContainer[j].add(image[0]);
-				viewContainer[j].add(image[1]);
-				viewContainer[j].add(image[2]);
-				$.mainView.add(viewContainer[j]);
-				$.mainView.add(imageWood[j]);
-			}
-			// if(j == 1)
-			// {
-				// viewContainer[j].add(image[3]);
-				// viewContainer[j].add(image[4]);
-				// viewContainer[j].add(image[5]);
-				// $.mainView.add(viewContainer[j]);
-				// $.mainView.add(imageWood[j]);
-			// }
-			// if(j == 2)
-			// {
-				// viewContainer[j].add(image[6]);
-				// viewContainer[j].add(image[7]);
-				// viewContainer[j].add(image[8]);
-				// $.mainView.add(viewContainer[j]);
-				// $.mainView.add(imageWood[j]);
-			// }
-		}
-	}
-	
-}*/
+function createVideoEvent(adImage, id,content){
+	adImage.addEventListener( "click", function(){
+		youtubePlayer.playVideo(content);
+	 });
+}

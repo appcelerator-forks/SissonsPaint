@@ -2,30 +2,26 @@ function Controller() {
     function doMenuClick(e) {
         switch (e.index) {
           case 0:
-            navigation("home");
-            break;
-
-          case 1:
             navigation("diyPaint");
             break;
 
-          case 2:
+          case 1:
             navigation("colourPicker");
             break;
 
-          case 3:
+          case 2:
             navigation("colourSwatches");
             break;
 
-          case 4:
+          case 3:
             navigation("brochure");
             break;
 
-          case 5:
+          case 4:
             navigation("storeLocator");
             break;
 
-          case 6:
+          case 5:
             navigation("aboutUs");
         }
     }
@@ -56,6 +52,7 @@ function Controller() {
         top: "30"
     });
     $.__views.mainWindow.add($.__views.logo);
+<<<<<<< HEAD
     var __alloyId32 = [];
     $.__views.__alloyId33 = Ti.UI.createTableViewRow({
         height: "50",
@@ -71,11 +68,18 @@ function Controller() {
         id: "__alloyId34"
     });
     $.__views.__alloyId33.add($.__views.__alloyId34);
+=======
+    var __alloyId34 = [];
+>>>>>>> FETCH_HEAD
     $.__views.__alloyId35 = Ti.UI.createTableViewRow({
         height: "50",
         id: "__alloyId35"
     });
+<<<<<<< HEAD
     __alloyId32.push($.__views.__alloyId35);
+=======
+    __alloyId34.push($.__views.__alloyId35);
+>>>>>>> FETCH_HEAD
     $.__views.__alloyId36 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
@@ -89,7 +93,11 @@ function Controller() {
         height: "50",
         id: "__alloyId37"
     });
+<<<<<<< HEAD
     __alloyId32.push($.__views.__alloyId37);
+=======
+    __alloyId34.push($.__views.__alloyId37);
+>>>>>>> FETCH_HEAD
     $.__views.__alloyId38 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
@@ -103,7 +111,11 @@ function Controller() {
         height: "50",
         id: "__alloyId39"
     });
+<<<<<<< HEAD
     __alloyId32.push($.__views.__alloyId39);
+=======
+    __alloyId34.push($.__views.__alloyId39);
+>>>>>>> FETCH_HEAD
     $.__views.__alloyId40 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
@@ -117,7 +129,11 @@ function Controller() {
         height: "50",
         id: "__alloyId41"
     });
+<<<<<<< HEAD
     __alloyId32.push($.__views.__alloyId41);
+=======
+    __alloyId34.push($.__views.__alloyId41);
+>>>>>>> FETCH_HEAD
     $.__views.__alloyId42 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
@@ -131,7 +147,11 @@ function Controller() {
         height: "50",
         id: "__alloyId43"
     });
+<<<<<<< HEAD
     __alloyId32.push($.__views.__alloyId43);
+=======
+    __alloyId34.push($.__views.__alloyId43);
+>>>>>>> FETCH_HEAD
     $.__views.__alloyId44 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
@@ -145,7 +165,11 @@ function Controller() {
         height: "50",
         id: "__alloyId45"
     });
+<<<<<<< HEAD
     __alloyId32.push($.__views.__alloyId45);
+=======
+    __alloyId34.push($.__views.__alloyId45);
+>>>>>>> FETCH_HEAD
     $.__views.__alloyId46 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
@@ -156,10 +180,15 @@ function Controller() {
     });
     $.__views.__alloyId45.add($.__views.__alloyId46);
     $.__views.menuTable = Ti.UI.createTableView({
+<<<<<<< HEAD
         data: __alloyId32,
+=======
+        data: __alloyId34,
+>>>>>>> FETCH_HEAD
         id: "menuTable",
         top: "100",
-        separatorColor: "black"
+        separatorColor: "black",
+        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.mainWindow.add($.__views.menuTable);
     doMenuClick ? $.__views.menuTable.addEventListener("click", doMenuClick) : __defers["$.__views.menuTable!click!doMenuClick"] = true;
@@ -181,6 +210,7 @@ function Controller() {
         id: "centerWindow",
         role: "centerWindow"
     });
+<<<<<<< HEAD
     $.__views.menu = Ti.UI.createView({
         layout: "vertical",
         id: "menu"
@@ -198,14 +228,30 @@ function Controller() {
     });
     $.__views.__alloyId48.setParent($.__views.__alloyId47);
     $.__views.__alloyId49 = Ti.UI.createLabel({
+=======
+    $.__views.toggle = Ti.UI.createView({
+        id: "toggle",
+        layout: "horizontal",
+        height: "80",
+        top: "0"
+    });
+    $.__views.centerWindow.add($.__views.toggle);
+    $.__views.__alloyId47 = Alloy.createController("toggle", {
+        id: "__alloyId47",
+        __parentSymbol: $.__views.toggle
+    });
+    $.__views.__alloyId47.setParent($.__views.toggle);
+    $.__views.__alloyId48 = Ti.UI.createLabel({
+>>>>>>> FETCH_HEAD
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
         font: {
             fontSize: 28
         },
-        text: "Index",
+        text: "DIY Paint",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+<<<<<<< HEAD
         id: "__alloyId49"
     });
     $.__views.__alloyId47.add($.__views.__alloyId49);
@@ -217,6 +263,16 @@ function Controller() {
         id: "__alloyId50"
     });
     $.__views.centerWindow.add($.__views.__alloyId50);
+=======
+        id: "__alloyId48"
+    });
+    $.__views.toggle.add($.__views.__alloyId48);
+    $.__views.__alloyId49 = Alloy.createController("colourSwatches", {
+        id: "__alloyId49",
+        __parentSymbol: $.__views.centerWindow
+    });
+    $.__views.__alloyId49.setParent($.__views.centerWindow);
+>>>>>>> FETCH_HEAD
     $.__views.drawer = Alloy.createWidget("nl.fokkezb.drawer", "widget", {
         openDrawerGestureMode: "OPEN_MODE_ALL",
         closeDrawerGestureMode: "CLOSE_MODE_MARGIN",
@@ -233,10 +289,12 @@ function Controller() {
     });
     Ti.App.Properties.setString("module", "index");
     var API = require("api");
-    API.loadColour();
-    API.loadStoreLocator();
-    API.loadBrochure();
-    API.loadCategory();
+    setTimeout(function() {
+        API.loadColour();
+        API.loadStoreLocator();
+        API.loadBrochure();
+        API.loadCategory();
+    }, 1500);
     Alloy.Globals.Drawer = $.drawer;
     $.drawer.addEventListener("android:back", function() {
         mod = Ti.App.Properties.getString("module");
@@ -245,8 +303,20 @@ function Controller() {
             var nav = Alloy.createController("storeLocator").getView();
             Alloy.Globals.Drawer.setCenterWindow(nav);
         } else {
-            var nav = Alloy.createController("home").getView();
-            Alloy.Globals.Drawer.setCenterWindow(nav);
+            var dialog = Ti.UI.createAlertDialog({
+                cancel: 1,
+                buttonNames: [ "Cancel", "Confirm" ],
+                message: "Would you like to exit Sissons Paint?",
+                title: "Exit app"
+            });
+            dialog.addEventListener("click", function(e) {
+                e.index === e.source.cancel;
+                if (1 === e.index) {
+                    var activity = Titanium.Android.currentActivity;
+                    activity.finish();
+                }
+            });
+            dialog.show();
         }
     });
     require("dk.napp.drawer");

@@ -1,9 +1,6 @@
 <Alloy>
     <TableView id="menuTable" backgroundColor="#3F3D3D" onClick="doMenuClick">
-    	<TableViewRow height="50">
-			<Label width="Ti.UI.FILL" left="10">Home</Label>
-		</TableViewRow>
-		
+    	
 		<TableViewRow height="50">
 			<Label width="Ti.UI.FILL" left="10">DIY Paint</Label>
 		</TableViewRow>

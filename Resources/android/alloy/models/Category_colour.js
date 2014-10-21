@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+var Alloy = require("alloy"), _ = require("alloy/underscore")._, model, collection;
+
+>>>>>>> FETCH_HEAD
 exports.definition = {
     config: {
         columns: {
@@ -49,10 +54,15 @@ exports.definition = {
     }
 };
 
+<<<<<<< HEAD
 var Alloy = require("alloy"), _ = require("alloy/underscore")._, model, collection;
 
 model = Alloy.M("category_colour", exports.definition, []);
 
+=======
+model = Alloy.M("category_colour", exports.definition, []);
+
+>>>>>>> FETCH_HEAD
 collection = Alloy.C("category_colour", exports.definition, model);
 
 exports.Model = model;

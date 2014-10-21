@@ -157,7 +157,11 @@ XHR.prototype.clean = function() {
     var expiredDocuments = 0;
     for (var key in cacheManager) {
         var cache = cacheManager[key];
+<<<<<<< HEAD
         if (nowInMilliseconds >= cache.timestamp) {
+=======
+        if (cache.timestamp <= nowInMilliseconds) {
+>>>>>>> FETCH_HEAD
             var file = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory, key);
             delete cacheManager[key];
             file.deleteFile();
@@ -171,7 +175,9 @@ XHR.prototype.clean = function() {
 XHR.prototype.purge = function() {
     var purgedDocuments = 0;
     for (var key in cacheManager) {
-        cacheManager[key];
+        {
+            cacheManager[key];
+        }
         var file = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory, key);
         delete cacheManager[key];
         file.deleteFile();
@@ -205,7 +211,11 @@ writeCache = function(data, url, ttl) {
     var file = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory, hashedURL);
     file.write(data);
     cacheManager[hashedURL] = {
+<<<<<<< HEAD
         timestamp: new Date().getTime() + 1e3 * 60 * ttl
+=======
+        timestamp: new Date().getTime() + 60 * ttl * 1e3
+>>>>>>> FETCH_HEAD
     };
     updateCacheManager();
 };

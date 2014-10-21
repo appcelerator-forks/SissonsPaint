@@ -138,21 +138,13 @@ exports.loadBrochure = function (ex){
 	       if(res.status == "success"){
 		       	/**reset current category**/
 		       	var library = Alloy.createCollection('brochure'); 
-				library.resetBrochure();
+				//library.resetBrochure();
 				
 				/**load new set of category from API**/
 		       	var arr = res.data;
-		       
+		     
 		       	arr.forEach(function(entry) {
-					var brochure = Alloy.createModel('brochure', {
-				        id: entry.b_id,
-					    title: entry.b_title,
-					    cover: entry.cover,
-					    content: entry.attachment,
-					    status: entry.b_status,
-					    format: entry.b_format
-				    });
-				    brochure.save();
+		       		library.addBrochure(entry.b_id, entry.b_title, entry.cover, entry.attachment, entry.b_url, entry.b_status, entry.b_format);
 				});
 				
 				console.log("saved brochure done");
