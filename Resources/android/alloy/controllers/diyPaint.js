@@ -30,24 +30,24 @@ function Controller() {
         id: "diyPaint"
     });
     $.__views.diyPaint && $.addTopLevelView($.__views.diyPaint);
-    $.__views.__alloyId24 = Ti.UI.createView({
+    $.__views.__alloyId32 = Ti.UI.createView({
         backgroundColor: "white",
-        id: "__alloyId24"
+        id: "__alloyId32"
     });
-    $.__views.diyPaint.add($.__views.__alloyId24);
+    $.__views.diyPaint.add($.__views.__alloyId32);
     $.__views.toggle = Ti.UI.createView({
         id: "toggle",
         layout: "horizontal",
         height: "80",
         top: "0"
     });
-    $.__views.__alloyId24.add($.__views.toggle);
-    $.__views.__alloyId25 = Alloy.createController("toggle", {
-        id: "__alloyId25",
+    $.__views.__alloyId32.add($.__views.toggle);
+    $.__views.__alloyId33 = Alloy.createController("toggle", {
+        id: "__alloyId33",
         __parentSymbol: $.__views.toggle
     });
-    $.__views.__alloyId25.setParent($.__views.toggle);
-    $.__views.__alloyId26 = Ti.UI.createLabel({
+    $.__views.__alloyId33.setParent($.__views.toggle);
+    $.__views.__alloyId34 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -56,22 +56,22 @@ function Controller() {
         },
         text: "DIY Paint",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-        id: "__alloyId26"
+        id: "__alloyId34"
     });
-    $.__views.toggle.add($.__views.__alloyId26);
+    $.__views.toggle.add($.__views.__alloyId34);
     $.__views.canvas = Ti.UI.createWebView({
         id: "canvas",
         url: "/html/canvas-paint-bucket.html",
         disableBounce: "true",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
-    $.__views.__alloyId24.add($.__views.canvas);
+    $.__views.__alloyId32.add($.__views.canvas);
     $.__views.toolbar = Ti.UI.createView({
         height: Ti.UI.SIZE,
         bottom: "0",
         id: "toolbar"
     });
-    $.__views.__alloyId24.add($.__views.toolbar);
+    $.__views.__alloyId32.add($.__views.toolbar);
     $.__views.settings1 = Ti.UI.createImageView({
         width: "16.6%",
         id: "settings1",

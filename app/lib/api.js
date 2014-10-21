@@ -45,12 +45,15 @@ exports.loadColour = function (ex){
 				    });
 				    colour.save();
 				});
+				Ti.App.Properties.setString('loadColour', '1');
 	       }
+	       
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
+	     	Ti.App.Properties.setString('loadColour', '1');
 	     },
-	     timeout : 50000  // in milliseconds
+	     timeout : 10000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", url);
@@ -111,14 +114,14 @@ exports.loadCategory = function(ex){
 					    category_colour.save();
 		       		});
 				});
-				console.log("saved category done");
-		 
+				Ti.App.Properties.setString('loadCategory', '1');
 	       }
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
+	     	Ti.App.Properties.setString('loadCategory', '1');
 	     },
-	     timeout : 50000  // in milliseconds
+	     timeout : 10000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", url);
@@ -147,13 +150,14 @@ exports.loadBrochure = function (ex){
 		       		library.addBrochure(entry.b_id, entry.b_title, entry.cover, entry.attachment, entry.b_url, entry.b_status, entry.b_format);
 				});
 				
-				console.log("saved brochure done");
+				Ti.App.Properties.setString('loadBrochure', '1');
 	       }
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
+	     	Ti.App.Properties.setString('loadBrochure', '1');
 	     },
-	     timeout : 50000  // in milliseconds
+	     timeout : 10000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", url);
@@ -197,13 +201,14 @@ exports.loadStoreLocator = function (ex){
 				 
 				});
 				
-				console.log("saved store locator done");
+				Ti.App.Properties.setString('loadStoreLocator', '1');
 	       }
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
+	     	Ti.App.Properties.setString('loadStoreLocator', '1');
 	     },
-	     timeout : 50000  // in milliseconds
+	     timeout : 10000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", url);

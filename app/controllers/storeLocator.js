@@ -170,6 +170,5 @@ function addClickEvent(table){
 
 function listState(e){
 	var nav = Alloy.createController("storeLocatorByState",{state:e.source.title}).getView(); 
-		Alloy.Globals.Drawer.setCenterWindow(nav);
-		Ti.API.info(e.source.title);
+	Alloy.Globals.Drawer.setCenterWindow(nav); 
 }

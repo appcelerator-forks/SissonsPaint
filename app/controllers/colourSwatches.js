@@ -69,6 +69,8 @@ function generateTable(){
 				text: colour_details.code , 
 				classes: ['colorDesc'],
 			});  
+			
+			createColorEvent(subView, colour_details, details[i]);
 					 
 			subView.add(subViewColor);		 
 			subView.add(subLabelName);		 
@@ -83,6 +85,15 @@ function generateTable(){
 	$.mainViewContainer.add(TheScrollView); 
 	 
 }
+
+function createColorEvent(subView, colour_details, details){
+	subView.addEventListener( "click", function(){
+		Ti.App.Properties.setString('from', 'colourSwatches');
+		var nav = Alloy.createController("colourDetails",{colour_details:colour_details, details:details}).getView(); 
+		Alloy.Globals.Drawer.setCenterWindow(nav);
+	});
+}
+
 //details.forEach(function(cate) {
 //	console.log(cate.name);
 //});

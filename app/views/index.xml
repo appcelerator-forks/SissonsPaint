@@ -32,11 +32,18 @@
         </Window>
         
         <Window id="centerWindow" module="xp.ui" platform="android" role="centerWindow">
-        	<View id="toggle" layout="horizontal" height="80" top="0">
+        	<View id="brochureView" layout="vertical" class="container" backgroundImage="/images/default.png">
+	        	<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" top="0" opacity="1" backgroundColor="#2E2E2E" >
+					<ActivityIndicator  id="activityIndicator" />
+					<Label text="Loading" color="#ffffff" />
+				</View>
+			</View>
+        	<!--<View id="toggle" layout="horizontal" height="80" top="0">
 				<Require src="toggle"></Require>
 				<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">DIY Paint</Label>
 			</View>
         	<Require type="view" src="colourSwatches" />
+        -->
         </Window>
 
     </Widget>

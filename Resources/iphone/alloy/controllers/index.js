@@ -11,30 +11,26 @@ function Controller() {
     function doMenuClick(e) {
         switch (e.index) {
           case 0:
-            navigation("home");
-            break;
-
-          case 1:
             navigation("diyPaint");
             break;
 
-          case 2:
+          case 1:
             navigation("colourPicker");
             break;
 
-          case 3:
+          case 2:
             navigation("colourSwatches");
             break;
 
-          case 4:
+          case 3:
             navigation("brochure");
             break;
 
-          case 5:
+          case 4:
             navigation("storeLocator");
             break;
 
-          case 6:
+          case 5:
             navigation("aboutUs");
         }
     }
@@ -73,110 +69,97 @@ function Controller() {
         top: "30"
     });
     $.__views.mainWindow.add($.__views.logo);
-    var __alloyId88 = [];
-    $.__views.__alloyId89 = Ti.UI.createTableViewRow({
+    var __alloyId31 = [];
+    $.__views.__alloyId32 = Ti.UI.createTableViewRow({
         height: "50",
-        id: "__alloyId89"
+        id: "__alloyId32"
     });
-    __alloyId88.push($.__views.__alloyId89);
-    $.__views.__alloyId90 = Ti.UI.createLabel({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        color: "white",
-        text: "Home",
-        left: "30",
-        id: "__alloyId90"
-    });
-    $.__views.__alloyId89.add($.__views.__alloyId90);
-    $.__views.__alloyId91 = Ti.UI.createTableViewRow({
-        height: "50",
-        id: "__alloyId91"
-    });
-    __alloyId88.push($.__views.__alloyId91);
-    $.__views.__alloyId92 = Ti.UI.createLabel({
+    __alloyId31.push($.__views.__alloyId32);
+    $.__views.__alloyId33 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
         text: "DIY Paint",
         left: "30",
-        id: "__alloyId92"
+        id: "__alloyId33"
     });
-    $.__views.__alloyId91.add($.__views.__alloyId92);
-    $.__views.__alloyId93 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId32.add($.__views.__alloyId33);
+    $.__views.__alloyId34 = Ti.UI.createTableViewRow({
         height: "50",
-        id: "__alloyId93"
+        id: "__alloyId34"
     });
-    __alloyId88.push($.__views.__alloyId93);
-    $.__views.__alloyId94 = Ti.UI.createLabel({
+    __alloyId31.push($.__views.__alloyId34);
+    $.__views.__alloyId35 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
         text: "Colour Picker",
         left: "30",
-        id: "__alloyId94"
+        id: "__alloyId35"
     });
-    $.__views.__alloyId93.add($.__views.__alloyId94);
-    $.__views.__alloyId95 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId34.add($.__views.__alloyId35);
+    $.__views.__alloyId36 = Ti.UI.createTableViewRow({
         height: "50",
-        id: "__alloyId95"
+        id: "__alloyId36"
     });
-    __alloyId88.push($.__views.__alloyId95);
-    $.__views.__alloyId96 = Ti.UI.createLabel({
+    __alloyId31.push($.__views.__alloyId36);
+    $.__views.__alloyId37 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
         text: "Colour Swatches",
         left: "30",
-        id: "__alloyId96"
+        id: "__alloyId37"
     });
-    $.__views.__alloyId95.add($.__views.__alloyId96);
-    $.__views.__alloyId97 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId36.add($.__views.__alloyId37);
+    $.__views.__alloyId38 = Ti.UI.createTableViewRow({
         height: "50",
-        id: "__alloyId97"
+        id: "__alloyId38"
     });
-    __alloyId88.push($.__views.__alloyId97);
-    $.__views.__alloyId98 = Ti.UI.createLabel({
+    __alloyId31.push($.__views.__alloyId38);
+    $.__views.__alloyId39 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
         text: "Brochure",
         left: "30",
-        id: "__alloyId98"
+        id: "__alloyId39"
     });
-    $.__views.__alloyId97.add($.__views.__alloyId98);
-    $.__views.__alloyId99 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId38.add($.__views.__alloyId39);
+    $.__views.__alloyId40 = Ti.UI.createTableViewRow({
         height: "50",
-        id: "__alloyId99"
+        id: "__alloyId40"
     });
-    __alloyId88.push($.__views.__alloyId99);
-    $.__views.__alloyId100 = Ti.UI.createLabel({
+    __alloyId31.push($.__views.__alloyId40);
+    $.__views.__alloyId41 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
         text: "Store Locator",
         left: "30",
-        id: "__alloyId100"
+        id: "__alloyId41"
     });
-    $.__views.__alloyId99.add($.__views.__alloyId100);
-    $.__views.__alloyId101 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId40.add($.__views.__alloyId41);
+    $.__views.__alloyId42 = Ti.UI.createTableViewRow({
         height: "50",
-        id: "__alloyId101"
+        id: "__alloyId42"
     });
-    __alloyId88.push($.__views.__alloyId101);
-    $.__views.__alloyId102 = Ti.UI.createLabel({
+    __alloyId31.push($.__views.__alloyId42);
+    $.__views.__alloyId43 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
         text: "About Us",
         left: "30",
-        id: "__alloyId102"
+        id: "__alloyId43"
     });
-    $.__views.__alloyId101.add($.__views.__alloyId102);
+    $.__views.__alloyId42.add($.__views.__alloyId43);
     $.__views.menuTable = Ti.UI.createTableView({
-        data: __alloyId88,
+        data: __alloyId31,
         id: "menuTable",
         top: "100",
-        separatorColor: "black"
+        separatorColor: "black",
+        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.mainWindow.add($.__views.menuTable);
     doMenuClick ? $.__views.menuTable.addEventListener("click", doMenuClick) : __defers["$.__views.menuTable!click!doMenuClick"] = true;
@@ -206,22 +189,39 @@ function Controller() {
         navBarHidden: true,
         fullscreen: true
     });
+    Ti.App.Properties.setString("module", "index");
     var API = require("api");
-    var flag = 0;
-    API.loadColour();
-    API.loadStoreLocator();
-    API.loadBrochure();
-    API.loadCategory();
+    setTimeout(function() {
+        API.loadColour();
+        API.loadStoreLocator();
+        API.loadBrochure();
+        API.loadCategory();
+    }, 1500);
     Alloy.Globals.Drawer = $.drawer;
     $.drawer.addEventListener("android:back", function() {
-        if (1 == flag) {
+        mod = Ti.App.Properties.getString("module");
+        if ("storeLocator" == mod) {
+            Ti.App.Properties.setString("module", "index");
             var nav = Alloy.createController("storeLocator").getView();
             Alloy.Globals.Drawer.setCenterWindow(nav);
         } else {
-            var nav = Alloy.createController("home").getView();
-            Alloy.Globals.Drawer.setCenterWindow(nav);
+            var dialog = Ti.UI.createAlertDialog({
+                cancel: 1,
+                buttonNames: [ "Cancel", "Confirm" ],
+                message: "Would you like to exit Sissons Paint?",
+                title: "Exit app"
+            });
+            dialog.addEventListener("click", function(e) {
+                e.index === e.source.cancel;
+                if (1 === e.index) {
+                    var activity = Titanium.Android.currentActivity;
+                    activity.finish();
+                }
+            });
+            dialog.show();
         }
     });
+    require("dk.napp.drawer");
     __defers["$.__views.menuTable!click!doMenuClick"] && $.__views.menuTable.addEventListener("click", doMenuClick);
     _.extend($, exports);
 }

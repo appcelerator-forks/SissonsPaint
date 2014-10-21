@@ -60,6 +60,7 @@ function Controller() {
                     text: colour_details.code,
                     classes: [ "colorDesc" ]
                 });
+                createColorEvent(subView, colour_details, details[i]);
                 subView.add(subViewColor);
                 subView.add(subLabelName);
                 subView.add(subLabelCode);
@@ -69,6 +70,16 @@ function Controller() {
             TheScrollView.add(colourView);
         }
         $.mainViewContainer.add(TheScrollView);
+    }
+    function createColorEvent(subView, colour_details, details) {
+        subView.addEventListener("click", function() {
+            Ti.App.Properties.setString("from", "colourSwatches");
+            var nav = Alloy.createController("colourDetails", {
+                colour_details: colour_details,
+                details: details
+            }).getView();
+            Alloy.Globals.Drawer.setCenterWindow(nav);
+        });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "colourSwatches";
@@ -91,17 +102,17 @@ function Controller() {
         id: "mainViewContainer"
     });
     $.__views.mainViewContainer && $.addTopLevelView($.__views.mainViewContainer);
-    $.__views.__alloyId22 = Ti.UI.createView({
+    $.__views.__alloyId30 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId22"
+        id: "__alloyId30"
     });
-    $.__views.mainViewContainer.add($.__views.__alloyId22);
-    $.__views.__alloyId23 = Alloy.createController("toggle", {
-        id: "__alloyId23",
-        __parentSymbol: $.__views.__alloyId22
+    $.__views.mainViewContainer.add($.__views.__alloyId30);
+    $.__views.__alloyId31 = Alloy.createController("toggle", {
+        id: "__alloyId31",
+        __parentSymbol: $.__views.__alloyId30
     });
-    $.__views.__alloyId23.setParent($.__views.__alloyId22);
+    $.__views.__alloyId31.setParent($.__views.__alloyId30);
     $.__views.titleLabel = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -113,7 +124,7 @@ function Controller() {
         id: "titleLabel",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
-    $.__views.__alloyId22.add($.__views.titleLabel);
+    $.__views.__alloyId30.add($.__views.titleLabel);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

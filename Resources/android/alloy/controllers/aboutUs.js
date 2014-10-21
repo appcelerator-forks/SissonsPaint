@@ -253,14 +253,13 @@ function Controller() {
             COMM.createAlert("Request Rejected", "Message cannot be empty.");
             return;
         }
-        var url = API.sendContactMsg + "&name=" + name + "&email=" + email + "&contact=" + contact + "&message=" + message;
+        var url = API.sendContactMsg + "&name=" + name + "&email=" + email + "&message=" + message;
         var client = Ti.Network.createHTTPClient({
             onload: function() {
                 var res = JSON.parse(this.responseText);
                 if ("success" == res.status) {
                     COMM.createAlert("Message Sent", "Your messages successfully sent to admin.");
                     $.username.value = "";
-                    $.phone.value = "";
                     $.email.value = "";
                     $.message.value = "";
                 }
