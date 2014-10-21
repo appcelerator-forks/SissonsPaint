@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-module.exports = [{"isApi":true,"priority":1000.0041,"key":"Label","style":{width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000",}},{"isClass":true,"priority":10000.004,"key":"container","style":{backgroundColor:"#ffffff",}},{"isClass":true,"priority":10000.0042,"key":"title","style":{font:{fontSize:28,},}},{"isClass":true,"priority":10000.0043,"key":"button","style":{color:"black",}}];
-=======
-module.exports = [{"isApi":true,"priority":1000.0044,"key":"Label","style":{width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000",}},{"isClass":true,"priority":10000.0043,"key":"container","style":{backgroundColor:"#ffffff",}},{"isClass":true,"priority":10000.0045,"key":"title","style":{font:{fontSize:28,},}},{"isClass":true,"priority":10000.0046,"key":"button","style":{color:"black",}}];
->>>>>>> FETCH_HEAD
+module.exports = [{"isApi":true,"priority":1000.0042,"key":"Label","style":{width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000",}},{"isClass":true,"priority":10000.0041,"key":"container","style":{backgroundColor:"#ffffff",}},{"isClass":true,"priority":10000.0043,"key":"title","style":{font:{fontSize:28,},}},{"isClass":true,"priority":10000.0044,"key":"button","style":{color:"black",}}];

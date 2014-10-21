@@ -1,12 +1,3 @@
-function __processArg(obj, key) {
-    var arg = null;
-    if (obj) {
-        arg = obj[key] || null;
-        delete obj[key];
-    }
-    return arg;
-}
-
 function Controller() {
     function listState(e) {
         var nav = Alloy.createController("storeLocatorByState", {
@@ -17,17 +8,9 @@ function Controller() {
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "storeLocator";
-    if (arguments[0]) {
-        {
-            __processArg(arguments[0], "__parentSymbol");
-        }
-        {
-            __processArg(arguments[0], "$model");
-        }
-        {
-            __processArg(arguments[0], "__itemTemplate");
-        }
-    }
+    arguments[0] ? arguments[0]["__parentSymbol"] : null;
+    arguments[0] ? arguments[0]["$model"] : null;
+    arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
     var __defers = {};
@@ -38,33 +21,18 @@ function Controller() {
         width: "100%"
     });
     $.__views.mainWindow && $.addTopLevelView($.__views.mainWindow);
-<<<<<<< HEAD
-    $.__views.__alloyId137 = Ti.UI.createView({
+    $.__views.__alloyId67 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId137"
+        id: "__alloyId67"
     });
-    $.__views.mainWindow.add($.__views.__alloyId137);
-    $.__views.__alloyId138 = Alloy.createController("toggle", {
-        id: "__alloyId138",
-        __parentSymbol: $.__views.__alloyId137
+    $.__views.mainWindow.add($.__views.__alloyId67);
+    $.__views.__alloyId68 = Alloy.createController("toggle", {
+        id: "__alloyId68",
+        __parentSymbol: $.__views.__alloyId67
     });
-    $.__views.__alloyId138.setParent($.__views.__alloyId137);
-    $.__views.__alloyId139 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId68 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "80",
-        id: "__alloyId68"
-    });
-    $.__views.mainWindow.add($.__views.__alloyId68);
-    $.__views.__alloyId69 = Alloy.createController("toggle", {
-        id: "__alloyId69",
-        __parentSymbol: $.__views.__alloyId68
-    });
-    $.__views.__alloyId69.setParent($.__views.__alloyId68);
-    $.__views.__alloyId70 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId68.setParent($.__views.__alloyId67);
+    $.__views.__alloyId69 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -73,15 +41,9 @@ function Controller() {
         },
         text: "Store Locator",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-<<<<<<< HEAD
-        id: "__alloyId139"
+        id: "__alloyId69"
     });
-    $.__views.__alloyId137.add($.__views.__alloyId139);
-=======
-        id: "__alloyId70"
-    });
-    $.__views.__alloyId68.add($.__views.__alloyId70);
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId67.add($.__views.__alloyId69);
     $.__views.subWindow = Ti.UI.createView({
         id: "subWindow",
         layout: "vertical",

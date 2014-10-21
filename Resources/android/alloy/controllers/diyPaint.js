@@ -1,29 +1,12 @@
-function __processArg(obj, key) {
-    var arg = null;
-    if (obj) {
-        arg = obj[key] || null;
-        delete obj[key];
-    }
-    return arg;
-}
-
 function Controller() {
     function PixelsToDPUnits(ThePixels) {
         return ThePixels / (Titanium.Platform.displayCaps.dpi / 160);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "diyPaint";
-    if (arguments[0]) {
-        {
-            __processArg(arguments[0], "__parentSymbol");
-        }
-        {
-            __processArg(arguments[0], "$model");
-        }
-        {
-            __processArg(arguments[0], "__itemTemplate");
-        }
-    }
+    arguments[0] ? arguments[0]["__parentSymbol"] : null;
+    arguments[0] ? arguments[0]["$model"] : null;
+    arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
     $.__views.diyPaint = Ti.UI.createView({
@@ -34,36 +17,21 @@ function Controller() {
         backgroundColor: "white",
         id: "__alloyId25"
     });
-<<<<<<< HEAD
-    $.__views.diyPaint.add($.__views.__alloyId95);
+    $.__views.diyPaint.add($.__views.__alloyId25);
     $.__views.toggle = Ti.UI.createView({
+        backgroundColor: "yellow",
         id: "toggle",
         layout: "horizontal",
         height: "80",
         top: "0"
     });
-    $.__views.__alloyId95.add($.__views.toggle);
-    $.__views.__alloyId96 = Alloy.createController("toggle", {
-        id: "__alloyId96",
+    $.__views.__alloyId25.add($.__views.toggle);
+    $.__views.__alloyId26 = Alloy.createController("toggle", {
+        id: "__alloyId26",
         __parentSymbol: $.__views.toggle
     });
-    $.__views.__alloyId96.setParent($.__views.toggle);
-    $.__views.__alloyId97 = Ti.UI.createLabel({
-=======
-    $.__views.diyPaint.add($.__views.__alloyId25);
-    $.__views.__alloyId26 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "80",
-        id: "__alloyId26"
-    });
-    $.__views.__alloyId25.add($.__views.__alloyId26);
-    $.__views.__alloyId27 = Alloy.createController("toggle", {
-        id: "__alloyId27",
-        __parentSymbol: $.__views.__alloyId26
-    });
-    $.__views.__alloyId27.setParent($.__views.__alloyId26);
-    $.__views.__alloyId28 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId26.setParent($.__views.toggle);
+    $.__views.__alloyId27 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -72,35 +40,31 @@ function Controller() {
         },
         text: "DIY Paint",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-<<<<<<< HEAD
-        id: "__alloyId97"
+        id: "__alloyId27"
     });
-    $.__views.toggle.add($.__views.__alloyId97);
-=======
-        id: "__alloyId28"
-    });
-    $.__views.__alloyId26.add($.__views.__alloyId28);
->>>>>>> FETCH_HEAD
+    $.__views.toggle.add($.__views.__alloyId27);
     $.__views.canvas = Ti.UI.createWebView({
+        backgroundColor: "h",
         id: "canvas",
         url: "/html/canvas-paint-bucket.html",
-        disableBounce: "true"
+        enableZoomControls: "false"
     });
     $.__views.__alloyId25.add($.__views.canvas);
     $.__views.toolbar = Ti.UI.createView({
         height: Ti.UI.SIZE,
         bottom: "0",
+        backgroundColor: "orange",
         id: "toolbar"
     });
     $.__views.__alloyId25.add($.__views.toolbar);
-    $.__views.settings1 = Ti.UI.createImageView({
+    $.__views.settings = Ti.UI.createImageView({
         width: "16.6%",
-        id: "settings1",
+        id: "settings",
         mod: "settings",
         left: "0",
         image: "/images/power-icons.png"
     });
-    $.__views.toolbar.add($.__views.settings1);
+    $.__views.toolbar.add($.__views.settings);
     $.__views.settings = Ti.UI.createImageView({
         width: "16.6%",
         id: "settings",
@@ -148,21 +112,59 @@ function Controller() {
     var pHeight = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight);
     var toolbarHeight = $.toolbar.rect.height;
     var toggleHeight = $.toggle.getHeight();
+    var canvasHeight = 0;
     $.toolbar.addEventListener("postlayout", function() {
         console.log(pWidth);
         console.log(PixelsToDPUnits(pWidth));
         toolbarHeight = $.toolbar.rect.height;
-        var canvasHeight = pHeight - toolbarHeight - 48 - toggleHeight;
+        canvasHeight = pHeight - toolbarHeight - 25 - toggleHeight;
+        console.log("page height: " + pHeight + ", toolbar:" + toolbarHeight + ", toggle" + toggleHeight + ", canvas:" + canvasHeight);
         $.canvas.setBottom(toolbarHeight);
         $.canvas.setHeight(canvasHeight);
     });
-    Ti.API.info("Ti.Platform.displayCaps.density: " + Ti.Platform.displayCaps.density);
-    Ti.API.info("Ti.Platform.displayCaps.dpi: " + Ti.Platform.displayCaps.dpi);
-    Ti.API.info("Ti.Platform.displayCaps.platformHeight: " + Ti.Platform.displayCaps.platformHeight);
-    Ti.API.info("Ti.Platform.displayCaps.platformWidth: " + Ti.Platform.displayCaps.platformWidth);
-    Ti.API.info("Ti.Platform.displayCaps.xdpi: " + Ti.Platform.displayCaps.xdpi);
-    Ti.API.info("Ti.Platform.displayCaps.ydpi: " + Ti.Platform.displayCaps.ydpi);
-    Ti.API.info("Ti.Platform.displayCaps.logicalDensityFactor: " + Ti.Platform.displayCaps.logicalDensityFactor);
+    $.canvas.addEventListener("load", function() {
+        console.log(canvasHeight);
+        console.log(pWidth);
+        Ti.App.fireEvent("web:initCanvasSize", {
+            height: canvasHeight,
+            width: pWidth
+        });
+    });
+    var dialog = Titanium.UI.createOptionDialog({
+        title: "Choose an image source...",
+        options: [ "Camera", "Photo Gallery", "Cancel" ],
+        cancel: 2
+    });
+    dialog.addEventListener("click", function(e) {
+        0 == e.index ? Titanium.Media.showCamera({
+            success: function(event) {
+                var image = event.media;
+                event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO && Ti.App.Properties.setString("image", image.nativePath);
+            },
+            cancel: function() {},
+            error: function(error) {
+                var a = Titanium.UI.createAlertDialog({
+                    title: "Camera"
+                });
+                error.code == Titanium.Media.NO_CAMERA ? a.setMessage("Device does not have camera") : a.setMessage("Unexpected error: " + error.code);
+                a.show();
+            },
+            allowImageEditing: true,
+            saveToPhotoGallery: true
+        }) : 1 == e.index && Titanium.Media.openPhotoGallery({
+            success: function(event) {
+                var image = event.media;
+                if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
+                    Ti.App.Properties.setString("image", image.nativePath);
+                    Ti.App.fireEvent("web:loadImage", {
+                        image: image.nativePath
+                    });
+                }
+            },
+            cancel: function() {}
+        });
+    });
+    dialog.show();
     _.extend($, exports);
 }
 
