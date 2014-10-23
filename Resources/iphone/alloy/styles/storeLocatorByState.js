@@ -1,9 +1,1 @@
-<<<<<<< HEAD
-module.exports = [{"isApi":true,"priority":1000.0038,"key":"Label","style":{width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000",}},{"isClass":true,"priority":10000.0037,"key":"container","style":{backgroundColor:"white",}}];
-=======
-<<<<<<< HEAD
-module.exports = [{"isApi":true,"priority":1000.0033,"key":"Label","style":{width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000",}},{"isClass":true,"priority":10000.0032,"key":"container","style":{backgroundColor:"white",}}];
-=======
-module.exports = [{"isApi":true,"priority":1000.0034,"key":"Label","style":{width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000",}},{"isClass":true,"priority":10000.0033,"key":"container","style":{backgroundColor:"white",}}];
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
+module.exports = [{"isApi":true,"priority":1000.0047,"key":"Label","style":{width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000",}},{"isClass":true,"priority":10000.0046,"key":"container","style":{backgroundColor:"white",}},{"isClass":true,"priority":10000.0048,"key":"title","style":{font:{fontSize:28,},}}];

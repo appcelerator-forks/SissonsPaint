@@ -51,7 +51,7 @@ function Controller() {
         font: {
             fontSize: 28
         },
-        text: "About US",
+        text: "About Us",
         color: "black",
         width: "75%",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
@@ -69,7 +69,7 @@ function Controller() {
         backgroundColor: "white",
         id: "main",
         layout: "vertical",
-        height: "200",
+        height: Ti.UI.SIZE,
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.mainScroll.add($.__views.main);
@@ -253,14 +253,13 @@ function Controller() {
             COMM.createAlert("Request Rejected", "Message cannot be empty.");
             return;
         }
-        var url = API.sendContactMsg + "&name=" + name + "&email=" + email + "&contact=" + contact + "&message=" + message;
+        var url = API.sendContactMsg + "&name=" + name + "&email=" + email + "&message=" + message;
         var client = Ti.Network.createHTTPClient({
             onload: function() {
                 var res = JSON.parse(this.responseText);
                 if ("success" == res.status) {
                     COMM.createAlert("Message Sent", "Your messages successfully sent to admin.");
                     $.username.value = "";
-                    $.phone.value = "";
                     $.email.value = "";
                     $.message.value = "";
                 }

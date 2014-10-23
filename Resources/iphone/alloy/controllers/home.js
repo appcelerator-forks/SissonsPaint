@@ -28,54 +28,37 @@ function Controller() {
         id: "home"
     });
     $.__views.home && $.addTopLevelView($.__views.home);
-<<<<<<< HEAD
-    $.__views.__alloyId86 = Ti.UI.createView({
-=======
-    $.__views.__alloyId17 = Ti.UI.createView({
-<<<<<<< HEAD
-=======
->>>>>>> FETCH_HEAD
-        left: 3,
-        top: 48,
-        width: "20%",
-        height: 50,
-        borderWidth: 1,
-        backgroundColor: "white",
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId27 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId86"
+        id: "__alloyId27"
     });
-<<<<<<< HEAD
-    $.__views.home.add($.__views.__alloyId86);
-    $.__views.__alloyId87 = Ti.UI.createButton({
-=======
-    $.__views.home.add($.__views.__alloyId17);
-<<<<<<< HEAD
-    $.__views.__alloyId18 = Alloy.createController("toggle", {
-        id: "__alloyId18",
-        __parentSymbol: $.__views.__alloyId17
+    $.__views.home.add($.__views.__alloyId27);
+    $.__views.__alloyId28 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId28"
     });
-    $.__views.__alloyId18.setParent($.__views.__alloyId17);
+    $.__views.__alloyId27.add($.__views.__alloyId28);
+    $.__views.__alloyId29 = Alloy.createController("toggle", {
+        id: "__alloyId29",
+        __parentSymbol: $.__views.__alloyId28
+    });
+    $.__views.__alloyId29.setParent($.__views.__alloyId28);
+    $.__views.__alloyId30 = Ti.UI.createLabel({
+        width: "75%",
+        height: Ti.UI.SIZE,
+        color: "black",
+        font: {
+            fontSize: 28
+        },
+        text: "Home",
+        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+        id: "__alloyId30"
+    });
+    $.__views.__alloyId28.add($.__views.__alloyId30);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
-=======
-    $.__views.__alloyId18 = Ti.UI.createButton({
->>>>>>> FETCH_HEAD
-        title: "Menu",
-        id: "__alloyId87"
-    });
-    $.__views.__alloyId86.add($.__views.__alloyId87);
-    toggle ? $.__views.__alloyId87.addEventListener("click", toggle) : __defers["$.__views.__alloyId87!click!toggle"] = true;
-    exports.destroy = function() {};
-    _.extend($, $.__views);
-    arguments[0] || {};
-<<<<<<< HEAD
-    __defers["$.__views.__alloyId87!click!toggle"] && $.__views.__alloyId87.addEventListener("click", toggle);
-=======
-    __defers["$.__views.__alloyId18!click!toggle"] && $.__views.__alloyId18.addEventListener("click", toggle);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     _.extend($, exports);
 }
 
