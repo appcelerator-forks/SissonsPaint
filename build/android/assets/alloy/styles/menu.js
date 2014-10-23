@@ -1,1 +1,1 @@
-module.exports=[{isClass:!0,priority:10000.004,key:"container",style:{}}];
+/Users/HatsuneMiku/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/alloy/styles/menu.js

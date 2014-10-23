@@ -1,9 +1,5 @@
 function S4() {
-<<<<<<< HEAD
-    return (0 | 65536 * (1 + Math.random())).toString(16).substring(1);
-=======
     return (65536 * (1 + Math.random()) | 0).toString(16).substring(1);
->>>>>>> FETCH_HEAD
 }
 
 function guid() {
@@ -157,11 +153,7 @@ function Sync(method, model, opts) {
       case "read":
         opts.query && opts.id && Ti.API.warn('Both "query" and "id" options were specified for model.fetch(). "id" will be ignored.');
         sql = "SELECT * FROM " + table;
-<<<<<<< HEAD
-        opts.query ? sql = opts.query : opts.id && (sql += " WHERE " + model.idAttribute + " = " + opts.id);
-=======
         opts.query ? sql = opts.query : opts.id && (sql += " WHERE " + (model.idAttribute ? model.idAttribute : ALLOY_ID_DEFAULT) + " = " + (_.isString(opts.id) ? '"' + opts.id + '"' : opts.id));
->>>>>>> FETCH_HEAD
         db = Ti.Database.open(dbName);
         var rs;
         rs = _.isString(sql) ? db.execute(sql) : db.execute(sql.statement, sql.params);
@@ -238,25 +230,15 @@ function Migrate(Model) {
     db = Ti.Database.open(config.adapter.db_name);
     migrator.db = db;
     db.execute("BEGIN;");
-<<<<<<< HEAD
-    if (migrations.length) for (var i = 0; migrations.length > i; i++) {
-=======
     if (migrations.length) for (var i = 0; i < migrations.length; i++) {
->>>>>>> FETCH_HEAD
         var migration = migrations[i];
         var context = {};
         migration(context);
         if (direction) {
             if (context.id > targetNumber) break;
-<<<<<<< HEAD
-            if (currentNumber >= context.id) continue;
-        } else {
-            if (targetNumber >= context.id) break;
-=======
             if (context.id <= currentNumber) continue;
         } else {
             if (context.id <= targetNumber) break;
->>>>>>> FETCH_HEAD
             if (context.id > currentNumber) continue;
         }
         var funcName = direction ? "up" : "down";
@@ -284,15 +266,6 @@ function installDatabase(config) {
         db.file.setRemoteBackup(false);
     }
     var rs = db.execute('pragma table_info("' + table + '");');
-<<<<<<< HEAD
-    var columns = {};
-    while (rs.isValidRow()) {
-        var cName = rs.fieldByName("name");
-        var cType = rs.fieldByName("type");
-        columns[cName] = cType;
-        cName !== ALLOY_ID_DEFAULT || config.adapter.idAttribute || (config.adapter.idAttribute = ALLOY_ID_DEFAULT);
-        rs.next();
-=======
     var cName, cType, columns = {};
     if (rs) {
         while (rs.isValidRow()) {
@@ -313,12 +286,10 @@ function installDatabase(config) {
             cName !== ALLOY_ID_DEFAULT || config.adapter.idAttribute ? k === config.adapter.idAttribute && (cType += " UNIQUE") : config.adapter.idAttribute = ALLOY_ID_DEFAULT;
             columns[cName] = cType;
         }
->>>>>>> FETCH_HEAD
     }
     config.columns = columns;
-    rs.close();
     if (config.adapter.idAttribute) {
-        if (!_.contains(_.keys(config.columns), config.adapter.idAttribute)) throw 'config.adapter.idAttribute "' + config.adapter.idAttribute + '" not found in list of columns for table "' + table + '"\n' + "columns: [" + _.keys(config.columns).join(",") + "]";
+        if (!_.contains(_.keys(config.columns), config.adapter.idAttribute)) throw 'config.adapter.idAttribute "' + config.adapter.idAttribute + '" not found in list of columns for table "' + table + '"\ncolumns: [' + _.keys(config.columns).join(",") + "]";
     } else {
         Ti.API.info('No config.adapter.idAttribute specified for table "' + table + '"');
         Ti.API.info('Adding "' + ALLOY_ID_DEFAULT + '" to uniquely identify rows');
@@ -337,7 +308,6 @@ function installDatabase(config) {
     }
     db.close();
 }
-<<<<<<< HEAD
 
 var _ = require("alloy/underscore")._;
 
@@ -345,15 +315,6 @@ var ALLOY_DB_DEFAULT = "_alloy_";
 
 var ALLOY_ID_DEFAULT = "alloy_id";
 
-=======
-
-var _ = require("alloy/underscore")._;
-
-var ALLOY_DB_DEFAULT = "_alloy_";
-
-var ALLOY_ID_DEFAULT = "alloy_id";
-
->>>>>>> FETCH_HEAD
 var cache = {
     config: {},
     Model: {}

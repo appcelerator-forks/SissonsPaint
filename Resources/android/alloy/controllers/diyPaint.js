@@ -1,12 +1,29 @@
+function __processArg(obj, key) {
+    var arg = null;
+    if (obj) {
+        arg = obj[key] || null;
+        delete obj[key];
+    }
+    return arg;
+}
+
 function Controller() {
     function PixelsToDPUnits(ThePixels) {
         return ThePixels / (Titanium.Platform.displayCaps.dpi / 160);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "diyPaint";
-    arguments[0] ? arguments[0]["__parentSymbol"] : null;
-    arguments[0] ? arguments[0]["$model"] : null;
-    arguments[0] ? arguments[0]["__itemTemplate"] : null;
+    if (arguments[0]) {
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
+    }
     var $ = this;
     var exports = {};
     $.__views.diyPaint = Ti.UI.createView({
@@ -17,11 +34,7 @@ function Controller() {
         backgroundColor: "white",
         id: "__alloyId27"
     });
-<<<<<<< HEAD
-    $.__views.diyPaint.add($.__views.__alloyId25);
-=======
     $.__views.diyPaint.add($.__views.__alloyId27);
->>>>>>> FETCH_HEAD
     $.__views.toggle = Ti.UI.createView({
         backgroundColor: "yellow",
         id: "toggle",
@@ -29,15 +42,6 @@ function Controller() {
         height: "80",
         top: "0"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId25.add($.__views.toggle);
-    $.__views.__alloyId26 = Alloy.createController("toggle", {
-        id: "__alloyId26",
-        __parentSymbol: $.__views.toggle
-    });
-    $.__views.__alloyId26.setParent($.__views.toggle);
-    $.__views.__alloyId27 = Ti.UI.createLabel({
-=======
     $.__views.__alloyId27.add($.__views.toggle);
     $.__views.__alloyId28 = Alloy.createController("toggle", {
         id: "__alloyId28",
@@ -45,7 +49,6 @@ function Controller() {
     });
     $.__views.__alloyId28.setParent($.__views.toggle);
     $.__views.__alloyId29 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -54,25 +57,14 @@ function Controller() {
         },
         text: "DIY Paint",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-<<<<<<< HEAD
-        id: "__alloyId27"
-    });
-    $.__views.toggle.add($.__views.__alloyId27);
-=======
         id: "__alloyId29"
     });
     $.__views.toggle.add($.__views.__alloyId29);
->>>>>>> FETCH_HEAD
     $.__views.canvas = Ti.UI.createWebView({
-        backgroundColor: "h",
+        backgroundColor: "red",
         id: "canvas",
         url: "/html/canvas-paint-bucket.html",
-<<<<<<< HEAD
         enableZoomControls: "false"
-=======
-        disableBounce: "true",
-        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
->>>>>>> FETCH_HEAD
     });
     $.__views.__alloyId27.add($.__views.canvas);
     $.__views.toolbar = Ti.UI.createView({
@@ -81,13 +73,8 @@ function Controller() {
         backgroundColor: "orange",
         id: "toolbar"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId25.add($.__views.toolbar);
-    $.__views.settings = Ti.UI.createImageView({
-=======
     $.__views.__alloyId27.add($.__views.toolbar);
-    $.__views.settings1 = Ti.UI.createImageView({
->>>>>>> FETCH_HEAD
+    $.__views.settings = Ti.UI.createImageView({
         width: "16.6%",
         id: "settings",
         mod: "settings",
@@ -138,7 +125,7 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
-    Ti.Platform.displayCaps.platformWidth;
+    var pWidth = Ti.Platform.displayCaps.platformWidth;
     var pHeight = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight);
     var toolbarHeight = $.toolbar.rect.height;
     var toggleHeight = $.toggle.getHeight();
@@ -174,7 +161,7 @@ function Controller() {
                 var a = Titanium.UI.createAlertDialog({
                     title: "Camera"
                 });
-                error.code == Titanium.Media.NO_CAMERA ? a.setMessage("Device does not have camera") : a.setMessage("Unexpected error: " + error.code);
+                a.setMessage(error.code == Titanium.Media.NO_CAMERA ? "Device does not have camera" : "Unexpected error: " + error.code);
                 a.show();
             },
             allowImageEditing: true,
