@@ -1,7 +1,10 @@
 var args = arguments[0] || {};
 var category   = args.details;
 var colour   = args.colour_details;
+var library = Alloy.createCollection('favourite');  
+var isFav   = library.checkFavouriteByColourId(colour.id);
 
+console.log(isFav);
 Ti.App.Properties.setString('module', 'colourDetails');
 
 $.colourDetails.backgroundColor = "rgb("+colour.rgb +")";
@@ -22,5 +25,49 @@ $.colourCategoryImage.width = "80%";
 $.colourCategoryDescription.text = category.description;
  
 function popWindow(e){
-	alert("To add favourite...");
+	var str = ""
+	if(isFav.length == 0){
+		str = "add";
+	}else{
+		str = "remove";
+	}
+	var dialog = Ti.UI.createAlertDialog({
+	  cancel: 1,
+	  buttonNames: ['Cancel','Confirm'],
+	  message: 'Are you sure want to '+str+' '+colour.code+' to favourite list?',
+	  title: 'Colour favourite'
+	});
+	dialog.addEventListener('click', function(e){
+	
+	  if (e.index === e.source.cancel){
+	    //Do nothing
+	  }
+	  if (e.index === 1){
+	  	if(isFav.length == 0){
+	  		addToFavourite();
+	  	}else{
+	  		removeFavourite();
+	  	}
+	  }
+	});
+	dialog.show(); 
 } 
+ 
+if(isFav.length == 0){ 
+	$.favButton.image = "/images/icon_favourite.png"; 
+}else{
+	$.favButton.image = "/images/icon_fav_remove.png"; 
+}
+
+function removeFavourite(){
+	library.removeFavouriteColour(colour.id);
+	alert("Colour removed!");
+}
+
+function addToFavourite(){
+	var library = Alloy.createModel('favourite', {
+			colour_id: colour.id,
+	});
+	library.save();	
+	alert("Colour saved!");
+}

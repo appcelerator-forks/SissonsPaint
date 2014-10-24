@@ -17,6 +17,10 @@
 				</TableViewRow>
 				
 				<TableViewRow height="50">
+					<Label width="Ti.UI.FILL" left="30" color="white">Favourite Colour</Label>
+				</TableViewRow>
+				
+				<TableViewRow height="50">
 					<Label width="Ti.UI.FILL" left="30" color="white">Brochure</Label>
 				</TableViewRow>
 				

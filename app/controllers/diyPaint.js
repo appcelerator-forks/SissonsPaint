@@ -19,7 +19,6 @@ $.canvas.addEventListener("load", function(){
 	Ti.App.fireEvent('web:initCanvasSize', { height: canvasHeight, width: pWidth });
 });	
 
-
 //Create a dialog with options
 var dialog = Titanium.UI.createOptionDialog({
     //title of dialog
