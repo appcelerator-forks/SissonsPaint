@@ -1,1 +1,1 @@
-/Users/HatsuneMiku/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/app.js
+function toggle(){Alloy.Globals.Drawer.toggleLeftWindow()}function PixelsToDPUnits(l){return l/(Titanium.Platform.displayCaps.dpi/160)}function DPUnitsToPixels(l){return l*(Titanium.Platform.displayCaps.dpi/160)}var Alloy=require("alloy"),_=Alloy._,Backbone=Alloy.Backbone;Alloy.createController("index");

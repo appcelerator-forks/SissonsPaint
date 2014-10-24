@@ -132,6 +132,7 @@ generateTable();
 	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
 	overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
 });*/
+$.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 140;
 
 function generateTable(){
 	var data=[];
@@ -140,7 +141,7 @@ function generateTable(){
 		console.log("details: "+details[i]);
 		var colours = category_colour_lib.getCategoryColourByCategory(details[i]['id']);
 		var categoryHeader = Titanium.UI.createImageView({ 
-			width : "100%",
+			width : "95%",
 			height : Ti.UI.SIZE,
 			touchEnabled : false,
 			top:15,
@@ -148,6 +149,7 @@ function generateTable(){
 		});
 		
 		var description = $.UI.create('Label', {
+			width : "95%",
 			text: details[i].description , 
 			classes: ['aboutContent'],
 		});
@@ -159,7 +161,7 @@ function generateTable(){
 		var colourView = $.UI.create('View', { 
 			textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 			layout: 'horizontal',
-			width: "100%",
+			width: "95%",
 			bottom: 10,
 			height: Ti.UI.SIZE,
 					

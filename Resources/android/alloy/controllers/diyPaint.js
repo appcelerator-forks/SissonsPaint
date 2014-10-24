@@ -8,9 +8,6 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function PixelsToDPUnits(ThePixels) {
-        return ThePixels / (Titanium.Platform.displayCaps.dpi / 160);
-    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "diyPaint";
     if (arguments[0]) {
@@ -30,23 +27,11 @@ function Controller() {
         id: "diyPaint"
     });
     $.__views.diyPaint && $.addTopLevelView($.__views.diyPaint);
-<<<<<<< HEAD
-    $.__views.__alloyId46 = Ti.UI.createView({
-        backgroundColor: "white",
-        id: "__alloyId46"
-    });
-<<<<<<< HEAD
-    $.__views.diyPaint.add($.__views.__alloyId27);
-=======
-    $.__views.diyPaint.add($.__views.__alloyId46);
-=======
     $.__views.__alloyId47 = Ti.UI.createView({
         backgroundColor: "white",
         id: "__alloyId47"
     });
     $.__views.diyPaint.add($.__views.__alloyId47);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     $.__views.toggle = Ti.UI.createView({
         backgroundColor: "yellow",
         id: "toggle",
@@ -54,24 +39,6 @@ function Controller() {
         height: "80",
         top: "0"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId27.add($.__views.toggle);
-    $.__views.__alloyId28 = Alloy.createController("toggle", {
-        id: "__alloyId28",
-        __parentSymbol: $.__views.toggle
-    });
-    $.__views.__alloyId28.setParent($.__views.toggle);
-    $.__views.__alloyId29 = Ti.UI.createLabel({
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId46.add($.__views.toggle);
-    $.__views.__alloyId47 = Alloy.createController("toggle", {
-        id: "__alloyId47",
-        __parentSymbol: $.__views.toggle
-    });
-    $.__views.__alloyId47.setParent($.__views.toggle);
-    $.__views.__alloyId48 = Ti.UI.createLabel({
-=======
     $.__views.__alloyId47.add($.__views.toggle);
     $.__views.__alloyId48 = Alloy.createController("toggle", {
         id: "__alloyId48",
@@ -79,8 +46,6 @@ function Controller() {
     });
     $.__views.__alloyId48.setParent($.__views.toggle);
     $.__views.__alloyId49 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -89,51 +54,23 @@ function Controller() {
         },
         text: "DIY Paint",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-<<<<<<< HEAD
-        id: "__alloyId29"
-    });
-    $.__views.toggle.add($.__views.__alloyId29);
-=======
-<<<<<<< HEAD
-        id: "__alloyId48"
-    });
-    $.__views.toggle.add($.__views.__alloyId48);
-=======
         id: "__alloyId49"
     });
     $.__views.toggle.add($.__views.__alloyId49);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     $.__views.canvas = Ti.UI.createWebView({
         backgroundColor: "red",
         id: "canvas",
         url: "/html/canvas-paint-bucket.html",
         enableZoomControls: "false"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId27.add($.__views.canvas);
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId46.add($.__views.canvas);
-=======
     $.__views.__alloyId47.add($.__views.canvas);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     $.__views.toolbar = Ti.UI.createView({
         height: Ti.UI.SIZE,
         bottom: "0",
         backgroundColor: "orange",
         id: "toolbar"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId27.add($.__views.toolbar);
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId46.add($.__views.toolbar);
-=======
     $.__views.__alloyId47.add($.__views.toolbar);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     $.__views.settings = Ti.UI.createImageView({
         width: "16.6%",
         id: "settings",

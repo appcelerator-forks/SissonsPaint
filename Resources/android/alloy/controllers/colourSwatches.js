@@ -13,13 +13,14 @@ function Controller() {
             console.log("details: " + details[i]);
             var colours = category_colour_lib.getCategoryColourByCategory(details[i]["id"]);
             var categoryHeader = Titanium.UI.createImageView({
-                width: "100%",
+                width: "95%",
                 height: Ti.UI.SIZE,
                 touchEnabled: false,
                 top: 15,
                 image: details[i]["image"]
             });
             var description = $.UI.create("Label", {
+                width: "95%",
                 text: details[i].description,
                 classes: [ "aboutContent" ]
             });
@@ -28,7 +29,7 @@ function Controller() {
             var colourView = $.UI.create("View", {
                 textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
                 layout: "horizontal",
-                width: "100%",
+                width: "95%",
                 bottom: 10,
                 height: Ti.UI.SIZE
             });
@@ -62,18 +63,14 @@ function Controller() {
                 colourView.add(subView);
                 counter++;
             });
-<<<<<<< HEAD
             $.TheScrollView.add(colourView);
-=======
             var separator = Titanium.UI.createImageView({
                 width: Titanium.UI.FILL,
                 height: 30,
                 touchEnabled: false,
                 image: "/images/scroll_up.png"
             });
-            TheScrollView.add(colourView);
-            details.length != i + 1 && TheScrollView.add(separator);
->>>>>>> FETCH_HEAD
+            details.length != i + 1 && $.TheScrollView.add(separator);
         }
         $.mainViewContainer.add(bottomBar);
     }
@@ -86,10 +83,6 @@ function Controller() {
             }).getView();
             Alloy.Globals.Drawer.setCenterWindow(nav);
         });
-    }
-    function removeAllChildren(viewObject) {
-        var children = viewObject.children.slice(0);
-        for (var i = 0; i < children.length; ++i) viewObject.remove(children[i]);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "colourSwatches";
@@ -111,24 +104,6 @@ function Controller() {
         id: "mainViewContainer"
     });
     $.__views.mainViewContainer && $.addTopLevelView($.__views.mainViewContainer);
-<<<<<<< HEAD
-    $.__views.__alloyId43 = Ti.UI.createView({
-        layout: "vertical",
-        id: "__alloyId43"
-    });
-    $.__views.mainViewContainer.add($.__views.__alloyId43);
-    $.__views.__alloyId44 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "80",
-        id: "__alloyId44"
-    });
-    $.__views.__alloyId43.add($.__views.__alloyId44);
-    $.__views.__alloyId45 = Alloy.createController("toggle", {
-        id: "__alloyId45",
-        __parentSymbol: $.__views.__alloyId44
-    });
-    $.__views.__alloyId45.setParent($.__views.__alloyId44);
-=======
     $.__views.__alloyId44 = Ti.UI.createView({
         layout: "vertical",
         id: "__alloyId44"
@@ -137,7 +112,6 @@ function Controller() {
     $.__views.__alloyId45 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        bottom: "0",
         id: "__alloyId45"
     });
     $.__views.__alloyId44.add($.__views.__alloyId45);
@@ -146,7 +120,6 @@ function Controller() {
         __parentSymbol: $.__views.__alloyId45
     });
     $.__views.__alloyId46.setParent($.__views.__alloyId45);
->>>>>>> FETCH_HEAD
     $.__views.titleLabel = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -158,24 +131,16 @@ function Controller() {
         id: "titleLabel",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
-<<<<<<< HEAD
-    $.__views.__alloyId44.add($.__views.titleLabel);
-=======
     $.__views.__alloyId45.add($.__views.titleLabel);
-<<<<<<< HEAD
     $.__views.TheScrollView = Ti.UI.createScrollView({
         id: "TheScrollView",
         backgroundColor: "white",
-        width: "95%",
+        width: "100%",
         layout: "vertical",
-        height: "80%",
         top: "0",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.__alloyId44.add($.__views.TheScrollView);
-=======
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -280,19 +245,11 @@ function Controller() {
     bottomBar.add(backgroundImg);
     bottomBar.add(buttonWrapper);
     generateTable();
+    $.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 140;
     var tableListener = function(e) {
         console.log(e.index);
         filterFlag = 0;
         $.mainViewContainer.remove(table);
-        removeAllChildren($.TheScrollView);
-        if (0 == e.index) {
-            details = library.getCategoryList();
-            generateTable();
-        } else {
-            var test = library.getCategoryList();
-            console.log(test);
-            generateTable();
-        }
     };
     filterButton.addEventListener("click", function() {
         console.log("popWindow");
