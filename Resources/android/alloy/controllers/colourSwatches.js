@@ -10,7 +10,7 @@ function __processArg(obj, key) {
 function Controller() {
     function generateTable() {
         for (var i = 0; i < details.length; i++) {
-            console.log("details: " + details[i]);
+            console.log(details[i]);
             var colours = category_colour_lib.getCategoryColourByCategory(details[i]["id"]);
             var categoryHeader = Titanium.UI.createImageView({
                 width: "95%",
@@ -85,6 +85,10 @@ function Controller() {
             Alloy.Globals.Drawer.setCenterWindow(nav);
         });
     }
+    function removeAllChildren(viewObject) {
+        var children = viewObject.children.slice(0);
+        for (var i = 0; i < children.length; ++i) viewObject.remove(children[i]);
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "colourSwatches";
     if (arguments[0]) {
@@ -149,6 +153,10 @@ function Controller() {
     var category_colour_lib = Alloy.createCollection("category_colour");
     var colour_lib = Alloy.createCollection("colour");
     var details = library.getCategoryList();
+    Ti.Platform.displayCaps.platformHeight;
+    var category_type_lib = Alloy.createCollection("category_type");
+    var category_tag = category_type_lib.selectTypeByDistinct();
+    console.log(category_tag);
     var searchFlag = 0;
     var filterFlag = 0;
     var bottomBar = Titanium.UI.createView({
@@ -198,39 +206,17 @@ function Controller() {
         touchEnabled: true,
         height: 60
     });
-    var row2 = Ti.UI.createTableViewRow({
-        title: "Interior",
-        width: 150,
-        left: 10,
-        touchEnabled: true,
-        height: 60
-    });
-    var row3 = Ti.UI.createTableViewRow({
-        title: "Exterior",
-        width: 150,
-        left: 10,
-        touchEnabled: true,
-        height: 60
-    });
-    var row4 = Ti.UI.createTableViewRow({
-        title: "Wood",
-        width: 150,
-        left: 10,
-        touchEnabled: true,
-        height: 60
-    });
-    var row5 = Ti.UI.createTableViewRow({
-        title: "Metal",
-        width: 150,
-        left: 10,
-        touchEnabled: true,
-        height: 60
-    });
     tableData.push(row1);
-    tableData.push(row2);
-    tableData.push(row3);
-    tableData.push(row4);
-    tableData.push(row5);
+    category_tag.forEach(function(tags) {
+        var row_tag = Ti.UI.createTableViewRow({
+            title: tags.tag,
+            width: 150,
+            left: 10,
+            touchEnabled: true,
+            height: 60
+        });
+        tableData.push(row_tag);
+    });
     var table = Titanium.UI.createTableView({
         separatorColor: "transparent",
         backgroundImage: "/images/pop_window.png",
@@ -251,6 +237,21 @@ function Controller() {
         console.log(e.index);
         filterFlag = 0;
         $.mainViewContainer.remove(table);
+        removeAllChildren($.TheScrollView);
+        if (0 == e.index) {
+            details = library.getCategoryList();
+            generateTable();
+        } else {
+            var result = category_type_lib.getCategoryTypeByTag(e.rowData.title);
+            var data = [];
+            details = [];
+            result.forEach(function(tags) {
+                data = library.getCategoryById(tags.cate_id);
+                details.push(data);
+            });
+            console.log(details);
+            generateTable();
+        }
     };
     filterButton.addEventListener("click", function() {
         console.log("popWindow");
@@ -320,10 +321,17 @@ function Controller() {
             searchWrapper.add(searchButton);
             searchView.add(searchWrapper);
             $.mainViewContainer.add(searchView);
-            searchButton.addEventListener("click", function() {
+            searchButton.addEventListener("click", function(e) {
                 console.log(textField.value);
                 searchFlag = 0;
                 $.mainViewContainer.remove(searchView);
+                removeAllChildren($.TheScrollView);
+                var result = category_colour_lib.getCateByColourId(e.textField.value);
+                result.forEach(function(colour_id) {
+                    details = library.getCategoryById(colour_id.cate_id);
+                });
+                console.log(details);
+                generateTable();
             });
         }
     });

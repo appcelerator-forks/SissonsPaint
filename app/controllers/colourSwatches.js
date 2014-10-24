@@ -4,6 +4,11 @@ var library = Alloy.createCollection('category');
 var category_colour_lib = Alloy.createCollection('category_colour');
 var colour_lib = Alloy.createCollection('colour'); 
 var details = library.getCategoryList();
+var pHeight = Ti.Platform.displayCaps.platformHeight;
+var category_type_lib =  Alloy.createCollection('category_type');
+var category_tag = category_type_lib.selectTypeByDistinct();
+
+console.log(category_tag);
 
 var searchFlag = 0;
 var filterFlag = 0;
@@ -35,8 +40,6 @@ var filterButton = Ti.UI.createImageView({
   	top: 10,
   	bottom: 10,
   	image:'/images/icon_filter.png',
-  //	onClick: "popWindow"
-
 });
 
 var searchButton = Ti.UI.createImageView({
@@ -65,44 +68,21 @@ var row1 = Ti.UI.createTableViewRow({
     touchEnabled: true,
     height: 60
   });
-
-var row2 = Ti.UI.createTableViewRow({
-    title: 'Interior',
-    width: 150,
-    left: 10,
-    touchEnabled: true,
-    height: 60
-  });
-  
-var row3 = Ti.UI.createTableViewRow({
-    title: 'Exterior',
-    width: 150,
-    left: 10,
-    touchEnabled: true,
-    height: 60
-  });
-  
-var row4 = Ti.UI.createTableViewRow({
-    title: 'Wood',
-	width: 150,
-	left: 10,
-    touchEnabled: true,
-    height: 60
-  });
-
-var row5 = Ti.UI.createTableViewRow({
-    title: 'Metal',
-	width: 150,
-	left: 10,
-    touchEnabled: true,
-    height: 60
-  });
-
 tableData.push(row1);
-tableData.push(row2);
-tableData.push(row3);
-tableData.push(row4);
-tableData.push(row5);
+
+category_tag.forEach(function(tags) { 
+	var row_tag = Ti.UI.createTableViewRow({
+    title: tags.tag,
+    width: 150,
+    left: 10,
+    touchEnabled: true,
+    height: 60
+  });
+  tableData.push(row_tag);
+});
+
+
+
 
 var table = Titanium.UI.createTableView({
 		separatorColor: 'transparent',
@@ -136,10 +116,9 @@ $.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight)
 
 function generateTable(){
 	var data=[];
-
 	 
 	for (var i=0; i< details.length; i++) {
-		console.log("details: "+details[i]);
+		console.log(details[i]);
 		var colours = category_colour_lib.getCategoryColourByCategory(details[i]['id']);
 		var categoryHeader = Titanium.UI.createImageView({ 
 			width : "95%",
@@ -240,7 +219,7 @@ var tableListener = function(e){
 	console.log(e.index);
 	filterFlag = 0;
 	$.mainViewContainer.remove(table);
-	/*removeAllChildren($.TheScrollView);
+	removeAllChildren($.TheScrollView);
 	if(e.index == 0)
 	{
 		details = library.getCategoryList();
@@ -249,10 +228,17 @@ var tableListener = function(e){
 	else
 	{
 		//details = library.getCategoryByType(e.rowData.title);
-		var test = library.getCategoryList();
-		console.log(test);
+		var result = category_type_lib.getCategoryTypeByTag(e.rowData.title);
+		var data = [];
+		details =[];
+		result.forEach(function(tags) {
+			data = library.getCategoryById(tags.cate_id);
+			details.push(data);
+		});
+		
+		console.log(details);
 	    generateTable();
-	}*/
+	}
 	/*switch (e.index) {
 	case 1:
 		details = library.getCategoryByType(e.title);
@@ -376,7 +362,14 @@ searchButton.addEventListener('click', function(e){
 			//console.log(e.textField.value);
 			searchFlag = 0;
 			$.mainViewContainer.remove(searchView);
-			//table.close();
+			/*removeAllChildren($.TheScrollView);
+			var result = category_colour_lib.getCateByColourId(e.textField.value);
+			
+			result.forEach(function(colour_id) {
+			details = library.getCategoryById(colour_id.cate_id);
+			});
+			console.log(details);
+	    	generateTable();*/
 		});
 		
 		// }
