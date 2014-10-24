@@ -116,11 +116,12 @@ generateTable();
 
 function generateTable(){
 	var data=[];
+	var pHeight = Ti.Platform.displayCaps.platformHeight; 
 	var TheScrollView = Titanium.UI.createScrollView({
 		backgroundColor: "white", 
-		width:"95%",
+		width:"100%",
 		layout: 'vertical',
-		height: "80%", 
+		height: PixelsToDPUnits(pHeight) - 140,//"78%", 
 		top:80, 
 		textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
 		overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
@@ -130,7 +131,7 @@ function generateTable(){
 		
 		var colours = category_colour_lib.getCategoryColourByCategory(details[i]['id']);
 		var categoryHeader = Titanium.UI.createImageView({ 
-			width : "100%",
+			width : "95%",
 			height : Ti.UI.SIZE,
 			touchEnabled : false,
 			top:15,
@@ -139,6 +140,7 @@ function generateTable(){
 		
 		var description = $.UI.create('Label', {
 			text: details[i].description , 
+			width : "95%",
 			classes: ['aboutContent'],
 		});
 		 
@@ -149,7 +151,7 @@ function generateTable(){
 		var colourView = $.UI.create('View', { 
 			textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 			layout: 'horizontal',
-			width: "100%",
+			width: "95%",
 			bottom: 10,
 			height: Ti.UI.SIZE,
 					

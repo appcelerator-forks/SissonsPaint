@@ -13,3 +13,11 @@
 function toggle(e) { 
    Alloy.Globals.Drawer['toggleLeftWindow']();
 }
+
+function PixelsToDPUnits(ThePixels){
+  return (ThePixels / (Titanium.Platform.displayCaps.dpi / 160));
+}
+
+function DPUnitsToPixels(TheDPUnits){
+  return (TheDPUnits * (Titanium.Platform.displayCaps.dpi / 160));
+}

@@ -64,12 +64,15 @@ function doMenuClick(e){
 			navigation('colourSwatches');
 			break;
 		case 3: 
-			navigation('brochure');
+			navigation('favourite');
 			break;
 		case 4: 
-			navigation('storeLocator');
+			navigation('brochure');
 			break;
 		case 5: 
+			navigation('storeLocator');
+			break;
+		case 6: 
 			navigation('aboutUs');
 			break;
 	}

@@ -19,16 +19,6 @@ $.canvas.addEventListener("load", function(){
 	Ti.App.fireEvent('web:initCanvasSize', { height: canvasHeight, width: pWidth });
 });	
 
-function PixelsToDPUnits(ThePixels)
-{
-  return (ThePixels / (Titanium.Platform.displayCaps.dpi / 160));
-}
- 
- 
-function DPUnitsToPixels(TheDPUnits)
-{
-  return (TheDPUnits * (Titanium.Platform.displayCaps.dpi / 160));
-}
 //Create a dialog with options
 var dialog = Titanium.UI.createOptionDialog({
     //title of dialog
