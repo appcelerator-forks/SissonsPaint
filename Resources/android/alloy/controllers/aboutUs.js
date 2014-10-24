@@ -24,24 +24,24 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.aboutUs = Ti.UI.createView({
+    $.__views.mainView = Ti.UI.createView({
         backgroundColor: "white",
         layout: "vertical",
         width: Ti.UI.FILL,
         fullscreen: true,
+        id: "mainView",
         top: "10",
         left: "10",
         right: "10",
-        height: Titanium.UI.SIZE,
-        id: "aboutUs"
+        height: Titanium.UI.SIZE
     });
-    $.__views.aboutUs && $.addTopLevelView($.__views.aboutUs);
+    $.__views.mainView && $.addTopLevelView($.__views.mainView);
     $.__views.__alloyId0 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
         id: "__alloyId0"
     });
-    $.__views.aboutUs.add($.__views.__alloyId0);
+    $.__views.mainView.add($.__views.__alloyId0);
     $.__views.__alloyId1 = Alloy.createController("toggle", {
         id: "__alloyId1",
         __parentSymbol: $.__views.__alloyId0
@@ -64,7 +64,7 @@ function Controller() {
         height: Ti.UI.SIZE,
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
-    $.__views.aboutUs.add($.__views.mainScroll);
+    $.__views.mainView.add($.__views.mainScroll);
     $.__views.main = Ti.UI.createScrollView({
         backgroundColor: "white",
         id: "main",
@@ -93,7 +93,7 @@ function Controller() {
     $.__views.mainScroll.add($.__views.__alloyId4);
     $.__views.__alloyId5 = Ti.UI.createImageView({
         image: "/images/scroll_up.png",
-        backgroundColor: "#white",
+        backgroundColor: "white",
         width: Titanium.UI.FILL,
         id: "__alloyId5"
     });
@@ -104,7 +104,7 @@ function Controller() {
         },
         text: "Email",
         color: "black",
-        bottom: "10",
+        bottom: "20",
         width: "75%",
         textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
         id: "__alloyId6"
@@ -114,6 +114,7 @@ function Controller() {
         layout: "horizontal",
         height: "40",
         top: "10",
+        bottom: "15",
         width: "90%",
         horizontalWrap: "true",
         id: "__alloyId7"
@@ -148,6 +149,7 @@ function Controller() {
         layout: "horizontal",
         height: "40",
         top: "10",
+        bottom: "15",
         width: "90%",
         horizontalWrap: "true",
         id: "__alloyId9"
@@ -182,7 +184,7 @@ function Controller() {
         layout: "horizontal",
         height: "100",
         top: "10",
-        bottom: "15",
+        bottom: "0",
         width: "90%",
         horizontalWrap: "true",
         id: "__alloyId11"
@@ -198,17 +200,19 @@ function Controller() {
         right: "10",
         text: "Message",
         width: "30%",
-        top: "0",
         id: "__alloyId12"
     });
     $.__views.__alloyId11.add($.__views.__alloyId12);
-    $.__views.message = Ti.UI.createTextArea({
+    $.__views.message = Ti.UI.createTextField({
+        color: "#848484",
+        borderColor: "#BDBDBD",
+        textAlign: "center",
+        height: 40,
+        keyboardType: Titanium.UI.KEYBOARD_DEFAULT,
+        returnKeyType: Titanium.UI.RETURNKEY_DONE,
+        clearButtonMode: Titanium.UI.INPUT_BUTTONMODE_ONFOCUS,
         id: "message",
-        color: "#888",
-        textAlign: "left",
-        width: "60%",
-        height: "100",
-        borderColor: "#888"
+        width: "60%"
     });
     $.__views.__alloyId11.add($.__views.message);
     $.__views.__alloyId13 = Ti.UI.createView({
@@ -260,7 +264,7 @@ function Controller() {
                 var res = JSON.parse(this.responseText);
                 if ("success" == res.status) {
                     COMM.createAlert("Message Sent", "Your messages successfully sent to admin.");
-                    $.username.value = "";
+                    $.name.value = "";
                     $.email.value = "";
                     $.message.value = "";
                 }
@@ -273,6 +277,7 @@ function Controller() {
         client.open("GET", url);
         client.send();
     };
+    $.message.addEventListener("return", submitContactForm);
     __defers["$.__views.contactButton!click!submitContactForm"] && $.__views.contactButton.addEventListener("click", submitContactForm);
     _.extend($, exports);
 }

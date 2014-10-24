@@ -9,16 +9,8 @@ function __processArg(obj, key) {
 
 function Controller() {
     function generateTable() {
-        var TheScrollView = Titanium.UI.createScrollView({
-            backgroundColor: "white",
-            width: "95%",
-            layout: "vertical",
-            height: "80%",
-            top: 80,
-            textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-            overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
-        });
         for (var i = 0; i < details.length; i++) {
+            console.log("details: " + details[i]);
             var colours = category_colour_lib.getCategoryColourByCategory(details[i]["id"]);
             var categoryHeader = Titanium.UI.createImageView({
                 width: "100%",
@@ -31,8 +23,8 @@ function Controller() {
                 text: details[i].description,
                 classes: [ "aboutContent" ]
             });
-            TheScrollView.add(categoryHeader);
-            TheScrollView.add(description);
+            $.TheScrollView.add(categoryHeader);
+            $.TheScrollView.add(description);
             var colourView = $.UI.create("View", {
                 textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
                 layout: "horizontal",
@@ -70,9 +62,8 @@ function Controller() {
                 colourView.add(subView);
                 counter++;
             });
-            TheScrollView.add(colourView);
+            $.TheScrollView.add(colourView);
         }
-        $.mainViewContainer.add(TheScrollView);
         $.mainViewContainer.add(bottomBar);
     }
     function createColorEvent(subView, colour_details, details) {
@@ -84,6 +75,10 @@ function Controller() {
             }).getView();
             Alloy.Globals.Drawer.setCenterWindow(nav);
         });
+    }
+    function removeAllChildren(viewObject) {
+        var children = viewObject.children.slice(0);
+        for (var i = 0; i < children.length; ++i) viewObject.remove(children[i]);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "colourSwatches";
@@ -112,8 +107,8 @@ function Controller() {
     $.__views.mainViewContainer.add($.__views.__alloyId44);
     $.__views.__alloyId45 = Ti.UI.createView({
         layout: "horizontal",
-        height: "85",
-        bottom: "20",
+        height: "80",
+        bottom: "0",
         id: "__alloyId45"
     });
     $.__views.__alloyId44.add($.__views.__alloyId45);
@@ -134,6 +129,16 @@ function Controller() {
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
     $.__views.__alloyId45.add($.__views.titleLabel);
+    $.__views.TheScrollView = Ti.UI.createScrollView({
+        id: "TheScrollView",
+        backgroundColor: "white",
+        width: "95%",
+        layout: "vertical",
+        height: "80%",
+        top: "0",
+        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
+    });
+    $.__views.__alloyId44.add($.__views.TheScrollView);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -184,27 +189,34 @@ function Controller() {
     });
     var tableData = [];
     var row1 = Ti.UI.createTableViewRow({
-        title: "Interior",
+        title: "All",
         width: 150,
         left: 10,
         touchEnabled: true,
         height: 60
     });
     var row2 = Ti.UI.createTableViewRow({
-        title: "Exterior",
+        title: "Interior",
         width: 150,
         left: 10,
         touchEnabled: true,
         height: 60
     });
     var row3 = Ti.UI.createTableViewRow({
-        title: "Wood",
+        title: "Exterior",
         width: 150,
         left: 10,
         touchEnabled: true,
         height: 60
     });
     var row4 = Ti.UI.createTableViewRow({
+        title: "Wood",
+        width: 150,
+        left: 10,
+        touchEnabled: true,
+        height: 60
+    });
+    var row5 = Ti.UI.createTableViewRow({
         title: "Metal",
         width: 150,
         left: 10,
@@ -215,6 +227,7 @@ function Controller() {
     tableData.push(row2);
     tableData.push(row3);
     tableData.push(row4);
+    tableData.push(row5);
     var table = Titanium.UI.createTableView({
         separatorColor: "transparent",
         backgroundImage: "/images/pop_window.png",
@@ -230,8 +243,23 @@ function Controller() {
     bottomBar.add(backgroundImg);
     bottomBar.add(buttonWrapper);
     generateTable();
+    var tableListener = function(e) {
+        console.log(e.index);
+        filterFlag = 0;
+        $.mainViewContainer.remove(table);
+        removeAllChildren($.TheScrollView);
+        if (0 == e.index) {
+            details = library.getCategoryList();
+            generateTable();
+        } else {
+            var test = library.getCategoryList();
+            console.log(test);
+            generateTable();
+        }
+    };
     filterButton.addEventListener("click", function() {
         console.log("popWindow");
+        closeWindow();
         $.mainViewContainer.remove(searchView);
         searchFlag = 0;
         if (1 == filterFlag) {
@@ -240,13 +268,12 @@ function Controller() {
         } else {
             filterFlag = 1;
             $.mainViewContainer.add(table);
-            table.addEventListener("click", function(e) {
-                console.log(e.index);
-                filterFlag = 1;
-                $.mainViewContainer.remove(table);
-            });
+            table.addEventListener("click", tableListener);
         }
     });
+    var closeWindow = function() {
+        table.removeEventListener("click", tableListener);
+    };
     searchButton.addEventListener("click", function() {
         console.log("searchBar");
         console.log("start:" + searchFlag);
@@ -299,6 +326,7 @@ function Controller() {
             searchView.add(searchWrapper);
             $.mainViewContainer.add(searchView);
             searchButton.addEventListener("click", function() {
+                console.log(textField.value);
                 searchFlag = 0;
                 $.mainViewContainer.remove(searchView);
             });

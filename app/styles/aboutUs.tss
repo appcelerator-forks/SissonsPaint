@@ -48,6 +48,9 @@
     returnKeyType: Titanium.UI.RETURNKEY_NEXT,
 	clearButtonMode: Titanium.UI.INPUT_BUTTONMODE_ONFOCUS
 },
+"#message": {
+	returnKeyType: Titanium.UI.RETURNKEY_DONE
+},
 ".title":{
 	font:{fontSize:28},	
 }

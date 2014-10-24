@@ -3,6 +3,7 @@ var pdf = require('pdf');
 var youtubePlayer = require("titutorial.youtubeplayer");
 var library = Alloy.createCollection('brochure'); 
 var details = library.getBrochureList(); 
+var filterFlag = 0;
  
 var displayCover = function(){ 
    	var counter = 0;
@@ -124,53 +125,99 @@ function createVideoEvent(adImage, id,content){
 	 });
 }
 
-function popWindow(e){
+var tableData = [];
+
+var row1 = Ti.UI.createTableViewRow({
+    title: 'LATEST',
+    width: 150,
+    left: 10,
+    touchEnabled: true,
+    height: 60
+  });
+  
+var row2 = Ti.UI.createTableViewRow({
+    title: 'DOWNLOADED',
+    width: 150,
+    left: 10,
+    touchEnabled: true,
+    height: 60
+  });
+  
+var row3 = Ti.UI.createTableViewRow({
+    title: 'VIDEO',
+	width: 150,
+	left: 10,
+    touchEnabled: true,
+    height: 60
+  });
+
+tableData.push(row1);
+tableData.push(row2);
+tableData.push(row3);
+
+var table = Titanium.UI.createTableView({
+	separatorColor: 'transparent',
+	backgroundImage: '/images/pop_window.png',
+	height: Ti.UI.SIZE,
+	width: 150,
+	bottom: 60,
+	overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
+	data: tableData
+});
+
+var tableListener = function(e){
+	console.log(e.index);
+	filterFlag = 0;
+	$.brochureView.remove(table);
+	removeAllChildren($.scrollview);
+	if(e.index == 0)
+	{
+		details = library.getBrochureList(); 
+		displayCover();
+	}
+	else if(e.index == 1)
+	{
+		details = library.getDownloadedList(); 
+		displayCover();
+	}
+	else
+	{
+		details = library.getVideoList();
+		displayCover();
+	}
+};
+
+var popWindow = function(e){
 	console.log("popWindow");
-	
-	var row1 = Ti.UI.createTableViewRow({
-	    title: 'LATEST',
-	    width: 150,
-	    left: 10,
-	    touchEnabled: true,
-	    height: 60
-	  });
-	  
-	var row2 = Ti.UI.createTableViewRow({
-	    title: 'DOWNLOADED',
-	    width: 150,
-	    left: 10,
-	    touchEnabled: true,
-	    height: 60
-	  });
-	  
-	var row3 = Ti.UI.createTableViewRow({
-	    title: 'VIDEO',
-		width: 150,
-		left: 10,
-	    touchEnabled: true,
-	    height: 60
-	  });
-	
-	var tableData = [];
-	
-	tableData.push(row1);
-	tableData.push(row2);
-	tableData.push(row3);
-	
-	var table = Titanium.UI.createTableView({
-		separatorColor: 'transparent',
-		backgroundImage: '/images/pop_window.png',
-		height: Ti.UI.SIZE,
-		width: 150,
-		bottom: 60,
-		overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
-		data: tableData
-	});
-	
-	$.brochureView.add(table);
-	
-	table.addEventListener('click', function(e){
-		console.log(e.index);
+	closeWindow();
+	if(filterFlag == 1)
+	{
+		filterFlag = 0;
 		$.brochureView.remove(table);
-	});
+	}
+	else
+	{
+		filterFlag = 1;
+		
+		$.brochureView.add(table);
+		table.addEventListener('click', tableListener);
+		/*table.addEventListener('click', function(e){
+			console.log(e.index);
+			filterFlag = 0;
+			$.brochureView.remove(table);
+	});*/
+	}
+};
+
+function removeAllChildren(viewObject){
+    //copy array of child object references because view's "children" property is live collection of child object references
+    var children = viewObject.children.slice(0);
+ 
+    for (var i = 0; i < children.length; ++i) {
+        viewObject.remove(children[i]);
+    }
 }
+
+var closeWindow = function(e){
+	table.removeEventListener('click', tableListener);
+};
