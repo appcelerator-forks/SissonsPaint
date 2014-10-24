@@ -34,7 +34,9 @@ var filterButton = Ti.UI.createImageView({
   	right: 10,
   	top: 10,
   	bottom: 10,
-  	image:'/images/icon_filter.png'
+  	image:'/images/icon_filter.png',
+  //	onClick: "popWindow"
+
 });
 
 var searchButton = Ti.UI.createImageView({
@@ -198,7 +200,20 @@ function generateTable(){
 			colourView.add(subView);	 
 			counter++; 
 		});
+
 	 	$.TheScrollView.add(colourView); 
+		
+		var separator = Titanium.UI.createImageView({ 
+			width : Titanium.UI.FILL,
+			height : 30,
+			//bottom: -1,
+			touchEnabled : false,
+			image : "/images/scroll_up.png"
+		});
+		
+	 	if(details.length != (i+1)){
+			$.TheScrollView.add(separator);
+		} 
 	}
 	
 	//$.mainViewContainer.add(TheScrollView); 

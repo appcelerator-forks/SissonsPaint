@@ -18,9 +18,9 @@ $.colourY.text =  (res[2] * 100).toFixed(2);
 $.colourK.text =  (res[3] * 100).toFixed(2);
 
 $.colourCategoryImage.image = category.image;
-$.colourCategoryImage.width = "90%";
+$.colourCategoryImage.width = "80%";
 $.colourCategoryDescription.text = category.description;
  
 function popWindow(e){
-	alert("Successful");
-}
+	alert("To add favourite...");
+} 

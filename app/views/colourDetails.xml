@@ -31,6 +31,7 @@
 					</View>
 				</View>
 			</View>
+
 			<View  layout="vertical" bottom="0" height="Ti.UI.SIZE" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
 				<View layout="vertical" height="Titanium.UI.SIZE">
 					<ImageView image="/images/scroll_up.png" width="Titanium.UI.FILL" />
@@ -43,12 +44,12 @@
 					<Label id="colourCategoryDescription" class="aboutContent" width="95%"></Label>	
 				</ScrollView>
 				
-			    
 		    </View>
 		</View>
 		<View height="60" bottom="0">
 				<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
 				<ImageView id="filterButton" image="/images/icon_favourite.png" onClick="popWindow" height="40" width="50" />
+ 
 		</View>
 	</View> 
 </Alloy>
