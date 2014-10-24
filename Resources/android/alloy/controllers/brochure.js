@@ -65,6 +65,8 @@ function Controller() {
     }
     function createVideoEvent(adImage, id, content) {
         adImage.addEventListener("click", function() {
+            console.log(id);
+            console.log(content);
             youtubePlayer.playVideo(content);
         });
     }
@@ -225,12 +227,13 @@ function Controller() {
                 }
                 createAdImageEvent(adImage, id, details[i].content, cell, details[i].isDownloaded, downloadIcon);
             } else {
-                createVideoEvent(adImage, id, details[i].url);
                 playIcon = Ti.UI.createImageView({
                     image: "/images/icon_play.png",
                     width: 40,
                     height: 40
                 });
+                createVideoEvent(adImage, id, details[i].url);
+                createVideoEvent(playIcon, id, details[i].url);
                 cell.add(playIcon);
             }
             (counter % 3 == 2 || last == counter) && $.scrollview.add(row);
@@ -289,7 +292,6 @@ function Controller() {
         }
     };
     var popWindow = function() {
-        console.log("popWindow");
         closeWindow();
         if (1 == filterFlag) {
             filterFlag = 0;

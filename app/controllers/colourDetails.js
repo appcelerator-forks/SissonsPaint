@@ -62,6 +62,8 @@ if(isFav.length == 0){
 function removeFavourite(){
 	library.removeFavouriteColour(colour.id);
 	alert("Colour removed!");
+	$.favButton.image = "/images/icon_favourite.png"; 
+	isFav = "";
 }
 
 function addToFavourite(){
@@ -70,4 +72,6 @@ function addToFavourite(){
 	});
 	library.save();	
 	alert("Colour saved!");
+	$.favButton.image = "/images/icon_fav_remove.png"; 
+	isFav ="1";
 }

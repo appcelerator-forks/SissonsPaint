@@ -41,7 +41,7 @@ var backgroundImg = Ti.UI.createImageView({
 var unFavButton = Ti.UI.createImageView({
   	width: 50,
   	height: 40, 
-  	top: 5,
+  	top: 10,
   	bottom: 5,
   	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
   	image:'/images/icon_fav_remove.png', 
@@ -52,14 +52,8 @@ bottomBar.add(backgroundImg);
 bottomBar.add(buttonWrapper);
 loadFavouriteList();
 
-
-
-	
 function loadFavouriteList(){
-	
 	var data=[];
-	
-	
 	if( favourite_list.length > 0){
 		
 		var colourView = $.UI.create('View', { 
@@ -110,11 +104,11 @@ function loadFavouriteList(){
 	   				right:0
 	   			});
 	   			
-	   			removeFavEvent(removeIcon,fav.colour_id,colour_details.code);	
+	   			removeFavEvent(subView,fav.colour_id,colour_details.code);	
 	   			subViewColor.add(removeIcon);  
+			}else{
+				createColorEvent(subView, colour_details, details);
 			}
-			
-			createColorEvent(subView, colour_details, details);
 			
 			subView.add(subViewColor);		
 			subView.add(subLabelName);		 
@@ -131,19 +125,17 @@ function loadFavouriteList(){
 }
 
 unFavButton.addEventListener('click',function(){
-	removeFlag ="1";
+	if(removeFlag == "1"){
+		removeFlag ="0";
+		unFavButton.image = "/images/icon_fav_remove.png";
+		
+	}else{
+		removeFlag ="1";
+		unFavButton.image = "/images/icon_favourite.png";
+	}
 	removeAllChildren(TheScrollView);
 	loadFavouriteList();
 });
-
-function removeAllChildren(viewObject){
-    //copy array of child object references because view's "children" property is live collection of child object references
-    var children = viewObject.children.slice(0);
- 
-    for (var i = 0; i < children.length; ++i) {
-        viewObject.remove(children[i]);
-    }
-}
 
 function removeFavEvent(removeIcon, colour_id, colour_code){
 	removeIcon.addEventListener( "click", function(){
@@ -178,10 +170,12 @@ function removeAllChildren(viewObject){
 }
 
 function createColorEvent(subView, colour_details, details){
+ 
 	subView.addEventListener( "click", function(){
 		Ti.App.Properties.setString('from', 'favourite');
 		var nav = Alloy.createController("colourDetails",{colour_details:colour_details, details:details}).getView(); 
 		Alloy.Globals.Drawer.setCenterWindow(nav);
 	});
+
 }
 	
