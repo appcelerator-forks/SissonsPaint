@@ -6,22 +6,18 @@ var colour_lib = Alloy.createCollection('colour');
 var cate_lib = Alloy.createCollection('category');
 var favourite_list = library.getFavouriteList();
 
-var removeFlag = "0";
-var pHeight = Ti.Platform.displayCaps.platformHeight; 
+var removeFlag = "0"; 
 var TheScrollView = Titanium.UI.createScrollView({
 		backgroundColor: "white", 
 		width:"100%",
 		layout: 'vertical',
-		height: PixelsToDPUnits(pHeight) - 80,
-		top:10, 
+		height: PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 80,
 		textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
 		overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
 });
 	
-var bottomBar = Titanium.UI.createView({
-   layout: 'composite',
-   bottom: 0,
-  // top: Ti.Platform.displayCaps.platformHeight - 60,
+var bottomBar = Titanium.UI.createView({ 
+   bottom: 0, 
    height: 60,
    width: Ti.Platform.displayCaps.platformWidth
 });
@@ -117,6 +113,7 @@ function loadFavouriteList(){
 			colourView.add(subView);	 
 			counter++; 
 		});
+		removeAllChildren(TheScrollView);
 		TheScrollView.add(colourView); 
 	}
 	
@@ -133,7 +130,7 @@ unFavButton.addEventListener('click',function(){
 		removeFlag ="1";
 		unFavButton.image = "/images/icon_favourite.png";
 	}
-	removeAllChildren(TheScrollView);
+	
 	loadFavouriteList();
 });
 

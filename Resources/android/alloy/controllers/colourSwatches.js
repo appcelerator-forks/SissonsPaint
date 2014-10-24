@@ -55,7 +55,8 @@ function Controller() {
                 });
                 var subLabelCode = $.UI.create("Label", {
                     text: colour_details.code,
-                    classes: [ "colorDesc" ]
+                    classes: [ "colorDesc" ],
+                    bottom: 10
                 });
                 createColorEvent(subView, colour_details, details[i]);
                 subView.add(subViewColor);

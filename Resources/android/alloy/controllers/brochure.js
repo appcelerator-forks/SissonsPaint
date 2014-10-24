@@ -70,10 +70,6 @@ function Controller() {
             youtubePlayer.playVideo(content);
         });
     }
-    function removeAllChildren(viewObject) {
-        var children = viewObject.children.slice(0);
-        for (var i = 0; i < children.length; ++i) viewObject.remove(children[i]);
-    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "brochure";
     if (arguments[0]) {
