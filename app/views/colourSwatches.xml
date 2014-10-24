@@ -6,6 +6,8 @@
 				<Require src="toggle"></Require>
 				<Label id="titleLabel" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Colour Swatches</Label>
 			</View>
+			<ScrollView id="TheScrollView" backgroundColor="white" width="95%" layout="vertical" height="80%" top="0" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
+			</ScrollView>
 			 <!--<Label class="title"  textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">COLOR CATEGORIES</Label>-->
 			 <!--<View height="60" bottom="0">
 					<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />

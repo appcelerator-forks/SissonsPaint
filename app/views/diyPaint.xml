@@ -5,7 +5,7 @@
 				<Require src="toggle"></Require>
 				<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">DIY Paint</Label>
 			</View>
-			<WebView backgroundColor="h" id='canvas' url="/html/canvas-paint-bucket.html" enableZoomControls="false"/>
+			<WebView backgroundColor="red" id='canvas' url="/html/canvas-paint-bucket.html" enableZoomControls="false"/>
 			<View bottom="0" backgroundColor="orange" id="toolbar">
 				<ImageView width="16.6%" id="settings" mod="settings" left="0" image="/images/power-icons.png" />
 				<ImageView width="16.6%" id="settings" mod="settings" left="16.6%" image="/images/power-icons.png" />
