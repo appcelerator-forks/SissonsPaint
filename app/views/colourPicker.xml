@@ -5,5 +5,8 @@
 			<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Colour Picker</Label>
 		</View>
 		<Label>This is Colour Picker</Label>
+		<ScrollView id="scrollView" backgroundColor="white" layout="vertical" top="0" scrollType="horizontal" height="600">
+			
+		</ScrollView>
 	</View> 
 </Alloy>

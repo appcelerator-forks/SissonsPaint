@@ -142,6 +142,7 @@ function Controller() {
         backgroundColor: "white",
         width: "100%",
         layout: "vertical",
+        height: "80%",
         top: "0",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
@@ -321,17 +322,10 @@ function Controller() {
             searchWrapper.add(searchButton);
             searchView.add(searchWrapper);
             $.mainViewContainer.add(searchView);
-            searchButton.addEventListener("click", function(e) {
+            searchButton.addEventListener("click", function() {
                 console.log(textField.value);
                 searchFlag = 0;
                 $.mainViewContainer.remove(searchView);
-                removeAllChildren($.TheScrollView);
-                var result = category_colour_lib.getCateByColourId(e.textField.value);
-                result.forEach(function(colour_id) {
-                    details = library.getCategoryById(colour_id.cate_id);
-                });
-                console.log(details);
-                generateTable();
             });
         }
     });
