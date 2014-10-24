@@ -136,19 +136,7 @@ $.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight)
 
 function generateTable(){
 	var data=[];
-<<<<<<< HEAD
-	var pHeight = Ti.Platform.displayCaps.platformHeight; 
-	var TheScrollView = Titanium.UI.createScrollView({
-		backgroundColor: "white", 
-		width:"100%",
-		layout: 'vertical',
-		height: PixelsToDPUnits(pHeight) - 140,//"78%", 
-		top:80, 
-		textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-		overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
-	});
-=======
->>>>>>> FETCH_HEAD
+
 	 
 	for (var i=0; i< details.length; i++) {
 		console.log("details: "+details[i]);
