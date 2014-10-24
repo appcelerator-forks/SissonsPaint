@@ -42,11 +42,14 @@ var displayCover = function(){
    			/*** Image click event for PDF***/
    			createAdImageEvent(adImage, id, details[i].content, cell, details[i].isDownloaded,downloadIcon);
    		}else{
-   			/*** Image click event for youtube***/
-   			createVideoEvent(adImage, id, details[i].url);
    			
    			/*** Add play icon for youtube***/
    			playIcon = Ti.UI.createImageView({image: "/images/icon_play.png", width:40, height:40});
+   			
+   			/*** Image click event for youtube***/
+   			createVideoEvent(adImage, id, details[i].url);
+   			createVideoEvent(playIcon, id, details[i].url);
+   			
    			cell.add(playIcon);
    		}
 	 
@@ -121,6 +124,8 @@ function createAdImageEvent(adImage, id,content, cell, downloaded, downloadIcon)
 
 function createVideoEvent(adImage, id,content){
 	adImage.addEventListener( "click", function(){
+		console.log(id);
+		console.log(content);
 		youtubePlayer.playVideo(content);
 	 });
 }
@@ -188,24 +193,17 @@ var tableListener = function(e){
 };
 
 var popWindow = function(e){
-	console.log("popWindow");
+	 
 	closeWindow();
-	if(filterFlag == 1)
-	{
+	if(filterFlag == 1) {
 		filterFlag = 0;
 		$.brochureView.remove(table);
-	}
-	else
-	{
+	}else {
 		filterFlag = 1;
 		
 		$.brochureView.add(table);
 		table.addEventListener('click', tableListener);
-		/*table.addEventListener('click', function(e){
-			console.log(e.index);
-			filterFlag = 0;
-			$.brochureView.remove(table);
-	});*/
+		
 	}
 };
 
