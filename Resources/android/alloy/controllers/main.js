@@ -28,54 +28,14 @@ function Controller() {
         id: "main"
     });
     $.__views.main && $.addTopLevelView($.__views.main);
-<<<<<<< HEAD
-    $.__views.__alloyId68 = Ti.UI.createLabel({
-=======
-<<<<<<< HEAD
     $.__views.__alloyId72 = Ti.UI.createLabel({
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId50 = Ti.UI.createLabel({
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId67 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId68 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
         text: "THIS IS MAIN",
-<<<<<<< HEAD
-        id: "__alloyId68"
-    });
-    $.__views.main.add($.__views.__alloyId68);
-=======
-<<<<<<< HEAD
         id: "__alloyId72"
     });
     $.__views.main.add($.__views.__alloyId72);
-=======
-<<<<<<< HEAD
-        id: "__alloyId50"
-    });
-    $.__views.main.add($.__views.__alloyId50);
-=======
-<<<<<<< HEAD
-        id: "__alloyId67"
-    });
-    $.__views.main.add($.__views.__alloyId67);
-=======
-        id: "__alloyId68"
-    });
-    $.__views.main.add($.__views.__alloyId68);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
