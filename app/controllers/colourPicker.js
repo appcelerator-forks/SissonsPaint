@@ -104,6 +104,13 @@ dialog.addEventListener('click', function(e) {
  
 //show dialog
 dialog.show();
+
+var getColor = function(e){
+	//alert(e.r +","+e.g+","+e.b+","+e.a);
+	$.colourPicker.backgroundColor = "rgba("+e.r +","+e.g+","+e.b+","+e.a+")";
+};
+ 
+Ti.App.addEventListener("app:getColour", getColor);
 /**
 generateColour();
 

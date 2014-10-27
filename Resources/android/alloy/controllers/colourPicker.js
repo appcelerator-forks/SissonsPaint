@@ -55,26 +55,10 @@ function Controller() {
     $.__views.canvas = Ti.UI.createWebView({
         id: "canvas",
         url: "/html/colour_picker.html",
-        height: "40%",
+        height: "100%",
         enableZoomControls: "false"
     });
-<<<<<<< HEAD
     $.__views.colourPicker.add($.__views.canvas);
-=======
-    $.__views.colourPicker.add($.__views.__alloyId43);
-<<<<<<< HEAD
-=======
-    $.__views.scrollView = Ti.UI.createScrollView({
-        id: "scrollView",
-        backgroundColor: "white",
-        layout: "vertical",
-        top: "0",
-        scrollType: "horizontal",
-        height: "600"
-    });
-    $.__views.colourPicker.add($.__views.scrollView);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -125,6 +109,10 @@ function Controller() {
         });
     });
     dialog.show();
+    var getColor = function(e) {
+        $.colourPicker.backgroundColor = "rgba(" + e.r + "," + e.g + "," + e.b + "," + e.a + ")";
+    };
+    Ti.App.addEventListener("app:getColour", getColor);
     _.extend($, exports);
 }
 
