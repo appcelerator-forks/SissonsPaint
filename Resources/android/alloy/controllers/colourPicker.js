@@ -58,7 +58,23 @@ function Controller() {
         height: "40%",
         enableZoomControls: "false"
     });
+<<<<<<< HEAD
     $.__views.colourPicker.add($.__views.canvas);
+=======
+    $.__views.colourPicker.add($.__views.__alloyId43);
+<<<<<<< HEAD
+=======
+    $.__views.scrollView = Ti.UI.createScrollView({
+        id: "scrollView",
+        backgroundColor: "white",
+        layout: "vertical",
+        top: "0",
+        scrollType: "horizontal",
+        height: "600"
+    });
+    $.__views.colourPicker.add($.__views.scrollView);
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
