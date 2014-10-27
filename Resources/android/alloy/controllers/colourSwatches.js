@@ -112,24 +112,6 @@ function Controller() {
         id: "mainViewContainer"
     });
     $.__views.mainViewContainer && $.addTopLevelView($.__views.mainViewContainer);
-<<<<<<< HEAD
-    $.__views.__alloyId43 = Ti.UI.createView({
-        layout: "vertical",
-        id: "__alloyId43"
-    });
-    $.__views.mainViewContainer.add($.__views.__alloyId43);
-    $.__views.__alloyId44 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "80",
-        id: "__alloyId44"
-    });
-    $.__views.__alloyId43.add($.__views.__alloyId44);
-    $.__views.__alloyId45 = Alloy.createController("toggle", {
-        id: "__alloyId45",
-        __parentSymbol: $.__views.__alloyId44
-    });
-    $.__views.__alloyId45.setParent($.__views.__alloyId44);
-=======
     $.__views.__alloyId44 = Ti.UI.createView({
         layout: "vertical",
         id: "__alloyId44"
@@ -137,8 +119,7 @@ function Controller() {
     $.__views.mainViewContainer.add($.__views.__alloyId44);
     $.__views.__alloyId45 = Ti.UI.createView({
         layout: "horizontal",
-        height: "85",
-        bottom: "20",
+        height: "80",
         id: "__alloyId45"
     });
     $.__views.__alloyId44.add($.__views.__alloyId45);
@@ -147,7 +128,6 @@ function Controller() {
         __parentSymbol: $.__views.__alloyId45
     });
     $.__views.__alloyId46.setParent($.__views.__alloyId45);
->>>>>>> FETCH_HEAD
     $.__views.titleLabel = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -159,11 +139,7 @@ function Controller() {
         id: "titleLabel",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
-<<<<<<< HEAD
-    $.__views.__alloyId44.add($.__views.titleLabel);
-=======
     $.__views.__alloyId45.add($.__views.titleLabel);
->>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

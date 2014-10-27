@@ -68,8 +68,6 @@ function Controller() {
             youtubePlayer.playVideo(content);
         });
     }
-<<<<<<< HEAD
-=======
     function popWindow() {
         console.log("popWindow");
         var row1 = Ti.UI.createTableViewRow({
@@ -112,7 +110,6 @@ function Controller() {
             $.brochureView.remove(table);
         });
     }
->>>>>>> FETCH_HEAD
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "brochure";
     if (arguments[0]) {

@@ -4,22 +4,25 @@
     <title>Create HTML5 Canvas JavaScript Paint Bucket Example</title>
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0" />
     <style>
-    	html {-webkit-text-size-adjust: none; margin:0; padding:0; background: yellow}
+    	html {-webkit-text-size-adjust: none; margin:0; padding:0;}
     	body {margin:0; padding:0;}
     	#parent{
-    	background-color:red;
 		background-repeat:no-repeat;
 		background-size: 100% auto;
 		}
 		
 		#canvasDiv{
+			-moz-opacity:0.5; /* For older FF versions */
+	   -khtml-opacity:0.5;
+	   opacity:0.5;
+			filter:alpha(opacity=50);
 		}
     </style>
   </head>
   <body>
-   <div id="parent">
-    	<div id="canvasDiv"></div>
-    </div>
+	   <div id="parent">
+	    	<div id="canvasDiv"></div>
+	    </div>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 
@@ -36,6 +39,20 @@
 			paintBucketApp.loadImage({image: e.image});
 		};
 		
+		var setBackgroundSize = function(e){
+			$('#parent').css('background-size', '"' + e.width + ' ' + e.height + '"');
+			$('#parent').css('background-repeat', 'no-repeat');
+		};
+		
+		var changeTools = function(e){
+			if(e.tools == "bucket"){
+				paintBucketApp.createPaintMouseEvents();
+			}else if(e.tools == "brush"){
+				paintBucketApp.createBrushMouseEvents();
+			}
+		};
+		
+		Ti.App.addEventListener("web:changeTools", changeTools);
 		Ti.App.addEventListener("web:initCanvasSize", initCanvasSize);
 		Ti.App.addEventListener("web:loadImage", loadImage);
 	</script>
@@ -144,7 +161,6 @@ var paintBucketApp = (function () {
 
 			// Draw the current state of the color layer to the canvas
 			context.putImageData(colorLayerData, 0, 0);
-console.log("redraw here"+canvasWidth+" "+canvasHeight);
 			// Draw the background
 			//context.drawImage(backgroundImage, 0, 0, canvasWidth, canvasHeight);
 
@@ -316,8 +332,9 @@ console.log("redraw here"+canvasWidth+" "+canvasHeight);
 			redraw();
 		},
 		PaintMouseFunction = function(e){
-				var mouseX = e.pageX - this.offsetLeft,
-					mouseY = e.pageY - this.offsetTop;
+			alert('a');
+				var mouseX = (Boolean(e.pageX))?e.pageX:e.originalEvent.targetTouches[0].pageX;
+				var mouseY = (Boolean(e.pageY))?e.pageY:e.originalEvent.targetTouches[0].pageY;
 
 				if (mouseX < drawingAreaX) { // Left of the drawing area
 					if (mouseX > swatchStartX) {
@@ -341,21 +358,18 @@ console.log("redraw here"+canvasWidth+" "+canvasHeight);
 				}
 		},
 		BrushMouseDownFunction = function(e){
-
 			isDrawing = true;
-			var page = getPage(e);
-			var startX = page.pageX;
-			var startY = page.pageY;
+			var startX = e.originalEvent.targetTouches[0].pageX;
+			var startY = e.originalEvent.targetTouches[0].pageY;
+			context.beginPath();
 			context.lineWidth = 10;
-			context.lineJoin = context.lineCap = 'round';
 			context.moveTo(startX, startY);
 			e.preventDefault();
 			e.stopPropagation();
 		},
 		BrushMouseMoveFunction = function(e){
-			var page = getPage(e);
-			var startX = page.pageX;
-			var startY = page.pageY;
+			var startX = e.originalEvent.targetTouches[0].pageX;
+			var startY = e.originalEvent.targetTouches[0].pageY;
 			 if (isDrawing) {
 				context.lineTo(startX, startY);
 				context.strokeStyle = curColor.hex;
@@ -368,6 +382,8 @@ console.log("redraw here"+canvasWidth+" "+canvasHeight);
 			 isDrawing = false;
 			 e.preventDefault();
 			e.stopPropagation();
+			context.closePath();
+			$("#canvasDiv").css('opacity', '0.6');
 		},
 		BrushMouseFunction = function(e){
 			$('#canvasDiv').on("touchstart", "#canvas", BrushMouseDownFunction);
@@ -376,6 +392,9 @@ console.log("redraw here"+canvasWidth+" "+canvasHeight);
 		},
 		// Add mouse event listeners to the canvas
 		createPaintMouseEvents = function () {
+			$('#canvasDiv').off("touchstart", "#canvas", BrushMouseDownFunction);
+			$('#canvasDiv').off("touchmove", "#canvas", BrushMouseMoveFunction);
+			$('#canvasDiv').off("touchend", "#canvas", BrushMouseUpFunction);
 			$('#canvasDiv').on("mousedown", "#canvas", PaintMouseFunction);
 		},
 		// Add mouse event listeners to the canvas
@@ -403,6 +422,12 @@ console.log("redraw here"+canvasWidth+" "+canvasHeight);
 		},
 		loadImage = function(e){
 			outlineImage.src = e.image;
+			redraw();
+		},
+		adjustHeight = function(e){
+			canvas.setAttribute('height', e.height);
+			canvasHeight = e.height;
+			drawingAreaHeight = e.height;
 			redraw();
 		},
 		// Creates a canvas element, loads images, adds events, and draws the canvas for the first time.
@@ -434,8 +459,11 @@ console.log("redraw here"+canvasWidth+" "+canvasHeight);
 			backgroundImage.onload = resourceLoaded;
 			backgroundImage.src = "images/background.png";
 
-			outlineImage.onload = function () {
-				console.log(drawingAreaX+" "+drawingAreaY+" "+canvasWidth+" "+canvasHeight);
+			outlineImage.onload = function (e) {
+				var ratio = this.naturalWidth / canvasWidth;
+				var newheight = this.naturalHeight / ratio;
+				canvasHeight = newheight;
+				setBackgroundSize({width: canvasWidth, height: newheight});
 				context.drawImage(outlineImage, drawingAreaX, drawingAreaY, canvasWidth, canvasHeight);
 
 				// Test for cross origin security error (SECURITY_ERR: DOM Exception 18)
@@ -465,6 +493,7 @@ console.log("redraw here"+canvasWidth+" "+canvasHeight);
 		});
 		
       	$(window).unload(function() {
+      		Ti.App.removeEventListener("web:changeTools", changeTools);
 		    Ti.App.removeEventListener("web:initCanvasSize", initCanvasSize);
 		    Ti.App.removeEventListener("web:loadImage", loadImage);
 		});
