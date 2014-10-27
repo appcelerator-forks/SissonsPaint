@@ -8,6 +8,7 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+<<<<<<< HEAD
     function PixelsToDPUnits(ThePixels) {
         return ThePixels / (Titanium.Platform.displayCaps.dpi / 160);
     }
@@ -107,6 +108,8 @@ function Controller() {
         });
         dialog.show();
     }
+=======
+>>>>>>> FETCH_HEAD
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "diyPaint";
     if (arguments[0]) {
@@ -168,6 +171,7 @@ function Controller() {
         id: "toolbar"
     });
     $.__views.__alloyId47.add($.__views.toolbar);
+<<<<<<< HEAD
     $.__views.__alloyId50 = Ti.UI.createImageView({
         image: "/images/tool_bar.jpg",
         height: "60",
@@ -229,6 +233,56 @@ function Controller() {
     });
     $.__views.toolbar.add($.__views.photoButton);
     photoPop ? $.__views.photoButton.addEventListener("click", photoPop) : __defers["$.__views.photoButton!click!photoPop"] = true;
+=======
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "0",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "16.6%",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "33.2%",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "49.8%",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "66.4%",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "83%",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+>>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

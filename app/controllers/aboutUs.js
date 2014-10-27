@@ -29,7 +29,7 @@ var submitContactForm = function(){
 	         var res = JSON.parse(this.responseText);
 	         if(res.status == "success"){
 	         	COMM.createAlert('Message Sent','Your messages successfully sent to admin.');
-	         	$.username.value = "";
+	         	$.name.value = "";
 			//	$.phone.value = "";
 				$.email.value = "";
 				$.message.value = "";
@@ -46,3 +46,5 @@ var submitContactForm = function(){
 	 // Send the request.
 	 client.send(); 
 };
+
+$.message.addEventListener('return', submitContactForm);

@@ -9,34 +9,28 @@ function __processArg(obj, key) {
 
 function Controller() {
     function generateTable() {
-        var TheScrollView = Titanium.UI.createScrollView({
-            backgroundColor: "white",
-            width: "95%",
-            layout: "vertical",
-            height: "80%",
-            top: 80,
-            textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-            overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
-        });
         for (var i = 0; i < details.length; i++) {
+            console.log(details[i]);
             var colours = category_colour_lib.getCategoryColourByCategory(details[i]["id"]);
             var categoryHeader = Titanium.UI.createImageView({
-                width: "100%",
+                width: "95%",
                 height: Ti.UI.SIZE,
                 touchEnabled: false,
                 top: 15,
                 image: details[i]["image"]
             });
             var description = $.UI.create("Label", {
+                width: "95%",
                 text: details[i].description,
+                width: "95%",
                 classes: [ "aboutContent" ]
             });
-            TheScrollView.add(categoryHeader);
-            TheScrollView.add(description);
+            $.TheScrollView.add(categoryHeader);
+            $.TheScrollView.add(description);
             var colourView = $.UI.create("View", {
                 textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
                 layout: "horizontal",
-                width: "100%",
+                width: "95%",
                 bottom: 10,
                 height: Ti.UI.SIZE
             });
@@ -61,7 +55,8 @@ function Controller() {
                 });
                 var subLabelCode = $.UI.create("Label", {
                     text: colour_details.code,
-                    classes: [ "colorDesc" ]
+                    classes: [ "colorDesc" ],
+                    bottom: 10
                 });
                 createColorEvent(subView, colour_details, details[i]);
                 subView.add(subViewColor);
@@ -70,16 +65,15 @@ function Controller() {
                 colourView.add(subView);
                 counter++;
             });
+            $.TheScrollView.add(colourView);
             var separator = Titanium.UI.createImageView({
                 width: Titanium.UI.FILL,
                 height: 30,
                 touchEnabled: false,
                 image: "/images/scroll_up.png"
             });
-            TheScrollView.add(colourView);
-            details.length != i + 1 && TheScrollView.add(separator);
+            details.length != i + 1 && $.TheScrollView.add(separator);
         }
-        $.mainViewContainer.add(TheScrollView);
         $.mainViewContainer.add(bottomBar);
     }
     function createColorEvent(subView, colour_details, details) {
@@ -91,6 +85,10 @@ function Controller() {
             }).getView();
             Alloy.Globals.Drawer.setCenterWindow(nav);
         });
+    }
+    function removeAllChildren(viewObject) {
+        var children = viewObject.children.slice(0);
+        for (var i = 0; i < children.length; ++i) viewObject.remove(children[i]);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "colourSwatches";
@@ -140,6 +138,19 @@ function Controller() {
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
     $.__views.__alloyId45.add($.__views.titleLabel);
+<<<<<<< HEAD
+=======
+    $.__views.TheScrollView = Ti.UI.createScrollView({
+        id: "TheScrollView",
+        backgroundColor: "white",
+        width: "100%",
+        layout: "vertical",
+        height: "80%",
+        top: "0",
+        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
+    });
+    $.__views.__alloyId44.add($.__views.TheScrollView);
+>>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -147,6 +158,10 @@ function Controller() {
     var category_colour_lib = Alloy.createCollection("category_colour");
     var colour_lib = Alloy.createCollection("colour");
     var details = library.getCategoryList();
+    Ti.Platform.displayCaps.platformHeight;
+    var category_type_lib = Alloy.createCollection("category_type");
+    var category_tag = category_type_lib.selectTypeByDistinct();
+    console.log(category_tag);
     var searchFlag = 0;
     var filterFlag = 0;
     var bottomBar = Titanium.UI.createView({
@@ -190,37 +205,23 @@ function Controller() {
     });
     var tableData = [];
     var row1 = Ti.UI.createTableViewRow({
-        title: "Interior",
-        width: 150,
-        left: 10,
-        touchEnabled: true,
-        height: 60
-    });
-    var row2 = Ti.UI.createTableViewRow({
-        title: "Exterior",
-        width: 150,
-        left: 10,
-        touchEnabled: true,
-        height: 60
-    });
-    var row3 = Ti.UI.createTableViewRow({
-        title: "Wood",
-        width: 150,
-        left: 10,
-        touchEnabled: true,
-        height: 60
-    });
-    var row4 = Ti.UI.createTableViewRow({
-        title: "Metal",
+        title: "All",
         width: 150,
         left: 10,
         touchEnabled: true,
         height: 60
     });
     tableData.push(row1);
-    tableData.push(row2);
-    tableData.push(row3);
-    tableData.push(row4);
+    category_tag.forEach(function(tags) {
+        var row_tag = Ti.UI.createTableViewRow({
+            title: tags.tag,
+            width: 150,
+            left: 10,
+            touchEnabled: true,
+            height: 60
+        });
+        tableData.push(row_tag);
+    });
     var table = Titanium.UI.createTableView({
         separatorColor: "transparent",
         backgroundImage: "/images/pop_window.png",
@@ -236,8 +237,30 @@ function Controller() {
     bottomBar.add(backgroundImg);
     bottomBar.add(buttonWrapper);
     generateTable();
+    $.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 140;
+    var tableListener = function(e) {
+        console.log(e.index);
+        filterFlag = 0;
+        $.mainViewContainer.remove(table);
+        removeAllChildren($.TheScrollView);
+        if (0 == e.index) {
+            details = library.getCategoryList();
+            generateTable();
+        } else {
+            var result = category_type_lib.getCategoryTypeByTag(e.rowData.title);
+            var data = [];
+            details = [];
+            result.forEach(function(tags) {
+                data = library.getCategoryById(tags.cate_id);
+                details.push(data);
+            });
+            console.log(details);
+            generateTable();
+        }
+    };
     filterButton.addEventListener("click", function() {
         console.log("popWindow");
+        closeWindow();
         $.mainViewContainer.remove(searchView);
         searchFlag = 0;
         if (1 == filterFlag) {
@@ -246,13 +269,12 @@ function Controller() {
         } else {
             filterFlag = 1;
             $.mainViewContainer.add(table);
-            table.addEventListener("click", function(e) {
-                console.log(e.index);
-                filterFlag = 1;
-                $.mainViewContainer.remove(table);
-            });
+            table.addEventListener("click", tableListener);
         }
     });
+    var closeWindow = function() {
+        table.removeEventListener("click", tableListener);
+    };
     searchButton.addEventListener("click", function() {
         console.log("searchBar");
         console.log("start:" + searchFlag);
@@ -305,6 +327,7 @@ function Controller() {
             searchView.add(searchWrapper);
             $.mainViewContainer.add(searchView);
             searchButton.addEventListener("click", function() {
+                console.log(textField.value);
                 searchFlag = 0;
                 $.mainViewContainer.remove(searchView);
             });

@@ -84,6 +84,60 @@ exports.definition = {
                 db.execute(sql);
                 db.close();
                 collection.trigger('sync');
+			},
+			getDownloadedList: function(){
+				var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE isDownloaded=1 order by id DESC";
+                
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var listArr = []; 
+                var count = 0;
+                while (res.isValidRow()){
+					listArr[count] = {
+					    id: res.fieldByName('id'),
+					    title: res.fieldByName('title'),
+					    cover: res.fieldByName('cover'),
+					    content: res.fieldByName('content'),
+					    url: res.fieldByName('url'),
+					    isDownloaded : res.fieldByName('isDownloaded'),
+					    status: res.fieldByName('status'),
+					    format: res.fieldByName('format')
+					};
+					res.next();
+					count++;
+				} 
+				res.close();
+                db.close();
+                collection.trigger('sync');
+                return listArr;
+			},
+			getVideoList: function(){
+				var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE format!='pdf' order by id DESC";
+                
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var listArr = []; 
+                var count = 0;
+                while (res.isValidRow()){
+					listArr[count] = {
+					    id: res.fieldByName('id'),
+					    title: res.fieldByName('title'),
+					    cover: res.fieldByName('cover'),
+					    content: res.fieldByName('content'),
+					    url: res.fieldByName('url'),
+					    isDownloaded : res.fieldByName('isDownloaded'),
+					    status: res.fieldByName('status'),
+					    format: res.fieldByName('format')
+					};
+					res.next();
+					count++;
+				} 
+				res.close();
+                db.close();
+                collection.trigger('sync');
+                return listArr;
 			}
 		});
 

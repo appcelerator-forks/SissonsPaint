@@ -1,0 +1,11 @@
+<Alloy>
+	
+	<View class="container"layout="horizontal" id="mainFavContainer" backgroundColor="green"> 
+		<View layout="horizontal" height="80">
+			<Require src="toggle"></Require>
+			<Label id="titleLabel" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Favourite Colour</Label>
+		</View>
+		
+	</View> 
+	 
+</Alloy>

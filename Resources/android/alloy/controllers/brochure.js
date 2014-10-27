@@ -65,9 +65,12 @@ function Controller() {
     }
     function createVideoEvent(adImage, id, content) {
         adImage.addEventListener("click", function() {
+            console.log(id);
+            console.log(content);
             youtubePlayer.playVideo(content);
         });
     }
+<<<<<<< HEAD
     function popWindow() {
         console.log("popWindow");
         var row1 = Ti.UI.createTableViewRow({
@@ -110,6 +113,8 @@ function Controller() {
             $.brochureView.remove(table);
         });
     }
+=======
+>>>>>>> FETCH_HEAD
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "brochure";
     if (arguments[0]) {
@@ -201,6 +206,7 @@ function Controller() {
     var youtubePlayer = require("titutorial.youtubeplayer");
     var library = Alloy.createCollection("brochure");
     var details = library.getBrochureList();
+    var filterFlag = 0;
     var displayCover = function() {
         var counter = 0;
         var imagepath, adImage, row, image, cellWrapper, cell = "";
@@ -262,12 +268,13 @@ function Controller() {
                 }
                 createAdImageEvent(adImage, id, details[i].content, cell, details[i].isDownloaded, downloadIcon);
             } else {
-                createVideoEvent(adImage, id, details[i].url);
                 playIcon = Ti.UI.createImageView({
                     image: "/images/icon_play.png",
                     width: 40,
                     height: 40
                 });
+                createVideoEvent(adImage, id, details[i].url);
+                createVideoEvent(playIcon, id, details[i].url);
                 cell.add(playIcon);
             }
             (counter % 3 == 2 || last == counter) && $.scrollview.add(row);
@@ -275,6 +282,70 @@ function Controller() {
         }
     };
     displayCover();
+    var tableData = [];
+    var row1 = Ti.UI.createTableViewRow({
+        title: "LATEST",
+        width: 150,
+        left: 10,
+        touchEnabled: true,
+        height: 60
+    });
+    var row2 = Ti.UI.createTableViewRow({
+        title: "DOWNLOADED",
+        width: 150,
+        left: 10,
+        touchEnabled: true,
+        height: 60
+    });
+    var row3 = Ti.UI.createTableViewRow({
+        title: "VIDEO",
+        width: 150,
+        left: 10,
+        touchEnabled: true,
+        height: 60
+    });
+    tableData.push(row1);
+    tableData.push(row2);
+    tableData.push(row3);
+    var table = Titanium.UI.createTableView({
+        separatorColor: "transparent",
+        backgroundImage: "/images/pop_window.png",
+        height: Ti.UI.SIZE,
+        width: 150,
+        bottom: 60,
+        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
+        data: tableData
+    });
+    var tableListener = function(e) {
+        console.log(e.index);
+        filterFlag = 0;
+        $.brochureView.remove(table);
+        removeAllChildren($.scrollview);
+        if (0 == e.index) {
+            details = library.getBrochureList();
+            displayCover();
+        } else if (1 == e.index) {
+            details = library.getDownloadedList();
+            displayCover();
+        } else {
+            details = library.getVideoList();
+            displayCover();
+        }
+    };
+    var popWindow = function() {
+        closeWindow();
+        if (1 == filterFlag) {
+            filterFlag = 0;
+            $.brochureView.remove(table);
+        } else {
+            filterFlag = 1;
+            $.brochureView.add(table);
+            table.addEventListener("click", tableListener);
+        }
+    };
+    var closeWindow = function() {
+        table.removeEventListener("click", tableListener);
+    };
     __defers["$.__views.filterButton!click!popWindow"] && $.__views.filterButton.addEventListener("click", popWindow);
     _.extend($, exports);
 }
