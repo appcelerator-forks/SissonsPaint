@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Colour Picker</title>
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="html2canvas.js"></script>
+    <style>
+    	html {-webkit-text-size-adjust: none; margin:0; padding:0; }
+    	body {margin:0; padding:0;}
+    	#parent{ 
+			background-repeat:no-repeat;
+			background-size: 100% auto;
+		}
+		* {
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			-webkit-text-size-adjust: none;
+			-webkit-user-select: none;
+			-webkit-touch-callout: none;	
+		}
+		#canvasDiv{
+		}
+    </style>
+  </head>
+  <body>
+   <div id="parent">
+    	<div id="canvasDiv">
+    		<img src="" id="choosenPhoto" width="100%"  />
+    		<canvas id="myCanvas" width="100%"></canvas>
+    	</div> 
+    </div>
+    
+	 <script type="text/javascript"> 
+
+		var screenwidth = window.innerWidth;
+		var initCanvasSize = function(e){
+			 
+			$('#parent').css('height', e.height);
+			//$('#choosenPhoto').css('height', e.height);
+			$('#myCanvas').css('width', '100%');
+			
+      	};
+		
+		var loadImage = function(e){
+			 
+			$('#choosenPhoto').attr('src', e.image);
+			
+			var img=document.getElementById('choosenPhoto');
+			img.src= e.image;
+			img.onload = function () {
+				 
+				//$('#choosenPhoto').css('opacity', 0); 
+				
+				html2canvas(img, {
+				  onrendered: function(canvas) {
+				  	alert("load");
+				  	console.love(canvas);
+				    $("#myCanvas").html(canvas);
+				  }
+				});
+			};
+		};
+		
+		Ti.App.addEventListener("web:initCanvasSize", initCanvasSize);
+		Ti.App.addEventListener("web:loadImage", loadImage);
+	 
+	$.fn.canvas = function(f){
+			return this.map(function(){
+				if (this.nodeName=="img"){
+					var canvas=$('#canvas'); 
+					$(this).one('load',function(){
+						canvas.attr({width:this.width,height:this.height});
+						canvas[0].getContext('2d').drawImage(this,0,0,this.width,this.height);
+						$(this).replaceWith(canvas);
+					});
+					return canvas[0];
+				}else{
+					return this;
+				}
+			});
+	};
+		jQuery.Event.prototype.rgb=function(){
+			var x =  this.offsetX || (this.pageX - $(this.target).offset().left),
+				y =  this.offsetY || (this.pageY - $(this.target).offset().top);
+			if (this.target.nodeName!=="canvas") return null;
+			return this.target.getContext('2d').getImageData(x,y,1,1).data;
+		};
+		
+		function rgbToHex(r, g, b) {
+		    if (r > 255 || g > 255 || b > 255)
+		        throw "Invalid color component";
+		    return ((r << 16) | (g << 8) | b).toString(16);
+		}
+
+		$(function() { 
+			$("#canvas").click(function(e){ 
+				alert("canvas on click");
+				/***
+			    var c = this.getContext('2d');
+			    var p = c.getImageData(x, y, 1, 1).data; 
+			    var hex = "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
+			    console.log("color :"+ hex);
+			    $('body').css('background-color',  hex);
+			    ***/
+			//	$('body').css('background-color',"rgba("+Array.prototype.join.call(e.rgb(),',')+")");
+			});
+			
+			$(window).unload(function() {
+			    Ti.App.removeEventListener("web:initCanvasSize", initCanvasSize);
+			    Ti.App.removeEventListener("web:loadImage", loadImage);
+			});
+		});
+		
+</script>
+  </body>
+</html>
