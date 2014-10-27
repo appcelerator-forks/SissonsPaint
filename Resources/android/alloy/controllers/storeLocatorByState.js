@@ -29,7 +29,7 @@ function Controller() {
                 id: details[i].id,
                 color: "black",
                 font: {
-                    fontSize: 24
+                    fontSize: 22
                 },
                 width: "auto",
                 textAlign: "left",
@@ -39,9 +39,6 @@ function Controller() {
             if ("" != details[i].address) var location = Titanium.UI.createLabel({
                 text: details[i].address,
                 id: details[i].id,
-                font: {
-                    fontSize: 12
-                },
                 width: "auto",
                 color: "#848484",
                 textAlign: "left",
@@ -60,50 +57,31 @@ function Controller() {
             var mobile = Titanium.UI.createLabel({
                 text: "TEL: " + details[i].mobile,
                 id: details[i].id,
-                font: {
-                    fontSize: 12
-                },
                 width: "auto",
                 color: "#848484",
                 textAlign: "left",
                 left: 20
             });
-            "" == details[i].fax && (details[i].fax = "-");
-            var fax = Titanium.UI.createLabel({
+            if ("" == details[i].fax || null == details[i].fax) ; else var fax = Titanium.UI.createLabel({
                 text: "FAX: " + details[i].fax,
                 id: details[i].id,
-                font: {
-                    fontSize: 12
-                },
                 width: "auto",
                 color: "#848484",
                 textAlign: "left",
                 left: 20
             });
-            ("" == details[i].email || null == details[i].email) && (details[i].email = "-");
-            var email = Titanium.UI.createLabel({
-                text: "E-mail: -",
-                id: details[i].id,
-                font: {
-                    fontSize: 12
-                },
-                width: "auto",
-                color: "#848484",
-                textAlign: "left",
-                left: 20
-            });
-            ("" == details[i].website || null == details[i].website) && (details[i].website = "-");
-            var website = Titanium.UI.createLabel({
-                text: "Website: -",
-                id: details[i].id,
-                font: {
-                    fontSize: 12
-                },
-                width: "auto",
-                color: "#848484",
-                textAlign: "left",
-                left: 20
-            });
+            if ("" == details[i].email || null == details[i].email) ; else {
+                console.log("email" + details[i].email);
+                console.log("email length" + details[i].email.length);
+                var email = Titanium.UI.createLabel({
+                    text: "E-mail: " + details[i].email,
+                    id: details[i].id,
+                    width: "auto",
+                    color: "#848484",
+                    textAlign: "left",
+                    left: 20
+                });
+            }
             switch (details[i].category) {
               case 1:
                 var categoryName = "Branches";
@@ -120,9 +98,6 @@ function Controller() {
                 Titanium.UI.createLabel({
                     text: categoryName,
                     id: details[i].id,
-                    font: {
-                        fontSize: 12
-                    },
                     width: "auto",
                     color: "#848484",
                     textAlign: "left",
@@ -148,9 +123,8 @@ function Controller() {
             row.add(outlet_name);
             "" != details[i].address && infoView.add(location);
             infoView.add(mobile);
-            infoView.add(fax);
-            infoView.add(email);
-            infoView.add(website);
+            "" == details[i].fax || null == details[i].fax || infoView.add(fax);
+            "" == details[i].email || null == details[i].email || infoView.add(email);
             infoViewContainer.add(infoView);
             infoViewContainer.add(rightForwardBtn);
             row.add(infoViewContainer);
@@ -180,28 +154,28 @@ function Controller() {
         id: "storeLocatorByState"
     });
     $.__views.storeLocatorByState && $.addTopLevelView($.__views.storeLocatorByState);
-    $.__views.__alloyId89 = Ti.UI.createView({
+    $.__views.__alloyId94 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId89"
+        id: "__alloyId94"
     });
-    $.__views.storeLocatorByState.add($.__views.__alloyId89);
-    $.__views.__alloyId90 = Alloy.createController("toggle", {
-        id: "__alloyId90",
-        __parentSymbol: $.__views.__alloyId89
+    $.__views.storeLocatorByState.add($.__views.__alloyId94);
+    $.__views.__alloyId95 = Alloy.createController("toggle", {
+        id: "__alloyId95",
+        __parentSymbol: $.__views.__alloyId94
     });
-    $.__views.__alloyId90.setParent($.__views.__alloyId89);
+    $.__views.__alloyId95.setParent($.__views.__alloyId94);
     $.__views.stateName = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
         font: {
-            fontSize: 28
+            fontSize: 22
         },
         id: "stateName",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
-    $.__views.__alloyId89.add($.__views.stateName);
+    $.__views.__alloyId94.add($.__views.stateName);
     $.__views.tableContainer = Ti.UI.createView({
         backgroundColor: "white",
         id: "tableContainer",

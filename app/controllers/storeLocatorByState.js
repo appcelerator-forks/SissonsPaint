@@ -35,7 +35,7 @@ function generateStoreTable(details){
 			id: details[i].id, 
 			//color: "#848484",
 			color: "black",
-			font: {fontSize: 24},//newly added
+			font: {fontSize: 22},//newly added
 			width:'auto',
 			textAlign:'left',
 			//top:10,
@@ -47,7 +47,7 @@ function generateStoreTable(details){
 			var location =  Titanium.UI.createLabel({
 				text:details[i].address,
 				id: details[i].id, 
-				font:{fontSize:12},
+				//font:{fontSize:12},
 				width:'auto',
 				color: "#848484",
 				textAlign:'left',
@@ -76,7 +76,7 @@ function generateStoreTable(details){
 		var mobile =  Titanium.UI.createLabel({
 			text:"TEL: "+details[i].mobile,
 			id: details[i].id, 
-			font:{fontSize:12},
+			//font:{fontSize:12},
 			width:'auto',
 			color: "#848484",
 			textAlign:'left',
@@ -85,50 +85,55 @@ function generateStoreTable(details){
 			left:20
 		});
 		
-		if(details[i].fax == ""){
-			details[i].fax = "-";
+		if(details[i].fax == "" || details[i].fax == null){}
+		else
+		{	
+			var fax =  Titanium.UI.createLabel({
+				text:"FAX: "+details[i].fax,
+				id: details[i].id, 
+				//font:{fontSize:12},
+				width:'auto',
+				color: "#848484",
+				textAlign:'left',
+				//top:70,
+				//top:110,
+				left:20
+			});
 		}
-		var fax =  Titanium.UI.createLabel({
-			text:"FAX: "+details[i].fax,
-			id: details[i].id, 
-			font:{fontSize:12},
-			width:'auto',
-			color: "#848484",
-			textAlign:'left',
-			//top:70,
-			//top:110,
-			left:20
-		});
 		
-		if(details[i].email == "" || details[i].email == null){
-			details[i].email = "-";
+		if(details[i].email == "" || details[i].email == null){}
+		else
+		{
+			console.log("email" +details[i].email);
+			console.log("email length" +details[i].email.length);
+			var email =  Titanium.UI.createLabel({
+				text:"E-mail: "+details[i].email,
+				id: details[i].id, 
+				//font:{fontSize:12},
+				width:'auto',
+				color: "#848484",
+				textAlign:'left',
+				//top:70,
+				//top:110,
+				left:20
+			});
 		}
-		var email =  Titanium.UI.createLabel({
-			text:"E-mail: -",//+details[i].email,
-			id: details[i].id, 
-			font:{fontSize:12},
-			width:'auto',
-			color: "#848484",
-			textAlign:'left',
-			//top:70,
-			//top:110,
-			left:20
-		});
 		
-		if(details[i].website == "" || details[i].website == null){
-			details[i].website = "-";
-		}
-		var website =  Titanium.UI.createLabel({
-			text:"Website: -",//+details[i].website
-			id: details[i].id, 
-			font:{fontSize:12},
-			width:'auto',
-			color: "#848484",
-			textAlign:'left',
-			//top:70,
-			//top:110,
-			left:20
-		});
+		
+		// if(details[i].website == "" || details[i].website == null){
+			// details[i].website = "-";
+		// }
+		// var website =  Titanium.UI.createLabel({
+			// text:"Website: -",//+details[i].website
+			// id: details[i].id, 
+			// font:{fontSize:12},
+			// width:'auto',
+			// color: "#848484",
+			// textAlign:'left',
+			// //top:70,
+			// //top:110,
+			// left:20
+		// });
 		
 		switch(details[i].category){
 			
@@ -147,7 +152,7 @@ function generateStoreTable(details){
 		var cateType =  Titanium.UI.createLabel({
 			text:categoryName,
 			id: details[i].id, 
-			font:{fontSize:12},
+			//font:{fontSize:12},
 			width:'auto',
 			color: "#848484",
 			textAlign:'left',
@@ -195,9 +200,9 @@ function generateStoreTable(details){
 			infoView.add(location);
 		}
 		infoView.add(mobile);
-		infoView.add(fax);
-		infoView.add(email);
-		infoView.add(website);
+		if(details[i].fax == "" || details[i].fax == null){}else{infoView.add(fax);}
+		if(details[i].email == "" || details[i].email == null){}else{infoView.add(email);}
+		//infoView.add(website);
 		//infoView.add(cateType);
 		infoViewContainer.add(infoView);
 		infoViewContainer.add(rightForwardBtn);

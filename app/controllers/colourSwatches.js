@@ -133,6 +133,7 @@ function generateTable(){
 			text: details[i].description , 
 			width : "95%",
 			classes: ['aboutContent'],
+			bottom: 30
 		});
 		 
 		
@@ -172,6 +173,7 @@ function generateTable(){
 			var subLabelCode = $.UI.create('Label', { 
 				text: colour_details.code , 
 				classes: ['colorDesc'],
+				bottom: 10
 			});  
 			
 			createColorEvent(subView, colour_details, details[i]);

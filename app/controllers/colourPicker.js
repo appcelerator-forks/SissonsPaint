@@ -1,4 +1,9 @@
 var args = arguments[0] || {};
+var viewHeight = Ti.Platform.displayCaps.platformHeight;
+
+$.mainView.setHeight(viewHeight);
+console.log($.mainView.getHeight());
+$.bottomColorBar.setBottom(0);
 
 var colour_lib = Alloy.createCollection('colour'); 
 var details = colour_lib.getColourList();
@@ -7,17 +12,17 @@ generateColour();
 
 function generateColour(){
 	console.log(details.length);
-	var viewWidth = (details.length / 2) * 50;
+	var viewWidth = (Math.ceil((details.length+1) / 2) * 50) + 10;
 	var topRow = Titanium.UI.createView({
 	   layout: 'horizontal',
 	   bottom: 10,
-	   height: 60,
+	   height: 40,
 	   width: viewWidth
 	});
 	
 	var bottomRow = Titanium.UI.createView({
 	   layout: 'horizontal',
-	   height: 60,
+	   height: 40,
 	   width: viewWidth
 	});
 	
@@ -45,7 +50,7 @@ function generateColour(){
 
 
 
-
+/*
 var app = {
         sharer: {
             
@@ -66,4 +71,4 @@ var btnShareChooser = Ti.UI.createButton({
     title: "Media Share"
 });
 btnShareChooser.addEventListener( "click", app.sharer.chooser.bind( null, MESSAGE ) );
-$.colourPicker.add( btnShareChooser );
+$.colourPicker.add( btnShareChooser );//change to imageView*/
