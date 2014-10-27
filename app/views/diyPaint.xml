@@ -1,18 +1,19 @@
 <Alloy>
 	<View id="diyPaint">
 		<View class="container">
-			<View backgroundColor="yellow" id="toggle" layout="horizontal" height="80" top="0">
+			<View id="toggle" layout="horizontal" height="80" top="0">
 				<Require src="toggle"></Require>
 				<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">DIY Paint</Label>
 			</View>
-			<WebView backgroundColor="red" id='canvas' url="/html/canvas-paint-bucket.html" enableZoomControls="false"/>
-			<View bottom="0" backgroundColor="orange" id="toolbar">
-				<ImageView width="16.6%" id="settings" mod="settings" left="0" image="/images/power-icons.png" />
-				<ImageView width="16.6%" id="settings" mod="settings" left="16.6%" image="/images/power-icons.png" />
-				<ImageView width="16.6%" id="settings" mod="settings" left="33.2%" image="/images/power-icons.png" />
-				<ImageView width="16.6%" id="settings" mod="settings" left="49.8%" image="/images/power-icons.png" />
-				<ImageView width="16.6%" id="settings" mod="settings" left="66.4%" image="/images/power-icons.png" />
-				<ImageView width="16.6%" id="settings" mod="settings" left="83%" image="/images/power-icons.png" />
+			<WebView id='canvas' url="/html/canvas-paint-bucket.html" enableZoomControls="false"/>
+			<View height="60" bottom="0" id="toolbar">
+				<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
+				<ImageView id="photoButton" image="/images/icon_photo.png" left="5" onClick="photoPop" height="40" width="50" />
+				<ImageView id="photoButton" image="/images/icon_undo.png" left="65" onClick="photoPop" height="40" width="50" />
+				<ImageView id="photoButton" id="tools" image="/images/icon_bucket.png" left="125" onClick="toolspop" height="40" width="50" />
+				<ImageView id="photoButton" image="/images/icon_size.png" left="185" onClick="photoPop" height="40" width="50" />
+				<ImageView id="photoButton" image="/images/icon_color.png" left="245" onClick="photoPop" height="40" width="50" />
+				<ImageView id="photoButton" image="/images/icon_share.png" left="305" onClick="photoPop" height="40" width="50" />
 			</View>
 		</View>
  

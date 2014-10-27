@@ -102,16 +102,7 @@ bottomBar.add(backgroundImg);
 bottomBar.add(buttonWrapper);
 
 generateTable();
-
-/*var TheScrollView = Titanium.UI.createScrollView({
-	backgroundColor: "white", 
-	width:"95%",
-	layout: 'vertical',
-	height: "80%",
-	top: 80,
-	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-	overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
-});*/
+ 
 $.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 140;
 
 function generateTable(){
@@ -201,7 +192,6 @@ function generateTable(){
 		} 
 	}
 	
-	//$.mainViewContainer.add(TheScrollView); 
 	$.mainViewContainer.add(bottomBar); 
 }
 

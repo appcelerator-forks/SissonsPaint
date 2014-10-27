@@ -111,6 +111,7 @@ function Controller() {
         id: "mainViewContainer"
     });
     $.__views.mainViewContainer && $.addTopLevelView($.__views.mainViewContainer);
+<<<<<<< HEAD
     $.__views.__alloyId49 = Ti.UI.createView({
         layout: "vertical",
         id: "__alloyId49"
@@ -127,6 +128,24 @@ function Controller() {
         __parentSymbol: $.__views.__alloyId50
     });
     $.__views.__alloyId51.setParent($.__views.__alloyId50);
+=======
+    $.__views.__alloyId42 = Ti.UI.createView({
+        layout: "vertical",
+        id: "__alloyId42"
+    });
+    $.__views.mainViewContainer.add($.__views.__alloyId42);
+    $.__views.__alloyId43 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId43"
+    });
+    $.__views.__alloyId42.add($.__views.__alloyId43);
+    $.__views.__alloyId44 = Alloy.createController("toggle", {
+        id: "__alloyId44",
+        __parentSymbol: $.__views.__alloyId43
+    });
+    $.__views.__alloyId44.setParent($.__views.__alloyId43);
+>>>>>>> FETCH_HEAD
     $.__views.titleLabel = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -138,7 +157,17 @@ function Controller() {
         id: "titleLabel",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
+<<<<<<< HEAD
     $.__views.__alloyId50.add($.__views.titleLabel);
+=======
+<<<<<<< HEAD
+    $.__views.__alloyId43.add($.__views.titleLabel);
+=======
+    $.__views.__alloyId45.add($.__views.titleLabel);
+<<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
     $.__views.TheScrollView = Ti.UI.createScrollView({
         id: "TheScrollView",
         backgroundColor: "white",
@@ -148,7 +177,16 @@ function Controller() {
         top: "0",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
+<<<<<<< HEAD
     $.__views.__alloyId49.add($.__views.TheScrollView);
+=======
+<<<<<<< HEAD
+    $.__views.__alloyId42.add($.__views.TheScrollView);
+=======
+    $.__views.__alloyId44.add($.__views.TheScrollView);
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

@@ -1,10 +1,10 @@
 <Alloy>
-	<View id="mainView" class="container">
-		<View layout="horizontal" height="80" top="0">
+	<View id="mainView" layout="vertical" class="container">
+		 <View layout="horizontal" id="toggle" height="80">
 			<Require src="toggle"></Require>
 			<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Colour Picker</Label>
 		</View>
-		<!--<Label>This is Colour Picker</Label>-->
+		<WebView   id='canvas' url="/html/colour_picker.html" height="40%" enableZoomControls="false"/>
 		<View height="50%" bottom="0">
 			<View id="bottomColorBar" layout="vertical">
 				<ImageView image="/images/scroll_up.png" backgroundColor="transparent" width="Titanium.UI.FILL" bottom="10" />

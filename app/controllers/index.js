@@ -26,7 +26,7 @@ setTimeout(function(){
 	API.loadColour();
 	API.loadCategory();
 	checkLoadStatus();
-}, 300);
+}, 500);
 
 function checkLoadStatus(){
 	var loadStoreLocator = Ti.App.Properties.getString('loadStoreLocator');
@@ -41,7 +41,7 @@ function checkLoadStatus(){
 	}else{
 		setTimeout(function(){
 			checkLoadStatus();
-		}, 100);	
+		}, 500);	
 	}
 	
 	

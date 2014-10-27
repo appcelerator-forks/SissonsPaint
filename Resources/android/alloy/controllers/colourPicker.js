@@ -8,6 +8,7 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+<<<<<<< HEAD
     function generateColour() {
         console.log(details.length);
         var viewWidth = 50 * Math.ceil((details.length + 1) / 2) + 10;
@@ -35,6 +36,8 @@ function Controller() {
         $.scrollView.add(topRow);
         $.scrollView.add(bottomRow);
     }
+=======
+>>>>>>> FETCH_HEAD
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "colourPicker";
     if (arguments[0]) {
@@ -54,6 +57,7 @@ function Controller() {
         backgroundColor: "white",
         id: "mainView"
     });
+<<<<<<< HEAD
     $.__views.mainView && $.addTopLevelView($.__views.mainView);
     $.__views.__alloyId41 = Ti.UI.createView({
         layout: "horizontal",
@@ -68,6 +72,24 @@ function Controller() {
     });
     $.__views.__alloyId42.setParent($.__views.__alloyId41);
     $.__views.__alloyId43 = Ti.UI.createLabel({
+=======
+    $.__views.colourPicker && $.addTopLevelView($.__views.colourPicker);
+    $.__views.toggle = Ti.UI.createView({
+        layout: "horizontal",
+        id: "toggle",
+        height: "80"
+    });
+    $.__views.colourPicker.add($.__views.toggle);
+    $.__views.__alloyId40 = Alloy.createController("toggle", {
+        id: "__alloyId40",
+        __parentSymbol: $.__views.toggle
+    });
+    $.__views.__alloyId40.setParent($.__views.toggle);
+    $.__views.__alloyId41 = Ti.UI.createLabel({
+        width: "75%",
+        height: Ti.UI.SIZE,
+        color: "black",
+>>>>>>> FETCH_HEAD
         font: {
             fontSize: 22
         },
@@ -75,6 +97,7 @@ function Controller() {
         color: "black",
         width: "75%",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+<<<<<<< HEAD
         id: "__alloyId43"
     });
     $.__views.__alloyId41.add($.__views.__alloyId43);
@@ -137,6 +160,23 @@ function Controller() {
         id: "__alloyId48"
     });
     $.__views.bottomColorBar.add($.__views.__alloyId48);
+=======
+        id: "__alloyId41"
+    });
+    $.__views.toggle.add($.__views.__alloyId41);
+    $.__views.canvas = Ti.UI.createWebView({
+        id: "canvas",
+        url: "/html/colour_picker.html",
+        height: "40%",
+        enableZoomControls: "false"
+    });
+<<<<<<< HEAD
+    $.__views.colourPicker.add($.__views.canvas);
+=======
+    $.__views.colourPicker.add($.__views.__alloyId43);
+<<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
     $.__views.scrollView = Ti.UI.createScrollView({
         id: "scrollView",
         backgroundColor: "white",
@@ -144,6 +184,7 @@ function Controller() {
         scrollType: "horizontal",
         height: "100"
     });
+<<<<<<< HEAD
     $.__views.bottomColorBar.add($.__views.scrollView);
     exports.destroy = function() {};
     _.extend($, $.__views);
@@ -155,6 +196,61 @@ function Controller() {
     var colour_lib = Alloy.createCollection("colour");
     var details = colour_lib.getColourList();
     generateColour();
+=======
+    $.__views.colourPicker.add($.__views.scrollView);
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+    exports.destroy = function() {};
+    _.extend($, $.__views);
+    arguments[0] || {};
+    var pWidth = Ti.Platform.displayCaps.platformWidth;
+    var pHeight = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight);
+    var toggleHeight = $.toggle.getHeight();
+    var canvasHeight = pHeight - toggleHeight;
+    var colour_lib = Alloy.createCollection("colour");
+    colour_lib.getColourList();
+    var dialog = Titanium.UI.createOptionDialog({
+        title: "Choose an image source...",
+        options: [ "Camera", "Photo Gallery", "Cancel" ],
+        cancel: 2
+    });
+    $.canvas.addEventListener("load", function() {
+        Ti.App.fireEvent("web:initCanvasSize", {
+            height: canvasHeight,
+            width: pWidth
+        });
+    });
+    dialog.addEventListener("click", function(e) {
+        0 == e.index ? Titanium.Media.showCamera({
+            success: function(event) {
+                var image = event.media;
+                event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO && Ti.App.Properties.setString("colour_picker_image", image.nativePath);
+            },
+            cancel: function() {},
+            error: function(error) {
+                var a = Titanium.UI.createAlertDialog({
+                    title: "Camera"
+                });
+                a.setMessage(error.code == Titanium.Media.NO_CAMERA ? "Device does not have camera" : "Unexpected error: " + error.code);
+                a.show();
+            },
+            allowImageEditing: true,
+            saveToPhotoGallery: true
+        }) : 1 == e.index && Titanium.Media.openPhotoGallery({
+            success: function(event) {
+                var image = event.media;
+                if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
+                    Ti.App.Properties.setString("colour_picker_image", image.nativePath);
+                    Ti.App.fireEvent("web:loadImage", {
+                        image: image.nativePath
+                    });
+                }
+            },
+            cancel: function() {}
+        });
+    });
+    dialog.show();
+>>>>>>> FETCH_HEAD
     _.extend($, exports);
 }
 
