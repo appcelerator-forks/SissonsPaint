@@ -31,5 +31,7 @@
 	font:{fontSize:16, fontWeight:"bold"},	
 	textAlign :Ti.UI.TEXT_ALIGNMENT_LEFT,
 	color: "#000000"
+},
+"#colourCategoryDescription": {
+	font:{fontSize:12}
 }
-

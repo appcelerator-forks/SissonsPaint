@@ -1,4 +1,5 @@
 var args = arguments[0] || {};
+var viewHeight = Ti.Platform.displayCaps.platformHeight;
 var pWidth = Ti.Platform.displayCaps.platformWidth;
 var pHeight = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight); 
 var toggleHeight = $.toggle.getHeight();
@@ -6,6 +7,10 @@ var canvasHeight =  pHeight - toggleHeight;
  
 var colour_lib = Alloy.createCollection('colour'); 
 var details = colour_lib.getColourList();
+
+$.mainView.setHeight(viewHeight);
+//console.log($.mainView.getHeight());
+//$.bottomColorBar.setBottom(0);
 
 //Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_NONE);
 //Create a dialog with options
@@ -116,17 +121,17 @@ generateColour();
 
 function generateColour(){
 	console.log(details.length);
-	var viewWidth = (details.length / 2) * 50;
+	var viewWidth = (Math.ceil((details.length+1) / 2) * 50) + 10;
 	var topRow = Titanium.UI.createView({
 	   layout: 'horizontal',
 	   bottom: 10,
-	   height: 60,
+	   height: 40,
 	   width: viewWidth
 	});
 	
 	var bottomRow = Titanium.UI.createView({
 	   layout: 'horizontal',
-	   height: 60,
+	   height: 40,
 	   width: viewWidth
 	});
 	
@@ -152,6 +157,9 @@ function generateColour(){
 	$.scrollView.add(bottomRow);
 }
 
+
+/*
+
 var app = {
         sharer: {
             
@@ -172,6 +180,4 @@ var btnShareChooser = Ti.UI.createButton({
     title: "Media Share"
 });
 btnShareChooser.addEventListener( "click", app.sharer.chooser.bind( null, MESSAGE ) );
-$.colourPicker.add( btnShareChooser );
-
-**/
+$.colourPicker.add( btnShareChooser );//change to imageView*/

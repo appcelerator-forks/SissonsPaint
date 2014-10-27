@@ -127,17 +127,34 @@ function Controller() {
         id: "diyPaint"
     });
     $.__views.diyPaint && $.addTopLevelView($.__views.diyPaint);
+<<<<<<< HEAD
+    $.__views.__alloyId52 = Ti.UI.createView({
+        backgroundColor: "white",
+        id: "__alloyId52"
+    });
+    $.__views.diyPaint.add($.__views.__alloyId52);
+=======
     $.__views.__alloyId45 = Ti.UI.createView({
         backgroundColor: "white",
         id: "__alloyId45"
     });
     $.__views.diyPaint.add($.__views.__alloyId45);
+>>>>>>> FETCH_HEAD
     $.__views.toggle = Ti.UI.createView({
         id: "toggle",
         layout: "horizontal",
         height: "80",
         top: "0"
     });
+<<<<<<< HEAD
+    $.__views.__alloyId52.add($.__views.toggle);
+    $.__views.__alloyId53 = Alloy.createController("toggle", {
+        id: "__alloyId53",
+        __parentSymbol: $.__views.toggle
+    });
+    $.__views.__alloyId53.setParent($.__views.toggle);
+    $.__views.__alloyId54 = Ti.UI.createLabel({
+=======
     $.__views.__alloyId45.add($.__views.toggle);
     $.__views.__alloyId46 = Alloy.createController("toggle", {
         id: "__alloyId46",
@@ -145,28 +162,46 @@ function Controller() {
     });
     $.__views.__alloyId46.setParent($.__views.toggle);
     $.__views.__alloyId47 = Ti.UI.createLabel({
+>>>>>>> FETCH_HEAD
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
         font: {
-            fontSize: 28
+            fontSize: 22
         },
         text: "DIY Paint",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+<<<<<<< HEAD
+        id: "__alloyId54"
+    });
+    $.__views.toggle.add($.__views.__alloyId54);
+=======
         id: "__alloyId47"
     });
     $.__views.toggle.add($.__views.__alloyId47);
+>>>>>>> FETCH_HEAD
     $.__views.canvas = Ti.UI.createWebView({
         id: "canvas",
         url: "/html/canvas-paint-bucket.html",
         enableZoomControls: "false"
     });
+<<<<<<< HEAD
+    $.__views.__alloyId52.add($.__views.canvas);
+=======
     $.__views.__alloyId45.add($.__views.canvas);
+>>>>>>> FETCH_HEAD
     $.__views.toolbar = Ti.UI.createView({
         height: "60",
         bottom: "0",
         id: "toolbar"
     });
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    $.__views.__alloyId52.add($.__views.toolbar);
+=======
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
     $.__views.__alloyId45.add($.__views.toolbar);
     $.__views.__alloyId48 = Ti.UI.createImageView({
         image: "/images/tool_bar.jpg",
@@ -229,6 +264,61 @@ function Controller() {
     });
     $.__views.toolbar.add($.__views.photoButton);
     photoPop ? $.__views.photoButton.addEventListener("click", photoPop) : __defers["$.__views.photoButton!click!photoPop"] = true;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "0",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "16.6%",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "33.2%",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "49.8%",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "66.4%",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "83%",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

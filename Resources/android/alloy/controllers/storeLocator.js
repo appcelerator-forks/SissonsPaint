@@ -37,7 +37,29 @@ function Controller() {
         width: "100%"
     });
     $.__views.mainWindow && $.addTopLevelView($.__views.mainWindow);
+<<<<<<< HEAD
     $.__views.__alloyId85 = Ti.UI.createView({
+=======
+<<<<<<< HEAD
+    $.__views.__alloyId91 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId91"
+    });
+    $.__views.mainWindow.add($.__views.__alloyId91);
+    $.__views.__alloyId92 = Alloy.createController("toggle", {
+        id: "__alloyId92",
+        __parentSymbol: $.__views.__alloyId91
+    });
+    $.__views.__alloyId92.setParent($.__views.__alloyId91);
+    $.__views.__alloyId93 = Ti.UI.createLabel({
+=======
+<<<<<<< HEAD
+    $.__views.__alloyId84 = Ti.UI.createView({
+=======
+<<<<<<< HEAD
+    $.__views.__alloyId83 = Ti.UI.createView({
+>>>>>>> FETCH_HEAD
         layout: "horizontal",
         height: "80",
         id: "__alloyId85"
@@ -47,19 +69,55 @@ function Controller() {
         id: "__alloyId86",
         __parentSymbol: $.__views.__alloyId85
     });
+<<<<<<< HEAD
     $.__views.__alloyId86.setParent($.__views.__alloyId85);
     $.__views.__alloyId87 = Ti.UI.createLabel({
+=======
+<<<<<<< HEAD
+    $.__views.__alloyId85.setParent($.__views.__alloyId84);
+    $.__views.__alloyId86 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId87.setParent($.__views.__alloyId86);
+    $.__views.__alloyId88 = Ti.UI.createLabel({
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
         font: {
-            fontSize: 28
+            fontSize: 22
         },
         text: "Store Locator",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+<<<<<<< HEAD
         id: "__alloyId87"
     });
     $.__views.__alloyId85.add($.__views.__alloyId87);
+=======
+<<<<<<< HEAD
+        id: "__alloyId93"
+    });
+    $.__views.__alloyId91.add($.__views.__alloyId93);
+=======
+<<<<<<< HEAD
+        id: "__alloyId86"
+    });
+    $.__views.__alloyId84.add($.__views.__alloyId86);
+=======
+<<<<<<< HEAD
+        id: "__alloyId85"
+    });
+    $.__views.__alloyId83.add($.__views.__alloyId85);
+=======
+        id: "__alloyId88"
+    });
+    $.__views.__alloyId86.add($.__views.__alloyId88);
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
     $.__views.subWindow = Ti.UI.createView({
         id: "subWindow",
         layout: "vertical",

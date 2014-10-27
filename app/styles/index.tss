@@ -29,7 +29,7 @@
 },
 
 ".title":{
-	font:{fontSize:28},	
+	font:{fontSize:22},	
 },
 "#activityIndicator" : {
 	 style: Ti.UI.ActivityIndicatorStyle.BIG,

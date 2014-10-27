@@ -15,12 +15,12 @@
 },
 "#titleLabel": {
 	font: {
-        fontSize: '28'
+        fontSize: '22'
    }
 },
 ".colorDesc" : {
 	font: {
-        fontSize: '8'
+        fontSize: '12'
    },
    color: '#6E6E6E',
    width: "100%",
