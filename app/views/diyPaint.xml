@@ -9,12 +9,12 @@
 			<Slider id="slider" bottom="60" min="0" max="100" width="100%" value="20" onChange="updateAdjustment"/>
 			<View height="60" bottom="0" id="toolbar">
 				<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
-				<ImageView id="photoButton" image="/images/icon_photo.png" left="5" onClick="photoPop" height="40" width="50" />
-				<ImageView id="photoButton" image="/images/icon_undo.png" left="65" onClick="photoPop" height="40" width="50" />
-				<ImageView id="photoButton" id="tools" image="/images/icon_bucket.png" left="125" onClick="toolspop" height="40" width="50" />
-				<ImageView id="photoButton" image="/images/icon_size.png" left="185" onClick="photoPop" height="40" width="50" />
-				<ImageView id="photoButton" image="/images/icon_color.png" left="245" onClick="photoPop" height="40" width="50" />
-				<ImageView id="photoButton" image="/images/icon_share.png" left="305" onClick="photoPop" height="40" width="50" />
+				<ImageView image="/images/icon_photo.png" left="5" onClick="photoPop" height="40" width="50" />
+				<ImageView image="/images/icon_undo.png" left="65" onClick="photoPop" height="40" width="50" />
+				<ImageView id="tools" image="/images/icon_bucket.png" left="125" onClick="toolspop" height="40" width="50" />
+				<ImageView image="/images/icon_size.png" left="185" onClick="photoPop" height="40" width="50" />
+				<ImageView image="/images/icon_color.png" left="245" onClick="photoPop" height="40" width="50" />
+				<ImageView image="/images/icon_share.png" left="305" onClick="photoPop" height="40" width="50" />
 			</View>
 		</View>
  

@@ -15,6 +15,16 @@ function removeAllChildren(viewObject) {
     for (var i = 0; i < children.length; ++i) viewObject.remove(children[i]);
 }
 
+function printDate() {
+    var temp = new Date();
+    var dateStr = padStr(temp.getFullYear()) + padStr(1 + temp.getMonth()) + padStr(temp.getDate()) + padStr(temp.getHours()) + padStr(temp.getMinutes()) + padStr(temp.getSeconds());
+    return dateStr;
+}
+
+function padStr(i) {
+    return 10 > i ? "0" + i : "" + i;
+}
+
 var Alloy = require("alloy"), _ = Alloy._, Backbone = Alloy.Backbone;
 
 Alloy.createController("index");

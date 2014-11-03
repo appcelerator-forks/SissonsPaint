@@ -144,6 +144,7 @@ function Controller() {
             row.add(infoViewContainer);
             data.push(row);
         }
+<<<<<<< HEAD
         var searchView = Titanium.UI.createView({
             layout: "composite",
             width: "100%",
@@ -186,6 +187,8 @@ function Controller() {
         var searchWrapper = Titanium.UI.createView({
             layout: "horizontal"
         });
+=======
+>>>>>>> FETCH_HEAD
         TheTable.setData(data);
         $.tableContainer.add(TheTable);
         searchWrapper.add(textField);
@@ -224,6 +227,7 @@ function Controller() {
         id: "storeLocatorByState"
     });
     $.__views.storeLocatorByState && $.addTopLevelView($.__views.storeLocatorByState);
+<<<<<<< HEAD
     $.__views.__alloyId96 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
@@ -235,6 +239,19 @@ function Controller() {
         __parentSymbol: $.__views.__alloyId96
     });
     $.__views.__alloyId97.setParent($.__views.__alloyId96);
+=======
+    $.__views.__alloyId95 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId95"
+    });
+    $.__views.storeLocatorByState.add($.__views.__alloyId95);
+    $.__views.__alloyId96 = Alloy.createController("toggle", {
+        id: "__alloyId96",
+        __parentSymbol: $.__views.__alloyId95
+    });
+    $.__views.__alloyId96.setParent($.__views.__alloyId95);
+>>>>>>> FETCH_HEAD
     $.__views.stateName = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -245,7 +262,11 @@ function Controller() {
         id: "stateName",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
+<<<<<<< HEAD
     $.__views.__alloyId96.add($.__views.stateName);
+=======
+    $.__views.__alloyId95.add($.__views.stateName);
+>>>>>>> FETCH_HEAD
     $.__views.tableContainer = Ti.UI.createView({
         backgroundColor: "white",
         id: "tableContainer",

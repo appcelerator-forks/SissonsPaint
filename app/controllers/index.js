@@ -1,7 +1,4 @@
-$.drawer.open({
-	navBarHidden: true,
-	fullscreen: true
-});
+
 Ti.App.Properties.setString('module', 'index');
 Ti.App.Properties.setString('from', 'index');
 
@@ -21,10 +18,22 @@ $.loadingBar.top = "100";
 // Load API function
 
 setTimeout(function(){
-	API.loadStoreLocator();
-	API.loadBrochure();
-	API.loadColour();
-	API.loadCategory();
+	
+	var clickTime = Ti.App.Properties.getString('clickTime');
+  	var currentTime = printDate();
+	if (currentTime - clickTime > 1800) {
+		API.loadStoreLocator();
+		API.loadBrochure();
+		API.loadColour();
+		API.loadCategory();
+	}else{
+		Ti.App.Properties.setString('loadStoreLocator', '1');
+		Ti.App.Properties.setString('loadBrochure', '1');
+		Ti.App.Properties.setString('loadColour', '1');
+		Ti.App.Properties.setString('loadCategory', '1');
+	}
+	Ti.App.Properties.setString('clickTime',currentTime);	
+	
 	checkLoadStatus();
 }, 500);
 
@@ -35,9 +44,14 @@ function checkLoadStatus(){
 	var loadCategory = Ti.App.Properties.getString('loadCategory');
 
 	if(loadStoreLocator == "1" && loadBrochure == "1" && loadColour == "1" && loadCategory == "1"){
+		
 		$.loadingBar.opacity = "0";
 		var nav = Alloy.createController("colourSwatches").getView(); 
 		Alloy.Globals.Drawer.setCenterWindow(nav);  
+		$.drawer.open({
+			navBarHidden: true,
+			fullscreen: true
+		});
 	}else{
 		setTimeout(function(){
 			checkLoadStatus();
@@ -91,14 +105,6 @@ $.drawer.addEventListener('android:back', function (e) {
 	if(mod == "storeLocator"){
 		Ti.App.Properties.setString('module', 'index');
 		var nav = Alloy.createController("storeLocator").getView(); 
-		Alloy.Globals.Drawer.setCenterWindow(nav);  
-	}else if(mod == "colourDetails"){
-		from = Ti.App.Properties.getString('from');
-		if(from == "colourPicker"){
-			Ti.App.Properties.setString('back', 1);
-		}
-		Ti.App.Properties.setString('module', 'index');
-		var nav = Alloy.createController(from).getView(); 
 		Alloy.Globals.Drawer.setCenterWindow(nav);  
 	}else if(mod == "search"){
 		from = Ti.App.Properties.getString('from');
