@@ -45,7 +45,7 @@ function checkLoadStatus(){
 
 	if(loadStoreLocator == "1" && loadBrochure == "1" && loadColour == "1" && loadCategory == "1"){
 		
-		$.loadingBar.opacity = "0";
+		//$.loadingBar.opacity = "0";
 		var nav = Alloy.createController("colourSwatches").getView(); 
 		Alloy.Globals.Drawer.setCenterWindow(nav);  
 		$.drawer.open({

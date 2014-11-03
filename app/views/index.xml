@@ -36,7 +36,7 @@
         </Window>
         
         <Window id="centerWindow" module="xp.ui" platform="android" role="centerWindow">
-        	<View id="brochureView" layout="vertical" class="container" backgroundImage="/images/default.png">
+        	<View id="brochureView" layout="vertical" class="container" backgroundImage="/images/wood_rack.png">
 	        	<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" top="0" opacity="1" backgroundColor="#2E2E2E" >
 					<ActivityIndicator  id="activityIndicator" />
 					<Label text="Loading" color="#ffffff" />

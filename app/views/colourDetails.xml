@@ -1,6 +1,6 @@
 <Alloy> 
-	<Window class="container" id="colourDetails">
-	<View   textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">
+ 
+	<View   textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT"  class="container" id="colourDetails">
 		<View layout="vertical">
 			
 			<View layout="vertical" backgroundColor="#ffffff" top="10" width="160" height="160">
@@ -49,5 +49,5 @@
 				<ImageView id="favButton"  onClick="popWindow" height="40" width="50" />
 		</View>
 	</View> 
-	</Window>
+	
 </Alloy>

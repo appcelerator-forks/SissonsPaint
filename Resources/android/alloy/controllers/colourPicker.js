@@ -116,12 +116,12 @@ function Controller() {
         height: "80"
     });
     $.__views.colourPicker.add($.__views.toggle);
-    $.__views.__alloyId40 = Alloy.createController("toggle", {
-        id: "__alloyId40",
+    $.__views.__alloyId39 = Alloy.createController("toggle", {
+        id: "__alloyId39",
         __parentSymbol: $.__views.toggle
     });
-    $.__views.__alloyId40.setParent($.__views.toggle);
-    $.__views.__alloyId41 = Ti.UI.createLabel({
+    $.__views.__alloyId39.setParent($.__views.toggle);
+    $.__views.__alloyId40 = Ti.UI.createLabel({
         font: {
             fontSize: 22
         },
@@ -129,9 +129,9 @@ function Controller() {
         color: "black",
         width: "75%",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-        id: "__alloyId41"
+        id: "__alloyId40"
     });
-    $.__views.toggle.add($.__views.__alloyId41);
+    $.__views.toggle.add($.__views.__alloyId40);
     $.__views.canvas = Ti.UI.createWebView({
         id: "canvas",
         url: "/html/colour_picker.html",
@@ -140,34 +140,34 @@ function Controller() {
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.colourPicker.add($.__views.canvas);
-    $.__views.__alloyId42 = Ti.UI.createView({
+    $.__views.__alloyId41 = Ti.UI.createView({
         height: "50%",
         bottom: "0",
-        id: "__alloyId42"
+        id: "__alloyId41"
     });
-    $.__views.colourPicker.add($.__views.__alloyId42);
+    $.__views.colourPicker.add($.__views.__alloyId41);
     $.__views.bottomColorBar = Ti.UI.createView({
         id: "bottomColorBar",
         layout: "vertical"
     });
-    $.__views.__alloyId42.add($.__views.bottomColorBar);
-    $.__views.__alloyId43 = Ti.UI.createImageView({
+    $.__views.__alloyId41.add($.__views.bottomColorBar);
+    $.__views.__alloyId42 = Ti.UI.createImageView({
         image: "/images/scroll_up.png",
         backgroundColor: "transparent",
         width: Titanium.UI.FILL,
         bottom: "10",
-        id: "__alloyId43"
+        id: "__alloyId42"
     });
-    $.__views.bottomColorBar.add($.__views.__alloyId43);
-    $.__views.__alloyId44 = Ti.UI.createLabel({
+    $.__views.bottomColorBar.add($.__views.__alloyId42);
+    $.__views.__alloyId43 = Ti.UI.createLabel({
         text: "RECOMMEND COLOURS",
         color: "black",
         width: "90%",
         textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
         bottom: "10",
-        id: "__alloyId44"
+        id: "__alloyId43"
     });
-    $.__views.bottomColorBar.add($.__views.__alloyId44);
+    $.__views.bottomColorBar.add($.__views.__alloyId43);
     $.__views.recommendView = Ti.UI.createScrollView({
         id: "recommendView",
         backgroundColor: "white",
@@ -177,23 +177,23 @@ function Controller() {
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.bottomColorBar.add($.__views.recommendView);
-    $.__views.__alloyId45 = Ti.UI.createImageView({
+    $.__views.__alloyId44 = Ti.UI.createImageView({
         image: "/images/scroll_up.png",
         backgroundColor: "transparent",
         width: Titanium.UI.FILL,
         bottom: "10",
-        id: "__alloyId45"
+        id: "__alloyId44"
     });
-    $.__views.bottomColorBar.add($.__views.__alloyId45);
-    $.__views.__alloyId46 = Ti.UI.createLabel({
+    $.__views.bottomColorBar.add($.__views.__alloyId44);
+    $.__views.__alloyId45 = Ti.UI.createLabel({
         text: "COLOUR LIBRARY",
         color: "black",
         width: "90%",
         textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
         bottom: "10",
-        id: "__alloyId46"
+        id: "__alloyId45"
     });
-    $.__views.bottomColorBar.add($.__views.__alloyId46);
+    $.__views.bottomColorBar.add($.__views.__alloyId45);
     $.__views.scrollView = Ti.UI.createScrollView({
         id: "scrollView",
         backgroundColor: "white",

@@ -153,24 +153,24 @@ function Controller() {
         id: "diyPaint"
     });
     $.__views.diyPaint && $.addTopLevelView($.__views.diyPaint);
-    $.__views.__alloyId50 = Ti.UI.createView({
+    $.__views.__alloyId49 = Ti.UI.createView({
         backgroundColor: "white",
-        id: "__alloyId50"
+        id: "__alloyId49"
     });
-    $.__views.diyPaint.add($.__views.__alloyId50);
+    $.__views.diyPaint.add($.__views.__alloyId49);
     $.__views.toggle = Ti.UI.createView({
         id: "toggle",
         layout: "horizontal",
         height: "80",
         top: "0"
     });
-    $.__views.__alloyId50.add($.__views.toggle);
-    $.__views.__alloyId51 = Alloy.createController("toggle", {
-        id: "__alloyId51",
+    $.__views.__alloyId49.add($.__views.toggle);
+    $.__views.__alloyId50 = Alloy.createController("toggle", {
+        id: "__alloyId50",
         __parentSymbol: $.__views.toggle
     });
-    $.__views.__alloyId51.setParent($.__views.toggle);
-    $.__views.__alloyId52 = Ti.UI.createLabel({
+    $.__views.__alloyId50.setParent($.__views.toggle);
+    $.__views.__alloyId51 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -179,29 +179,29 @@ function Controller() {
         },
         text: "DIY Paint",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-        id: "__alloyId52"
+        id: "__alloyId51"
     });
-    $.__views.toggle.add($.__views.__alloyId52);
+    $.__views.toggle.add($.__views.__alloyId51);
     $.__views.canvas = Ti.UI.createWebView({
         id: "canvas",
         url: "/html/canvas-paint-bucket.html",
         enableZoomControls: "false",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
-    $.__views.__alloyId50.add($.__views.canvas);
+    $.__views.__alloyId49.add($.__views.canvas);
     $.__views.toolbar = Ti.UI.createView({
         height: "60",
         bottom: "0",
         id: "toolbar"
     });
-    $.__views.__alloyId50.add($.__views.toolbar);
-    $.__views.__alloyId53 = Ti.UI.createImageView({
+    $.__views.__alloyId49.add($.__views.toolbar);
+    $.__views.__alloyId52 = Ti.UI.createImageView({
         image: "/images/tool_bar.jpg",
         height: "60",
         width: Titanium.UI.FILL,
-        id: "__alloyId53"
+        id: "__alloyId52"
     });
-    $.__views.toolbar.add($.__views.__alloyId53);
+    $.__views.toolbar.add($.__views.__alloyId52);
     $.__views.photoButton = Ti.UI.createImageView({
         id: "photoButton",
         image: "/images/icon_photo.png",

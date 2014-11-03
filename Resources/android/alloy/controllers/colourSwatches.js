@@ -11,69 +11,71 @@ function Controller() {
     function generateTable() {
         for (var i = 0; i < details.length; i++) {
             console.log(details[i]);
-            var colours = category_colour_lib.getCategoryColourByCategory(details[i]["id"]);
-            var categoryHeader = Titanium.UI.createImageView({
-                width: "95%",
-                height: Ti.UI.SIZE,
-                touchEnabled: false,
-                top: 15,
-                image: details[i]["image"]
-            });
-            var description = $.UI.create("Label", {
-                width: "95%",
-                text: details[i].description,
-                width: "95%",
-                classes: [ "aboutContent" ],
-                bottom: 30
-            });
-            $.TheScrollView.add(categoryHeader);
-            $.TheScrollView.add(description);
-            var colourView = $.UI.create("View", {
-                textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-                layout: "horizontal",
-                width: "95%",
-                bottom: 10,
-                height: Ti.UI.SIZE
-            });
-            var counter = 0;
-            colours.forEach(function(colour) {
-                var subView = $.UI.create("View", {
-                    textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
-                    layout: "vertical",
-                    width: "25%",
-                    top: 3,
+            if ("" != details[i]) {
+                var colours = category_colour_lib.getCategoryColourByCategory(details[i]["id"]);
+                var categoryHeader = Titanium.UI.createImageView({
+                    width: "95%",
+                    height: Ti.UI.SIZE,
+                    touchEnabled: false,
+                    top: 15,
+                    image: details[i]["image"]
+                });
+                var description = $.UI.create("Label", {
+                    width: "95%",
+                    text: details[i].description,
+                    width: "95%",
+                    classes: [ "aboutContent" ],
+                    bottom: 30
+                });
+                $.TheScrollView.add(categoryHeader);
+                $.TheScrollView.add(description);
+                var colourView = $.UI.create("View", {
+                    textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+                    layout: "horizontal",
+                    width: "95%",
+                    bottom: 10,
                     height: Ti.UI.SIZE
                 });
-                var colour_details = colour_lib.getColourById(colour.colour_id);
-                var subViewColor = $.UI.create("View", {
-                    backgroundColor: "rgb(" + colour_details.rgb + ")",
-                    width: "97%",
-                    height: "80"
+                var counter = 0;
+                colours.forEach(function(colour) {
+                    var subView = $.UI.create("View", {
+                        textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
+                        layout: "vertical",
+                        width: "25%",
+                        top: 3,
+                        height: Ti.UI.SIZE
+                    });
+                    var colour_details = colour_lib.getColourById(colour.colour_id);
+                    var subViewColor = $.UI.create("View", {
+                        backgroundColor: "rgb(" + colour_details.rgb + ")",
+                        width: "97%",
+                        height: "80"
+                    });
+                    var subLabelName = $.UI.create("Label", {
+                        text: colour_details.name,
+                        classes: [ "colorDesc" ]
+                    });
+                    var subLabelCode = $.UI.create("Label", {
+                        text: colour_details.code,
+                        classes: [ "colorDesc" ],
+                        bottom: 10
+                    });
+                    createColorEvent(subView, colour_details, details[i]);
+                    subView.add(subViewColor);
+                    subView.add(subLabelName);
+                    subView.add(subLabelCode);
+                    colourView.add(subView);
+                    counter++;
                 });
-                var subLabelName = $.UI.create("Label", {
-                    text: colour_details.name,
-                    classes: [ "colorDesc" ]
+                $.TheScrollView.add(colourView);
+                var separator = Titanium.UI.createImageView({
+                    width: Titanium.UI.FILL,
+                    height: 30,
+                    touchEnabled: false,
+                    image: "/images/scroll_up.png"
                 });
-                var subLabelCode = $.UI.create("Label", {
-                    text: colour_details.code,
-                    classes: [ "colorDesc" ],
-                    bottom: 10
-                });
-                createColorEvent(subView, colour_details, details[i]);
-                subView.add(subViewColor);
-                subView.add(subLabelName);
-                subView.add(subLabelCode);
-                colourView.add(subView);
-                counter++;
-            });
-            $.TheScrollView.add(colourView);
-            var separator = Titanium.UI.createImageView({
-                width: Titanium.UI.FILL,
-                height: 30,
-                touchEnabled: false,
-                image: "/images/scroll_up.png"
-            });
-            details.length != i + 1 && $.TheScrollView.add(separator);
+                details.length != i + 1 && $.TheScrollView.add(separator);
+            }
         }
         $.mainViewContainer.add(bottomBar);
     }
@@ -86,10 +88,6 @@ function Controller() {
             }).getView();
             nav.open();
         });
-    }
-    function removeAllChildren(viewObject) {
-        var children = viewObject.children.slice(0);
-        for (var i = 0; i < children.length; ++i) viewObject.remove(children[i]);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "colourSwatches";
@@ -111,22 +109,22 @@ function Controller() {
         id: "mainViewContainer"
     });
     $.__views.mainViewContainer && $.addTopLevelView($.__views.mainViewContainer);
-    $.__views.__alloyId47 = Ti.UI.createView({
+    $.__views.__alloyId46 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId47"
+        id: "__alloyId46"
     });
-    $.__views.mainViewContainer.add($.__views.__alloyId47);
-    $.__views.__alloyId48 = Ti.UI.createView({
+    $.__views.mainViewContainer.add($.__views.__alloyId46);
+    $.__views.__alloyId47 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId48"
+        id: "__alloyId47"
     });
-    $.__views.__alloyId47.add($.__views.__alloyId48);
-    $.__views.__alloyId49 = Alloy.createController("toggle", {
-        id: "__alloyId49",
-        __parentSymbol: $.__views.__alloyId48
+    $.__views.__alloyId46.add($.__views.__alloyId47);
+    $.__views.__alloyId48 = Alloy.createController("toggle", {
+        id: "__alloyId48",
+        __parentSymbol: $.__views.__alloyId47
     });
-    $.__views.__alloyId49.setParent($.__views.__alloyId48);
+    $.__views.__alloyId48.setParent($.__views.__alloyId47);
     $.__views.titleLabel = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -138,7 +136,7 @@ function Controller() {
         id: "titleLabel",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
-    $.__views.__alloyId48.add($.__views.titleLabel);
+    $.__views.__alloyId47.add($.__views.titleLabel);
     $.__views.TheScrollView = Ti.UI.createScrollView({
         id: "TheScrollView",
         backgroundColor: "white",
@@ -148,7 +146,7 @@ function Controller() {
         top: "0",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
-    $.__views.__alloyId47.add($.__views.TheScrollView);
+    $.__views.__alloyId46.add($.__views.TheScrollView);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -242,14 +240,14 @@ function Controller() {
         $.mainViewContainer.remove(table);
         removeAllChildren($.TheScrollView);
         if (0 == e.index) {
-            details = library.getCategoryList();
+            details = library.getCategoryListByType("2");
             generateTable();
         } else {
             var result = category_type_lib.getCategoryTypeByTag(e.rowData.title);
             var data = [];
             details = [];
             result.forEach(function(tags) {
-                data = library.getCategoryById(tags.cate_id);
+                data = library.getCategoryById(tags.cate_id, "2");
                 details.push(data);
             });
             console.log(details);
@@ -284,7 +282,6 @@ function Controller() {
             $.mainViewContainer.remove(searchView);
         } else {
             searchFlag = 1;
-            console.log("change:" + searchFlag);
             var hintTextLabel = Ti.UI.createLabel({
                 text: "Enter Colour, Name or Colour Code",
                 color: "#A5A5A5",
