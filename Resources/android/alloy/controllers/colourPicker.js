@@ -193,7 +193,21 @@ function Controller() {
         bottom: "10",
         id: "__alloyId47"
     });
+<<<<<<< HEAD
     $.__views.bottomColorBar.add($.__views.__alloyId47);
+=======
+    $.__views.colourPicker.add($.__views.canvas);
+<<<<<<< HEAD
+=======
+=======
+    $.__views.colourPicker.add($.__views.__alloyId43);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
     $.__views.scrollView = Ti.UI.createScrollView({
         id: "scrollView",
         backgroundColor: "white",
@@ -202,7 +216,15 @@ function Controller() {
         height: "100",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    $.__views.colourPicker.add($.__views.scrollView);
+=======
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
     $.__views.bottomColorBar.add($.__views.scrollView);
+>>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

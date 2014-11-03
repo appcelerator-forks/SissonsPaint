@@ -5,7 +5,16 @@
 				<Require src="toggle"></Require>
 				<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">DIY Paint</Label>
 			</View>
+<<<<<<< HEAD
 			<WebView id='canvas' url="/html/canvas-paint-bucket.html" enableZoomControls="false" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" />
+=======
+<<<<<<< HEAD
+			<WebView id='canvas' url="/html/canvas-paint-bucket.html" enableZoomControls="false"/>
+			<Slider id="slider" bottom="60" min="0" max="100" width="100%" value="20" onChange="updateAdjustment"/>
+=======
+			<WebView id='canvas' url="/html/canvas-paint-bucket.html" enableZoomControls="false" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER />
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
 			<View height="60" bottom="0" id="toolbar">
 				<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
 				<ImageView id="photoButton" image="/images/icon_photo.png" left="5" onClick="photoPop" height="40" width="50" />

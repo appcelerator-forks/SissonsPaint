@@ -52,17 +52,20 @@
 				paintBucketApp.createPaintMouseEvents();
 			}else if(e.tools == "brush"){
 				paintBucketApp.createBrushMouseEvents();
+			}else if(e.tools == "erase"){
+				paintBucketApp.createEraseEvents();
 			}
 		};
-		
-		Ti.App.addEventListener('foo', function(data)
-		{
-			alert('foo');
-		});
+
+		var setStroke = function(e){
+			console.log(e.value);
+			paintBucketApp.setStroke(e.value);
+		};
 		
 		Ti.App.addEventListener("web:changeTools", changeTools);
 		Ti.App.addEventListener("web:initCanvasSize", initCanvasSize);
 		Ti.App.addEventListener("web:loadImage", loadImage);
+		Ti.App.addEventListener("web:setStroke", setStroke);
 	</script>
     <style>
     	* {
@@ -106,6 +109,7 @@ var paintBucketApp = (function () {
 			b: 40,
 			hex: "#986928"
 		},
+		lineWidth = 10,
 		curColor = colorPurple,
 		curOutlineColor = new Array(),
 		outlineImage = new Image(),
@@ -126,7 +130,6 @@ var paintBucketApp = (function () {
 
 		// Clears the canvas.
 		clearCanvas = function () {
-
 			context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 		},
 		
@@ -191,7 +194,7 @@ var paintBucketApp = (function () {
 			//context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
 		},
 		matchrange = function(a, b){
-			if((a >= (b-10)) && (a <= (b+10))){
+			if((a >= (b-20)) && (a <= (b+20))){
 				return true;	
 			}
 		},
@@ -340,7 +343,6 @@ var paintBucketApp = (function () {
 			redraw();
 		},
 		PaintMouseFunction = function(e){
-			 
 				var mouseX = (Boolean(e.pageX))?e.pageX:e.originalEvent.targetTouches[0].pageX;
 				var mouseY = (Boolean(e.pageY))?e.pageY:e.originalEvent.targetTouches[0].pageY;
 
@@ -370,7 +372,8 @@ var paintBucketApp = (function () {
 			var startX = e.originalEvent.targetTouches[0].pageX;
 			var startY = e.originalEvent.targetTouches[0].pageY;
 			context.beginPath();
-			context.lineWidth = 10;
+			context.lineWidth = lineWidth;
+			alert(lineWidth);
 			context.moveTo(startX, startY);
 			e.preventDefault();
 			e.stopPropagation();
@@ -391,6 +394,7 @@ var paintBucketApp = (function () {
 			 e.preventDefault();
 			e.stopPropagation();
 			context.closePath();
+			colorLayerData = context.getImageData(0, 0, canvasWidth, canvasHeight);
 			$("#canvasDiv").css('opacity', '0.6');
 		},
 		BrushMouseFunction = function(e){
@@ -403,13 +407,28 @@ var paintBucketApp = (function () {
 			$('#canvasDiv').off("touchstart", "#canvas", BrushMouseDownFunction);
 			$('#canvasDiv').off("touchmove", "#canvas", BrushMouseMoveFunction);
 			$('#canvasDiv').off("touchend", "#canvas", BrushMouseUpFunction);
+			
 			$('#canvasDiv').on("mousedown", "#canvas", PaintMouseFunction);
 		},
 		// Add mouse event listeners to the canvas
 		createBrushMouseEvents = function () {
 			$('#canvasDiv').off("mousedown", "#canvas", PaintMouseFunction);
+			$('#canvasDiv').off("touchmove", "#canvas", BrushEraseMoveFunction);
+			$('#canvasDiv').off("touchend", "#canvas", BrushEraseUpFunction);
+			
 			BrushMouseFunction();
 			
+			context.globalCompositeOperation = "source-over";
+			
+		},
+		createEraseEvents = function(){
+			$('#canvasDiv').off("mousedown", "#canvas", PaintMouseFunction);
+			$('#canvasDiv').off("touchmove", "#canvas", BrushEraseMoveFunction);
+			$('#canvasDiv').off("touchend", "#canvas", BrushEraseUpFunction);
+			
+			BrushMouseFunction();
+			
+			context.globalCompositeOperation = "destination-out";
 		},
 
 		// Calls the redraw function after all neccessary resources are loaded.
@@ -437,6 +456,9 @@ var paintBucketApp = (function () {
 			canvasHeight = e.height;
 			drawingAreaHeight = e.height;
 			redraw();
+		},
+		setStroke = function(e){
+			lineWidth = e;
 		},
 		// Creates a canvas element, loads images, adds events, and draws the canvas for the first time.
 		init = function (data) {
@@ -482,6 +504,7 @@ var paintBucketApp = (function () {
 					return;
 				}
 				clearCanvas();
+				console.log(canvasWidth);
 				colorLayerData = context.getImageData(0, 0, canvasWidth, canvasHeight);
 				resourceLoaded();
 			};
@@ -491,7 +514,10 @@ var paintBucketApp = (function () {
 	return {
 		init: init,
 		loadImage: loadImage,
-		createBrushMouseEvents: createBrushMouseEvents
+		createBrushMouseEvents: createBrushMouseEvents,
+		createPaintMouseEvents: createPaintMouseEvents,
+		createEraseEvents: createEraseEvents,
+		setStroke: setStroke
 	};
 }());
     $(document).ready(function () {

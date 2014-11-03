@@ -50,20 +50,43 @@ function Controller() {
         table.addEventListener("click", function(e) {
             console.log(e.index);
             if (0 == e.index) {
+                tools = "bucket";
+                $.slider.setValue(bucketWidth);
+                Ti.App.fireEvent("web:setStroke", {
+                    value: bucketWidth
+                });
                 Ti.App.fireEvent("web:changeTools", {
                     tools: "bucket"
                 });
                 $.tools.image = "/images/icon_bucket.png";
             }
             if (1 == e.index) {
+                tools = "brush";
+                $.slider.setValue(brushWidth);
+                Ti.App.fireEvent("web:setStroke", {
+                    value: brushWidth
+                });
                 Ti.App.fireEvent("web:changeTools", {
                     tools: "brush"
                 });
                 $.tools.image = "/images/icon_brush.png";
             }
-            2 == e.index && ($.tools.image = "/images/icon_erase.png");
+            if (2 == e.index) {
+                tools = "erase";
+                $.slider.setValue(eraseWidth);
+                Ti.App.fireEvent("web:setStroke", {
+                    value: eraseWidth
+                });
+                Ti.App.fireEvent("web:changeTools", {
+                    tools: "erase"
+                });
+                $.tools.image = "/images/icon_erase.png";
+            }
             $.diyPaint.remove(table);
         });
+    }
+    function updateAdjustment(e) {
+        "bucket" == tools ? bucketWidth = parseInt(e.value) : "brush" == tools ? brushWidth = parseInt(e.value) : "erase" == tools && (eraseWidth = parseInt(e.value));
     }
     function photoPop() {
         var dialog = Titanium.UI.createOptionDialog({
@@ -168,12 +191,34 @@ function Controller() {
         enableZoomControls: "false",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
+<<<<<<< HEAD
+    $.__views.__alloyId47.add($.__views.canvas);
+    $.__views.slider = Ti.UI.createSlider({
+        id: "slider",
+        bottom: "60",
+        min: "0",
+        max: "100",
+        width: "100%",
+        value: "20"
+    });
+    $.__views.__alloyId47.add($.__views.slider);
+    updateAdjustment ? $.__views.slider.addEventListener("change", updateAdjustment) : __defers["$.__views.slider!change!updateAdjustment"] = true;
+=======
     $.__views.__alloyId51.add($.__views.canvas);
+>>>>>>> FETCH_HEAD
     $.__views.toolbar = Ti.UI.createView({
         height: "60",
         bottom: "0",
         id: "toolbar"
     });
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    $.__views.__alloyId47.add($.__views.toolbar);
+    $.__views.__alloyId50 = Ti.UI.createImageView({
+=======
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
     $.__views.__alloyId51.add($.__views.toolbar);
     $.__views.__alloyId54 = Ti.UI.createImageView({
         image: "/images/tool_bar.jpg",
@@ -182,6 +227,27 @@ function Controller() {
         id: "__alloyId54"
     });
     $.__views.toolbar.add($.__views.__alloyId54);
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    $.__views.__alloyId52.add($.__views.toolbar);
+=======
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+    $.__views.__alloyId45.add($.__views.toolbar);
+    $.__views.__alloyId48 = Ti.UI.createImageView({
+>>>>>>> FETCH_HEAD
+        image: "/images/tool_bar.jpg",
+        height: "60",
+        width: Titanium.UI.FILL,
+        id: "__alloyId48"
+    });
+    $.__views.toolbar.add($.__views.__alloyId48);
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
     $.__views.photoButton = Ti.UI.createImageView({
         id: "photoButton",
         image: "/images/icon_photo.png",
@@ -236,6 +302,70 @@ function Controller() {
     });
     $.__views.toolbar.add($.__views.photoButton);
     photoPop ? $.__views.photoButton.addEventListener("click", photoPop) : __defers["$.__views.photoButton!click!photoPop"] = true;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "0",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "16.6%",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "33.2%",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "49.8%",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "66.4%",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "83%",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -244,6 +374,10 @@ function Controller() {
     var toolbarHeight = $.toolbar.rect.height;
     var toggleHeight = $.toggle.getHeight();
     var canvasHeight = 0;
+    var bucketWidth = $.slider.value;
+    var brushWidth = 10;
+    var eraseWidth = 10;
+    var tools = "bucket";
     $.toolbar.addEventListener("postlayout", function() {
         toolbarHeight = $.toolbar.rect.height;
         canvasHeight = pHeight - toolbarHeight - 25 - toggleHeight;
@@ -259,6 +393,7 @@ function Controller() {
             width: pWidth
         });
     });
+    __defers["$.__views.slider!change!updateAdjustment"] && $.__views.slider.addEventListener("change", updateAdjustment);
     __defers["$.__views.photoButton!click!photoPop"] && $.__views.photoButton.addEventListener("click", photoPop);
     __defers["$.__views.photoButton!click!photoPop"] && $.__views.photoButton.addEventListener("click", photoPop);
     __defers["$.__views.tools!click!toolspop"] && $.__views.tools.addEventListener("click", toolspop);

@@ -4,6 +4,10 @@ var pHeight = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight);
 var toolbarHeight = $.toolbar.rect.height;
 var toggleHeight = $.toggle.getHeight();
 var canvasHeight = 0;
+var bucketWidth = $.slider.value;
+var brushWidth = 10;
+var eraseWidth = 10;
+var tools = "bucket";
 
 $.toolbar.addEventListener('postlayout', function(e) { 
 	toolbarHeight = $.toolbar.rect.height;
@@ -76,18 +80,38 @@ function toolspop(e){
 	table.addEventListener('click', function(e){
 		console.log(e.index);
 		if(e.index == 0){
+			tools = "bucket";
+			$.slider.setValue(bucketWidth);
+			Ti.App.fireEvent('web:setStroke', { value: bucketWidth });
 			Ti.App.fireEvent('web:changeTools', { tools: "bucket" });
 			$.tools.image = "/images/icon_bucket.png";
 		}
 		if(e.index == 1){
+			tools = "brush";
+			$.slider.setValue(brushWidth);
+			Ti.App.fireEvent('web:setStroke', { value: brushWidth });
 			Ti.App.fireEvent('web:changeTools', { tools: "brush" });
 			$.tools.image = "/images/icon_brush.png";
 		}
 		if(e.index == 2){
+			tools = "erase";
+			$.slider.setValue(eraseWidth);
+			Ti.App.fireEvent('web:setStroke', { value: eraseWidth });
+			Ti.App.fireEvent('web:changeTools', { tools: "erase" });
 			$.tools.image = "/images/icon_erase.png";
 		}
 		$.diyPaint.remove(table);
 	});
+}
+
+function updateAdjustment(e){
+	if(tools == "bucket"){
+		bucketWidth = parseInt(e.value);
+	}else if(tools == "brush"){
+		brushWidth = parseInt(e.value);
+	}else if(tools == "erase"){
+		eraseWidth = parseInt(e.value);
+	}
 }
 
 function photoPop(e){
