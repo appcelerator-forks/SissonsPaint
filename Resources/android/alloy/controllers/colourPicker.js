@@ -193,7 +193,15 @@ function Controller() {
         bottom: "10",
         id: "__alloyId45"
     });
+<<<<<<< HEAD
     $.__views.bottomColorBar.add($.__views.__alloyId45);
+=======
+<<<<<<< HEAD
+    $.__views.bottomColorBar.add($.__views.__alloyId47);
+=======
+    $.__views.bottomColorBar.add($.__views.__alloyId46);
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
     $.__views.scrollView = Ti.UI.createScrollView({
         id: "scrollView",
         backgroundColor: "white",

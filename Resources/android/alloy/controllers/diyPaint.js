@@ -188,20 +188,58 @@ function Controller() {
         enableZoomControls: "false",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
+<<<<<<< HEAD
     $.__views.__alloyId49.add($.__views.canvas);
+=======
+<<<<<<< HEAD
+    $.__views.__alloyId51.add($.__views.canvas);
+    $.__views.slider = Ti.UI.createSlider({
+        id: "slider",
+        bottom: "60",
+        min: "0",
+        max: "100",
+        width: "100%",
+        value: "20"
+    });
+    $.__views.__alloyId51.add($.__views.slider);
+    updateAdjustment ? $.__views.slider.addEventListener("change", updateAdjustment) : __defers["$.__views.slider!change!updateAdjustment"] = true;
+=======
+    $.__views.__alloyId50.add($.__views.canvas);
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
     $.__views.toolbar = Ti.UI.createView({
         height: "60",
         bottom: "0",
         id: "toolbar"
     });
+<<<<<<< HEAD
     $.__views.__alloyId49.add($.__views.toolbar);
     $.__views.__alloyId52 = Ti.UI.createImageView({
+=======
+<<<<<<< HEAD
+    $.__views.__alloyId51.add($.__views.toolbar);
+    $.__views.__alloyId54 = Ti.UI.createImageView({
+        image: "/images/tool_bar.jpg",
+        height: "60",
+        width: Titanium.UI.FILL,
+        id: "__alloyId54"
+    });
+    $.__views.toolbar.add($.__views.__alloyId54);
+=======
+    $.__views.__alloyId50.add($.__views.toolbar);
+    $.__views.__alloyId53 = Ti.UI.createImageView({
+>>>>>>> FETCH_HEAD
         image: "/images/tool_bar.jpg",
         height: "60",
         width: Titanium.UI.FILL,
         id: "__alloyId52"
     });
+<<<<<<< HEAD
     $.__views.toolbar.add($.__views.__alloyId52);
+=======
+    $.__views.toolbar.add($.__views.__alloyId53);
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
     $.__views.photoButton = Ti.UI.createImageView({
         id: "photoButton",
         image: "/images/icon_photo.png",

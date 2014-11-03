@@ -37,7 +37,25 @@ function Controller() {
         width: "100%"
     });
     $.__views.mainWindow && $.addTopLevelView($.__views.mainWindow);
+<<<<<<< HEAD
     $.__views.__alloyId91 = Ti.UI.createView({
+=======
+<<<<<<< HEAD
+    $.__views.__alloyId93 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId93"
+    });
+    $.__views.mainWindow.add($.__views.__alloyId93);
+    $.__views.__alloyId94 = Alloy.createController("toggle", {
+        id: "__alloyId94",
+        __parentSymbol: $.__views.__alloyId93
+    });
+    $.__views.__alloyId94.setParent($.__views.__alloyId93);
+    $.__views.__alloyId95 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId92 = Ti.UI.createView({
+>>>>>>> FETCH_HEAD
         layout: "horizontal",
         height: "80",
         id: "__alloyId91"
@@ -47,8 +65,14 @@ function Controller() {
         id: "__alloyId92",
         __parentSymbol: $.__views.__alloyId91
     });
+<<<<<<< HEAD
     $.__views.__alloyId92.setParent($.__views.__alloyId91);
     $.__views.__alloyId93 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId93.setParent($.__views.__alloyId92);
+    $.__views.__alloyId94 = Ti.UI.createLabel({
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -57,14 +81,27 @@ function Controller() {
         },
         text: "Store Locator",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+<<<<<<< HEAD
         id: "__alloyId93"
     });
     $.__views.__alloyId91.add($.__views.__alloyId93);
+=======
+<<<<<<< HEAD
+        id: "__alloyId95"
+    });
+    $.__views.__alloyId93.add($.__views.__alloyId95);
+=======
+        id: "__alloyId94"
+    });
+    $.__views.__alloyId92.add($.__views.__alloyId94);
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
     $.__views.subWindow = Ti.UI.createScrollView({
         id: "subWindow",
         layout: "vertical",
         width: "100%",
-        backgroundColor: "white"
+        backgroundColor: "white",
+        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.mainWindow.add($.__views.subWindow);
     $.__views.row1 = Ti.UI.createView({
