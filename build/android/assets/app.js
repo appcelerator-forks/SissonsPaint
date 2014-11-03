@@ -1,1 +1,1 @@
-function toggle(){Alloy.Globals.Drawer.toggleLeftWindow()}function PixelsToDPUnits(e){return e/(Titanium.Platform.displayCaps.dpi/160)}function DPUnitsToPixels(e){return e*(Titanium.Platform.displayCaps.dpi/160)}function removeAllChildren(e){for(var l=e.children.slice(0),o=0;o<l.length;++o)e.remove(l[o])}var Alloy=require("alloy"),_=Alloy._,Backbone=Alloy.Backbone;Alloy.createController("index");
+/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/app.js
