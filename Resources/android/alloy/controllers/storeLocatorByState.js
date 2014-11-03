@@ -12,15 +12,17 @@ function Controller() {
         var data = [];
         var TheTable = Titanium.UI.createTableView({
             width: "100%",
+            height: PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 160,
             separatorColor: "#ffffff",
             backgroundColor: "#FFFFFF",
+            top: 0,
             overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
         });
         for (var i = 0; i < details.length; i++) {
             var row = Titanium.UI.createTableViewRow({
                 layout: "vertical",
                 touchEnabled: false,
-                selectedBackgroundColor: "transparent",
+                backgroundSelectedColor: "transparent",
                 id: details[i].id,
                 backgroundColor: "#FFFFFF"
             });
@@ -142,16 +144,64 @@ function Controller() {
             row.add(infoViewContainer);
             data.push(row);
         }
-        var search = Titanium.UI.createSearchBar({
-            barColor: "#000",
-            showCancel: false,
-            height: "10%",
-            width: Ti.UI.SIZE,
-            bottom: 0
+        var searchView = Titanium.UI.createView({
+            layout: "composite",
+            width: "100%",
+            height: 80,
+            bottom: 0,
+            backgroundColor: "#A5A5A5"
         });
-        TheTable.add(search);
+        var hintTextLabel = Ti.UI.createLabel({
+            text: "Enter Colour, Name or Colour Code",
+            color: "#A5A5A5",
+            font: {
+                fontSize: 14
+            },
+            backgroundColor: "transparent"
+        });
+        var textField = Ti.UI.createTextField({
+            borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+            color: "black",
+            hintText: "Enter Search Query",
+            backgroundColor: "white",
+            borderColor: "#A5A5A5",
+            borderRadius: 5,
+            font: hintTextLabel.font,
+            left: 10,
+            top: 10,
+            width: "70%",
+            height: 60
+        });
+        var searchButton = Ti.UI.createButton({
+            backgroundColor: "white",
+            color: "#A5A5A5",
+            textAlign: "Titanium.UI.TEXT_ALIGNMENT_CENTER",
+            title: "SEARCH",
+            borderColor: "#A5A5A5",
+            borderRadius: 5,
+            left: 5,
+            top: 10,
+            height: 60
+        });
+        var searchWrapper = Titanium.UI.createView({
+            layout: "horizontal"
+        });
         TheTable.setData(data);
         $.tableContainer.add(TheTable);
+        searchWrapper.add(textField);
+        searchWrapper.add(searchButton);
+        searchView.add(searchWrapper);
+        $.tableContainer.add(searchView);
+        searchButton.addEventListener("click", function() {
+            Ti.UI.Android.hideSoftKeyboard();
+            if (0 == textField.value.length) {
+                details = library.getStoreByState(state);
+                generateStoreTable(details);
+            } else {
+                details = library.getStoreByName(state, textField.value);
+                generateStoreTable(details);
+            }
+        });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "storeLocatorByState";
@@ -174,23 +224,6 @@ function Controller() {
         id: "storeLocatorByState"
     });
     $.__views.storeLocatorByState && $.addTopLevelView($.__views.storeLocatorByState);
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId90 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "80",
-        id: "__alloyId90"
-    });
-    $.__views.storeLocatorByState.add($.__views.__alloyId90);
-    $.__views.__alloyId91 = Alloy.createController("toggle", {
-        id: "__alloyId91",
-        __parentSymbol: $.__views.__alloyId90
-    });
-    $.__views.__alloyId91.setParent($.__views.__alloyId90);
-=======
-<<<<<<< HEAD
->>>>>>> FETCH_HEAD
     $.__views.__alloyId96 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
@@ -202,53 +235,6 @@ function Controller() {
         __parentSymbol: $.__views.__alloyId96
     });
     $.__views.__alloyId97.setParent($.__views.__alloyId96);
-<<<<<<< HEAD
-=======
-=======
-    $.__views.__alloyId95.setParent($.__views.__alloyId94);
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId87 = Ti.UI.createView({
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId86 = Ti.UI.createView({
->>>>>>> FETCH_HEAD
-        layout: "horizontal",
-        height: "80",
-        id: "__alloyId88"
-    });
-    $.__views.storeLocatorByState.add($.__views.__alloyId88);
-    $.__views.__alloyId89 = Alloy.createController("toggle", {
-        id: "__alloyId89",
-        __parentSymbol: $.__views.__alloyId88
-    });
-<<<<<<< HEAD
-    $.__views.__alloyId89.setParent($.__views.__alloyId88);
-=======
-    $.__views.__alloyId87.setParent($.__views.__alloyId86);
-=======
-    $.__views.__alloyId89 = Ti.UI.createView({
->>>>>>> FETCH_HEAD
-        layout: "horizontal",
-        height: "80",
-        id: "__alloyId87"
-    });
-    $.__views.storeLocatorByState.add($.__views.__alloyId87);
-    $.__views.__alloyId88 = Alloy.createController("toggle", {
-        id: "__alloyId88",
-        __parentSymbol: $.__views.__alloyId87
-    });
-<<<<<<< HEAD
-    $.__views.__alloyId88.setParent($.__views.__alloyId87);
-=======
-    $.__views.__alloyId90.setParent($.__views.__alloyId89);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     $.__views.stateName = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -259,38 +245,11 @@ function Controller() {
         id: "stateName",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
-<<<<<<< HEAD
     $.__views.__alloyId96.add($.__views.stateName);
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId90.add($.__views.stateName);
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId96.add($.__views.stateName);
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId88.add($.__views.stateName);
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId94.add($.__views.stateName);
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId87.add($.__views.stateName);
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId86.add($.__views.stateName);
-=======
-    $.__views.__alloyId89.add($.__views.stateName);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     $.__views.tableContainer = Ti.UI.createView({
         backgroundColor: "white",
-        id: "tableContainer"
+        id: "tableContainer",
+        height: "auto"
     });
     $.__views.storeLocatorByState.add($.__views.tableContainer);
     exports.destroy = function() {};

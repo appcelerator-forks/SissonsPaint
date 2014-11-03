@@ -139,29 +139,6 @@ function Controller() {
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
     $.__views.__alloyId49.add($.__views.titleLabel);
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId43.add($.__views.titleLabel);
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId50.add($.__views.titleLabel);
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId43.add($.__views.titleLabel);
-=======
-    $.__views.__alloyId45.add($.__views.titleLabel);
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     $.__views.TheScrollView = Ti.UI.createScrollView({
         id: "TheScrollView",
         backgroundColor: "white",
@@ -172,28 +149,6 @@ function Controller() {
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.__alloyId48.add($.__views.TheScrollView);
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId42.add($.__views.TheScrollView);
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId49.add($.__views.TheScrollView);
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId42.add($.__views.TheScrollView);
-=======
-    $.__views.__alloyId44.add($.__views.TheScrollView);
-<<<<<<< HEAD
-=======
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

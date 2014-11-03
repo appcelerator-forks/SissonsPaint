@@ -4,7 +4,7 @@
 			<Require src="toggle"></Require>
 			<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Store Locator</Label>
 		</View>
-		<ScrollView id="subWindow" layout="vertical" width="100%" backgroundColor="white">
+		<ScrollView id="subWindow" layout="vertical" width="100%" backgroundColor="white" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
 			<View id="row1" layout="horizontal" height="Ti.UI.SIZE" width="100%">
 				<Button class="button" color="white" backgroundColor="black" id="zoneA" width="40%" height="65" left="8%" right="2%" top="5%" onClick="listState">Johor</Button>
 				<Button class="button" color="white" backgroundColor="black" id="zoneB" width="40%" height="65" left="2%" right="8%" top="5%" onClick="listState">Kedah</Button>
