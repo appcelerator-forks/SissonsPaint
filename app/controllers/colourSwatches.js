@@ -2,8 +2,13 @@ var args = arguments[0] || {};
 
 var library = Alloy.createCollection('category'); 
 var category_colour_lib = Alloy.createCollection('category_colour');
-var colour_lib = Alloy.createCollection('colour'); 
-var details = library.getCategoryList();
+var colour_lib = Alloy.createCollection('colour');
+/*
+ michaelmoo - 20141030
+ - Using function getCategoryListByType
+ */ 
+// var details = library.getCategoryList();
+var details = library.getCategoryListByType(2);
 var pHeight = Ti.Platform.displayCaps.platformHeight;
 var category_type_lib =  Alloy.createCollection('category_type');
 var category_tag = category_type_lib.selectTypeByDistinct();
@@ -124,6 +129,7 @@ function generateTable(){
 			text: details[i].description , 
 			width : "95%",
 			classes: ['aboutContent'],
+			bottom: 30
 		});
 		 
 		
@@ -163,7 +169,7 @@ function generateTable(){
 			var subLabelCode = $.UI.create('Label', { 
 				text: colour_details.code , 
 				classes: ['colorDesc'],
-				bottom:10
+				bottom: 10
 			});  
 			
 			createColorEvent(subView, colour_details, details[i]);
@@ -325,7 +331,7 @@ searchButton.addEventListener('click', function(e){
 		
 		var textField = Ti.UI.createTextField({
 		  borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-		  color: '#336699',
+		  color: 'black',
 		  hintText : 'Enter Colour, Name or Colour Code',
 		  backgroundColor: 'white',
 		  borderColor: '#A5A5A5',
@@ -349,9 +355,20 @@ searchButton.addEventListener('click', function(e){
 		$.mainViewContainer.add(searchView);
 		
 		searchButton.addEventListener('click', function(e){
-			console.log(textField.value);
-			//console.log(e.textField.value);
+			console.log("textField.value: "+textField.value);
+			console.log("textField.value.length: "+textField.value.length);
 			searchFlag = 0;
+			console.log("searchFlag: "+searchFlag);
+			Ti.UI.Android.hideSoftKeyboard();
+			//textField.blur();
+			if(textField.value.length != 0)
+			{
+				Ti.App.Properties.setString('query', textField.value);
+				var nav = Alloy.createController("search").getView(); 
+				Alloy.Globals.Drawer.setCenterWindow(nav);
+			}
+			//Titanium.App.Properties.setString("query",textField.value);
+			//console.log(e.textField.value);
 			$.mainViewContainer.remove(searchView);
 			/*removeAllChildren($.TheScrollView);
 			var result = category_colour_lib.getCateByColourId(e.textField.value);

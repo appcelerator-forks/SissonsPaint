@@ -92,40 +92,40 @@ function Controller() {
         backgroundImage: "/images/wood_background.jpg"
     });
     $.__views.brochureView && $.addTopLevelView($.__views.brochureView);
-    $.__views.__alloyId15 = Ti.UI.createView({
-        layout: "vertical",
-        id: "__alloyId15"
-    });
-    $.__views.brochureView.add($.__views.__alloyId15);
     $.__views.__alloyId16 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "80",
+        layout: "vertical",
         id: "__alloyId16"
     });
-    $.__views.__alloyId15.add($.__views.__alloyId16);
-    $.__views.__alloyId17 = Alloy.createController("toggle", {
-        id: "__alloyId17",
-        __parentSymbol: $.__views.__alloyId16
+    $.__views.brochureView.add($.__views.__alloyId16);
+    $.__views.__alloyId17 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId17"
     });
-    $.__views.__alloyId17.setParent($.__views.__alloyId16);
-    $.__views.__alloyId18 = Ti.UI.createLabel({
+    $.__views.__alloyId16.add($.__views.__alloyId17);
+    $.__views.__alloyId18 = Alloy.createController("toggle", {
+        id: "__alloyId18",
+        __parentSymbol: $.__views.__alloyId17
+    });
+    $.__views.__alloyId18.setParent($.__views.__alloyId17);
+    $.__views.__alloyId19 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
         font: {
-            fontSize: 28
+            fontSize: 22
         },
         text: "Brochure",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-        id: "__alloyId18"
+        id: "__alloyId19"
     });
-    $.__views.__alloyId16.add($.__views.__alloyId18);
+    $.__views.__alloyId17.add($.__views.__alloyId19);
     $.__views.scrollview = Ti.UI.createScrollView({
         id: "scrollview",
         layout: "vertical",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
-    $.__views.__alloyId15.add($.__views.scrollview);
+    $.__views.__alloyId16.add($.__views.scrollview);
     $.__views.mainView = Ti.UI.createView({
         id: "mainView",
         layout: "vertical",
@@ -133,26 +133,26 @@ function Controller() {
         width: "80%"
     });
     $.__views.scrollview.add($.__views.mainView);
-    $.__views.__alloyId19 = Ti.UI.createView({
+    $.__views.__alloyId20 = Ti.UI.createView({
         height: "60",
         bottom: "0",
-        id: "__alloyId19"
+        id: "__alloyId20"
     });
-    $.__views.brochureView.add($.__views.__alloyId19);
-    $.__views.__alloyId20 = Ti.UI.createImageView({
+    $.__views.brochureView.add($.__views.__alloyId20);
+    $.__views.__alloyId21 = Ti.UI.createImageView({
         image: "/images/tool_bar.jpg",
         height: "60",
         width: Titanium.UI.FILL,
-        id: "__alloyId20"
+        id: "__alloyId21"
     });
-    $.__views.__alloyId19.add($.__views.__alloyId20);
+    $.__views.__alloyId20.add($.__views.__alloyId21);
     $.__views.filterButton = Ti.UI.createImageView({
         id: "filterButton",
         image: "/images/icon_filter.png",
         height: "40",
         width: "50"
     });
-    $.__views.__alloyId19.add($.__views.filterButton);
+    $.__views.__alloyId20.add($.__views.filterButton);
     popWindow ? $.__views.filterButton.addEventListener("click", popWindow) : __defers["$.__views.filterButton!click!popWindow"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);

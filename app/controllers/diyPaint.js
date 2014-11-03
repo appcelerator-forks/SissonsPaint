@@ -127,6 +127,7 @@ function photoPop(e){
 	 
 	//add event listener
 	dialog.addEventListener('click', function(e) {
+		
 	    //if first option was selected
 	    if(e.index == 0)
 	    {
@@ -144,7 +145,7 @@ function photoPop(e){
 	                    //we may create image view with contents from image variable
 	                    //or simply save path to image
 	                    Ti.App.Properties.setString("image", image.nativePath);
-	                    Ti.App.fireEvent('web:loadImage', { image: image.nativePath });
+	                    Ti.App.fireEvent('web:loadImage', { image: 'image.nativePath' });
 	                }
 	            },
 	            cancel:function()
@@ -174,7 +175,8 @@ function photoPop(e){
 	    }
 	    else if(e.index == 1)
 	    {
-	        //obtain an image from the gallery
+	    	Ti.App.fireEvent('foo', {name:'bar'});
+	    	//obtain an image from the gallery
 	        Titanium.Media.openPhotoGallery({
 	            success:function(event)
 	            {
@@ -188,6 +190,7 @@ function photoPop(e){
 	                    //we may create image view with contents from image variable
 	                    //or simply save path to image
 	                    Ti.App.Properties.setString("image", image.nativePath);
+	                    console.log(image.nativePath);
 	                    Ti.App.fireEvent('web:loadImage', { image: image.nativePath });
 	                }   
 	            },
@@ -207,5 +210,12 @@ function photoPop(e){
 	 
 	//show dialog
 	dialog.show();
+}
+
+function fireLoadImage(e)
+{
+	console.log('fireLoadImage');
+	Ti.App.fireEvent('foo', {name:'bar'});
+	console.log('fireLoadImage2');
 }
 

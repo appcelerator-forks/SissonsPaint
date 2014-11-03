@@ -39,9 +39,9 @@
 				<ImageView image="/images/scroll_up.png" width="Titanium.UI.FILL" />
 			</View>
 			<View layout="vertical" height="Titanium.UI.SIZE" backgroundColor="#ffffff">
-				<Label class="titleLabel" color="black" width="75%" >Colour Category</Label>
+				<Label class="titleLabel" color="black" width="95%" >Colour Category</Label>
 			</View>
-			<ScrollView bottom="0" id="main" backgroundColor="white" layout="vertical" height="180" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" >
+			<ScrollView bottom="0" id="main" backgroundColor="white" layout="vertical" height="220" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" >
 				<ImageView id="colourCategoryImage"/>
 				<Label id="colourCategoryDescription" class="aboutContent" width="95%"></Label>	
 			</ScrollView>

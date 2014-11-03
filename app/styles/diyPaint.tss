@@ -16,6 +16,6 @@
 },
 
 ".title":{
-	font:{fontSize:28},	
+	font:{fontSize:22},	
 }
  

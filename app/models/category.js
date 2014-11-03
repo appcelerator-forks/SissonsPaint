@@ -47,6 +47,30 @@ exports.definition = {
                 collection.trigger('sync');
                 return listArr;
 			},
+			getCategoryListByType: function(type){
+				var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE type='" + type + "' order by id DESC";
+                
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var listArr = []; 
+                var count = 0;
+                while (res.isValidRow()){
+					listArr[count] = {
+					    id: res.fieldByName('id'),
+					    name: res.fieldByName('name'),
+					    type: res.fieldByName('type'),
+					    image: res.fieldByName('image'),
+					    description: res.fieldByName('description')
+					};
+					res.next();
+					count++;
+				} 
+				res.close();
+                db.close();
+                collection.trigger('sync');
+                return listArr;
+			},
 			getCategoryById : function(id){
 				var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "'" ;

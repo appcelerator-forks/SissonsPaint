@@ -3,7 +3,7 @@ var Alloy = require("alloy"), _ = require("alloy/underscore")._, model, collecti
 exports.definition = {
     config: {
         columns: {
-            id: "INTEGER",
+            id: "INTEGER PRIMARY KEY AUTOINCREMENT",
             cate_id: "TEXT",
             colour_id: "TEXT"
         },
@@ -37,6 +37,21 @@ exports.definition = {
                 db.close();
                 collection.trigger("sync");
                 return listArr;
+            },
+            getCateByColourId: function(colour_id) {
+                var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE colour_id='" + colour_id + "'";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var result = [];
+                res.isValidRow() && (result = {
+                    id: res.fieldByName("id"),
+                    cate_id: res.fieldByName("cate_id")
+                });
+                res.close();
+                db.close();
+                collection.trigger("sync");
+                return result;
             },
             resetCategoryColour: function() {
                 var collection = this;

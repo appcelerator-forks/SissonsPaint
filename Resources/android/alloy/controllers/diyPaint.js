@@ -95,13 +95,13 @@ function Controller() {
             cancel: 2
         });
         dialog.addEventListener("click", function(e) {
-            0 == e.index ? Titanium.Media.showCamera({
+            if (0 == e.index) Titanium.Media.showCamera({
                 success: function(event) {
                     var image = event.media;
                     if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
                         Ti.App.Properties.setString("image", image.nativePath);
                         Ti.App.fireEvent("web:loadImage", {
-                            image: image.nativePath
+                            image: "image.nativePath"
                         });
                     }
                 },
@@ -115,18 +115,24 @@ function Controller() {
                 },
                 allowImageEditing: true,
                 saveToPhotoGallery: true
-            }) : 1 == e.index && Titanium.Media.openPhotoGallery({
-                success: function(event) {
-                    var image = event.media;
-                    if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
-                        Ti.App.Properties.setString("image", image.nativePath);
-                        Ti.App.fireEvent("web:loadImage", {
-                            image: image.nativePath
-                        });
-                    }
-                },
-                cancel: function() {}
-            });
+            }); else if (1 == e.index) {
+                Ti.App.fireEvent("foo", {
+                    name: "bar"
+                });
+                Titanium.Media.openPhotoGallery({
+                    success: function(event) {
+                        var image = event.media;
+                        if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
+                            Ti.App.Properties.setString("image", image.nativePath);
+                            console.log(image.nativePath);
+                            Ti.App.fireEvent("web:loadImage", {
+                                image: image.nativePath
+                            });
+                        }
+                    },
+                    cancel: function() {}
+                });
+            }
         });
         dialog.show();
     }
@@ -150,40 +156,41 @@ function Controller() {
         id: "diyPaint"
     });
     $.__views.diyPaint && $.addTopLevelView($.__views.diyPaint);
-    $.__views.__alloyId47 = Ti.UI.createView({
+    $.__views.__alloyId51 = Ti.UI.createView({
         backgroundColor: "white",
-        id: "__alloyId47"
+        id: "__alloyId51"
     });
-    $.__views.diyPaint.add($.__views.__alloyId47);
+    $.__views.diyPaint.add($.__views.__alloyId51);
     $.__views.toggle = Ti.UI.createView({
         id: "toggle",
         layout: "horizontal",
         height: "80",
         top: "0"
     });
-    $.__views.__alloyId47.add($.__views.toggle);
-    $.__views.__alloyId48 = Alloy.createController("toggle", {
-        id: "__alloyId48",
+    $.__views.__alloyId51.add($.__views.toggle);
+    $.__views.__alloyId52 = Alloy.createController("toggle", {
+        id: "__alloyId52",
         __parentSymbol: $.__views.toggle
     });
-    $.__views.__alloyId48.setParent($.__views.toggle);
-    $.__views.__alloyId49 = Ti.UI.createLabel({
+    $.__views.__alloyId52.setParent($.__views.toggle);
+    $.__views.__alloyId53 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
         font: {
-            fontSize: 28
+            fontSize: 22
         },
         text: "DIY Paint",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-        id: "__alloyId49"
+        id: "__alloyId53"
     });
-    $.__views.toggle.add($.__views.__alloyId49);
+    $.__views.toggle.add($.__views.__alloyId53);
     $.__views.canvas = Ti.UI.createWebView({
         id: "canvas",
         url: "/html/canvas-paint-bucket.html",
         enableZoomControls: "false"
     });
+<<<<<<< HEAD
     $.__views.__alloyId47.add($.__views.canvas);
     $.__views.slider = Ti.UI.createSlider({
         id: "slider",
@@ -195,19 +202,45 @@ function Controller() {
     });
     $.__views.__alloyId47.add($.__views.slider);
     updateAdjustment ? $.__views.slider.addEventListener("change", updateAdjustment) : __defers["$.__views.slider!change!updateAdjustment"] = true;
+=======
+    $.__views.__alloyId51.add($.__views.canvas);
+>>>>>>> FETCH_HEAD
     $.__views.toolbar = Ti.UI.createView({
         height: "60",
         bottom: "0",
         id: "toolbar"
     });
+<<<<<<< HEAD
     $.__views.__alloyId47.add($.__views.toolbar);
     $.__views.__alloyId50 = Ti.UI.createImageView({
+=======
+<<<<<<< HEAD
+    $.__views.__alloyId51.add($.__views.toolbar);
+    $.__views.__alloyId54 = Ti.UI.createImageView({
         image: "/images/tool_bar.jpg",
         height: "60",
         width: Titanium.UI.FILL,
-        id: "__alloyId50"
+        id: "__alloyId54"
     });
-    $.__views.toolbar.add($.__views.__alloyId50);
+    $.__views.toolbar.add($.__views.__alloyId54);
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    $.__views.__alloyId52.add($.__views.toolbar);
+=======
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+    $.__views.__alloyId45.add($.__views.toolbar);
+    $.__views.__alloyId48 = Ti.UI.createImageView({
+>>>>>>> FETCH_HEAD
+        image: "/images/tool_bar.jpg",
+        height: "60",
+        width: Titanium.UI.FILL,
+        id: "__alloyId48"
+    });
+    $.__views.toolbar.add($.__views.__alloyId48);
+>>>>>>> FETCH_HEAD
     $.__views.photoButton = Ti.UI.createImageView({
         id: "photoButton",
         image: "/images/icon_photo.png",
@@ -262,6 +295,67 @@ function Controller() {
     });
     $.__views.toolbar.add($.__views.photoButton);
     photoPop ? $.__views.photoButton.addEventListener("click", photoPop) : __defers["$.__views.photoButton!click!photoPop"] = true;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "0",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "16.6%",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "33.2%",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "49.8%",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "66.4%",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+    $.__views.settings = Ti.UI.createImageView({
+        width: "16.6%",
+        id: "settings",
+        mod: "settings",
+        left: "83%",
+        image: "/images/power-icons.png"
+    });
+    $.__views.toolbar.add($.__views.settings);
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

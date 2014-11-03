@@ -48,7 +48,7 @@ function download(url, cookies, done) {
     };
     client.ondatastream = function(e) {
         ind.value = e.progress;
-        ind.message = (100 * ind.value).toFixed(0) + "% Downloading";
+        label.text = (100 * ind.value).toFixed(0) + "% Downloading";
         Ti.API.info("ONSENDSTREAM - PROGRESS: " + e.progress);
     };
     client.setRequestHeader("Cookie", cookies);
@@ -77,8 +77,9 @@ function launch(file) {
     Ti.Android.currentActivity.startActivity(intent);
 }
 
-function pdf(url, cookies, inds, done) {
+function pdf(url, cookies, inds, labels, done) {
     ind = inds;
+    label = labels;
     if (!Ti.Filesystem.isExternalStoragePresent()) return done(new Error("external"));
     download(url, cookies, function(err, file, base, url) {
         if (err) return done(err);
@@ -89,5 +90,7 @@ function pdf(url, cookies, inds, done) {
 }
 
 var ind = "";
+
+var label = "";
 
 module.exports = pdf;

@@ -13,7 +13,6 @@ function Controller() {
             state: e.source.title
         }).getView();
         Alloy.Globals.Drawer.setCenterWindow(nav);
-        Ti.API.info(e.source.title);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "storeLocator";
@@ -38,29 +37,29 @@ function Controller() {
         width: "100%"
     });
     $.__views.mainWindow && $.addTopLevelView($.__views.mainWindow);
-    $.__views.__alloyId58 = Ti.UI.createView({
+    $.__views.__alloyId90 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId58"
+        id: "__alloyId90"
     });
-    $.__views.mainWindow.add($.__views.__alloyId58);
-    $.__views.__alloyId59 = Alloy.createController("toggle", {
-        id: "__alloyId59",
-        __parentSymbol: $.__views.__alloyId58
+    $.__views.mainWindow.add($.__views.__alloyId90);
+    $.__views.__alloyId91 = Alloy.createController("toggle", {
+        id: "__alloyId91",
+        __parentSymbol: $.__views.__alloyId90
     });
-    $.__views.__alloyId59.setParent($.__views.__alloyId58);
-    $.__views.__alloyId60 = Ti.UI.createLabel({
+    $.__views.__alloyId91.setParent($.__views.__alloyId90);
+    $.__views.__alloyId92 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
         font: {
-            fontSize: 28
+            fontSize: 22
         },
         text: "Store Locator",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-        id: "__alloyId60"
+        id: "__alloyId92"
     });
-    $.__views.__alloyId58.add($.__views.__alloyId60);
+    $.__views.__alloyId90.add($.__views.__alloyId92);
     $.__views.subWindow = Ti.UI.createView({
         id: "subWindow",
         layout: "vertical",

@@ -28,34 +28,34 @@ function Controller() {
         id: "home"
     });
     $.__views.home && $.addTopLevelView($.__views.home);
-    $.__views.__alloyId27 = Ti.UI.createView({
+    $.__views.__alloyId57 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId27"
+        id: "__alloyId57"
     });
-    $.__views.home.add($.__views.__alloyId27);
-    $.__views.__alloyId28 = Ti.UI.createView({
+    $.__views.home.add($.__views.__alloyId57);
+    $.__views.__alloyId58 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId28"
+        id: "__alloyId58"
     });
-    $.__views.__alloyId27.add($.__views.__alloyId28);
-    $.__views.__alloyId29 = Alloy.createController("toggle", {
-        id: "__alloyId29",
-        __parentSymbol: $.__views.__alloyId28
+    $.__views.__alloyId57.add($.__views.__alloyId58);
+    $.__views.__alloyId59 = Alloy.createController("toggle", {
+        id: "__alloyId59",
+        __parentSymbol: $.__views.__alloyId58
     });
-    $.__views.__alloyId29.setParent($.__views.__alloyId28);
-    $.__views.__alloyId30 = Ti.UI.createLabel({
+    $.__views.__alloyId59.setParent($.__views.__alloyId58);
+    $.__views.__alloyId60 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
         font: {
-            fontSize: 28
+            fontSize: 22
         },
         text: "Home",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-        id: "__alloyId30"
+        id: "__alloyId60"
     });
-    $.__views.__alloyId28.add($.__views.__alloyId30);
+    $.__views.__alloyId58.add($.__views.__alloyId60);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

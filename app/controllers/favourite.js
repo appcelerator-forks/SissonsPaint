@@ -25,7 +25,7 @@ var bottomBar = Titanium.UI.createView({
 var buttonWrapper = Titanium.UI.createView({
 	layout: 'horizontal',
 	left : (Ti.Platform.displayCaps.platformWidth-220) / 2,
-   	width: 120
+	width: 120
 });
 
 var backgroundImg = Ti.UI.createImageView({
@@ -50,6 +50,7 @@ loadFavouriteList();
 
 function loadFavouriteList(){
 	var data=[];
+	removeAllChildren(TheScrollView);
 	if( favourite_list.length > 0){
 		
 		var colourView = $.UI.create('View', { 
@@ -113,7 +114,11 @@ function loadFavouriteList(){
 			colourView.add(subView);	 
 			counter++; 
 		});
-		removeAllChildren(TheScrollView);
+		/*
+		 keanmeng - 20141031
+		 - move removeAllChildren to top
+		 */
+		// removeAllChildren(TheScrollView);
 		TheScrollView.add(colourView); 
 	}
 	
@@ -128,12 +133,17 @@ unFavButton.addEventListener('click',function(){
 		
 	}else{
 		removeFlag ="1";
-		unFavButton.image = "/images/icon_favourite.png";
+		//unFavButton.image = "/images/icon_favourite.png";
+		unFavButton.image = "/images/icon_fav_remove.png";
 	}
 	
 	loadFavouriteList();
 });
 
+/*
+ michaelmoo - 20141030
+ - remove alert.
+ */
 function removeFavEvent(removeIcon, colour_id, colour_code){
 	removeIcon.addEventListener( "click", function(){
 		var dialog = Ti.UI.createAlertDialog({
@@ -149,7 +159,11 @@ function removeFavEvent(removeIcon, colour_id, colour_code){
 		  }
 		  if (e.index === 1){
 		  	library.removeFavouriteColour(colour_id);
-			alert("Colour removed!");
+			//alert("Colour removed!");
+			library = Alloy.createCollection('favourite');
+			favourite_list = library.getFavouriteList();
+			console.log("favourite_list: "+favourite_list);
+			loadFavouriteList();
 		  }
 		});
 		dialog.show();  

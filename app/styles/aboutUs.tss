@@ -1,6 +1,6 @@
 ".container": {
 	backgroundColor:"#FFFFFF",
-	layout: 'vertical',
+	//layout: 'vertical',
 	width: Ti.UI.FILL,
 	fullscreen: true,
 },
@@ -18,14 +18,14 @@
 },
 ".aboutContent" : {
 	font: {
-        fontSize: '16'
+        //fontSize: '12'
    },
    color: '#6E6E6E',
    bottom: 10
 },
 ".description_content":{
 	font: {
-        fontSize: '14'
+        //fontSize: '14'
     },
     
     color: '#6E6E6E',
@@ -52,5 +52,5 @@
 	returnKeyType: Titanium.UI.RETURNKEY_DONE
 },
 ".title":{
-	font:{fontSize:28},	
+	font:{fontSize:22},	
 }

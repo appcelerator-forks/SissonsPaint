@@ -15,7 +15,7 @@
 },
 ".aboutContent" : {
 	font: {
-        fontSize: '12'
+        //fontSize: '12'
    },
    color: '#6E6E6E',
    textAlign: "Ti.UI.TEXT_ALIGNMENT_LEFT",
@@ -24,7 +24,7 @@
 },
 ".colorDesc" : {
 	font: {
-        fontSize: '8'
+        fontSize: '12'
    },
    color: '#6E6E6E',
    width: "100%",
@@ -40,7 +40,7 @@
 },
 "#titleLabel": {
 	font: {
-        fontSize: '28'
+        fontSize: '22'
    }
 }
  
