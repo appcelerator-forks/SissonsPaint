@@ -87,8 +87,6 @@ function Controller() {
         id: "__alloyId43"
     });
     $.__views.colourPicker.add($.__views.__alloyId43);
-<<<<<<< HEAD
-=======
     $.__views.scrollView = Ti.UI.createScrollView({
         id: "scrollView",
         backgroundColor: "white",
@@ -98,7 +96,6 @@ function Controller() {
         height: "600"
     });
     $.__views.colourPicker.add($.__views.scrollView);
->>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

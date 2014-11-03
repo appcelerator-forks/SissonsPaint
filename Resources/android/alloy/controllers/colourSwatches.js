@@ -138,8 +138,6 @@ function Controller() {
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
     $.__views.__alloyId45.add($.__views.titleLabel);
-<<<<<<< HEAD
-=======
     $.__views.TheScrollView = Ti.UI.createScrollView({
         id: "TheScrollView",
         backgroundColor: "white",
@@ -150,7 +148,6 @@ function Controller() {
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.__alloyId44.add($.__views.TheScrollView);
->>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
