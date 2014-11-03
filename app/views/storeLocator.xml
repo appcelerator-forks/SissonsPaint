@@ -4,7 +4,7 @@
 			<Require src="toggle"></Require>
 			<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Store Locator</Label>
 		</View>
-		<View id="subWindow" layout="vertical" width="100%" backgroundColor="white">
+		<ScrollView id="subWindow" layout="vertical" width="100%" backgroundColor="white">
 			<View id="row1" layout="horizontal" height="Ti.UI.SIZE" width="100%">
 				<Button class="button" color="white" backgroundColor="black" id="zoneA" width="40%" height="65" left="8%" right="2%" top="5%" onClick="listState">Johor</Button>
 				<Button class="button" color="white" backgroundColor="black" id="zoneB" width="40%" height="65" left="2%" right="8%" top="5%" onClick="listState">Kedah</Button>
@@ -29,7 +29,7 @@
 				<Button class="button" color="white" backgroundColor="black" id="zoneK" width="40%" height="65" left="8%" right="2%" top="5%" onClick="listState">Selangor</Button>
 				<Button class="button" color="white" backgroundColor="black" id="zoneL" width="40%" height="65" left="2%" right="8%" top="5%" onClick="listState">Wilayah Persekutuan</Button>
 			</View>
-		</View>
+		</ScrollView>
 	</View>
 	<!--<View id="table2Container" height="auto" class="container"></View>-->
 </Alloy>

@@ -5,7 +5,7 @@
 				<Require src="toggle"></Require>
 				<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">DIY Paint</Label>
 			</View>
-			<WebView id='canvas' url="/html/canvas-paint-bucket.html" enableZoomControls="false" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER />
+			<WebView id='canvas' url="/html/canvas-paint-bucket.html" enableZoomControls="false" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" />
 			<View height="60" bottom="0" id="toolbar">
 				<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
 				<ImageView id="photoButton" image="/images/icon_photo.png" left="5" onClick="photoPop" height="40" width="50" />
