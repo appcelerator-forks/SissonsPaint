@@ -19,7 +19,7 @@ var details = colour_lib.getClosestColourList('100','100','100'); //edited by Mo
 var library = Alloy.createCollection('category'); 
 var recommended = library.getCategoryListByType(1);
 
-$.mainView.setHeight(viewHeight);
+//moo $.mainView.setHeight(viewHeight);
 //console.log($.mainView.getHeight());
 //$.bottomColorBar.setBottom(0);
 

@@ -56,14 +56,19 @@ function Controller() {
     var exports = {};
     var __defers = {};
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
     var __alloyId74 = [];
 =======
 <<<<<<< HEAD
+>>>>>>> FETCH_HEAD
     var __alloyId78 = [];
     $.__views.__alloyId79 = Ti.UI.createTableViewRow({
         height: "50",
         id: "__alloyId79"
     });
+<<<<<<< HEAD
+=======
 =======
 <<<<<<< HEAD
     var __alloyId72 = [];
@@ -215,6 +220,7 @@ function Controller() {
     });
 <<<<<<< HEAD
 >>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
     __alloyId78.push($.__views.__alloyId79);
     $.__views.__alloyId80 = Ti.UI.createLabel({
         text: "DIY Paint",
@@ -267,17 +273,10 @@ function Controller() {
     $.__views.__alloyId88 = Ti.UI.createLabel({
 >>>>>>> FETCH_HEAD
         text: "Store Locator",
-<<<<<<< HEAD
-=======
-=======
-    __alloyId71.push($.__views.__alloyId82);
-    $.__views.__alloyId83 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
-        text: "About Us",
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
         width: Ti.UI.FILL,
         left: "10",
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
         id: "__alloyId84"
     });
@@ -304,6 +303,7 @@ function Controller() {
     $.__views.menuTable = Ti.UI.createTableView({
         data: __alloyId72,
 =======
+>>>>>>> FETCH_HEAD
         id: "__alloyId88"
     });
     $.__views.__alloyId87.add($.__views.__alloyId88);
@@ -323,6 +323,8 @@ function Controller() {
         data: __alloyId78,
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
 =======
     $.__views.__alloyId82.add($.__views.__alloyId83);
     $.__views.menuTable = Ti.UI.createTableView({
@@ -330,6 +332,7 @@ function Controller() {
         data: __alloyId71,
 =======
         data: __alloyId73,
+>>>>>>> FETCH_HEAD
 >>>>>>> FETCH_HEAD
 >>>>>>> FETCH_HEAD
 >>>>>>> FETCH_HEAD
