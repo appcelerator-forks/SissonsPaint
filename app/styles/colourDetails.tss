@@ -33,5 +33,5 @@
 	color: "#000000"
 },
 "#colourCategoryDescription": {
-	font:{fontSize:12}
+	//font:{fontSize:12}
 }

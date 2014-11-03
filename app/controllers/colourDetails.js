@@ -25,7 +25,7 @@ $.colourCategoryImage.width = "80%";
 $.colourCategoryDescription.text = category.description;
  
 function popWindow(e){
-	var str = ""
+	var str = "";
 	if(isFav.length == 0){
 		str = "add";
 	}else{
@@ -59,19 +59,27 @@ if(isFav.length == 0){
 	$.favButton.image = "/images/icon_fav_remove.png"; 
 }
 
+/*
+ michaelmoo - 20141030
+ - remove alert.
+ */
 function removeFavourite(){
 	library.removeFavouriteColour(colour.id);
-	alert("Colour removed!");
+	//alert("Colour removed!");
 	$.favButton.image = "/images/icon_favourite.png"; 
 	isFav = "";
 }
 
+/*
+ michaelmoo - 20141030
+ - remove alert.
+ */
 function addToFavourite(){
 	var library = Alloy.createModel('favourite', {
 			colour_id: colour.id,
 	});
 	library.save();	
-	alert("Colour saved!");
+	//alert("Colour saved!");
 	$.favButton.image = "/images/icon_fav_remove.png"; 
 	isFav ="1";
 }

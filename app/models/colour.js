@@ -79,6 +79,88 @@ exports.definition = {
                 db.execute(sql);
                 db.close();
                 collection.trigger('sync');
+			},
+			getColourByQuery: function(query){
+				var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE name LIKE'"+ query+ "%' OR name LIKE'%" + query + "' OR code='"+ query+"'" ;
+                
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var listArr = []; 
+                var count = 0;
+                while (res.isValidRow()){
+					listArr[count] = {
+					    id: res.fieldByName('id'),
+					    name: res.fieldByName('name'),
+					    code: res.fieldByName('code'),
+					    rgb: res.fieldByName('rgb'),
+					    cmyk: res.fieldByName('cmyk'),
+					    sample: res.fieldByName('sample')
+					};
+					res.next();
+					count++;
+				} 
+				res.close();
+                db.close();
+                collection.trigger('sync');
+                return listArr;
+			},
+			getClosestColourList: function(closest_r, closest_g, closest_b){
+				var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +"  order by id DESC";
+                
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var listArr = []; 
+                while (res.isValidRow()){
+                	var c = res.fieldByName('rgb').split(/,\s*/);
+                	
+                	var diff_min = 110;
+                	var index = -1;
+                	var diff_r = Math.abs(closest_r - c[0]);
+                	var diff_g = Math.abs(closest_g - c[1]);
+                	var diff_b = Math.abs(closest_b - c[2]);
+                	var diff = diff_r+diff_g+diff_b;
+                	
+                	if (diff<=diff_min)
+                		{
+                			for (var i=0; i<listArr.length; i++)
+                			{
+                				if (diff <= listArr[i].diff)
+                				{
+                					index = i;
+                					break;
+                				}	
+                			}
+                			
+							if (index < 0)
+							{
+								index = listArr.length;
+							}
+							
+							listArr.splice(index, 0,
+        						{
+								    id: res.fieldByName('id'),
+								    name: res.fieldByName('name'),
+								    code: res.fieldByName('code'),
+								    rgb: res.fieldByName('rgb'),
+								    cmyk: res.fieldByName('cmyk'),
+								    sample: res.fieldByName('sample'),
+								    diff: diff
+								} 
+        					);
+                		}
+					res.next();
+				} 
+				
+				/*for (var a=0; a<listArr.length; a++)
+				{
+					console.log(a + ' : ' + listArr[a].diff);
+				}*/
+				res.close();
+                db.close();
+                collection.trigger('sync');
+                return listArr;
 			}
 		});
 

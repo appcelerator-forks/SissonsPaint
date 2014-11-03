@@ -25,7 +25,7 @@
 },
 ".description_content":{
 	font: {
-        fontSize: '14'
+        //fontSize: '14'
     },
     
     color: '#6E6E6E',

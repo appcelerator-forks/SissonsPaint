@@ -12,5 +12,5 @@
 }
 
 ".smallTitle":{
-	font:{fontSize:18}
+	//font:{fontSize:18}
 }

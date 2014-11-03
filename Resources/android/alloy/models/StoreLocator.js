@@ -76,7 +76,7 @@ exports.definition = {
             },
             getStoreByState: function(state) {
                 var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE state='" + state + "'";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE state='" + state + "' ORDER BY outlet";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];

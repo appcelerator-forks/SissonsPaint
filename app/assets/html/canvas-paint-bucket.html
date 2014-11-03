@@ -7,6 +7,9 @@
     	html {-webkit-text-size-adjust: none; margin:0; padding:0;}
     	body {margin:0; padding:0;}
     	#parent{
+    	/*min-width: "100px";
+    	min-height: "100px";
+    	background: url("file:///storage/sdcard0/Pictures/sissions paint/tia1202727119.jpg");*/
 		background-repeat:no-repeat;
 		background-size: 100% auto;
 		}
@@ -25,7 +28,7 @@
 	    </div>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
-
+		
 		var screenwidth = window.innerWidth;
 		var initCanvasSize = function(e){
 			paintBucketApp.init({
@@ -51,6 +54,11 @@
 				paintBucketApp.createBrushMouseEvents();
 			}
 		};
+		
+		Ti.App.addEventListener('foo', function(data)
+		{
+			alert('foo');
+		});
 		
 		Ti.App.addEventListener("web:changeTools", changeTools);
 		Ti.App.addEventListener("web:initCanvasSize", initCanvasSize);
@@ -492,9 +500,9 @@ var paintBucketApp = (function () {
             paintBucketApp.createBrushMouseEvents();
 		});
 		
-      	$(window).unload(function() {
+		$(window).unload(function() {
       		Ti.App.removeEventListener("web:changeTools", changeTools);
-		    Ti.App.removeEventListener("web:initCanvasSize", initCanvasSize);
+      	    Ti.App.removeEventListener("web:initCanvasSize", initCanvasSize);
 		    Ti.App.removeEventListener("web:loadImage", loadImage);
 		});
 	});

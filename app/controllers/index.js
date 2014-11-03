@@ -94,6 +94,14 @@ $.drawer.addEventListener('android:back', function (e) {
 		Alloy.Globals.Drawer.setCenterWindow(nav);  
 	}else if(mod == "colourDetails"){
 		from = Ti.App.Properties.getString('from');
+		if(from == "colourPicker"){
+			Ti.App.Properties.setString('back', 1);
+		}
+		Ti.App.Properties.setString('module', 'index');
+		var nav = Alloy.createController(from).getView(); 
+		Alloy.Globals.Drawer.setCenterWindow(nav);  
+	}else if(mod == "search"){
+		from = Ti.App.Properties.getString('from');
 		Ti.App.Properties.setString('module', 'index');
 		var nav = Alloy.createController(from).getView(); 
 		Alloy.Globals.Drawer.setCenterWindow(nav);  

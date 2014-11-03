@@ -18,7 +18,6 @@ function generateStoreTable(details){
 	});
 	
 	for (var i=0; i< details.length; i++) {
-		
 	   var row = Titanium.UI.createTableViewRow({
 	   		layout: "vertical",
 		    touchEnabled: false,
@@ -169,12 +168,35 @@ function generateStoreTable(details){
 			width:40,
 			height:40,
 			right:20,
+			zIndex: i
 			//top:20
 			//bottom:40
 		});		
 		rightForwardBtn.addEventListener('click', function(e){
 			//NavigateTo("3.100118","101.686962");
-			NavigateTo("3.160146","101.615076","Menara UAC", "12, Jalan PJU 7/5 Mutiara Damansara 47820 Petaling Jaya, Selangor");
+			//NavigateTo("3.160146","101.615076","Menara UAC", "12, Jalan PJU 7/5 Mutiara Damansara 47820 Petaling Jaya, Selangor");
+			//console.log("latitude : "+ details[i].latitude);
+			//console.log("longitude : "+details[i].longitude);
+			// NavigateTo(details[i].latitude, details[i].longitude, details[i].outlet, details[i].address);
+			console.log("right button pressed");
+			//console.log("index: "+e.data);
+			//console.log("index: "+e.source.row.index);
+			//console.log("index: "+e.rowData.index);
+			//console.log("index: "+ e.selectRow.index);
+			console.log("outlet: "+details[e.source.zIndex].outlet);
+			console.log("address: "+details[e.source.zIndex].address);
+			if(details[e.source.zIndex].latitude == "" || details[e.source.zIndex].longitude == "")
+			{
+				NavigateTo(0, 0, details[e.source.zIndex].outlet, details[e.source.zIndex].address);
+				console.log("null");
+			}
+			else
+			{
+				NavigateTo(details[e.source.zIndex].latitude, details[e.source.zIndex].longitude, details[e.source.zIndex].outlet, details[e.source.zIndex].address);
+				console.log("latitude: "+details[e.source.zIndex].latitude);
+				console.log("longitude: "+details[e.source.zIndex].longitude);
+				console.log("!null");
+			}
 		});
 		
 		var separator = Titanium.UI.createImageView({

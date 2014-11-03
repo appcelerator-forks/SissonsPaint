@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <id>com.mnc.sissons</id>
-    <name>sissions paint</name>
+    <name>Sissons Paints Omnicolor</name>
     <version>1.0</version>
     <publisher>geomilano</publisher>
     <url>http://</url>
@@ -65,8 +65,10 @@
     </mobileweb>
     <modules>
         <module platform="iphone">dk.napp.drawer</module>
+        <module platform="iphone">facebook</module>
         <module platform="android">titutorial.youtubeplayer</module>
         <module platform="android">dk.napp.drawer</module>
+        <module platform="android">facebook</module>
     </modules>
     <deployment-targets>
         <target device="android">true</target>

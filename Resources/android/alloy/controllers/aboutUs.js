@@ -85,7 +85,7 @@ function Controller() {
         color: "#6E6E6E",
         bottom: 10,
         text: "It was in 1959 that SISSONS PAINTS (EAST) SDN BHD first started in Malaysia, although SISSONS' technology in paint making goes back 185 years when Sissons Brothers founded a company in HULL, England in 1803. SISSONS' well-known trademark of 'THE MEN AND PLANK' has been in use since 1910.",
-        width: "75%",
+        width: "90%",
         id: "__alloyId4"
     });
     $.__views.main.add($.__views.__alloyId4);
@@ -110,7 +110,7 @@ function Controller() {
         text: "Email",
         color: "black",
         bottom: "20",
-        width: "75%",
+        width: "90%",
         textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
         id: "__alloyId7"
     });
@@ -120,15 +120,13 @@ function Controller() {
         height: "40",
         top: "10",
         bottom: "15",
-        width: "90%",
+        width: "94%",
         horizontalWrap: "true",
         id: "__alloyId8"
     });
     $.__views.__alloyId5.add($.__views.__alloyId8);
     $.__views.__alloyId9 = Ti.UI.createLabel({
-        font: {
-            fontSize: "14"
-        },
+        font: {},
         color: "#6E6E6E",
         left: "10",
         textAlign: "left",
@@ -155,15 +153,13 @@ function Controller() {
         height: "40",
         top: "10",
         bottom: "15",
-        width: "90%",
+        width: "94%",
         horizontalWrap: "true",
         id: "__alloyId10"
     });
     $.__views.__alloyId5.add($.__views.__alloyId10);
     $.__views.__alloyId11 = Ti.UI.createLabel({
-        font: {
-            fontSize: "14"
-        },
+        font: {},
         color: "#6E6E6E",
         left: "10",
         textAlign: "left",
@@ -190,15 +186,13 @@ function Controller() {
         height: "100",
         top: "10",
         bottom: "0",
-        width: "90%",
+        width: "94%",
         horizontalWrap: "true",
         id: "__alloyId12"
     });
     $.__views.__alloyId5.add($.__views.__alloyId12);
     $.__views.__alloyId13 = Ti.UI.createLabel({
-        font: {
-            fontSize: "14"
-        },
+        font: {},
         color: "#6E6E6E",
         left: "10",
         textAlign: "left",
@@ -245,21 +239,48 @@ function Controller() {
     _.extend($, $.__views);
     arguments[0] || {};
     var API = require("api");
-    var COMM = require("common");
+    require("common");
     var submitContactForm = function() {
         var name = $.name.value;
         var email = $.email.value;
         var message = $.message.value;
         if ("" == name) {
-            COMM.createAlert("Request Rejected", "Full name cannot be empty.");
+            var alert = Titanium.UI.createAlertDialog({
+                title: "Request Rejected",
+                message: "Full name cannot be empty.",
+                buttonNames: [ "OK" ],
+                cancel: 1
+            });
+            alert.addEventListener("click", function(e) {
+                if (e.cancel === e.index || true === e.cancel) return false;
+            });
+            alert.show();
             return;
         }
         if ("" == email) {
-            COMM.createAlert("Request Rejected", "Email cannot be empty.");
+            var alert = Titanium.UI.createAlertDialog({
+                title: "Request Rejected",
+                message: "Email cannot be empty.",
+                buttonNames: [ "OK" ],
+                cancel: 1
+            });
+            alert.addEventListener("click", function(e) {
+                if (e.cancel === e.index || true === e.cancel) return false;
+            });
+            alert.show();
             return;
         }
         if ("" == message) {
-            COMM.createAlert("Request Rejected", "Message cannot be empty.");
+            var alert = Titanium.UI.createAlertDialog({
+                title: "Request Rejected",
+                message: "Message cannot be empty.",
+                buttonNames: [ "OK" ],
+                cancel: 1
+            });
+            alert.addEventListener("click", function(e) {
+                if (e.cancel === e.index || true === e.cancel) return false;
+            });
+            alert.show();
             return;
         }
         var url = API.sendContactMsg + "&name=" + name + "&email=" + email + "&message=" + message;
@@ -267,14 +288,32 @@ function Controller() {
             onload: function() {
                 var res = JSON.parse(this.responseText);
                 if ("success" == res.status) {
-                    COMM.createAlert("Message Sent", "Your messages successfully sent to admin.");
+                    var alert = Titanium.UI.createAlertDialog({
+                        title: "Message Sent",
+                        message: "Your messages successfully sent to Sissons Paint.",
+                        buttonNames: [ "OK" ],
+                        cancel: 1
+                    });
+                    alert.addEventListener("click", function(e) {
+                        if (e.cancel === e.index || true === e.cancel) return false;
+                    });
+                    alert.show();
                     $.name.value = "";
                     $.email.value = "";
                     $.message.value = "";
                 }
             },
             onerror: function() {
-                COMM.createAlert("Network declined", "Failed to contact with server. Please make sure your device are connected to internet.");
+                var alert = Titanium.UI.createAlertDialog({
+                    title: "Network declined",
+                    message: "Failed to contact with server. Please make sure your device are connected to internet.",
+                    buttonNames: [ "OK" ],
+                    cancel: 1
+                });
+                alert.addEventListener("click", function(e) {
+                    if (e.cancel === e.index || true === e.cancel) return false;
+                });
+                alert.show();
             },
             timeout: 5e3
         });
