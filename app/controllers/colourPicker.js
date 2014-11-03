@@ -130,6 +130,14 @@ else
 }
 
 generateRecommended();
+
+var getColor = function(e){
+	//alert(e.r +","+e.g+","+e.b+","+e.a);
+	$.colourPicker.backgroundColor = "rgba("+e.r +","+e.g+","+e.b+","+e.a+")";
+};
+ 
+Ti.App.addEventListener("app:getColour", getColor);
+
 generateColour();
 
 function generateRecommended(){
@@ -236,7 +244,7 @@ var app = {
                 //var f = image2.toBlob();
                 //intent.putExtraUri(Titanium.Android.EXTRA_STREAM, f.resolve());
                 //console.log("test: "+f.resolve());
-                Ti.Android.currentActivity.startActivity( intShare );*/
+                Ti.Android.currentActivity.startActivity( intShare );
                /*var data = {
                	link : "http://www.google.com",
                	name : "name",

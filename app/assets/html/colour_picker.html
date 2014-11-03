@@ -24,14 +24,11 @@
   </head>
   <body>
    <div id="parent">
-    	<div id="canvasDiv">
-    		<img src="" id="choosenPhoto" width="100%"  />
-    		<canvas id="myCanvas" width="100%"></canvas>
-    	</div> 
+    	<div id="canvasDiv" ></div> 
     </div>
     
-	 <script type="text/javascript"> 
-
+	 <script type="text/javascript">  
+		
 		var screenwidth = window.innerWidth;
 		var initCanvasSize = function(e){
 			 
@@ -41,68 +38,82 @@
 			
       	};
 		
+		var clearCanvas = function(){
+			context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+		};
+		
+		var setBackgroundSize = function(e){
+			$('#parent').css('background-size', '"' + e.width + ' ' + e.height + '"');
+			$('#parent').css('background-repeat', 'no-repeat');
+		};
+		
 		var loadImage = function(e){
 			 
-			$('#choosenPhoto').attr('src', e.image);
+			//$('#choosenPhoto').attr('src', e.image);
+			var outlineImage = new Image();
+			var canvas = document.createElement('canvas');
+			var canvasW = screenwidth;
+			var canvasH = 500;
 			
-			var img=document.getElementById('choosenPhoto');
-			img.src= e.image;
-			img.onload = function () {
-				 
-				//$('#choosenPhoto').css('opacity', 0); 
-				
-				html2canvas(img, {
-				  onrendered: function(canvas) {
-				  	alert("load");
-				  	console.love(canvas);
-				    $("#myCanvas").html(canvas);
-				  }
-				});
-			};
-		};
-		
-		Ti.App.addEventListener("web:initCanvasSize", initCanvasSize);
-		Ti.App.addEventListener("web:loadImage", loadImage);
-	 
-	$.fn.canvas = function(f){
-			return this.map(function(){
-				if (this.nodeName=="img"){
-					var canvas=$('#canvas'); 
-					$(this).one('load',function(){
-						canvas.attr({width:this.width,height:this.height});
-						canvas[0].getContext('2d').drawImage(this,0,0,this.width,this.height);
-						$(this).replaceWith(canvas);
-					});
-					return canvas[0];
-				}else{
-					return this;
+			canvas.setAttribute('width', canvasW);
+			canvas.setAttribute('height', canvasH);
+			canvasWidth = canvasW;
+			canvasHeight = canvasH;
+			drawingAreaWidth = canvasW;
+			drawingAreaHeight = canvasH;
+			
+			canvas.setAttribute('id', 'canvas');
+			document.getElementById('canvasDiv').appendChild(canvas);
+			
+			if (typeof G_vmlCanvasManager !== "undefined") {
+				canvas = G_vmlCanvasManager.initElement(canvas);
+			}
+			context = canvas.getContext("2d"); // Grab the 2d canvas context
+			// Note: The above code is a workaround for IE 8 and lower. Otherwise we could have used:
+			//     context = document.getElementById('canvas').getContext("2d");
+			
+			// Load images 
+			outlineImage.src = e.image; 
+			outlineImage.onload = function (e) { 
+				var ratio = this.naturalWidth / canvasWidth;
+				var newheight = this.naturalHeight / ratio;
+				canvasHeight = newheight;
+				setBackgroundSize({width: canvasWidth, height: newheight});
+				context.drawImage(outlineImage, 0, 0,canvasWidth,newheight);
+			
+				// Test for cross origin security error (SECURITY_ERR: DOM Exception 18)
+				try {
+					outlineLayerData = context.getImageData(0, 0, canvasWidth, canvasHeight);
+				} catch (ex) {
+					window.alert("Application cannot be run locally. Please run on a server.");
+					return;
 				}
-			});
-	};
-		jQuery.Event.prototype.rgb=function(){
-			var x =  this.offsetX || (this.pageX - $(this.target).offset().left),
-				y =  this.offsetY || (this.pageY - $(this.target).offset().top);
-			if (this.target.nodeName!=="canvas") return null;
-			return this.target.getContext('2d').getImageData(x,y,1,1).data;
+				//clearCanvas();
+				//colorLayerData = context.getImageData(0, 0, canvasWidth, canvasHeight);
+				 
+			};
+			 
 		};
 		
-		function rgbToHex(r, g, b) {
-		    if (r > 255 || g > 255 || b > 255)
-		        throw "Invalid color component";
-		    return ((r << 16) | (g << 8) | b).toString(16);
-		}
-
+		
+	 
+	
 		$(function() { 
-			$("#canvas").click(function(e){ 
-				alert("canvas on click");
-				/***
-			    var c = this.getContext('2d');
-			    var p = c.getImageData(x, y, 1, 1).data; 
-			    var hex = "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
-			    console.log("color :"+ hex);
-			    $('body').css('background-color',  hex);
-			    ***/
-			//	$('body').css('background-color',"rgba("+Array.prototype.join.call(e.rgb(),',')+")");
+			Ti.App.addEventListener("web:initCanvasSize", initCanvasSize);
+			Ti.App.addEventListener("web:loadImage", loadImage);
+			
+			$("#canvasDiv").click(function(e){ 
+				var mouseX = (Boolean(e.pageX))?e.pageX:e.originalEvent.targetTouches[0].pageX;
+				var mouseY = (Boolean(e.pageY))?e.pageY:e.originalEvent.targetTouches[0].pageY;
+				console.log(mouseX +"=="+mouseY);
+				var pixelPos = (mouseX + canvasWidth * mouseY) * 4,
+				
+				r = outlineLayerData.data[pixelPos],
+				g = outlineLayerData.data[pixelPos + 1],
+				b = outlineLayerData.data[pixelPos + 2],
+				a = outlineLayerData.data[pixelPos + 3];
+				Ti.App.fireEvent('app:getColour', {r: r, g: g, b : b, a : a});
+			//	$('#canvasDiv').css('background-color', 'rgba(' + r + ', ' + g + ', ' + b + ', ' + a + ')');
 			});
 			
 			$(window).unload(function() {
