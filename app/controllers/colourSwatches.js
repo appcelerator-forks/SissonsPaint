@@ -204,7 +204,8 @@ function createColorEvent(subView, colour_details, details){
 	subView.addEventListener( "click", function(){
 		Ti.App.Properties.setString('from', 'colourSwatches');
 		var nav = Alloy.createController("colourDetails",{colour_details:colour_details, details:details}).getView(); 
-		Alloy.Globals.Drawer.setCenterWindow(nav);
+		//Alloy.Globals.Drawer.setCenterWindow(nav);
+		nav.open();
 	});
 }
 
