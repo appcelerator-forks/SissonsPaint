@@ -4,21 +4,33 @@
 			<View id="toggle" layout="horizontal" height="80" top="0">
 				<Require src="toggle"></Require>
 				<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">DIY Paint</Label>
+				
 			</View>
-<<<<<<< HEAD
-			<WebView id='canvas' url="/html/canvas-paint-bucket.html" enableZoomControls="false"/>
-			<Slider id="slider" bottom="60" min="0" max="100" width="100%" value="20" onChange="updateAdjustment"/>
-=======
-			<WebView id='canvas' url="/html/canvas-paint-bucket.html" enableZoomControls="false" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER />
->>>>>>> FETCH_HEAD
+			
+			<WebView id='canvas' url="/html/canvas-paint-bucket.html" enableZoomControls="false" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" />
+			<View height="300" bottom="-300" id="colorSwatches">
+				<View id="bottomColorBar" layout="vertical">
+					<ImageView image="/images/scroll_up.png" backgroundColor="transparent" width="Titanium.UI.FILL" bottom="10" />
+					<Label class="smallTitle" color="black" width="90%" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" bottom="10" >RECOMMEND COLOURS</Label>
+					<ScrollView id="recommendView" backgroundColor="white" layout="horizontal" scrollType="horizontal" height="50" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
+						<!--<Button id="savePicture" onClick="savePicture">Save</Button>-->
+					</ScrollView>
+					<ImageView image="/images/scroll_up.png" backgroundColor="transparent" width="Titanium.UI.FILL" bottom="10" />
+					<Label class="smallTitle" color="black" width="90%" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" bottom="10" >COLOUR LIBRARY</Label>
+					<ScrollView id="scrollView" backgroundColor="white" layout="vertical" scrollType="horizontal" height="100" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER"></ScrollView>
+				</View>
+			</View> 
+			<View height="60" bottom="0" width="100%" id="sizeBar">
+				<Slider id="slider" min="0" max="100"  value="20" onStop="updateAdjustment"/>
+			</View>
 			<View height="60" bottom="0" id="toolbar">
 				<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
 				<ImageView id="photoButton" image="/images/icon_photo.png" left="5" onClick="photoPop" height="40" width="50" />
-				<ImageView id="photoButton" image="/images/icon_undo.png" left="65" onClick="photoPop" height="40" width="50" />
-				<ImageView id="photoButton" id="tools" image="/images/icon_bucket.png" left="125" onClick="toolspop" height="40" width="50" />
-				<ImageView id="photoButton" image="/images/icon_size.png" left="185" onClick="photoPop" height="40" width="50" />
-				<ImageView id="photoButton" image="/images/icon_color.png" left="245" onClick="photoPop" height="40" width="50" />
-				<ImageView id="photoButton" image="/images/icon_share.png" left="305" onClick="photoPop" height="40" width="50" />
+				<ImageView image="/images/icon_undo.png" left="65" onClick="photoPop" height="40" width="50" />
+				<ImageView id="tools" image="/images/icon_bucket.png" left="125" onClick="toolspop" height="40" width="50" />
+				<ImageView id="size" image="/images/icon_size.png" left="185" mod="size" onClick="slideUp" height="40" width="50" />
+				<ImageView id="" image="/images/icon_color.png" left="245" mod="color" onClick="slideUp" height="40" width="50" />
+				<ImageView id="" image="/images/icon_share.png" left="305" onClick="share" height="40" width="50" />
 			</View>
 		</View>
  

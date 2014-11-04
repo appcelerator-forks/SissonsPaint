@@ -1,1 +1,1 @@
-module.exports=[{isApi:!0,priority:1000.0033,key:"Label",style:{width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000"}},{isClass:!0,priority:10000.0032,key:"container",style:{backgroundColor:"white"}},{isClass:!0,priority:10000.0036,key:"title",style:{font:{fontSize:22}}},{isId:!0,priority:100000.0034,key:"toolbar",style:{height:Ti.UI.SIZE}},{isId:!0,priority:100000.0035,key:"canvas",style:{}}];
+/Users/HatsuneMiku/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/alloy/styles/diyPaint.js

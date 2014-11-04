@@ -1,1 +1,1 @@
-module.exports=[{isApi:!0,priority:1000.0061,key:"Label",style:{width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000"}},{isClass:!0,priority:10000.006,key:"container",style:{backgroundColor:"#ffffff"}},{isClass:!0,priority:10000.0062,key:"title",style:{font:{fontSize:22}}},{isClass:!0,priority:10000.0063,key:"button",style:{color:"black"}}];
+/Users/HatsuneMiku/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/alloy/styles/storeLocator.js
