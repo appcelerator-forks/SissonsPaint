@@ -5,8 +5,13 @@
 			<Require src="toggle"></Require>
 			<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Colour Picker</Label>
 		</View>
+		
 		<WebView   id='canvas' url="/html/colour_picker.html" height="40%" enableZoomControls="false" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" />
-		<View height="50%" bottom="0">
+		<View  id="loadingBar" height="0" width="120" borderRadius="15" top="0" opacity="1" backgroundColor="#2E2E2E" >
+			<ActivityIndicator  id="activityIndicator" />
+			<Label text="Loading" color="#ffffff" />
+		</View>
+		<ScrollView height="50%" bottom="0" id="colorSelection">
 			<View id="bottomColorBar" layout="vertical">
 				<ImageView image="/images/scroll_up.png" backgroundColor="transparent" width="Titanium.UI.FILL" bottom="10" />
 				<Label class="smallTitle" color="black" width="90%" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" bottom="10" >RECOMMEND COLOURS</Label>
@@ -17,6 +22,7 @@
 				<Label class="smallTitle" color="black" width="90%" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" bottom="10" >COLOUR LIBRARY</Label>
 				<ScrollView id="scrollView" backgroundColor="white" layout="vertical" scrollType="horizontal" height="100" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER"></ScrollView>
 			</View>
-		</View> 
+		</ScrollView> 
 	</View> 
+	
 </Alloy>

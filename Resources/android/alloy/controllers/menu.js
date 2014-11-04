@@ -55,72 +55,14 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-<<<<<<< HEAD
-    var __alloyId76 = [];
-    $.__views.__alloyId77 = Ti.UI.createTableViewRow({
-=======
-<<<<<<< HEAD
-    var __alloyId78 = [];
-    $.__views.__alloyId79 = Ti.UI.createTableViewRow({
-        height: "50",
-        id: "__alloyId79"
-    });
-    __alloyId78.push($.__views.__alloyId79);
-    $.__views.__alloyId80 = Ti.UI.createLabel({
-        text: "DIY Paint",
-        width: Ti.UI.FILL,
-        left: "10",
-=======
-    var __alloyId77 = [];
-    $.__views.__alloyId78 = Ti.UI.createTableViewRow({
->>>>>>> FETCH_HEAD
-        height: "50",
-        id: "__alloyId77"
-    });
-    __alloyId76.push($.__views.__alloyId77);
-    $.__views.__alloyId78 = Ti.UI.createLabel({
-        text: "DIY Paint",
-        width: Ti.UI.FILL,
-        left: "10",
-        id: "__alloyId78"
-    });
-    $.__views.__alloyId77.add($.__views.__alloyId78);
-    $.__views.__alloyId79 = Ti.UI.createTableViewRow({
-        height: "50",
-<<<<<<< HEAD
-        id: "__alloyId79"
-=======
->>>>>>> FETCH_HEAD
-        id: "__alloyId80"
->>>>>>> FETCH_HEAD
-    });
-    __alloyId76.push($.__views.__alloyId79);
-    $.__views.__alloyId80 = Ti.UI.createLabel({
-        text: "Colour Picker",
-        width: Ti.UI.FILL,
-        left: "10",
-        id: "__alloyId80"
-    });
-    $.__views.__alloyId79.add($.__views.__alloyId80);
-    $.__views.__alloyId81 = Ti.UI.createTableViewRow({
-        height: "50",
-        id: "__alloyId81"
-    });
-    __alloyId76.push($.__views.__alloyId81);
-    $.__views.__alloyId82 = Ti.UI.createLabel({
-        text: "Colour Swatches",
-        width: Ti.UI.FILL,
-        left: "10",
-        id: "__alloyId82"
-    });
-    $.__views.__alloyId81.add($.__views.__alloyId82);
+    var __alloyId82 = [];
     $.__views.__alloyId83 = Ti.UI.createTableViewRow({
         height: "50",
         id: "__alloyId83"
     });
-    __alloyId76.push($.__views.__alloyId83);
+    __alloyId82.push($.__views.__alloyId83);
     $.__views.__alloyId84 = Ti.UI.createLabel({
-        text: "Brochure",
+        text: "DIY Paint",
         width: Ti.UI.FILL,
         left: "10",
         id: "__alloyId84"
@@ -130,21 +72,9 @@ function Controller() {
         height: "50",
         id: "__alloyId85"
     });
-<<<<<<< HEAD
-    __alloyId76.push($.__views.__alloyId85);
+    __alloyId82.push($.__views.__alloyId85);
     $.__views.__alloyId86 = Ti.UI.createLabel({
-=======
-<<<<<<< HEAD
-    __alloyId78.push($.__views.__alloyId87);
-    $.__views.__alloyId88 = Ti.UI.createLabel({
-        text: "Store Locator",
-        width: Ti.UI.FILL,
-        left: "10",
-=======
-    __alloyId77.push($.__views.__alloyId86);
-    $.__views.__alloyId87 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
-        text: "Store Locator",
+        text: "Colour Picker",
         width: Ti.UI.FILL,
         left: "10",
         id: "__alloyId86"
@@ -152,35 +82,54 @@ function Controller() {
     $.__views.__alloyId85.add($.__views.__alloyId86);
     $.__views.__alloyId87 = Ti.UI.createTableViewRow({
         height: "50",
-<<<<<<< HEAD
         id: "__alloyId87"
-=======
->>>>>>> FETCH_HEAD
-        id: "__alloyId88"
->>>>>>> FETCH_HEAD
     });
-    __alloyId76.push($.__views.__alloyId87);
+    __alloyId82.push($.__views.__alloyId87);
     $.__views.__alloyId88 = Ti.UI.createLabel({
-        text: "About Us",
+        text: "Colour Swatches",
         width: Ti.UI.FILL,
         left: "10",
         id: "__alloyId88"
     });
-<<<<<<< HEAD
     $.__views.__alloyId87.add($.__views.__alloyId88);
-    $.__views.menuTable = Ti.UI.createTableView({
-        data: __alloyId76,
-=======
-<<<<<<< HEAD
+    $.__views.__alloyId89 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId89"
+    });
+    __alloyId82.push($.__views.__alloyId89);
+    $.__views.__alloyId90 = Ti.UI.createLabel({
+        text: "Brochure",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId90"
+    });
     $.__views.__alloyId89.add($.__views.__alloyId90);
+    $.__views.__alloyId91 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId91"
+    });
+    __alloyId82.push($.__views.__alloyId91);
+    $.__views.__alloyId92 = Ti.UI.createLabel({
+        text: "Store Locator",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId92"
+    });
+    $.__views.__alloyId91.add($.__views.__alloyId92);
+    $.__views.__alloyId93 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId93"
+    });
+    __alloyId82.push($.__views.__alloyId93);
+    $.__views.__alloyId94 = Ti.UI.createLabel({
+        text: "About Us",
+        width: Ti.UI.FILL,
+        left: "10",
+        id: "__alloyId94"
+    });
+    $.__views.__alloyId93.add($.__views.__alloyId94);
     $.__views.menuTable = Ti.UI.createTableView({
-        data: __alloyId78,
-=======
-    $.__views.__alloyId88.add($.__views.__alloyId89);
-    $.__views.menuTable = Ti.UI.createTableView({
-        data: __alloyId77,
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
+        data: __alloyId82,
         id: "menuTable",
         backgroundColor: "#3F3D3D"
     });

@@ -85,6 +85,9 @@ function Controller() {
             $.diyPaint.remove(table);
         });
     }
+    function updateAdjustment(e) {
+        "bucket" == tools ? bucketWidth = parseInt(e.value) : "brush" == tools ? brushWidth = parseInt(e.value) : "erase" == tools && (eraseWidth = parseInt(e.value));
+    }
     function photoPop() {
         var dialog = Titanium.UI.createOptionDialog({
             title: "Choose an image source...",
@@ -153,24 +156,24 @@ function Controller() {
         id: "diyPaint"
     });
     $.__views.diyPaint && $.addTopLevelView($.__views.diyPaint);
-    $.__views.__alloyId49 = Ti.UI.createView({
+    $.__views.__alloyId50 = Ti.UI.createView({
         backgroundColor: "white",
-        id: "__alloyId49"
+        id: "__alloyId50"
     });
-    $.__views.diyPaint.add($.__views.__alloyId49);
+    $.__views.diyPaint.add($.__views.__alloyId50);
     $.__views.toggle = Ti.UI.createView({
         id: "toggle",
         layout: "horizontal",
         height: "80",
         top: "0"
     });
-    $.__views.__alloyId49.add($.__views.toggle);
-    $.__views.__alloyId50 = Alloy.createController("toggle", {
-        id: "__alloyId50",
+    $.__views.__alloyId50.add($.__views.toggle);
+    $.__views.__alloyId51 = Alloy.createController("toggle", {
+        id: "__alloyId51",
         __parentSymbol: $.__views.toggle
     });
-    $.__views.__alloyId50.setParent($.__views.toggle);
-    $.__views.__alloyId51 = Ti.UI.createLabel({
+    $.__views.__alloyId51.setParent($.__views.toggle);
+    $.__views.__alloyId52 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -179,20 +182,16 @@ function Controller() {
         },
         text: "DIY Paint",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-        id: "__alloyId51"
+        id: "__alloyId52"
     });
-    $.__views.toggle.add($.__views.__alloyId51);
+    $.__views.toggle.add($.__views.__alloyId52);
     $.__views.canvas = Ti.UI.createWebView({
         id: "canvas",
         url: "/html/canvas-paint-bucket.html",
         enableZoomControls: "false",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
-<<<<<<< HEAD
-    $.__views.__alloyId49.add($.__views.canvas);
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId51.add($.__views.canvas);
+    $.__views.__alloyId50.add($.__views.canvas);
     $.__views.slider = Ti.UI.createSlider({
         id: "slider",
         bottom: "60",
@@ -201,63 +200,39 @@ function Controller() {
         width: "100%",
         value: "20"
     });
-    $.__views.__alloyId51.add($.__views.slider);
+    $.__views.__alloyId50.add($.__views.slider);
     updateAdjustment ? $.__views.slider.addEventListener("change", updateAdjustment) : __defers["$.__views.slider!change!updateAdjustment"] = true;
-=======
-    $.__views.__alloyId50.add($.__views.canvas);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     $.__views.toolbar = Ti.UI.createView({
         height: "60",
         bottom: "0",
         id: "toolbar"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId49.add($.__views.toolbar);
-    $.__views.__alloyId52 = Ti.UI.createImageView({
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId51.add($.__views.toolbar);
-    $.__views.__alloyId54 = Ti.UI.createImageView({
-        image: "/images/tool_bar.jpg",
-        height: "60",
-        width: Titanium.UI.FILL,
-        id: "__alloyId54"
-    });
-    $.__views.toolbar.add($.__views.__alloyId54);
-=======
     $.__views.__alloyId50.add($.__views.toolbar);
     $.__views.__alloyId53 = Ti.UI.createImageView({
->>>>>>> FETCH_HEAD
         image: "/images/tool_bar.jpg",
         height: "60",
         width: Titanium.UI.FILL,
-        id: "__alloyId52"
+        id: "__alloyId53"
     });
-<<<<<<< HEAD
-    $.__views.toolbar.add($.__views.__alloyId52);
-=======
     $.__views.toolbar.add($.__views.__alloyId53);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
-    $.__views.photoButton = Ti.UI.createImageView({
-        id: "photoButton",
+    $.__views.__alloyId54 = Ti.UI.createImageView({
         image: "/images/icon_photo.png",
         left: "5",
         height: "40",
-        width: "50"
+        width: "50",
+        id: "__alloyId54"
     });
-    $.__views.toolbar.add($.__views.photoButton);
-    photoPop ? $.__views.photoButton.addEventListener("click", photoPop) : __defers["$.__views.photoButton!click!photoPop"] = true;
-    $.__views.photoButton = Ti.UI.createImageView({
-        id: "photoButton",
+    $.__views.toolbar.add($.__views.__alloyId54);
+    photoPop ? $.__views.__alloyId54.addEventListener("click", photoPop) : __defers["$.__views.__alloyId54!click!photoPop"] = true;
+    $.__views.__alloyId55 = Ti.UI.createImageView({
         image: "/images/icon_undo.png",
         left: "65",
         height: "40",
-        width: "50"
+        width: "50",
+        id: "__alloyId55"
     });
-    $.__views.toolbar.add($.__views.photoButton);
-    photoPop ? $.__views.photoButton.addEventListener("click", photoPop) : __defers["$.__views.photoButton!click!photoPop"] = true;
+    $.__views.toolbar.add($.__views.__alloyId55);
+    photoPop ? $.__views.__alloyId55.addEventListener("click", photoPop) : __defers["$.__views.__alloyId55!click!photoPop"] = true;
     $.__views.tools = Ti.UI.createImageView({
         id: "tools",
         image: "/images/icon_bucket.png",
@@ -267,33 +242,33 @@ function Controller() {
     });
     $.__views.toolbar.add($.__views.tools);
     toolspop ? $.__views.tools.addEventListener("click", toolspop) : __defers["$.__views.tools!click!toolspop"] = true;
-    $.__views.photoButton = Ti.UI.createImageView({
-        id: "photoButton",
+    $.__views.__alloyId56 = Ti.UI.createImageView({
         image: "/images/icon_size.png",
         left: "185",
         height: "40",
-        width: "50"
+        width: "50",
+        id: "__alloyId56"
     });
-    $.__views.toolbar.add($.__views.photoButton);
-    photoPop ? $.__views.photoButton.addEventListener("click", photoPop) : __defers["$.__views.photoButton!click!photoPop"] = true;
-    $.__views.photoButton = Ti.UI.createImageView({
-        id: "photoButton",
+    $.__views.toolbar.add($.__views.__alloyId56);
+    photoPop ? $.__views.__alloyId56.addEventListener("click", photoPop) : __defers["$.__views.__alloyId56!click!photoPop"] = true;
+    $.__views.__alloyId57 = Ti.UI.createImageView({
         image: "/images/icon_color.png",
         left: "245",
         height: "40",
-        width: "50"
+        width: "50",
+        id: "__alloyId57"
     });
-    $.__views.toolbar.add($.__views.photoButton);
-    photoPop ? $.__views.photoButton.addEventListener("click", photoPop) : __defers["$.__views.photoButton!click!photoPop"] = true;
-    $.__views.photoButton = Ti.UI.createImageView({
-        id: "photoButton",
+    $.__views.toolbar.add($.__views.__alloyId57);
+    photoPop ? $.__views.__alloyId57.addEventListener("click", photoPop) : __defers["$.__views.__alloyId57!click!photoPop"] = true;
+    $.__views.__alloyId58 = Ti.UI.createImageView({
         image: "/images/icon_share.png",
         left: "305",
         height: "40",
-        width: "50"
+        width: "50",
+        id: "__alloyId58"
     });
-    $.__views.toolbar.add($.__views.photoButton);
-    photoPop ? $.__views.photoButton.addEventListener("click", photoPop) : __defers["$.__views.photoButton!click!photoPop"] = true;
+    $.__views.toolbar.add($.__views.__alloyId58);
+    photoPop ? $.__views.__alloyId58.addEventListener("click", photoPop) : __defers["$.__views.__alloyId58!click!photoPop"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -321,12 +296,13 @@ function Controller() {
             width: pWidth
         });
     });
-    __defers["$.__views.photoButton!click!photoPop"] && $.__views.photoButton.addEventListener("click", photoPop);
-    __defers["$.__views.photoButton!click!photoPop"] && $.__views.photoButton.addEventListener("click", photoPop);
+    __defers["$.__views.slider!change!updateAdjustment"] && $.__views.slider.addEventListener("change", updateAdjustment);
+    __defers["$.__views.__alloyId54!click!photoPop"] && $.__views.__alloyId54.addEventListener("click", photoPop);
+    __defers["$.__views.__alloyId55!click!photoPop"] && $.__views.__alloyId55.addEventListener("click", photoPop);
     __defers["$.__views.tools!click!toolspop"] && $.__views.tools.addEventListener("click", toolspop);
-    __defers["$.__views.photoButton!click!photoPop"] && $.__views.photoButton.addEventListener("click", photoPop);
-    __defers["$.__views.photoButton!click!photoPop"] && $.__views.photoButton.addEventListener("click", photoPop);
-    __defers["$.__views.photoButton!click!photoPop"] && $.__views.photoButton.addEventListener("click", photoPop);
+    __defers["$.__views.__alloyId56!click!photoPop"] && $.__views.__alloyId56.addEventListener("click", photoPop);
+    __defers["$.__views.__alloyId57!click!photoPop"] && $.__views.__alloyId57.addEventListener("click", photoPop);
+    __defers["$.__views.__alloyId58!click!photoPop"] && $.__views.__alloyId58.addEventListener("click", photoPop);
     _.extend($, exports);
 }
 
