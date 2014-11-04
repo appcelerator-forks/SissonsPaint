@@ -123,7 +123,7 @@ function generateTable(){
 				top:15,
 				image : details[i]['image']
 			});
-			
+
 			var description = $.UI.create('Label', {
 				width : "95%",
 				text: details[i].description , 
