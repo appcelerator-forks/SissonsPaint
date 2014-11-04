@@ -1,7 +1,5 @@
 var args = arguments[0] || {};
 
-
-
 var fb = require('facebook');
 fb.appid = 752094718209236;
 
@@ -13,11 +11,12 @@ var canvasHeight =  pHeight - toggleHeight;
  
 var category_colour_lib = Alloy.createCollection('category_colour');
 var colour_lib = Alloy.createCollection('colour'); 
-//var details = colour_lib.getColourList(); original
-var details = colour_lib.getClosestColourList('100','100','100'); //edited by Moo
+var details = colour_lib.getColourList(); //original
+
 
 var library = Alloy.createCollection('category'); 
 var recommended = library.getCategoryListByType(1);
+
 
 //moo $.mainView.setHeight(viewHeight);
 //console.log($.mainView.getHeight());
@@ -35,6 +34,7 @@ var dialog = Titanium.UI.createOptionDialog({
 });
 
 $.canvas.addEventListener("load", function(){ 
+	$.colorSelection.hide();
 	Ti.App.fireEvent('web:initCanvasSize', { height: canvasHeight, width: pWidth });
 });	
 
@@ -132,8 +132,15 @@ else
 generateRecommended();
 
 var getColor = function(e){
+	$.activityIndicator.show();
+	$.loadingBar.opacity = "1";
+	$.loadingBar.height = "120";
+	$.loadingBar.top = "100";
 	//alert(e.r +","+e.g+","+e.b+","+e.a);
-	$.colourPicker.backgroundColor = "rgba("+e.r +","+e.g+","+e.b+","+e.a+")";
+	//$.colourPicker.backgroundColor = "rgba("+e.r +","+e.g+","+e.b+","+e.a+")";
+	$.colorSelection.show();
+	var details = colour_lib.getClosestColourList(e.r,e.g,e.b); //edited by Moo
+	generateColour();
 };
  
 Ti.App.addEventListener("app:getColour", getColor);
@@ -228,6 +235,9 @@ function generateColour(){
 			
 		createColorEvent(colours, details[i], cat_details);
 	}
+	$.loadingBar.opacity = "0";
+	$.loadingBar.height = "0";
+	$.loadingBar.top = "0";
 	$.scrollView.add(topRow);
 	$.scrollView.add(bottomRow);
 }
@@ -356,6 +366,7 @@ function createColorEvent(colours, colour_details, details){
 	colours.addEventListener( "click", function(){
 		Ti.App.Properties.setString('from', 'colourPicker');
 		var nav = Alloy.createController("colourDetails",{colour_details:colour_details, details:details}).getView(); 
-		Alloy.Globals.Drawer.setCenterWindow(nav);
+		//Alloy.Globals.Drawer.setCenterWindow(nav);
+		nav.open();
 	});
 }

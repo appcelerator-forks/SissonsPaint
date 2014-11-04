@@ -9,8 +9,7 @@ function __processArg(obj, key) {
 
 function Controller() {
     function generateTable() {
-        for (var i = 0; i < details.length; i++) {
-            console.log(details[i]);
+        for (var i = 0; i < details.length; i++) if ("" != details[i]) {
             var colours = category_colour_lib.getCategoryColourByCategory(details[i]["id"]);
             var categoryHeader = Titanium.UI.createImageView({
                 width: "95%",
@@ -19,6 +18,16 @@ function Controller() {
                 top: 15,
                 image: details[i]["image"]
             });
+            var colour_details = colour_lib.getColourById(colour.colour_id);
+            {
+                $.UI.create("View", {
+                    backgroundColor: "rgb(" + colour_details.rgb + ")",
+                    borderColor: "#A5A5A5",
+                    borderWidth: 1,
+                    width: "97%",
+                    height: "80"
+                });
+            }
             var description = $.UI.create("Label", {
                 width: "95%",
                 text: details[i].description,
@@ -28,70 +37,19 @@ function Controller() {
             });
             $.TheScrollView.add(categoryHeader);
             $.TheScrollView.add(description);
-            var colourView = $.UI.create("View", {
-                textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-                layout: "horizontal",
-                width: "95%",
-                bottom: 10,
-                height: Ti.UI.SIZE
-            });
-            var counter = 0;
-            colours.forEach(function(colour) {
-                var subView = $.UI.create("View", {
-                    textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
-                    layout: "vertical",
-                    width: "25%",
-                    top: 3,
+            {
+                $.UI.create("View", {
+                    textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+                    layout: "horizontal",
+                    width: "95%",
+                    bottom: 10,
                     height: Ti.UI.SIZE
                 });
-                var colour_details = colour_lib.getColourById(colour.colour_id);
-                var subViewColor = $.UI.create("View", {
-                    backgroundColor: "rgb(" + colour_details.rgb + ")",
-                    borderColor: "#A5A5A5",
-                    borderWidth: 1,
-                    width: "97%",
-                    height: "80"
-                });
-                var subLabelName = $.UI.create("Label", {
-                    text: colour_details.name,
-                    classes: [ "colorDesc" ]
-                });
-                var subLabelCode = $.UI.create("Label", {
-                    text: colour_details.code,
-                    classes: [ "colorDesc" ],
-                    bottom: 10
-                });
-                createColorEvent(subView, colour_details, details[i]);
-                subView.add(subViewColor);
-                subView.add(subLabelName);
-                subView.add(subLabelCode);
-                colourView.add(subView);
-                counter++;
-            });
-            $.TheScrollView.add(colourView);
-            var separator = Titanium.UI.createImageView({
-                width: Titanium.UI.FILL,
-                height: 30,
-                touchEnabled: false,
-                image: "/images/scroll_up.png"
-            });
-            details.length != i + 1 && $.TheScrollView.add(separator);
+            }
+            console.log(colours);
+            return;
         }
         $.mainViewContainer.add(bottomBar);
-    }
-    function createColorEvent(subView, colour_details, details) {
-        subView.addEventListener("click", function() {
-            Ti.App.Properties.setString("from", "colourSwatches");
-            var nav = Alloy.createController("colourDetails", {
-                colour_details: colour_details,
-                details: details
-            }).getView();
-            nav.open();
-        });
-    }
-    function removeAllChildren(viewObject) {
-        var children = viewObject.children.slice(0);
-        for (var i = 0; i < children.length; ++i) viewObject.remove(children[i]);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "colourSwatches";
@@ -244,14 +202,14 @@ function Controller() {
         $.mainViewContainer.remove(table);
         removeAllChildren($.TheScrollView);
         if (0 == e.index) {
-            details = library.getCategoryList();
+            details = library.getCategoryListByType("2");
             generateTable();
         } else {
             var result = category_type_lib.getCategoryTypeByTag(e.rowData.title);
             var data = [];
             details = [];
             result.forEach(function(tags) {
-                data = library.getCategoryById(tags.cate_id);
+                data = library.getCategoryById(tags.cate_id, "2");
                 details.push(data);
             });
             console.log(details);
@@ -286,7 +244,6 @@ function Controller() {
             $.mainViewContainer.remove(searchView);
         } else {
             searchFlag = 1;
-            console.log("change:" + searchFlag);
             var hintTextLabel = Ti.UI.createLabel({
                 text: "Enter Colour, Name or Colour Code",
                 color: "#A5A5A5",
@@ -327,10 +284,7 @@ function Controller() {
             searchView.add(searchWrapper);
             $.mainViewContainer.add(searchView);
             searchButton.addEventListener("click", function() {
-                console.log("textField.value: " + textField.value);
-                console.log("textField.value.length: " + textField.value.length);
                 searchFlag = 0;
-                console.log("searchFlag: " + searchFlag);
                 Ti.UI.Android.hideSoftKeyboard();
                 if (0 != textField.value.length) {
                     Ti.App.Properties.setString("query", textField.value);

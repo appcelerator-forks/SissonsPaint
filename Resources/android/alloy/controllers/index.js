@@ -17,10 +17,6 @@ function Controller() {
             $.loadingBar.opacity = "0";
             var nav = Alloy.createController("colourSwatches").getView();
             Alloy.Globals.Drawer.setCenterWindow(nav);
-            $.drawer.open({
-                navBarHidden: true,
-                fullscreen: true
-            });
         } else setTimeout(function() {
             checkLoadStatus();
         }, 500);
@@ -260,6 +256,10 @@ function Controller() {
     $.__views.drawer && $.addTopLevelView($.__views.drawer);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    $.drawer.open({
+        navBarHidden: true,
+        fullscreen: true
+    });
     Ti.App.Properties.setString("module", "index");
     Ti.App.Properties.setString("from", "index");
     Ti.App.Properties.setString("loadStoreLocator", "0");
@@ -279,13 +279,13 @@ function Controller() {
             API.loadBrochure();
             API.loadColour();
             API.loadCategory();
+            Ti.App.Properties.setString("clickTime", currentTime);
         } else {
             Ti.App.Properties.setString("loadStoreLocator", "1");
             Ti.App.Properties.setString("loadBrochure", "1");
             Ti.App.Properties.setString("loadColour", "1");
             Ti.App.Properties.setString("loadCategory", "1");
         }
-        Ti.App.Properties.setString("clickTime", currentTime);
         checkLoadStatus();
     }, 500);
     Alloy.Globals.Drawer = $.drawer;

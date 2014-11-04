@@ -1,4 +1,7 @@
-
+$.drawer.open({
+	navBarHidden: true,
+	fullscreen: true
+});
 Ti.App.Properties.setString('module', 'index');
 Ti.App.Properties.setString('from', 'index');
 
@@ -26,13 +29,13 @@ setTimeout(function(){
 		API.loadBrochure();
 		API.loadColour();
 		API.loadCategory();
+		Ti.App.Properties.setString('clickTime',currentTime);	
 	}else{
 		Ti.App.Properties.setString('loadStoreLocator', '1');
 		Ti.App.Properties.setString('loadBrochure', '1');
 		Ti.App.Properties.setString('loadColour', '1');
 		Ti.App.Properties.setString('loadCategory', '1');
 	}
-	Ti.App.Properties.setString('clickTime',currentTime);	
 	
 	checkLoadStatus();
 }, 500);
@@ -48,10 +51,7 @@ function checkLoadStatus(){
 		$.loadingBar.opacity = "0";
 		var nav = Alloy.createController("colourSwatches").getView(); 
 		Alloy.Globals.Drawer.setCenterWindow(nav);  
-		$.drawer.open({
-			navBarHidden: true,
-			fullscreen: true
-		});
+		
 	}else{
 		setTimeout(function(){
 			checkLoadStatus();
