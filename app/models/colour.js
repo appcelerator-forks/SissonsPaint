@@ -141,6 +141,7 @@ exports.definition = {
 								index = listArr.length;
 							}
 							
+							
 							listArr.splice(index, 0,
         						{
 								    id: res.fieldByName('id'),
@@ -156,10 +157,7 @@ exports.definition = {
 					res.next();
 				} 
 				
-				for (var a=0; a<listArr.length; a++)
-				{
-					console.log(a + 'diff : ' + listArr[a].diff + ' color : ' + listArr[a].rgb);
-				}
+				 
 				res.close();
                 db.close();
                 collection.trigger('sync');

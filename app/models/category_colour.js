@@ -42,7 +42,7 @@ exports.definition = {
                 return listArr;
 			},
 			getCateByColourId: function(colour_id){
-				console.log("color_id:"+colour_id);
+				 
 				var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE colour_id='"+ colour_id+ "'" ;
                 
@@ -55,8 +55,7 @@ exports.definition = {
 					    id: res.fieldByName('id'),
 					    cate_id: res.fieldByName('cate_id'),
 					};
-					console.log("id:"+result.id);
-					console.log("cate_id:"+result.cate_id);
+					 
 				} 
 				res.close();
                 db.close();

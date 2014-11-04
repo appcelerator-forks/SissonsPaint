@@ -71,22 +71,22 @@ function Controller() {
         id: "mainViewContainer"
     });
     $.__views.mainViewContainer && $.addTopLevelView($.__views.mainViewContainer);
-    $.__views.__alloyId47 = Ti.UI.createView({
-        layout: "vertical",
-        id: "__alloyId47"
-    });
-    $.__views.mainViewContainer.add($.__views.__alloyId47);
     $.__views.__alloyId48 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "80",
+        layout: "vertical",
         id: "__alloyId48"
     });
-    $.__views.__alloyId47.add($.__views.__alloyId48);
-    $.__views.__alloyId49 = Alloy.createController("toggle", {
-        id: "__alloyId49",
-        __parentSymbol: $.__views.__alloyId48
+    $.__views.mainViewContainer.add($.__views.__alloyId48);
+    $.__views.__alloyId49 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId49"
     });
-    $.__views.__alloyId49.setParent($.__views.__alloyId48);
+    $.__views.__alloyId48.add($.__views.__alloyId49);
+    $.__views.__alloyId50 = Alloy.createController("toggle", {
+        id: "__alloyId50",
+        __parentSymbol: $.__views.__alloyId49
+    });
+    $.__views.__alloyId50.setParent($.__views.__alloyId49);
     $.__views.titleLabel = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -98,7 +98,7 @@ function Controller() {
         id: "titleLabel",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
-    $.__views.__alloyId48.add($.__views.titleLabel);
+    $.__views.__alloyId49.add($.__views.titleLabel);
     $.__views.TheScrollView = Ti.UI.createScrollView({
         id: "TheScrollView",
         backgroundColor: "white",
@@ -108,7 +108,7 @@ function Controller() {
         top: "0",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
-    $.__views.__alloyId47.add($.__views.TheScrollView);
+    $.__views.__alloyId48.add($.__views.TheScrollView);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
