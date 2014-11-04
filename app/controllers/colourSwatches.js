@@ -123,23 +123,14 @@ function generateTable(){
 				top:15,
 				image : details[i]['image']
 			});
-			
-<<<<<<< HEAD
-		  	var colour_details = colour_lib.getColourById(colour.colour_id);
-			var subViewColor = $.UI.create('View', {  
-				backgroundColor: "rgb("+colour_details.rgb +")",
-				borderColor: "#A5A5A5",
-				borderWidth: 1,
-				width: "97%", 
-				height: "80"
-=======
+ 
 			var description = $.UI.create('Label', {
 				width : "95%",
 				text: details[i].description , 
 				width : "95%",
 				classes: ['aboutContent'],
 				bottom: 30
->>>>>>> FETCH_HEAD
+ 
 			});
 			 
 			

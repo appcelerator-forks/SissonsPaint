@@ -159,7 +159,7 @@ function Controller() {
         layout: "horizontal",
         id: "toggle",
         top: "0",
-        height: "120"
+        height: "80"
     });
     $.__views.colourPicker.add($.__views.toggle);
     $.__views.__alloyId40 = Alloy.createController("toggle", {
@@ -182,6 +182,7 @@ function Controller() {
     $.__views.canvas = Ti.UI.createWebView({
         id: "canvas",
         url: "/html/colour_picker.html",
+        top: "80",
         height: "80%",
         enableZoomControls: "false",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
