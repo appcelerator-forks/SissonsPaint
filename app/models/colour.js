@@ -82,7 +82,7 @@ exports.definition = {
 			},
 			getColourByQuery: function(query){
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE name LIKE'"+ query+ "%' OR name LIKE'%" + query + "' OR code='"+ query+"'" ;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE name LIKE '%"+ query+ "%' OR code='%"+ query+"%'" ;
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
@@ -115,13 +115,16 @@ exports.definition = {
                 while (res.isValidRow()){
                 	var c = res.fieldByName('rgb').split(/,\s*/);
                 	
-                	var diff_min = 110;
+                	var diff_min = 50;
                 	var index = -1;
                 	var diff_r = Math.abs(closest_r - c[0]);
                 	var diff_g = Math.abs(closest_g - c[1]);
                 	var diff_b = Math.abs(closest_b - c[2]);
-                	var diff = diff_r+diff_g+diff_b;
+                	// var diff = diff_r+diff_g+diff_b;
+                	var diff = Math.max(diff_r, diff_g, diff_b);
                 	
+                	
+                	// if (diff_r<=diff_min && diff_g<=diff_min && diff_b<=diff_min)
                 	if (diff<=diff_min)
                 		{
                 			for (var i=0; i<listArr.length; i++)
@@ -138,6 +141,7 @@ exports.definition = {
 								index = listArr.length;
 							}
 							
+							
 							listArr.splice(index, 0,
         						{
 								    id: res.fieldByName('id'),
@@ -153,10 +157,7 @@ exports.definition = {
 					res.next();
 				} 
 				
-				/*for (var a=0; a<listArr.length; a++)
-				{
-					console.log(a + ' : ' + listArr[a].diff);
-				}*/
+				 
 				res.close();
                 db.close();
                 collection.trigger('sync');

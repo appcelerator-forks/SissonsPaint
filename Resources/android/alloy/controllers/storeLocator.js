@@ -37,6 +37,7 @@ function Controller() {
         width: "100%"
     });
     $.__views.mainWindow && $.addTopLevelView($.__views.mainWindow);
+<<<<<<< HEAD
     $.__views.__alloyId100 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
@@ -49,6 +50,20 @@ function Controller() {
     });
     $.__views.__alloyId101.setParent($.__views.__alloyId100);
     $.__views.__alloyId102 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId98 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId98"
+    });
+    $.__views.mainWindow.add($.__views.__alloyId98);
+    $.__views.__alloyId99 = Alloy.createController("toggle", {
+        id: "__alloyId99",
+        __parentSymbol: $.__views.__alloyId98
+    });
+    $.__views.__alloyId99.setParent($.__views.__alloyId98);
+    $.__views.__alloyId100 = Ti.UI.createLabel({
+>>>>>>> FETCH_HEAD
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -57,14 +72,22 @@ function Controller() {
         },
         text: "Store Locator",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+<<<<<<< HEAD
         id: "__alloyId102"
     });
     $.__views.__alloyId100.add($.__views.__alloyId102);
     $.__views.subWindow = Ti.UI.createView({
+=======
+        id: "__alloyId100"
+    });
+    $.__views.__alloyId98.add($.__views.__alloyId100);
+    $.__views.subWindow = Ti.UI.createScrollView({
+>>>>>>> FETCH_HEAD
         id: "subWindow",
         layout: "vertical",
         width: "100%",
-        backgroundColor: "white"
+        backgroundColor: "white",
+        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.mainWindow.add($.__views.subWindow);
     $.__views.row1 = Ti.UI.createView({

@@ -1,22 +1,35 @@
 <Alloy> 
-	<View layout="vertical" class="container" id="colourPicker">
+	<View   class="container" id="colourPicker">
  
-		 <View layout="horizontal" id="toggle" height="80">
+		 <View layout="horizontal" id="toggle" top="0" height="80">
 			<Require src="toggle"></Require>
-			<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Colour Picker</Label>
+			<Label class="title" color="black" height="80" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Colour Picker</Label>
 		</View>
-		<WebView   id='canvas' url="/html/colour_picker.html" height="40%" enableZoomControls="false" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" />
-		<View height="50%" bottom="0">
-			<View id="bottomColorBar" layout="vertical">
-				<ImageView image="/images/scroll_up.png" backgroundColor="transparent" width="Titanium.UI.FILL" bottom="10" />
-				<Label class="smallTitle" color="black" width="90%" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" bottom="10" >RECOMMEND COLOURS</Label>
+		
+		<WebView id='canvas' url="/html/colour_picker.html" top="80" height="80%" enableZoomControls="false" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" />
+		<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" top="0" opacity="1" backgroundColor="#2E2E2E" >
+			<ActivityIndicator  id="activityIndicator" />
+			<Label   text="Loading" color="#ffffff" />
+		</View>
+		<View layout="vertical" height="40%" bottom="60" id="colorSelection">
+			<ImageView image="/images/scroll_up.png" backgroundColor="transparent" width="Titanium.UI.FILL" top="0" />
+			<View id="bottomColorBar" layout="vertical" backgroundColor="white">
+				
+				<Label class="smallTitle" color="black" width="90%" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" bottom="10" backgroundColor="white">COLOURS INSPIRATION</Label>
 				<ScrollView id="recommendView" backgroundColor="white" layout="horizontal" scrollType="horizontal" height="50" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
 					<!--<Button id="savePicture" onClick="savePicture">Save</Button>-->
 				</ScrollView>
-				<ImageView image="/images/scroll_up.png" backgroundColor="transparent" width="Titanium.UI.FILL" bottom="10" />
-				<Label class="smallTitle" color="black" width="90%" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" bottom="10" >COLOUR LIBRARY</Label>
+				<ImageView image="/images/scroll_up.png" backgroundColor="white" width="Titanium.UI.FILL" bottom="10" />
+				<Label class="smallTitle" color="black" width="90%" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" bottom="10" backgroundColor="white">CLOSEST COLOUR</Label>
 				<ScrollView id="scrollView" backgroundColor="white" layout="vertical" scrollType="horizontal" height="100" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER"></ScrollView>
 			</View>
 		</View> 
+		 
+		<View layout="horizontal" height="60" bottom="0" backgroundImage="/images/tool_bar.jpg" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">
+		 
+			<ImageView image="/images/icon_photo.png" left="5" onClick="toolbarEvents" id="takePhoto"   width="50" />
+			<ImageView image="/images/btn_eyedrop.png" onClick="toolbarEvents" id="toggleActivation"  width="50" />
+		</View>
 	</View> 
+	
 </Alloy>

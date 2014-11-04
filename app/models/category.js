@@ -71,24 +71,27 @@ exports.definition = {
                 collection.trigger('sync');
                 return listArr;
 			},
-			getCategoryById : function(id){
+			getCategoryById : function(id,cateType){
 				var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "'" ;
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var arr = []; 
-               
+              
                 if (res.isValidRow()){
-					arr = {
-					    id: res.fieldByName('id'),
-					    name: res.fieldByName('name'),
-					    type: res.fieldByName('type'),
-					    image: res.fieldByName('image'),
-					    description: res.fieldByName('description') 
-					};
-					
+                	if(cateType == res.fieldByName('type')){
+                		arr = {
+						    id: res.fieldByName('id'),
+						    name: res.fieldByName('name'),
+						    type: res.fieldByName('type'),
+						    image: res.fieldByName('image'),
+						    description: res.fieldByName('description') 
+						};
+                	}
 				} 
+				
+				console.log(arr);
 				res.close();
                 db.close();
                 collection.trigger('sync');

@@ -65,7 +65,7 @@ function loadFavouriteList(){
 		favourite_list.forEach(function(fav) { 
 			var colour_details = colour_lib.getColourById(fav.colour_id);
 			var colour_cate = category_colour_lib.getCateByColourId(fav.colour_id);
-			var details = cate_lib.getCategoryById(colour_cate.cate_id);
+			var details = cate_lib.getCategoryById(colour_cate.cate_id, "2");
 			 
 			var subView = $.UI.create('View', { 
 				textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
@@ -77,6 +77,8 @@ function loadFavouriteList(){
 			 
 			var subViewColor = $.UI.create('View', {  
 				backgroundColor: "rgb("+colour_details.rgb +")",
+				borderColor: "#A5A5A5",
+				borderWidth: 1,
 				width: "97%", 
 				height: "80"
 			});
@@ -185,7 +187,8 @@ function createColorEvent(subView, colour_details, details){
 	subView.addEventListener( "click", function(){
 		Ti.App.Properties.setString('from', 'favourite');
 		var nav = Alloy.createController("colourDetails",{colour_details:colour_details, details:details}).getView(); 
-		Alloy.Globals.Drawer.setCenterWindow(nav);
+		//Alloy.Globals.Drawer.setCenterWindow(nav);
+		nav.open();
 	});
 
 }

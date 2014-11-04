@@ -322,6 +322,7 @@ function Controller() {
         url: "/html/canvas-paint-bucket.html",
         enableZoomControls: "false",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
+<<<<<<< HEAD
     });
     $.__views.__alloyId51.add($.__views.canvas);
     $.__views.colorSwatches = Ti.UI.createView({
@@ -396,14 +397,23 @@ function Controller() {
         id: "sizeBar"
     });
     $.__views.__alloyId51.add($.__views.sizeBar);
+=======
+    });
+    $.__views.__alloyId51.add($.__views.canvas);
+>>>>>>> FETCH_HEAD
     $.__views.slider = Ti.UI.createSlider({
         id: "slider",
         min: "0",
         max: "100",
         value: "20"
     });
+<<<<<<< HEAD
     $.__views.sizeBar.add($.__views.slider);
     updateAdjustment ? $.__views.slider.addEventListener("stop", updateAdjustment) : __defers["$.__views.slider!stop!updateAdjustment"] = true;
+=======
+    $.__views.__alloyId51.add($.__views.slider);
+    updateAdjustment ? $.__views.slider.addEventListener("change", updateAdjustment) : __defers["$.__views.slider!change!updateAdjustment"] = true;
+>>>>>>> FETCH_HEAD
     $.__views.toolbar = Ti.UI.createView({
         height: "60",
         bottom: "0",
@@ -416,25 +426,44 @@ function Controller() {
         width: Titanium.UI.FILL,
         id: "__alloyId58"
     });
+<<<<<<< HEAD
     $.__views.toolbar.add($.__views.__alloyId58);
     $.__views.photoButton = Ti.UI.createImageView({
         id: "photoButton",
+=======
+    $.__views.toolbar.add($.__views.__alloyId54);
+    $.__views.__alloyId55 = Ti.UI.createImageView({
+>>>>>>> FETCH_HEAD
         image: "/images/icon_photo.png",
         left: "5",
         height: "40",
-        width: "50"
+        width: "50",
+        id: "__alloyId55"
     });
+<<<<<<< HEAD
     $.__views.toolbar.add($.__views.photoButton);
     photoPop ? $.__views.photoButton.addEventListener("click", photoPop) : __defers["$.__views.photoButton!click!photoPop"] = true;
     $.__views.__alloyId59 = Ti.UI.createImageView({
+=======
+    $.__views.toolbar.add($.__views.__alloyId55);
+    photoPop ? $.__views.__alloyId55.addEventListener("click", photoPop) : __defers["$.__views.__alloyId55!click!photoPop"] = true;
+    $.__views.__alloyId56 = Ti.UI.createImageView({
+>>>>>>> FETCH_HEAD
         image: "/images/icon_undo.png",
         left: "65",
         height: "40",
         width: "50",
+<<<<<<< HEAD
         id: "__alloyId59"
     });
     $.__views.toolbar.add($.__views.__alloyId59);
     photoPop ? $.__views.__alloyId59.addEventListener("click", photoPop) : __defers["$.__views.__alloyId59!click!photoPop"] = true;
+=======
+        id: "__alloyId56"
+    });
+    $.__views.toolbar.add($.__views.__alloyId56);
+    photoPop ? $.__views.__alloyId56.addEventListener("click", photoPop) : __defers["$.__views.__alloyId56!click!photoPop"] = true;
+>>>>>>> FETCH_HEAD
     $.__views.tools = Ti.UI.createImageView({
         id: "tools",
         image: "/images/icon_bucket.png",
@@ -444,24 +473,37 @@ function Controller() {
     });
     $.__views.toolbar.add($.__views.tools);
     toolspop ? $.__views.tools.addEventListener("click", toolspop) : __defers["$.__views.tools!click!toolspop"] = true;
+<<<<<<< HEAD
     $.__views.size = Ti.UI.createImageView({
         id: "size",
+=======
+    $.__views.__alloyId57 = Ti.UI.createImageView({
+>>>>>>> FETCH_HEAD
         image: "/images/icon_size.png",
         left: "185",
         mod: "size",
         height: "40",
-        width: "50"
+        width: "50",
+        id: "__alloyId57"
     });
+<<<<<<< HEAD
     $.__views.toolbar.add($.__views.size);
     slideUp ? $.__views.size.addEventListener("click", slideUp) : __defers["$.__views.size!click!slideUp"] = true;
     $.__views.__alloyId60 = Ti.UI.createImageView({
         id: "__alloyId60",
+=======
+    $.__views.toolbar.add($.__views.__alloyId57);
+    photoPop ? $.__views.__alloyId57.addEventListener("click", photoPop) : __defers["$.__views.__alloyId57!click!photoPop"] = true;
+    $.__views.__alloyId58 = Ti.UI.createImageView({
+>>>>>>> FETCH_HEAD
         image: "/images/icon_color.png",
         left: "245",
         mod: "color",
         height: "40",
-        width: "50"
+        width: "50",
+        id: "__alloyId58"
     });
+<<<<<<< HEAD
     $.__views.toolbar.add($.__views.__alloyId60);
     slideUp ? $.__views.__alloyId60.addEventListener("click", slideUp) : __defers["$.__views.__alloyId60!click!slideUp"] = true;
     $.__views.__alloyId61 = Ti.UI.createImageView({
@@ -473,6 +515,19 @@ function Controller() {
     });
     $.__views.toolbar.add($.__views.__alloyId61);
     share ? $.__views.__alloyId61.addEventListener("click", share) : __defers["$.__views.__alloyId61!click!share"] = true;
+=======
+    $.__views.toolbar.add($.__views.__alloyId58);
+    photoPop ? $.__views.__alloyId58.addEventListener("click", photoPop) : __defers["$.__views.__alloyId58!click!photoPop"] = true;
+    $.__views.__alloyId59 = Ti.UI.createImageView({
+        image: "/images/icon_share.png",
+        left: "305",
+        height: "40",
+        width: "50",
+        id: "__alloyId59"
+    });
+    $.__views.toolbar.add($.__views.__alloyId59);
+    photoPop ? $.__views.__alloyId59.addEventListener("click", photoPop) : __defers["$.__views.__alloyId59!click!photoPop"] = true;
+>>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -507,6 +562,7 @@ function Controller() {
             width: pWidth
         });
     });
+<<<<<<< HEAD
     generateRecommended();
     generateColour();
     Ti.App.addEventListener("app:saveToGallery", function(e) {
@@ -528,6 +584,15 @@ function Controller() {
     __defers["$.__views.size!click!slideUp"] && $.__views.size.addEventListener("click", slideUp);
     __defers["$.__views.__alloyId60!click!slideUp"] && $.__views.__alloyId60.addEventListener("click", slideUp);
     __defers["$.__views.__alloyId61!click!share"] && $.__views.__alloyId61.addEventListener("click", share);
+=======
+    __defers["$.__views.slider!change!updateAdjustment"] && $.__views.slider.addEventListener("change", updateAdjustment);
+    __defers["$.__views.__alloyId55!click!photoPop"] && $.__views.__alloyId55.addEventListener("click", photoPop);
+    __defers["$.__views.__alloyId56!click!photoPop"] && $.__views.__alloyId56.addEventListener("click", photoPop);
+    __defers["$.__views.tools!click!toolspop"] && $.__views.tools.addEventListener("click", toolspop);
+    __defers["$.__views.__alloyId57!click!photoPop"] && $.__views.__alloyId57.addEventListener("click", photoPop);
+    __defers["$.__views.__alloyId58!click!photoPop"] && $.__views.__alloyId58.addEventListener("click", photoPop);
+    __defers["$.__views.__alloyId59!click!photoPop"] && $.__views.__alloyId59.addEventListener("click", photoPop);
+>>>>>>> FETCH_HEAD
     _.extend($, exports);
 }
 

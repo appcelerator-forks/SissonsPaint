@@ -16,15 +16,27 @@ var flag =0;
 $.activityIndicator.show();
 $.loadingBar.opacity = "1";
 $.loadingBar.height = "120";
-$.loadingBar.top = "100";
+$.loadingBar.top = ((PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight)/2)-($.loadingBar.getHeight()/2));
 	
 // Load API function
 
 setTimeout(function(){
-	API.loadStoreLocator();
-	API.loadBrochure();
-	API.loadColour();
-	API.loadCategory();
+	Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_NONE);
+	var clickTime = Ti.App.Properties.getString('clickTime');
+  	var currentTime = printDate();
+	if (currentTime - clickTime > 1800) {
+		API.loadStoreLocator();
+		API.loadBrochure();
+		API.loadColour();
+		API.loadCategory();
+		Ti.App.Properties.setString('clickTime',currentTime);	
+	}else{
+		Ti.App.Properties.setString('loadStoreLocator', '1');
+		Ti.App.Properties.setString('loadBrochure', '1');
+		Ti.App.Properties.setString('loadColour', '1');
+		Ti.App.Properties.setString('loadCategory', '1');
+	}
+	
 	checkLoadStatus();
 }, 500);
 
@@ -35,9 +47,12 @@ function checkLoadStatus(){
 	var loadCategory = Ti.App.Properties.getString('loadCategory');
 
 	if(loadStoreLocator == "1" && loadBrochure == "1" && loadColour == "1" && loadCategory == "1"){
+		
 		$.loadingBar.opacity = "0";
 		var nav = Alloy.createController("colourSwatches").getView(); 
 		Alloy.Globals.Drawer.setCenterWindow(nav);  
+		Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
+		
 	}else{
 		setTimeout(function(){
 			checkLoadStatus();
@@ -91,14 +106,6 @@ $.drawer.addEventListener('android:back', function (e) {
 	if(mod == "storeLocator"){
 		Ti.App.Properties.setString('module', 'index');
 		var nav = Alloy.createController("storeLocator").getView(); 
-		Alloy.Globals.Drawer.setCenterWindow(nav);  
-	}else if(mod == "colourDetails"){
-		from = Ti.App.Properties.getString('from');
-		if(from == "colourPicker"){
-			Ti.App.Properties.setString('back', 1);
-		}
-		Ti.App.Properties.setString('module', 'index');
-		var nav = Alloy.createController(from).getView(); 
 		Alloy.Globals.Drawer.setCenterWindow(nav);  
 	}else if(mod == "search"){
 		from = Ti.App.Properties.getString('from');

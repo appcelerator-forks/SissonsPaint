@@ -1,12 +1,9 @@
 <Alloy> 
-	<View class="container" id="colourDetails" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">
+	<Window class="container" id="colourDetails">
+	<View   textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">
 		<View layout="vertical">
-			<View layout="horizontal" height="80">
-				<Require src="toggle"></Require>
-			</View>
 			
-	
-			<View layout="vertical" backgroundColor="#ffffff" width="160" height="160">
+			<View layout="vertical" backgroundColor="#ffffff" top="90" width="160" height="160">
 				<View layout="vertical"  width="150" top="5" height="150" bottom="45" id="boxDetails"  opacity="0.6" >
 				 	<Label class="title" left="10" id="colourCode" top="10" />
 				 	<Label class="title" left="10" id="colourName" />
@@ -52,4 +49,5 @@
 				<ImageView id="favButton"  onClick="popWindow" height="40" width="50" />
 		</View>
 	</View> 
+	</Window>
 </Alloy>

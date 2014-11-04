@@ -9,8 +9,7 @@ function __processArg(obj, key) {
 
 function Controller() {
     function generateTable() {
-        for (var i = 0; i < details.length; i++) {
-            console.log(details[i]);
+        for (var i = 0; i < details.length; i++) if ("" != details[i]) {
             var colours = category_colour_lib.getCategoryColourByCategory(details[i]["id"]);
             var categoryHeader = Titanium.UI.createImageView({
                 width: "95%",
@@ -47,6 +46,11 @@ function Controller() {
                 var colour_details = colour_lib.getColourById(colour.colour_id);
                 var subViewColor = $.UI.create("View", {
                     backgroundColor: "rgb(" + colour_details.rgb + ")",
+<<<<<<< HEAD
+                    borderColor: "#A5A5A5",
+                    borderWidth: 1,
+=======
+>>>>>>> FETCH_HEAD
                     width: "97%",
                     height: "80"
                 });
@@ -79,17 +83,16 @@ function Controller() {
     }
     function createColorEvent(subView, colour_details, details) {
         subView.addEventListener("click", function() {
+<<<<<<< HEAD
+=======
             Ti.App.Properties.setString("from", "colourSwatches");
+>>>>>>> FETCH_HEAD
             var nav = Alloy.createController("colourDetails", {
                 colour_details: colour_details,
                 details: details
             }).getView();
-            Alloy.Globals.Drawer.setCenterWindow(nav);
+            nav.open();
         });
-    }
-    function removeAllChildren(viewObject) {
-        var children = viewObject.children.slice(0);
-        for (var i = 0; i < children.length; ++i) viewObject.remove(children[i]);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "colourSwatches";
@@ -242,14 +245,14 @@ function Controller() {
         $.mainViewContainer.remove(table);
         removeAllChildren($.TheScrollView);
         if (0 == e.index) {
-            details = library.getCategoryList();
+            details = library.getCategoryListByType("2");
             generateTable();
         } else {
             var result = category_type_lib.getCategoryTypeByTag(e.rowData.title);
             var data = [];
             details = [];
             result.forEach(function(tags) {
-                data = library.getCategoryById(tags.cate_id);
+                data = library.getCategoryById(tags.cate_id, "2");
                 details.push(data);
             });
             console.log(details);
@@ -284,7 +287,6 @@ function Controller() {
             $.mainViewContainer.remove(searchView);
         } else {
             searchFlag = 1;
-            console.log("change:" + searchFlag);
             var hintTextLabel = Ti.UI.createLabel({
                 text: "Enter Colour, Name or Colour Code",
                 color: "#A5A5A5",
@@ -325,10 +327,7 @@ function Controller() {
             searchView.add(searchWrapper);
             $.mainViewContainer.add(searchView);
             searchButton.addEventListener("click", function() {
-                console.log("textField.value: " + textField.value);
-                console.log("textField.value.length: " + textField.value.length);
                 searchFlag = 0;
-                console.log("searchFlag: " + searchFlag);
                 Ti.UI.Android.hideSoftKeyboard();
                 if (0 != textField.value.length) {
                     Ti.App.Properties.setString("query", textField.value);

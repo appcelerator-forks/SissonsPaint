@@ -15,6 +15,7 @@ function removeAllChildren(viewObject) {
     for (var i = 0; i < children.length; ++i) viewObject.remove(children[i]);
 }
 
+<<<<<<< HEAD
 function hexstr(number) {
     var chars = new Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f");
     var low = 15 & number;
@@ -24,6 +25,16 @@ function hexstr(number) {
 
 function rgbToHex(r, g, b) {
     return "#" + hexstr(r) + hexstr(g) + hexstr(b);
+=======
+function printDate() {
+    var temp = new Date();
+    var dateStr = padStr(temp.getFullYear()) + padStr(1 + temp.getMonth()) + padStr(temp.getDate()) + padStr(temp.getHours()) + padStr(temp.getMinutes()) + padStr(temp.getSeconds());
+    return dateStr;
+}
+
+function padStr(i) {
+    return 10 > i ? "0" + i : "" + i;
+>>>>>>> FETCH_HEAD
 }
 
 var Alloy = require("alloy"), _ = Alloy._, Backbone = Alloy.Backbone;

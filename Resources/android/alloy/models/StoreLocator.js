@@ -133,6 +133,35 @@ exports.definition = {
                 db.execute(sql);
                 db.close();
                 collection.trigger("sync");
+            },
+            getStoreByName: function(state, query) {
+                var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE state='" + state + "' AND outlet LIKE '%" + query + "%' ORDER BY outlet";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var listArr = [];
+                var count = 0;
+                while (res.isValidRow()) {
+                    listArr[count] = {
+                        id: res.fieldByName("id"),
+                        outlet: res.fieldByName("outlet"),
+                        area: res.fieldByName("area"),
+                        state: res.fieldByName("state"),
+                        address: res.fieldByName("address"),
+                        mobile: res.fieldByName("mobile"),
+                        fax: res.fieldByName("fax"),
+                        email: res.fieldByName("email"),
+                        latitude: res.fieldByName("latitude"),
+                        longitude: res.fieldByName("longitude"),
+                        category: res.fieldByName("category")
+                    };
+                    res.next();
+                    count++;
+                }
+                res.close();
+                db.close();
+                collection.trigger("sync");
+                return listArr;
             }
         });
         return Collection;

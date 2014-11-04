@@ -31,7 +31,7 @@
 		
 		var screenwidth = window.innerWidth;
 		var initCanvasSize = function(e){
-			 
+			var canvasHeight = e.height; 
 			$('#parent').css('height', e.height);
 			//$('#choosenPhoto').css('height', e.height);
 			$('#myCanvas').css('width', '100%');
@@ -48,55 +48,54 @@
 		};
 		
 		var loadImage = function(e){
-			 
+			$("#canvasDiv").html("");
 			//$('#choosenPhoto').attr('src', e.image);
 			var outlineImage = new Image();
 			var canvas = document.createElement('canvas');
-			var canvasW = screenwidth;
-			var canvasH = 500;
+			var canvasW = screenwidth; 
 			
-			canvas.setAttribute('width', canvasW);
-			canvas.setAttribute('height', canvasH);
 			canvasWidth = canvasW;
-			canvasHeight = canvasH;
-			drawingAreaWidth = canvasW;
-			drawingAreaHeight = canvasH;
-			
-			canvas.setAttribute('id', 'canvas');
-			document.getElementById('canvasDiv').appendChild(canvas);
-			
-			if (typeof G_vmlCanvasManager !== "undefined") {
-				canvas = G_vmlCanvasManager.initElement(canvas);
-			}
-			context = canvas.getContext("2d"); // Grab the 2d canvas context
-			// Note: The above code is a workaround for IE 8 and lower. Otherwise we could have used:
-			//     context = document.getElementById('canvas').getContext("2d");
-			
+			 
 			// Load images 
 			outlineImage.src = e.image; 
 			outlineImage.onload = function (e) { 
 				var ratio = this.naturalWidth / canvasWidth;
 				var newheight = this.naturalHeight / ratio;
+				console.log("newheight : " +newheight);
+				canvas.setAttribute('width', canvasW);
+				canvas.setAttribute('height', newheight);
+				canvas.setAttribute('id', 'canvas');
+				document.getElementById('canvasDiv').appendChild(canvas);
+				
+				if (typeof G_vmlCanvasManager !== "undefined") {
+					canvas = G_vmlCanvasManager.initElement(canvas);
+				}
+				context = canvas.getContext("2d"); // Grab the 2d canvas context
 				canvasHeight = newheight;
 				setBackgroundSize({width: canvasWidth, height: newheight});
+				
 				context.drawImage(outlineImage, 0, 0,canvasWidth,newheight);
-			
+				
 				// Test for cross origin security error (SECURITY_ERR: DOM Exception 18)
 				try {
 					outlineLayerData = context.getImageData(0, 0, canvasWidth, canvasHeight);
+					var waterMark = new Image();
+					waterMark.src = "images/water_mark.png"; 
+					waterMark.onload = function (e) { 
+						setBackgroundSize({width: canvasWidth, height: canvasHeight});
+						var wmHorizontal = canvasWidth - 300;
+						var wmVertical = canvasHeight - 100;
+						context.drawImage(waterMark, wmHorizontal, wmVertical,296,80);
+					};	
 				} catch (ex) {
 					window.alert("Application cannot be run locally. Please run on a server.");
 					return;
 				}
-				//clearCanvas();
-				//colorLayerData = context.getImageData(0, 0, canvasWidth, canvasHeight);
-				 
+				
 			};
-			 
+			
 		};
 		
-		
-	 
 	
 		$(function() { 
 			Ti.App.addEventListener("web:initCanvasSize", initCanvasSize);
@@ -105,7 +104,7 @@
 			$("#canvasDiv").click(function(e){ 
 				var mouseX = (Boolean(e.pageX))?e.pageX:e.originalEvent.targetTouches[0].pageX;
 				var mouseY = (Boolean(e.pageY))?e.pageY:e.originalEvent.targetTouches[0].pageY;
-				console.log(mouseX +"=="+mouseY);
+		
 				var pixelPos = (mouseX + canvasWidth * mouseY) * 4,
 				
 				r = outlineLayerData.data[pixelPos],

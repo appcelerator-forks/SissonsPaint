@@ -6,14 +6,17 @@ var library = Alloy.createCollection('storeLocator');
 var details = library.getStoreByState(state);  
 generateStoreTable(details);
 $.stateName.text = state;
+//$.tableContainer.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 140;
 
 function generateStoreTable(details){
 	var data=[];
 	var TheTable = Titanium.UI.createTableView({
 		width:'100%',
+		height: PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 160,
 		separatorColor: '#ffffff',
 		//backgroundColor: '#fffff6', 
 		backgroundColor: '#FFFFFF',
+		top: 0,
 		overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
 	});
 	
@@ -21,7 +24,7 @@ function generateStoreTable(details){
 	   var row = Titanium.UI.createTableViewRow({
 	   		layout: "vertical",
 		    touchEnabled: false,
-		    selectedBackgroundColor:'transparent',
+		    backgroundSelectedColor:'transparent',
 		    //height: 300,
 		    id: details[i].id,
 		    //backgroundSelectedColor: "#FFE1E1",
@@ -236,11 +239,75 @@ function generateStoreTable(details){
 		//}
 		data.push(row);
 	}
+	// var search = Titanium.UI.createSearchBar({
+	    // barColor:'#A5A5A5', 
+	    // showCancel:false,
+	    // hintText: 'Search',
+	    // height:"10%",
+	    // width: Ti.UI.SIZE,
+	    // bottom:0,
+	// });
+	var searchView = Titanium.UI.createView({
+   		layout: 'composite',
+   		width: "100%",
+   		height: 80,
+   		bottom: 0,
+   		backgroundColor: '#A5A5A5'
+	});
 	
+	var hintTextLabel = Ti.UI.createLabel({
+	    text : 'Enter Colour, Name or Colour Code',
+	    color : '#A5A5A5',
+	    font : 
+	    {
+	        fontSize : 14
+	    },
+	    backgroundColor : 'transparent',
+	});
+	
+	var textField = Ti.UI.createTextField({
+	  borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	  color: 'black',
+	  hintText : 'Enter Search Query',
+	  backgroundColor: 'white',
+	  borderColor: '#A5A5A5',
+	  borderRadius: 5,
+	  font: hintTextLabel.font,
+	  left: 10,
+	  top: 10,
+	  width: "70%", 
+	  height: 60
+	});
+	  
+	var searchButton = Ti.UI.createButton({ backgroundColor: 'white', color: '#A5A5A5', textAlign: 'Titanium.UI.TEXT_ALIGNMENT_CENTER', title: 'SEARCH', borderColor: '#A5A5A5', borderRadius: 5, left: 5, top: 10, height: 60 });
+	
+	var searchWrapper = Titanium.UI.createView({
+		layout: 'horizontal',
+	});
+
 	TheTable.setData(data);
 	//addClickEvent(TheTable);
 	
-	$.tableContainer.add(TheTable); 
+	$.tableContainer.add(TheTable);
+	//$.tableContainer.add(search); 
+	searchWrapper.add(textField);
+	searchWrapper.add(searchButton);
+	searchView.add(searchWrapper);
+	$.tableContainer.add(searchView);
+	
+	searchButton.addEventListener('click', function(e){
+		Ti.UI.Android.hideSoftKeyboard();
+		if(textField.value.length == 0)
+		{
+			details = library.getStoreByState(state);  
+			generateStoreTable(details);
+		}
+		else
+		{
+			details = library.getStoreByName(state, textField.value); 
+			generateStoreTable(details);
+		}
+	});
 }
 
 NavigateTo = function(latitude, longitude, name, address){

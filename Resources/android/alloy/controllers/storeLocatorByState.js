@@ -12,15 +12,17 @@ function Controller() {
         var data = [];
         var TheTable = Titanium.UI.createTableView({
             width: "100%",
+            height: PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 160,
             separatorColor: "#ffffff",
             backgroundColor: "#FFFFFF",
+            top: 0,
             overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
         });
         for (var i = 0; i < details.length; i++) {
             var row = Titanium.UI.createTableViewRow({
                 layout: "vertical",
                 touchEnabled: false,
-                selectedBackgroundColor: "transparent",
+                backgroundSelectedColor: "transparent",
                 id: details[i].id,
                 backgroundColor: "#FFFFFF"
             });
@@ -142,8 +144,64 @@ function Controller() {
             row.add(infoViewContainer);
             data.push(row);
         }
+        var searchView = Titanium.UI.createView({
+            layout: "composite",
+            width: "100%",
+            height: 80,
+            bottom: 0,
+            backgroundColor: "#A5A5A5"
+        });
+        var hintTextLabel = Ti.UI.createLabel({
+            text: "Enter Colour, Name or Colour Code",
+            color: "#A5A5A5",
+            font: {
+                fontSize: 14
+            },
+            backgroundColor: "transparent"
+        });
+        var textField = Ti.UI.createTextField({
+            borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+            color: "black",
+            hintText: "Enter Search Query",
+            backgroundColor: "white",
+            borderColor: "#A5A5A5",
+            borderRadius: 5,
+            font: hintTextLabel.font,
+            left: 10,
+            top: 10,
+            width: "70%",
+            height: 60
+        });
+        var searchButton = Ti.UI.createButton({
+            backgroundColor: "white",
+            color: "#A5A5A5",
+            textAlign: "Titanium.UI.TEXT_ALIGNMENT_CENTER",
+            title: "SEARCH",
+            borderColor: "#A5A5A5",
+            borderRadius: 5,
+            left: 5,
+            top: 10,
+            height: 60
+        });
+        var searchWrapper = Titanium.UI.createView({
+            layout: "horizontal"
+        });
         TheTable.setData(data);
         $.tableContainer.add(TheTable);
+        searchWrapper.add(textField);
+        searchWrapper.add(searchButton);
+        searchView.add(searchWrapper);
+        $.tableContainer.add(searchView);
+        searchButton.addEventListener("click", function() {
+            Ti.UI.Android.hideSoftKeyboard();
+            if (0 == textField.value.length) {
+                details = library.getStoreByState(state);
+                generateStoreTable(details);
+            } else {
+                details = library.getStoreByName(state, textField.value);
+                generateStoreTable(details);
+            }
+        });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "storeLocatorByState";
@@ -166,6 +224,7 @@ function Controller() {
         id: "storeLocatorByState"
     });
     $.__views.storeLocatorByState && $.addTopLevelView($.__views.storeLocatorByState);
+<<<<<<< HEAD
     $.__views.__alloyId103 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
@@ -177,6 +236,19 @@ function Controller() {
         __parentSymbol: $.__views.__alloyId103
     });
     $.__views.__alloyId104.setParent($.__views.__alloyId103);
+=======
+    $.__views.__alloyId101 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "80",
+        id: "__alloyId101"
+    });
+    $.__views.storeLocatorByState.add($.__views.__alloyId101);
+    $.__views.__alloyId102 = Alloy.createController("toggle", {
+        id: "__alloyId102",
+        __parentSymbol: $.__views.__alloyId101
+    });
+    $.__views.__alloyId102.setParent($.__views.__alloyId101);
+>>>>>>> FETCH_HEAD
     $.__views.stateName = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -187,7 +259,11 @@ function Controller() {
         id: "stateName",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
+<<<<<<< HEAD
     $.__views.__alloyId103.add($.__views.stateName);
+=======
+    $.__views.__alloyId101.add($.__views.stateName);
+>>>>>>> FETCH_HEAD
     $.__views.tableContainer = Ti.UI.createView({
         backgroundColor: "white",
         id: "tableContainer",

@@ -43,3 +43,19 @@ function hexstr(number) {
 function rgbToHex(r, g, b) {
     return "#" + hexstr(r) + hexstr(g) + hexstr(b);
 }
+
+function printDate() {
+    var temp = new Date();
+    var dateStr = padStr(temp.getFullYear()) +
+                  padStr(1 + temp.getMonth()) +
+                  padStr(temp.getDate()) +
+                  padStr(temp.getHours()) +
+                  padStr(temp.getMinutes()) +
+                  padStr(temp.getSeconds());
+   return dateStr;
+}
+
+function padStr(i) {
+    return (i < 10) ? "0" + i : "" + i;
+}
+
