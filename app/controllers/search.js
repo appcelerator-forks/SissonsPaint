@@ -55,6 +55,8 @@ function loadSearchList(){
 			 
 			var subViewColor = $.UI.create('View', {  
 				backgroundColor: "rgb("+search.rgb +")",
+				borderColor: "#A5A5A5",
+				borderWidth: 1,
 				width: "97%", 
 				height: "80"
 			});

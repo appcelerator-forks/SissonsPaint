@@ -77,6 +77,8 @@ function loadFavouriteList(){
 			 
 			var subViewColor = $.UI.create('View', {  
 				backgroundColor: "rgb("+colour_details.rgb +")",
+				borderColor: "#A5A5A5",
+				borderWidth: 1,
 				width: "97%", 
 				height: "80"
 			});

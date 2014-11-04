@@ -24,6 +24,8 @@ function Controller() {
                 var colour_details = colour_lib.getColourById(list_colours[j].colour_id);
                 var colours = $.UI.create("View", {
                     backgroundColor: "rgb(" + colour_details.rgb + ")",
+                    borderColor: "#A5A5A5",
+                    borderWidth: 1,
                     width: "40",
                     height: "40",
                     left: "5",
@@ -55,6 +57,8 @@ function Controller() {
             console.log(details[i]);
             var colours = $.UI.create("View", {
                 backgroundColor: "rgb(" + details[i].rgb + ")",
+                borderColor: "#A5A5A5",
+                borderWidth: 1,
                 width: "40",
                 height: "40",
                 left: "5",
@@ -193,11 +197,7 @@ function Controller() {
         bottom: "10",
         id: "__alloyId46"
     });
-<<<<<<< HEAD
-    $.__views.bottomColorBar.add($.__views.__alloyId47);
-=======
     $.__views.bottomColorBar.add($.__views.__alloyId46);
->>>>>>> FETCH_HEAD
     $.__views.scrollView = Ti.UI.createScrollView({
         id: "scrollView",
         backgroundColor: "white",

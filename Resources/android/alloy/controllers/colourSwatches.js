@@ -47,6 +47,8 @@ function Controller() {
                 var colour_details = colour_lib.getColourById(colour.colour_id);
                 var subViewColor = $.UI.create("View", {
                     backgroundColor: "rgb(" + colour_details.rgb + ")",
+                    borderColor: "#A5A5A5",
+                    borderWidth: 1,
                     width: "97%",
                     height: "80"
                 });
@@ -138,11 +140,7 @@ function Controller() {
         id: "titleLabel",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
-<<<<<<< HEAD
-    $.__views.__alloyId49.add($.__views.titleLabel);
-=======
     $.__views.__alloyId48.add($.__views.titleLabel);
->>>>>>> FETCH_HEAD
     $.__views.TheScrollView = Ti.UI.createScrollView({
         id: "TheScrollView",
         backgroundColor: "white",
@@ -152,11 +150,7 @@ function Controller() {
         top: "0",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
-<<<<<<< HEAD
-    $.__views.__alloyId48.add($.__views.TheScrollView);
-=======
     $.__views.__alloyId47.add($.__views.TheScrollView);
->>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

@@ -164,6 +164,8 @@ function generateRecommended(){
 			
 			var colours =  $.UI.create('View', {  
 				backgroundColor: "rgb("+colour_details.rgb +")",
+				borderColor: "#A5A5A5",
+				borderWidth: 1,
 				width: "40", 
 				height: "40",
 				left: "5",
@@ -204,6 +206,8 @@ function generateColour(){
 		console.log(details[i]);
 		var colours =  $.UI.create('View', {  
 				backgroundColor: "rgb("+details[i].rgb +")",
+				borderColor: "#A5A5A5",
+				borderWidth: 1,
 				width: "40", 
 				height: "40",
 				left: "5",

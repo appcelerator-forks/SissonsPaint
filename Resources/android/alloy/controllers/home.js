@@ -28,38 +28,23 @@ function Controller() {
         id: "home"
     });
     $.__views.home && $.addTopLevelView($.__views.home);
-<<<<<<< HEAD
-=======
-    $.__views.__alloyId56 = Ti.UI.createView({
+    $.__views.__alloyId61 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId56"
+        id: "__alloyId61"
     });
-    $.__views.home.add($.__views.__alloyId56);
->>>>>>> FETCH_HEAD
-    $.__views.__alloyId57 = Ti.UI.createView({
+    $.__views.home.add($.__views.__alloyId61);
+    $.__views.__alloyId62 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-<<<<<<< HEAD
-        id: "__alloyId58"
+        id: "__alloyId62"
     });
-    $.__views.__alloyId57.add($.__views.__alloyId58);
-    $.__views.__alloyId59 = Alloy.createController("toggle", {
-        id: "__alloyId59",
-        __parentSymbol: $.__views.__alloyId58
+    $.__views.__alloyId61.add($.__views.__alloyId62);
+    $.__views.__alloyId63 = Alloy.createController("toggle", {
+        id: "__alloyId63",
+        __parentSymbol: $.__views.__alloyId62
     });
-    $.__views.__alloyId59.setParent($.__views.__alloyId58);
-    $.__views.__alloyId60 = Ti.UI.createLabel({
-=======
-        id: "__alloyId57"
-    });
-    $.__views.__alloyId56.add($.__views.__alloyId57);
-    $.__views.__alloyId58 = Alloy.createController("toggle", {
-        id: "__alloyId58",
-        __parentSymbol: $.__views.__alloyId57
-    });
-    $.__views.__alloyId58.setParent($.__views.__alloyId57);
-    $.__views.__alloyId59 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId63.setParent($.__views.__alloyId62);
+    $.__views.__alloyId64 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -68,15 +53,9 @@ function Controller() {
         },
         text: "Home",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-<<<<<<< HEAD
-        id: "__alloyId60"
+        id: "__alloyId64"
     });
-    $.__views.__alloyId58.add($.__views.__alloyId60);
-=======
-        id: "__alloyId59"
-    });
-    $.__views.__alloyId57.add($.__views.__alloyId59);
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId62.add($.__views.__alloyId64);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
