@@ -124,22 +124,12 @@ function generateTable(){
 				image : details[i]['image']
 			});
 			
-<<<<<<< HEAD
-		  	var colour_details = colour_lib.getColourById(colour.colour_id);
-			var subViewColor = $.UI.create('View', {  
-				backgroundColor: "rgb("+colour_details.rgb +")",
-				borderColor: "#A5A5A5",
-				borderWidth: 1,
-				width: "97%", 
-				height: "80"
-=======
 			var description = $.UI.create('Label', {
 				width : "95%",
 				text: details[i].description , 
 				width : "95%",
 				classes: ['aboutContent'],
 				bottom: 30
->>>>>>> FETCH_HEAD
 			});
 			 
 			
@@ -167,6 +157,8 @@ function generateTable(){
 			  	var colour_details = colour_lib.getColourById(colour.colour_id);
 				var subViewColor = $.UI.create('View', {  
 					backgroundColor: "rgb("+colour_details.rgb +")",
+					borderColor: "#A5A5A5",
+					borderWidth: 1,
 					width: "97%", 
 					height: "80"
 				});
@@ -214,7 +206,7 @@ function generateTable(){
 
 function createColorEvent(subView, colour_details, details){
 	subView.addEventListener( "click", function(){
-		Ti.App.Properties.setString('from', 'colourSwatches');
+		//Ti.App.Properties.setString('from', 'colourSwatches');
 		var nav = Alloy.createController("colourDetails",{colour_details:colour_details, details:details}).getView(); 
 		//Alloy.Globals.Drawer.setCenterWindow(nav);
 		nav.open();

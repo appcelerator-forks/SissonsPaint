@@ -78,7 +78,7 @@ exports.definition = {
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var arr = []; 
-               
+              
                 if (res.isValidRow()){
                 	if(cateType == res.fieldByName('type')){
                 		arr = {
@@ -90,6 +90,8 @@ exports.definition = {
 						};
                 	}
 				} 
+				
+				console.log(arr);
 				res.close();
                 db.close();
                 collection.trigger('sync');

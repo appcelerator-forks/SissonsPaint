@@ -4,7 +4,7 @@ var colour   = args.colour_details;
 var library = Alloy.createCollection('favourite');  
 var isFav   = library.checkFavouriteByColourId(colour.id);
  
-Ti.App.Properties.setString('module', 'colourDetails');
+//Ti.App.Properties.setString('module', 'colourDetails');
 
 $.colourDetails.backgroundColor = "rgb("+colour.rgb +")";
 $.boxDetails.backgroundColor = "rgb("+colour.rgb +")";

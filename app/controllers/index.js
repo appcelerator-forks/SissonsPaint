@@ -16,12 +16,12 @@ var flag =0;
 $.activityIndicator.show();
 $.loadingBar.opacity = "1";
 $.loadingBar.height = "120";
-$.loadingBar.top = "100";
+$.loadingBar.top = ((PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight)/2)-($.loadingBar.getHeight()/2));
 	
 // Load API function
 
 setTimeout(function(){
-	
+	Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_NONE);
 	var clickTime = Ti.App.Properties.getString('clickTime');
   	var currentTime = printDate();
 	if (currentTime - clickTime > 1800) {
@@ -51,6 +51,7 @@ function checkLoadStatus(){
 		$.loadingBar.opacity = "0";
 		var nav = Alloy.createController("colourSwatches").getView(); 
 		Alloy.Globals.Drawer.setCenterWindow(nav);  
+		Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
 		
 	}else{
 		setTimeout(function(){
