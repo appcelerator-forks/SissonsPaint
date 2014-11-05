@@ -19,7 +19,12 @@ function Controller() {
                 0 == e.index ? Titanium.Media.showCamera({
                     success: function(event) {
                         var image = event.media;
-                        event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO && Ti.App.Properties.setString("colour_picker_image", image.nativePath);
+                        if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
+                            Ti.App.Properties.setString("colour_picker_image", image.nativePath);
+                            Ti.App.fireEvent("web:loadImage", {
+                                image: image.nativePath
+                            });
+                        }
                     },
                     cancel: function() {},
                     error: function(error) {

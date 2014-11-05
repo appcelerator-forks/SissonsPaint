@@ -42,11 +42,14 @@ function toolbarEvents(e){
 		                var image = event.media; 
 		                 
 		                //checking if it is photo
-		                if(event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
+		                if(event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO)
+		                {
 		                    //we may create image view with contents from image variable
 		                    //or simply save path to image
 		                    Ti.App.Properties.setString("colour_picker_image", image.nativePath);
+		                    Ti.App.fireEvent('web:loadImage', { image: image.nativePath });
 		                }
+		                 
 		            },
 		            cancel:function() {
 		                //do somehting if user cancels operation
