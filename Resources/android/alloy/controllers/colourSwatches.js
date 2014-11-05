@@ -9,7 +9,9 @@ function __processArg(obj, key) {
 
 function Controller() {
     function generateTable() {
-        for (var i = 0; i < details.length; i++) if ("" != details[i]) {
+        var totalDetails = details.length;
+        console.log("details length: " + totalDetails);
+        for (var i = 0; totalDetails > i; i++) if ("" != details[i]) {
             var colours = category_colour_lib.getCategoryColourByCategory(details[i]["id"]);
             var categoryHeader = Titanium.UI.createImageView({
                 width: "95%",
@@ -46,11 +48,8 @@ function Controller() {
                 var colour_details = colour_lib.getColourById(colour.colour_id);
                 var subViewColor = $.UI.create("View", {
                     backgroundColor: "rgb(" + colour_details.rgb + ")",
-<<<<<<< HEAD
                     borderColor: "#A5A5A5",
                     borderWidth: 1,
-=======
->>>>>>> FETCH_HEAD
                     width: "97%",
                     height: "80"
                 });
@@ -77,16 +76,14 @@ function Controller() {
                 touchEnabled: false,
                 image: "/images/scroll_up.png"
             });
-            details.length != i + 1 && $.TheScrollView.add(separator);
-        }
+            console.log("separator : " + i);
+            console.log("totalDetails : " + totalDetails);
+            totalDetails != i + 1 && $.TheScrollView.add(separator);
+        } else totalDetails--;
         $.mainViewContainer.add(bottomBar);
     }
     function createColorEvent(subView, colour_details, details) {
         subView.addEventListener("click", function() {
-<<<<<<< HEAD
-=======
-            Ti.App.Properties.setString("from", "colourSwatches");
->>>>>>> FETCH_HEAD
             var nav = Alloy.createController("colourDetails", {
                 colour_details: colour_details,
                 details: details
@@ -158,7 +155,7 @@ function Controller() {
     var library = Alloy.createCollection("category");
     var category_colour_lib = Alloy.createCollection("category_colour");
     var colour_lib = Alloy.createCollection("colour");
-    var details = library.getCategoryListByType(2);
+    var details = library.getCategoryListByType("2");
     Ti.Platform.displayCaps.platformHeight;
     var category_type_lib = Alloy.createCollection("category_type");
     var category_tag = category_type_lib.selectTypeByDistinct();
@@ -253,7 +250,7 @@ function Controller() {
             details = [];
             result.forEach(function(tags) {
                 data = library.getCategoryById(tags.cate_id, "2");
-                details.push(data);
+                "" != data && details.push(data);
             });
             console.log(details);
             generateTable();

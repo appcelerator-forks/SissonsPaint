@@ -22,7 +22,7 @@ $.colorSelection.hide();
 //console.log($.mainView.getHeight());
 //$.bottomColorBar.setBottom(0);
 
-function toolbarEvents(e){
+/*function toolbarEvents(e){
  
 	if(e.source.id == "takePhoto"){
 		//Create a dialog with options
@@ -115,6 +115,100 @@ function toolbarEvents(e){
 	}
 	
 	 
+}*/
+
+takePhoto();
+
+function takePhoto()
+{
+	var dialog = Titanium.UI.createOptionDialog({ 
+	    title: 'Choose an image source...', 
+	    options: ['Camera','Photo Gallery', 'Cancel'], 
+	    cancel:2
+	});
+
+	//add event listener
+	dialog.addEventListener('click', function(e) { 
+	    if(e.index == 0){ 
+	        Titanium.Media.showCamera({
+	            //we got something
+	            success:function(event) {
+	                //getting media
+	                var image = event.media; 
+	                 
+	                //checking if it is photo
+	                if(event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
+	                    //we may create image view with contents from image variable
+	                    //or simply save path to image
+	                    Ti.App.Properties.setString("colour_picker_image", image.nativePath);
+	                }
+	            },
+	            cancel:function() {
+	                //do somehting if user cancels operation
+	            },
+	            error:function(error) {
+	                //error happend, create alert
+	                var a = Titanium.UI.createAlertDialog({title:'Camera'});
+	                //set message
+	                if (error.code == Titanium.Media.NO_CAMERA) {
+	                    a.setMessage('Device does not have camera');
+	                }
+	                else {
+	                    a.setMessage('Unexpected error: ' + error.code);
+	                }
+	 
+	                // show alert
+	                a.show();
+	            },
+	            allowImageEditing:true,
+	            saveToPhotoGallery:true
+	        });
+	    }
+	    else if(e.index == 1)
+	    {
+	        //obtain an image from the gallery
+	        Titanium.Media.openPhotoGallery({
+	            success:function(event)
+	            {
+	                //getting media
+	                var image = event.media; 
+	                // set image view
+	                 
+	                //checking if it is photo
+	                if(event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
+	                    //we may create image view with contents from image variable
+	                    //or simply save path to image
+	               
+	                    Ti.App.Properties.setString("colour_picker_image", image.nativePath);
+	                   
+	                    Ti.App.fireEvent('web:loadImage', { image: image.nativePath });
+	                }   
+	            },
+	            cancel:function()
+	            {
+	                //user cancelled the action fron within
+	                //the photo gallery
+	            }
+	        });
+	    }
+	    else
+	    {
+	        //cancel was tapped
+	        //user opted not to choose a photo
+	    }
+	});
+	 
+	//show dialog
+	dialog.show();
+}
+
+function toggleActivation()
+{
+	if ($.colorSelection.visible) {
+	       $.colorSelection.hide();
+	    } else {
+	       $.colorSelection.show();
+	    }
 }
 
  
@@ -134,7 +228,7 @@ var getColor = function(e){
 	$.activityIndicator.show();
 	$.loadingBar.opacity = "1";
 	$.loadingBar.height = "120";
-	$.loadingBar.top = "50";
+	$.loadingBar.top = ((PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight)/2)-($.loadingBar.getHeight()/2));
 	
 	//$.colourPicker.backgroundColor = "rgba("+e.r +","+e.g+","+e.b+","+e.a+")";
 	
@@ -181,7 +275,7 @@ function generateRecommended(){
 			});
 			
 			var cat_colour = category_colour_lib.getCateByColourId(colour_details.id);
-			var cat_details = library.getCategoryById(cat_colour.cate_id);
+			var cat_details = library.getCategoryById(cat_colour.cate_id, "2");
 			
 			createColorEvent(colours, colour_details, cat_details);
 			//console.log("listColour: "+colour_details.rgb);
@@ -196,17 +290,10 @@ function generateColour(){
 	 
 	removeAllChildren($.scrollView);
 	//var viewWidth = (Math.ceil((details.length+1) / 2) * 50) + 10;
-	var topRow = Titanium.UI.createView({
+	var closestRow = Titanium.UI.createView({
 	   layout: 'horizontal',
-	   bottom: 10,
 	   height: 40,
 	   //width: viewWidth
-	   width: "100%"
-	});
-	
-	var bottomRow = Titanium.UI.createView({
-	   layout: 'horizontal',
-	   height: 40, 
 	   width: "100%"
 	});
 	
@@ -221,14 +308,11 @@ function generateColour(){
 				left: "5",
 				right: "5"
 			});
-		if(i%2 == 1) {
-			topRow.add(colours);
-		} else {
-			bottomRow.add(colours);
-		}
+			
+		closestRow.add(colours);
 		
 		var cat_colour = category_colour_lib.getCateByColourId(details[i].id);
-		var cat_details = library.getCategoryById(cat_colour.cate_id);
+		var cat_details = library.getCategoryById(cat_colour.cate_id, "2");
 			
 			
 		createColorEvent(colours, details[i], cat_details);
@@ -236,8 +320,7 @@ function generateColour(){
 	$.loadingBar.opacity = "0";
 	$.loadingBar.height = "0";
 	$.loadingBar.top = "0";
-	$.scrollView.add(topRow);
-	$.scrollView.add(bottomRow);
+	$.scrollView.add(closestRow);
 	$.colorSelection.show();
 }
 

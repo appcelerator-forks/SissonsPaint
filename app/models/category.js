@@ -56,16 +56,21 @@ exports.definition = {
                 var listArr = []; 
                 var count = 0;
                 while (res.isValidRow()){
-					listArr[count] = {
-					    id: res.fieldByName('id'),
-					    name: res.fieldByName('name'),
-					    type: res.fieldByName('type'),
-					    image: res.fieldByName('image'),
-					    description: res.fieldByName('description')
-					};
+                	console.log(res.fieldByName('id')); 
+                	if(res.fieldByName('id') != ""){
+                		listArr[count] = {
+						    id: res.fieldByName('id'),
+						    name: res.fieldByName('name'),
+						    type: res.fieldByName('type'),
+						    image: res.fieldByName('image'),
+						    description: res.fieldByName('description')
+						};
+                	}
+					
 					res.next();
 					count++;
-				} 
+				}
+				
 				res.close();
                 db.close();
                 collection.trigger('sync');
@@ -73,14 +78,14 @@ exports.definition = {
 			},
 			getCategoryById : function(id,cateType){
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "'" ;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "' AND `type` = '"+cateType+"' " ;
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var arr = []; 
               
                 if (res.isValidRow()){
-                	if(cateType == res.fieldByName('type')){
+                	//if(cateType == res.fieldByName('type')){
                 		arr = {
 						    id: res.fieldByName('id'),
 						    name: res.fieldByName('name'),
@@ -88,7 +93,7 @@ exports.definition = {
 						    image: res.fieldByName('image'),
 						    description: res.fieldByName('description') 
 						};
-                	}
+                	//}
 				} 
 				
 				console.log(arr);
