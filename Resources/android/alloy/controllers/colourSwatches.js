@@ -9,7 +9,9 @@ function __processArg(obj, key) {
 
 function Controller() {
     function generateTable() {
-        for (var i = 0; i < details.length; i++) if ("" != details[i]) {
+        var totalDetails = details.length;
+        console.log("details length: " + totalDetails);
+        for (var i = 0; totalDetails > i; i++) if ("" != details[i]) {
             var colours = category_colour_lib.getCategoryColourByCategory(details[i]["id"]);
             var categoryHeader = Titanium.UI.createImageView({
                 width: "95%",
@@ -74,8 +76,10 @@ function Controller() {
                 touchEnabled: false,
                 image: "/images/scroll_up.png"
             });
-            details.length != i + 1 && $.TheScrollView.add(separator);
-        }
+            console.log("separator : " + i);
+            console.log("totalDetails : " + totalDetails);
+            totalDetails != i + 1 && $.TheScrollView.add(separator);
+        } else totalDetails--;
         $.mainViewContainer.add(bottomBar);
     }
     function createColorEvent(subView, colour_details, details) {
@@ -151,7 +155,7 @@ function Controller() {
     var library = Alloy.createCollection("category");
     var category_colour_lib = Alloy.createCollection("category_colour");
     var colour_lib = Alloy.createCollection("colour");
-    var details = library.getCategoryListByType(2);
+    var details = library.getCategoryListByType("2");
     Ti.Platform.displayCaps.platformHeight;
     var category_type_lib = Alloy.createCollection("category_type");
     var category_tag = category_type_lib.selectTypeByDistinct();
@@ -246,7 +250,7 @@ function Controller() {
             details = [];
             result.forEach(function(tags) {
                 data = library.getCategoryById(tags.cate_id, "2");
-                details.push(data);
+                "" != data && details.push(data);
             });
             console.log(details);
             generateTable();

@@ -6,12 +6,12 @@
 			<Label class="title" color="black" height="80" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Colour Picker</Label>
 		</View>
 		
-		<WebView id='canvas' url="/html/colour_picker.html" top="80" height="80%" enableZoomControls="false" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" />
+		<WebView id='canvas' url="/html/colour_picker.html" top="80" height="80%" enableZoomControls="false" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" disableBounce="true" />
 		<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" top="0" opacity="1" backgroundColor="#2E2E2E" >
 			<ActivityIndicator  id="activityIndicator" />
 			<Label   text="Loading" color="#ffffff" />
 		</View>
-		<View layout="vertical" height="40%" bottom="60" id="colorSelection">
+		<View layout="vertical" height="35%" bottom="60" id="colorSelection">
 			<ImageView image="/images/scroll_up.png" backgroundColor="transparent" width="Titanium.UI.FILL" top="0" />
 			<View id="bottomColorBar" layout="vertical" backgroundColor="white">
 				
@@ -19,16 +19,16 @@
 				<ScrollView id="recommendView" backgroundColor="white" layout="horizontal" scrollType="horizontal" height="50" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
 					<!--<Button id="savePicture" onClick="savePicture">Save</Button>-->
 				</ScrollView>
-				<ImageView image="/images/scroll_up.png" backgroundColor="white" width="Titanium.UI.FILL" bottom="10" />
+				<ImageView image="/images/scroll_up.png" backgroundColor="white" width="Titanium.UI.FILL" />
 				<Label class="smallTitle" color="black" width="90%" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" bottom="10" backgroundColor="white">CLOSEST COLOUR</Label>
-				<ScrollView id="scrollView" backgroundColor="white" layout="vertical" scrollType="horizontal" height="100" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER"></ScrollView>
+				<ScrollView id="scrollView" backgroundColor="white" layout="vertical" scrollType="horizontal" height="50" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER"></ScrollView>
 			</View>
 		</View> 
-		 
-		<View layout="horizontal" height="60" bottom="0" backgroundImage="/images/tool_bar.jpg" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">
-		 
-			<ImageView image="/images/icon_photo.png" left="5" onClick="toolbarEvents" id="takePhoto"   width="50" />
-			<ImageView image="/images/btn_eyedrop.png" onClick="toolbarEvents" id="toggleActivation"  width="50" />
+		<View id="bottomBar" bottom="0" height="60" width="Ti.UI.FILL" backgroundImage="/images/tool_bar.jpg">
+			<View layout="horizontal" width="120">
+				<ImageView image="/images/icon_photo.png" right="10" onClick="takePhoto" id="takePhoto"   width="50" height="40" top="10" bottom="10" />
+				<ImageView image="/images/btn_eyedrop.png" left="10" onClick="toggleActivation" id="toggleActivation"  width="50" height="40" top="10" bottom="10" />
+			</View>
 		</View>
 	</View> 
 	

@@ -8,6 +8,7 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+<<<<<<< HEAD
     function toolbarEvents(e) {
         if ("takePhoto" == e.source.id) {
             var dialog = Titanium.UI.createOptionDialog({
@@ -30,27 +31,47 @@ function Controller() {
                     error: function(error) {
                         var a = Titanium.UI.createAlertDialog({
                             title: "Camera"
+=======
+    function takePhoto() {
+        var dialog = Titanium.UI.createOptionDialog({
+            title: "Choose an image source...",
+            options: [ "Camera", "Photo Gallery", "Cancel" ],
+            cancel: 2
+        });
+        dialog.addEventListener("click", function(e) {
+            0 == e.index ? Titanium.Media.showCamera({
+                success: function(event) {
+                    var image = event.media;
+                    event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO && Ti.App.Properties.setString("colour_picker_image", image.nativePath);
+                },
+                cancel: function() {},
+                error: function(error) {
+                    var a = Titanium.UI.createAlertDialog({
+                        title: "Camera"
+                    });
+                    a.setMessage(error.code == Titanium.Media.NO_CAMERA ? "Device does not have camera" : "Unexpected error: " + error.code);
+                    a.show();
+                },
+                allowImageEditing: true,
+                saveToPhotoGallery: true
+            }) : 1 == e.index && Titanium.Media.openPhotoGallery({
+                success: function(event) {
+                    var image = event.media;
+                    if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
+                        Ti.App.Properties.setString("colour_picker_image", image.nativePath);
+                        Ti.App.fireEvent("web:loadImage", {
+                            image: image.nativePath
+>>>>>>> FETCH_HEAD
                         });
-                        a.setMessage(error.code == Titanium.Media.NO_CAMERA ? "Device does not have camera" : "Unexpected error: " + error.code);
-                        a.show();
-                    },
-                    allowImageEditing: true,
-                    saveToPhotoGallery: true
-                }) : 1 == e.index && Titanium.Media.openPhotoGallery({
-                    success: function(event) {
-                        var image = event.media;
-                        if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
-                            Ti.App.Properties.setString("colour_picker_image", image.nativePath);
-                            Ti.App.fireEvent("web:loadImage", {
-                                image: image.nativePath
-                            });
-                        }
-                    },
-                    cancel: function() {}
-                });
+                    }
+                },
+                cancel: function() {}
             });
-            dialog.show();
-        } else $.colorSelection.visible ? $.colorSelection.hide() : $.colorSelection.show();
+        });
+        dialog.show();
+    }
+    function toggleActivation() {
+        $.colorSelection.visible ? $.colorSelection.hide() : $.colorSelection.show();
     }
     function generateRecommended() {
         console.log(recommended.length);
@@ -75,7 +96,7 @@ function Controller() {
                     right: "5"
                 });
                 var cat_colour = category_colour_lib.getCateByColourId(colour_details.id);
-                var cat_details = library.getCategoryById(cat_colour.cate_id);
+                var cat_details = library.getCategoryById(cat_colour.cate_id, "2");
                 createColorEvent(colours, colour_details, cat_details);
                 recommendedRow.add(colours);
             }
@@ -84,13 +105,7 @@ function Controller() {
     }
     function generateColour() {
         removeAllChildren($.scrollView);
-        var topRow = Titanium.UI.createView({
-            layout: "horizontal",
-            bottom: 10,
-            height: 40,
-            width: "100%"
-        });
-        var bottomRow = Titanium.UI.createView({
+        var closestRow = Titanium.UI.createView({
             layout: "horizontal",
             height: 40,
             width: "100%"
@@ -106,16 +121,15 @@ function Controller() {
                 left: "5",
                 right: "5"
             });
-            i % 2 == 1 ? topRow.add(colours) : bottomRow.add(colours);
+            closestRow.add(colours);
             var cat_colour = category_colour_lib.getCateByColourId(details[i].id);
-            var cat_details = library.getCategoryById(cat_colour.cate_id);
+            var cat_details = library.getCategoryById(cat_colour.cate_id, "2");
             createColorEvent(colours, details[i], cat_details);
         }
         $.loadingBar.opacity = "0";
         $.loadingBar.height = "0";
         $.loadingBar.top = "0";
-        $.scrollView.add(topRow);
-        $.scrollView.add(bottomRow);
+        $.scrollView.add(closestRow);
         $.colorSelection.show();
     }
     function shareFacebook() {
@@ -190,7 +204,8 @@ function Controller() {
         top: "80",
         height: "80%",
         enableZoomControls: "false",
-        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
+        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
+        disableBounce: "true"
     });
     $.__views.colourPicker.add($.__views.canvas);
     $.__views.loadingBar = Ti.UI.createView({
@@ -222,7 +237,7 @@ function Controller() {
     $.__views.loadingBar.add($.__views.__alloyId42);
     $.__views.colorSelection = Ti.UI.createView({
         layout: "vertical",
-        height: "40%",
+        height: "35%",
         bottom: "60",
         id: "colorSelection"
     });
@@ -265,7 +280,6 @@ function Controller() {
         image: "/images/scroll_up.png",
         backgroundColor: "white",
         width: Titanium.UI.FILL,
-        bottom: "10",
         id: "__alloyId45"
     });
     $.__views.bottomColorBar.add($.__views.__alloyId45);
@@ -285,34 +299,46 @@ function Controller() {
         backgroundColor: "white",
         layout: "vertical",
         scrollType: "horizontal",
-        height: "100",
+        height: "50",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.bottomColorBar.add($.__views.scrollView);
+    $.__views.bottomBar = Ti.UI.createView({
+        id: "bottomBar",
+        bottom: "0",
+        height: "60",
+        width: Ti.UI.FILL,
+        backgroundImage: "/images/tool_bar.jpg"
+    });
+    $.__views.colourPicker.add($.__views.bottomBar);
     $.__views.__alloyId47 = Ti.UI.createView({
         layout: "horizontal",
-        height: "60",
-        bottom: "0",
-        backgroundImage: "/images/tool_bar.jpg",
-        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+        width: "120",
         id: "__alloyId47"
     });
-    $.__views.colourPicker.add($.__views.__alloyId47);
+    $.__views.bottomBar.add($.__views.__alloyId47);
     $.__views.takePhoto = Ti.UI.createImageView({
         image: "/images/icon_photo.png",
-        left: "5",
+        right: "10",
         id: "takePhoto",
-        width: "50"
+        width: "50",
+        height: "40",
+        top: "10",
+        bottom: "10"
     });
     $.__views.__alloyId47.add($.__views.takePhoto);
-    toolbarEvents ? $.__views.takePhoto.addEventListener("click", toolbarEvents) : __defers["$.__views.takePhoto!click!toolbarEvents"] = true;
+    takePhoto ? $.__views.takePhoto.addEventListener("click", takePhoto) : __defers["$.__views.takePhoto!click!takePhoto"] = true;
     $.__views.toggleActivation = Ti.UI.createImageView({
         image: "/images/btn_eyedrop.png",
+        left: "10",
         id: "toggleActivation",
-        width: "50"
+        width: "50",
+        height: "40",
+        top: "10",
+        bottom: "10"
     });
     $.__views.__alloyId47.add($.__views.toggleActivation);
-    toolbarEvents ? $.__views.toggleActivation.addEventListener("click", toolbarEvents) : __defers["$.__views.toggleActivation!click!toolbarEvents"] = true;
+    toggleActivation ? $.__views.toggleActivation.addEventListener("click", toggleActivation) : __defers["$.__views.toggleActivation!click!toggleActivation"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -329,6 +355,7 @@ function Controller() {
     var library = Alloy.createCollection("category");
     var recommended = library.getCategoryListByType(1);
     $.colorSelection.hide();
+    takePhoto();
     $.canvas.addEventListener("load", function() {
         $.colorSelection.hide();
         Ti.App.fireEvent("web:initCanvasSize", {
@@ -342,7 +369,7 @@ function Controller() {
         $.activityIndicator.show();
         $.loadingBar.opacity = "1";
         $.loadingBar.height = "120";
-        $.loadingBar.top = "50";
+        $.loadingBar.top = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) / 2 - $.loadingBar.getHeight() / 2;
         $.colorSelection.hide();
         details = colour_lib.getClosestColourList(e.r, e.g, e.b);
         generateColour();
@@ -368,8 +395,8 @@ function Controller() {
     });
     btnShareChooser.addEventListener("click", app.sharer.chooser.bind(null, MESSAGE));
     $.recommendView.add(btnShareChooser);
-    __defers["$.__views.takePhoto!click!toolbarEvents"] && $.__views.takePhoto.addEventListener("click", toolbarEvents);
-    __defers["$.__views.toggleActivation!click!toolbarEvents"] && $.__views.toggleActivation.addEventListener("click", toolbarEvents);
+    __defers["$.__views.takePhoto!click!takePhoto"] && $.__views.takePhoto.addEventListener("click", takePhoto);
+    __defers["$.__views.toggleActivation!click!toggleActivation"] && $.__views.toggleActivation.addEventListener("click", toggleActivation);
     _.extend($, exports);
 }
 

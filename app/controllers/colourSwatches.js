@@ -8,7 +8,7 @@ var colour_lib = Alloy.createCollection('colour');
  - Using function getCategoryListByType
  */ 
 // var details = library.getCategoryList();
-var details = library.getCategoryListByType(2);
+var details = library.getCategoryListByType("2");
 var pHeight = Ti.Platform.displayCaps.platformHeight;
 var category_type_lib =  Alloy.createCollection('category_type');
 var category_tag = category_type_lib.selectTypeByDistinct();
@@ -112,8 +112,10 @@ $.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight)
 
 function generateTable(){
 	var data=[];
-	 
-	for (var i=0; i< details.length; i++) { 
+	var totalDetails = details.length;
+	console.log("details length: "+totalDetails);
+	
+	for (var i=0; i< totalDetails; i++) { 
 		if(details[i] != ""){
 			var colours = category_colour_lib.getCategoryColourByCategory(details[i]['id']);
 			var categoryHeader = Titanium.UI.createImageView({ 
@@ -193,10 +195,13 @@ function generateTable(){
 				touchEnabled : false,
 				image : "/images/scroll_up.png"
 			});
-			
-		 	if(details.length != (i+1)){
+			console.log("separator : "+i);
+			console.log("totalDetails : "+totalDetails);
+		 	if(totalDetails != (i+1)){
 				$.TheScrollView.add(separator);
 			} 
+		}else{
+			totalDetails--;
 		}
 		
 	}
@@ -228,7 +233,10 @@ var tableListener = function(e){
 		details =[];
 		result.forEach(function(tags) {
 			data = library.getCategoryById(tags.cate_id,"2");
-			details.push(data);
+			if(data != ""){
+				details.push(data);
+			}
+			
 		});
 		
 		console.log(details);
