@@ -16,17 +16,18 @@ var flag =0;
 $.activityIndicator.show();
 $.loadingBar.opacity = "1";
 $.loadingBar.height = "120";
-$.loadingBar.top = "100";
+$.loadingBar.top = ((PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight)/2)-($.loadingBar.getHeight()/2));
 	
 // Load API function
 
 setTimeout(function(){
-	
+ 
 	API.loadStoreLocator();
-		API.loadBrochure();
-		API.loadColour();
-		API.loadCategory();
-	
+ 	API.loadBrochure();
+	API.loadColour();
+	API.loadCategory();
+	Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_NONE);
+	 
 	checkLoadStatus();
 }, 500);
 
@@ -41,6 +42,7 @@ function checkLoadStatus(){
 		$.loadingBar.opacity = "0";
 		var nav = Alloy.createController("colourSwatches").getView(); 
 		Alloy.Globals.Drawer.setCenterWindow(nav);  
+		Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
 		
 	}else{
 		setTimeout(function(){

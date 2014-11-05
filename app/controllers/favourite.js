@@ -65,7 +65,7 @@ function loadFavouriteList(){
 		favourite_list.forEach(function(fav) { 
 			var colour_details = colour_lib.getColourById(fav.colour_id);
 			var colour_cate = category_colour_lib.getCateByColourId(fav.colour_id);
-			var details = cate_lib.getCategoryById(colour_cate.cate_id);
+			var details = cate_lib.getCategoryById(colour_cate.cate_id, "2");
 			 
 			var subView = $.UI.create('View', { 
 				textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,

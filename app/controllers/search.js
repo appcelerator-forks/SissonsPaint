@@ -37,14 +37,13 @@ function loadSearchList(){
 			
 		search_list.forEach(function(search) { 
 			console.log("search: "+search.id);
-			console.log("category_color_lib: " +category_colour_lib);
 			var colour_details = colour_lib.getColourById(search.id);
-			console.log("colour_details: " +colour_details);
+			console.log(colour_details);
 			var colour_cate = category_colour_lib.getCateByColourId(search.id);
-			console.log("colour_cate: " +colour_cate);
-			var details = cate_lib.getCategoryById(colour_cate.cate_id);
-			console.log("details: " +details);
-			
+			console.log(colour_cate);
+			var details = cate_lib.getCategoryById(colour_cate.cate_id, "2");
+			console.log(details);
+			console.log("=====================");
 			var subView = $.UI.create('View', { 
 				textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
 				layout: 'vertical',
@@ -89,9 +88,10 @@ function loadSearchList(){
 
 function createColorEvent(subView, colour_details, details){
 	subView.addEventListener( "click", function(){
-		Ti.App.Properties.setString('from', 'search');
+		//Ti.App.Properties.setString('from', 'search');
 		var nav = Alloy.createController("colourDetails",{colour_details:colour_details, details:details}).getView(); 
-		Alloy.Globals.Drawer.setCenterWindow(nav);
+		//Alloy.Globals.Drawer.setCenterWindow(nav);
+		nav.open();
 	});
 
 }

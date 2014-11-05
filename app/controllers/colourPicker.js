@@ -16,9 +16,9 @@ var details = "";//colour_lib.getColourList(); //original
 
 var library = Alloy.createCollection('category'); 
 var recommended = library.getCategoryListByType(1);
+
 $.colorSelection.hide();
-//$.colourPicker.height = pHeight - 60;
-//moo $.mainView.setHeight(viewHeight);
+
 //console.log($.mainView.getHeight());
 //$.bottomColorBar.setBottom(0);
 

@@ -27,6 +27,7 @@
 	    	<div id="canvasDiv"></div>
 	    </div>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="html2canvas.js"></script>
 	<script>
 		
 		var screenwidth = window.innerWidth;
@@ -45,6 +46,7 @@
 		var setBackgroundSize = function(e){
 			$('#parent').css('background-size', '"' + e.width + ' ' + e.height + '"');
 			$('#parent').css('background-repeat', 'no-repeat');
+			//		$('#parent').css('top', e.top + 'px');
 		};
 		
 		var changeTools = function(e){
@@ -58,14 +60,38 @@
 		};
 
 		var setStroke = function(e){
-			console.log(e.value);
 			paintBucketApp.setStroke(e.value);
 		};
+		
+		var setSensetive = function(e){
+			console.log("set sensetive function"+e.value);
+			paintBucketApp.setSensetive(e.value);
+		};
+		
+		var setColour = function(e){
+			paintBucketApp.setColour(e);
+			console.log('fireevent set color');
+		};
+		
+		var saveAndShare = function(e){
+			html2canvas(document.body, {
+					onrendered: function(canvas2) {
+						$("body").html(canvas2);
+						var dataURL = canvas2.toDataURL();
+						console.log(dataURL);
+						Ti.App.fireEvent('app:saveToGallery', {blob: dataURL});
+					}
+				});
+		};
+		
 		
 		Ti.App.addEventListener("web:changeTools", changeTools);
 		Ti.App.addEventListener("web:initCanvasSize", initCanvasSize);
 		Ti.App.addEventListener("web:loadImage", loadImage);
 		Ti.App.addEventListener("web:setStroke", setStroke);
+		Ti.App.addEventListener("web:setSensetive", setSensetive);
+		Ti.App.addEventListener("web:setColour", setColour);
+		Ti.App.addEventListener("web:saveAndShare", saveAndShare);
 	</script>
     <style>
     	* {
@@ -86,10 +112,10 @@ var paintBucketApp = (function () {
 		canvasWidth = 350,
 		canvasHeight = 220,
 		colorPurple = {
-			r: 203,
-			g: 53,
-			b: 148,
-			hex: "#CB3594"
+			r: 255,
+			g: 255,
+			b: 255,
+			hex: "#FFFFFF"
 		},
 		colorGreen = {
 			r: 101,
@@ -115,10 +141,7 @@ var paintBucketApp = (function () {
 		outlineImage = new Image(),
 		swatchImage = new Image(),
 		backgroundImage = new Image(),
-		swatchStartX = 18,
-		swatchStartY = 19,
-		swatchImageWidth = 90,
-		swatchImageHeight = 46,
+		
 		drawingAreaX = 0,
 		drawingAreaY = 0,
 		drawingAreaWidth = 250,
@@ -127,6 +150,7 @@ var paintBucketApp = (function () {
 		outlineLayerData,
 		totalLoadResources = 3,
 		curLoadResNum = 0,
+		bucketSensetive = 15,
 
 		// Clears the canvas.
 		clearCanvas = function () {
@@ -175,26 +199,12 @@ var paintBucketApp = (function () {
 			// Draw the background
 			//context.drawImage(backgroundImage, 0, 0, canvasWidth, canvasHeight);
 
-			// Draw the color swatches
-			locX = 52;
-			locY = 19;
-			//drawColorSwatch(colorPurple, locX, locY);
-
-			locY += 46;
-			//drawColorSwatch(colorGreen, locX, locY);
-
-			locY += 46;
-			//drawColorSwatch(colorYellow, locX, locY);
-
-			locY += 46;
-			//drawColorSwatch(colorBrown, locX, locY);
-
 			// Draw the outline image on top of everything. We could move this to a separate 
 			//   canvas so we did not have to redraw this everyime.
 			//context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
 		},
 		matchrange = function(a, b){
-			if((a >= (b-20)) && (a <= (b+20))){
+			if((a >= (b-bucketSensetive)) && (a <= (b+bucketSensetive))){
 				return true;	
 			}
 		},
@@ -206,7 +216,7 @@ var paintBucketApp = (function () {
 			a = outlineLayerData.data[pixelPos + 3];
 			
 			// If current pixel matches the new color
-			if (matchrange(r, curOutlineColor.r) && matchrange(g, curOutlineColor.g) && matchrange(b, curOutlineColor.b) && matchrange(a, curOutlineColor.a) ) {
+			if (matchrange(r, curOutlineColor.r) && matchrange(g, curOutlineColor.g) && matchrange(b, curOutlineColor.b) ) {
 				return true;
 			}
 			
@@ -228,7 +238,7 @@ var paintBucketApp = (function () {
 			b = outlineLayerData.data[pixelPos + 2];
 			
 			// If current pixel matches the new color
-			if (!matchrange(r, curOutlineColor.r) || !matchrange(g, curOutlineColor.g) || !matchrange(b, curOutlineColor.b)) {
+			if (!matchrange(r, curOutlineColor.r) && !matchrange(g, curOutlineColor.g) && !matchrange(b, curOutlineColor.b)) {
 				return false;
 			}
 			
@@ -256,7 +266,7 @@ var paintBucketApp = (function () {
 				drawingBoundRight = drawingAreaX + canvasWidth - 1,
 				drawingBoundBottom = drawingAreaY + canvasHeight - 1,
 				pixelStack = [[startX, startY]];
-
+				
 			while (pixelStack.length) {
 
 				newPos = pixelStack.pop();
@@ -314,13 +324,12 @@ var paintBucketApp = (function () {
 
 		// Start painting with paint bucket tool starting from pixel specified by startX and startY
 		paintAt = function (startX, startY) {
-			
 			var pixelPos = (startY * canvasWidth + startX) * 4,
 				r = colorLayerData.data[pixelPos],
 				g = colorLayerData.data[pixelPos + 1],
 				b = colorLayerData.data[pixelPos + 2],
 				a = colorLayerData.data[pixelPos + 3];
-
+				
 			if (r === curColor.r && g === curColor.g && b === curColor.b) {
 				// Return because trying to fill with the same color
 				return;
@@ -345,27 +354,7 @@ var paintBucketApp = (function () {
 		PaintMouseFunction = function(e){
 				var mouseX = (Boolean(e.pageX))?e.pageX:e.originalEvent.targetTouches[0].pageX;
 				var mouseY = (Boolean(e.pageY))?e.pageY:e.originalEvent.targetTouches[0].pageY;
-
-				if (mouseX < drawingAreaX) { // Left of the drawing area
-					if (mouseX > swatchStartX) {
-						if (mouseY > swatchStartY && mouseY < swatchStartY + swatchImageHeight) {
-							curColor = colorPurple;
-							redraw();
-						} else if (mouseY > swatchStartY + swatchImageHeight && mouseY < swatchStartY + swatchImageHeight * 2) {
-							curColor = colorGreen;
-							redraw();
-						} else if (mouseY > swatchStartY + swatchImageHeight * 2 && mouseY < swatchStartY + swatchImageHeight * 3) {
-							curColor = colorYellow;
-							redraw();
-						} else if (mouseY > swatchStartY + swatchImageHeight * 3 && mouseY < swatchStartY + swatchImageHeight * 4) {
-							curColor = colorBrown;
-							redraw();
-						}
-					}
-				} else if ((mouseY > drawingAreaY && mouseY < drawingAreaY + canvasHeight) && (mouseX <= drawingAreaX + canvasWidth)) {
-					// Mouse click location on drawing area
-					paintAt(mouseX, mouseY);
-				}
+				paintAt(mouseX, mouseY);
 		},
 		BrushMouseDownFunction = function(e){
 			isDrawing = true;
@@ -373,7 +362,6 @@ var paintBucketApp = (function () {
 			var startY = e.originalEvent.targetTouches[0].pageY;
 			context.beginPath();
 			context.lineWidth = lineWidth;
-			alert(lineWidth);
 			context.moveTo(startX, startY);
 			e.preventDefault();
 			e.stopPropagation();
@@ -413,8 +401,6 @@ var paintBucketApp = (function () {
 		// Add mouse event listeners to the canvas
 		createBrushMouseEvents = function () {
 			$('#canvasDiv').off("mousedown", "#canvas", PaintMouseFunction);
-			$('#canvasDiv').off("touchmove", "#canvas", BrushEraseMoveFunction);
-			$('#canvasDiv').off("touchend", "#canvas", BrushEraseUpFunction);
 			
 			BrushMouseFunction();
 			
@@ -423,8 +409,6 @@ var paintBucketApp = (function () {
 		},
 		createEraseEvents = function(){
 			$('#canvasDiv').off("mousedown", "#canvas", PaintMouseFunction);
-			$('#canvasDiv').off("touchmove", "#canvas", BrushEraseMoveFunction);
-			$('#canvasDiv').off("touchend", "#canvas", BrushEraseUpFunction);
 			
 			BrushMouseFunction();
 			
@@ -460,6 +444,20 @@ var paintBucketApp = (function () {
 		setStroke = function(e){
 			lineWidth = e;
 		},
+		setSensetive = function(e){
+			bucketSensetive = e;
+		},
+		setColour = function(e){
+			var color = {
+				r: parseInt(e.r),
+				g: parseInt(e.g),
+				b: parseInt(e.b),
+				hex: e.hex
+			};
+			
+			curColor = color;
+		},
+		
 		// Creates a canvas element, loads images, adds events, and draws the canvas for the first time.
 		init = function (data) {
 
@@ -493,7 +491,8 @@ var paintBucketApp = (function () {
 				var ratio = this.naturalWidth / canvasWidth;
 				var newheight = this.naturalHeight / ratio;
 				canvasHeight = newheight;
-				setBackgroundSize({width: canvasWidth, height: newheight});
+				var top = window.innerHeight - canvasHeight;
+				setBackgroundSize({width: canvasWidth, height: newheight, top: top});
 				context.drawImage(outlineImage, drawingAreaX, drawingAreaY, canvasWidth, canvasHeight);
 
 				// Test for cross origin security error (SECURITY_ERR: DOM Exception 18)
@@ -504,7 +503,7 @@ var paintBucketApp = (function () {
 					return;
 				}
 				clearCanvas();
-				console.log(canvasWidth);
+				
 				colorLayerData = context.getImageData(0, 0, canvasWidth, canvasHeight);
 				resourceLoaded();
 			};
@@ -517,7 +516,9 @@ var paintBucketApp = (function () {
 		createBrushMouseEvents: createBrushMouseEvents,
 		createPaintMouseEvents: createPaintMouseEvents,
 		createEraseEvents: createEraseEvents,
-		setStroke: setStroke
+		setStroke: setStroke,
+		setSensetive: setSensetive,
+		setColour: setColour
 	};
 }());
     $(document).ready(function () {
@@ -530,6 +531,10 @@ var paintBucketApp = (function () {
       		Ti.App.removeEventListener("web:changeTools", changeTools);
       	    Ti.App.removeEventListener("web:initCanvasSize", initCanvasSize);
 		    Ti.App.removeEventListener("web:loadImage", loadImage);
+		    Ti.App.removeEventListener("web:setSensetive", setSensetive);
+		    Ti.App.removeEventListener("web:setStroke", setStroke);
+		    Ti.App.removeEventListener("web:setColour", setColour);
+		    Ti.App.removeEventListener("web:saveAndShare", saveAndShare);
 		});
 	});
 

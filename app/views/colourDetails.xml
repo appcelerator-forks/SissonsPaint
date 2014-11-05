@@ -3,7 +3,7 @@
 	<View   textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">
 		<View layout="vertical">
 			
-			<View layout="vertical" backgroundColor="#ffffff" top="10" width="160" height="160">
+			<View layout="vertical" backgroundColor="#ffffff" top="90" width="160" height="160">
 				<View layout="vertical"  width="150" top="5" height="150" bottom="45" id="boxDetails"  opacity="0.6" >
 				 	<Label class="title" left="10" id="colourCode" top="10" />
 				 	<Label class="title" left="10" id="colourName" />
