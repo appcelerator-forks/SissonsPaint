@@ -272,20 +272,10 @@ function Controller() {
     $.loadingBar.height = "120";
     $.loadingBar.top = "100";
     setTimeout(function() {
-        var clickTime = Ti.App.Properties.getString("clickTime");
-        var currentTime = printDate();
-        if (currentTime - clickTime > 1800) {
-            API.loadStoreLocator();
-            API.loadBrochure();
-            API.loadColour();
-            API.loadCategory();
-            Ti.App.Properties.setString("clickTime", currentTime);
-        } else {
-            Ti.App.Properties.setString("loadStoreLocator", "1");
-            Ti.App.Properties.setString("loadBrochure", "1");
-            Ti.App.Properties.setString("loadColour", "1");
-            Ti.App.Properties.setString("loadCategory", "1");
-        }
+        API.loadStoreLocator();
+        API.loadBrochure();
+        API.loadColour();
+        API.loadCategory();
         checkLoadStatus();
     }, 500);
     Alloy.Globals.Drawer = $.drawer;
