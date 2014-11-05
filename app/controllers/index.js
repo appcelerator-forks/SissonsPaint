@@ -21,22 +21,13 @@ $.loadingBar.top = ((PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight)/2)-
 // Load API function
 
 setTimeout(function(){
+ 
+	API.loadStoreLocator();
+ 	API.loadBrochure();
+	API.loadColour();
+	API.loadCategory();
 	Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_NONE);
-	var clickTime = Ti.App.Properties.getString('clickTime');
-  	var currentTime = printDate();
-	if (currentTime - clickTime > 1800) {
-		API.loadStoreLocator();
-		API.loadBrochure();
-		API.loadColour();
-		API.loadCategory();
-		Ti.App.Properties.setString('clickTime',currentTime);	
-	}else{
-		Ti.App.Properties.setString('loadStoreLocator', '1');
-		Ti.App.Properties.setString('loadBrochure', '1');
-		Ti.App.Properties.setString('loadColour', '1');
-		Ti.App.Properties.setString('loadCategory', '1');
-	}
-	
+	 
 	checkLoadStatus();
 }, 500);
 

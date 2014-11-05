@@ -31,20 +31,25 @@ exports.loadColour = function() {
         onload: function() {
             var res = JSON.parse(this.responseText);
             if ("success" == res.status) {
-                var library = Alloy.createCollection("colour");
-                library.resetColour();
-                var arr = res.data;
-                arr.forEach(function(entry) {
-                    var colour = Alloy.createModel("colour", {
-                        id: entry.id,
-                        name: entry.name,
-                        code: entry.code,
-                        rgb: entry.RGB,
-                        cmyk: entry.CMYK,
-                        sample: entry.sample
+                var checker = Alloy.createCollection("updateChecker");
+                var isUpdate = checker.getCheckerById("4");
+                if ("" == isUpdate || res.last_updated != isUpdate.updated) {
+                    checker.updateModule("4", "colour", res.last_updated);
+                    var library = Alloy.createCollection("colour");
+                    library.resetColour();
+                    var arr = res.data;
+                    arr.forEach(function(entry) {
+                        var colour = Alloy.createModel("colour", {
+                            id: entry.id,
+                            name: entry.name,
+                            code: entry.code,
+                            rgb: entry.RGB,
+                            cmyk: entry.CMYK,
+                            sample: entry.sample
+                        });
+                        colour.save();
                     });
-                    colour.save();
-                });
+                }
                 Ti.App.Properties.setString("loadColour", "1");
             }
         },
@@ -63,39 +68,44 @@ exports.loadCategory = function() {
         onload: function() {
             var res = JSON.parse(this.responseText);
             if ("success" == res.status) {
-                var lib_cate = Alloy.createCollection("category");
-                var lib_type = Alloy.createCollection("category_type");
-                var lib_colour = Alloy.createCollection("category_colour");
-                lib_cate.resetCategory();
-                lib_type.resetCategoryType();
-                lib_colour.resetCategoryColour();
-                var arr = res.data;
-                arr.forEach(function(entry) {
-                    var product_category = Alloy.createModel("category", {
-                        id: entry.id,
-                        name: entry.name,
-                        type: entry.type,
-                        image: entry.image,
-                        description: entry.description
-                    });
-                    product_category.save();
-                    var categories = entry.arr_category;
-                    categories.forEach(function(category) {
-                        var category_type = Alloy.createModel("category_type", {
-                            cate_id: entry.id,
-                            tag: category
+                var checker = Alloy.createCollection("updateChecker");
+                var isUpdate = checker.getCheckerById("3");
+                if ("" == isUpdate || res.last_updated != isUpdate.updated) {
+                    checker.updateModule("3", "category", res.last_updated);
+                    var lib_cate = Alloy.createCollection("category");
+                    var lib_type = Alloy.createCollection("category_type");
+                    var lib_colour = Alloy.createCollection("category_colour");
+                    lib_cate.resetCategory();
+                    lib_type.resetCategoryType();
+                    lib_colour.resetCategoryColour();
+                    var arr = res.data;
+                    arr.forEach(function(entry) {
+                        var product_category = Alloy.createModel("category", {
+                            id: entry.id,
+                            name: entry.name,
+                            type: entry.type,
+                            image: entry.image,
+                            description: entry.description
                         });
-                        category_type.save();
-                    });
-                    var colours = entry.arr_colour;
-                    colours.forEach(function(colour) {
-                        var category_colour = Alloy.createModel("category_colour", {
-                            cate_id: entry.id,
-                            colour_id: colour
+                        product_category.save();
+                        var categories = entry.arr_category;
+                        categories.forEach(function(category) {
+                            var category_type = Alloy.createModel("category_type", {
+                                cate_id: entry.id,
+                                tag: category
+                            });
+                            category_type.save();
                         });
-                        category_colour.save();
+                        var colours = entry.arr_colour;
+                        colours.forEach(function(colour) {
+                            var category_colour = Alloy.createModel("category_colour", {
+                                cate_id: entry.id,
+                                colour_id: colour
+                            });
+                            category_colour.save();
+                        });
                     });
-                });
+                }
                 Ti.App.Properties.setString("loadCategory", "1");
             }
         },
@@ -114,11 +124,16 @@ exports.loadBrochure = function() {
         onload: function() {
             var res = JSON.parse(this.responseText);
             if ("success" == res.status) {
-                var library = Alloy.createCollection("brochure");
-                var arr = res.data;
-                arr.forEach(function(entry) {
-                    library.addBrochure(entry.b_id, entry.b_title, entry.cover, entry.attachment, entry.b_url, entry.b_status, entry.b_format);
-                });
+                var checker = Alloy.createCollection("updateChecker");
+                var isUpdate = checker.getCheckerById("2");
+                if ("" == isUpdate || res.last_updated != isUpdate.updated) {
+                    checker.updateModule("2", "brochure", res.last_updated);
+                    var library = Alloy.createCollection("brochure");
+                    var arr = res.data;
+                    arr.forEach(function(entry) {
+                        library.addBrochure(entry.b_id, entry.b_title, entry.cover, entry.attachment, entry.b_url, entry.b_status, entry.b_format);
+                    });
+                }
                 Ti.App.Properties.setString("loadBrochure", "1");
             }
         },
@@ -137,25 +152,30 @@ exports.loadStoreLocator = function() {
         onload: function() {
             var res = JSON.parse(this.responseText);
             if ("success" == res.status) {
-                var library = Alloy.createCollection("storeLocator");
-                library.resetStore();
-                var arr = res.data;
-                arr.forEach(function(entry) {
-                    var storeLocator = Alloy.createModel("storeLocator", {
-                        id: entry.f_id,
-                        outlet: entry.f_outlet,
-                        area: entry.f_area,
-                        state: entry.f_state,
-                        address: entry.f_address,
-                        mobile: entry.f_mobile,
-                        fax: entry.f_fax,
-                        email: entry.f_email,
-                        latitude: entry.f_lat,
-                        longitude: entry.f_lng,
-                        category: entry.f_category
+                var checker = Alloy.createCollection("updateChecker");
+                var isUpdate = checker.getCheckerById("1");
+                if ("" == isUpdate || res.last_updated != isUpdate.updated) {
+                    checker.updateModule("1", "storeLocator", res.last_updated);
+                    var library = Alloy.createCollection("storeLocator");
+                    library.resetStore();
+                    var arr = res.data;
+                    arr.forEach(function(entry) {
+                        var storeLocator = Alloy.createModel("storeLocator", {
+                            id: entry.f_id,
+                            outlet: entry.f_outlet,
+                            area: entry.f_area,
+                            state: entry.f_state,
+                            address: entry.f_address,
+                            mobile: entry.f_mobile,
+                            fax: entry.f_fax,
+                            email: entry.f_email,
+                            latitude: entry.f_lat,
+                            longitude: entry.f_lng,
+                            category: entry.f_category
+                        });
+                        storeLocator.save();
                     });
-                    storeLocator.save();
-                });
+                }
                 Ti.App.Properties.setString("loadStoreLocator", "1");
             }
         },
