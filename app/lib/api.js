@@ -170,7 +170,7 @@ exports.loadBrochure = function (ex){
 			       	var arr = res.data;
 			     
 			       	arr.forEach(function(entry) {
-			       		library.addBrochure(entry.b_id, entry.b_title, entry.cover, entry.attachment, entry.b_url, entry.b_status, entry.b_format);
+			       		library.addBrochure(entry.b_position, entry.b_title, entry.cover, entry.attachment, entry.b_url, entry.b_status, entry.b_format);
 					});
 					
 				}
