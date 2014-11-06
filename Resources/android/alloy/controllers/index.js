@@ -15,6 +15,8 @@ function Controller() {
         var loadCategory = Ti.App.Properties.getString("loadCategory");
         if ("1" == loadStoreLocator && "1" == loadBrochure && "1" == loadColour && "1" == loadCategory) {
             $.loadingBar.opacity = "0";
+            var nav = Alloy.createController("diyPaint").getView();
+            Alloy.Globals.Drawer.setCenterWindow(nav);
             Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
         } else setTimeout(function() {
             checkLoadStatus();
@@ -230,25 +232,25 @@ function Controller() {
     });
     $.__views.__alloyId81.add($.__views.object);
     $.__views.__alloyId82 = Ti.UI.createView({
-        width: Ti.UI.FILL,
+        width: Ti.UI.SIZE,
         height: "252px",
         backgroundColor: "transparent",
-        bottom: "10%",
+        bottom: "7%",
         id: "__alloyId82"
     });
     $.__views.__alloyId81.add($.__views.__alloyId82);
-    $.__views.__alloyId83 = Ti.UI.createView({
-        height: "190px",
+    $.__views.whiteLogo = Ti.UI.createView({
+        id: "whiteLogo",
+        height: "191px",
         top: "0",
-        backgroundColor: "red",
-        width: Ti.UI.FILL,
-        id: "__alloyId83"
+        backgroundColor: "white",
+        width: Ti.UI.FILL
     });
-    $.__views.__alloyId82.add($.__views.__alloyId83);
+    $.__views.__alloyId82.add($.__views.whiteLogo);
     $.__views.label = Ti.UI.createImageView({
         id: "label",
         image: "/images/label.png",
-        width: "150px",
+        top: "0",
         right: "0",
         height: "252px"
     });
@@ -272,14 +274,14 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId84 = Ti.UI.createLabel({
+    $.__views.__alloyId83 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#ffffff",
         text: "Loading",
-        id: "__alloyId84"
+        id: "__alloyId83"
     });
-    $.__views.loadingBar.add($.__views.__alloyId84);
+    $.__views.loadingBar.add($.__views.__alloyId83);
     $.__views.drawer = Alloy.createWidget("nl.fokkezb.drawer", "widget", {
         openDrawerGestureMode: "OPEN_MODE_ALL",
         closeDrawerGestureMode: "CLOSE_MODE_MARGIN",
@@ -290,6 +292,9 @@ function Controller() {
     $.__views.drawer && $.addTopLevelView($.__views.drawer);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    var pWidth = Ti.Platform.displayCaps.platformWidth;
+    console.log(pWidth);
+    $.whiteLogo.setOpacity(pWidth > 800 ? 1 : 0);
     $.drawer.open({
         navBarHidden: true,
         fullscreen: true

@@ -549,6 +549,9 @@ var paintBucketApp = (function () {
 }());
     $(document).ready(function () {
 		
+		
+		setTimeout(function(){$("#watermark").show();}, 1300);
+		
 		$(window).unload(function() {
       		Ti.App.removeEventListener("web:changeTools", changeTools);
       	    Ti.App.removeEventListener("web:initCanvasSize", initCanvasSize);
@@ -564,7 +567,7 @@ var paintBucketApp = (function () {
 <body>
 	   <div id="parent">
 	    	<div id="canvasDiv">
-	    		<img src="images/water_mark.png" style="width:50%;margin: auto;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;" />
+	    		<img src="images/water_mark.png" id="watermark" style="width:50%;margin: auto;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;display:none;" />
 	    	</div>
 	    </div>
   </body>
