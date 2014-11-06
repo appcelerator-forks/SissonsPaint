@@ -8,30 +8,6 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-<<<<<<< HEAD
-    function toolbarEvents(e) {
-        if ("takePhoto" == e.source.id) {
-            var dialog = Titanium.UI.createOptionDialog({
-                title: "Choose an image source...",
-                options: [ "Camera", "Photo Gallery", "Cancel" ],
-                cancel: 2
-            });
-            dialog.addEventListener("click", function(e) {
-                0 == e.index ? Titanium.Media.showCamera({
-                    success: function(event) {
-                        var image = event.media;
-                        if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
-                            Ti.App.Properties.setString("colour_picker_image", image.nativePath);
-                            Ti.App.fireEvent("web:loadImage", {
-                                image: image.nativePath
-                            });
-                        }
-                    },
-                    cancel: function() {},
-                    error: function(error) {
-                        var a = Titanium.UI.createAlertDialog({
-                            title: "Camera"
-=======
     function takePhoto() {
         var dialog = Titanium.UI.createOptionDialog({
             title: "Choose an image source...",
@@ -61,7 +37,6 @@ function Controller() {
                         Ti.App.Properties.setString("colour_picker_image", image.nativePath);
                         Ti.App.fireEvent("web:loadImage", {
                             image: image.nativePath
->>>>>>> FETCH_HEAD
                         });
                     }
                 },
@@ -74,44 +49,43 @@ function Controller() {
         $.colorSelection.visible ? $.colorSelection.hide() : $.colorSelection.show();
     }
     function generateRecommended() {
-        console.log(recommended.length);
+        var random = Math.floor(Math.random() * recommended.length);
+        var list_colours = category_colour_lib.getCategoryColourByCategory(recommended[random].id);
+        var viewWidth = 50 * Math.ceil(list_colours.length) + 10;
         var recommendedRow = Titanium.UI.createView({
             layout: "horizontal",
             bottom: 10,
             height: 40,
-            width: "100%"
+            width: viewWidth
         });
-        for (var i = 0; i < recommended.length; i++) {
-            var random = Math.floor(Math.random() * recommended.length);
-            var list_colours = category_colour_lib.getCategoryColourByCategory(recommended[random].id);
-            for (var j = 0; j < list_colours.length; j++) {
-                var colour_details = colour_lib.getColourById(list_colours[j].colour_id);
-                var colours = $.UI.create("View", {
-                    backgroundColor: "rgb(" + colour_details.rgb + ")",
-                    borderColor: "#A5A5A5",
-                    borderWidth: 1,
-                    width: "40",
-                    height: "40",
-                    left: "5",
-                    right: "5"
-                });
-                var cat_colour = category_colour_lib.getCateByColourId(colour_details.id);
-                var cat_details = library.getCategoryById(cat_colour.cate_id, "2");
-                createColorEvent(colours, colour_details, cat_details);
-                recommendedRow.add(colours);
-            }
+        for (var j = 0; j < list_colours.length; j++) {
+            var colour_details = colour_lib.getColourById(list_colours[j].colour_id);
+            var colours = $.UI.create("View", {
+                backgroundColor: "rgb(" + colour_details.rgb + ")",
+                borderColor: "#A5A5A5",
+                borderWidth: 1,
+                width: "40",
+                height: "40",
+                left: "5",
+                right: "5"
+            });
+            var cat_colour = category_colour_lib.getCateByColourId(colour_details.id);
+            var cat_details = library.getCategoryById(cat_colour.cate_id, "2");
+            createColorEvent(colours, colour_details, cat_details);
+            recommendedRow.add(colours);
         }
         $.recommendView.add(recommendedRow);
     }
     function generateColour() {
         removeAllChildren($.scrollView);
+        var viewWidth = 50 * details.length + 20;
         var closestRow = Titanium.UI.createView({
             layout: "horizontal",
             height: 40,
-            width: "100%"
+            width: viewWidth
         });
+        console.log("details: " + details.length);
         for (var i = 0; i < details.length; i++) {
-            console.log(details[i]);
             var colours = $.UI.create("View", {
                 backgroundColor: "rgb(" + details[i].rgb + ")",
                 borderColor: "#A5A5A5",
@@ -121,27 +95,16 @@ function Controller() {
                 left: "5",
                 right: "5"
             });
-            closestRow.add(colours);
             var cat_colour = category_colour_lib.getCateByColourId(details[i].id);
             var cat_details = library.getCategoryById(cat_colour.cate_id, "2");
             createColorEvent(colours, details[i], cat_details);
+            closestRow.add(colours);
         }
         $.loadingBar.opacity = "0";
         $.loadingBar.height = "0";
         $.loadingBar.top = "0";
         $.scrollView.add(closestRow);
         $.colorSelection.show();
-    }
-    function shareFacebook() {
-        var f = Ti.Filesystem.getFile("file:///storage/sdcard0/Pictures/Survival Wallpaper/1380785291867.jpg");
-        var blob = f.read();
-        var data = {
-            message: "Sissons Paints Omnicolor",
-            picture: blob
-        };
-        fb.requestWithGraphPath("me/photos", data, "POST", function(e) {
-            alert(e.success && e.result ? "Success : " + e.result : e.error ? e.error : "cancel");
-        });
     }
     function createColorEvent(colours, colour_details, details) {
         colours.addEventListener("click", function() {
@@ -239,7 +202,8 @@ function Controller() {
         layout: "vertical",
         height: "35%",
         bottom: "60",
-        id: "colorSelection"
+        id: "colorSelection",
+        visible: "false"
     });
     $.__views.colourPicker.add($.__views.colorSelection);
     $.__views.__alloyId43 = Ti.UI.createImageView({
@@ -297,7 +261,7 @@ function Controller() {
     $.__views.scrollView = Ti.UI.createScrollView({
         id: "scrollView",
         backgroundColor: "white",
-        layout: "vertical",
+        layout: "horizontal",
         scrollType: "horizontal",
         height: "50",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
@@ -375,26 +339,6 @@ function Controller() {
         generateColour();
     };
     Ti.App.addEventListener("app:getColour", getColor);
-    generateColour();
-    var app = {
-        sharer: {
-            chooser: function() {
-                if (fb.loggedIn) shareFacebook(); else {
-                    fb.permissions = [ "publish_actions" ];
-                    fb.addEventListener("login", function(e) {
-                        e.success && shareFacebook();
-                    });
-                    fb.authorize();
-                }
-            }
-        }
-    };
-    var MESSAGE = "#sissons_paint";
-    var btnShareChooser = Ti.UI.createButton({
-        title: "Media Share"
-    });
-    btnShareChooser.addEventListener("click", app.sharer.chooser.bind(null, MESSAGE));
-    $.recommendView.add(btnShareChooser);
     __defers["$.__views.takePhoto!click!takePhoto"] && $.__views.takePhoto.addEventListener("click", takePhoto);
     __defers["$.__views.toggleActivation!click!toggleActivation"] && $.__views.toggleActivation.addEventListener("click", toggleActivation);
     _.extend($, exports);

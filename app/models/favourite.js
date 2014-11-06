@@ -36,7 +36,7 @@ exports.definition = {
 					count++;
 				} 
 				res.close();
-                db.close();
+                //moodb.close();
                 collection.trigger('sync');
                 return listArr;
 			},
@@ -56,7 +56,7 @@ exports.definition = {
 					
 				} 
 				res.close();
-                db.close();
+                //moodb.close();
                 collection.trigger('sync');
                 return result;
 			},
@@ -65,7 +65,7 @@ exports.definition = {
                 var sql = "DELETE FROM " + collection.config.adapter.collection_name + " WHERE colour_id="+colour_id;
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 db.execute(sql);
-                db.close();
+                //moodb.close();
                 collection.trigger('sync');
 			}
 		});
