@@ -401,7 +401,7 @@ function generateColour(){
 	
 	for (var i=0; i<listArr.length; i++)
 	{
-		console.log(listArr[i].contrast)
+		console.log(listArr[i].contrast);
 		var colours =  $.UI.create('View', {  
 				backgroundColor: "rgb("+listArr[i].rgb +")",
 				borderColor: "#A5A5A5",

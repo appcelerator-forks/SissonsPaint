@@ -7,7 +7,7 @@
 				
 			</View>
 			
-			<WebView id='canvas' url="/html/canvas-paint-bucket.html" enableZoomControls="false" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" />
+			<WebView id='canvas' url="/html/canvas-paint-bucket.html" height="200" enableZoomControls="false" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" />
 			<View layout="vertical" height="330" bottom="-330" id="colorSwatches">
 				<ImageView image="/images/scroll_up.png" backgroundColor="transparent" width="Titanium.UI.FILL" />
 				<View id="bottomColorBar" layout="vertical" backgroundColor="white">

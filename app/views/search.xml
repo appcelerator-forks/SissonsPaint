@@ -1,6 +1,6 @@
 <Alloy>
 	
-	<View class="container"layout="horizontal" id="mainSearchContainer"> 
+	<View class="container" layout="horizontal" id="mainSearchContainer"> 
 		<View layout="horizontal" height="80">
 			<Require src="toggle"></Require>
 			<Label id="titleLabel" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Search Result</Label>

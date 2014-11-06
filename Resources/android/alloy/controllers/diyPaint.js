@@ -275,6 +275,7 @@ function Controller() {
     $.__views.canvas = Ti.UI.createWebView({
         id: "canvas",
         url: "/html/canvas-paint-bucket.html",
+        height: "200",
         enableZoomControls: "false",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
