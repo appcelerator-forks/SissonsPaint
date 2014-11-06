@@ -383,18 +383,32 @@ function generateColour(){
 	$.scrollView.add(bottomRow);
 }
 Ti.App.addEventListener('app:saveToGallery', function(e) {
+	 
+	var blob = e.blob;
+	var index = blob.indexOf('base64,');
+	blob = blob.substring(index + 'base64,'.length); 
+	var img_view =Ti.Utils.base64decode(blob);
 
-    console.log("a"+e.blob);
-	Titanium.Media.saveToPhotoGallery(e.blob, 
-		{success:function(e){
-			console.log('success');
-		}, error:function(e){
-			console.log("error"+JSON.stringify(e));
-			// error message - Invalid type passed as argument.
-		}
-	});
-	console.log('aasdasd');
-	/*
+	var filename = "sissons_diy"+printDate()+".png";
+	
+	var imgDir = Titanium.Filesystem.getFile(Titanium.Filesystem.externalStorageDirectory );
+	if (!imgDir.exists()){
+		imgDir.createDirectory();
+	}
+ 
+	var imageFile = Titanium.Filesystem.getFile(imgDir.resolve(), filename);
+	if (imageFile.write(img_view)===false) {
+	    // handle write error
+	    alert("Saved FAILED");
+	}
+	else{
+		alert("Saved Done");
+	}
+	// dispose of file handles
+	imageFile = null;
+	imgDir = null;
+	 
+	/***
     var blob = e.blob;
     if (Ti.Filesystem.isExternalStoragePresent()) {
 	var my_folder = Ti.Filesystem.getFile(Ti.Filesystem.externalStorageDirectory, "sission");

@@ -18,7 +18,12 @@ function Controller() {
             0 == e.index ? Titanium.Media.showCamera({
                 success: function(event) {
                     var image = event.media;
-                    event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO && Ti.App.Properties.setString("colour_picker_image", image.nativePath);
+                    if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
+                        Ti.App.Properties.setString("colour_picker_image", image.nativePath);
+                        Ti.App.fireEvent("web:loadImage", {
+                            image: image.nativePath
+                        });
+                    }
                 },
                 cancel: function() {},
                 error: function(error) {
@@ -212,7 +217,7 @@ function Controller() {
     $.__views.loadingBar.add($.__views.__alloyId42);
     $.__views.colorSelection = Ti.UI.createView({
         layout: "vertical",
-        height: "35%",
+        height: "40%",
         bottom: "60",
         id: "colorSelection"
     });
