@@ -32,13 +32,16 @@ exports.definition = {
                 var listArr = []; 
                 var count = 0;
                 while (res.isValidRow()){
+                	var c = res.fieldByName('rgb').split(/,\s*/);
+                	
 					listArr[count] = {
 					    id: res.fieldByName('id'),
 					    name: res.fieldByName('name'),
 					    code: res.fieldByName('code'),
 					    rgb: res.fieldByName('rgb'),
 					    cmyk: res.fieldByName('cmyk'),
-					    sample: res.fieldByName('sample')
+					    sample: res.fieldByName('sample'),
+					    contrast: parseInt(c[0])+parseInt(c[1])+parseInt(c[2])
 					};
 					res.next();
 					count++;
@@ -122,7 +125,6 @@ exports.definition = {
                 	var diff_b = Math.abs(closest_b - c[2]);
                 	// var diff = diff_r+diff_g+diff_b;
                 	var diff = Math.max(diff_r, diff_g, diff_b);
-                	
                 	
                 	// if (diff_r<=diff_min && diff_g<=diff_min && diff_b<=diff_min)
                 	if (diff<=diff_min)
