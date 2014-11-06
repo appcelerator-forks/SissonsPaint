@@ -8,30 +8,6 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-<<<<<<< HEAD
-    function toolbarEvents(e) {
-        if ("takePhoto" == e.source.id) {
-            var dialog = Titanium.UI.createOptionDialog({
-                title: "Choose an image source...",
-                options: [ "Camera", "Photo Gallery", "Cancel" ],
-                cancel: 2
-            });
-            dialog.addEventListener("click", function(e) {
-                0 == e.index ? Titanium.Media.showCamera({
-                    success: function(event) {
-                        var image = event.media;
-                        if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
-                            Ti.App.Properties.setString("colour_picker_image", image.nativePath);
-                            Ti.App.fireEvent("web:loadImage", {
-                                image: image.nativePath
-                            });
-                        }
-                    },
-                    cancel: function() {},
-                    error: function(error) {
-                        var a = Titanium.UI.createAlertDialog({
-                            title: "Camera"
-=======
     function takePhoto() {
         var dialog = Titanium.UI.createOptionDialog({
             title: "Choose an image source...",
@@ -61,7 +37,6 @@ function Controller() {
                         Ti.App.Properties.setString("colour_picker_image", image.nativePath);
                         Ti.App.fireEvent("web:loadImage", {
                             image: image.nativePath
->>>>>>> FETCH_HEAD
                         });
                     }
                 },
