@@ -7,10 +7,8 @@
     	html {-webkit-text-size-adjust: none; margin:0; padding:0;}
     	body {margin:0; padding:0;}
     	#parent{
-    	min-width: "100px";
-    	min-height: "100px";
-		background-repeat:no-repeat;
-		background-size: 100% auto;
+			background-repeat:no-repeat;
+			background-size: 100% auto;
 		}
 		
 		#canvasDiv{
@@ -21,12 +19,7 @@
 		}
     </style>
   </head>
-  <body>
-	   <div id="parent">
-	    	<div id="canvasDiv">
-	    		<img src="images/water_mark.png" style="width:50%;margin: auto;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;" />
-	    	</div>
-	    </div>
+
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="html2canvas.js"></script>
 	<script>
@@ -75,30 +68,10 @@
 		};
 		
 		var saveAndShare = function(e){
-			var readyCanvas = document.getElementById('canvasDiv');
-			 readyContext = readyCanvas.getContext("2d"); 
-			
-			var waterMark = new Image();
-			waterMark.src = "images/water_mark.png"; 
-			waterMark.onload = function (e) { 
-				setBackgroundSize({width: canvasWidth, height: canvasHeight});
-				var wmHorizontal = canvasWidth - 300;
-				var wmVertical = canvasHeight - 100;
-				readyContext.drawImage(waterMark, wmHorizontal, wmVertical,296,80);
-			};	
-						 
-			html2canvas(document.body, {
-					onrendered: function(canvas2) {
-						
-						
-						$("body").html(canvas2);
-						var dataURL = canvas2.toDataURL();
-						 
-						Ti.App.fireEvent('app:saveToGallery', {blob: dataURL});
-					}
-				});
+			paintBucketApp.saveAndShare(e);
+			console.log('fireevent saveAndShare');
 		};
-		
+
 		
 		Ti.App.addEventListener("web:changeTools", changeTools);
 		Ti.App.addEventListener("web:initCanvasSize", initCanvasSize);
@@ -167,7 +140,9 @@ var paintBucketApp = (function () {
 		totalLoadResources = 3,
 		curLoadResNum = 0,
 		bucketSensetive = 15,
-
+		
+		
+		
 		// Clears the canvas.
 		clearCanvas = function () {
 			context.clearRect(0, 0, context.canvas.width, context.canvas.height);
@@ -478,7 +453,34 @@ var paintBucketApp = (function () {
 			
 			curColor = color;
 		},
-		
+		saveAndShare = function(e){ 
+			/**
+			html2canvas($("#canvas"), {
+				onrendered: function(canvas2) {
+						
+					$("#parent").html(canvas2);
+					var dataURL = canvas2.toDataURL();
+					Ti.App.fireEvent('app:saveToGallery', {blob: dataURL});
+				}
+			});
+			
+			readyContext = canvas.getContext("2d"); 
+			
+			var waterMark = new Image();
+			waterMark.src = "images/water_mark.png"; 
+			waterMark.onload = function (e) { 
+				setBackgroundSize({width: screenwidth, height: 70});
+				var wmHorizontal = screenwidth - 300;
+				var wmVertical = 50;
+				readyContext.drawImage(waterMark, wmHorizontal, wmVertical,296,80);
+			};	**/			
+			 $("#parent").html(canvas);
+			 
+			//readyContext = mycanvas.getContext("2d"); 
+			var dataURL = canvas.toDataURL();
+			console.log(dataURL);
+			Ti.App.fireEvent('app:saveToGallery', {blob: dataURL});
+		},
 		// Creates a canvas element, loads images, adds events, and draws the canvas for the first time.
 		init = function (data) {
 
@@ -541,7 +543,8 @@ var paintBucketApp = (function () {
 		createEraseEvents: createEraseEvents,
 		setStroke: setStroke,
 		setSensetive: setSensetive,
-		setColour: setColour
+		setColour: setColour,
+		saveAndShare: saveAndShare,
 	};
 }());
     $(document).ready(function () {
@@ -558,5 +561,11 @@ var paintBucketApp = (function () {
 	});
 
 </script>
+<body>
+	   <div id="parent">
+	    	<div id="canvasDiv">
+	    		<img src="images/water_mark.png" style="width:50%;margin: auto;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;" />
+	    	</div>
+	    </div>
   </body>
 </html>
