@@ -538,16 +538,17 @@ function Controller() {
         generateColour();
     }, 0);
     Ti.App.addEventListener("app:saveToGallery", function(e) {
-        console.log("a" + e.blob);
-        Titanium.Media.saveToPhotoGallery(e.blob, {
-            success: function() {
-                console.log("success");
-            },
-            error: function(e) {
-                console.log("error" + JSON.stringify(e));
-            }
-        });
-        console.log("aasdasd");
+        var blob = e.blob;
+        var index = blob.indexOf("base64,");
+        blob = blob.substring(index + "base64,".length);
+        var img_view = Ti.Utils.base64decode(blob);
+        var filename = "sissons_diy" + printDate() + ".png";
+        var imgDir = Titanium.Filesystem.getFile(Titanium.Filesystem.externalStorageDirectory);
+        imgDir.exists() || imgDir.createDirectory();
+        var imageFile = Titanium.Filesystem.getFile(imgDir.resolve(), filename);
+        alert(false === imageFile.write(img_view) ? "Saved FAILED" : "Saved Done");
+        imageFile = null;
+        imgDir = null;
     });
     __defers["$.__views.slider!stop!updateAdjustment"] && $.__views.slider.addEventListener("stop", updateAdjustment);
     __defers["$.__views.photoButton!click!takePhoto"] && $.__views.photoButton.addEventListener("click", takePhoto);

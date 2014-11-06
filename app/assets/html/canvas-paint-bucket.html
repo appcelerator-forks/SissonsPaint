@@ -7,18 +7,18 @@
     	html {-webkit-text-size-adjust: none; margin:0; padding:0;}
     	body {margin:0; padding:0;}
     	#parent{
-    	/*min-width: "100px";
+    	min-width: "100px";
     	min-height: "100px";
-    	background: url("file:///storage/sdcard0/Pictures/sissions paint/tia1202727119.jpg");*/
+    	background: url("file:///storage/emulated/0/WhatsApp/Media/WhatsApp Images/IMG-20141105-WA0006.jpg");
 		background-repeat:no-repeat;
 		background-size: 100% auto;
 		}
 		
 		#canvasDiv{
-			-moz-opacity:0.5; /* For older FF versions */
-	   -khtml-opacity:0.5;
-	   opacity:0.5;
-			filter:alpha(opacity=50);
+			-moz-opacity:0.7; /* For older FF versions */
+	   -khtml-opacity:0.7;
+	   opacity:0.7;
+			filter:alpha(opacity=70);
 		}
     </style>
   </head>
@@ -76,11 +76,25 @@
 		};
 		
 		var saveAndShare = function(e){
+			var readyCanvas = document.getElementById('canvasDiv');
+			 readyContext = readyCanvas.getContext("2d"); 
+			
+			var waterMark = new Image();
+			waterMark.src = "images/water_mark.png"; 
+			waterMark.onload = function (e) { 
+				setBackgroundSize({width: canvasWidth, height: canvasHeight});
+				var wmHorizontal = canvasWidth - 300;
+				var wmVertical = canvasHeight - 100;
+				readyContext.drawImage(waterMark, wmHorizontal, wmVertical,296,80);
+			};	
+						 
 			html2canvas(document.body, {
 					onrendered: function(canvas2) {
+						
+						
 						$("body").html(canvas2);
 						var dataURL = canvas2.toDataURL();
-						console.log(dataURL);
+						 
 						Ti.App.fireEvent('app:saveToGallery', {blob: dataURL});
 					}
 				});
@@ -110,6 +124,7 @@ var paintBucketApp = (function () {
 	"use strict";
 
 	var context,
+		canvas,
 		isDrawing,
 		canvasWidth = 350,
 		canvasHeight = 220,
@@ -352,6 +367,7 @@ var paintBucketApp = (function () {
 			floodFill(startX, startY);
 
 			redraw();
+			resetTheWorld();
 		},
 		PaintMouseFunction = function(e){
 				var mouseX = (Boolean(e.pageX))?e.pageX:e.originalEvent.targetTouches[0].pageX;
@@ -385,7 +401,10 @@ var paintBucketApp = (function () {
 			e.stopPropagation();
 			context.closePath();
 			colorLayerData = context.getImageData(0, 0, canvasWidth, canvasHeight);
-			$("#canvasDiv").css('opacity', '0.6');
+			resetTheWorld();
+		},
+		resetTheWorld = function(e){
+			$("#canvasDiv").html(canvas);
 		},
 		BrushMouseFunction = function(e){
 			$('#canvasDiv').on("touchstart", "#canvas", BrushMouseDownFunction);
@@ -425,6 +444,7 @@ var paintBucketApp = (function () {
 				createPaintMouseEvents();
 				redraw();
 			}
+			
 		},
 		getPage = function(event){
 		 //when on mobile safari, the coordinates information is inside the targetTouches object
@@ -464,7 +484,7 @@ var paintBucketApp = (function () {
 		init = function (data) {
 
 			// Create the canvas (Neccessary for IE because it doesn't know what a canvas element is)
-			var canvas = document.createElement('canvas');
+			canvas = document.createElement('canvas');
 			var canvasW = (!data.canvasWidth || data.canvasWidth.length)?canvasWidth:data.canvasWidth;
 			var canvasH = (!data.canvasHeight || data.canvasHeight.length)?canvasHeight:data.canvasHeight;
 
@@ -488,7 +508,7 @@ var paintBucketApp = (function () {
 			// Load images
 			backgroundImage.onload = resourceLoaded;
 			backgroundImage.src = "images/background.png";
-
+			
 			outlineImage.onload = function (e) {
 				var ratio = this.naturalWidth / canvasWidth;
 				var newheight = this.naturalHeight / ratio;
@@ -508,7 +528,9 @@ var paintBucketApp = (function () {
 				
 				colorLayerData = context.getImageData(0, 0, canvasWidth, canvasHeight);
 				resourceLoaded();
+				
 			};
+			
 			outlineImage.src = "images/id.jpg";
 		};
 
@@ -524,10 +546,6 @@ var paintBucketApp = (function () {
 	};
 }());
     $(document).ready(function () {
-		
-		$("#brush").click(function(e) {
-            paintBucketApp.createBrushMouseEvents();
-		});
 		
 		$(window).unload(function() {
       		Ti.App.removeEventListener("web:changeTools", changeTools);
