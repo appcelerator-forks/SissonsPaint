@@ -24,14 +24,11 @@ var filterFlag = 0;
 $.toolbar.addEventListener('postlayout', function(e) { 
 	toolbarHeight = $.toolbar.rect.height;
 	canvasHeight = pHeight - toolbarHeight - 25 - toggleHeight;
-	console.log("page height: "+pHeight+", toolbar:"+toolbarHeight+", toggle"+toggleHeight+", canvas:"+canvasHeight);
 	$.canvas.setBottom(toolbarHeight);
 	$.canvas.setHeight(canvasHeight);
 });
 	
-$.canvas.addEventListener("load", function(){
-	console.log(canvasHeight);
-	console.log(pWidth);
+$.canvas.addEventListener("load", function(){ 
 	Ti.App.fireEvent('web:initCanvasSize', { height: canvasHeight, width: pWidth });
 });	
 

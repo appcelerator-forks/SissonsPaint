@@ -205,9 +205,10 @@ function Controller() {
     $.__views.loadingBar.add($.__views.__alloyId42);
     $.__views.colorSelection = Ti.UI.createView({
         layout: "vertical",
-        height: "40%",
+        height: "35%",
         bottom: "60",
-        id: "colorSelection"
+        id: "colorSelection",
+        visible: "false"
     });
     $.__views.colourPicker.add($.__views.colorSelection);
     $.__views.__alloyId43 = Ti.UI.createImageView({
