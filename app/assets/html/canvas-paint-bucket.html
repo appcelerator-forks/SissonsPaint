@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Create HTML5 Canvas JavaScript Paint Bucket Example</title>
+    <title>Sissons Paint OmniColour DIY</title>
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0" />
     <style>
     	html {-webkit-text-size-adjust: none; margin:0; padding:0;}
     	body {margin:0; padding:0;}
     	#parent{
+	    	 
 			background-repeat:no-repeat;
 			background-size: 100% auto;
 		}
@@ -34,6 +35,8 @@
 		
 		var loadImage = function(e){
 			$('#parent').css('background', 'url("' + e.image + '")');
+			//$('#myPhoto').attr("src", e.image);
+			
 			paintBucketApp.loadImage({image: e.image});
 		};
 		
@@ -57,19 +60,16 @@
 			paintBucketApp.setStroke(e.value);
 		};
 		
-		var setSensetive = function(e){
-			console.log("set sensetive function"+e.value);
+		var setSensetive = function(e){ 
 			paintBucketApp.setSensetive(e.value);
 		};
 		
 		var setColour = function(e){
-			paintBucketApp.setColour(e);
-			console.log('fireevent set color');
+			paintBucketApp.setColour(e); 
 		};
 		
 		var saveAndShare = function(e){
-			paintBucketApp.saveAndShare(e);
-			console.log('fireevent saveAndShare');
+			paintBucketApp.saveAndShare(e); 
 		};
 
 		
@@ -428,6 +428,7 @@ var paintBucketApp = (function () {
 		 return {pageX: event.clientX + element.scrollLeft, pageY: event.clientY + element.scrollTop};
 		},
 		loadImage = function(e){
+			$("#canvasDiv").html("");
 			outlineImage.src = e.image;
 			redraw();
 		},
@@ -454,16 +455,16 @@ var paintBucketApp = (function () {
 			curColor = color;
 		},
 		saveAndShare = function(e){ 
-			/**
-			html2canvas($("#canvas"), {
+			
+			html2canvas($("body"), {
 				onrendered: function(canvas2) {
 						
-					$("#parent").html(canvas2);
-					var dataURL = canvas2.toDataURL();
+					var dataURL = canvas2.toDataURL("image/png");
+					  
 					Ti.App.fireEvent('app:saveToGallery', {blob: dataURL});
 				}
 			});
-			
+			/**
 			readyContext = canvas.getContext("2d"); 
 			
 			var waterMark = new Image();
@@ -474,12 +475,10 @@ var paintBucketApp = (function () {
 				var wmVertical = 50;
 				readyContext.drawImage(waterMark, wmHorizontal, wmVertical,296,80);
 			};	**/			
-			 $("#parent").html(canvas);
+			
 			 
 			//readyContext = mycanvas.getContext("2d"); 
-			var dataURL = canvas.toDataURL();
-			console.log(dataURL);
-			Ti.App.fireEvent('app:saveToGallery', {blob: dataURL});
+			 
 		},
 		// Creates a canvas element, loads images, adds events, and draws the canvas for the first time.
 		init = function (data) {
@@ -563,9 +562,10 @@ var paintBucketApp = (function () {
 	});
 
 </script>
-<body>
+	<body>
 	   <div id="parent">
 	    	<div id="canvasDiv">
+	    		<img src="" id="myPhoto" />
 	    		<img src="images/water_mark.png" style="width:50%;margin: auto;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;" />
 	    	</div>
 	    </div>

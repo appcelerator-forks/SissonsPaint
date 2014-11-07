@@ -26,10 +26,10 @@
 			<View height="60" bottom="0" id="toolbar">
 				<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
 				<ImageView id="photoButton" image="/images/icon_photo.png" left="5" onClick="takePhoto" height="40" width="50" />
-				<ImageView id="tools" image="/images/icon_bucket.png" left="125" onClick="toolspop" height="40" width="50" />
-				<ImageView id="size" image="/images/icon_size.png" left="185" mod="size" onClick="slideUp" height="40" width="50" />
-				<View id="color" backgroundColor="#ffffff" left="245" height="40" width="50" mod="color" onClick="slideUp" borderColor="#000000" borderWidth="3" borderRadius="10" />
-				<ImageView id="" image="/images/icon_share.png" left="305" onClick="share" height="40" width="50" />
+				<ImageView id="tools" image="/images/icon_bucket.png" left="65" onClick="toolspop" height="40" width="50" />
+				<ImageView id="size" image="/images/icon_size.png" left="125" mod="size" onClick="slideUp" height="40" width="50" />
+				<View id="color" backgroundColor="#ffffff" left="185" height="40" width="50" mod="color" onClick="slideUp" borderColor="#000000" borderWidth="3" borderRadius="10" />
+				<ImageView id="" image="/images/icon_share.png" left="245" onClick="share" height="40" width="50" />
 			</View>
 		</View>
  
