@@ -213,13 +213,48 @@ function Controller() {
         id: "centerWindow",
         role: "centerWindow"
     });
-    $.__views.brochureView = Ti.UI.createView({
-        backgroundColor: "white",
-        id: "brochureView",
-        layout: "vertical",
-        backgroundImage: "/images/default.png"
+    $.__views.__alloyId81 = Ti.UI.createView({
+        id: "__alloyId81"
     });
-    $.__views.centerWindow.add($.__views.brochureView);
+    $.__views.centerWindow.add($.__views.__alloyId81);
+    $.__views.background = Ti.UI.createImageView({
+        id: "background",
+        image: "/images/background.jpg",
+        bottom: "0",
+        height: Ti.UI.FILL,
+        width: Ti.UI.FILL
+    });
+    $.__views.__alloyId81.add($.__views.background);
+    $.__views.object = Ti.UI.createImageView({
+        id: "object",
+        image: "/images/object.png",
+        bottom: "0"
+    });
+    $.__views.__alloyId81.add($.__views.object);
+    $.__views.__alloyId82 = Ti.UI.createView({
+        width: Ti.UI.SIZE,
+        height: "252px",
+        backgroundColor: "transparent",
+        bottom: "7%",
+        id: "__alloyId82"
+    });
+    $.__views.__alloyId81.add($.__views.__alloyId82);
+    $.__views.whiteLogo = Ti.UI.createView({
+        id: "whiteLogo",
+        height: "191px",
+        top: "0",
+        backgroundColor: "white",
+        width: Ti.UI.FILL
+    });
+    $.__views.__alloyId82.add($.__views.whiteLogo);
+    $.__views.label = Ti.UI.createImageView({
+        id: "label",
+        image: "/images/label.png",
+        top: "0",
+        right: "0",
+        height: "252px"
+    });
+    $.__views.__alloyId82.add($.__views.label);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -230,7 +265,7 @@ function Controller() {
         opacity: "1",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.brochureView.add($.__views.loadingBar);
+    $.__views.__alloyId81.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         style: Ti.UI.ActivityIndicatorStyle.BIG,
         top: 15,
@@ -239,14 +274,14 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId81 = Ti.UI.createLabel({
+    $.__views.__alloyId83 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#ffffff",
         text: "Loading",
-        id: "__alloyId81"
+        id: "__alloyId83"
     });
-    $.__views.loadingBar.add($.__views.__alloyId81);
+    $.__views.loadingBar.add($.__views.__alloyId83);
     $.__views.drawer = Alloy.createWidget("nl.fokkezb.drawer", "widget", {
         openDrawerGestureMode: "OPEN_MODE_ALL",
         closeDrawerGestureMode: "CLOSE_MODE_MARGIN",
@@ -257,6 +292,9 @@ function Controller() {
     $.__views.drawer && $.addTopLevelView($.__views.drawer);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    var pWidth = Ti.Platform.displayCaps.platformWidth;
+    console.log(pWidth);
+    $.whiteLogo.setOpacity(pWidth > 800 ? 1 : 0);
     $.drawer.open({
         navBarHidden: true,
         fullscreen: true

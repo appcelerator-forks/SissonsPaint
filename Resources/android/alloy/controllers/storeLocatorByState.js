@@ -224,17 +224,17 @@ function Controller() {
         id: "storeLocatorByState"
     });
     $.__views.storeLocatorByState && $.addTopLevelView($.__views.storeLocatorByState);
-    $.__views.__alloyId101 = Ti.UI.createView({
+    $.__views.__alloyId103 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId101"
+        id: "__alloyId103"
     });
-    $.__views.storeLocatorByState.add($.__views.__alloyId101);
-    $.__views.__alloyId102 = Alloy.createController("toggle", {
-        id: "__alloyId102",
-        __parentSymbol: $.__views.__alloyId101
+    $.__views.storeLocatorByState.add($.__views.__alloyId103);
+    $.__views.__alloyId104 = Alloy.createController("toggle", {
+        id: "__alloyId104",
+        __parentSymbol: $.__views.__alloyId103
     });
-    $.__views.__alloyId102.setParent($.__views.__alloyId101);
+    $.__views.__alloyId104.setParent($.__views.__alloyId103);
     $.__views.stateName = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -245,7 +245,7 @@ function Controller() {
         id: "stateName",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
-    $.__views.__alloyId101.add($.__views.stateName);
+    $.__views.__alloyId103.add($.__views.stateName);
     $.__views.tableContainer = Ti.UI.createView({
         backgroundColor: "white",
         id: "tableContainer",

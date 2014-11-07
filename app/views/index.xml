@@ -36,11 +36,23 @@
         </Window>
         
         <Window id="centerWindow" module="xp.ui" platform="android" role="centerWindow">
-        	<View id="brochureView" layout="vertical" class="container" backgroundImage="/images/default.png">
+        	<View>
+	        	<ImageView id="background" image="/images/background.jpg" bottom="0" height="Ti.UI.FILL" width="Ti.UI.FILL"></ImageView>
+	        	<ImageView id="object" image="/images/object.png" bottom="0"></ImageView>
+	        	<View width="Ti.UI.SIZE" height="252px" backgroundColor="transparent" bottom="7%">
+	        		<View id="whiteLogo" height="191px" top="0" backgroundColor="white" width="Ti.UI.FILL"></View>
+	        		<ImageView id="label" image="/images/label.png" top="0" right="0" height="252px"></ImageView>
+	        	</View>
 	        	<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" top="0" opacity="1" backgroundColor="#2E2E2E" >
 					<ActivityIndicator  id="activityIndicator" />
 					<Label text="Loading" color="#ffffff" />
 				</View>
+	        	<!--<View id="brochureView" layout="vertical" class="container" backgroundImage="/images/object.png" backgroundColor="transparent" top="0">
+		        	<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" top="0" opacity="1" backgroundColor="#2E2E2E" >
+						<ActivityIndicator  id="activityIndicator" />
+						<Label text="Loading" color="#ffffff" />
+					</View>
+				</View>-->
 			</View>
         	<!--<View id="toggle" layout="horizontal" height="80" top="0">
 				<Require src="toggle"></Require>

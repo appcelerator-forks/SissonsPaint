@@ -7,7 +7,6 @@
     	html {-webkit-text-size-adjust: none; margin:0; padding:0;}
     	body {margin:0; padding:0;}
     	#parent{
-	    	 
 			background-repeat:no-repeat;
 			background-size: 100% auto;
 		}
@@ -530,7 +529,7 @@ var paintBucketApp = (function () {
 				
 			};
 			
-			outlineImage.src = "images/id.jpg";
+			//outlineImage.src = "images/id.jpg";
 		};
 
 	return {
@@ -547,6 +546,9 @@ var paintBucketApp = (function () {
 }());
     $(document).ready(function () {
 		
+		
+		setTimeout(function(){$("#watermark").show();}, 1300);
+		
 		$(window).unload(function() {
       		Ti.App.removeEventListener("web:changeTools", changeTools);
       	    Ti.App.removeEventListener("web:initCanvasSize", initCanvasSize);
@@ -561,9 +563,9 @@ var paintBucketApp = (function () {
 </script>
 	<body>
 	   <div id="parent">
-	    	<div id="canvasDiv">
-	    		<img src="" id="myPhoto" />
-	    		<img src="images/water_mark.png" style="width:50%;margin: auto;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;" />
+	    	<div id="canvasDiv"> 
+	    		<img src="images/water_mark.png" id="watermark" style="width:50%;margin: auto;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;display:none;" />
+ 
 	    	</div>
 	    </div>
   </body>
