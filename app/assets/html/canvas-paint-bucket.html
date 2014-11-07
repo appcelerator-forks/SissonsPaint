@@ -428,7 +428,6 @@ var paintBucketApp = (function () {
 		 return {pageX: event.clientX + element.scrollLeft, pageY: event.clientY + element.scrollTop};
 		},
 		loadImage = function(e){
-			$("#canvasDiv").html("");
 			outlineImage.src = e.image;
 			redraw();
 		},
@@ -517,8 +516,9 @@ var paintBucketApp = (function () {
 				canvasHeight = newheight;
 				var top = window.innerHeight - canvasHeight;
 				setBackgroundSize({width: canvasWidth, height: newheight, top: top});
+				
 				context.drawImage(outlineImage, drawingAreaX, drawingAreaY, canvasWidth, canvasHeight);
-
+ 
 				// Test for cross origin security error (SECURITY_ERR: DOM Exception 18)
 				try {
 					outlineLayerData = context.getImageData(0, 0, canvasWidth, canvasHeight);
@@ -564,8 +564,7 @@ var paintBucketApp = (function () {
 </script>
 	<body>
 	   <div id="parent">
-	    	<div id="canvasDiv">
-	    		<img src="" id="myPhoto" />
+	    	<div id="canvasDiv"> 
 	    		<img src="images/water_mark.png" style="width:50%;margin: auto;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;" />
 	    	</div>
 	    </div>
