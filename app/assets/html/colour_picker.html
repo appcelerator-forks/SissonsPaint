@@ -63,6 +63,8 @@
 			// Load images 
 			outlineImage.src = e.image; 
 			outlineImage.onload = function (e) { 
+				var screenwidth = window.innerWidth;
+				canvasWidth = screenwidth;
 				var ratio = this.naturalWidth / canvasWidth;
 				var newheight = this.naturalHeight / ratio;
 				console.log("newheight : " +newheight);
