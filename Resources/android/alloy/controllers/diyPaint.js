@@ -385,7 +385,7 @@ function Controller() {
     $.__views.tools = Ti.UI.createImageView({
         id: "tools",
         image: "/images/icon_bucket.png",
-        left: "125",
+        left: "65",
         height: "40",
         width: "50"
     });
@@ -394,7 +394,7 @@ function Controller() {
     $.__views.size = Ti.UI.createImageView({
         id: "size",
         image: "/images/icon_size.png",
-        left: "185",
+        left: "125",
         mod: "size",
         height: "40",
         width: "50"
@@ -404,7 +404,7 @@ function Controller() {
     $.__views.color = Ti.UI.createView({
         id: "color",
         backgroundColor: "#ffffff",
-        left: "245",
+        left: "185",
         height: "40",
         width: "50",
         mod: "color",
@@ -417,7 +417,7 @@ function Controller() {
     $.__views.__alloyId59 = Ti.UI.createImageView({
         id: "__alloyId59",
         image: "/images/icon_share.png",
-        left: "305",
+        left: "245",
         height: "40",
         width: "50"
     });
