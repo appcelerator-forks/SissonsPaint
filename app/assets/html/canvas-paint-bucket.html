@@ -486,9 +486,11 @@ var paintBucketApp = (function () {
 
 			// Create the canvas (Neccessary for IE because it doesn't know what a canvas element is)
 			canvas = document.createElement('canvas');
-			var canvasW = (!data.canvasWidth || data.canvasWidth.length)?canvasWidth:data.canvasWidth;
-			var canvasH = (!data.canvasHeight || data.canvasHeight.length)?canvasHeight:data.canvasHeight;
-
+			var screenwidth = window.innerWidth;
+			var canvasW = screenwidth;
+			var canvasH = data.canvasHeight;
+			
+			console.log(screenwidth+"vs"+canvasW);
 			canvas.setAttribute('width', canvasW);
 			canvas.setAttribute('height', canvasH);
 			canvasWidth = canvasW;
@@ -532,7 +534,7 @@ var paintBucketApp = (function () {
 				
 			};
 			
-			//outlineImage.src = "images/id.jpg";
+			outlineImage.src = "images/id.jpg";
 		};
 
 	return {

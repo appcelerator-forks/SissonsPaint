@@ -1,1 +1,1 @@
-/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/alloy/styles/brochure.js
+/Users/HatsuneMiku/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/alloy/styles/brochure.js
