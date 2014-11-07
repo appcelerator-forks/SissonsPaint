@@ -531,7 +531,7 @@ function generateColour(){
 	
 	for (var i=0; i<listArr.length; i++)
 	{
-		console.log(listArr[i].contrast);
+		console.log(listArr[i].contrast)
 		var colours =  $.UI.create('View', {  
 				backgroundColor: "rgb("+listArr[i].rgb +")",
 				borderColor: "#A5A5A5",
@@ -569,7 +569,7 @@ setTimeout(function(){
 }, 0);
 
 Ti.App.addEventListener('app:saveToGallery', function(e) {
-	 
+	 console.log(e.blob);
 	var blob = e.blob;
 	var index = blob.indexOf('base64,');
 	blob = blob.substring(index + 'base64,'.length); 

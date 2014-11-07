@@ -405,7 +405,11 @@ function Controller() {
     $.__views.tools = Ti.UI.createImageView({
         id: "tools",
         image: "/images/icon_bucket.png",
+<<<<<<< HEAD
         left: "10",
+=======
+        left: "65",
+>>>>>>> FETCH_HEAD
         height: "40",
         width: "50",
         top: "10",
@@ -417,7 +421,11 @@ function Controller() {
     $.__views.size = Ti.UI.createImageView({
         id: "size",
         image: "/images/icon_size.png",
+<<<<<<< HEAD
         left: "10",
+=======
+        left: "125",
+>>>>>>> FETCH_HEAD
         mod: "size",
         height: "40",
         width: "50",
@@ -430,7 +438,11 @@ function Controller() {
     $.__views.color = Ti.UI.createView({
         id: "color",
         backgroundColor: "#ffffff",
+<<<<<<< HEAD
         left: "10",
+=======
+        left: "185",
+>>>>>>> FETCH_HEAD
         height: "40",
         width: "50",
         mod: "color",
@@ -446,7 +458,11 @@ function Controller() {
     $.__views.__alloyId59 = Ti.UI.createImageView({
         id: "__alloyId59",
         image: "/images/icon_share.png",
+<<<<<<< HEAD
         left: "10",
+=======
+        left: "245",
+>>>>>>> FETCH_HEAD
         height: "40",
         width: "50",
         top: "10",
@@ -626,6 +642,7 @@ function Controller() {
         generateColour();
     }, 0);
     Ti.App.addEventListener("app:saveToGallery", function(e) {
+        console.log(e.blob);
         var blob = e.blob;
         var index = blob.indexOf("base64,");
         blob = blob.substring(index + "base64,".length);
