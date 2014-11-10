@@ -225,6 +225,15 @@ function takePhoto(){
 	                {
 	                    //we may create image view with contents from image variable
 	                    //or simply save path to image
+	                    var isLandscape = event.media.width > event.media.height;
+	                    if(isLandscape){
+	                    	console.log('is landscape');
+	                    	var img = Ti.UI.createImageView({
+                              image: e.media,
+                              transform: Ti.UI.create2DMatrix().rotate(90)
+                      		});
+                      		uploadImageToServer(img.toImage()); //psuedocode
+	                    }
 	                    Ti.App.Properties.setString("image", image.nativePath);
 	                    Ti.App.fireEvent('web:loadImage', { image: image.nativePath });
 	                }
