@@ -15,7 +15,11 @@ function Controller() {
         var loadCategory = Ti.App.Properties.getString("loadCategory");
         if ("1" == loadStoreLocator && "1" == loadBrochure && "1" == loadColour && "1" == loadCategory) {
             $.loadingBar.opacity = "0";
+<<<<<<< HEAD
             var nav = Alloy.createController("diyPaint").getView();
+=======
+            var nav = Alloy.createController("colourSwatches").getView();
+>>>>>>> FETCH_HEAD
             Alloy.Globals.Drawer.setCenterWindow(nav);
             Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
         } else setTimeout(function() {
