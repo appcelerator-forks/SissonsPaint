@@ -36,7 +36,7 @@ function Controller() {
             picture: blob
         };
         fb.requestWithGraphPath("me/photos", data, "POST", function(e) {
-            alert(e.success && e.result ? "Success : " + e.result : e.error ? e.error : "cancel");
+            e.success && e.result ? console.log("Success : " + e.result) : e.error ? console.log(e.error) : alert("cancel");
         });
         imgPath = "";
     }
@@ -298,13 +298,6 @@ function Controller() {
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.__alloyId51.add($.__views.canvas);
-    $.__views.result = Ti.UI.createImageView({
-        image: "",
-        id: "result",
-        backgroundColor: "blue",
-        width: Titanium.UI.FILL
-    });
-    $.__views.__alloyId51.add($.__views.result);
     $.__views.colorSwatches = Ti.UI.createView({
         layout: "vertical",
         height: "330",
@@ -635,12 +628,11 @@ function Controller() {
         generateColour();
     }, 0);
     Ti.App.addEventListener("app:saveToGallery", function(e) {
-        console.log("FROM APP : " + e.blob);
+        console.log(e.blob);
         var blob = e.blob;
         var index = blob.indexOf("base64,");
         blob = blob.substring(index + "base64,".length);
         var img_view = Ti.Utils.base64decode(blob);
-        $.result.image = img_view;
         var filename = "sissons_diy" + printDate() + ".png";
         var imgDir = Titanium.Filesystem.getFile(Titanium.Filesystem.externalStorageDirectory);
         imgDir.exists() || imgDir.createDirectory();
