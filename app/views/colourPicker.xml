@@ -11,7 +11,7 @@
 			<ActivityIndicator  id="activityIndicator" />
 			<Label   text="Loading" color="#ffffff" />
 		</View>
-		<View layout="vertical" height="35%" bottom="60" id="colorSelection" visible="false">
+		<View layout="vertical" height="40%" bottom="60" id="colorSelection" visible="false">
 			<ImageView image="/images/scroll_up.png" backgroundColor="transparent" width="Titanium.UI.FILL" top="0" />
 			<View id="bottomColorBar" layout="vertical" backgroundColor="white">
 				<Label class="smallTitle" color="black" width="90%" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" bottom="10" backgroundColor="white">COLOURS INSPIRATION</Label>

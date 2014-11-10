@@ -477,10 +477,13 @@ function Controller() {
     var sizeShow = 0;
     var colorShow = 0;
     var filterFlag = 0;
+<<<<<<< HEAD
+=======
     var shareFlag = 0;
     var fb = require("facebook");
     var imgPath = "";
     fb.appid = 752094718209236;
+>>>>>>> FETCH_HEAD
     takePhoto();
     $.toolbar.addEventListener("postlayout", function() {
         toolbarHeight = $.toolbar.rect.height;
