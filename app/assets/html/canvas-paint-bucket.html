@@ -35,8 +35,7 @@
 		
 		var loadImage = function(e){
 			$('#parent').css('background', 'url("' + e.image + '")');
-			//$('#myPhoto').attr("src", e.image);
-			
+			$("#myPhoto").val(e.image);
 			paintBucketApp.loadImage({image: e.image});
 		};
 		
@@ -455,15 +454,56 @@ var paintBucketApp = (function () {
 		},
 		saveAndShare = function(e){ 
 			
-			html2canvas($("body"), {
+			var finalcanvas = document.createElement('canvas');
+			var canvasW = screenwidth;
+			var canvasH = 500;
+
+			finalcanvas.setAttribute('width', canvasW);
+			finalcanvas.setAttribute('height', canvasH);
+			canvasWidth = canvasW;
+			canvasHeight = canvasH;
+			drawingAreaWidth = canvasW;
+			drawingAreaHeight = canvasH;
+		
+			finalcanvas.setAttribute('id', 'final');
+			document.getElementById('canvasDiv').appendChild(finalcanvas);
+
+			if (typeof G_vmlCanvasManager !== "undefined") {
+				finalcanvas = G_vmlCanvasManager.initElement(finalcanvas);
+			}
+			
+			var finalcontext = finalcanvas.getContext("2d"); 
+			var myPhoto = new Image();
+					
+			myPhoto.src = $("#myPhoto").val();
+			console.log("THE PHOTO : " + $("#myPhoto").val());
+			myPhoto.onload = function (e) { 
+				setBackgroundSize({width: screenwidth, height: canvasH}); 
+				finalcontext.drawImage(myPhoto, 0,0,screenwidth,canvasH);
+			};
+			
+			var dataURL = finalcanvas.toDataURL();
+			console.log("From Web : " + dataURL);
+			$("#canvasDiv").html("<img src='"+dataURL+"'/>");  
+			Ti.App.fireEvent('app:saveToGallery', {blob: dataURL});		
+			/**
+			html2canvas($("#canvas"), {
 				onrendered: function(canvas2) {
-						
-					var dataURL = canvas2.toDataURL("image/png");
-					  
+					var readyContext = canvas2.getContext("2d"); 
+					var myPhoto = new Image();
+					
+					myPhoto.src = $("#myPhoto").attr('src');
+					myPhoto.onload = function (e) { 
+						setBackgroundSize({width: screenwidth, height: canvasH}); 
+						readyContext.drawImage(myPhoto, 0,0,screenwidth,canvasH);
+					};
+					console.log("width : "+ screenwidth + " | height : "+canvasH);
+					var dataURL = canvas2.toDataURL();
+					$("#canvasDiv").html(canvas2);  
 					Ti.App.fireEvent('app:saveToGallery', {blob: dataURL});
 				}
 			});
-			/**
+			
 			readyContext = canvas.getContext("2d"); 
 			
 			var waterMark = new Image();
@@ -484,11 +524,9 @@ var paintBucketApp = (function () {
 
 			// Create the canvas (Neccessary for IE because it doesn't know what a canvas element is)
 			canvas = document.createElement('canvas');
-			var screenwidth = window.innerWidth;
-			var canvasW = screenwidth;
-			var canvasH = data.canvasHeight;
-			
-			console.log(screenwidth+"vs"+canvasW);
+			var canvasW = (!data.canvasWidth || data.canvasWidth.length)?canvasWidth:data.canvasWidth;
+			var canvasH = (!data.canvasHeight || data.canvasHeight.length)?canvasHeight:data.canvasHeight;
+
 			canvas.setAttribute('width', canvasW);
 			canvas.setAttribute('height', canvasH);
 			canvasWidth = canvasW;
@@ -516,9 +554,8 @@ var paintBucketApp = (function () {
 				canvasHeight = newheight;
 				var top = window.innerHeight - canvasHeight;
 				setBackgroundSize({width: canvasWidth, height: newheight, top: top});
-				
 				context.drawImage(outlineImage, drawingAreaX, drawingAreaY, canvasWidth, canvasHeight);
- 
+
 				// Test for cross origin security error (SECURITY_ERR: DOM Exception 18)
 				try {
 					outlineLayerData = context.getImageData(0, 0, canvasWidth, canvasHeight);
@@ -564,9 +601,11 @@ var paintBucketApp = (function () {
 </script>
 	<body>
 	   <div id="parent">
-	    	<div id="canvasDiv"> 
+	    	<div id="canvasDiv">
+	    		<!---->
 	    		<img src="images/water_mark.png" style="width:50%;margin: auto;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;" />
 	    	</div>
 	    </div>
+	  	<input type="hidden" id="myPhoto" value="">
   </body>
 </html>

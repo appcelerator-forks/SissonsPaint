@@ -19,8 +19,26 @@ function Controller() {
         });
         $.sizeBar.animate(animation);
     }
-    function share() {
-        Ti.App.fireEvent("web:saveAndShare");
+    function shareFunction() {
+        if (fb.loggedIn) shareFacebook(); else {
+            fb.permissions = [ "publish_actions" ];
+            fb.addEventListener("login", function(e) {
+                e.success && shareFacebook();
+            });
+            fb.authorize();
+        }
+    }
+    function shareFacebook() {
+        var f = Ti.Filesystem.getFile(imgPath);
+        var blob = f.read();
+        var data = {
+            message: "Sissons Paints Omnicolor",
+            picture: blob
+        };
+        fb.requestWithGraphPath("me/photos", data, "POST", function(e) {
+            alert(e.success && e.result ? "Success : " + e.result : e.error ? e.error : "cancel");
+        });
+        imgPath = "";
     }
     function slideUp(e) {
         if ("color" == e.source.mod) {
@@ -280,6 +298,13 @@ function Controller() {
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.__alloyId51.add($.__views.canvas);
+    $.__views.result = Ti.UI.createImageView({
+        image: "",
+        id: "result",
+        backgroundColor: "blue",
+        width: Titanium.UI.FILL
+    });
+    $.__views.__alloyId51.add($.__views.result);
     $.__views.colorSwatches = Ti.UI.createView({
         layout: "vertical",
         height: "330",
@@ -363,65 +388,79 @@ function Controller() {
     $.__views.toolbar = Ti.UI.createView({
         height: "60",
         bottom: "0",
-        id: "toolbar"
+        id: "toolbar",
+        width: Ti.UI.FILL,
+        backgroundImage: "/images/tool_bar.jpg"
     });
     $.__views.__alloyId51.add($.__views.toolbar);
-    $.__views.__alloyId58 = Ti.UI.createImageView({
-        image: "/images/tool_bar.jpg",
-        height: "60",
-        width: Titanium.UI.FILL,
+    $.__views.__alloyId58 = Ti.UI.createView({
+        layout: "horizontal",
+        width: "330",
         id: "__alloyId58"
     });
     $.__views.toolbar.add($.__views.__alloyId58);
     $.__views.photoButton = Ti.UI.createImageView({
         id: "photoButton",
         image: "/images/icon_photo.png",
-        left: "5",
         height: "40",
-        width: "50"
+        width: "50",
+        top: "10",
+        bottom: "10",
+        right: "10"
     });
-    $.__views.toolbar.add($.__views.photoButton);
+    $.__views.__alloyId58.add($.__views.photoButton);
     takePhoto ? $.__views.photoButton.addEventListener("click", takePhoto) : __defers["$.__views.photoButton!click!takePhoto"] = true;
     $.__views.tools = Ti.UI.createImageView({
         id: "tools",
         image: "/images/icon_bucket.png",
-        left: "65",
+        left: "10",
         height: "40",
-        width: "50"
+        width: "50",
+        top: "10",
+        bottom: "10",
+        right: "10"
     });
-    $.__views.toolbar.add($.__views.tools);
+    $.__views.__alloyId58.add($.__views.tools);
     toolspop ? $.__views.tools.addEventListener("click", toolspop) : __defers["$.__views.tools!click!toolspop"] = true;
     $.__views.size = Ti.UI.createImageView({
         id: "size",
         image: "/images/icon_size.png",
-        left: "125",
+        left: "10",
         mod: "size",
         height: "40",
-        width: "50"
+        width: "50",
+        top: "10",
+        bottom: "10",
+        right: "10"
     });
-    $.__views.toolbar.add($.__views.size);
+    $.__views.__alloyId58.add($.__views.size);
     slideUp ? $.__views.size.addEventListener("click", slideUp) : __defers["$.__views.size!click!slideUp"] = true;
     $.__views.color = Ti.UI.createView({
         id: "color",
         backgroundColor: "#ffffff",
-        left: "185",
+        left: "10",
         height: "40",
         width: "50",
         mod: "color",
         borderColor: "#000000",
         borderWidth: "3",
-        borderRadius: "10"
+        borderRadius: "10",
+        top: "10",
+        bottom: "10",
+        right: "10"
     });
-    $.__views.toolbar.add($.__views.color);
+    $.__views.__alloyId58.add($.__views.color);
     slideUp ? $.__views.color.addEventListener("click", slideUp) : __defers["$.__views.color!click!slideUp"] = true;
     $.__views.__alloyId59 = Ti.UI.createImageView({
         id: "__alloyId59",
         image: "/images/icon_share.png",
-        left: "245",
+        left: "10",
         height: "40",
-        width: "50"
+        width: "50",
+        top: "10",
+        bottom: "10"
     });
-    $.__views.toolbar.add($.__views.__alloyId59);
+    $.__views.__alloyId58.add($.__views.__alloyId59);
     share ? $.__views.__alloyId59.addEventListener("click", share) : __defers["$.__views.__alloyId59!click!share"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
@@ -445,6 +484,11 @@ function Controller() {
     var sizeShow = 0;
     var colorShow = 0;
     var filterFlag = 0;
+    var shareFlag = 0;
+    var fb = require("facebook");
+    var imgPath = "";
+    fb.appid = 752094718209236;
+    takePhoto();
     $.toolbar.addEventListener("postlayout", function() {
         toolbarHeight = $.toolbar.rect.height;
         canvasHeight = pHeight - toolbarHeight - 25 - toggleHeight;
@@ -457,6 +501,61 @@ function Controller() {
             width: pWidth
         });
     });
+    var tableDataShare = [];
+    var saveRow = Ti.UI.createTableViewRow({
+        touchEnabled: true
+    });
+    var shareRow = Ti.UI.createTableViewRow({
+        touchEnabled: true
+    });
+    var saveLabel = Ti.UI.createLabel({
+        text: "Save",
+        width: 150,
+        textAlign: "center",
+        height: 60
+    });
+    var shareLabel = Ti.UI.createLabel({
+        text: "Share",
+        width: 150,
+        textAlign: "center",
+        height: 60
+    });
+    saveRow.add(saveLabel);
+    shareRow.add(shareLabel);
+    tableDataShare.push(saveRow);
+    tableDataShare.push(shareRow);
+    var tableShare = Titanium.UI.createTableView({
+        separatorColor: "transparent",
+        backgroundColor: "black",
+        height: Ti.UI.SIZE,
+        width: 150,
+        top: pHeight / 2 - 60,
+        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
+        data: tableDataShare
+    });
+    var share = function() {
+        closeShareWindow();
+        if (1 == shareFlag) {
+            shareFlag = 0;
+            $.diyPaint.remove(tableShare);
+        } else {
+            shareFlag = 1;
+            $.diyPaint.add(tableShare);
+            tableShare.addEventListener("click", tableShareListener);
+        }
+    };
+    var tableShareListener = function(e) {
+        console.log(e.index);
+        shareFlag = 0;
+        $.diyPaint.remove(tableShare);
+        if (0 == e.index) Ti.App.fireEvent("web:saveAndShare"); else {
+            Ti.App.fireEvent("web:saveAndShare");
+            shareFunction();
+        }
+    };
+    var closeShareWindow = function() {
+        tableShare.removeEventListener("click", tableShareListener);
+    };
     var tableData = [];
     var row1 = Ti.UI.createTableViewRow({
         title: "Bucket",
@@ -536,16 +635,20 @@ function Controller() {
         generateColour();
     }, 0);
     Ti.App.addEventListener("app:saveToGallery", function(e) {
-        console.log(e.blob);
+        console.log("FROM APP : " + e.blob);
         var blob = e.blob;
         var index = blob.indexOf("base64,");
         blob = blob.substring(index + "base64,".length);
         var img_view = Ti.Utils.base64decode(blob);
+        $.result.image = img_view;
         var filename = "sissons_diy" + printDate() + ".png";
         var imgDir = Titanium.Filesystem.getFile(Titanium.Filesystem.externalStorageDirectory);
         imgDir.exists() || imgDir.createDirectory();
         var imageFile = Titanium.Filesystem.getFile(imgDir.resolve(), filename);
-        alert(false === imageFile.write(img_view) ? "Saved FAILED" : "Saved Done");
+        if (false === imageFile.write(img_view)) alert("Saved FAILED"); else {
+            imgPath = imageFile.nativePath;
+            alert("Saved Done");
+        }
         imageFile = null;
         imgDir = null;
     });

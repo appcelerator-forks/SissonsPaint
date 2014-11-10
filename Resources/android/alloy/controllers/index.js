@@ -22,6 +22,9 @@ function Controller() {
             checkLoadStatus();
         }, 500);
     }
+    function toggle() {
+        $.drawer["toggleLeftWindow"]();
+    }
     function doMenuClick(e) {
         switch (e.index) {
           case 0:
@@ -306,6 +309,7 @@ function Controller() {
     Ti.App.Properties.setString("loadColour", "0");
     Ti.App.Properties.setString("loadCategory", "0");
     var API = require("api");
+    var drawerFlag = 0;
     $.activityIndicator.show();
     $.loadingBar.opacity = "1";
     $.loadingBar.height = "120";
@@ -330,7 +334,7 @@ function Controller() {
             Ti.App.Properties.setString("module", "index");
             var nav = Alloy.createController(from).getView();
             Alloy.Globals.Drawer.setCenterWindow(nav);
-        } else {
+        } else if (1 == drawerFlag) {
             var dialog = Ti.UI.createAlertDialog({
                 cancel: 1,
                 buttonNames: [ "Cancel", "Confirm" ],
@@ -345,7 +349,15 @@ function Controller() {
                 }
             });
             dialog.show();
-        }
+        } else toggle();
+    });
+    $.drawer.addEventListener("windowDidOpen", function() {
+        console.log("open");
+        drawerFlag = 1;
+    });
+    $.drawer.addEventListener("windowDidClose", function() {
+        console.log("close");
+        drawerFlag = 0;
     });
     var module = require("dk.napp.drawer");
     __defers["$.__views.menuTable!click!doMenuClick"] && $.__views.menuTable.addEventListener("click", doMenuClick);
