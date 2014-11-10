@@ -29,7 +29,7 @@ function Controller() {
         }
     }
     function shareFacebook() {
-        var f = Ti.Filesystem.getFile("file:///storage/sdcard0/Pictures/Survival Wallpaper/1380785291867.jpg");
+        var f = Ti.Filesystem.getFile(imgPath);
         var blob = f.read();
         var data = {
             message: "Sissons Paints Omnicolor",
@@ -38,6 +38,7 @@ function Controller() {
         fb.requestWithGraphPath("me/photos", data, "POST", function(e) {
             alert(e.success && e.result ? "Success : " + e.result : e.error ? e.error : "cancel");
         });
+        imgPath = "";
     }
     function slideUp(e) {
         if ("color" == e.source.mod) {
@@ -405,11 +406,7 @@ function Controller() {
     $.__views.tools = Ti.UI.createImageView({
         id: "tools",
         image: "/images/icon_bucket.png",
-<<<<<<< HEAD
         left: "10",
-=======
-        left: "65",
->>>>>>> FETCH_HEAD
         height: "40",
         width: "50",
         top: "10",
@@ -421,11 +418,7 @@ function Controller() {
     $.__views.size = Ti.UI.createImageView({
         id: "size",
         image: "/images/icon_size.png",
-<<<<<<< HEAD
         left: "10",
-=======
-        left: "125",
->>>>>>> FETCH_HEAD
         mod: "size",
         height: "40",
         width: "50",
@@ -438,11 +431,7 @@ function Controller() {
     $.__views.color = Ti.UI.createView({
         id: "color",
         backgroundColor: "#ffffff",
-<<<<<<< HEAD
         left: "10",
-=======
-        left: "185",
->>>>>>> FETCH_HEAD
         height: "40",
         width: "50",
         mod: "color",
@@ -458,11 +447,7 @@ function Controller() {
     $.__views.__alloyId59 = Ti.UI.createImageView({
         id: "__alloyId59",
         image: "/images/icon_share.png",
-<<<<<<< HEAD
         left: "10",
-=======
-        left: "245",
->>>>>>> FETCH_HEAD
         height: "40",
         width: "50",
         top: "10",
@@ -494,6 +479,7 @@ function Controller() {
     var filterFlag = 0;
     var shareFlag = 0;
     var fb = require("facebook");
+    var imgPath = "";
     fb.appid = 752094718209236;
     takePhoto();
     $.toolbar.addEventListener("postlayout", function() {
@@ -651,7 +637,10 @@ function Controller() {
         var imgDir = Titanium.Filesystem.getFile(Titanium.Filesystem.externalStorageDirectory);
         imgDir.exists() || imgDir.createDirectory();
         var imageFile = Titanium.Filesystem.getFile(imgDir.resolve(), filename);
-        alert(false === imageFile.write(img_view) ? "Saved FAILED" : "Saved Done");
+        if (false === imageFile.write(img_view)) alert("Saved FAILED"); else {
+            imgPath = imageFile.nativePath;
+            alert("Saved Done");
+        }
         imageFile = null;
         imgDir = null;
     });

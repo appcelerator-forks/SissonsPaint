@@ -24,6 +24,7 @@ Ti.App.Properties.setString('loadCategory', '0');
 
 var API = require('api');
 var flag =0;	
+var drawerFlag = 0;
 
 $.activityIndicator.show();
 $.loadingBar.opacity = "1";
@@ -66,7 +67,7 @@ function checkLoadStatus(){
 }
 
 function toggle(e) {
-   $.drawer['toggleLeftWindow']();
+	$.drawer['toggleLeftWindow']();
 }
 Alloy.Globals.Drawer = $.drawer;
 function doMenuClick(e){
@@ -115,9 +116,27 @@ $.drawer.addEventListener('android:back', function (e) {
 		Ti.App.Properties.setString('module', 'index');
 		var nav = Alloy.createController(from).getView(); 
 		Alloy.Globals.Drawer.setCenterWindow(nav);  
+	}else if(drawerFlag == 1){
+		var dialog = Ti.UI.createAlertDialog({
+		    cancel: 1,
+		    buttonNames: ['Cancel','Confirm'],
+		    message: 'Would you like to exit Sissons Paint?',
+		    title: 'Exit app'
+		});
+		dialog.addEventListener('click', function(e){
+		  
+	    	if (e.index === e.source.cancel){
+		      //Do nothing
+		    }
+		    if (e.index === 1){
+		    	var activity = Titanium.Android.currentActivity;
+				activity.finish();
+		    }
+		});
+		dialog.show(); 
 	}else{
 		//Alloy.Globals.Drawer['toggleLeftWindow']();
-		var dialog = Ti.UI.createAlertDialog({
+		/*var dialog = Ti.UI.createAlertDialog({
 		    cancel: 1,
 		    buttonNames: ['Cancel','Confirm'],
 		    message: 'Would you like to exit Sissons Paint?',
@@ -133,9 +152,20 @@ $.drawer.addEventListener('android:back', function (e) {
 				activity.finish();
 		    }
 		  });
-		  dialog.show(); 
+		  dialog.show(); */
+		 toggle();
 	}
   	
+});
+
+$.drawer.addEventListener('windowDidOpen', function (e) {
+	console.log("open");
+	drawerFlag = 1;
+});
+
+$.drawer.addEventListener('windowDidClose', function (e) {
+	console.log("close");
+	drawerFlag = 0;
 });
 
 var module= require('dk.napp.drawer'); 
