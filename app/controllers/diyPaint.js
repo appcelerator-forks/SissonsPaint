@@ -19,7 +19,7 @@ var sizeShow = 0;
 var colorShow = 0;
 var filterFlag = 0;
 
-// takePhoto();
+takePhoto();
 	 
 $.toolbar.addEventListener('postlayout', function(e) { 
 	toolbarHeight = $.toolbar.rect.height;

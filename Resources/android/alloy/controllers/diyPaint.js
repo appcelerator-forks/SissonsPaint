@@ -445,6 +445,7 @@ function Controller() {
     var sizeShow = 0;
     var colorShow = 0;
     var filterFlag = 0;
+    takePhoto();
     $.toolbar.addEventListener("postlayout", function() {
         toolbarHeight = $.toolbar.rect.height;
         canvasHeight = pHeight - toolbarHeight - 25 - toggleHeight;

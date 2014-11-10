@@ -205,7 +205,7 @@ function Controller() {
     $.__views.loadingBar.add($.__views.__alloyId42);
     $.__views.colorSelection = Ti.UI.createView({
         layout: "vertical",
-        height: "35%",
+        height: "40%",
         bottom: "60",
         id: "colorSelection",
         visible: "false"
