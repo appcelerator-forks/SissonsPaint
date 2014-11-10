@@ -18,6 +18,9 @@ var list_colours = colour_lib.getColourList();
 var sizeShow = 0;
 var colorShow = 0;
 var filterFlag = 0;
+var shareFlag = 0;
+var fb = require('facebook');
+fb.appid = 752094718209236;
 
 takePhoto();
 	 
@@ -51,13 +54,143 @@ function sizePop(e){
 	$.sizeBar.animate(animation);
 }
 
-function share(e){
-	Ti.App.fireEvent('web:saveAndShare');
+
+
+var tableDataShare = [];
+
+var saveRow = Ti.UI.createTableViewRow({
+    // title: 'Save',
+    // width: 150,
+    // left: 10,
+    touchEnabled: true,
+    // height: 60
+  });
+  
+var shareRow = Ti.UI.createTableViewRow({
+    // title: 'Share',
+    // width: 150,
+    // left: 10,
+    touchEnabled: true,
+    // height: 60
+  });
+ 
+var saveLabel = Ti.UI.createLabel({
+   text:'Save',
+   width:150,
+   textAlign:'center',
+   // left: 10,
+   height: 60,
+   //font:{fontSize:16,fontWeight:'bold'}
+});
+
+var shareLabel = Ti.UI.createLabel({
+   text:'Share',
+   width:150,
+   textAlign:'center',
+   // left: 10,
+   height: 60,
+   //font:{fontSize:16,fontWeight:'bold'}
+});
+
+saveRow.add(saveLabel);
+shareRow.add(shareLabel);
+tableDataShare.push(saveRow);
+tableDataShare.push(shareRow);
+  
+var tableShare = Titanium.UI.createTableView({
+	separatorColor: 'transparent',
+	//backgroundImage: '/images/pop_window.png',
+	backgroundColor: 'black',
+	height: Ti.UI.SIZE,
+	width: 150,
+	top: (pHeight/2)-60,
+	overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
+	data: tableDataShare
+});
+
+var share = function(e){
+	
+	closeShareWindow();
+	if(shareFlag == 1) {
+		shareFlag = 0;
+		$.diyPaint.remove(tableShare);
+	}else {
+		shareFlag = 1;
+		
+		$.diyPaint.add(tableShare);
+		tableShare.addEventListener('click', tableShareListener);
+		
+	}
+	
+	//$.diyPaint.add(table);
+	
+	//Ti.App.fireEvent('web:saveAndShare');
+};
+
+var tableShareListener = function(e){
+	console.log(e.index);
+	shareFlag = 0;
+	$.diyPaint.remove(tableShare);
+	//removeAllChildren($.scrollview);
+	if(e.index == 0)
+	{
+		Ti.App.fireEvent('web:saveAndShare');
+	}
+	else
+	{
+		Ti.App.fireEvent('web:saveAndShare');
+		shareFunction();
+	}
+};
+
+var closeShareWindow = function(e){
+	tableShare.removeEventListener('click', tableShareListener);
+};
+
+
+function shareFunction(e)
+{
+	if (fb.loggedIn)
+			{
+		  		shareFacebook();
+		  	}
+		  	else
+		  	{
+		  		fb.permissions = ['publish_actions'];
+          		fb.addEventListener('login', function(e){
+          			if (e.success){
+         				shareFacebook();	
+              		}
+          		});
+		  		fb.authorize();
+			}
 }
 
-function saveToGallery(e)
+function shareFacebook()
 {
-	
+	var f = Ti.Filesystem.getFile('file:///storage/sdcard0/Pictures/Survival Wallpaper/1380785291867.jpg');
+	var blob = f.read();
+  	var data = {
+  		message : 'Sissons Paints Omnicolor',
+  		picture : blob
+  	};
+  	
+  	fb.requestWithGraphPath('me/photos', data, 'POST', function(e){
+	  	if (e.success && e.result)
+	   	{
+	   		alert("Success : " + e.result);
+	   	}	
+	   	else
+	   	{
+	   		if (e.error) {
+	   			alert(e.error);
+	   		}
+	   		else
+	   		{
+	   			alert('cancel');
+	   		}
+	   	} 
+  	}); 	
 }
 
 function slideUp(e){

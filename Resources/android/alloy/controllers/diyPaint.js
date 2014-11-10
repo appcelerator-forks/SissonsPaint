@@ -19,8 +19,25 @@ function Controller() {
         });
         $.sizeBar.animate(animation);
     }
-    function share() {
-        Ti.App.fireEvent("web:saveAndShare");
+    function shareFunction() {
+        if (fb.loggedIn) shareFacebook(); else {
+            fb.permissions = [ "publish_actions" ];
+            fb.addEventListener("login", function(e) {
+                e.success && shareFacebook();
+            });
+            fb.authorize();
+        }
+    }
+    function shareFacebook() {
+        var f = Ti.Filesystem.getFile("file:///storage/sdcard0/Pictures/Survival Wallpaper/1380785291867.jpg");
+        var blob = f.read();
+        var data = {
+            message: "Sissons Paints Omnicolor",
+            picture: blob
+        };
+        fb.requestWithGraphPath("me/photos", data, "POST", function(e) {
+            alert(e.success && e.result ? "Success : " + e.result : e.error ? e.error : "cancel");
+        });
     }
     function slideUp(e) {
         if ("color" == e.source.mod) {
@@ -363,65 +380,95 @@ function Controller() {
     $.__views.toolbar = Ti.UI.createView({
         height: "60",
         bottom: "0",
-        id: "toolbar"
+        id: "toolbar",
+        width: Ti.UI.FILL,
+        backgroundImage: "/images/tool_bar.jpg"
     });
     $.__views.__alloyId51.add($.__views.toolbar);
-    $.__views.__alloyId58 = Ti.UI.createImageView({
-        image: "/images/tool_bar.jpg",
-        height: "60",
-        width: Titanium.UI.FILL,
+    $.__views.__alloyId58 = Ti.UI.createView({
+        layout: "horizontal",
+        width: "330",
         id: "__alloyId58"
     });
     $.__views.toolbar.add($.__views.__alloyId58);
     $.__views.photoButton = Ti.UI.createImageView({
         id: "photoButton",
         image: "/images/icon_photo.png",
-        left: "5",
         height: "40",
-        width: "50"
+        width: "50",
+        top: "10",
+        bottom: "10",
+        right: "10"
     });
-    $.__views.toolbar.add($.__views.photoButton);
+    $.__views.__alloyId58.add($.__views.photoButton);
     takePhoto ? $.__views.photoButton.addEventListener("click", takePhoto) : __defers["$.__views.photoButton!click!takePhoto"] = true;
     $.__views.tools = Ti.UI.createImageView({
         id: "tools",
         image: "/images/icon_bucket.png",
+<<<<<<< HEAD
+        left: "10",
+=======
         left: "65",
+>>>>>>> FETCH_HEAD
         height: "40",
-        width: "50"
+        width: "50",
+        top: "10",
+        bottom: "10",
+        right: "10"
     });
-    $.__views.toolbar.add($.__views.tools);
+    $.__views.__alloyId58.add($.__views.tools);
     toolspop ? $.__views.tools.addEventListener("click", toolspop) : __defers["$.__views.tools!click!toolspop"] = true;
     $.__views.size = Ti.UI.createImageView({
         id: "size",
         image: "/images/icon_size.png",
+<<<<<<< HEAD
+        left: "10",
+=======
         left: "125",
+>>>>>>> FETCH_HEAD
         mod: "size",
         height: "40",
-        width: "50"
+        width: "50",
+        top: "10",
+        bottom: "10",
+        right: "10"
     });
-    $.__views.toolbar.add($.__views.size);
+    $.__views.__alloyId58.add($.__views.size);
     slideUp ? $.__views.size.addEventListener("click", slideUp) : __defers["$.__views.size!click!slideUp"] = true;
     $.__views.color = Ti.UI.createView({
         id: "color",
         backgroundColor: "#ffffff",
+<<<<<<< HEAD
+        left: "10",
+=======
         left: "185",
+>>>>>>> FETCH_HEAD
         height: "40",
         width: "50",
         mod: "color",
         borderColor: "#000000",
         borderWidth: "3",
-        borderRadius: "10"
+        borderRadius: "10",
+        top: "10",
+        bottom: "10",
+        right: "10"
     });
-    $.__views.toolbar.add($.__views.color);
+    $.__views.__alloyId58.add($.__views.color);
     slideUp ? $.__views.color.addEventListener("click", slideUp) : __defers["$.__views.color!click!slideUp"] = true;
     $.__views.__alloyId59 = Ti.UI.createImageView({
         id: "__alloyId59",
         image: "/images/icon_share.png",
+<<<<<<< HEAD
+        left: "10",
+=======
         left: "245",
+>>>>>>> FETCH_HEAD
         height: "40",
-        width: "50"
+        width: "50",
+        top: "10",
+        bottom: "10"
     });
-    $.__views.toolbar.add($.__views.__alloyId59);
+    $.__views.__alloyId58.add($.__views.__alloyId59);
     share ? $.__views.__alloyId59.addEventListener("click", share) : __defers["$.__views.__alloyId59!click!share"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
@@ -445,6 +492,12 @@ function Controller() {
     var sizeShow = 0;
     var colorShow = 0;
     var filterFlag = 0;
+<<<<<<< HEAD
+=======
+    var shareFlag = 0;
+    var fb = require("facebook");
+    fb.appid = 752094718209236;
+>>>>>>> FETCH_HEAD
     takePhoto();
     $.toolbar.addEventListener("postlayout", function() {
         toolbarHeight = $.toolbar.rect.height;
@@ -458,6 +511,61 @@ function Controller() {
             width: pWidth
         });
     });
+    var tableDataShare = [];
+    var saveRow = Ti.UI.createTableViewRow({
+        touchEnabled: true
+    });
+    var shareRow = Ti.UI.createTableViewRow({
+        touchEnabled: true
+    });
+    var saveLabel = Ti.UI.createLabel({
+        text: "Save",
+        width: 150,
+        textAlign: "center",
+        height: 60
+    });
+    var shareLabel = Ti.UI.createLabel({
+        text: "Share",
+        width: 150,
+        textAlign: "center",
+        height: 60
+    });
+    saveRow.add(saveLabel);
+    shareRow.add(shareLabel);
+    tableDataShare.push(saveRow);
+    tableDataShare.push(shareRow);
+    var tableShare = Titanium.UI.createTableView({
+        separatorColor: "transparent",
+        backgroundColor: "black",
+        height: Ti.UI.SIZE,
+        width: 150,
+        top: pHeight / 2 - 60,
+        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
+        data: tableDataShare
+    });
+    var share = function() {
+        closeShareWindow();
+        if (1 == shareFlag) {
+            shareFlag = 0;
+            $.diyPaint.remove(tableShare);
+        } else {
+            shareFlag = 1;
+            $.diyPaint.add(tableShare);
+            tableShare.addEventListener("click", tableShareListener);
+        }
+    };
+    var tableShareListener = function(e) {
+        console.log(e.index);
+        shareFlag = 0;
+        $.diyPaint.remove(tableShare);
+        if (0 == e.index) Ti.App.fireEvent("web:saveAndShare"); else {
+            Ti.App.fireEvent("web:saveAndShare");
+            shareFunction();
+        }
+    };
+    var closeShareWindow = function() {
+        tableShare.removeEventListener("click", tableShareListener);
+    };
     var tableData = [];
     var row1 = Ti.UI.createTableViewRow({
         title: "Bucket",
