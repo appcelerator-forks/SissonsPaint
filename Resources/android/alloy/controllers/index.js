@@ -15,12 +15,19 @@ function Controller() {
         var loadCategory = Ti.App.Properties.getString("loadCategory");
         if ("1" == loadStoreLocator && "1" == loadBrochure && "1" == loadColour && "1" == loadCategory) {
             $.loadingBar.opacity = "0";
+<<<<<<< HEAD
+            var nav = Alloy.createController("colourSwatches").getView();
+=======
             var nav = Alloy.createController("diyPaint").getView();
+>>>>>>> FETCH_HEAD
             Alloy.Globals.Drawer.setCenterWindow(nav);
             Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
         } else setTimeout(function() {
             checkLoadStatus();
         }, 500);
+    }
+    function toggle() {
+        $.drawer["toggleLeftWindow"]();
     }
     function doMenuClick(e) {
         switch (e.index) {
@@ -306,6 +313,7 @@ function Controller() {
     Ti.App.Properties.setString("loadColour", "0");
     Ti.App.Properties.setString("loadCategory", "0");
     var API = require("api");
+    var drawerFlag = 0;
     $.activityIndicator.show();
     $.loadingBar.opacity = "1";
     $.loadingBar.height = "120";
@@ -330,7 +338,7 @@ function Controller() {
             Ti.App.Properties.setString("module", "index");
             var nav = Alloy.createController(from).getView();
             Alloy.Globals.Drawer.setCenterWindow(nav);
-        } else {
+        } else if (1 == drawerFlag) {
             var dialog = Ti.UI.createAlertDialog({
                 cancel: 1,
                 buttonNames: [ "Cancel", "Confirm" ],
@@ -345,7 +353,15 @@ function Controller() {
                 }
             });
             dialog.show();
-        }
+        } else toggle();
+    });
+    $.drawer.addEventListener("windowDidOpen", function() {
+        console.log("open");
+        drawerFlag = 1;
+    });
+    $.drawer.addEventListener("windowDidClose", function() {
+        console.log("close");
+        drawerFlag = 0;
     });
     var module = require("dk.napp.drawer");
     __defers["$.__views.menuTable!click!doMenuClick"] && $.__views.menuTable.addEventListener("click", doMenuClick);

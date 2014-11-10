@@ -20,6 +20,7 @@ var colorShow = 0;
 var filterFlag = 0;
 var shareFlag = 0;
 var fb = require('facebook');
+var imgPath = "";
 fb.appid = 752094718209236;
 
 takePhoto();
@@ -168,7 +169,7 @@ function shareFunction(e)
 
 function shareFacebook()
 {
-	var f = Ti.Filesystem.getFile('file:///storage/sdcard0/Pictures/Survival Wallpaper/1380785291867.jpg');
+	var f = Ti.Filesystem.getFile(imgPath);
 	var blob = f.read();
   	var data = {
   		message : 'Sissons Paints Omnicolor',
@@ -178,19 +179,23 @@ function shareFacebook()
   	fb.requestWithGraphPath('me/photos', data, 'POST', function(e){
 	  	if (e.success && e.result)
 	   	{
-	   		alert("Success : " + e.result);
+	   		//alert("Success : " + e.result);
+	   		console.log("Success : " + e.result);
 	   	}	
 	   	else
 	   	{
 	   		if (e.error) {
-	   			alert(e.error);
+	   			//alert(e.error);
+	   			console.log(e.error);
 	   		}
 	   		else
 	   		{
 	   			alert('cancel');
 	   		}
 	   	} 
-  	}); 	
+  	}); 
+  	
+  	imgPath = "";	
 }
 
 function slideUp(e){
@@ -588,6 +593,7 @@ Ti.App.addEventListener('app:saveToGallery', function(e) {
 	    alert("Saved FAILED");
 	}
 	else{
+		imgPath = imageFile.nativePath;
 		alert("Saved Done");
 	}
 	// dispose of file handles

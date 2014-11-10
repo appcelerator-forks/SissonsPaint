@@ -29,7 +29,7 @@ function Controller() {
         }
     }
     function shareFacebook() {
-        var f = Ti.Filesystem.getFile("file:///storage/sdcard0/Pictures/Survival Wallpaper/1380785291867.jpg");
+        var f = Ti.Filesystem.getFile(imgPath);
         var blob = f.read();
         var data = {
             message: "Sissons Paints Omnicolor",
@@ -38,6 +38,7 @@ function Controller() {
         fb.requestWithGraphPath("me/photos", data, "POST", function(e) {
             alert(e.success && e.result ? "Success : " + e.result : e.error ? e.error : "cancel");
         });
+        imgPath = "";
     }
     function slideUp(e) {
         if ("color" == e.source.mod) {
@@ -485,6 +486,7 @@ function Controller() {
     var filterFlag = 0;
     var shareFlag = 0;
     var fb = require("facebook");
+    var imgPath = "";
     fb.appid = 752094718209236;
     takePhoto();
     $.toolbar.addEventListener("postlayout", function() {
@@ -643,7 +645,10 @@ function Controller() {
         var imgDir = Titanium.Filesystem.getFile(Titanium.Filesystem.externalStorageDirectory);
         imgDir.exists() || imgDir.createDirectory();
         var imageFile = Titanium.Filesystem.getFile(imgDir.resolve(), filename);
-        alert(false === imageFile.write(img_view) ? "Saved FAILED" : "Saved Done");
+        if (false === imageFile.write(img_view)) alert("Saved FAILED"); else {
+            imgPath = imageFile.nativePath;
+            alert("Saved Done");
+        }
         imageFile = null;
         imgDir = null;
     });
