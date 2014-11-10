@@ -297,6 +297,13 @@ function Controller() {
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.__alloyId51.add($.__views.canvas);
+    $.__views.result = Ti.UI.createImageView({
+        image: "",
+        id: "result",
+        backgroundColor: "blue",
+        width: Titanium.UI.FILL
+    });
+    $.__views.__alloyId51.add($.__views.result);
     $.__views.colorSwatches = Ti.UI.createView({
         layout: "vertical",
         height: "330",
@@ -405,11 +412,7 @@ function Controller() {
     $.__views.tools = Ti.UI.createImageView({
         id: "tools",
         image: "/images/icon_bucket.png",
-<<<<<<< HEAD
         left: "10",
-=======
-        left: "65",
->>>>>>> FETCH_HEAD
         height: "40",
         width: "50",
         top: "10",
@@ -421,11 +424,7 @@ function Controller() {
     $.__views.size = Ti.UI.createImageView({
         id: "size",
         image: "/images/icon_size.png",
-<<<<<<< HEAD
         left: "10",
-=======
-        left: "125",
->>>>>>> FETCH_HEAD
         mod: "size",
         height: "40",
         width: "50",
@@ -438,11 +437,7 @@ function Controller() {
     $.__views.color = Ti.UI.createView({
         id: "color",
         backgroundColor: "#ffffff",
-<<<<<<< HEAD
         left: "10",
-=======
-        left: "185",
->>>>>>> FETCH_HEAD
         height: "40",
         width: "50",
         mod: "color",
@@ -458,11 +453,7 @@ function Controller() {
     $.__views.__alloyId59 = Ti.UI.createImageView({
         id: "__alloyId59",
         image: "/images/icon_share.png",
-<<<<<<< HEAD
         left: "10",
-=======
-        left: "245",
->>>>>>> FETCH_HEAD
         height: "40",
         width: "50",
         top: "10",
@@ -492,12 +483,9 @@ function Controller() {
     var sizeShow = 0;
     var colorShow = 0;
     var filterFlag = 0;
-<<<<<<< HEAD
-=======
     var shareFlag = 0;
     var fb = require("facebook");
     fb.appid = 752094718209236;
->>>>>>> FETCH_HEAD
     takePhoto();
     $.toolbar.addEventListener("postlayout", function() {
         toolbarHeight = $.toolbar.rect.height;
@@ -645,11 +633,12 @@ function Controller() {
         generateColour();
     }, 0);
     Ti.App.addEventListener("app:saveToGallery", function(e) {
-        console.log(e.blob);
+        console.log("FROM APP : " + e.blob);
         var blob = e.blob;
         var index = blob.indexOf("base64,");
         blob = blob.substring(index + "base64,".length);
         var img_view = Ti.Utils.base64decode(blob);
+        $.result.image = img_view;
         var filename = "sissons_diy" + printDate() + ".png";
         var imgDir = Titanium.Filesystem.getFile(Titanium.Filesystem.externalStorageDirectory);
         imgDir.exists() || imgDir.createDirectory();
