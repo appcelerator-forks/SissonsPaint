@@ -630,8 +630,12 @@ function Controller() {
         generateFavourite();
         generateColour();
     }, 0);
+<<<<<<< HEAD
+    Ti.App.addEventListener("app:saveToGallery", function(e) {
+=======
     var save = function(e) {
         console.log(e.blob);
+>>>>>>> FETCH_HEAD
         var blob = e.blob;
         var index = blob.indexOf("base64,");
         blob = blob.substring(index + "base64,".length);
