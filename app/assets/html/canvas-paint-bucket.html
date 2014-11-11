@@ -26,6 +26,7 @@
 	<script>
 		
 		var screenwidth = window.innerWidth;
+		var imagesrc = "";
 		var initCanvasSize = function(e){
 			paintBucketApp.init({
 				canvasWidth: screenwidth,
@@ -35,6 +36,7 @@
 		
 		var loadImage = function(e){
 			$('#parent').css('background', 'url("' + e.image + '")');
+			imagesrc = e.image;
 			$('#myPhoto').val( e.image);
 			
 			paintBucketApp.loadImage({image: e.image});
@@ -128,6 +130,7 @@ var paintBucketApp = (function () {
 		curColor = colorPurple,
 		curOutlineColor = new Array(),
 		outlineImage = new Image(),
+		waterMarkImage = new Image(),
 		swatchImage = new Image(),
 		backgroundImage = new Image(),
 		
@@ -456,6 +459,35 @@ var paintBucketApp = (function () {
 		saveAndShare = function(e){ 
 			$("#water_mark").show();
 			var mp = $("#myPhoto").val();
+			clearCanvas();
+			context.drawImage(outlineImage, 0, 0, canvasWidth, canvasHeight);
+			var red = context.getImageData(0, 0, canvasWidth, canvasHeight);
+			clearCanvas();
+			context.drawImage(waterMarkImage, canvasWidth-150, canvasHeight-41, 150, 41);
+			var watermark = context.getImageData(0, 0, canvasWidth, canvasHeight);
+			
+			var blueData = colorLayerData;
+			var mixFactor = 0.5; //main image is dominant
+				//we're using the red buffer as main buffer for this example
+				for(var i = 0; i < red.data.length; i+=4) {
+					if(blueData.data[i+3] != 0){
+				    red.data[i]   = red.data[i]   * mixFactor + blueData.data[i]   * (1 - mixFactor);
+				    red.data[i+1] = red.data[i+1] * mixFactor + blueData.data[i+1] * (1 - mixFactor);
+				    red.data[i+2] = red.data[i+2] * mixFactor + blueData.data[i+2] * (1 - mixFactor);
+				   }
+				}
+				
+				//we're using the red buffer as main buffer for this example
+				for(var i = 0; i < red.data.length; i+=4) {
+					if(watermark.data[i+3] != 0){
+				    red.data[i]   = red.data[i]   * mixFactor + watermark.data[i]   * (1 - mixFactor);
+				    red.data[i+1] = red.data[i+1] * mixFactor + watermark.data[i+1] * (1 - mixFactor);
+				    red.data[i+2] = red.data[i+2] * mixFactor + watermark.data[i+2] * (1 - mixFactor);
+				   }
+				}
+				
+
+			context.putImageData(red, 0, 0);
 			
 			//$("#result").
 			html2canvas($("#parent"), {
@@ -512,14 +544,13 @@ var paintBucketApp = (function () {
 			// Load images
 			backgroundImage.onload = resourceLoaded;
 			backgroundImage.src = "images/background.png";
-			
+			waterMarkImage.src = "images/water_mark.png";
 			outlineImage.onload = function (e) {
 				var ratio = this.naturalWidth / canvasWidth;
 				var newheight = this.naturalHeight / ratio;
 				canvasHeight = newheight;
 				var top = window.innerHeight - canvasHeight;
 				setBackgroundSize({width: canvasWidth, height: newheight, top: top});
-				
 				context.drawImage(outlineImage, drawingAreaX, drawingAreaY, canvasWidth, canvasHeight);
  
 				// Test for cross origin security error (SECURITY_ERR: DOM Exception 18)
