@@ -111,31 +111,9 @@ function Controller() {
                 success: function(event) {
                     event.media;
                     if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
-<<<<<<< HEAD
                         var nativePath = event.media.nativePath;
                         ImageFactory.rotateResizeImage(nativePath, 800, 70);
                         Ti.App.Properties.setString("image", nativePath);
-=======
-                        var isLandscape = event.media.width > event.media.height;
-                        if (isLandscape) {
-                            console.log("is landscape");
-<<<<<<< Updated upstream
-                            {
-                                Ti.UI.createImageView({
-                                    image: e.media,
-                                    transform: Ti.UI.create2DMatrix().rotate(90)
-                                });
-                            }
-=======
-                            var img = Ti.UI.createImageView({
-                                image: e.media,
-                                transform: Ti.UI.create2DMatrix().rotate(90)
-                            });
-                            uploadImageToServer(img.toImage());
->>>>>>> Stashed changes
-                        }
-                        Ti.App.Properties.setString("image", image.nativePath);
->>>>>>> FETCH_HEAD
                         Ti.App.fireEvent("web:loadImage", {
                             image: nativePath
                         });
