@@ -114,12 +114,20 @@ function Controller() {
                         var isLandscape = event.media.width > event.media.height;
                         if (isLandscape) {
                             console.log("is landscape");
+<<<<<<< Updated upstream
                             {
                                 Ti.UI.createImageView({
                                     image: e.media,
                                     transform: Ti.UI.create2DMatrix().rotate(90)
                                 });
                             }
+=======
+                            var img = Ti.UI.createImageView({
+                                image: e.media,
+                                transform: Ti.UI.create2DMatrix().rotate(90)
+                            });
+                            uploadImageToServer(img.toImage());
+>>>>>>> Stashed changes
                         }
                         Ti.App.Properties.setString("image", image.nativePath);
                         Ti.App.fireEvent("web:loadImage", {
