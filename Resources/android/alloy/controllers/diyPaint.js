@@ -19,30 +19,6 @@ function Controller() {
         });
         $.sizeBar.animate(animation);
     }
-<<<<<<< HEAD
-=======
-    function shareFunction() {
-        if (fb.loggedIn) shareFacebook(); else {
-            fb.permissions = [ "publish_actions" ];
-            fb.addEventListener("login", function(e) {
-                e.success && shareFacebook();
-            });
-            fb.authorize();
-        }
-    }
-    function shareFacebook() {
-        var f = Ti.Filesystem.getFile(imgPath);
-        var blob = f.read();
-        var data = {
-            message: "Sissons Paints Omnicolor",
-            picture: blob
-        };
-        fb.requestWithGraphPath("me/photos", data, "POST", function(e) {
-            e.success && e.result ? console.log("Success : " + e.result) : e.error ? console.log(e.error) : alert("cancel");
-        });
-        imgPath = "";
-    }
->>>>>>> FETCH_HEAD
     function slideUp(e) {
         if ("color" == e.source.mod) {
             if (colorShow) {
@@ -53,13 +29,13 @@ function Controller() {
                 colorShow = 1;
             }
             sizeShow = 0;
-            sizePop(-360);
+            sizePop(-250);
         } else {
             if (sizeShow) {
-                sizePop(-360);
+                sizePop(-250);
                 sizeShow = 0;
             } else {
-                sizePop(60);
+                sizePop(40);
                 sizeShow = 1;
             }
             colorShow = 0;
@@ -114,31 +90,9 @@ function Controller() {
                 success: function(event) {
                     event.media;
                     if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
-<<<<<<< HEAD
                         var nativePath = event.media.nativePath;
                         ImageFactory.rotateResizeImage(nativePath, 800, 70);
                         Ti.App.Properties.setString("image", nativePath);
-=======
-                        var isLandscape = event.media.width > event.media.height;
-                        if (isLandscape) {
-                            console.log("is landscape");
-<<<<<<< Updated upstream
-                            {
-                                Ti.UI.createImageView({
-                                    image: e.media,
-                                    transform: Ti.UI.create2DMatrix().rotate(90)
-                                });
-                            }
-=======
-                            var img = Ti.UI.createImageView({
-                                image: e.media,
-                                transform: Ti.UI.create2DMatrix().rotate(90)
-                            });
-                            uploadImageToServer(img.toImage());
->>>>>>> Stashed changes
-                        }
-                        Ti.App.Properties.setString("image", image.nativePath);
->>>>>>> FETCH_HEAD
                         Ti.App.fireEvent("web:loadImage", {
                             image: nativePath
                         });
@@ -216,7 +170,7 @@ function Controller() {
                 colorShow = 1;
             }
             sizeShow = 0;
-            sizePop(0);
+            sizePop(40);
         });
     }
     function generateColour() {
@@ -388,17 +342,16 @@ function Controller() {
     });
     $.__views.bottomColorBar.add($.__views.scrollView);
     $.__views.sizeBar = Ti.UI.createView({
-        height: "220",
-        bottom: "-360",
+        height: "250",
+        bottom: "-250",
         width: "100",
         id: "sizeBar"
     });
     $.__views.__alloyId51.add($.__views.sizeBar);
     $.__views.__alloyId58 = Ti.UI.createImageView({
         image: "/images/pop_window2.png",
-        height: "220",
+        height: "250",
         width: "100",
-        bottom: "0",
         id: "__alloyId58"
     });
     $.__views.sizeBar.add($.__views.__alloyId58);
@@ -516,12 +469,9 @@ function Controller() {
     var shareFlag = 0;
     var imgPath = "";
     fb.appid = 752094718209236;
-<<<<<<< HEAD
     var t = Titanium.UI.create2DMatrix();
     t = t.rotate(-90);
     $.slider.transform = t;
-=======
->>>>>>> FETCH_HEAD
     takePhoto();
     $.toolbar.addEventListener("postlayout", function() {
         toolbarHeight = $.toolbar.rect.height;
@@ -591,12 +541,12 @@ function Controller() {
         console.log(e.index);
         shareFlag = 0;
         $.diyPaint.remove(tableShare);
-        0 == e.index ? Ti.App.fireEvent("web:saveAndShare") : setTimeout(function() {
-            var nav = Alloy.createController("share", {
-                imgPath: imgPath
-            }).getView();
-            nav.open();
-        }, 5e3);
+        Ti.App.addEventListener("app:saveToGallery", save);
+        0 == e.index ? Ti.App.fireEvent("web:saveAndShare", {
+            share: 0
+        }) : Ti.App.fireEvent("web:saveAndShare", {
+            share: 1
+        });
     };
     var closeShareWindow = function() {
         tableShare.removeEventListener("click", tableShareListener);
@@ -680,7 +630,7 @@ function Controller() {
         generateFavourite();
         generateColour();
     }, 0);
-    Ti.App.addEventListener("app:saveToGallery", function(e) {
+    var save = function(e) {
         console.log(e.blob);
         var blob = e.blob;
         var index = blob.indexOf("base64,");
@@ -690,14 +640,33 @@ function Controller() {
         var imgDir = Titanium.Filesystem.getFile(Titanium.Filesystem.externalStorageDirectory);
         imgDir.exists() || imgDir.createDirectory();
         var imageFile = Titanium.Filesystem.getFile(imgDir.resolve(), filename);
-        if (false === imageFile.write(img_view)) alert("Saved FAILED"); else {
+        if (false === imageFile.write(img_view)) {
+            var toast = Ti.UI.createNotification({
+                message: "Saved FAILED",
+                duration: Ti.UI.NOTIFICATION_DURATION_SHORT
+            });
+            toast.show();
+        } else {
             imgPath = imageFile.nativePath;
             console.log("save done " + imgPath);
-            alert("Saved Done");
+            var toast = Ti.UI.createNotification({
+                message: "Saved Done",
+                duration: Ti.UI.NOTIFICATION_DURATION_SHORT
+            });
+            toast.show();
+        }
+        console.log("e.share: " + e.share);
+        if (1 == e.share) {
+            console.log("share");
+            var nav = Alloy.createController("share", {
+                imgPath: imgPath
+            }).getView();
+            nav.open();
         }
         imageFile = null;
         imgDir = null;
-    });
+        Ti.App.removeEventListener("app:saveToGallery", save);
+    };
     __defers["$.__views.slider!stop!updateAdjustment"] && $.__views.slider.addEventListener("stop", updateAdjustment);
     __defers["$.__views.photoButton!click!takePhoto"] && $.__views.photoButton.addEventListener("click", takePhoto);
     __defers["$.__views.tools!click!toolspop"] && $.__views.tools.addEventListener("click", toolspop);

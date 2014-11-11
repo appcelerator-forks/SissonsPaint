@@ -145,18 +145,19 @@ var tableShareListener = function(e){
 	console.log(e.index);
 	shareFlag = 0;
 	$.diyPaint.remove(tableShare);
+	Ti.App.addEventListener('app:saveToGallery', save);
 	//removeAllChildren($.scrollview);
 	if(e.index == 0)
 	{
-		Ti.App.fireEvent('web:saveAndShare');
+		Ti.App.fireEvent('web:saveAndShare',{'share': 0 });
 	}
 	else
 	{
-		//Ti.App.fireEvent('web:saveAndShare');
+		Ti.App.fireEvent('web:saveAndShare',{'share': 1 });
 		//shareFunction();
 		/****KM FB testing*****/
 		//console.log("before new view "+imgPath);
-		setTimeout(function(){var nav = Alloy.createController("share",{imgPath:imgPath}).getView(); nav.open();},5000);
+		//setTimeout(function(){var nav = Alloy.createController("share",{imgPath:imgPath}).getView(); nav.open();},5000);
 	}
 };
 
@@ -225,13 +226,13 @@ function slideUp(e){
 			colorShow = 1;
 		}
 		sizeShow = 0;
-		sizePop(-360); 
+		sizePop(-250); 
 	}else{
 		if(sizeShow){
-			sizePop(-360);
+			sizePop(-250);
 			sizeShow = 0;
 		}else{
-			sizePop(60);
+			sizePop(40);
 			sizeShow = 1;
 		}
 		colorShow = 0;
@@ -498,7 +499,7 @@ function createColorEvent(colours, colour_details){
 			colorShow = 1;
 		}
 		sizeShow = 0;
-		sizePop(0);
+		sizePop(40);
 	});
 }
 
@@ -583,8 +584,8 @@ setTimeout(function(){
 	generateColour();
 }, 0);
 
-Ti.App.addEventListener('app:saveToGallery', function(e) {
-	 console.log(e.blob);
+var save = function(e) {
+	console.log(e.blob);
 	var blob = e.blob;
 	var index = blob.indexOf('base64,');
 	blob = blob.substring(index + 'base64,'.length); 
@@ -600,33 +601,36 @@ Ti.App.addEventListener('app:saveToGallery', function(e) {
 	var imageFile = Titanium.Filesystem.getFile(imgDir.resolve(), filename);
 	if (imageFile.write(img_view)===false) {
 	    // handle write error
-	    alert("Saved FAILED");
+	    //alert("Saved FAILED");
+	    var toast = Ti.UI.createNotification({
+		    message:"Saved FAILED",
+		    duration: Ti.UI.NOTIFICATION_DURATION_SHORT
+		});
+	    toast.show();
 	}
 	else{
 		imgPath = imageFile.nativePath;
 		console.log("save done "+imgPath);
-		alert("Saved Done");
+		//alert("Saved Done");
+		var toast = Ti.UI.createNotification({
+		    message:"Saved Done",
+		    duration: Ti.UI.NOTIFICATION_DURATION_SHORT
+		});
+		toast.show();
 	}
+	console.log("e.share: "+e.share);
+	//Share!
+	if(e.share == 1){
+		console.log("share");
+		var nav = Alloy.createController("share",{imgPath:imgPath}).getView(); 
+		nav.open();
+	}
+	
 	// dispose of file handles
 	imageFile = null;
 	imgDir = null;
-	 
-	/***
-    var blob = e.blob;
-    if (Ti.Filesystem.isExternalStoragePresent()) {
-	var my_folder = Ti.Filesystem.getFile(Ti.Filesystem.externalStorageDirectory, "sission");
- 
-	if (!my_folder.exists()) {
-		// If the directory doesn't exist, make it
-		my_folder.createDirectory();
-	};
 	
-	var dt = new Date();
-        var timestamp = dt.getTime().toString();
-        var fileName = timestamp + ".jpg";
-		
-		var f = Ti.Filesystem.getFile(my_folder.nativePath,fileName);
-		f.write(blob);
-	 
-	}*/
-});
+	Ti.App.removeEventListener('app:saveToGallery', save);
+};
+
+//Ti.App.addEventListener('app:saveToGallery', save);

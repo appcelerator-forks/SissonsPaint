@@ -24,7 +24,7 @@
   </head>
   <body>
    <div id="parent">
-   		<img id="imgZoom" src="images/color_picker.png"style="width:175px;height:150px;top:0; left:0;z-index:99;position:absolute;visibility: hidden;"/>
+   		<img id="imgZoom" src="images/color_picker.png"style="width:60px;height:50px;top:0; left:0;z-index:99;position:absolute;visibility: hidden;"/>
     	<div id="canvasDiv">
     		<img src="images/water_mark.png" style="width:50%;margin: auto;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;" />
     		
@@ -112,7 +112,7 @@
 				var mouseX = (Boolean(e.pageX))?e.pageX:e.originalEvent.targetTouches[0].pageX;
 				var mouseY = (Boolean(e.pageY))?e.pageY:e.originalEvent.targetTouches[0].pageY;
 				
-				$("#imgZoom").css({top: mouseY-60 + 'px', left: mouseX-60 + 'px', visibility: 'visible'});
+				$("#imgZoom").css({top: mouseY-18 + 'px', left: mouseX-18 + 'px', visibility: 'visible'});
 		
 				var pixelPos = (mouseX + canvasWidth * mouseY) * 4,
 				

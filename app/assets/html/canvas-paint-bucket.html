@@ -463,7 +463,7 @@ var paintBucketApp = (function () {
 					 
 					var dataURL = canvas2.toDataURL("image/png");
 					console.log("FROM WEB : " + dataURL);  
-					Ti.App.fireEvent('app:saveToGallery', {blob: dataURL});
+					Ti.App.fireEvent('app:saveToGallery', {blob: dataURL, share: e.share});
 				}
 			});
 			/**
