@@ -1,0 +1,12 @@
+<Alloy> 
+	<Window class="container" id="sharePage">
+	<View   textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">
+		<ImageView id="saveImage" backgroundColor="white">
+		</ImageView>
+		<View height="60" bottom="0">
+				<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
+				<ImageView id="shareButton" image="/images/icon_share.png" onClick="share" height="40" width="50" width="50" top="10" bottom="10" />
+		</View>
+	</View> 
+	</Window>
+</Alloy>

@@ -20,8 +20,9 @@
 					<ScrollView id="scrollView" backgroundColor="white" layout="vertical" scrollType="horizontal" height="150" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER"></ScrollView>
 				</View>
 			</View> 
-			<View height="60" bottom="0" width="100%" id="sizeBar">
-				<Slider id="slider" min="0" max="100"  value="20" onStop="updateAdjustment"/>
+			<View height="250" bottom="-250" width="100" id="sizeBar">
+				<ImageView image="/images/pop_window2.png" height="250" width="100"></ImageView>
+				<Slider id="slider" min="0" max="100"  value="20" onStop="updateAdjustment" thumbImage="/images/size_toggle.png" width="180" />
 			</View>
 			<View height="60" bottom="0" id="toolbar" width="Ti.UI.FILL" backgroundImage="/images/tool_bar.jpg">
 				<View layout="horizontal" width="330">
