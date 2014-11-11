@@ -19,6 +19,30 @@ function Controller() {
         });
         $.sizeBar.animate(animation);
     }
+<<<<<<< HEAD
+=======
+    function shareFunction() {
+        if (fb.loggedIn) shareFacebook(); else {
+            fb.permissions = [ "publish_actions" ];
+            fb.addEventListener("login", function(e) {
+                e.success && shareFacebook();
+            });
+            fb.authorize();
+        }
+    }
+    function shareFacebook() {
+        var f = Ti.Filesystem.getFile(imgPath);
+        var blob = f.read();
+        var data = {
+            message: "Sissons Paints Omnicolor",
+            picture: blob
+        };
+        fb.requestWithGraphPath("me/photos", data, "POST", function(e) {
+            e.success && e.result ? console.log("Success : " + e.result) : e.error ? console.log(e.error) : alert("cancel");
+        });
+        imgPath = "";
+    }
+>>>>>>> FETCH_HEAD
     function slideUp(e) {
         if ("color" == e.source.mod) {
             if (colorShow) {
@@ -88,11 +112,35 @@ function Controller() {
         dialog.addEventListener("click", function(e) {
             if (0 == e.index) Titanium.Media.showCamera({
                 success: function(event) {
-                    var image = event.media;
+                    event.media;
                     if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
+<<<<<<< HEAD
+                        var nativePath = event.media.nativePath;
+                        ImageFactory.rotateResizeImage(nativePath, 800, 70);
+                        Ti.App.Properties.setString("image", nativePath);
+=======
+                        var isLandscape = event.media.width > event.media.height;
+                        if (isLandscape) {
+                            console.log("is landscape");
+<<<<<<< Updated upstream
+                            {
+                                Ti.UI.createImageView({
+                                    image: e.media,
+                                    transform: Ti.UI.create2DMatrix().rotate(90)
+                                });
+                            }
+=======
+                            var img = Ti.UI.createImageView({
+                                image: e.media,
+                                transform: Ti.UI.create2DMatrix().rotate(90)
+                            });
+                            uploadImageToServer(img.toImage());
+>>>>>>> Stashed changes
+                        }
                         Ti.App.Properties.setString("image", image.nativePath);
+>>>>>>> FETCH_HEAD
                         Ti.App.fireEvent("web:loadImage", {
-                            image: image.nativePath
+                            image: nativePath
                         });
                     }
                 },
@@ -112,14 +160,12 @@ function Controller() {
                 });
                 Titanium.Media.openPhotoGallery({
                     success: function(event) {
-                        var image = event.media;
-                        if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
-                            Ti.App.Properties.setString("image", image.nativePath);
-                            console.log(image.nativePath);
-                            Ti.App.fireEvent("web:loadImage", {
-                                image: image.nativePath
-                            });
-                        }
+                        var nativePath = event.media.nativePath;
+                        ImageFactory.rotateResizeImage(nativePath, 800, 70);
+                        Ti.App.Properties.setString("image", nativePath);
+                        Ti.App.fireEvent("web:loadImage", {
+                            image: nativePath
+                        });
                     },
                     cancel: function() {}
                 });
@@ -203,7 +249,6 @@ function Controller() {
             listArr.splice(index, 0, list_colours[i]);
         }
         for (var i = 0; i < listArr.length; i++) {
-            console.log(listArr[i].contrast);
             var colours = $.UI.create("View", {
                 backgroundColor: "rgb(" + listArr[i].rgb + ")",
                 borderColor: "#A5A5A5",
@@ -447,6 +492,8 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
+    var fb = require("facebook");
+    var ImageFactory = require("fh.imagefactory");
     var pWidth = Ti.Platform.displayCaps.platformWidth;
     var pHeight = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight);
     var toolbarHeight = $.toolbar.rect.height;
@@ -467,12 +514,14 @@ function Controller() {
     var colorShow = 0;
     var filterFlag = 0;
     var shareFlag = 0;
-    var fb = require("facebook");
     var imgPath = "";
     fb.appid = 752094718209236;
+<<<<<<< HEAD
     var t = Titanium.UI.create2DMatrix();
     t = t.rotate(-90);
     $.slider.transform = t;
+=======
+>>>>>>> FETCH_HEAD
     takePhoto();
     $.toolbar.addEventListener("postlayout", function() {
         toolbarHeight = $.toolbar.rect.height;

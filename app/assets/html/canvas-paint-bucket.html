@@ -21,8 +21,8 @@
     </style>
   </head>
 
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript" src="html2canvas.js"></script> 
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="html2canvas.js"></script>
 	<script>
 		
 		var screenwidth = window.innerWidth;
@@ -35,8 +35,8 @@
 		
 		var loadImage = function(e){
 			$('#parent').css('background', 'url("' + e.image + '")');
-			$('#myPhoto').attr("src", e.image);
-			$("#watermark").hide();
+			$('#myPhoto').val( e.image);
+			
 			paintBucketApp.loadImage({image: e.image});
 		};
 		
@@ -429,8 +429,6 @@ var paintBucketApp = (function () {
 		},
 		loadImage = function(e){
 			outlineImage.src = e.image;
-			colorLayerData = null;
-			
 			redraw();
 		},
 		adjustHeight = function(e){
@@ -456,25 +454,15 @@ var paintBucketApp = (function () {
 			curColor = color;
 		},
 		saveAndShare = function(e){ 
-	 		//$("#myPhoto").css("opacity","1"); 
-	 	 
-			html2canvas($("#canvasDiv"), {
+			$("#water_mark").show();
+			var mp = $("#myPhoto").val();
+			
+			//$("#result").
+			html2canvas($("#parent"), {
 				onrendered: function(canvas2) {
-					//$("#canvasDiv").html(canvas2); 
-					/***
-					readyContext = canvas2.getContext("2d"); 
 					 
-					var oriImage = new Image();
-					oriImage.src = $('#myPhoto').attr("src" );
-					oriImage.onload = function (e) { 
-						setBackgroundSize({width: screenwidth, height: canvasH});
-						var wmHorizontal = screenwidth - 300;
-						var wmVertical = 50;
-						readyContext.drawImage(canvas2, wmHorizontal, wmVertical,screenwidth, canvasH);
-					};
-					***/
 					var dataURL = canvas2.toDataURL("image/png");
-					
+					console.log("FROM WEB : " + dataURL);  
 					Ti.App.fireEvent('app:saveToGallery', {blob: dataURL});
 				}
 			});
@@ -578,12 +566,12 @@ var paintBucketApp = (function () {
 
 </script>
 	<body>
+		<input type="hidden" value="" name="myPhoto" id="myPhoto" />
 	   <div id="parent">
 	    	<div id="canvasDiv"> 
-	    		
-	    		<img src="images/water_mark.png" id="watermark" style="width:50%;margin: auto;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;" />
+	    		<img id="water_mark" src="images/water_mark.png" style="width:50%;margin: auto;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;display:none;" />
 	    	</div>
 	    </div>
-	    <img src="" id="myPhoto" style="width:100%;opacity:0;" />
+	    <canvas id="result" ></canvas>
   </body>
 </html>

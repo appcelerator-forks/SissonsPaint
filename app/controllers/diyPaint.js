@@ -1,4 +1,10 @@
 var args = arguments[0] || {};
+
+//Library Required
+var fb = require('facebook');
+var ImageFactory = require('fh.imagefactory');
+
+//Variables
 var pWidth = Ti.Platform.displayCaps.platformWidth;
 var pHeight = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight);
 var toolbarHeight = $.toolbar.rect.height;
@@ -19,7 +25,7 @@ var sizeShow = 0;
 var colorShow = 0;
 var filterFlag = 0;
 var shareFlag = 0;
-var fb = require('facebook');
+
 var imgPath = "";
 fb.appid = 752094718209236;
 var t = Titanium.UI.create2DMatrix();
@@ -372,10 +378,11 @@ function takePhoto(){
 	                //checking if it is photo
 	                if(event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO)
 	                {
-	                    //we may create image view with contents from image variable
-	                    //or simply save path to image
-	                    Ti.App.Properties.setString("image", image.nativePath);
-	                    Ti.App.fireEvent('web:loadImage', { image: image.nativePath });
+	                    
+	                    var nativePath = event.media.nativePath;
+						ImageFactory.rotateResizeImage(nativePath, 800, 70);
+		                Ti.App.Properties.setString("image", nativePath); 
+		                Ti.App.fireEvent('web:loadImage', { image: nativePath}); 
 	                }
 	            },
 	            cancel:function()
@@ -408,21 +415,13 @@ function takePhoto(){
 	    	Ti.App.fireEvent('foo', {name:'bar'});
 	    	//obtain an image from the gallery
 	        Titanium.Media.openPhotoGallery({
-	            success:function(event)
-	            {
-	                //getting media
-	                var image = event.media; 
-	                // set image view
-	                 
-	                //checking if it is photo
-	                if(event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO)
-	                {
-	                    //we may create image view with contents from image variable
-	                    //or simply save path to image
-	                    Ti.App.Properties.setString("image", image.nativePath);
-	                    console.log(image.nativePath);
-	                    Ti.App.fireEvent('web:loadImage', { image: image.nativePath });
-	                }   
+	            success:function(event){
+	            	// set image view
+	            	var nativePath = event.media.nativePath;
+					ImageFactory.rotateResizeImage(nativePath, 800, 70);
+	                Ti.App.Properties.setString("image", nativePath); 
+	                Ti.App.fireEvent('web:loadImage', { image: nativePath});
+	                
 	            },
 	            cancel:function()
 	            {
@@ -547,7 +546,7 @@ function generateColour(){
 	
 	for (var i=0; i<listArr.length; i++)
 	{
-		console.log(listArr[i].contrast);
+		//console.log(listArr[i].contrast)
 		var colours =  $.UI.create('View', {  
 				backgroundColor: "rgb("+listArr[i].rgb +")",
 				borderColor: "#A5A5A5",

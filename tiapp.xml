@@ -99,6 +99,7 @@
     <modules>
         <module platform="iphone">dk.napp.drawer</module>
         <module platform="android">titutorial.youtubeplayer</module>
+        <module platform="android">fh.imagefactory</module>
         <module platform="android">dk.napp.drawer</module>
         <module platform="android">facebook</module>
         <module platform="iphone">facebook</module>

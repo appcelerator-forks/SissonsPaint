@@ -1,0 +1,1 @@
+/Users/HatsuneMiku/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/alloy/controllers/diyPaint.js
