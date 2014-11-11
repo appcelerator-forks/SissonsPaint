@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <id>com.mnc.sissons</id>
-    <name>Sissons Omnicolor</name>
+    <name>Sissons Paints Omnicolor</name>
     <version>1.0</version>
     <publisher>geomilano</publisher>
     <url>http://</url>
@@ -46,7 +46,7 @@
             <uses-sdk android:minSdkVersion="14"/>
             <application android:debuggable="false"
                 android:icon="@drawable/appicon"
-                android:label="Sissons Paints Omnicolor"
+                android:label="Sissons Omnicolor"
                 android:name="SissonsPaintsOmnicolorApplication" android:theme="@style/Theme.NoActionBar">
                 <activity
                     android:configChanges="keyboardHidden|orientation|screenSize"

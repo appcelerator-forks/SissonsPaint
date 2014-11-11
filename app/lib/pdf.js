@@ -28,28 +28,24 @@ function isPdf (file) {
  
     if (!blob) return false;
  
-    console.log("first few characters of pdf file: " + blob.slice(0, 5));
- 
     if (blob.indexOf("%PDF") === 0) return true;
  
   } catch (e) {
     console.log(e);
   }
- 	console.log("IS Pdf ");
+ 	 
   return false;
 }
  
 // Downloads a pdf 
 function download (url, cookies, done) {
-  var base = Ti.Utils.md5HexDigest(url) + '.pdf';
- // console.log(base);
+  var base = Ti.Utils.md5HexDigest(url) + '.pdf'; 
   var file = Ti.Filesystem.getFile(
     Ti.Filesystem.applicationDataDirectory, 
     base
   );
-  console.log(file);
-  if (exists(file)) {
-    console.log("File already exists and is pdf, returning");
+ 
+  if (exists(file)) { 
     return done(null, file, base, url);
   }
  
@@ -72,8 +68,7 @@ function download (url, cookies, done) {
     } 
   };
  
-  client.onerror = function (e) {
-    console.log("http error " + e.source.status);
+  client.onerror = function (e) { 
     return done(e);
   };
   
@@ -113,8 +108,7 @@ function copyToTemp (srcFile, base, url) {
 }
  
 // launch intent to read pdf
-function launch (file) {
-  console.log("launching pdf path: " + file.getNativePath());
+function launch (file) { 
   var intent = Ti.Android.createIntent({
     action: Ti.Android.ACTION_VIEW,
     data: file.getNativePath(),

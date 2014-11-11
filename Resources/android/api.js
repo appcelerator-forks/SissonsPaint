@@ -84,6 +84,7 @@ exports.loadCategory = function() {
                             id: entry.id,
                             name: entry.name,
                             type: entry.type,
+                            position: entry.position,
                             image: entry.image,
                             description: entry.description
                         });

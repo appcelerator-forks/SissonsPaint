@@ -19,30 +19,6 @@ function Controller() {
         });
         $.sizeBar.animate(animation);
     }
-<<<<<<< HEAD
-=======
-    function shareFunction() {
-        if (fb.loggedIn) shareFacebook(); else {
-            fb.permissions = [ "publish_actions" ];
-            fb.addEventListener("login", function(e) {
-                e.success && shareFacebook();
-            });
-            fb.authorize();
-        }
-    }
-    function shareFacebook() {
-        var f = Ti.Filesystem.getFile(imgPath);
-        var blob = f.read();
-        var data = {
-            message: "Sissons Paints Omnicolor",
-            picture: blob
-        };
-        fb.requestWithGraphPath("me/photos", data, "POST", function(e) {
-            e.success && e.result ? console.log("Success : " + e.result) : e.error ? console.log(e.error) : alert("cancel");
-        });
-        imgPath = "";
-    }
->>>>>>> FETCH_HEAD
     function slideUp(e) {
         if ("color" == e.source.mod) {
             if (colorShow) {
@@ -494,12 +470,9 @@ function Controller() {
     var shareFlag = 0;
     var imgPath = "";
     fb.appid = 752094718209236;
-<<<<<<< HEAD
     var t = Titanium.UI.create2DMatrix();
     t = t.rotate(-90);
     $.slider.transform = t;
-=======
->>>>>>> FETCH_HEAD
     takePhoto();
     $.toolbar.addEventListener("postlayout", function() {
         toolbarHeight = $.toolbar.rect.height;
