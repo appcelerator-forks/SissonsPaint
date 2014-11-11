@@ -164,7 +164,7 @@ exports.loadBrochure = function (ex){
 					checker.updateModule("2","brochure",res.last_updated);
 					/**reset current category**/
 			       	var library = Alloy.createCollection('brochure'); 
-					//library.resetBrochure();
+					library.resetBrochure();
 					
 					/**load new set of category from API**/
 			       	var arr = res.data;

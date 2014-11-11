@@ -129,6 +129,7 @@ exports.loadBrochure = function() {
                 if ("" == isUpdate || res.last_updated != isUpdate.updated) {
                     checker.updateModule("2", "brochure", res.last_updated);
                     var library = Alloy.createCollection("brochure");
+                    library.resetBrochure();
                     var arr = res.data;
                     arr.forEach(function(entry) {
                         library.addBrochure(entry.b_position, entry.b_title, entry.cover, entry.attachment, entry.b_url, entry.b_status, entry.b_format);
