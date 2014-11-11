@@ -1,4 +1,10 @@
 var args = arguments[0] || {};
+
+//Library Required
+var fb = require('facebook');
+var ImageFactory = require('fh.imagefactory');
+
+//Variables
 var pWidth = Ti.Platform.displayCaps.platformWidth;
 var pHeight = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight);
 var toolbarHeight = $.toolbar.rect.height;
@@ -19,36 +25,9 @@ var sizeShow = 0;
 var colorShow = 0;
 var filterFlag = 0;
 var shareFlag = 0;
-var fb = require('facebook');
+
 var imgPath = "";
 fb.appid = 752094718209236;
-
-
-var ImageFactory = require('fh.imagefactory');
-
-//
-// The list of all currently supported Exif tags (API level <= 10)
-//
-var exifTags = {
-  'Date/time': ImageFactory.TAG_DATETIME,
-  'Flash': ImageFactory.TAG_FLASH,
-  'GPS altitude': ImageFactory.TAG_GPS_ALTITUDE,
-  'GPS altitude ref': ImageFactory.TAG_GPS_ALTITUDE_REF,
-  'GPS date stamp': ImageFactory.TAG_GPS_DATESTAMP,
-  'GPS latitude': ImageFactory.TAG_GPS_LATITUDE,
-  'GPS latitude ref': ImageFactory.TAG_GPS_LATITUDE_REF,
-  'GPS longitude': ImageFactory.TAG_GPS_LONGITUDE,
-  'GPS longitude ref': ImageFactory.TAG_GPS_LONGITUDE_REF,
-  'GPS processing method': ImageFactory.TAG_GPS_PROCESSING_METHOD,
-  'GPS timestamp': ImageFactory.TAG_GPS_TIMESTAMP,
-  'Image length': ImageFactory.TAG_IMAGE_LENGTH,
-  'Image width': ImageFactory.TAG_IMAGE_WIDTH,
-  'Camera make': ImageFactory.TAG_MAKE,
-  'Camera model': ImageFactory.TAG_MODEL,
-  'Orientation': ImageFactory.TAG_ORIENTATION,
-  'White balance': ImageFactory.TAG_WHITEBALANCE
-};
-
 
 takePhoto();
 	 
@@ -388,19 +367,11 @@ function takePhoto(){
 	                //checking if it is photo
 	                if(event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO)
 	                {
-	                    //we may create image view with contents from image variable
-	                    //or simply save path to image
-	                    var isLandscape = event.media.width > event.media.height;
-	                    if(isLandscape){
-	                    	console.log('is landscape');
-	                    	var img = Ti.UI.createImageView({
-                              image: e.media,
-                              transform: Ti.UI.create2DMatrix().rotate(90)
-                      		});
-                      		//uploadImageToServer(img.toImage()); //psuedocode
-	                    }
-	                    Ti.App.Properties.setString("image", image.nativePath);
-	                    Ti.App.fireEvent('web:loadImage', { image: image.nativePath });
+	                    
+	                    var nativePath = event.media.nativePath;
+						ImageFactory.rotateResizeImage(nativePath, 800, 70);
+		                Ti.App.Properties.setString("image", nativePath); 
+		                Ti.App.fireEvent('web:loadImage', { image: nativePath}); 
 	                }
 	            },
 	            cancel:function()
@@ -433,27 +404,10 @@ function takePhoto(){
 	    	Ti.App.fireEvent('foo', {name:'bar'});
 	    	//obtain an image from the gallery
 	        Titanium.Media.openPhotoGallery({
-	            success:function(event)
-	            {
-	                //getting media
-	                var image = event.media; 
-	                // set image view
-	               var nativePath = event.media.nativePath;
-	               var exifInformation = 'Exif information:' + "\n";
-				  for (tag in exifTags)
-				  {
-				    exifInformation += "\n" + tag + ': ' + ImageFactory.getExifTag(nativePath, exifTags[tag]);
-				  }
-				  
-				  var maximumSize = 800;
-				  var jpegQuality = 70;
-				  
-				  ImageFactory.rotateResizeImage(nativePath, maximumSize, jpegQuality);
-				  
-				  //previewImage.image = nativePath;
-				  
-				  //alert(exifInformation);
-	                    
+	            success:function(event){
+	            	// set image view
+	            	var nativePath = event.media.nativePath;
+					ImageFactory.rotateResizeImage(nativePath, 800, 70);
 	                Ti.App.Properties.setString("image", nativePath); 
 	                Ti.App.fireEvent('web:loadImage', { image: nativePath});
 	                
