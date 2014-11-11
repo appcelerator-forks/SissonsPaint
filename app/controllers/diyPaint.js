@@ -28,6 +28,10 @@ var shareFlag = 0;
 
 var imgPath = "";
 fb.appid = 752094718209236;
+var t = Titanium.UI.create2DMatrix();
+    t = t.rotate(-90);
+
+$.slider.transform = t;
 
 takePhoto();
 	 
@@ -66,19 +70,21 @@ function sizePop(e){
 var tableDataShare = [];
 
 var saveRow = Ti.UI.createTableViewRow({
-    // title: 'Save',
-    // width: 150,
-    // left: 10,
+    title: 'Save',
+    width: 150,
+    height: Ti.UI.SIZE,
+    left: 10,
     touchEnabled: true,
-    // height: 60
+    height: 60
   });
   
 var shareRow = Ti.UI.createTableViewRow({
-    // title: 'Share',
-    // width: 150,
-    // left: 10,
+    title: 'Share',
+    width: 150,
+    height: Ti.UI.SIZE,
+    left: 10,
     touchEnabled: true,
-    // height: 60
+    height: 60
   });
  
 var saveLabel = Ti.UI.createLabel({
@@ -99,18 +105,19 @@ var shareLabel = Ti.UI.createLabel({
    //font:{fontSize:16,fontWeight:'bold'}
 });
 
-saveRow.add(saveLabel);
-shareRow.add(shareLabel);
+//saveRow.add(saveLabel);
+//shareRow.add(shareLabel);
 tableDataShare.push(saveRow);
 tableDataShare.push(shareRow);
   
 var tableShare = Titanium.UI.createTableView({
 	separatorColor: 'transparent',
-	//backgroundImage: '/images/pop_window.png',
-	backgroundColor: 'black',
+	backgroundImage: '/images/pop_up.png',
 	height: Ti.UI.SIZE,
 	width: 150,
-	top: (pHeight/2)-60,
+	//top: (pHeight/2)-60,
+	bottom: 60,
+	right: 25,
 	overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
 	data: tableDataShare
 });
@@ -145,8 +152,11 @@ var tableShareListener = function(e){
 	}
 	else
 	{
-		Ti.App.fireEvent('web:saveAndShare');
-		shareFunction();
+		//Ti.App.fireEvent('web:saveAndShare');
+		//shareFunction();
+		/****KM FB testing*****/
+		//console.log("before new view "+imgPath);
+		setTimeout(function(){var nav = Alloy.createController("share",{imgPath:imgPath}).getView(); nav.open();},5000);
 	}
 };
 
@@ -215,10 +225,10 @@ function slideUp(e){
 			colorShow = 1;
 		}
 		sizeShow = 0;
-		sizePop(0); 
+		sizePop(-360); 
 	}else{
 		if(sizeShow){
-			sizePop(0);
+			sizePop(-360);
 			sizeShow = 0;
 		}else{
 			sizePop(60);
@@ -276,6 +286,7 @@ var table = Titanium.UI.createTableView({
 	height: Ti.UI.SIZE,
 	width: 150,
 	bottom: 60,
+	left: 40,
 	overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
 	data: tableData
 });
@@ -593,6 +604,7 @@ Ti.App.addEventListener('app:saveToGallery', function(e) {
 	}
 	else{
 		imgPath = imageFile.nativePath;
+		console.log("save done "+imgPath);
 		alert("Saved Done");
 	}
 	// dispose of file handles

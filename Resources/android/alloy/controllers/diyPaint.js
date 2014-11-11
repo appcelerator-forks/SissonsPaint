@@ -19,6 +19,8 @@ function Controller() {
         });
         $.sizeBar.animate(animation);
     }
+<<<<<<< HEAD
+=======
     function shareFunction() {
         if (fb.loggedIn) shareFacebook(); else {
             fb.permissions = [ "publish_actions" ];
@@ -40,6 +42,7 @@ function Controller() {
         });
         imgPath = "";
     }
+>>>>>>> FETCH_HEAD
     function slideUp(e) {
         if ("color" == e.source.mod) {
             if (colorShow) {
@@ -50,10 +53,10 @@ function Controller() {
                 colorShow = 1;
             }
             sizeShow = 0;
-            sizePop(0);
+            sizePop(-360);
         } else {
             if (sizeShow) {
-                sizePop(0);
+                sizePop(-360);
                 sizeShow = 0;
             } else {
                 sizePop(60);
@@ -363,17 +366,27 @@ function Controller() {
     });
     $.__views.bottomColorBar.add($.__views.scrollView);
     $.__views.sizeBar = Ti.UI.createView({
-        height: "60",
-        bottom: "0",
-        width: "100%",
+        height: "220",
+        bottom: "-360",
+        width: "100",
         id: "sizeBar"
     });
     $.__views.__alloyId51.add($.__views.sizeBar);
+    $.__views.__alloyId58 = Ti.UI.createImageView({
+        image: "/images/pop_window2.png",
+        height: "220",
+        width: "100",
+        bottom: "0",
+        id: "__alloyId58"
+    });
+    $.__views.sizeBar.add($.__views.__alloyId58);
     $.__views.slider = Ti.UI.createSlider({
         id: "slider",
         min: "0",
         max: "100",
-        value: "20"
+        value: "20",
+        thumbImage: "/images/size_toggle.png",
+        width: "180"
     });
     $.__views.sizeBar.add($.__views.slider);
     updateAdjustment ? $.__views.slider.addEventListener("stop", updateAdjustment) : __defers["$.__views.slider!stop!updateAdjustment"] = true;
@@ -385,12 +398,12 @@ function Controller() {
         backgroundImage: "/images/tool_bar.jpg"
     });
     $.__views.__alloyId51.add($.__views.toolbar);
-    $.__views.__alloyId58 = Ti.UI.createView({
+    $.__views.__alloyId59 = Ti.UI.createView({
         layout: "horizontal",
         width: "330",
-        id: "__alloyId58"
+        id: "__alloyId59"
     });
-    $.__views.toolbar.add($.__views.__alloyId58);
+    $.__views.toolbar.add($.__views.__alloyId59);
     $.__views.photoButton = Ti.UI.createImageView({
         id: "photoButton",
         image: "/images/icon_photo.png",
@@ -400,7 +413,7 @@ function Controller() {
         bottom: "10",
         right: "10"
     });
-    $.__views.__alloyId58.add($.__views.photoButton);
+    $.__views.__alloyId59.add($.__views.photoButton);
     takePhoto ? $.__views.photoButton.addEventListener("click", takePhoto) : __defers["$.__views.photoButton!click!takePhoto"] = true;
     $.__views.tools = Ti.UI.createImageView({
         id: "tools",
@@ -412,7 +425,7 @@ function Controller() {
         bottom: "10",
         right: "10"
     });
-    $.__views.__alloyId58.add($.__views.tools);
+    $.__views.__alloyId59.add($.__views.tools);
     toolspop ? $.__views.tools.addEventListener("click", toolspop) : __defers["$.__views.tools!click!toolspop"] = true;
     $.__views.size = Ti.UI.createImageView({
         id: "size",
@@ -425,7 +438,7 @@ function Controller() {
         bottom: "10",
         right: "10"
     });
-    $.__views.__alloyId58.add($.__views.size);
+    $.__views.__alloyId59.add($.__views.size);
     slideUp ? $.__views.size.addEventListener("click", slideUp) : __defers["$.__views.size!click!slideUp"] = true;
     $.__views.color = Ti.UI.createView({
         id: "color",
@@ -441,10 +454,10 @@ function Controller() {
         bottom: "10",
         right: "10"
     });
-    $.__views.__alloyId58.add($.__views.color);
+    $.__views.__alloyId59.add($.__views.color);
     slideUp ? $.__views.color.addEventListener("click", slideUp) : __defers["$.__views.color!click!slideUp"] = true;
-    $.__views.__alloyId59 = Ti.UI.createImageView({
-        id: "__alloyId59",
+    $.__views.__alloyId60 = Ti.UI.createImageView({
+        id: "__alloyId60",
         image: "/images/icon_share.png",
         left: "10",
         height: "40",
@@ -452,8 +465,8 @@ function Controller() {
         top: "10",
         bottom: "10"
     });
-    $.__views.__alloyId58.add($.__views.__alloyId59);
-    share ? $.__views.__alloyId59.addEventListener("click", share) : __defers["$.__views.__alloyId59!click!share"] = true;
+    $.__views.__alloyId59.add($.__views.__alloyId60);
+    share ? $.__views.__alloyId60.addEventListener("click", share) : __defers["$.__views.__alloyId60!click!share"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -481,6 +494,12 @@ function Controller() {
     var shareFlag = 0;
     var imgPath = "";
     fb.appid = 752094718209236;
+<<<<<<< HEAD
+    var t = Titanium.UI.create2DMatrix();
+    t = t.rotate(-90);
+    $.slider.transform = t;
+=======
+>>>>>>> FETCH_HEAD
     takePhoto();
     $.toolbar.addEventListener("postlayout", function() {
         toolbarHeight = $.toolbar.rect.height;
@@ -496,33 +515,42 @@ function Controller() {
     });
     var tableDataShare = [];
     var saveRow = Ti.UI.createTableViewRow({
-        touchEnabled: true
+        title: "Save",
+        width: 150,
+        height: Ti.UI.SIZE,
+        left: 10,
+        touchEnabled: true,
+        height: 60
     });
     var shareRow = Ti.UI.createTableViewRow({
-        touchEnabled: true
+        title: "Share",
+        width: 150,
+        height: Ti.UI.SIZE,
+        left: 10,
+        touchEnabled: true,
+        height: 60
     });
-    var saveLabel = Ti.UI.createLabel({
+    Ti.UI.createLabel({
         text: "Save",
         width: 150,
         textAlign: "center",
         height: 60
     });
-    var shareLabel = Ti.UI.createLabel({
+    Ti.UI.createLabel({
         text: "Share",
         width: 150,
         textAlign: "center",
         height: 60
     });
-    saveRow.add(saveLabel);
-    shareRow.add(shareLabel);
     tableDataShare.push(saveRow);
     tableDataShare.push(shareRow);
     var tableShare = Titanium.UI.createTableView({
         separatorColor: "transparent",
-        backgroundColor: "black",
+        backgroundImage: "/images/pop_up.png",
         height: Ti.UI.SIZE,
         width: 150,
-        top: pHeight / 2 - 60,
+        bottom: 60,
+        right: 25,
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
         data: tableDataShare
     });
@@ -541,10 +569,12 @@ function Controller() {
         console.log(e.index);
         shareFlag = 0;
         $.diyPaint.remove(tableShare);
-        if (0 == e.index) Ti.App.fireEvent("web:saveAndShare"); else {
-            Ti.App.fireEvent("web:saveAndShare");
-            shareFunction();
-        }
+        0 == e.index ? Ti.App.fireEvent("web:saveAndShare") : setTimeout(function() {
+            var nav = Alloy.createController("share", {
+                imgPath: imgPath
+            }).getView();
+            nav.open();
+        }, 5e3);
     };
     var closeShareWindow = function() {
         tableShare.removeEventListener("click", tableShareListener);
@@ -580,6 +610,7 @@ function Controller() {
         height: Ti.UI.SIZE,
         width: 150,
         bottom: 60,
+        left: 40,
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
         data: tableData
     });
@@ -639,6 +670,7 @@ function Controller() {
         var imageFile = Titanium.Filesystem.getFile(imgDir.resolve(), filename);
         if (false === imageFile.write(img_view)) alert("Saved FAILED"); else {
             imgPath = imageFile.nativePath;
+            console.log("save done " + imgPath);
             alert("Saved Done");
         }
         imageFile = null;
@@ -649,7 +681,7 @@ function Controller() {
     __defers["$.__views.tools!click!toolspop"] && $.__views.tools.addEventListener("click", toolspop);
     __defers["$.__views.size!click!slideUp"] && $.__views.size.addEventListener("click", slideUp);
     __defers["$.__views.color!click!slideUp"] && $.__views.color.addEventListener("click", slideUp);
-    __defers["$.__views.__alloyId59!click!share"] && $.__views.__alloyId59.addEventListener("click", share);
+    __defers["$.__views.__alloyId60!click!share"] && $.__views.__alloyId60.addEventListener("click", share);
     _.extend($, exports);
 }
 
