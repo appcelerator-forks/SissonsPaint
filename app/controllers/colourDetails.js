@@ -3,9 +3,7 @@ var category   = args.details;
 var colour   = args.colour_details;
 var library = Alloy.createCollection('favourite');  
 var isFav   = library.checkFavouriteByColourId(colour.id);
- 
-//Ti.App.Properties.setString('module', 'colourDetails');
-
+  
 $.colourDetails.backgroundColor = "rgb("+colour.rgb +")";
 $.boxDetails.backgroundColor = "rgb("+colour.rgb +")";
 $.colourCode.text = colour.code;
@@ -63,8 +61,7 @@ if(isFav.length == 0){
  - remove alert.
  */
 function removeFavourite(){
-	library.removeFavouriteColour(colour.id);
-	//alert("Colour removed!");
+	library.removeFavouriteColour(colour.id); 
 	$.favButton.image = "/images/icon_favourite.png"; 
 	isFav = "";
 }
@@ -77,8 +74,7 @@ function addToFavourite(){
 	var library = Alloy.createModel('favourite', {
 			colour_id: colour.id,
 	});
-	library.save();	
-	//alert("Colour saved!");
+	library.save();	 
 	$.favButton.image = "/images/icon_fav_remove.png"; 
 	isFav ="1";
 }

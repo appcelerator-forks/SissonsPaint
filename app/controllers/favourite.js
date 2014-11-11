@@ -163,8 +163,7 @@ function removeFavEvent(removeIcon, colour_id, colour_code){
 		  	library.removeFavouriteColour(colour_id);
 			//alert("Colour removed!");
 			library = Alloy.createCollection('favourite');
-			favourite_list = library.getFavouriteList();
-			console.log("favourite_list: "+favourite_list);
+			favourite_list = library.getFavouriteList(); 
 			loadFavouriteList();
 		  }
 		});

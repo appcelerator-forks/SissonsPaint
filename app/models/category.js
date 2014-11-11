@@ -84,8 +84,7 @@ exports.definition = {
                 var res = db.execute(sql);
                 var arr = []; 
               
-                if (res.isValidRow()){
-                	//if(cateType == res.fieldByName('type')){
+                if (res.isValidRow()){ 
                 		arr = {
 						    id: res.fieldByName('id'),
 						    name: res.fieldByName('name'),
@@ -93,7 +92,7 @@ exports.definition = {
 						    image: res.fieldByName('image'),
 						    description: res.fieldByName('description') 
 						};
-                	//}
+                 
 				} 
 				
 				console.log(arr);
