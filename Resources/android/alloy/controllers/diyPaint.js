@@ -91,7 +91,7 @@ function Controller() {
                     event.media;
                     if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
                         toolbarHeight = $.toolbar.rect.height;
-                        canvasHeight = pHeight - toolbarHeight - 25 - toggleHeight;
+                        canvasHeight = pHeight - toolbarHeight - toggleHeight;
                         $.canvas.setBottom(toolbarHeight);
                         $.canvas.setHeight(canvasHeight);
                         var nativePath = event.media.nativePath;
@@ -116,11 +116,11 @@ function Controller() {
             }) : 1 == e.index && Titanium.Media.openPhotoGallery({
                 success: function(event) {
                     toolbarHeight = $.toolbar.rect.height;
-                    canvasHeight = pHeight - toolbarHeight - 25 - toggleHeight;
+                    canvasHeight = pHeight - toolbarHeight - toggleHeight;
                     $.canvas.setBottom(toolbarHeight);
                     $.canvas.setHeight(canvasHeight);
                     var nativePath = event.media.nativePath;
-                    ImageFactory.rotateResizeImage(nativePath, 800, 100);
+                    console.log("FROM APP : " + canvasHeight);
                     Ti.App.Properties.setString("image", nativePath);
                     Ti.App.fireEvent("web:loadImage", {
                         image: nativePath,
@@ -277,9 +277,10 @@ function Controller() {
         top: "80",
         id: "canvas",
         url: "/html/canvas-paint-bucket.html",
-        height: "",
+        height: "80%",
         enableZoomControls: "false",
-        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
+        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
+        disableBounce: "true"
     });
     $.__views.__alloyId51.add($.__views.canvas);
     $.__views.colorSwatches = Ti.UI.createView({

@@ -1,1 +1,1 @@
-/Users/HatsuneMiku/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/app.js
+/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/app.js

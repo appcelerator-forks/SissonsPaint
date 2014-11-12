@@ -1,1 +1,1 @@
-/Users/HatsuneMiku/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/alloy/constants.js
+/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/alloy/constants.js
