@@ -37,7 +37,7 @@
 		var loadImage = function(e){
 			$('#parent').css('background', 'url("' + e.image + '")');
 			imagesrc = e.image;
-			$('#myPhoto').val( e.image);
+			$('#water_mark').hide();
 			
 			paintBucketApp.loadImage({image: e.image});
 		};
@@ -457,7 +457,6 @@ var paintBucketApp = (function () {
 			curColor = color;
 		},
 		saveAndShare = function(e){ 
-			$("#water_mark").show();
 			var mp = $("#myPhoto").val();
 			clearCanvas();
 			context.drawImage(outlineImage, 0, 0, canvasWidth, canvasHeight);
@@ -600,7 +599,7 @@ var paintBucketApp = (function () {
 		<input type="hidden" value="" name="myPhoto" id="myPhoto" />
 	   <div id="parent">
 	    	<div id="canvasDiv"> 
-	    		<img id="water_mark" src="images/water_mark.png" style="width:50%;margin: auto;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;display:none;" />
+	    		<img id="water_mark" src="images/water_mark.png" style="width:50%;margin: auto;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;" />
 	    	</div>
 	    </div>
 	    <canvas id="result" ></canvas>

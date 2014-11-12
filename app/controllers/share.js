@@ -1,15 +1,22 @@
 var args = arguments[0] || {};
 var imgPath   = args.imgPath;
-var pHeight = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight)-60;
+var pHeight = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight);
+var pWidth = PixelsToDPUnits(Ti.Platform.displayCaps.platformWidth);
 var fb = require('facebook');
 fb.appid = 752094718209236;
 
 console.log(imgPath);
-$.saveImage.width = pHeight;
+$.saveImage.width = pWidth;
+$.saveImage.height = pHeight;
 $.saveImage.image = imgPath;
 
-//function shareFunction(e)
-function share(e)
+$.activityIndicator.show();
+$.loadingBar.opacity = "1";
+$.loadingBar.height = "120";
+$.loadingBar.top = ((pHeight/2)-($.loadingBar.getHeight()/2));
+shareFunction();
+
+function shareFunction(e)
 {
 	if (fb.loggedIn)
 			{
@@ -17,9 +24,11 @@ function share(e)
 		  	}
 		  	else
 		  	{
+		  		$.loadingBar.hide();
 		  		fb.permissions = ['publish_actions'];
           		fb.addEventListener('login', function(e){
           			if (e.success){
+          				$.loadingBar.show();
          				shareFacebook();	
               		}
           		});
@@ -39,6 +48,7 @@ function shareFacebook()
   	fb.requestWithGraphPath('me/photos', data, 'POST', function(e){
 	  	if (e.success && e.result)
 	   	{
+	   		$.loadingBar.hide();
 	   		//alert("Success : " + e.result);
 	   		console.log("Success : " + e.result);
 	   		alert("Successfully posted on Facebook");
@@ -46,11 +56,13 @@ function shareFacebook()
 	   	else
 	   	{
 	   		if (e.error) {
-	   			//alert(e.error);
+	   			$.loadingBar.hide();
+	   			alert(e.error);
 	   			console.log(e.error);
 	   		}
 	   		else
 	   		{
+	   			$.loadingBar.hide();
 	   			alert('cancel');
 	   		}
 	   	} 
@@ -58,7 +70,3 @@ function shareFacebook()
   	
   	imgPath = "";	
 }
-
-/*function share(){
-	shareFunction();
-}*/
