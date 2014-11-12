@@ -645,10 +645,20 @@ function Controller() {
         var imgDir = Titanium.Filesystem.getFile(Titanium.Filesystem.externalStorageDirectory);
         imgDir.exists() || imgDir.createDirectory();
         var imageFile = Titanium.Filesystem.getFile(imgDir.resolve(), filename);
-        if (false === imageFile.write(img_view)) alert("Saved FAILED"); else {
+        if (false === imageFile.write(img_view)) {
+            var toast = Ti.UI.createNotification({
+                message: "Saved FAILED",
+                duration: Ti.UI.NOTIFICATION_DURATION_SHORT
+            });
+            toast.show();
+        } else {
             imgPath = imageFile.nativePath;
             console.log("save done " + imgPath);
-            alert("Saved Done");
+            var toast = Ti.UI.createNotification({
+                message: "Saved Done",
+                duration: Ti.UI.NOTIFICATION_DURATION_SHORT
+            });
+            toast.show();
         }
         console.log("e.share: " + e.share);
         if (1 == e.share) {
