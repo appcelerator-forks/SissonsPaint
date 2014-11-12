@@ -44,8 +44,8 @@ $.toolbar.addEventListener('postlayout', function(e) {
 	
 $.canvas.addEventListener("load", function(){ 
 	Ti.App.fireEvent('web:initCanvasSize', { height: canvasHeight, width: pWidth });
-});	
-
+});	 
+ 
 function PixelsToDPUnits(ThePixels)
 {
   return (ThePixels / (Titanium.Platform.displayCaps.dpi / 160));
@@ -385,7 +385,7 @@ function takePhoto(){
 	                if(event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO)
 	                {
 	                    toolbarHeight = $.toolbar.rect.height;
-						canvasHeight = pHeight - toolbarHeight - 25 - toggleHeight;
+						canvasHeight = pHeight - toolbarHeight - toggleHeight;
 						$.canvas.setBottom(toolbarHeight);
 						$.canvas.setHeight(canvasHeight);
 	                    var nativePath = event.media.nativePath;
@@ -428,11 +428,12 @@ function takePhoto(){
 	            success:function(event){
 	            	// set image view
 	            	toolbarHeight = $.toolbar.rect.height;
-					canvasHeight = pHeight - toolbarHeight - 25 - toggleHeight;
+					canvasHeight = pHeight - toolbarHeight - toggleHeight;
 					$.canvas.setBottom(toolbarHeight);
 					$.canvas.setHeight(canvasHeight);
 	            	var nativePath = event.media.nativePath;
-					ImageFactory.rotateResizeImage(nativePath, 800, 100);
+					//ImageFactory.rotateResizeImage(nativePath, 800, 100);
+					console.log("FROM APP : "+canvasHeight);
 	                Ti.App.Properties.setString("image", nativePath); 
 	                Ti.App.fireEvent('web:loadImage', { image: nativePath,height:canvasHeight});
 	                $.shareButton.touchEnabled = 'true';
