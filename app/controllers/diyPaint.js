@@ -117,7 +117,7 @@ var tableShare = Titanium.UI.createTableView({
 	width: 150,
 	//top: (pHeight/2)-60,
 	bottom: 60,
-	right: 25,
+	right: '10%',
 	overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
 	data: tableDataShare
 });
@@ -287,7 +287,7 @@ var table = Titanium.UI.createTableView({
 	height: Ti.UI.SIZE,
 	width: 150,
 	bottom: 60,
-	left: 40,
+	left: '15',
 	overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
 	data: tableData
 });

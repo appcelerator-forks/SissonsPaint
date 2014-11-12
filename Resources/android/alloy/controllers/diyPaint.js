@@ -113,7 +113,6 @@ function Controller() {
                 },
                 allowImageEditing: true,
                 saveToPhotoGallery: true
-<<<<<<< HEAD
             }) : 1 == e.index && Titanium.Media.openPhotoGallery({
                 success: function(event) {
                     toolbarHeight = $.toolbar.rect.height;
@@ -130,24 +129,6 @@ function Controller() {
                 },
                 cancel: function() {}
             });
-=======
-            }); else if (1 == e.index) {
-                Ti.App.fireEvent("foo", {
-                    name: "bar"
-                });
-                Titanium.Media.openPhotoGallery({
-                    success: function(event) {
-                        var nativePath = event.media.nativePath;
-                        ImageFactory.rotateResizeImage(nativePath, 800, 100);
-                        Ti.App.Properties.setString("image", nativePath);
-                        Ti.App.fireEvent("web:loadImage", {
-                            image: nativePath
-                        });
-                    },
-                    cancel: function() {}
-                });
-            }
->>>>>>> FETCH_HEAD
         });
         dialog.show();
     }
@@ -393,56 +374,70 @@ function Controller() {
         height: "60",
         bottom: "0",
         id: "toolbar",
-        width: Ti.UI.FILL,
+        width: "100%",
         backgroundImage: "/images/tool_bar.jpg"
     });
     $.__views.__alloyId51.add($.__views.toolbar);
     $.__views.__alloyId59 = Ti.UI.createView({
         layout: "horizontal",
-        width: "330",
+        width: "100%",
         id: "__alloyId59"
     });
     $.__views.toolbar.add($.__views.__alloyId59);
+    $.__views.__alloyId60 = Ti.UI.createView({
+        width: "20%",
+        id: "__alloyId60"
+    });
+    $.__views.__alloyId59.add($.__views.__alloyId60);
     $.__views.photoButton = Ti.UI.createImageView({
         id: "photoButton",
         image: "/images/icon_photo.png",
         height: "40",
         width: "50",
         top: "10",
-        bottom: "10",
-        right: "10"
+        bottom: "10"
     });
-    $.__views.__alloyId59.add($.__views.photoButton);
+    $.__views.__alloyId60.add($.__views.photoButton);
     takePhoto ? $.__views.photoButton.addEventListener("click", takePhoto) : __defers["$.__views.photoButton!click!takePhoto"] = true;
+    $.__views.__alloyId61 = Ti.UI.createView({
+        width: "20%",
+        id: "__alloyId61"
+    });
+    $.__views.__alloyId59.add($.__views.__alloyId61);
     $.__views.tools = Ti.UI.createImageView({
         id: "tools",
         image: "/images/icon_bucket.png",
-        left: "10",
         height: "40",
         width: "50",
         top: "10",
-        bottom: "10",
-        right: "10"
+        bottom: "10"
     });
-    $.__views.__alloyId59.add($.__views.tools);
+    $.__views.__alloyId61.add($.__views.tools);
     toolspop ? $.__views.tools.addEventListener("click", toolspop) : __defers["$.__views.tools!click!toolspop"] = true;
+    $.__views.__alloyId62 = Ti.UI.createView({
+        width: "20%",
+        id: "__alloyId62"
+    });
+    $.__views.__alloyId59.add($.__views.__alloyId62);
     $.__views.size = Ti.UI.createImageView({
         id: "size",
         image: "/images/icon_size.png",
-        left: "10",
         mod: "size",
         height: "40",
         width: "50",
         top: "10",
-        bottom: "10",
-        right: "10"
+        bottom: "10"
     });
-    $.__views.__alloyId59.add($.__views.size);
+    $.__views.__alloyId62.add($.__views.size);
     slideUp ? $.__views.size.addEventListener("click", slideUp) : __defers["$.__views.size!click!slideUp"] = true;
+    $.__views.__alloyId63 = Ti.UI.createView({
+        width: "20%",
+        id: "__alloyId63"
+    });
+    $.__views.__alloyId59.add($.__views.__alloyId63);
     $.__views.color = Ti.UI.createView({
         id: "color",
         backgroundColor: "#ffffff",
-        left: "10",
         height: "40",
         width: "50",
         mod: "color",
@@ -450,22 +445,25 @@ function Controller() {
         borderWidth: "3",
         borderRadius: "10",
         top: "10",
-        bottom: "10",
-        right: "10"
+        bottom: "10"
     });
-    $.__views.__alloyId59.add($.__views.color);
+    $.__views.__alloyId63.add($.__views.color);
     slideUp ? $.__views.color.addEventListener("click", slideUp) : __defers["$.__views.color!click!slideUp"] = true;
-    $.__views.__alloyId60 = Ti.UI.createImageView({
-        id: "__alloyId60",
+    $.__views.__alloyId64 = Ti.UI.createView({
+        width: "20%",
+        id: "__alloyId64"
+    });
+    $.__views.__alloyId59.add($.__views.__alloyId64);
+    $.__views.__alloyId65 = Ti.UI.createImageView({
+        id: "__alloyId65",
         image: "/images/icon_share.png",
-        left: "10",
         height: "40",
         width: "50",
         top: "10",
         bottom: "10"
     });
-    $.__views.__alloyId59.add($.__views.__alloyId60);
-    share ? $.__views.__alloyId60.addEventListener("click", share) : __defers["$.__views.__alloyId60!click!share"] = true;
+    $.__views.__alloyId64.add($.__views.__alloyId65);
+    share ? $.__views.__alloyId65.addEventListener("click", share) : __defers["$.__views.__alloyId65!click!share"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -546,7 +544,7 @@ function Controller() {
         height: Ti.UI.SIZE,
         width: 150,
         bottom: 60,
-        right: 25,
+        right: "10%",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
         data: tableDataShare
     });
@@ -606,7 +604,7 @@ function Controller() {
         height: Ti.UI.SIZE,
         width: 150,
         bottom: 60,
-        left: 40,
+        left: "15",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
         data: tableData
     });
@@ -695,7 +693,7 @@ function Controller() {
     __defers["$.__views.tools!click!toolspop"] && $.__views.tools.addEventListener("click", toolspop);
     __defers["$.__views.size!click!slideUp"] && $.__views.size.addEventListener("click", slideUp);
     __defers["$.__views.color!click!slideUp"] && $.__views.color.addEventListener("click", slideUp);
-    __defers["$.__views.__alloyId60!click!share"] && $.__views.__alloyId60.addEventListener("click", share);
+    __defers["$.__views.__alloyId65!click!share"] && $.__views.__alloyId65.addEventListener("click", share);
     _.extend($, exports);
 }
 

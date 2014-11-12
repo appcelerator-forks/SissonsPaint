@@ -24,14 +24,24 @@
 				<ImageView image="/images/pop_window2.png" height="250" width="100"></ImageView>
 				<Slider id="slider" min="0" max="100"  value="20" onStop="updateAdjustment" thumbImage="/images/size_toggle.png" width="180" />
 			</View>
-			<View height="60" bottom="0" id="toolbar" width="Ti.UI.FILL" backgroundImage="/images/tool_bar.jpg">
-				<View layout="horizontal" width="330">
+			<View height="60" bottom="0" id="toolbar" width="100%" backgroundImage="/images/tool_bar.jpg">
+				<View layout="horizontal" width="100%">
 					<!--<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />-->
-					<ImageView id="photoButton" image="/images/icon_photo.png"  onClick="takePhoto" height="40" width="50" top="10" bottom="10" right="10" />
-					<ImageView id="tools" image="/images/icon_bucket.png" left="10" onClick="toolspop" height="40" width="50" top="10" bottom="10" right="10" />
-					<ImageView id="size" image="/images/icon_size.png" left="10" mod="size" onClick="slideUp" height="40" width="50" top="10" bottom="10" right="10" />
-					<View id="color" backgroundColor="#ffffff" left="10" height="40" width="50" mod="color" onClick="slideUp" borderColor="#000000" borderWidth="3" borderRadius="10" top="10" bottom="10" right="10" />
-					<ImageView id="" image="/images/icon_share.png" left="10" onClick="share" height="40" width="50" top="10" bottom="10" />
+					<View width="20%">
+						<ImageView id="photoButton" image="/images/icon_photo.png" onClick="takePhoto" height="40" width="50" top="10" bottom="10" />
+					</View>
+					<View width="20%">
+						<ImageView id="tools" image="/images/icon_bucket.png" onClick="toolspop" height="40" width="50" top="10" bottom="10" />
+					</View>
+					<View width="20%">
+						<ImageView id="size" image="/images/icon_size.png" mod="size" onClick="slideUp" height="40" width="50" top="10" bottom="10" />
+					</View>
+					<View width="20%">
+						<View id="color" backgroundColor="#ffffff" height="40" width="50" mod="color" onClick="slideUp" borderColor="#000000" borderWidth="3" borderRadius="10" top="10" bottom="10" />
+					</View>
+					<View width="20%">
+						<ImageView id="" image="/images/icon_share.png" onClick="share" height="40" width="50" top="10" bottom="10" />
+					</View>
 				</View>
 			</View>
 		</View>
