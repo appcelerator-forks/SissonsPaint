@@ -98,12 +98,13 @@ exports.loadCategory = function(ex){
 			       	var arr = res.data;
 			       
 			       	arr.forEach(function(entry) {
-			       		
+			       		 
 			       		/***Category Info***/
 			       		var product_category = Alloy.createModel('category', { 
 			       			id: entry.id, 
 							name: entry.name, 
 							type: entry.type,
+							position: entry.position,
 							image: entry.image,
 							description : entry.description,
 						});

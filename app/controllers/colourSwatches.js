@@ -11,9 +11,7 @@ var colour_lib = Alloy.createCollection('colour');
 var details = library.getCategoryListByType("2");
 var pHeight = Ti.Platform.displayCaps.platformHeight;
 var category_type_lib =  Alloy.createCollection('category_type');
-var category_tag = category_type_lib.selectTypeByDistinct();
-
-console.log(category_tag);
+var category_tag = category_type_lib.selectTypeByDistinct(); 
 
 var searchFlag = 0;
 var filterFlag = 0;
@@ -112,8 +110,7 @@ $.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight)
 
 function generateTable(){
 	var data=[];
-	var totalDetails = details.length;
-	console.log("details length: "+totalDetails);
+	var totalDetails = details.length; 
 	
 	for (var i=0; i< totalDetails; i++) { 
 		if(details[i] != ""){
@@ -194,9 +191,7 @@ function generateTable(){
 				//bottom: -1,
 				touchEnabled : false,
 				image : "/images/scroll_up.png"
-			});
-			console.log("separator : "+i);
-			console.log("totalDetails : "+totalDetails);
+			}); 
 		 	if(totalDetails != (i+1)){
 				$.TheScrollView.add(separator);
 			} 
@@ -218,8 +213,7 @@ function createColorEvent(subView, colour_details, details){
 	});
 }
 
-var tableListener = function(e){
-	console.log(e.index);
+var tableListener = function(e){ 
 	filterFlag = 0;
 	$.mainViewContainer.remove(table);
 	removeAllChildren($.TheScrollView);
@@ -238,14 +232,12 @@ var tableListener = function(e){
 			}
 			
 		});
-		
-		console.log(details);
+		 
 	    generateTable();
 	}
 };
 
-filterButton.addEventListener('click', function(e){
-	console.log("popWindow");
+filterButton.addEventListener('click', function(e){ 
 	closeWindow();
 	
 	$.mainViewContainer.remove(searchView);
@@ -265,17 +257,13 @@ var closeWindow = function(e){
 	table.removeEventListener('click', tableListener);
 };
 
-searchButton.addEventListener('click', function(e){
-	console.log("searchBar");
-	console.log("start:"+searchFlag);
-	
+searchButton.addEventListener('click', function(e){ 
 	$.mainViewContainer.remove(table);
 	filterFlag = 0;
 	
 	if(searchFlag == 1)
 	{
-		searchFlag = 0;
-		console.log("change:"+searchFlag);
+		searchFlag = 0; 
 		$.mainViewContainer.remove(searchView);
 	}
 	else
