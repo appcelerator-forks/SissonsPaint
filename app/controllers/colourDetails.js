@@ -3,8 +3,12 @@ var category   = args.details;
 var colour   = args.colour_details;
 var library = Alloy.createCollection('favourite');  
 var isFav   = library.checkFavouriteByColourId(colour.id);
-  
-$.colourDetails.backgroundColor = "rgb("+colour.rgb +")";
+if(colour.sample != ""){
+	$.colourDetails.backgroundImage = colour.sample;
+}else{
+	$.colourDetails.backgroundColor = "rgb("+colour.rgb +")";
+}
+//$.colourDetails.backgroundColor = "rgb("+colour.rgb +")";
 $.boxDetails.backgroundColor = "rgb("+colour.rgb +")";
 $.colourCode.text = colour.code;
 $.colourName.text = colour.name;  

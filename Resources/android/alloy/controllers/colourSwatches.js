@@ -10,7 +10,6 @@ function __processArg(obj, key) {
 function Controller() {
     function generateTable() {
         var totalDetails = details.length;
-        console.log("details length: " + totalDetails);
         for (var i = 0; totalDetails > i; i++) if ("" != details[i]) {
             var colours = category_colour_lib.getCategoryColourByCategory(details[i]["id"]);
             var categoryHeader = Titanium.UI.createImageView({
@@ -46,7 +45,13 @@ function Controller() {
                     height: Ti.UI.SIZE
                 });
                 var colour_details = colour_lib.getColourById(colour.colour_id);
-                var subViewColor = $.UI.create("View", {
+                if ("" != colour_details.sample) var subViewColor = $.UI.create("ImageView", {
+                    image: colour_details.sample,
+                    borderColor: "#A5A5A5",
+                    borderWidth: 1,
+                    width: "97%",
+                    height: "80"
+                }); else var subViewColor = $.UI.create("View", {
                     backgroundColor: "rgb(" + colour_details.rgb + ")",
                     borderColor: "#A5A5A5",
                     borderWidth: 1,
@@ -76,8 +81,6 @@ function Controller() {
                 touchEnabled: false,
                 image: "/images/scroll_up.png"
             });
-            console.log("separator : " + i);
-            console.log("totalDetails : " + totalDetails);
             totalDetails != i + 1 && $.TheScrollView.add(separator);
         } else totalDetails--;
         $.mainViewContainer.add(bottomBar);
@@ -159,7 +162,6 @@ function Controller() {
     Ti.Platform.displayCaps.platformHeight;
     var category_type_lib = Alloy.createCollection("category_type");
     var category_tag = category_type_lib.selectTypeByDistinct();
-    console.log(category_tag);
     var searchFlag = 0;
     var filterFlag = 0;
     var bottomBar = Titanium.UI.createView({
@@ -237,7 +239,6 @@ function Controller() {
     generateTable();
     $.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 140;
     var tableListener = function(e) {
-        console.log(e.index);
         filterFlag = 0;
         $.mainViewContainer.remove(table);
         removeAllChildren($.TheScrollView);
@@ -252,12 +253,10 @@ function Controller() {
                 data = library.getCategoryById(tags.cate_id, "2");
                 "" != data && details.push(data);
             });
-            console.log(details);
             generateTable();
         }
     };
     filterButton.addEventListener("click", function() {
-        console.log("popWindow");
         closeWindow();
         $.mainViewContainer.remove(searchView);
         searchFlag = 0;
@@ -274,13 +273,10 @@ function Controller() {
         table.removeEventListener("click", tableListener);
     };
     searchButton.addEventListener("click", function() {
-        console.log("searchBar");
-        console.log("start:" + searchFlag);
         $.mainViewContainer.remove(table);
         filterFlag = 0;
         if (1 == searchFlag) {
             searchFlag = 0;
-            console.log("change:" + searchFlag);
             $.mainViewContainer.remove(searchView);
         } else {
             searchFlag = 1;

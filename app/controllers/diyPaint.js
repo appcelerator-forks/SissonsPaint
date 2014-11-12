@@ -379,11 +379,14 @@ function takePhoto(){
 	                //checking if it is photo
 	                if(event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO)
 	                {
-	                    
+	                    toolbarHeight = $.toolbar.rect.height;
+						canvasHeight = pHeight - toolbarHeight - 25 - toggleHeight;
+						$.canvas.setBottom(toolbarHeight);
+						$.canvas.setHeight(canvasHeight);
 	                    var nativePath = event.media.nativePath;
-						ImageFactory.rotateResizeImage(nativePath, 800, 70);
+						ImageFactory.rotateResizeImage(nativePath, 800, 100);
 		                Ti.App.Properties.setString("image", nativePath); 
-		                Ti.App.fireEvent('web:loadImage', { image: nativePath}); 
+		                Ti.App.fireEvent('web:loadImage', { image: nativePath, height:canvasHeight}); 
 	                }
 	            },
 	            cancel:function()
@@ -413,15 +416,19 @@ function takePhoto(){
 	    }
 	    else if(e.index == 1)
 	    {
-	    	Ti.App.fireEvent('foo', {name:'bar'});
+	    	 
 	    	//obtain an image from the gallery
 	        Titanium.Media.openPhotoGallery({
 	            success:function(event){
 	            	// set image view
+	            	toolbarHeight = $.toolbar.rect.height;
+					canvasHeight = pHeight - toolbarHeight - 25 - toggleHeight;
+					$.canvas.setBottom(toolbarHeight);
+					$.canvas.setHeight(canvasHeight);
 	            	var nativePath = event.media.nativePath;
-					ImageFactory.rotateResizeImage(nativePath, 800, 70);
+					ImageFactory.rotateResizeImage(nativePath, 800, 100);
 	                Ti.App.Properties.setString("image", nativePath); 
-	                Ti.App.fireEvent('web:loadImage', { image: nativePath});
+	                Ti.App.fireEvent('web:loadImage', { image: nativePath,height:canvasHeight});
 	                
 	            },
 	            cancel:function()

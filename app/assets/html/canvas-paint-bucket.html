@@ -7,15 +7,14 @@
     	html {-webkit-text-size-adjust: none; margin:0; padding:0;}
     	body {margin:0; padding:0;}
     	#parent{
-	    	 
 			background-repeat:no-repeat;
 			background-size: 100% auto;
 		}
 		
 		#canvasDiv{
 			-moz-opacity:0.7; /* For older FF versions */
-	   -khtml-opacity:0.7;
-	   opacity:0.7;
+	   		-khtml-opacity:0.7;
+	   		opacity:0.7;
 			filter:alpha(opacity=70);
 		}
     </style>
@@ -28,6 +27,7 @@
 		var screenwidth = window.innerWidth;
 		var imagesrc = "";
 		var initCanvasSize = function(e){
+			//console.log("GEO DEBUG :" +screenwidth + " == " + e.height-5);
 			paintBucketApp.init({
 				canvasWidth: screenwidth,
 				canvasHeight: e.height-5
@@ -35,17 +35,23 @@
       	};
 		
 		var loadImage = function(e){
+			$("#canvasDiv").html("");
+			$("#canvas").remove();
+			paintBucketApp.init({
+				canvasWidth: screenwidth,
+				canvasHeight: e.height-5
+			});
+			
 			$('#parent').css('background', 'url("' + e.image + '")');
 			imagesrc = e.image;
-			$('#myPhoto').val( e.image);
+			$('#water_mark').hide();
 			
 			paintBucketApp.loadImage({image: e.image});
 		};
 		
 		var setBackgroundSize = function(e){
 			$('#parent').css('background-size', '"' + e.width + ' ' + e.height + '"');
-			$('#parent').css('background-repeat', 'no-repeat');
-			//		$('#parent').css('top', e.top + 'px');
+			$('#parent').css('background-repeat', 'no-repeat'); 
 		};
 		
 		var changeTools = function(e){
@@ -431,6 +437,7 @@ var paintBucketApp = (function () {
 		 return {pageX: event.clientX + element.scrollLeft, pageY: event.clientY + element.scrollTop};
 		},
 		loadImage = function(e){
+			colorLayerData = null;
 			outlineImage.src = e.image;
 			redraw();
 		},
@@ -457,8 +464,7 @@ var paintBucketApp = (function () {
 			curColor = color;
 		},
 		saveAndShare = function(e){ 
-			$("#water_mark").show();
-			var mp = $("#myPhoto").val();
+			 
 			clearCanvas();
 			context.drawImage(outlineImage, 0, 0, canvasWidth, canvasHeight);
 			var red = context.getImageData(0, 0, canvasWidth, canvasHeight);
@@ -515,8 +521,7 @@ var paintBucketApp = (function () {
 			 
 		},
 		// Creates a canvas element, loads images, adds events, and draws the canvas for the first time.
-		init = function (data) {
-
+		init = function (data) { 
 			// Create the canvas (Neccessary for IE because it doesn't know what a canvas element is)
 			canvas = document.createElement('canvas');
 			var screenwidth = window.innerWidth;
@@ -600,7 +605,7 @@ var paintBucketApp = (function () {
 		<input type="hidden" value="" name="myPhoto" id="myPhoto" />
 	   <div id="parent">
 	    	<div id="canvasDiv"> 
-	    		<img id="water_mark" src="images/water_mark.png" style="width:50%;margin: auto;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;display:none;" />
+	    		<img id="water_mark" src="images/water_mark.png" style="width:50%;margin: auto;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;" />
 	    	</div>
 	    </div>
 	    <canvas id="result" ></canvas>

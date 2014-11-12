@@ -5,7 +5,7 @@ exports.definition = {
 		    "name": "TEXT",
 		    "code": "TEXT",
 		    "rgb": "TEXT",
-		    "cmyk": "TEXT",
+		    "cmyk": "TEXT", 
 		    "sample": "TEXT"
 		},
 		adapter: {

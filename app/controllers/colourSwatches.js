@@ -154,13 +154,25 @@ function generateTable(){
 				});
 				
 			  	var colour_details = colour_lib.getColourById(colour.colour_id);
-				var subViewColor = $.UI.create('View', {  
-					backgroundColor: "rgb("+colour_details.rgb +")",
-					borderColor: "#A5A5A5",
-					borderWidth: 1,
-					width: "97%", 
-					height: "80"
-				});
+			  	
+			  	if(colour_details.sample != ""){
+			  		var subViewColor = $.UI.create('ImageView', {  
+						image: colour_details.sample,
+						borderColor: "#A5A5A5",
+						borderWidth: 1,
+						width: "97%", 
+						height: "80"
+					});
+			  	}else{
+			  		var subViewColor = $.UI.create('View', {  
+						backgroundColor: "rgb("+colour_details.rgb +")",
+						borderColor: "#A5A5A5",
+						borderWidth: 1,
+						width: "97%", 
+						height: "80"
+					});
+			  	}
+				
 				
 				var subLabelName = $.UI.create('Label', { 
 					text: colour_details.name , 
