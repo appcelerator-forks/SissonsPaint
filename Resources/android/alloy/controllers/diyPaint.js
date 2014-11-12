@@ -113,7 +113,6 @@ function Controller() {
                 },
                 allowImageEditing: true,
                 saveToPhotoGallery: true
-<<<<<<< HEAD
             }) : 1 == e.index && Titanium.Media.openPhotoGallery({
                 success: function(event) {
                     toolbarHeight = $.toolbar.rect.height;
@@ -130,24 +129,6 @@ function Controller() {
                 },
                 cancel: function() {}
             });
-=======
-            }); else if (1 == e.index) {
-                Ti.App.fireEvent("foo", {
-                    name: "bar"
-                });
-                Titanium.Media.openPhotoGallery({
-                    success: function(event) {
-                        var nativePath = event.media.nativePath;
-                        ImageFactory.rotateResizeImage(nativePath, 800, 100);
-                        Ti.App.Properties.setString("image", nativePath);
-                        Ti.App.fireEvent("web:loadImage", {
-                            image: nativePath
-                        });
-                    },
-                    cancel: function() {}
-                });
-            }
->>>>>>> FETCH_HEAD
         });
         dialog.show();
     }
