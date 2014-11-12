@@ -91,7 +91,7 @@ function Controller() {
                     event.media;
                     if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
                         var nativePath = event.media.nativePath;
-                        ImageFactory.rotateResizeImage(nativePath, 800, 70);
+                        ImageFactory.rotateResizeImage(nativePath, 800, 100);
                         Ti.App.Properties.setString("image", nativePath);
                         Ti.App.fireEvent("web:loadImage", {
                             image: nativePath
@@ -115,7 +115,7 @@ function Controller() {
                 Titanium.Media.openPhotoGallery({
                     success: function(event) {
                         var nativePath = event.media.nativePath;
-                        ImageFactory.rotateResizeImage(nativePath, 800, 70);
+                        ImageFactory.rotateResizeImage(nativePath, 800, 100);
                         Ti.App.Properties.setString("image", nativePath);
                         Ti.App.fireEvent("web:loadImage", {
                             image: nativePath
@@ -630,12 +630,7 @@ function Controller() {
         generateFavourite();
         generateColour();
     }, 0);
-<<<<<<< HEAD
-    Ti.App.addEventListener("app:saveToGallery", function(e) {
-=======
     var save = function(e) {
-        console.log(e.blob);
->>>>>>> FETCH_HEAD
         var blob = e.blob;
         var index = blob.indexOf("base64,");
         blob = blob.substring(index + "base64,".length);

@@ -381,7 +381,7 @@ function takePhoto(){
 	                {
 	                    
 	                    var nativePath = event.media.nativePath;
-						ImageFactory.rotateResizeImage(nativePath, 800, 70);
+						ImageFactory.rotateResizeImage(nativePath, 800, 100);
 		                Ti.App.Properties.setString("image", nativePath); 
 		                Ti.App.fireEvent('web:loadImage', { image: nativePath}); 
 	                }
@@ -419,7 +419,7 @@ function takePhoto(){
 	            success:function(event){
 	            	// set image view
 	            	var nativePath = event.media.nativePath;
-					ImageFactory.rotateResizeImage(nativePath, 800, 70);
+					ImageFactory.rotateResizeImage(nativePath, 800, 100);
 	                Ti.App.Properties.setString("image", nativePath); 
 	                Ti.App.fireEvent('web:loadImage', { image: nativePath});
 	                

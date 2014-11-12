@@ -1,1 +1,1 @@
-module.exports={dependencies:{"nl.fokkezb.drawer":"1.0"}};
+/Users/HatsuneMiku/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/alloy/CFG.js
