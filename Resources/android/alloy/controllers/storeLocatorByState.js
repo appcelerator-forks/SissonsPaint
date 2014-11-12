@@ -114,18 +114,7 @@ function Controller() {
                 zIndex: i
             });
             rightForwardBtn.addEventListener("click", function(e) {
-                console.log("right button pressed");
-                console.log("outlet: " + details[e.source.zIndex].outlet);
-                console.log("address: " + details[e.source.zIndex].address);
-                if ("" == details[e.source.zIndex].latitude || "" == details[e.source.zIndex].longitude) {
-                    NavigateTo(0, 0, details[e.source.zIndex].outlet, details[e.source.zIndex].address);
-                    console.log("null");
-                } else {
-                    NavigateTo(details[e.source.zIndex].latitude, details[e.source.zIndex].longitude, details[e.source.zIndex].outlet, details[e.source.zIndex].address);
-                    console.log("latitude: " + details[e.source.zIndex].latitude);
-                    console.log("longitude: " + details[e.source.zIndex].longitude);
-                    console.log("!null");
-                }
+                "" == details[e.source.zIndex].latitude || "" == details[e.source.zIndex].longitude ? NavigateTo(0, 0, details[e.source.zIndex].outlet, details[e.source.zIndex].address) : NavigateTo(details[e.source.zIndex].latitude, details[e.source.zIndex].longitude, details[e.source.zIndex].outlet, details[e.source.zIndex].address);
             });
             var separator = Titanium.UI.createImageView({
                 width: Titanium.UI.FILL,

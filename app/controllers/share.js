@@ -9,7 +9,6 @@ console.log(imgPath);
 $.saveImage.width = pWidth;
 $.saveImage.height = pHeight;
 $.saveImage.image = imgPath;
-<<<<<<< HEAD
 
 $.activityIndicator.show();
 $.loadingBar.opacity = "1";
@@ -19,10 +18,6 @@ shareFunction();
 
 function shareFunction(e)
 {
-=======
- 
-function share(e){
->>>>>>> FETCH_HEAD
 	if (fb.loggedIn)
 			{
 		  		shareFacebook();
@@ -52,19 +47,14 @@ function shareFacebook()
   	
   	fb.requestWithGraphPath('me/photos', data, 'POST', function(e){
 	  	if (e.success && e.result)
-<<<<<<< HEAD
 	   	{
 	   		$.loadingBar.hide();
 	   		//alert("Success : " + e.result);
-=======
-	   	{ 
->>>>>>> FETCH_HEAD
 	   		console.log("Success : " + e.result);
 	   		alert("Successfully posted on Facebook");
 	   	}	
 	   	else
 	   	{
-<<<<<<< HEAD
 	   		if (e.error) {
 	   			$.loadingBar.hide();
 	   			alert(e.error);
@@ -73,19 +63,10 @@ function shareFacebook()
 	   		else
 	   		{
 	   			$.loadingBar.hide();
-=======
-	   		if (e.error) { 
-	   		} else {
->>>>>>> FETCH_HEAD
 	   			alert('cancel');
 	   		}
 	   	} 
   	}); 
   	
   	imgPath = "";	
-<<<<<<< HEAD
 }
-=======
-}
- 
->>>>>>> FETCH_HEAD
