@@ -37,9 +37,9 @@ takePhoto();
 	 
 $.toolbar.addEventListener('postlayout', function(e) { 
 	toolbarHeight = $.toolbar.rect.height;
-	canvasHeight = pHeight - toolbarHeight - 25 - toggleHeight;
+	canvasHeight = pHeight - toolbarHeight   - toggleHeight;
 	$.canvas.setBottom(toolbarHeight);
-	$.canvas.setHeight(canvasHeight);
+	$.canvas.setHeight(canvasHeight); 
 });
 	
 $.canvas.addEventListener("load", function(){ 
