@@ -607,22 +607,22 @@ var save = function(e) {
 	var imageFile = Titanium.Filesystem.getFile(imgDir.resolve(), filename);
 	if (imageFile.write(img_view)===false) {
 	    // handle write error
-	    alert("Saved FAILED");
-	    // var toast = Ti.UI.createNotification({
-		    // message:"Saved FAILED",
-		    // duration: Ti.UI.NOTIFICATION_DURATION_SHORT
-		// });
-	    // toast.show();
+	    //alert("Saved FAILED");
+	    var toast = Ti.UI.createNotification({
+		    message:"Saved FAILED",
+		    duration: Ti.UI.NOTIFICATION_DURATION_SHORT
+		});
+	    toast.show();
 	}
 	else{
 		imgPath = imageFile.nativePath;
 		console.log("save done "+imgPath);
-		alert("Saved Done");
-		// var toast = Ti.UI.createNotification({
-		    // message:"Saved Done",
-		    // duration: Ti.UI.NOTIFICATION_DURATION_SHORT
-		// });
-		// toast.show();
+		//alert("Saved Done");
+		var toast = Ti.UI.createNotification({
+		    message:"Saved Done",
+		    duration: Ti.UI.NOTIFICATION_DURATION_SHORT
+		});
+		toast.show();
 	}
 	console.log("e.share: "+e.share);
 	//Share!

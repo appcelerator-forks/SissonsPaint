@@ -1,6 +1,6 @@
 <Alloy> 
 	<Window class="container" id="sharePage">
-	<View   textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">
+	<View  id="shareView" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">
 		<ImageView id="saveImage"  top="0"></ImageView>
 		<View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15" opacity="1" backgroundColor="#2E2E2E" >
 				<ActivityIndicator  id="activityIndicator" />

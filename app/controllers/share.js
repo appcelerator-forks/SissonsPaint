@@ -14,7 +14,11 @@ $.activityIndicator.show();
 $.loadingBar.opacity = "1";
 $.loadingBar.height = "120";
 $.loadingBar.top = ((pHeight/2)-($.loadingBar.getHeight()/2));
-shareFunction();
+
+
+$.shareView.addEventListener("load", function(){ 
+	shareFunction();
+});	
 
 function shareFunction(e)
 {
@@ -25,10 +29,12 @@ function shareFunction(e)
 		  	else
 		  	{
 		  		$.loadingBar.hide();
+		  		$.loadingBar.opacity = "0";
 		  		fb.permissions = ['publish_actions'];
           		fb.addEventListener('login', function(e){
           			if (e.success){
           				$.loadingBar.show();
+          				$.loadingBar.opacity = "1";
          				shareFacebook();	
               		}
           		});
@@ -49,6 +55,7 @@ function shareFacebook()
 	  	if (e.success && e.result)
 	   	{
 	   		$.loadingBar.hide();
+	   		$.loadingBar.opacity = "0";
 	   		//alert("Success : " + e.result);
 	   		console.log("Success : " + e.result);
 	   		alert("Successfully posted on Facebook");
@@ -57,12 +64,14 @@ function shareFacebook()
 	   	{
 	   		if (e.error) {
 	   			$.loadingBar.hide();
+	   			$.loadingBar.opacity = "0";
 	   			alert(e.error);
 	   			console.log(e.error);
 	   		}
 	   		else
 	   		{
 	   			$.loadingBar.hide();
+	   			$.loadingBar.opacity = "0";
 	   			alert('cancel');
 	   		}
 	   	} 
