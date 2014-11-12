@@ -65,8 +65,6 @@ function Controller() {
     }
     function createVideoEvent(adImage, id, content) {
         adImage.addEventListener("click", function() {
-            console.log(id);
-            console.log(content);
             youtubePlayer.playVideo(content);
         });
     }
@@ -272,7 +270,6 @@ function Controller() {
         data: tableData
     });
     var tableListener = function(e) {
-        console.log(e.index);
         filterFlag = 0;
         $.brochureView.remove(table);
         removeAllChildren($.scrollview);

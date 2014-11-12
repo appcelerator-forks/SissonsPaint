@@ -1,14 +1,10 @@
 var pWidth = Ti.Platform.displayCaps.platformWidth;//PixelsToDPUnits(800);
 console.log(pWidth);
-if(pWidth > 800)
-{
+if(pWidth > 800){
 	$.whiteLogo.setOpacity(1);
-}
-else
-{
+}else{
 	$.whiteLogo.setOpacity(0);
 }
-
 
 $.drawer.open({
 	navBarHidden: true,
@@ -32,7 +28,6 @@ $.loadingBar.height = "120";
 $.loadingBar.top = ((PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight)/2)-($.loadingBar.getHeight()/2));
 	
 // Load API function
-
 setTimeout(function(){
  
 	API.loadStoreLocator();
@@ -135,24 +130,6 @@ $.drawer.addEventListener('android:back', function (e) {
 		});
 		dialog.show(); 
 	}else{
-		//Alloy.Globals.Drawer['toggleLeftWindow']();
-		/*var dialog = Ti.UI.createAlertDialog({
-		    cancel: 1,
-		    buttonNames: ['Cancel','Confirm'],
-		    message: 'Would you like to exit Sissons Paint?',
-		    title: 'Exit app'
-		  });
-		  dialog.addEventListener('click', function(e){
-		  
-		    if (e.index === e.source.cancel){
-		      //Do nothing
-		    }
-		    if (e.index === 1){
-		    	var activity = Titanium.Android.currentActivity;
-				activity.finish();
-		    }
-		  });
-		  dialog.show(); */
 		 toggle();
 	}
   	

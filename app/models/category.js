@@ -4,6 +4,7 @@ exports.definition = {
 		    "id": "INTEGER",
 		    "name": "TEXT",
 		    "type": "TEXT",
+		    "position": "INTEGER",
 		    "description": "TEXT",
 		    "image": "TEXT"
 		    
@@ -25,7 +26,7 @@ exports.definition = {
 			// extended functions and properties go here
 			getCategoryList: function(){
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" order by id DESC";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" order by position";
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
@@ -49,14 +50,13 @@ exports.definition = {
 			},
 			getCategoryListByType: function(type){
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE type='" + type + "' order by id DESC";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE type='" + type + "' order by position";
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = []; 
                 var count = 0;
-                while (res.isValidRow()){
-                	console.log(res.fieldByName('id')); 
+                while (res.isValidRow()){ 
                 	if(res.fieldByName('id') != ""){
                 		listArr[count] = {
 						    id: res.fieldByName('id'),
@@ -84,8 +84,7 @@ exports.definition = {
                 var res = db.execute(sql);
                 var arr = []; 
               
-                if (res.isValidRow()){
-                	//if(cateType == res.fieldByName('type')){
+                if (res.isValidRow()){ 
                 		arr = {
 						    id: res.fieldByName('id'),
 						    name: res.fieldByName('name'),
@@ -93,7 +92,7 @@ exports.definition = {
 						    image: res.fieldByName('image'),
 						    description: res.fieldByName('description') 
 						};
-                	//}
+                 
 				} 
 				
 				console.log(arr);

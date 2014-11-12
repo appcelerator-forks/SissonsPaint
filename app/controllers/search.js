@@ -7,8 +7,6 @@ var category_colour_lib = Alloy.createCollection('category_colour');
 var colour_lib = Alloy.createCollection('colour');
 var cate_lib = Alloy.createCollection('category');
 var search_list = colour_lib.getColourByQuery(Ti.App.Properties.getString('query'));
-for(var i = 0; i < search_list.length; i++){
-	console.log("search: " +search_list[i].code);}
 
 var removeFlag = "0"; 
 var TheScrollView = Titanium.UI.createScrollView({
@@ -36,14 +34,11 @@ function loadSearchList(){
 		var counter = 0;
 			
 		search_list.forEach(function(search) { 
-			console.log("search: "+search.id);
 			var colour_details = colour_lib.getColourById(search.id);
-			console.log(colour_details);
 			var colour_cate = category_colour_lib.getCateByColourId(search.id);
-			console.log(colour_cate);
+
 			var details = cate_lib.getCategoryById(colour_cate.cate_id, "2");
-			console.log(details);
-			console.log("=====================");
+	
 			var subView = $.UI.create('View', { 
 				textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
 				layout: 'vertical',
@@ -88,9 +83,8 @@ function loadSearchList(){
 
 function createColorEvent(subView, colour_details, details){
 	subView.addEventListener( "click", function(){
-		//Ti.App.Properties.setString('from', 'search');
 		var nav = Alloy.createController("colourDetails",{colour_details:colour_details, details:details}).getView(); 
-		//Alloy.Globals.Drawer.setCenterWindow(nav);
+	
 		nav.open();
 	});
 

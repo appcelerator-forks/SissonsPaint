@@ -123,9 +123,7 @@ function createAdImageEvent(adImage, id,content, cell, downloaded, downloadIcon)
 }
 
 function createVideoEvent(adImage, id,content){
-	adImage.addEventListener( "click", function(){
-		console.log(id);
-		console.log(content);
+	adImage.addEventListener( "click", function(){ 
 		youtubePlayer.playVideo(content);
 	 });
 }
@@ -170,8 +168,7 @@ var table = Titanium.UI.createTableView({
 	data: tableData
 });
 
-var tableListener = function(e){
-	console.log(e.index);
+var tableListener = function(e){ 
 	filterFlag = 0;
 	$.brochureView.remove(table);
 	removeAllChildren($.scrollview);
