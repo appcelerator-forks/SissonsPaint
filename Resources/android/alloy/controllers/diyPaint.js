@@ -274,9 +274,10 @@ function Controller() {
     });
     $.__views.toggle.add($.__views.__alloyId53);
     $.__views.canvas = Ti.UI.createWebView({
+        top: "80",
         id: "canvas",
         url: "/html/canvas-paint-bucket.html",
-        height: "200",
+        height: "",
         enableZoomControls: "false",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
@@ -497,7 +498,7 @@ function Controller() {
     takePhoto();
     $.toolbar.addEventListener("postlayout", function() {
         toolbarHeight = $.toolbar.rect.height;
-        canvasHeight = pHeight - toolbarHeight - 25 - toggleHeight;
+        canvasHeight = pHeight - toolbarHeight - toggleHeight;
         $.canvas.setBottom(toolbarHeight);
         $.canvas.setHeight(canvasHeight);
     });
