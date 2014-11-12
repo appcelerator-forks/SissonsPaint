@@ -464,7 +464,7 @@ var paintBucketApp = (function () {
 			curColor = color;
 		},
 		saveAndShare = function(e){ 
-			 
+ 
 			clearCanvas();
 			context.drawImage(outlineImage, 0, 0, canvasWidth, canvasHeight);
 			var red = context.getImageData(0, 0, canvasWidth, canvasHeight);
@@ -476,7 +476,7 @@ var paintBucketApp = (function () {
 			var mixFactor = 0.5; //main image is dominant
 				//we're using the red buffer as main buffer for this example
 				for(var i = 0; i < red.data.length; i+=4) {
-					if(blueData.data[i+3] != 0){
+					if(blueData.data[i+3] == 255){
 				    red.data[i]   = red.data[i]   * mixFactor + blueData.data[i]   * (1 - mixFactor);
 				    red.data[i+1] = red.data[i+1] * mixFactor + blueData.data[i+1] * (1 - mixFactor);
 				    red.data[i+2] = red.data[i+2] * mixFactor + blueData.data[i+2] * (1 - mixFactor);
@@ -485,7 +485,7 @@ var paintBucketApp = (function () {
 				
 				//we're using the red buffer as main buffer for this example
 				for(var i = 0; i < red.data.length; i+=4) {
-					if(watermark.data[i+3] != 0){
+					if(watermark.data[i+3] == 255){
 				    red.data[i]   = red.data[i]   * mixFactor + watermark.data[i]   * (1 - mixFactor);
 				    red.data[i+1] = red.data[i+1] * mixFactor + watermark.data[i+1] * (1 - mixFactor);
 				    red.data[i+2] = red.data[i+2] * mixFactor + watermark.data[i+2] * (1 - mixFactor);

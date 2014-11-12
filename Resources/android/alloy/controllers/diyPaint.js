@@ -113,6 +113,7 @@ function Controller() {
                 },
                 allowImageEditing: true,
                 saveToPhotoGallery: true
+<<<<<<< HEAD
             }) : 1 == e.index && Titanium.Media.openPhotoGallery({
                 success: function(event) {
                     toolbarHeight = $.toolbar.rect.height;
@@ -129,6 +130,24 @@ function Controller() {
                 },
                 cancel: function() {}
             });
+=======
+            }); else if (1 == e.index) {
+                Ti.App.fireEvent("foo", {
+                    name: "bar"
+                });
+                Titanium.Media.openPhotoGallery({
+                    success: function(event) {
+                        var nativePath = event.media.nativePath;
+                        ImageFactory.rotateResizeImage(nativePath, 800, 100);
+                        Ti.App.Properties.setString("image", nativePath);
+                        Ti.App.fireEvent("web:loadImage", {
+                            image: nativePath
+                        });
+                    },
+                    cancel: function() {}
+                });
+            }
+>>>>>>> FETCH_HEAD
         });
         dialog.show();
     }
@@ -644,20 +663,10 @@ function Controller() {
         var imgDir = Titanium.Filesystem.getFile(Titanium.Filesystem.externalStorageDirectory);
         imgDir.exists() || imgDir.createDirectory();
         var imageFile = Titanium.Filesystem.getFile(imgDir.resolve(), filename);
-        if (false === imageFile.write(img_view)) {
-            var toast = Ti.UI.createNotification({
-                message: "Saved FAILED",
-                duration: Ti.UI.NOTIFICATION_DURATION_SHORT
-            });
-            toast.show();
-        } else {
+        if (false === imageFile.write(img_view)) alert("Saved FAILED"); else {
             imgPath = imageFile.nativePath;
             console.log("save done " + imgPath);
-            var toast = Ti.UI.createNotification({
-                message: "Saved Done",
-                duration: Ti.UI.NOTIFICATION_DURATION_SHORT
-            });
-            toast.show();
+            alert("Saved Done");
         }
         console.log("e.share: " + e.share);
         if (1 == e.share) {
