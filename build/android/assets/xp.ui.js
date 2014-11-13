@@ -1,1 +1,1 @@
-/Users/geomilano/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/xp.ui.js
+/Users/tankeanmeng/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/xp.ui.js

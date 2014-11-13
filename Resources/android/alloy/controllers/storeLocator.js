@@ -37,18 +37,18 @@ function Controller() {
         width: "100%"
     });
     $.__views.mainWindow && $.addTopLevelView($.__views.mainWindow);
-    $.__views.__alloyId113 = Ti.UI.createView({
+    $.__views.__alloyId127 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId113"
+        id: "__alloyId127"
     });
-    $.__views.mainWindow.add($.__views.__alloyId113);
-    $.__views.__alloyId114 = Alloy.createController("toggle", {
-        id: "__alloyId114",
-        __parentSymbol: $.__views.__alloyId113
+    $.__views.mainWindow.add($.__views.__alloyId127);
+    $.__views.__alloyId128 = Alloy.createController("toggle", {
+        id: "__alloyId128",
+        __parentSymbol: $.__views.__alloyId127
     });
-    $.__views.__alloyId114.setParent($.__views.__alloyId113);
-    $.__views.__alloyId115 = Ti.UI.createLabel({
+    $.__views.__alloyId128.setParent($.__views.__alloyId127);
+    $.__views.__alloyId129 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -57,9 +57,9 @@ function Controller() {
         },
         text: "Store Locator",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-        id: "__alloyId115"
+        id: "__alloyId129"
     });
-    $.__views.__alloyId113.add($.__views.__alloyId115);
+    $.__views.__alloyId127.add($.__views.__alloyId129);
     $.__views.subWindow = Ti.UI.createScrollView({
         id: "subWindow",
         layout: "vertical",

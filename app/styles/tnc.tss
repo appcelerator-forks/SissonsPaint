@@ -1,0 +1,6 @@
+".tncContent" : {
+   color: '#6E6E6E'
+},
+".title":{
+	font:{fontSize:22},	
+}

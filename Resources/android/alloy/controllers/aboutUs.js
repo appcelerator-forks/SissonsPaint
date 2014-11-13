@@ -214,27 +214,45 @@ function Controller() {
         width: "60%"
     });
     $.__views.__alloyId12.add($.__views.message);
-    $.__views.__alloyId14 = Ti.UI.createView({
-        backgroundColor: "green",
+    $.__views.toolbar = Ti.UI.createView({
         height: "60",
         bottom: "0",
+        id: "toolbar",
+        width: "100%",
+        backgroundImage: "/images/tool_bar.jpg"
+    });
+    $.__views.mainView.add($.__views.toolbar);
+    $.__views.__alloyId14 = Ti.UI.createView({
+        layout: "horizontal",
+        width: "100%",
         id: "__alloyId14"
     });
-    $.__views.mainView.add($.__views.__alloyId14);
-    $.__views.__alloyId15 = Ti.UI.createImageView({
-        image: "/images/tool_bar.jpg",
-        height: "60",
-        width: Titanium.UI.FILL,
+    $.__views.toolbar.add($.__views.__alloyId14);
+    $.__views.__alloyId15 = Ti.UI.createView({
+        width: "40%",
         id: "__alloyId15"
     });
     $.__views.__alloyId14.add($.__views.__alloyId15);
+    $.__views.__alloyId16 = Ti.UI.createView({
+        width: "20%",
+        id: "__alloyId16"
+    });
+    $.__views.__alloyId14.add($.__views.__alloyId16);
     $.__views.contactButton = Ti.UI.createImageView({
         id: "contactButton",
         image: "/images/icon_email.png",
-        height: "40"
+        height: "40",
+        width: "50",
+        top: "10",
+        bottom: "10"
     });
-    $.__views.__alloyId14.add($.__views.contactButton);
+    $.__views.__alloyId16.add($.__views.contactButton);
     submitContactForm ? $.__views.contactButton.addEventListener("click", submitContactForm) : __defers["$.__views.contactButton!click!submitContactForm"] = true;
+    $.__views.__alloyId17 = Ti.UI.createView({
+        width: "40%",
+        id: "__alloyId17"
+    });
+    $.__views.__alloyId14.add($.__views.__alloyId17);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

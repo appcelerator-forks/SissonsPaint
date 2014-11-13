@@ -23,10 +23,18 @@
 				<ScrollView id="scrollView" backgroundColor="white" layout="horizontal" scrollType="horizontal" height="50" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER"></ScrollView>
 			</View>
 		</View> 
-		<View id="bottomBar" bottom="0" height="60" width="Ti.UI.FILL" backgroundImage="/images/tool_bar.jpg">
-			<View layout="horizontal" width="120">
-				<ImageView image="/images/icon_photo.png" right="10" onClick="takePhoto" id="takePhoto"   width="50" height="40" top="10" bottom="10" />
-				<ImageView image="/images/btn_eyedrop.png" left="10" onClick="toggleActivation" id="toggleActivation"  width="50" height="40" top="10" bottom="10" />
+		<View height="60" bottom="0" id="toolbar" width="100%" backgroundImage="/images/tool_bar.jpg">
+			<View layout="horizontal" width="100%">
+				<View width="30%">
+				</View>
+				<View width="20%">
+					<ImageView id="takePhoto" image="/images/icon_photo.png" onClick="takePhoto" height="40" width="50" top="10" bottom="10" />
+				</View>
+				<View width="20%">
+					<ImageView id="toggleActivation" image="/images/btn_eyedrop.png" onClick="toggleActivation" height="40" width="50" top="10" bottom="10" />
+				</View>
+				<View width="30%">
+				</View>
 			</View>
 		</View>
 	</View> 

@@ -32,7 +32,7 @@
 					<Label width="Ti.UI.FILL" left="30" color="white">About Us</Label>
 				</TableViewRow>
 		    </TableView>
-		    <Label id="tnc" color="white" bottom="20">TERM & CONDITIONS | 2014 COPYRIGHT</Label>
+		    <Label id="tnc" color="white" bottom="20" onClick="tnc">TERM & CONDITIONS | 2014 COPYRIGHT</Label>
         </Window>
         
         <Window id="centerWindow" module="xp.ui" platform="android" role="centerWindow">

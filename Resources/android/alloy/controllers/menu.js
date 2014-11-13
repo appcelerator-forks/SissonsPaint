@@ -55,81 +55,81 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    var __alloyId95 = [];
-    $.__views.__alloyId96 = Ti.UI.createTableViewRow({
+    var __alloyId109 = [];
+    $.__views.__alloyId110 = Ti.UI.createTableViewRow({
         height: "50",
-        id: "__alloyId96"
+        id: "__alloyId110"
     });
-    __alloyId95.push($.__views.__alloyId96);
-    $.__views.__alloyId97 = Ti.UI.createLabel({
+    __alloyId109.push($.__views.__alloyId110);
+    $.__views.__alloyId111 = Ti.UI.createLabel({
         text: "DIY Paint",
         width: Ti.UI.FILL,
         left: "10",
-        id: "__alloyId97"
+        id: "__alloyId111"
     });
-    $.__views.__alloyId96.add($.__views.__alloyId97);
-    $.__views.__alloyId98 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId110.add($.__views.__alloyId111);
+    $.__views.__alloyId112 = Ti.UI.createTableViewRow({
         height: "50",
-        id: "__alloyId98"
+        id: "__alloyId112"
     });
-    __alloyId95.push($.__views.__alloyId98);
-    $.__views.__alloyId99 = Ti.UI.createLabel({
+    __alloyId109.push($.__views.__alloyId112);
+    $.__views.__alloyId113 = Ti.UI.createLabel({
         text: "Colour Picker",
         width: Ti.UI.FILL,
         left: "10",
-        id: "__alloyId99"
+        id: "__alloyId113"
     });
-    $.__views.__alloyId98.add($.__views.__alloyId99);
-    $.__views.__alloyId100 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId112.add($.__views.__alloyId113);
+    $.__views.__alloyId114 = Ti.UI.createTableViewRow({
         height: "50",
-        id: "__alloyId100"
+        id: "__alloyId114"
     });
-    __alloyId95.push($.__views.__alloyId100);
-    $.__views.__alloyId101 = Ti.UI.createLabel({
+    __alloyId109.push($.__views.__alloyId114);
+    $.__views.__alloyId115 = Ti.UI.createLabel({
         text: "Colour Swatches",
         width: Ti.UI.FILL,
         left: "10",
-        id: "__alloyId101"
+        id: "__alloyId115"
     });
-    $.__views.__alloyId100.add($.__views.__alloyId101);
-    $.__views.__alloyId102 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId114.add($.__views.__alloyId115);
+    $.__views.__alloyId116 = Ti.UI.createTableViewRow({
         height: "50",
-        id: "__alloyId102"
+        id: "__alloyId116"
     });
-    __alloyId95.push($.__views.__alloyId102);
-    $.__views.__alloyId103 = Ti.UI.createLabel({
+    __alloyId109.push($.__views.__alloyId116);
+    $.__views.__alloyId117 = Ti.UI.createLabel({
         text: "Brochure",
         width: Ti.UI.FILL,
         left: "10",
-        id: "__alloyId103"
+        id: "__alloyId117"
     });
-    $.__views.__alloyId102.add($.__views.__alloyId103);
-    $.__views.__alloyId104 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId116.add($.__views.__alloyId117);
+    $.__views.__alloyId118 = Ti.UI.createTableViewRow({
         height: "50",
-        id: "__alloyId104"
+        id: "__alloyId118"
     });
-    __alloyId95.push($.__views.__alloyId104);
-    $.__views.__alloyId105 = Ti.UI.createLabel({
+    __alloyId109.push($.__views.__alloyId118);
+    $.__views.__alloyId119 = Ti.UI.createLabel({
         text: "Store Locator",
         width: Ti.UI.FILL,
         left: "10",
-        id: "__alloyId105"
+        id: "__alloyId119"
     });
-    $.__views.__alloyId104.add($.__views.__alloyId105);
-    $.__views.__alloyId106 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId118.add($.__views.__alloyId119);
+    $.__views.__alloyId120 = Ti.UI.createTableViewRow({
         height: "50",
-        id: "__alloyId106"
+        id: "__alloyId120"
     });
-    __alloyId95.push($.__views.__alloyId106);
-    $.__views.__alloyId107 = Ti.UI.createLabel({
+    __alloyId109.push($.__views.__alloyId120);
+    $.__views.__alloyId121 = Ti.UI.createLabel({
         text: "About Us",
         width: Ti.UI.FILL,
         left: "10",
-        id: "__alloyId107"
+        id: "__alloyId121"
     });
-    $.__views.__alloyId106.add($.__views.__alloyId107);
+    $.__views.__alloyId120.add($.__views.__alloyId121);
     $.__views.menuTable = Ti.UI.createTableView({
-        data: __alloyId95,
+        data: __alloyId109,
         id: "menuTable",
         backgroundColor: "#3F3D3D"
     });

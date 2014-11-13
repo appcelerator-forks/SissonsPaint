@@ -1,0 +1,37 @@
+<Alloy> 
+	<Window class="container" id="tncPage" backgroundColor="white">
+	<View  id="tncView" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">
+		<View id="toggle" height="80" top="0" backgroundColor="white" >
+			<Label class="title" color="black" width="100%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">TERM & CONDITIONS</Label>
+		</View>
+		<ScrollView id="main" layout="vertical" height="Ti.UI.SIZE" top="80" bottom="20" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" >
+			<Label class="tncContent" width="90%">Terms of Use
+Your use of this website hosted by Boustead Sissons Paints Sdn Bhd and/or its various parents, affiliates, subsidiaries and divisions (collectively referred to as "Sissons Paints") is subject to the following terms and conditions: 
+
+Sissons Paints’ Materials
+All materials contained on this website are Copyright © 2011 Boustead Sissons Paints Sdn Bhd. All rights reserved. The materials posted on this site by Sissons Paints may be retrieved and/or downloaded solely for personal use. Without the prior written permission of Sissons Paints, no materials on this website may be copied, modified, published, broadcast, or distributed. Any reproduction permitted under this User Agreement must contain notice of Sissons Paints’ copyright as follows: "Copyright © 2011 Boustead Sissons Paints Sdn Bhd”, and/or any other names of products or services provided by Sissons Paints referred to on this website are either trademarks or registered trademarks of Sissons Paints . The names of other companies, products and services referenced herein may be the trademarks of their respective owners. 
+
+The information contained on this website or any other website owned, operated, licensed, or controlled by Sissons Paints, as well as the design and layout of such websites, contain elements protected by trade dress, copyright, and/or other laws, and may not be copied or imitated in whole or in part. No text, logo, graphic, sound or image from any Sissons Paints website may be copied or retransmitted without the express written permission of Sissons Paints. 
+
+While Sissons Paints has made every effort to maintain accurate information on this website, the information contained herein may contain errors or omissions. Sissons Paints MAKES NO WARRANTIES OR REPRESENTATIONS OF ANY KIND CONCERNING THE ACCURACY OR SUITABILITY OF THE INFORMATION CONTAINED ON THIS WEBSITE FOR ANY PURPOSE. ALL SUCH INFORMATION IS PROVIDED "AS IS," AND WITH SPECIFIC DISCLAIMER OF ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND/OR NON-INFRINGEMENT. SISSONS PAINTS MAKES NO WARRANTIES OR REPRESENTATIONS OF ANY KIND THAT THE SERVICES PROVIDED BY THIS WEBSITE WILL BE UNINTERRUPTED, ERROR-FREE, OR THAT THE SITE OR THE SERVER THAT HOSTS THE SITE ARE FREE FROM VIRUSES OR OTHER FORMS OF HARMFUL COMPUTER CODE. IN NO EVENT SHALL SISSONS PAINTS, ITS EMPLOYEES OR AGENTS, OR ANYONE ELSE WHO HAS BEEN INVOLVED IN THE CREATION, PRODUCTION, OR DELIVERY OF THESE PAGES, BE LIABLE FOR ANY DIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES RESULTING FROM THE USE OF THIS SITE. 
+
+LINKS
+Links to other websites do not imply an endorsement of the materials disseminated by publishers at those websites, nor does the existence of a link to another site imply that the organization or person publishing at that site endorses any of the materials at this site. Links to other websites provided by Sissons Paints is solely as a convenience to its users. Sissons Paints is not responsible for the materials contained at any website linked to this site. 
+
+INTERACTIVE MATERIAL
+Portions of this site may allow users to post their own material. The materials posted by users do not necessarily reflect the views of Sissons Paints. By posting materials to Sissons Paints website, you represent that you have all necessary rights in and to such materials, and that such materials will not infringe on any personal or proprietary rights of any third parties, nor will such materials be defamatory, unlawful, threatening, obscene, lewd, lascivious, filthy, excessively violent, harassing, or otherwise objectionable.
+
+Sissons Paints reserves the right, at its sole discretion, to review, edit or delete any material posted by users that Sissons Paints deems defamatory, unlawful, threatening, obscene, lewd, lascivious, filthy, excessively violent, harassing, or otherwise objectionable. NOTWITHSTANDING THE FOREGOING, SISSONS PAINTS EXPRESSLY DISCLAIMS ANY RESPONSIBILITY OR LIABILITY FOR ANY MATERIAL COMMUNICATED BY THIRD PARTIES THROUGH THIS WEBSITE. 
+
+By posting materials to Sissons Paints’ website, you authorize Sissons Paints to use and/or authorize others to use any such materials in any manner or medium. You may not advertise or solicit on this website without Sissons Paints’ express permission. 
+
+PRIVACY INFORMATION
+Sissons Paints recognizes the importance of protecting information we may collect from customers using Sissons Paints' site. Our policy is to use the information we acquire from users through the registration process or through user postings at our sites for internal business purposes only, and we maintain appropriate security measures to keep this information private. 
+
+Personal information such as your name or e-mail address that you voluntarily disclose on bulletin boards or in chat areas that are accessible to other users may be collected and disclosed by third parties. Sissons Paints is not responsible for any such collection or disclosure. 
+
+If you have any questions about this User Agreement, contact Sissons Paints. If you do not agree with the terms of this User Agreement, you may not use Sissons Paints’ website. Sissons Paints reserves the right to change this User Agreement at any time without notice.</Label>	
+		</ScrollView>
+	</View> 
+	</Window>
+</Alloy>

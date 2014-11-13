@@ -12,9 +12,7 @@
 				<ImageView image="/images/scroll_up.png" backgroundColor="transparent" width="Titanium.UI.FILL" />
 				<View id="bottomColorBar" layout="vertical" backgroundColor="white">
 					<Label class="smallTitle" color="black" width="90%" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" bottom="10" >FAVOURITE COLOURS</Label>
-					<ScrollView id="recommendView" backgroundColor="white" layout="horizontal" scrollType="horizontal" height="50" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
-						<!--<Button id="savePicture" onClick="savePicture">Save</Button>-->
-					</ScrollView>
+					<ScrollView id="recommendView" backgroundColor="white" layout="horizontal" scrollType="horizontal" height="50" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER"></ScrollView>
 					<ImageView image="/images/scroll_up.png" backgroundColor="transparent" width="Titanium.UI.FILL" />
 					<Label class="smallTitle" color="black" width="90%" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" bottom="10" >COLOUR LIBRARY</Label>
 					<ScrollView id="scrollView" backgroundColor="white" layout="vertical" scrollType="horizontal" height="150" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER"></ScrollView>
