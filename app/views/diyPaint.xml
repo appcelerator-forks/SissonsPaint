@@ -40,7 +40,7 @@
 						<View id="color" backgroundColor="#ffffff" height="40" width="50" mod="color" onClick="slideUp" borderColor="#000000" borderWidth="3" borderRadius="10" top="10" bottom="10" />
 					</View>
 					<View width="20%">
-						<ImageView id="" image="/images/icon_share.png" onClick="share" height="40" width="50" top="10" bottom="10" />
+						<ImageView id="shareButton" image="/images/icon_share.png" onClick="share" height="40" width="50" top="10" bottom="10" touchEnabled="false" />
 					</View>
 				</View>
 			</View>

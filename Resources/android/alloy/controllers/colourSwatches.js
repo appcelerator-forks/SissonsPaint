@@ -83,7 +83,6 @@ function Controller() {
             });
             $.TheScrollView.add(colourView);
         } else totalDetails--;
-        $.mainViewContainer.add(bottomBar);
     }
     function createColorEvent(subView, colour_details, details) {
         subView.addEventListener("click", function() {
@@ -109,6 +108,7 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
+    var __defers = {};
     $.__views.mainViewContainer = Ti.UI.createView({
         backgroundColor: "white",
         id: "mainViewContainer"
@@ -153,6 +153,60 @@ function Controller() {
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.__alloyId48.add($.__views.TheScrollView);
+    $.__views.toolbar = Ti.UI.createView({
+        height: "60",
+        bottom: "0",
+        id: "toolbar",
+        width: "100%",
+        backgroundImage: "/images/tool_bar.jpg"
+    });
+    $.__views.__alloyId48.add($.__views.toolbar);
+    $.__views.__alloyId51 = Ti.UI.createView({
+        layout: "horizontal",
+        width: "100%",
+        id: "__alloyId51"
+    });
+    $.__views.toolbar.add($.__views.__alloyId51);
+    $.__views.__alloyId52 = Ti.UI.createView({
+        width: "30%",
+        id: "__alloyId52"
+    });
+    $.__views.__alloyId51.add($.__views.__alloyId52);
+    $.__views.__alloyId53 = Ti.UI.createView({
+        width: "20%",
+        id: "__alloyId53"
+    });
+    $.__views.__alloyId51.add($.__views.__alloyId53);
+    $.__views.filterButton = Ti.UI.createImageView({
+        id: "filterButton",
+        image: "/images/icon_filter.png",
+        height: "40",
+        width: "50",
+        top: "10",
+        bottom: "10"
+    });
+    $.__views.__alloyId53.add($.__views.filterButton);
+    filter ? $.__views.filterButton.addEventListener("click", filter) : __defers["$.__views.filterButton!click!filter"] = true;
+    $.__views.__alloyId54 = Ti.UI.createView({
+        width: "20%",
+        id: "__alloyId54"
+    });
+    $.__views.__alloyId51.add($.__views.__alloyId54);
+    $.__views.searchButton = Ti.UI.createImageView({
+        id: "searchButton",
+        image: "/images/icon_search.png",
+        height: "40",
+        width: "50",
+        top: "10",
+        bottom: "10"
+    });
+    $.__views.__alloyId54.add($.__views.searchButton);
+    search ? $.__views.searchButton.addEventListener("click", search) : __defers["$.__views.searchButton!click!search"] = true;
+    $.__views.__alloyId55 = Ti.UI.createView({
+        width: "30%",
+        id: "__alloyId55"
+    });
+    $.__views.__alloyId51.add($.__views.__alloyId55);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -167,38 +221,6 @@ function Controller() {
     var category_tag = category_type_lib.selectTypeByDistinct();
     var searchFlag = 0;
     var filterFlag = 0;
-    var bottomBar = Titanium.UI.createView({
-        layout: "composite",
-        bottom: 0,
-        height: 60,
-        width: Ti.Platform.displayCaps.platformWidth
-    });
-    var buttonWrapper = Titanium.UI.createView({
-        layout: "horizontal",
-        left: (Ti.Platform.displayCaps.platformWidth - 120) / 2,
-        width: 120
-    });
-    var backgroundImg = Ti.UI.createImageView({
-        height: 60,
-        width: Ti.UI.FILL,
-        image: "/images/tool_bar.jpg"
-    });
-    var filterButton = Ti.UI.createImageView({
-        width: 50,
-        height: 40,
-        right: 10,
-        top: 10,
-        bottom: 10,
-        image: "/images/icon_filter.png"
-    });
-    var searchButton = Ti.UI.createImageView({
-        width: 50,
-        height: 40,
-        left: 10,
-        top: 10,
-        bottom: 10,
-        image: "/images/icon_search.png"
-    });
     var searchView = Titanium.UI.createView({
         layout: "composite",
         width: "100%",
@@ -232,13 +254,9 @@ function Controller() {
         width: 150,
         bottom: 60,
         zIndex: 999,
-        center: filterButton.getCenter(),
+        left: "20%",
         data: tableData
     });
-    buttonWrapper.add(filterButton);
-    buttonWrapper.add(searchButton);
-    bottomBar.add(backgroundImg);
-    bottomBar.add(buttonWrapper);
     generateTable();
     $.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 140;
     var tableListener = function(e) {
@@ -259,7 +277,7 @@ function Controller() {
             generateTable();
         }
     };
-    filterButton.addEventListener("click", function() {
+    var filter = function() {
         closeWindow();
         $.mainViewContainer.remove(searchView);
         searchFlag = 0;
@@ -271,11 +289,11 @@ function Controller() {
             $.mainViewContainer.add(table);
             table.addEventListener("click", tableListener);
         }
-    });
+    };
     var closeWindow = function() {
         table.removeEventListener("click", tableListener);
     };
-    searchButton.addEventListener("click", function() {
+    var search = function() {
         $.mainViewContainer.remove(table);
         filterFlag = 0;
         if (1 == searchFlag) {
@@ -333,6 +351,7 @@ function Controller() {
                 $.mainViewContainer.remove(searchView);
             });
         }
+<<<<<<< HEAD
     });
     var minHeight = 2997;
     Ti.App.Properties.setString("swatchMinHeight", minHeight);
@@ -349,6 +368,11 @@ function Controller() {
             generateTable();
         }
     });
+=======
+    };
+    __defers["$.__views.filterButton!click!filter"] && $.__views.filterButton.addEventListener("click", filter);
+    __defers["$.__views.searchButton!click!search"] && $.__views.searchButton.addEventListener("click", search);
+>>>>>>> FETCH_HEAD
     _.extend($, exports);
 }
 

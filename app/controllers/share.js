@@ -7,7 +7,7 @@ fb.appid = 752094718209236;
 
 console.log(imgPath);
 $.saveImage.width = pWidth;
-$.saveImage.height = pHeight;
+$.saveImage.height = pHeight - 140;
 $.saveImage.image = imgPath;
 
 $.activityIndicator.show();

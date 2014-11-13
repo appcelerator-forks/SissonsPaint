@@ -18,7 +18,7 @@ var category_tag = category_type_lib.selectTypeByDistinct();
 var searchFlag = 0;
 var filterFlag = 0;
 
-var bottomBar = Titanium.UI.createView({
+/*var bottomBar = Titanium.UI.createView({
    layout: 'composite',
    bottom: 0,
   // top: Ti.Platform.displayCaps.platformHeight - 60,
@@ -54,7 +54,7 @@ var searchButton = Ti.UI.createImageView({
   	top: 10,
   	bottom: 10,
   	image:'/images/icon_search.png'
-});
+});*/
 
 var searchView = Titanium.UI.createView({
    		layout: 'composite',
@@ -77,32 +77,31 @@ tableData.push(row1);
 
 category_tag.forEach(function(tags) { 
 	var row_tag = Ti.UI.createTableViewRow({
-    title: tags.tag,
-    width: 150,
-    left: 10,
-    touchEnabled: true,
-    height: 60
-  });
-  tableData.push(row_tag);
+    	title: tags.tag,
+	    width: 150,
+	    left: 10,
+	    touchEnabled: true,
+	    height: 60
+	});
+	tableData.push(row_tag);
+});
+ 
+var table = Titanium.UI.createTableView({
+	separatorColor: 'transparent',
+	backgroundImage: '/images/pop_window.png',
+	height: Ti.UI.SIZE,
+	width: 150,
+	bottom: 60,
+	zIndex: 999,
+	left: '20%',
+	//overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
+	data: tableData
 });
 
-
-var table = Titanium.UI.createTableView({
-		separatorColor: 'transparent',
-		backgroundImage: '/images/pop_window.png',
-		height: Ti.UI.SIZE,
-		width: 150,
-		bottom: 60,
-		zIndex: 999,
-		center: filterButton.getCenter(),
-		//overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
-		data: tableData
-	});
-
-buttonWrapper.add(filterButton);
-buttonWrapper.add(searchButton);
-bottomBar.add(backgroundImg);
-bottomBar.add(buttonWrapper);
+// buttonWrapper.add(filterButton);
+// buttonWrapper.add(searchButton);
+// bottomBar.add(backgroundImg);
+// bottomBar.add(buttonWrapper);
 
 generateTable();
  
@@ -221,7 +220,7 @@ function generateTable(){
 		
 	}
 	
-	$.mainViewContainer.add(bottomBar); 
+	//$.mainViewContainer.add(bottomBar); 
 }
 
 function createColorEvent(subView, colour_details, details){
@@ -257,7 +256,7 @@ var tableListener = function(e){
 	}
 };
 
-filterButton.addEventListener('click', function(e){ 
+var filter = function(e){
 	closeWindow();
 	
 	$.mainViewContainer.remove(searchView);
@@ -271,13 +270,28 @@ filterButton.addEventListener('click', function(e){
 		$.mainViewContainer.add(table);
 		table.addEventListener('click', tableListener);
 	}
-});
+};
+/*filterButton.addEventListener('click', function(e){ 
+	closeWindow();
+	
+	$.mainViewContainer.remove(searchView);
+	searchFlag = 0;
+	
+	if(filterFlag == 1){
+		filterFlag = 0;
+		$.mainViewContainer.remove(table);
+	}else{
+		filterFlag = 1;
+		$.mainViewContainer.add(table);
+		table.addEventListener('click', tableListener);
+	}
+});*/
 
 var closeWindow = function(e){
 	table.removeEventListener('click', tableListener);
 };
 
-searchButton.addEventListener('click', function(e){ 
+var search = function(e){
 	$.mainViewContainer.remove(table);
 	filterFlag = 0;
 	
@@ -339,7 +353,70 @@ searchButton.addEventListener('click', function(e){
 			 
 		}); 
 	}
-});
+};
+/*searchButton.addEventListener('click', function(e){ 
+	$.mainViewContainer.remove(table);
+	filterFlag = 0;
+	
+	if(searchFlag == 1)
+	{
+		searchFlag = 0; 
+		$.mainViewContainer.remove(searchView);
+	}
+	else
+	{
+		searchFlag = 1;
+		 
+		var hintTextLabel = Ti.UI.createLabel({
+		    text : 'Enter Colour, Name or Colour Code',
+		    color : '#A5A5A5',
+		    font :  {
+		        fontSize : 14
+		    },
+		    backgroundColor : 'transparent',
+		});
+		
+		var textField = Ti.UI.createTextField({
+		  borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+		  color: 'black',
+		  hintText : 'Enter Colour, Name or Colour Code',
+		  backgroundColor: 'white',
+		  borderColor: '#A5A5A5',
+		  borderRadius: 5,
+		  font: hintTextLabel.font,
+		  left: 10,
+		  top: 10,
+		  width: "70%", 
+		  height: 60
+		});
+		  
+		var searchButton = Ti.UI.createButton({ backgroundColor: 'white', color: '#A5A5A5', textAlign: 'Titanium.UI.TEXT_ALIGNMENT_CENTER', title: 'SEARCH', borderColor: '#A5A5A5', borderRadius: 5, left: 5, top: 10, height: 60 });
+		
+		var searchWrapper = Titanium.UI.createView({
+			layout: 'horizontal',
+		});
+		
+		searchWrapper.add(textField);
+		searchWrapper.add(searchButton);
+		searchView.add(searchWrapper);
+		$.mainViewContainer.add(searchView);
+		
+		searchButton.addEventListener('click', function(e){ 
+			searchFlag = 0;
+			 
+			Ti.UI.Android.hideSoftKeyboard(); 
+			if(textField.value.length != 0)
+			{
+				Ti.App.Properties.setString('query', textField.value);
+				var nav = Alloy.createController("search").getView(); 
+				Alloy.Globals.Drawer.setCenterWindow(nav);
+			}
+	 
+			$.mainViewContainer.remove(searchView);
+			 
+		}); 
+	}
+});*/
  
 var minHeight = 2997;
 Ti.App.Properties.setString('swatchMinHeight', minHeight);
