@@ -95,7 +95,7 @@ function Controller() {
                         $.canvas.setBottom(toolbarHeight);
                         $.canvas.setHeight(canvasHeight);
                         var nativePath = event.media.nativePath;
-                        ImageFactory.rotateResizeImage(nativePath, 800, 100);
+                        ImageFactory.rotateResizeImage(nativePath, 3840, 100);
                         Ti.App.Properties.setString("image", nativePath);
                         Ti.App.fireEvent("web:loadImage", {
                             image: nativePath,
@@ -120,7 +120,7 @@ function Controller() {
                     $.canvas.setBottom(toolbarHeight);
                     $.canvas.setHeight(canvasHeight);
                     var nativePath = event.media.nativePath;
-                    ImageFactory.rotateResizeImage(nativePath, 800, 100);
+                    ImageFactory.rotateResizeImage(nativePath, 3840, 100);
                     Ti.App.Properties.setString("image", nativePath);
                     Ti.App.fireEvent("web:loadImage", {
                         image: nativePath,
@@ -490,6 +490,25 @@ function Controller() {
     var colorShow = 0;
     var filterFlag = 0;
     var shareFlag = 0;
+    ({
+        "Date/time": ImageFactory.TAG_DATETIME,
+        Flash: ImageFactory.TAG_FLASH,
+        "GPS altitude": ImageFactory.TAG_GPS_ALTITUDE,
+        "GPS altitude ref": ImageFactory.TAG_GPS_ALTITUDE_REF,
+        "GPS date stamp": ImageFactory.TAG_GPS_DATESTAMP,
+        "GPS latitude": ImageFactory.TAG_GPS_LATITUDE,
+        "GPS latitude ref": ImageFactory.TAG_GPS_LATITUDE_REF,
+        "GPS longitude": ImageFactory.TAG_GPS_LONGITUDE,
+        "GPS longitude ref": ImageFactory.TAG_GPS_LONGITUDE_REF,
+        "GPS processing method": ImageFactory.TAG_GPS_PROCESSING_METHOD,
+        "GPS timestamp": ImageFactory.TAG_GPS_TIMESTAMP,
+        "Image length": ImageFactory.TAG_IMAGE_LENGTH,
+        "Image width": ImageFactory.TAG_IMAGE_WIDTH,
+        "Camera make": ImageFactory.TAG_MAKE,
+        "Camera model": ImageFactory.TAG_MODEL,
+        Orientation: ImageFactory.TAG_ORIENTATION,
+        "White balance": ImageFactory.TAG_WHITEBALANCE
+    });
     var imgPath = "";
     fb.appid = 752094718209236;
     var t = Titanium.UI.create2DMatrix();
