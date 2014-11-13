@@ -120,7 +120,7 @@ function Controller() {
                     $.canvas.setBottom(toolbarHeight);
                     $.canvas.setHeight(canvasHeight);
                     var nativePath = event.media.nativePath;
-                    console.log("FROM APP : " + canvasHeight);
+                    ImageFactory.rotateResizeImage(nativePath, 4208, 100);
                     Ti.App.Properties.setString("image", nativePath);
                     Ti.App.fireEvent("web:loadImage", {
                         image: nativePath,
@@ -482,10 +482,9 @@ function Controller() {
     var tools = "bucket";
     Alloy.createCollection("category_colour");
     var colour_lib = Alloy.createCollection("colour");
-    var library = Alloy.createCollection("category");
+    Alloy.createCollection("category");
     var favourite_lib = Alloy.createCollection("favourite");
     var list_favourite = favourite_lib.getFavouriteList();
-    library.getCategoryListByType(2);
     var list_colours = colour_lib.getColourList();
     var sizeShow = 0;
     var colorShow = 0;

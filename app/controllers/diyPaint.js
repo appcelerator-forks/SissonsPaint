@@ -18,8 +18,7 @@ var category_colour_lib = Alloy.createCollection('category_colour');
 var colour_lib = Alloy.createCollection('colour'); 
 var library = Alloy.createCollection('category'); 
 var favourite_lib = Alloy.createCollection('favourite');
-var list_favourite = favourite_lib.getFavouriteList();
-var list_category = library.getCategoryListByType(2);
+var list_favourite = favourite_lib.getFavouriteList(); 
 var list_colours = colour_lib.getColourList();
 var sizeShow = 0;
 var colorShow = 0;
@@ -32,7 +31,6 @@ var t = Titanium.UI.create2DMatrix();
     t = t.rotate(-90);
 
 $.slider.transform = t;
-
 takePhoto();
 	 
 $.toolbar.addEventListener('postlayout', function(e) { 
@@ -42,10 +40,11 @@ $.toolbar.addEventListener('postlayout', function(e) {
 	$.canvas.setHeight(canvasHeight); 
 });
 	
-$.canvas.addEventListener("load", function(){ 
+$.canvas.addEventListener("load", function(){  
 	Ti.App.fireEvent('web:initCanvasSize', { height: canvasHeight, width: pWidth });
 });	 
  
+
 function PixelsToDPUnits(ThePixels)
 {
   return (ThePixels / (Titanium.Platform.displayCaps.dpi / 160));
@@ -426,8 +425,7 @@ function takePhoto(){
 					$.canvas.setBottom(toolbarHeight);
 					$.canvas.setHeight(canvasHeight);
 	            	var nativePath = event.media.nativePath;
-					//ImageFactory.rotateResizeImage(nativePath, 800, 100);
-					console.log("FROM APP : "+canvasHeight);
+					ImageFactory.rotateResizeImage(nativePath, 4208, 100); 
 	                Ti.App.Properties.setString("image", nativePath); 
 	                Ti.App.fireEvent('web:loadImage', { image: nativePath,height:canvasHeight});
 	                

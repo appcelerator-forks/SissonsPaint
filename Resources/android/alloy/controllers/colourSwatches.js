@@ -11,6 +11,13 @@ function Controller() {
     function generateTable() {
         var totalDetails = details.length;
         for (var i = 0; totalDetails > i; i++) if ("" != details[i]) {
+            var separator = Titanium.UI.createImageView({
+                width: Titanium.UI.FILL,
+                height: 30,
+                touchEnabled: false,
+                image: "/images/scroll_up.png"
+            });
+            "1" == firstRecords ? firstRecords = "0" : $.TheScrollView.add(separator);
             var colours = category_colour_lib.getCategoryColourByCategory(details[i]["id"]);
             var categoryHeader = Titanium.UI.createImageView({
                 width: "95%",
@@ -75,13 +82,6 @@ function Controller() {
                 counter++;
             });
             $.TheScrollView.add(colourView);
-            var separator = Titanium.UI.createImageView({
-                width: Titanium.UI.FILL,
-                height: 30,
-                touchEnabled: false,
-                image: "/images/scroll_up.png"
-            });
-            totalDetails != i + 1 && $.TheScrollView.add(separator);
         } else totalDetails--;
         $.mainViewContainer.add(bottomBar);
     }
@@ -147,6 +147,7 @@ function Controller() {
         backgroundColor: "white",
         width: "100%",
         layout: "vertical",
+        contentHeight: Ti.UI.SIZE,
         height: "80%",
         top: "0",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
@@ -158,7 +159,9 @@ function Controller() {
     var library = Alloy.createCollection("category");
     var category_colour_lib = Alloy.createCollection("category_colour");
     var colour_lib = Alloy.createCollection("colour");
-    var details = library.getCategoryListByType("2");
+    var from = 0;
+    var firstRecords = "1";
+    var details = library.getCategoryListByType("2", from);
     Ti.Platform.displayCaps.platformHeight;
     var category_type_lib = Alloy.createCollection("category_type");
     var category_tag = category_type_lib.selectTypeByDistinct();
@@ -243,7 +246,7 @@ function Controller() {
         $.mainViewContainer.remove(table);
         removeAllChildren($.TheScrollView);
         if (0 == e.index) {
-            details = library.getCategoryListByType("2");
+            details = library.getCategoryListByType("2", 3);
             generateTable();
         } else {
             var result = category_type_lib.getCategoryTypeByTag(e.rowData.title);
@@ -329,6 +332,21 @@ function Controller() {
                 }
                 $.mainViewContainer.remove(searchView);
             });
+        }
+    });
+    var minHeight = 2997;
+    Ti.App.Properties.setString("swatchMinHeight", minHeight);
+    $.TheScrollView.addEventListener("scroll", function(e) {
+        var swatchMinHeight = Ti.App.Properties.getString("swatchMinHeight");
+        if (e.y >= swatchMinHeight) {
+            swatchMinHeight = parseInt(swatchMinHeight) + parseInt(minHeight);
+            console.log(e.y + "= " + swatchMinHeight);
+            Ti.App.Properties.setString("swatchMinHeight", swatchMinHeight);
+            from += 3;
+            console.log(e.y + " <> " + swatchMinHeight);
+            console.log(" from : " + from);
+            details = library.getCategoryListByType("2", from);
+            generateTable();
         }
     });
     _.extend($, exports);

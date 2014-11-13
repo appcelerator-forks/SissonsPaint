@@ -28,6 +28,7 @@
     </style>
   </head>
 	<body>
+		 
 		<input type="hidden" value="" name="myPhoto" id="myPhoto" />
 	   <div id="parent">
 	    	<div id="canvasDiv"> 
@@ -541,9 +542,7 @@ var paintBucketApp = (function () {
 			var screenwidth = window.innerWidth;
 			var canvasW = screenwidth;
 			var canvasH =  data.canvasHeight; 
-			$('body').css({'height':canvasH});
-			var windowHeight = $( window ).height();
-			console.log("windowHeight : " +windowHeight);
+			$('body').css({'height':canvasH}); 
 			
 			canvas.setAttribute('width', canvasW);
 			canvas.setAttribute('height', canvasH);
@@ -568,7 +567,7 @@ var paintBucketApp = (function () {
 			waterMarkImage.src = "images/water_mark.png";
 			outlineImage.onload = function (e) {
 				var ratio = this.naturalWidth / canvasWidth;
-				var newheight = $( window ).height();//this.naturalHeight / ratio;
+				var newheight = this.naturalHeight / ratio;
 				canvasHeight = newheight;
 				var top = window.innerHeight - canvasHeight;
 				setBackgroundSize({width: canvasWidth, height: newheight, top: top});
