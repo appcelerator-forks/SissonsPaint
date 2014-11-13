@@ -7,7 +7,7 @@
 				
 			</View>
 			 
-			<WebView top="80" id='canvas' url="/html/canvas-paint-bucket.html" height="" enableZoomControls="false" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" />
+			<WebView top="80" id='canvas' url="/html/canvas-paint-bucket.html" height="80%" enableZoomControls="false" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" disableBounce="true" />
 			<View layout="vertical" height="330" bottom="-330" id="colorSwatches">
 				<ImageView image="/images/scroll_up.png" backgroundColor="transparent" width="Titanium.UI.FILL" />
 				<View id="bottomColorBar" layout="vertical" backgroundColor="white">
@@ -40,7 +40,7 @@
 						<View id="color" backgroundColor="#ffffff" height="40" width="50" mod="color" onClick="slideUp" borderColor="#000000" borderWidth="3" borderRadius="10" top="10" bottom="10" />
 					</View>
 					<View width="20%">
-						<ImageView id="" image="/images/icon_share.png" onClick="share" height="40" width="50" top="10" bottom="10" />
+						<ImageView id="shareButton" image="/images/icon_share.png" onClick="share" height="40" width="50" top="10" bottom="10" touchEnabled="false" />
 					</View>
 				</View>
 			</View>

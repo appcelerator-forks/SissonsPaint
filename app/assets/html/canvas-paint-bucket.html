@@ -3,30 +3,40 @@
   <head>
     <title>Sissons Paint OmniColour DIY</title>
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="html2canvas.js"></script>
     <style>
-    	html {-webkit-text-size-adjust: none; margin:0; padding:0;}
-    	body {margin:0; padding:0;}
+    	html {-webkit-text-size-adjust: none; margin:0; padding:0; overflow:hidden;}
+    	body {margin:0; padding:0;height:300px; }
     	#parent{
 			background-repeat:no-repeat;
-			background-size: 100% auto;
+			background-size: 100% auto; 
 		}
 		* {
 			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 			-webkit-text-size-adjust: none;
 			-webkit-user-select: none;
 			-webkit-touch-callout: none;	
+			overflow:hidden;
 		}
 		#canvasDiv{
 			-moz-opacity:0.7; /* For older FF versions */
 	   		-khtml-opacity:0.7;
 	   		opacity:0.7;
-			filter:alpha(opacity=70);
+			filter:alpha(opacity=70); 
 		}
     </style>
   </head>
-
-    <script type="text/javascript" src="jquery.js"></script>
-    <script type="text/javascript" src="html2canvas.js"></script>
+	<body>
+		<input type="hidden" value="" name="myPhoto" id="myPhoto" />
+	   <div id="parent">
+	    	<div id="canvasDiv"> 
+	    		<img id="water_mark" src="images/water_mark.png" style="width:50%;margin: auto;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;" />
+	    	</div>
+	    </div>
+	    <canvas id="result" ></canvas>
+  </body>
+    
 	<script>
 		
 		var screenwidth = window.innerWidth;
@@ -50,7 +60,7 @@
 			imagesrc = e.image;
 			$('#water_mark').hide();
 			
-			paintBucketApp.loadImage({image: e.image});
+			paintBucketApp.loadImage({image: e.image, height:e.height-5});
 		};
 		
 		var setBackgroundSize = function(e){
@@ -530,9 +540,11 @@ var paintBucketApp = (function () {
 			canvas = document.createElement('canvas');
 			var screenwidth = window.innerWidth;
 			var canvasW = screenwidth;
-			var canvasH = data.canvasHeight;
+			var canvasH =  data.canvasHeight; 
+			$('body').css({'height':canvasH});
+			var windowHeight = $( window ).height();
+			console.log("windowHeight : " +windowHeight);
 			
-			console.log(screenwidth+"vs"+canvasW);
 			canvas.setAttribute('width', canvasW);
 			canvas.setAttribute('height', canvasH);
 			canvasWidth = canvasW;
@@ -556,7 +568,7 @@ var paintBucketApp = (function () {
 			waterMarkImage.src = "images/water_mark.png";
 			outlineImage.onload = function (e) {
 				var ratio = this.naturalWidth / canvasWidth;
-				var newheight = this.naturalHeight / ratio;
+				var newheight = $( window ).height();//this.naturalHeight / ratio;
 				canvasHeight = newheight;
 				var top = window.innerHeight - canvasHeight;
 				setBackgroundSize({width: canvasWidth, height: newheight, top: top});
@@ -605,13 +617,5 @@ var paintBucketApp = (function () {
 	});
 
 </script>
-	<body>
-		<input type="hidden" value="" name="myPhoto" id="myPhoto" />
-	   <div id="parent">
-	    	<div id="canvasDiv"> 
-	    		<img id="water_mark" src="images/water_mark.png" style="width:50%;margin: auto;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;" />
-	    	</div>
-	    </div>
-	    <canvas id="result" ></canvas>
-  </body>
+	
 </html>

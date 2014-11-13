@@ -44,8 +44,8 @@ $.toolbar.addEventListener('postlayout', function(e) {
 	
 $.canvas.addEventListener("load", function(){ 
 	Ti.App.fireEvent('web:initCanvasSize', { height: canvasHeight, width: pWidth });
-});	
-
+});	 
+ 
 function PixelsToDPUnits(ThePixels)
 {
   return (ThePixels / (Titanium.Platform.displayCaps.dpi / 160));
@@ -117,7 +117,7 @@ var tableShare = Titanium.UI.createTableView({
 	width: 150,
 	//top: (pHeight/2)-60,
 	bottom: 60,
-	right: '10%',
+	right: '9%',
 	overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
 	data: tableDataShare
 });
@@ -225,6 +225,7 @@ function slideUp(e){
 			colorSwatches(60);
 			colorShow = 1;
 		}
+		if(filterFlag == 1) {toolspop();}
 		sizeShow = 0;
 		sizePop(-250); 
 	}else{
@@ -235,6 +236,7 @@ function slideUp(e){
 			sizePop(40);
 			sizeShow = 1;
 		}
+		if(filterFlag == 1) {toolspop();}
 		colorShow = 0;
 		colorSwatches(-330); 
 	}
@@ -287,7 +289,7 @@ var table = Titanium.UI.createTableView({
 	height: Ti.UI.SIZE,
 	width: 150,
 	bottom: 60,
-	left: '15',
+	left: '8%',
 	overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
 	data: tableData
 });
@@ -326,7 +328,10 @@ function toolspop(e){
 		$.diyPaint.remove(table);
 	}else {
 		filterFlag = 1;
-		
+		colorSwatches(-330);
+		sizePop(-250);
+		colorShow = 0;
+		sizeShow = 0;
 		$.diyPaint.add(table);
 		table.addEventListener('click', tableListener);
 		
@@ -380,13 +385,14 @@ function takePhoto(){
 	                if(event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO)
 	                {
 	                    toolbarHeight = $.toolbar.rect.height;
-						canvasHeight = pHeight - toolbarHeight - 25 - toggleHeight;
+						canvasHeight = pHeight - toolbarHeight - toggleHeight;
 						$.canvas.setBottom(toolbarHeight);
 						$.canvas.setHeight(canvasHeight);
 	                    var nativePath = event.media.nativePath;
 						ImageFactory.rotateResizeImage(nativePath, 800, 100);
 		                Ti.App.Properties.setString("image", nativePath); 
 		                Ti.App.fireEvent('web:loadImage', { image: nativePath, height:canvasHeight}); 
+		                $.shareButton.touchEnabled = 'true';
 	                }
 	            },
 	            cancel:function()
@@ -422,14 +428,15 @@ function takePhoto(){
 	            success:function(event){
 	            	// set image view
 	            	toolbarHeight = $.toolbar.rect.height;
-					canvasHeight = pHeight - toolbarHeight - 25 - toggleHeight;
+					canvasHeight = pHeight - toolbarHeight - toggleHeight;
 					$.canvas.setBottom(toolbarHeight);
 					$.canvas.setHeight(canvasHeight);
 	            	var nativePath = event.media.nativePath;
-					ImageFactory.rotateResizeImage(nativePath, 800, 100);
+					//ImageFactory.rotateResizeImage(nativePath, 800, 100);
+					console.log("FROM APP : "+canvasHeight);
 	                Ti.App.Properties.setString("image", nativePath); 
 	                Ti.App.fireEvent('web:loadImage', { image: nativePath,height:canvasHeight});
-	                
+	                $.shareButton.touchEnabled = 'true';
 	            },
 	            cancel:function()
 	            {
@@ -505,7 +512,7 @@ function createColorEvent(colours, colour_details){
 			colorSwatches(60);
 			colorShow = 1;
 		}
-		sizeShow = 0;
+		sizeShow = 1;
 		sizePop(40);
 	});
 }
