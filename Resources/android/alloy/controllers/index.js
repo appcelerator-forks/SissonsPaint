@@ -334,7 +334,7 @@ function Controller() {
             Ti.App.Properties.setString("module", "index");
             var nav = Alloy.createController(from).getView();
             Alloy.Globals.Drawer.setCenterWindow(nav);
-        } else if (1 == drawerFlag) {
+        } else if ("colourDetails" == mod) alert("yea"); else if (1 == drawerFlag) {
             var dialog = Ti.UI.createAlertDialog({
                 cancel: 1,
                 buttonNames: [ "Cancel", "Confirm" ],

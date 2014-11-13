@@ -351,8 +351,7 @@ function Controller() {
                 $.mainViewContainer.remove(searchView);
             });
         }
-<<<<<<< HEAD
-    });
+    };
     var minHeight = 2997;
     Ti.App.Properties.setString("swatchMinHeight", minHeight);
     $.TheScrollView.addEventListener("scroll", function(e) {
@@ -362,17 +361,12 @@ function Controller() {
             console.log(e.y + "= " + swatchMinHeight);
             Ti.App.Properties.setString("swatchMinHeight", swatchMinHeight);
             from += 3;
-            console.log(e.y + " <> " + swatchMinHeight);
-            console.log(" from : " + from);
             details = library.getCategoryListByType("2", from);
             generateTable();
         }
     });
-=======
-    };
     __defers["$.__views.filterButton!click!filter"] && $.__views.filterButton.addEventListener("click", filter);
     __defers["$.__views.searchButton!click!search"] && $.__views.searchButton.addEventListener("click", search);
->>>>>>> FETCH_HEAD
     _.extend($, exports);
 }
 

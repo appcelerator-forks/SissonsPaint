@@ -1,5 +1,5 @@
 <Alloy> 
-	<Window class="container" id="colourDetails">
+	<Window class="container" id="colourDetails"  >
 	<View   textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">
 		<View layout="vertical">
 			

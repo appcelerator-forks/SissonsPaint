@@ -8,9 +8,6 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function PixelsToDPUnits(ThePixels) {
-        return ThePixels / (Titanium.Platform.displayCaps.dpi / 160);
-    }
     function sizePop(e) {
         var animation = Titanium.UI.createAnimation({
             bottom: e,
@@ -101,7 +98,8 @@ function Controller() {
                         $.canvas.setBottom(toolbarHeight);
                         $.canvas.setHeight(canvasHeight);
                         var nativePath = event.media.nativePath;
-                        ImageFactory.rotateResizeImage(nativePath, 3840, 100);
+                        console.log(pWidth);
+                        ImageFactory.rotateResizeImage(nativePath, pWidth, 100);
                         Ti.App.Properties.setString("image", nativePath);
                         Ti.App.fireEvent("web:loadImage", {
                             image: nativePath,
@@ -127,15 +125,6 @@ function Controller() {
                     $.canvas.setBottom(toolbarHeight);
                     $.canvas.setHeight(canvasHeight);
                     var nativePath = event.media.nativePath;
-<<<<<<< HEAD
-                    ImageFactory.rotateResizeImage(nativePath, 4208, 100);
-=======
-<<<<<<< HEAD
-                    ImageFactory.rotateResizeImage(nativePath, 3840, 100);
-=======
-                    console.log("FROM APP : " + canvasHeight);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
                     Ti.App.Properties.setString("image", nativePath);
                     Ti.App.fireEvent("web:loadImage", {
                         image: nativePath,
@@ -507,25 +496,6 @@ function Controller() {
     var colorShow = 0;
     var filterFlag = 0;
     var shareFlag = 0;
-    ({
-        "Date/time": ImageFactory.TAG_DATETIME,
-        Flash: ImageFactory.TAG_FLASH,
-        "GPS altitude": ImageFactory.TAG_GPS_ALTITUDE,
-        "GPS altitude ref": ImageFactory.TAG_GPS_ALTITUDE_REF,
-        "GPS date stamp": ImageFactory.TAG_GPS_DATESTAMP,
-        "GPS latitude": ImageFactory.TAG_GPS_LATITUDE,
-        "GPS latitude ref": ImageFactory.TAG_GPS_LATITUDE_REF,
-        "GPS longitude": ImageFactory.TAG_GPS_LONGITUDE,
-        "GPS longitude ref": ImageFactory.TAG_GPS_LONGITUDE_REF,
-        "GPS processing method": ImageFactory.TAG_GPS_PROCESSING_METHOD,
-        "GPS timestamp": ImageFactory.TAG_GPS_TIMESTAMP,
-        "Image length": ImageFactory.TAG_IMAGE_LENGTH,
-        "Image width": ImageFactory.TAG_IMAGE_WIDTH,
-        "Camera make": ImageFactory.TAG_MAKE,
-        "Camera model": ImageFactory.TAG_MODEL,
-        Orientation: ImageFactory.TAG_ORIENTATION,
-        "White balance": ImageFactory.TAG_WHITEBALANCE
-    });
     var imgPath = "";
     fb.appid = 752094718209236;
     var t = Titanium.UI.create2DMatrix();
@@ -706,14 +676,12 @@ function Controller() {
             toast.show();
         } else {
             imgPath = imageFile.nativePath;
-            console.log("save done " + imgPath);
             var toast = Ti.UI.createNotification({
                 message: "Saved Done",
                 duration: Ti.UI.NOTIFICATION_DURATION_SHORT
             });
             toast.show();
         }
-        console.log("e.share: " + e.share);
         if (1 == e.share) {
             console.log("share");
             var nav = Alloy.createController("share", {

@@ -44,17 +44,6 @@ $.canvas.addEventListener("load", function(){
 	Ti.App.fireEvent('web:initCanvasSize', { height: canvasHeight, width: pWidth });
 });	 
  
-
-function PixelsToDPUnits(ThePixels)
-{
-  return (ThePixels / (Titanium.Platform.displayCaps.dpi / 160));
-}
- 
-function DPUnitsToPixels(TheDPUnits)
-{
-  return (TheDPUnits * (Titanium.Platform.displayCaps.dpi / 160));
-}
-
 function sizePop(e){
 	 var animation = Titanium.UI.createAnimation({
 					    bottom: e,
@@ -64,8 +53,7 @@ function sizePop(e){
 	$.sizeBar.animate(animation);
 }
 
-
-
+ 
 var tableDataShare = [];
 
 var saveRow = Ti.UI.createTableViewRow({
@@ -98,14 +86,10 @@ var saveLabel = Ti.UI.createLabel({
 var shareLabel = Ti.UI.createLabel({
    text:'Share',
    width:150,
-   textAlign:'center',
-   // left: 10,
-   height: 60,
-   //font:{fontSize:16,fontWeight:'bold'}
+   textAlign:'center', 
+   height: 60, 
 });
-
-//saveRow.add(saveLabel);
-//shareRow.add(shareLabel);
+ 
 tableDataShare.push(saveRow);
 tableDataShare.push(shareRow);
   
@@ -133,19 +117,14 @@ var share = function(e){
 		$.diyPaint.add(tableShare);
 		tableShare.addEventListener('click', tableShareListener);
 		
-	}
-	
-	//$.diyPaint.add(table);
-	
-	//Ti.App.fireEvent('web:saveAndShare');
+	} 
 };
 
 var tableShareListener = function(e){
 	console.log(e.index);
 	shareFlag = 0;
 	$.diyPaint.remove(tableShare);
-	Ti.App.addEventListener('app:saveToGallery', save);
-	//removeAllChildren($.scrollview);
+	Ti.App.addEventListener('app:saveToGallery', save); 
 	if(e.index == 0)
 	{
 		Ti.App.fireEvent('web:saveAndShare',{'share': 0 });
@@ -193,10 +172,8 @@ function shareFacebook()
   	};
   	
   	fb.requestWithGraphPath('me/photos', data, 'POST', function(e){
-	  	if (e.success && e.result)
-	   	{
-	   		//alert("Success : " + e.result);
-	   		console.log("Success : " + e.result);
+	  	if (e.success && e.result) { 
+	   		//Success
 	   	}	
 	   	else
 	   	{
@@ -388,7 +365,8 @@ function takePhoto(){
 						$.canvas.setBottom(toolbarHeight);
 						$.canvas.setHeight(canvasHeight);
 	                    var nativePath = event.media.nativePath;
-						ImageFactory.rotateResizeImage(nativePath, 800, 100);
+	                    console.log(pWidth);
+						ImageFactory.rotateResizeImage(nativePath, pWidth, 100);
 		                Ti.App.Properties.setString("image", nativePath); 
 		                Ti.App.fireEvent('web:loadImage', { image: nativePath, height:canvasHeight}); 
 		                $.shareButton.touchEnabled = 'true';
@@ -431,7 +409,7 @@ function takePhoto(){
 					$.canvas.setBottom(toolbarHeight);
 					$.canvas.setHeight(canvasHeight);
 	            	var nativePath = event.media.nativePath;
-					ImageFactory.rotateResizeImage(nativePath, 4208, 100); 
+					//ImageFactory.rotateResizeImage(nativePath, 4208, 100); 
 	                Ti.App.Properties.setString("image", nativePath); 
 	                Ti.App.fireEvent('web:loadImage', { image: nativePath,height:canvasHeight});
 	                $.shareButton.touchEnabled = 'true';
@@ -611,8 +589,7 @@ var save = function(e) {
  
 	var imageFile = Titanium.Filesystem.getFile(imgDir.resolve(), filename);
 	if (imageFile.write(img_view)===false) {
-	    // handle write error
-	    //alert("Saved FAILED");
+	    // handle write error 
 	    var toast = Ti.UI.createNotification({
 		    message:"Saved FAILED",
 		    duration: Ti.UI.NOTIFICATION_DURATION_SHORT
@@ -620,16 +597,13 @@ var save = function(e) {
 	    toast.show();
 	}
 	else{
-		imgPath = imageFile.nativePath;
-		console.log("save done "+imgPath);
-		//alert("Saved Done");
+		imgPath = imageFile.nativePath; 
 		var toast = Ti.UI.createNotification({
 		    message:"Saved Done",
 		    duration: Ti.UI.NOTIFICATION_DURATION_SHORT
 		});
 		toast.show();
-	}
-	console.log("e.share: "+e.share);
+	} 
 	//Share!
 	if(e.share == 1){
 		console.log("share");
@@ -644,4 +618,4 @@ var save = function(e) {
 	Ti.App.removeEventListener('app:saveToGallery', save);
 };
 
-//Ti.App.addEventListener('app:saveToGallery', save);
+ 
