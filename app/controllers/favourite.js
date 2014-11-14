@@ -11,12 +11,13 @@ var TheScrollView = Titanium.UI.createScrollView({
 		backgroundColor: "white", 
 		width:"100%",
 		layout: 'vertical',
-		height: PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 80,
+		height: PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 140,
 		textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+		top: 80,
 		overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
 });
 	
-var bottomBar = Titanium.UI.createView({ 
+/*var bottomBar = Titanium.UI.createView({ 
    bottom: 0, 
    height: 60,
    width: Ti.Platform.displayCaps.platformWidth
@@ -45,7 +46,7 @@ var unFavButton = Ti.UI.createImageView({
 });
 buttonWrapper.add(unFavButton);
 bottomBar.add(backgroundImg);
-bottomBar.add(buttonWrapper);
+bottomBar.add(buttonWrapper);*/
 loadFavouriteList();
 
 function loadFavouriteList(){
@@ -76,8 +77,8 @@ function loadFavouriteList(){
 			});
 			 
 			if(colour_details.sample != ""){
-				var subViewColor = $.UI.create('ImageView', {  
-					image: colour_details.sample,
+				var subViewColor = $.UI.create('View', {  
+					backgroundImage: colour_details.sample,
 					borderColor: "#A5A5A5",
 					borderWidth: 1,
 					width: "97%", 
@@ -137,10 +138,10 @@ function loadFavouriteList(){
 	}
 	
 	$.mainFavContainer.add(TheScrollView); 
-	$.mainFavContainer.add(bottomBar); 
+	//$.mainFavContainer.add(bottomBar); 
 }
 
-unFavButton.addEventListener('click',function(){
+var unFavButton = function(e){
 	if(removeFlag == "1"){
 		removeFlag ="0";
 		unFavButton.image = "/images/icon_fav_remove.png";
@@ -152,7 +153,7 @@ unFavButton.addEventListener('click',function(){
 	}
 	
 	loadFavouriteList();
-});
+};
 
 /*
  michaelmoo - 20141030

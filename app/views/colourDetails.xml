@@ -1,10 +1,10 @@
 <Alloy> 
-	<Window class="container" id="colourDetails"  >
-	<View   textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">
+	<Window class="container" id="colourDetails">
+	<View textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">
 		<View layout="vertical">
 			
 			<View layout="vertical" backgroundColor="#ffffff" top="10%" width="160" height="160">
-				<View layout="vertical"  width="150" top="5" height="150" bottom="45" id="boxDetails"  opacity="0.6" >
+				<View layout="vertical" width="150" top="5" height="150" bottom="45" id="boxDetails" opacity="0.6" >
 				 	<Label class="title" left="10" id="colourCode" top="10" />
 				 	<Label class="title" left="10" id="colourName" />
 				 	<View layout="horizontal" width="100%" height="20"  >
@@ -44,9 +44,16 @@
 			</ScrollView>
 				
 		</View>
-		<View height="60" bottom="0">
-				<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
-				<ImageView id="favButton"  onClick="popWindow" height="40" width="50" />
+		<View height="60" bottom="0" id="toolbar" width="100%" backgroundImage="/images/tool_bar.jpg">
+			<View layout="horizontal" width="100%">
+				<View width="40%">
+				</View>
+				<View width="20%">
+					<ImageView id="favButton" onClick="popWindow" height="40" width="50" top="10" bottom="10" />
+				</View>
+				<View width="40%">
+				</View>
+			</View>
 		</View>
 	</View> 
 	</Window>

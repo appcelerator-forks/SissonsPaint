@@ -618,4 +618,21 @@ var save = function(e) {
 	Ti.App.removeEventListener('app:saveToGallery', save);
 };
 
- 
+ /****************Tutorial View***************/
+//$.win.show();
+$.win.hide();
+
+var removeIcon = Ti.UI.createImageView({
+	   				image: "/images/icon_remove.png", 
+	   				width:30, 
+	   				height:30,
+	   				top:0, 
+	   				right:0
+	   			});
+
+$.view3.add(removeIcon);
+
+removeIcon.addEventListener( "click", function(){
+	$.win.hide();
+	console.log($.checkBox.value);
+});

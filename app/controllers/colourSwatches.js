@@ -435,3 +435,22 @@ $.TheScrollView.addEventListener('scroll', function (e) {
     
    // Ti.API.info('near bottom', ($.TheScrollView.getRect().height - e.y) <= ($.TheScrollView.getRect().height + tolerance));
 });
+
+/****************Tutorial View***************/
+//$.win.show();
+$.win.hide();
+
+var removeIcon = Ti.UI.createImageView({
+	   				image: "/images/icon_remove.png", 
+	   				width:30, 
+	   				height:30,
+	   				top:0, 
+	   				right:0
+	   			});
+
+$.view3.add(removeIcon);
+
+removeIcon.addEventListener( "click", function(){
+	$.win.hide();
+	console.log($.checkBox.value);
+});

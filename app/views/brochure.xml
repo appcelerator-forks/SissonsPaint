@@ -12,10 +12,17 @@
 				</View>
 			</ScrollView>
 			</View>
-			<View height="60" bottom="0">
-				<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
-				<ImageView id="filterButton" image="/images/icon_filter.png" onClick="popWindow" height="40" width="50" />
-		    </View>
+		    <View height="60" bottom="0" id="toolbar" width="100%" backgroundImage="/images/tool_bar.jpg">
+				<View layout="horizontal" width="100%">
+					<View width="40%">
+					</View>
+					<View width="20%">
+						<ImageView id="filterButton" image="/images/icon_filter.png" onClick="popWindow" height="40" width="50" top="10" bottom="10" />
+					</View>
+					<View width="40%">
+				</View>
+			</View>
+		</View>
 		</View>
 	 
 </Alloy>

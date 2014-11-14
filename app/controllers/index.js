@@ -146,3 +146,8 @@ $.drawer.addEventListener('windowDidClose', function (e) {
 });
 
 var module= require('dk.napp.drawer'); 
+
+function tnc(){
+	var nav = Alloy.createController("tnc").getView(); 
+		nav.open();
+}
