@@ -2,7 +2,7 @@ var args = arguments[0] || {};
 var category   = args.details;
 var colour   = args.colour_details;
 var library = Alloy.createCollection('favourite');  
-var isFav   = library.checkFavouriteByColourId(colour.id);
+var isFav   = library.checkFavouriteByColourId(colour.id); 
 if(colour.sample != ""){
 	$.colourDetails.backgroundImage = colour.sample;
 }else{

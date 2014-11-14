@@ -48,9 +48,13 @@ exports.definition = {
                 collection.trigger('sync');
                 return listArr;
 			},
-			getCategoryListByType: function(type){
+			getCategoryListByType: function(type, from){
+				if(typeof from === "undefined"){
+					
+					from = 0;
+				}
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE type='" + type + "' order by position";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE type='" + type + "' order by position LIMIT "+ from +", 3";
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);

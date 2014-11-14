@@ -253,6 +253,80 @@ function Controller() {
         id: "__alloyId17"
     });
     $.__views.__alloyId14.add($.__views.__alloyId17);
+    $.__views.win = Ti.UI.createView({
+        id: "win",
+        height: "80%",
+        width: "80%",
+        backgroundColor: "transparent",
+        theme: "Theme.NoActionBar",
+        navBarHidden: "true",
+        fullscreen: "true",
+        borderColor: "#A5A5A5",
+        borderWidth: "2",
+        visible: "false"
+    });
+    $.__views.mainView.add($.__views.win);
+    var __alloyId18 = [];
+    $.__views.view1 = Ti.UI.createView({
+        id: "view1",
+        backgroundColor: "white"
+    });
+    __alloyId18.push($.__views.view1);
+    $.__views.__alloyId19 = Ti.UI.createLabel({
+        text: "View 1",
+        color: "black",
+        id: "__alloyId19"
+    });
+    $.__views.view1.add($.__views.__alloyId19);
+    $.__views.view2 = Ti.UI.createView({
+        id: "view2",
+        backgroundColor: "white"
+    });
+    __alloyId18.push($.__views.view2);
+    $.__views.__alloyId20 = Ti.UI.createLabel({
+        text: "View 2",
+        color: "black",
+        id: "__alloyId20"
+    });
+    $.__views.view2.add($.__views.__alloyId20);
+    $.__views.view3 = Ti.UI.createView({
+        id: "view3",
+        backgroundColor: "white"
+    });
+    __alloyId18.push($.__views.view3);
+    $.__views.__alloyId21 = Ti.UI.createLabel({
+        text: "View 3",
+        color: "black",
+        id: "__alloyId21"
+    });
+    $.__views.view3.add($.__views.__alloyId21);
+    $.__views.__alloyId22 = Ti.UI.createView({
+        layout: "horizontal",
+        bottom: "10",
+        height: Ti.UI.SIZE,
+        width: Ti.UI.SIZE,
+        id: "__alloyId22"
+    });
+    $.__views.view3.add($.__views.__alloyId22);
+    $.__views.checkBox = Ti.UI.createSwitch({
+        value: false,
+        id: "checkBox",
+        style: Ti.UI.Android.SWITCH_STYLE_CHECKBOX
+    });
+    $.__views.__alloyId22.add($.__views.checkBox);
+    $.__views.showWindow = Ti.UI.createLabel({
+        text: "Don't show next time",
+        id: "showWindow",
+        color: "black"
+    });
+    $.__views.__alloyId22.add($.__views.showWindow);
+    $.__views.scrollableView = Ti.UI.createScrollableView({
+        views: __alloyId18,
+        id: "scrollableView",
+        showPagingControl: "true",
+        pagingControlTimeout: "0"
+    });
+    $.__views.win.add($.__views.scrollableView);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -339,6 +413,19 @@ function Controller() {
         client.send();
     };
     $.message.addEventListener("return", submitContactForm);
+    $.win.hide();
+    var removeIcon = Ti.UI.createImageView({
+        image: "/images/icon_remove.png",
+        width: 30,
+        height: 30,
+        top: 0,
+        right: 0
+    });
+    $.view3.add(removeIcon);
+    removeIcon.addEventListener("click", function() {
+        $.win.hide();
+        console.log($.checkBox.value);
+    });
     __defers["$.__views.contactButton!click!submitContactForm"] && $.__views.contactButton.addEventListener("click", submitContactForm);
     _.extend($, exports);
 }
