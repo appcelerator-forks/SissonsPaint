@@ -1,1 +1,1 @@
-/Users/tankeanmeng/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/alloy/widgets/nl.fokkezb.drawer/styles/widget.js
+function WPATH(e){var t=e.lastIndexOf("/"),i=-1===t?"nl.fokkezb.drawer/"+e:e.substring(0,t)+"/nl.fokkezb.drawer/"+e.substring(t+1);return 0!==i.indexOf("/")?"/"+i:i}module.exports=[];

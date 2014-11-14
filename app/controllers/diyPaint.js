@@ -488,8 +488,8 @@ function createColorEvent(colours, colour_details){
 			colorSwatches(60);
 			colorShow = 1;
 		}
-		sizeShow = 1;
-		sizePop(40);
+		//sizeShow = 1;
+		//sizePop(40);
 	});
 }
 
