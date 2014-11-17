@@ -479,7 +479,7 @@ var paintBucketApp = (function () {
 			curColor = color;
 		},
 		saveAndShare = function(e){ 
- 
+ 			context.globalCompositeOperation = "source-over";
 			clearCanvas();
 			context.drawImage(outlineImage, 0, 0, canvasWidth, canvasHeight);
 			var red = context.getImageData(0, 0, canvasWidth, canvasHeight);
@@ -494,11 +494,17 @@ var paintBucketApp = (function () {
 			var blueData = colorLayerData;
 			var mixFactor = 0.5; //main image is dominant
 				//we're using the red buffer as main buffer for this example
+				
 				for(var i = 0; i < red.data.length; i+=4) {
+				//	console.log(blueData.data[i+3]);
 					if(blueData.data[i+3] == 255){
 				    red.data[i]   = red.data[i]   * mixFactor + blueData.data[i]   * (1 - mixFactor);
 				    red.data[i+1] = red.data[i+1] * mixFactor + blueData.data[i+1] * (1 - mixFactor);
 				    red.data[i+2] = red.data[i+2] * mixFactor + blueData.data[i+2] * (1 - mixFactor);
+				   }else if(blueData.data[i+3] != 0){ 
+				   		red.data[i]   = red.data[i]   * mixFactor + blueData.data[i]   * (1 - mixFactor);
+				    	red.data[i+1] = red.data[i+1] * mixFactor + blueData.data[i+1] * (1 - mixFactor);
+				    	red.data[i+2] = red.data[i+2] * mixFactor + blueData.data[i+2] * (1 - mixFactor);
 				   }
 				}
 				
@@ -522,7 +528,7 @@ var paintBucketApp = (function () {
 
 			context.putImageData(red, 0, 0);
 			
-			//$("#canvasDiv").css("opacity", "1"); 
+			 $("#canvasDiv").css("opacity", "1"); 
 			//$("#result").
 			html2canvas($("#parent"), {
 				onrendered: function(canvas2) {

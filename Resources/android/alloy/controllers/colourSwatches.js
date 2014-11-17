@@ -82,7 +82,7 @@ function Controller() {
                 counter++;
             });
             $.TheScrollView.add(colourView);
-        } else totalDetails--;
+        }
     }
     function createColorEvent(subView, colour_details, details) {
         subView.addEventListener("click", function() {
@@ -286,7 +286,14 @@ function Controller() {
     var colour_lib = Alloy.createCollection("colour");
     var from = 0;
     var firstRecords = "1";
-    var details = library.getCategoryListByType("2", from);
+    var minHeight = 3797;
+    var tableData = [];
+    var details = library.getCategoryListByType("2", from, "0");
+    $.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 140;
+    Ti.App.Properties.setString("currentCategory", "All");
+    setTimeout(function() {
+        generateTable();
+    }, 1e3);
     Ti.Platform.displayCaps.platformHeight;
     var category_type_lib = Alloy.createCollection("category_type");
     var category_tag = category_type_lib.selectTypeByDistinct();
@@ -299,7 +306,6 @@ function Controller() {
         bottom: 60,
         backgroundColor: "#A5A5A5"
     });
-    var tableData = [];
     var row1 = Ti.UI.createTableViewRow({
         title: "All",
         width: 150,
@@ -328,8 +334,6 @@ function Controller() {
         left: "20%",
         data: tableData
     });
-    generateTable();
-    $.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 140;
     var tableListener = function(e) {
         filterFlag = 0;
         $.mainViewContainer.remove(table);
@@ -338,11 +342,12 @@ function Controller() {
             details = library.getCategoryListByType("2", 3);
             generateTable();
         } else {
+            Ti.App.Properties.setString("currentCategory", e.rowData.title);
             var result = category_type_lib.getCategoryTypeByTag(e.rowData.title);
             var data = [];
             details = [];
             result.forEach(function(tags) {
-                data = library.getCategoryById(tags.cate_id, "2");
+                data = library.getCategoryById(tags.cate_id, "2", 0);
                 "" != data && details.push(data);
             });
             generateTable();
@@ -423,16 +428,23 @@ function Controller() {
             });
         }
     };
-    var minHeight = 2997;
     Ti.App.Properties.setString("swatchMinHeight", minHeight);
     $.TheScrollView.addEventListener("scroll", function(e) {
         var swatchMinHeight = Ti.App.Properties.getString("swatchMinHeight");
         if (e.y >= swatchMinHeight) {
             swatchMinHeight = parseInt(swatchMinHeight) + parseInt(minHeight);
-            console.log(e.y + "= " + swatchMinHeight);
             Ti.App.Properties.setString("swatchMinHeight", swatchMinHeight);
             from += 3;
-            details = library.getCategoryListByType("2", from);
+            var currentCategory = Ti.App.Properties.getString("currentCategory");
+            if ("All" != currentCategory) {
+                var result = category_type_lib.getCategoryTypeByTag(currentCategory);
+                var data = [];
+                details = [];
+                result.forEach(function(tags) {
+                    data = library.getCategoryById(tags.cate_id, "2", from);
+                    "" != data && details.push(data);
+                });
+            } else details = library.getCategoryListByType("2", from);
             generateTable();
         }
     });
@@ -447,7 +459,6 @@ function Controller() {
     $.view3.add(removeIcon);
     removeIcon.addEventListener("click", function() {
         $.win.hide();
-        console.log($.checkBox.value);
     });
     __defers["$.__views.filterButton!click!filter"] && $.__views.filterButton.addEventListener("click", filter);
     __defers["$.__views.searchButton!click!search"] && $.__views.searchButton.addEventListener("click", search);

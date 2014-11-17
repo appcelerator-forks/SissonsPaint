@@ -141,7 +141,7 @@ $.drawer.addEventListener('windowDidOpen', function (e) {
 });
 
 $.drawer.addEventListener('windowDidClose', function (e) {
-	console.log("close");
+	$.destroy();
 	drawerFlag = 0;
 });
 
