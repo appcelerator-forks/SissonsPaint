@@ -79,3 +79,9 @@ function shareFacebook()
   	
   	imgPath = "";	
 }
+
+$.sharePage.addEventListener('android:back', function (e) {
+	$.sharePage.close();
+	var nav = Alloy.createController("diyPaint").getView(); 
+	Alloy.Globals.Drawer.setCenterWindow(nav);  
+});
