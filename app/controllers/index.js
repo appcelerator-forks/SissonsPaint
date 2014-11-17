@@ -50,7 +50,7 @@ function checkLoadStatus(){
 		$.loadingBar.opacity = "0";
 		var nav = Alloy.createController("diyPaint").getView(); 
 		Alloy.Globals.Drawer.setCenterWindow(nav);  
-		Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
+		//Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
 		
 	}else{
 		setTimeout(function(){
@@ -70,24 +70,31 @@ function doMenuClick(e){
 		
 		case 0: 
 			navigation('diyPaint');
+			Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_NONE);
 			break;
 		case 1: 
 			navigation('colourPicker');
+			Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
 			break;
 		case 2: 
 			navigation('colourSwatches');
+			Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
 			break;
 		case 3: 
 			navigation('favourite');
+			Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
 			break;
 		case 4: 
 			navigation('brochure');
+			Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
 			break;
 		case 5: 
 			navigation('storeLocator');
+			Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
 			break;
 		case 6: 
 			navigation('aboutUs');
+			Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
 			break;
 	}
 	 
