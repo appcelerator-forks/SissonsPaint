@@ -98,14 +98,10 @@ function Controller() {
                         $.canvas.setBottom(toolbarHeight);
                         $.canvas.setHeight(canvasHeight);
                         var nativePath = event.media.nativePath;
-<<<<<<< HEAD
-                        ImageFactory.rotateResizeImage(nativePath, 800, 100);
-=======
                         console.log(pWidth);
                         ImageFactory.rotateResizeImage(nativePath, pWidth, 100);
->>>>>>> FETCH_HEAD
                         Ti.App.Properties.setString("image", nativePath);
-                        Ti.App.fireEvent("web:rotateImage", {
+                        Ti.App.fireEvent("web:loadImage", {
                             image: nativePath,
                             height: canvasHeight
                         });
@@ -129,10 +125,6 @@ function Controller() {
                     $.canvas.setBottom(toolbarHeight);
                     $.canvas.setHeight(canvasHeight);
                     var nativePath = event.media.nativePath;
-<<<<<<< HEAD
-                    console.log("FROM APP : " + canvasHeight);
-=======
->>>>>>> FETCH_HEAD
                     Ti.App.Properties.setString("image", nativePath);
                     Ti.App.fireEvent("web:loadImage", {
                         image: nativePath,
@@ -271,7 +263,6 @@ function Controller() {
         id: "__alloyId82",
         __parentSymbol: $.__views.toggle
     });
-<<<<<<< HEAD
     $.__views.__alloyId82.setParent($.__views.toggle);
     $.__views.__alloyId83 = Ti.UI.createLabel({
         width: "75%",
@@ -285,24 +276,6 @@ function Controller() {
         id: "__alloyId83"
     });
     $.__views.toggle.add($.__views.__alloyId83);
-=======
-    $.__views.__alloyId57.setParent($.__views.toggle);
-<<<<<<< HEAD
-    $.__views.__alloyId58 = Ti.UI.createLabel({
-        width: "75%",
-        height: Ti.UI.SIZE,
-        color: "black",
-        font: {
-            fontSize: 22
-        },
-        text: "DIY Paint",
-        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-        id: "__alloyId58"
-    });
-    $.__views.toggle.add($.__views.__alloyId58);
-=======
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     $.__views.canvas = Ti.UI.createWebView({
         top: "80",
         id: "canvas",
@@ -319,7 +292,6 @@ function Controller() {
         bottom: "-330",
         id: "colorSwatches"
     });
-<<<<<<< HEAD
     $.__views.__alloyId81.add($.__views.colorSwatches);
     $.__views.__alloyId84 = Ti.UI.createImageView({
         image: "/images/scroll_up.png",
@@ -328,56 +300,22 @@ function Controller() {
         id: "__alloyId84"
     });
     $.__views.colorSwatches.add($.__views.__alloyId84);
-=======
-    $.__views.__alloyId56.add($.__views.colorSwatches);
-    $.__views.__alloyId59 = Ti.UI.createImageView({
-        image: "/images/scroll_up.png",
-        backgroundColor: "transparent",
-        width: Titanium.UI.FILL,
-        id: "__alloyId59"
-    });
-<<<<<<< HEAD
-    $.__views.colorSwatches.add($.__views.__alloyId59);
-=======
-    $.__views.colorSwatches.add($.__views.__alloyId58);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     $.__views.bottomColorBar = Ti.UI.createView({
         id: "bottomColorBar",
         layout: "vertical",
         backgroundColor: "white"
     });
     $.__views.colorSwatches.add($.__views.bottomColorBar);
-<<<<<<< HEAD
-    $.__views.__alloyId60 = Ti.UI.createLabel({
-=======
-<<<<<<< HEAD
     $.__views.__alloyId85 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId59 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
         width: "90%",
         height: Ti.UI.SIZE,
         color: "black",
         text: "FAVOURITE COLOURS",
         textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
         bottom: "10",
-<<<<<<< HEAD
-        id: "__alloyId60"
-    });
-    $.__views.bottomColorBar.add($.__views.__alloyId60);
-=======
-<<<<<<< HEAD
         id: "__alloyId85"
     });
     $.__views.bottomColorBar.add($.__views.__alloyId85);
-=======
-        id: "__alloyId59"
-    });
-    $.__views.bottomColorBar.add($.__views.__alloyId59);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     $.__views.recommendView = Ti.UI.createScrollView({
         id: "recommendView",
         backgroundColor: "white",
@@ -387,10 +325,6 @@ function Controller() {
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.bottomColorBar.add($.__views.recommendView);
-<<<<<<< HEAD
-    $.__views.__alloyId61 = Ti.UI.createImageView({
-=======
-<<<<<<< HEAD
     $.__views.__alloyId86 = Ti.UI.createImageView({
         image: "/images/scroll_up.png",
         backgroundColor: "transparent",
@@ -399,43 +333,15 @@ function Controller() {
     });
     $.__views.bottomColorBar.add($.__views.__alloyId86);
     $.__views.__alloyId87 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId60 = Ti.UI.createImageView({
->>>>>>> FETCH_HEAD
-        image: "/images/scroll_up.png",
-        backgroundColor: "transparent",
-        width: Titanium.UI.FILL,
-        id: "__alloyId61"
-    });
-<<<<<<< HEAD
-    $.__views.bottomColorBar.add($.__views.__alloyId61);
-    $.__views.__alloyId62 = Ti.UI.createLabel({
-=======
-    $.__views.bottomColorBar.add($.__views.__alloyId60);
-    $.__views.__alloyId61 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
         width: "90%",
         height: Ti.UI.SIZE,
         color: "black",
         text: "COLOUR LIBRARY",
         textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
         bottom: "10",
-<<<<<<< HEAD
-        id: "__alloyId62"
-    });
-    $.__views.bottomColorBar.add($.__views.__alloyId62);
-=======
-<<<<<<< HEAD
         id: "__alloyId87"
     });
     $.__views.bottomColorBar.add($.__views.__alloyId87);
-=======
-        id: "__alloyId61"
-    });
-    $.__views.bottomColorBar.add($.__views.__alloyId61);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     $.__views.scrollView = Ti.UI.createScrollView({
         id: "scrollView",
         backgroundColor: "white",
@@ -451,7 +357,6 @@ function Controller() {
         width: "100",
         id: "sizeBar"
     });
-<<<<<<< HEAD
     $.__views.__alloyId81.add($.__views.sizeBar);
     $.__views.__alloyId88 = Ti.UI.createImageView({
         image: "/images/pop_window2.png",
@@ -460,20 +365,6 @@ function Controller() {
         id: "__alloyId88"
     });
     $.__views.sizeBar.add($.__views.__alloyId88);
-=======
-    $.__views.__alloyId56.add($.__views.sizeBar);
-    $.__views.__alloyId63 = Ti.UI.createImageView({
-        image: "/images/pop_window2.png",
-        height: "250",
-        width: "100",
-        id: "__alloyId63"
-    });
-<<<<<<< HEAD
-    $.__views.sizeBar.add($.__views.__alloyId63);
-=======
-    $.__views.sizeBar.add($.__views.__alloyId62);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     $.__views.slider = Ti.UI.createSlider({
         id: "slider",
         min: "0",
@@ -491,7 +382,6 @@ function Controller() {
         width: "100%",
         backgroundImage: "/images/tool_bar.jpg"
     });
-<<<<<<< HEAD
     $.__views.__alloyId81.add($.__views.toolbar);
     $.__views.__alloyId89 = Ti.UI.createView({
         layout: "horizontal",
@@ -504,24 +394,6 @@ function Controller() {
         id: "__alloyId90"
     });
     $.__views.__alloyId89.add($.__views.__alloyId90);
-=======
-    $.__views.__alloyId56.add($.__views.toolbar);
-    $.__views.__alloyId64 = Ti.UI.createView({
-        layout: "horizontal",
-        width: "100%",
-        id: "__alloyId64"
-    });
-    $.__views.toolbar.add($.__views.__alloyId64);
-    $.__views.__alloyId65 = Ti.UI.createView({
-        width: "20%",
-        id: "__alloyId65"
-    });
-<<<<<<< HEAD
-    $.__views.__alloyId64.add($.__views.__alloyId65);
-=======
-    $.__views.__alloyId63.add($.__views.__alloyId64);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     $.__views.photoButton = Ti.UI.createImageView({
         id: "photoButton",
         image: "/images/icon_photo.png",
@@ -530,10 +402,6 @@ function Controller() {
         top: "10",
         bottom: "10"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId65.add($.__views.photoButton);
-=======
-<<<<<<< HEAD
     $.__views.__alloyId90.add($.__views.photoButton);
     takePhoto ? $.__views.photoButton.addEventListener("click", takePhoto) : __defers["$.__views.photoButton!click!takePhoto"] = true;
     $.__views.__alloyId91 = Ti.UI.createView({
@@ -541,20 +409,6 @@ function Controller() {
         id: "__alloyId91"
     });
     $.__views.__alloyId89.add($.__views.__alloyId91);
-=======
-    $.__views.__alloyId64.add($.__views.photoButton);
->>>>>>> FETCH_HEAD
-    takePhoto ? $.__views.photoButton.addEventListener("click", takePhoto) : __defers["$.__views.photoButton!click!takePhoto"] = true;
-    $.__views.__alloyId66 = Ti.UI.createView({
-        width: "20%",
-        id: "__alloyId66"
-    });
-<<<<<<< HEAD
-    $.__views.__alloyId64.add($.__views.__alloyId66);
-=======
-    $.__views.__alloyId63.add($.__views.__alloyId65);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     $.__views.tools = Ti.UI.createImageView({
         id: "tools",
         image: "/images/icon_bucket.png",
@@ -563,10 +417,6 @@ function Controller() {
         top: "10",
         bottom: "10"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId66.add($.__views.tools);
-=======
-<<<<<<< HEAD
     $.__views.__alloyId91.add($.__views.tools);
     toolspop ? $.__views.tools.addEventListener("click", toolspop) : __defers["$.__views.tools!click!toolspop"] = true;
     $.__views.__alloyId92 = Ti.UI.createView({
@@ -574,20 +424,6 @@ function Controller() {
         id: "__alloyId92"
     });
     $.__views.__alloyId89.add($.__views.__alloyId92);
-=======
-    $.__views.__alloyId65.add($.__views.tools);
->>>>>>> FETCH_HEAD
-    toolspop ? $.__views.tools.addEventListener("click", toolspop) : __defers["$.__views.tools!click!toolspop"] = true;
-    $.__views.__alloyId67 = Ti.UI.createView({
-        width: "20%",
-        id: "__alloyId67"
-    });
-<<<<<<< HEAD
-    $.__views.__alloyId64.add($.__views.__alloyId67);
-=======
-    $.__views.__alloyId63.add($.__views.__alloyId66);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     $.__views.size = Ti.UI.createImageView({
         id: "size",
         image: "/images/icon_size.png",
@@ -597,10 +433,6 @@ function Controller() {
         top: "10",
         bottom: "10"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId67.add($.__views.size);
-=======
-<<<<<<< HEAD
     $.__views.__alloyId92.add($.__views.size);
     slideUp ? $.__views.size.addEventListener("click", slideUp) : __defers["$.__views.size!click!slideUp"] = true;
     $.__views.__alloyId93 = Ti.UI.createView({
@@ -608,20 +440,6 @@ function Controller() {
         id: "__alloyId93"
     });
     $.__views.__alloyId89.add($.__views.__alloyId93);
-=======
-    $.__views.__alloyId66.add($.__views.size);
->>>>>>> FETCH_HEAD
-    slideUp ? $.__views.size.addEventListener("click", slideUp) : __defers["$.__views.size!click!slideUp"] = true;
-    $.__views.__alloyId68 = Ti.UI.createView({
-        width: "20%",
-        id: "__alloyId68"
-    });
-<<<<<<< HEAD
-    $.__views.__alloyId64.add($.__views.__alloyId68);
-=======
-    $.__views.__alloyId63.add($.__views.__alloyId67);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     $.__views.color = Ti.UI.createView({
         id: "color",
         backgroundColor: "#ffffff",
@@ -634,10 +452,6 @@ function Controller() {
         top: "10",
         bottom: "10"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId68.add($.__views.color);
-=======
-<<<<<<< HEAD
     $.__views.__alloyId93.add($.__views.color);
     slideUp ? $.__views.color.addEventListener("click", slideUp) : __defers["$.__views.color!click!slideUp"] = true;
     $.__views.__alloyId94 = Ti.UI.createView({
@@ -645,20 +459,6 @@ function Controller() {
         id: "__alloyId94"
     });
     $.__views.__alloyId89.add($.__views.__alloyId94);
-=======
-    $.__views.__alloyId67.add($.__views.color);
->>>>>>> FETCH_HEAD
-    slideUp ? $.__views.color.addEventListener("click", slideUp) : __defers["$.__views.color!click!slideUp"] = true;
-    $.__views.__alloyId69 = Ti.UI.createView({
-        width: "20%",
-        id: "__alloyId69"
-    });
-<<<<<<< HEAD
-    $.__views.__alloyId64.add($.__views.__alloyId69);
-=======
-    $.__views.__alloyId63.add($.__views.__alloyId68);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     $.__views.shareButton = Ti.UI.createImageView({
         touchEnabled: false,
         id: "shareButton",
@@ -668,15 +468,7 @@ function Controller() {
         top: "10",
         bottom: "10"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId69.add($.__views.shareButton);
-=======
-<<<<<<< HEAD
     $.__views.__alloyId94.add($.__views.shareButton);
-=======
-    $.__views.__alloyId68.add($.__views.shareButton);
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
     share ? $.__views.shareButton.addEventListener("click", share) : __defers["$.__views.shareButton!click!share"] = true;
     $.__views.win = Ti.UI.createView({
         id: "win",
