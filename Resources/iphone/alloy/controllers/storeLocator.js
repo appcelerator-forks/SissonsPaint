@@ -37,18 +37,18 @@ function Controller() {
         width: "100%"
     });
     $.__views.mainWindow && $.addTopLevelView($.__views.mainWindow);
-    $.__views.__alloyId90 = Ti.UI.createView({
+    $.__views.__alloyId144 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId90"
+        id: "__alloyId144"
     });
-    $.__views.mainWindow.add($.__views.__alloyId90);
-    $.__views.__alloyId91 = Alloy.createController("toggle", {
-        id: "__alloyId91",
-        __parentSymbol: $.__views.__alloyId90
+    $.__views.mainWindow.add($.__views.__alloyId144);
+    $.__views.__alloyId145 = Alloy.createController("toggle", {
+        id: "__alloyId145",
+        __parentSymbol: $.__views.__alloyId144
     });
-    $.__views.__alloyId91.setParent($.__views.__alloyId90);
-    $.__views.__alloyId92 = Ti.UI.createLabel({
+    $.__views.__alloyId145.setParent($.__views.__alloyId144);
+    $.__views.__alloyId146 = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
         color: "black",
@@ -57,14 +57,15 @@ function Controller() {
         },
         text: "Store Locator",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-        id: "__alloyId92"
+        id: "__alloyId146"
     });
-    $.__views.__alloyId90.add($.__views.__alloyId92);
-    $.__views.subWindow = Ti.UI.createView({
+    $.__views.__alloyId144.add($.__views.__alloyId146);
+    $.__views.subWindow = Ti.UI.createScrollView({
         id: "subWindow",
         layout: "vertical",
         width: "100%",
-        backgroundColor: "white"
+        backgroundColor: "white",
+        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.mainWindow.add($.__views.subWindow);
     $.__views.row1 = Ti.UI.createView({
@@ -109,7 +110,7 @@ function Controller() {
     $.__views.subWindow.add($.__views.row2);
     $.__views.zoneC = Ti.UI.createButton({
         color: "white",
-        title: "Melaka",
+        title: "Kuala Terengganu",
         backgroundColor: "black",
         id: "zoneC",
         width: "40%",
@@ -122,7 +123,7 @@ function Controller() {
     listState ? $.__views.zoneC.addEventListener("click", listState) : __defers["$.__views.zoneC!click!listState"] = true;
     $.__views.zoneD = Ti.UI.createButton({
         color: "white",
-        title: "Negeri Sembilan",
+        title: "Melaka",
         backgroundColor: "black",
         id: "zoneD",
         width: "40%",
@@ -142,7 +143,7 @@ function Controller() {
     $.__views.subWindow.add($.__views.row3);
     $.__views.zoneE = Ti.UI.createButton({
         color: "white",
-        title: "Pahang",
+        title: "Negeri Sembilan",
         backgroundColor: "black",
         id: "zoneE",
         width: "40%",
@@ -155,7 +156,7 @@ function Controller() {
     listState ? $.__views.zoneE.addEventListener("click", listState) : __defers["$.__views.zoneE!click!listState"] = true;
     $.__views.zoneF = Ti.UI.createButton({
         color: "white",
-        title: "Penang",
+        title: "Pahang",
         backgroundColor: "black",
         id: "zoneF",
         width: "40%",
@@ -175,7 +176,7 @@ function Controller() {
     $.__views.subWindow.add($.__views.row4);
     $.__views.zoneG = Ti.UI.createButton({
         color: "white",
-        title: "Selangor",
+        title: "Penang",
         backgroundColor: "black",
         id: "zoneG",
         width: "40%",
@@ -188,7 +189,7 @@ function Controller() {
     listState ? $.__views.zoneG.addEventListener("click", listState) : __defers["$.__views.zoneG!click!listState"] = true;
     $.__views.zoneH = Ti.UI.createButton({
         color: "white",
-        title: "Wilayah Persekutuan",
+        title: "Perak",
         backgroundColor: "black",
         id: "zoneH",
         width: "40%",
@@ -199,6 +200,72 @@ function Controller() {
     });
     $.__views.row4.add($.__views.zoneH);
     listState ? $.__views.zoneH.addEventListener("click", listState) : __defers["$.__views.zoneH!click!listState"] = true;
+    $.__views.row5 = Ti.UI.createView({
+        id: "row5",
+        layout: "horizontal",
+        height: Ti.UI.SIZE,
+        width: "100%"
+    });
+    $.__views.subWindow.add($.__views.row5);
+    $.__views.zoneI = Ti.UI.createButton({
+        color: "white",
+        title: "Sabah",
+        backgroundColor: "black",
+        id: "zoneI",
+        width: "40%",
+        height: "65",
+        left: "8%",
+        right: "2%",
+        top: "5%"
+    });
+    $.__views.row5.add($.__views.zoneI);
+    listState ? $.__views.zoneI.addEventListener("click", listState) : __defers["$.__views.zoneI!click!listState"] = true;
+    $.__views.zoneJ = Ti.UI.createButton({
+        color: "white",
+        title: "Sarawak",
+        backgroundColor: "black",
+        id: "zoneJ",
+        width: "40%",
+        height: "65",
+        left: "2%",
+        right: "8%",
+        top: "5%"
+    });
+    $.__views.row5.add($.__views.zoneJ);
+    listState ? $.__views.zoneJ.addEventListener("click", listState) : __defers["$.__views.zoneJ!click!listState"] = true;
+    $.__views.row6 = Ti.UI.createView({
+        id: "row6",
+        layout: "horizontal",
+        height: Ti.UI.SIZE,
+        width: "100%"
+    });
+    $.__views.subWindow.add($.__views.row6);
+    $.__views.zoneK = Ti.UI.createButton({
+        color: "white",
+        title: "Selangor",
+        backgroundColor: "black",
+        id: "zoneK",
+        width: "40%",
+        height: "65",
+        left: "8%",
+        right: "2%",
+        top: "5%"
+    });
+    $.__views.row6.add($.__views.zoneK);
+    listState ? $.__views.zoneK.addEventListener("click", listState) : __defers["$.__views.zoneK!click!listState"] = true;
+    $.__views.zoneL = Ti.UI.createButton({
+        color: "white",
+        title: "Wilayah Persekutuan",
+        backgroundColor: "black",
+        id: "zoneL",
+        width: "40%",
+        height: "65",
+        left: "2%",
+        right: "8%",
+        top: "5%"
+    });
+    $.__views.row6.add($.__views.zoneL);
+    listState ? $.__views.zoneL.addEventListener("click", listState) : __defers["$.__views.zoneL!click!listState"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -212,6 +279,10 @@ function Controller() {
     __defers["$.__views.zoneF!click!listState"] && $.__views.zoneF.addEventListener("click", listState);
     __defers["$.__views.zoneG!click!listState"] && $.__views.zoneG.addEventListener("click", listState);
     __defers["$.__views.zoneH!click!listState"] && $.__views.zoneH.addEventListener("click", listState);
+    __defers["$.__views.zoneI!click!listState"] && $.__views.zoneI.addEventListener("click", listState);
+    __defers["$.__views.zoneJ!click!listState"] && $.__views.zoneJ.addEventListener("click", listState);
+    __defers["$.__views.zoneK!click!listState"] && $.__views.zoneK.addEventListener("click", listState);
+    __defers["$.__views.zoneL!click!listState"] && $.__views.zoneL.addEventListener("click", listState);
     _.extend($, exports);
 }
 

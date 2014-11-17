@@ -1,9 +1,9 @@
 <Alloy> 
 	<View   class="container" id="colourPicker">
  
-		 <View layout="horizontal" id="toggle" top="0" height="80">
+		 <View layout="horizontal" id="toggle" top="0" height="80" backgroundImage="/images/banner_colour_picker.jpg">
 			<Require src="toggle"></Require>
-			<Label class="title" color="black" height="80" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Colour Picker</Label>
+			<!--<Label class="title" color="black" height="80" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Colour Picker</Label>-->
 		</View>
 		
 		<WebView id='canvas' url="/html/colour_picker.html" top="80" height="80%" enableZoomControls="false" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" disableBounce="true" />

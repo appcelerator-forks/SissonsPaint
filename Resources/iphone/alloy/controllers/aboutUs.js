@@ -85,7 +85,7 @@ function Controller() {
         color: "#6E6E6E",
         bottom: 10,
         text: "It was in 1959 that SISSONS PAINTS (EAST) SDN BHD first started in Malaysia, although SISSONS' technology in paint making goes back 185 years when Sissons Brothers founded a company in HULL, England in 1803. SISSONS' well-known trademark of 'THE MEN AND PLANK' has been in use since 1910.",
-        width: "75%",
+        width: "90%",
         id: "__alloyId4"
     });
     $.__views.main.add($.__views.__alloyId4);
@@ -110,7 +110,7 @@ function Controller() {
         text: "Email",
         color: "black",
         bottom: "20",
-        width: "75%",
+        width: "90%",
         textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
         id: "__alloyId7"
     });
@@ -120,15 +120,13 @@ function Controller() {
         height: "40",
         top: "10",
         bottom: "15",
-        width: "90%",
+        width: "94%",
         horizontalWrap: "true",
         id: "__alloyId8"
     });
     $.__views.__alloyId5.add($.__views.__alloyId8);
     $.__views.__alloyId9 = Ti.UI.createLabel({
-        font: {
-            fontSize: "14"
-        },
+        font: {},
         color: "#6E6E6E",
         left: "10",
         textAlign: "left",
@@ -155,15 +153,13 @@ function Controller() {
         height: "40",
         top: "10",
         bottom: "15",
-        width: "90%",
+        width: "94%",
         horizontalWrap: "true",
         id: "__alloyId10"
     });
     $.__views.__alloyId5.add($.__views.__alloyId10);
     $.__views.__alloyId11 = Ti.UI.createLabel({
-        font: {
-            fontSize: "14"
-        },
+        font: {},
         color: "#6E6E6E",
         left: "10",
         textAlign: "left",
@@ -190,15 +186,13 @@ function Controller() {
         height: "100",
         top: "10",
         bottom: "0",
-        width: "90%",
+        width: "94%",
         horizontalWrap: "true",
         id: "__alloyId12"
     });
     $.__views.__alloyId5.add($.__views.__alloyId12);
     $.__views.__alloyId13 = Ti.UI.createLabel({
-        font: {
-            fontSize: "14"
-        },
+        font: {},
         color: "#6E6E6E",
         left: "10",
         textAlign: "left",
@@ -220,46 +214,165 @@ function Controller() {
         width: "60%"
     });
     $.__views.__alloyId12.add($.__views.message);
-    $.__views.__alloyId14 = Ti.UI.createView({
-        backgroundColor: "green",
+    $.__views.toolbar = Ti.UI.createView({
         height: "60",
         bottom: "0",
+        id: "toolbar",
+        width: "100%",
+        backgroundImage: "/images/tool_bar.jpg"
+    });
+    $.__views.mainView.add($.__views.toolbar);
+    $.__views.__alloyId14 = Ti.UI.createView({
+        layout: "horizontal",
+        width: "100%",
         id: "__alloyId14"
     });
-    $.__views.mainView.add($.__views.__alloyId14);
-    $.__views.__alloyId15 = Ti.UI.createImageView({
-        image: "/images/tool_bar.jpg",
-        height: "60",
-        width: Titanium.UI.FILL,
+    $.__views.toolbar.add($.__views.__alloyId14);
+    $.__views.__alloyId15 = Ti.UI.createView({
+        width: "40%",
         id: "__alloyId15"
     });
     $.__views.__alloyId14.add($.__views.__alloyId15);
+    $.__views.__alloyId16 = Ti.UI.createView({
+        width: "20%",
+        id: "__alloyId16"
+    });
+    $.__views.__alloyId14.add($.__views.__alloyId16);
     $.__views.contactButton = Ti.UI.createImageView({
         id: "contactButton",
         image: "/images/icon_email.png",
-        height: "40"
+        height: "40",
+        width: "50",
+        top: "10",
+        bottom: "10"
     });
-    $.__views.__alloyId14.add($.__views.contactButton);
+    $.__views.__alloyId16.add($.__views.contactButton);
     submitContactForm ? $.__views.contactButton.addEventListener("click", submitContactForm) : __defers["$.__views.contactButton!click!submitContactForm"] = true;
+    $.__views.__alloyId17 = Ti.UI.createView({
+        width: "40%",
+        id: "__alloyId17"
+    });
+    $.__views.__alloyId14.add($.__views.__alloyId17);
+    $.__views.win = Ti.UI.createView({
+        id: "win",
+        height: "80%",
+        width: "80%",
+        backgroundColor: "transparent",
+        theme: "Theme.NoActionBar",
+        navBarHidden: "true",
+        fullscreen: "true",
+        borderColor: "#A5A5A5",
+        borderWidth: "2",
+        visible: "true"
+    });
+    $.__views.mainView.add($.__views.win);
+    var __alloyId18 = [];
+    $.__views.view1 = Ti.UI.createView({
+        id: "view1",
+        backgroundColor: "white"
+    });
+    __alloyId18.push($.__views.view1);
+    $.__views.__alloyId19 = Ti.UI.createLabel({
+        text: "View 1",
+        color: "black",
+        id: "__alloyId19"
+    });
+    $.__views.view1.add($.__views.__alloyId19);
+    $.__views.view2 = Ti.UI.createView({
+        id: "view2",
+        backgroundColor: "white"
+    });
+    __alloyId18.push($.__views.view2);
+    $.__views.__alloyId20 = Ti.UI.createLabel({
+        text: "View 2",
+        color: "black",
+        id: "__alloyId20"
+    });
+    $.__views.view2.add($.__views.__alloyId20);
+    $.__views.view3 = Ti.UI.createView({
+        id: "view3",
+        backgroundColor: "white"
+    });
+    __alloyId18.push($.__views.view3);
+    $.__views.__alloyId21 = Ti.UI.createLabel({
+        text: "View 3",
+        color: "black",
+        id: "__alloyId21"
+    });
+    $.__views.view3.add($.__views.__alloyId21);
+    $.__views.__alloyId22 = Ti.UI.createView({
+        layout: "horizontal",
+        bottom: "10",
+        height: Ti.UI.SIZE,
+        width: Ti.UI.SIZE,
+        id: "__alloyId22"
+    });
+    $.__views.view3.add($.__views.__alloyId22);
+    $.__views.checkBox = Ti.UI.createSwitch({
+        value: false,
+        id: "checkBox",
+        style: Ti.UI.Android.SWITCH_STYLE_CHECKBOX
+    });
+    $.__views.__alloyId22.add($.__views.checkBox);
+    $.__views.showWindow = Ti.UI.createLabel({
+        text: "Don't show next time",
+        id: "showWindow",
+        color: "black"
+    });
+    $.__views.__alloyId22.add($.__views.showWindow);
+    $.__views.scrollableView = Ti.UI.createScrollableView({
+        views: __alloyId18,
+        id: "scrollableView",
+        showPagingControl: "true",
+        pagingControlTimeout: "0"
+    });
+    $.__views.win.add($.__views.scrollableView);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
     var API = require("api");
-    var COMM = require("common");
+    require("common");
     var submitContactForm = function() {
         var name = $.name.value;
         var email = $.email.value;
         var message = $.message.value;
         if ("" == name) {
-            COMM.createAlert("Request Rejected", "Full name cannot be empty.");
+            var alert = Titanium.UI.createAlertDialog({
+                title: "Request Rejected",
+                message: "Full name cannot be empty.",
+                buttonNames: [ "OK" ],
+                cancel: 1
+            });
+            alert.addEventListener("click", function(e) {
+                if (e.cancel === e.index || true === e.cancel) return false;
+            });
+            alert.show();
             return;
         }
         if ("" == email) {
-            COMM.createAlert("Request Rejected", "Email cannot be empty.");
+            var alert = Titanium.UI.createAlertDialog({
+                title: "Request Rejected",
+                message: "Email cannot be empty.",
+                buttonNames: [ "OK" ],
+                cancel: 1
+            });
+            alert.addEventListener("click", function(e) {
+                if (e.cancel === e.index || true === e.cancel) return false;
+            });
+            alert.show();
             return;
         }
         if ("" == message) {
-            COMM.createAlert("Request Rejected", "Message cannot be empty.");
+            var alert = Titanium.UI.createAlertDialog({
+                title: "Request Rejected",
+                message: "Message cannot be empty.",
+                buttonNames: [ "OK" ],
+                cancel: 1
+            });
+            alert.addEventListener("click", function(e) {
+                if (e.cancel === e.index || true === e.cancel) return false;
+            });
+            alert.show();
             return;
         }
         var url = API.sendContactMsg + "&name=" + name + "&email=" + email + "&message=" + message;
@@ -267,14 +380,32 @@ function Controller() {
             onload: function() {
                 var res = JSON.parse(this.responseText);
                 if ("success" == res.status) {
-                    COMM.createAlert("Message Sent", "Your messages successfully sent to admin.");
+                    var alert = Titanium.UI.createAlertDialog({
+                        title: "Message Sent",
+                        message: "Your messages successfully sent to Sissons Paint.",
+                        buttonNames: [ "OK" ],
+                        cancel: 1
+                    });
+                    alert.addEventListener("click", function(e) {
+                        if (e.cancel === e.index || true === e.cancel) return false;
+                    });
+                    alert.show();
                     $.name.value = "";
                     $.email.value = "";
                     $.message.value = "";
                 }
             },
             onerror: function() {
-                COMM.createAlert("Network declined", "Failed to contact with server. Please make sure your device are connected to internet.");
+                var alert = Titanium.UI.createAlertDialog({
+                    title: "Network declined",
+                    message: "Failed to contact with server. Please make sure your device are connected to internet.",
+                    buttonNames: [ "OK" ],
+                    cancel: 1
+                });
+                alert.addEventListener("click", function(e) {
+                    if (e.cancel === e.index || true === e.cancel) return false;
+                });
+                alert.show();
             },
             timeout: 5e3
         });
@@ -282,6 +413,19 @@ function Controller() {
         client.send();
     };
     $.message.addEventListener("return", submitContactForm);
+    $.win.show();
+    var removeIcon = Ti.UI.createImageView({
+        image: "/images/icon_remove.png",
+        width: 30,
+        height: 30,
+        top: 0,
+        right: 0
+    });
+    $.view3.add(removeIcon);
+    removeIcon.addEventListener("click", function() {
+        $.win.hide();
+        console.log($.checkBox.value);
+    });
     __defers["$.__views.contactButton!click!submitContactForm"] && $.__views.contactButton.addEventListener("click", submitContactForm);
     _.extend($, exports);
 }

@@ -1,9 +1,9 @@
 <Alloy>
 	<View id="mainView" top="10" left="10" right="10" backgroundColor="white" class="container">
 		<View layout="vertical" top="0" height="Ti.UI.SIZE">
-			<View layout="horizontal" height="80">
+			<View layout="horizontal" height="80" backgroundImage="/images/banner_about_us.jpg">
 				<Require src="toggle"></Require>
-				<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">About Us</Label>
+				<!--<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">About Us</Label>-->
 			</View>
 			<ScrollView id="mainScroll" layout="vertical" height="Ti.UI.SIZE" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
 				<ScrollView id="main" layout="vertical" height="Ti.UI.SIZE" top="20" bottom="20" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" >
@@ -21,7 +21,7 @@
 						<Label class="description_content" color="#6E6E6E" width="30%">Email</Label>	
 						<TextField id="email" class="inputField" width="60%" />
 					</View>
-					<View  layout="horizontal" height="100" top="10" bottom="0" width="94%" horizontalWrap="true">
+					<View  layout="horizontal" height="100" top="10" bottom="15" width="94%" horizontalWrap="true">
 						<Label class="description_content" color="#6E6E6E" width="30%">Message</Label>	
 						<TextField id="message" class="inputField" width="60%" />
 					</View>
@@ -42,7 +42,7 @@
 				</View>
 			</View>
 		</View>
-		<View id="win" height="80%" width="80%" backgroundColor="transparent" theme="Theme.NoActionBar" navBarHidden="true" fullscreen="true" borderColor="#A5A5A5" borderWidth="2" visible="false">
+		<!--<View id="win" height="80%" width="80%" backgroundColor="transparent" theme="Theme.NoActionBar" navBarHidden="true" fullscreen="true" borderColor="#A5A5A5" borderWidth="2" visible="false" borderRadius="15">
 	        <ScrollableView id="scrollableView" showPagingControl="true" pagingControlTimeout="0">
 	            <View id="view1" backgroundColor="white">
 	               <Label color="black">View 1</Label>
@@ -58,6 +58,6 @@
 	             	</View>
 	             </View>
 	        </ScrollableView>
-	    </View>
+	 </View>-->
 	</View>
 </Alloy>
