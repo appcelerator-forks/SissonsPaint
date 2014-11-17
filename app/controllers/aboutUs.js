@@ -115,8 +115,15 @@ var submitContactForm = function(){
 $.message.addEventListener('return', submitContactForm);
 
 /****************Tutorial View***************/
-//$.win.show();
-$.win.hide();
+/*if(Ti.App.Properties.getString('check') == 1)
+{
+	$.win.hide();
+}
+else
+{
+	$.win.show();
+}
+//$.win.hide();
 
 var removeIcon = Ti.UI.createImageView({
 	   				image: "/images/icon_remove.png", 
@@ -131,4 +138,8 @@ $.view3.add(removeIcon);
 removeIcon.addEventListener( "click", function(){
 	$.win.hide();
 	console.log($.checkBox.value);
-});
+	if($.checkBox.value == 1){
+		Ti.App.Properties.setString('check', 1);
+	}
+	console.log(Ti.App.Properties.getString('check'));
+});*/

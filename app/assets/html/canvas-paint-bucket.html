@@ -484,8 +484,12 @@ var paintBucketApp = (function () {
 			context.drawImage(outlineImage, 0, 0, canvasWidth, canvasHeight);
 			var red = context.getImageData(0, 0, canvasWidth, canvasHeight);
 			clearCanvas();
-			context.drawImage(waterMarkImage, canvasWidth-200, canvasHeight-83, 200, 63);
-			var watermark = context.getImageData(0, 0, canvasWidth, canvasHeight);
+			
+			if(e.share == 1)
+			{
+				context.drawImage(waterMarkImage, canvasWidth-200, 10, 200, 63);
+				var watermark = context.getImageData(0, 0, canvasWidth, canvasHeight);
+			}
 			
 			var blueData = colorLayerData;
 			var mixFactor = 0.5; //main image is dominant
@@ -499,20 +503,22 @@ var paintBucketApp = (function () {
 				}
 				
 				//we're using the red buffer as main buffer for this example
-				for(var i = 0; i < red.data.length; i+=4) {
-					if(watermark.data[i+3] == 255){
-						console.log("255");
-				   		red.data[i]   = watermark.data[i];
-				    	red.data[i+1] = watermark.data[i+1];
-				    	red.data[i+2] = watermark.data[i+2];
-				   }else if(watermark.data[i+3] != 0){
-				   		console.log(watermark.data[i+3]);
-				   		red.data[i]   = red.data[i]   * mixFactor + watermark.data[i]   * (1 - mixFactor);
-				    	red.data[i+1] = red.data[i+1] * mixFactor + watermark.data[i+1] * (1 - mixFactor);
-				    	red.data[i+2] = red.data[i+2] * mixFactor + watermark.data[i+2] * (1 - mixFactor);
-				   }
+				if(e.share == 1)
+				{
+					for(var i = 0; i < red.data.length; i+=4) {
+						if(watermark.data[i+3] == 255){
+							console.log("255");
+					   		red.data[i]   = watermark.data[i];
+					    	red.data[i+1] = watermark.data[i+1];
+					    	red.data[i+2] = watermark.data[i+2];
+					   }else if(watermark.data[i+3] != 0){
+					   		console.log(watermark.data[i+3]);
+					   		red.data[i]   = red.data[i]   * mixFactor + watermark.data[i]   * (1 - mixFactor);
+					    	red.data[i+1] = red.data[i+1] * mixFactor + watermark.data[i+1] * (1 - mixFactor);
+					    	red.data[i+2] = red.data[i+2] * mixFactor + watermark.data[i+2] * (1 - mixFactor);
+					   }
+					}
 				}
-				
 
 			context.putImageData(red, 0, 0);
 			
