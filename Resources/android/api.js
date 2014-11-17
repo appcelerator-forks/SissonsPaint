@@ -45,7 +45,8 @@ exports.loadColour = function() {
                             code: entry.code,
                             rgb: entry.RGB,
                             cmyk: entry.CMYK,
-                            sample: entry.sample
+                            sample: entry.sample,
+                            thumb: entry.thumb
                         });
                         colour.save();
                     });

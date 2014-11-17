@@ -98,14 +98,10 @@ function Controller() {
                         $.canvas.setBottom(toolbarHeight);
                         $.canvas.setHeight(canvasHeight);
                         var nativePath = event.media.nativePath;
-<<<<<<< HEAD
-                        ImageFactory.rotateResizeImage(nativePath, 800, 100);
-=======
                         console.log(pWidth);
                         ImageFactory.rotateResizeImage(nativePath, pWidth, 100);
->>>>>>> FETCH_HEAD
                         Ti.App.Properties.setString("image", nativePath);
-                        Ti.App.fireEvent("web:rotateImage", {
+                        Ti.App.fireEvent("web:loadImage", {
                             image: nativePath,
                             height: canvasHeight
                         });
@@ -129,10 +125,6 @@ function Controller() {
                     $.canvas.setBottom(toolbarHeight);
                     $.canvas.setHeight(canvasHeight);
                     var nativePath = event.media.nativePath;
-<<<<<<< HEAD
-                    console.log("FROM APP : " + canvasHeight);
-=======
->>>>>>> FETCH_HEAD
                     Ti.App.Properties.setString("image", nativePath);
                     Ti.App.fireEvent("web:loadImage", {
                         image: nativePath,
