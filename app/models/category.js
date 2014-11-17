@@ -80,9 +80,12 @@ exports.definition = {
                 collection.trigger('sync');
                 return listArr;
 			},
-			getCategoryById : function(id,cateType){
+			getCategoryById : function(id,cateType, from){
+				if(typeof from === "undefined"){
+					from = 0;
+				}
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "' AND `type` = '"+cateType+"' " ;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "' AND `type` = '"+cateType+"' order by position LIMIT "+ from +", 3";
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);

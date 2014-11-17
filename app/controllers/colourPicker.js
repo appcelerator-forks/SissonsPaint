@@ -18,7 +18,9 @@ var recommended = library.getCategoryListByType(1);
 
 $.colorSelection.hide();
 
-takePhoto();
+setTimeout(function(){
+	takePhoto();
+}, 800);
 
 function takePhoto()
 {

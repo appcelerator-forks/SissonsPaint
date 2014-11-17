@@ -581,7 +581,9 @@ function Controller() {
     var t = Titanium.UI.create2DMatrix();
     t = t.rotate(-90);
     $.slider.transform = t;
-    takePhoto();
+    setTimeout(function() {
+        takePhoto();
+    }, 300);
     $.toolbar.addEventListener("postlayout", function() {
         toolbarHeight = $.toolbar.rect.height;
         canvasHeight = pHeight - toolbarHeight - toggleHeight;

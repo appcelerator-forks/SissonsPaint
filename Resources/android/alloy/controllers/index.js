@@ -361,7 +361,7 @@ function Controller() {
         drawerFlag = 1;
     });
     $.drawer.addEventListener("windowDidClose", function() {
-        console.log("close");
+        $.destroy();
         drawerFlag = 0;
     });
     var module = require("dk.napp.drawer");
