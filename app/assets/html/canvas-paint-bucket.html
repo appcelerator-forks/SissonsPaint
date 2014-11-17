@@ -28,10 +28,11 @@
     </style>
   </head>
 	<body>
+		 
 		<input type="hidden" value="" name="myPhoto" id="myPhoto" />
 	   <div id="parent">
 	    	<div id="canvasDiv"> 
-	    		<img id="water_mark" src="images/water_mark.png" style="width:50%;margin: auto;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;" />
+	    		
 	    	</div>
 	    </div>
 	    <canvas id="result" ></canvas>
@@ -483,7 +484,7 @@ var paintBucketApp = (function () {
 			context.drawImage(outlineImage, 0, 0, canvasWidth, canvasHeight);
 			var red = context.getImageData(0, 0, canvasWidth, canvasHeight);
 			clearCanvas();
-			context.drawImage(waterMarkImage, canvasWidth-150, canvasHeight-41, 150, 41);
+			context.drawImage(waterMarkImage, canvasWidth-200, canvasHeight-83, 200, 63);
 			var watermark = context.getImageData(0, 0, canvasWidth, canvasHeight);
 			
 			var blueData = colorLayerData;
@@ -500,21 +501,28 @@ var paintBucketApp = (function () {
 				//we're using the red buffer as main buffer for this example
 				for(var i = 0; i < red.data.length; i+=4) {
 					if(watermark.data[i+3] == 255){
-				    red.data[i]   = red.data[i]   * mixFactor + watermark.data[i]   * (1 - mixFactor);
-				    red.data[i+1] = red.data[i+1] * mixFactor + watermark.data[i+1] * (1 - mixFactor);
-				    red.data[i+2] = red.data[i+2] * mixFactor + watermark.data[i+2] * (1 - mixFactor);
+						console.log("255");
+				   		red.data[i]   = watermark.data[i];
+				    	red.data[i+1] = watermark.data[i+1];
+				    	red.data[i+2] = watermark.data[i+2];
+				   }else if(watermark.data[i+3] != 0){
+				   		console.log(watermark.data[i+3]);
+				   		red.data[i]   = red.data[i]   * mixFactor + watermark.data[i]   * (1 - mixFactor);
+				    	red.data[i+1] = red.data[i+1] * mixFactor + watermark.data[i+1] * (1 - mixFactor);
+				    	red.data[i+2] = red.data[i+2] * mixFactor + watermark.data[i+2] * (1 - mixFactor);
 				   }
 				}
 				
 
 			context.putImageData(red, 0, 0);
 			
+			//$("#canvasDiv").css("opacity", "1"); 
 			//$("#result").
 			html2canvas($("#parent"), {
 				onrendered: function(canvas2) {
 					 
 					var dataURL = canvas2.toDataURL("image/png");
-					console.log("FROM WEB : " + dataURL);  
+					$("#canvasDiv").css("opacity", "0.7");
 					Ti.App.fireEvent('app:saveToGallery', {blob: dataURL, share: e.share});
 				}
 			});
@@ -541,9 +549,7 @@ var paintBucketApp = (function () {
 			var screenwidth = window.innerWidth;
 			var canvasW = screenwidth;
 			var canvasH =  data.canvasHeight; 
-			$('body').css({'height':canvasH});
-			var windowHeight = $( window ).height();
-			console.log("windowHeight : " +windowHeight);
+			$('body').css({'height':canvasH}); 
 			
 			canvas.setAttribute('width', canvasW);
 			canvas.setAttribute('height', canvasH);
@@ -565,10 +571,10 @@ var paintBucketApp = (function () {
 			// Load images
 			backgroundImage.onload = resourceLoaded;
 			backgroundImage.src = "images/background.png";
-			waterMarkImage.src = "images/water_mark.png";
+			waterMarkImage.src = "images/watermark.png";
 			outlineImage.onload = function (e) {
 				var ratio = this.naturalWidth / canvasWidth;
-				var newheight = $( window ).height();//this.naturalHeight / ratio;
+				var newheight = this.naturalHeight / ratio;
 				canvasHeight = newheight;
 				var top = window.innerHeight - canvasHeight;
 				setBackgroundSize({width: canvasWidth, height: newheight, top: top});

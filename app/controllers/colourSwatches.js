@@ -3,12 +3,14 @@ var args = arguments[0] || {};
 var library = Alloy.createCollection('category'); 
 var category_colour_lib = Alloy.createCollection('category_colour');
 var colour_lib = Alloy.createCollection('colour');
+var from = 0;
+var firstRecords = "1";
 /*
  michaelmoo - 20141030
  - Using function getCategoryListByType
  */ 
 // var details = library.getCategoryList();
-var details = library.getCategoryListByType("2");
+var details = library.getCategoryListByType("2",from);
 var pHeight = Ti.Platform.displayCaps.platformHeight;
 var category_type_lib =  Alloy.createCollection('category_type');
 var category_tag = category_type_lib.selectTypeByDistinct(); 
@@ -83,7 +85,7 @@ category_tag.forEach(function(tags) {
 	});
 	tableData.push(row_tag);
 });
-
+ 
 var table = Titanium.UI.createTableView({
 	separatorColor: 'transparent',
 	backgroundImage: '/images/pop_window.png',
@@ -105,12 +107,28 @@ generateTable();
  
 $.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 140;
 
+
 function generateTable(){
 	var data=[];
 	var totalDetails = details.length; 
 	
 	for (var i=0; i< totalDetails; i++) { 
 		if(details[i] != ""){
+			
+			var separator = Titanium.UI.createImageView({ 
+				width : Titanium.UI.FILL,
+				height : 30,
+				//bottom: -1,
+				touchEnabled : false,
+				image : "/images/scroll_up.png"
+			}); 
+			
+			if(firstRecords == "1"){
+				firstRecords = "0";
+			}else{
+				$.TheScrollView.add(separator);
+			} 
+			
 			var colours = category_colour_lib.getCategoryColourByCategory(details[i]['id']);
 			var categoryHeader = Titanium.UI.createImageView({ 
 				width : "95%",
@@ -191,19 +209,11 @@ function generateTable(){
 				colourView.add(subView);	 
 				counter++; 
 			});
-	
+		 
 		 	$.TheScrollView.add(colourView); 
 			
-			var separator = Titanium.UI.createImageView({ 
-				width : Titanium.UI.FILL,
-				height : 30,
-				//bottom: -1,
-				touchEnabled : false,
-				image : "/images/scroll_up.png"
-			}); 
-		 	if(totalDetails != (i+1)){
-				$.TheScrollView.add(separator);
-			} 
+			
+		 	 
 		}else{
 			totalDetails--;
 		}
@@ -227,7 +237,7 @@ var tableListener = function(e){
 	$.mainViewContainer.remove(table);
 	removeAllChildren($.TheScrollView);
 	if(e.index == 0){
-		details = library.getCategoryListByType("2");
+		details = library.getCategoryListByType("2",3);
 	    generateTable();
 	}else{
 		//details = library.getCategoryByType(e.rowData.title);
@@ -408,3 +418,39 @@ var search = function(e){
 	}
 });*/
  
+var minHeight = 2997;
+Ti.App.Properties.setString('swatchMinHeight', minHeight);
+$.TheScrollView.addEventListener('scroll', function (e) {  
+	var swatchMinHeight = Ti.App.Properties.getString('swatchMinHeight');
+	if( e.y >= swatchMinHeight  ){ 
+		swatchMinHeight = parseInt(swatchMinHeight) + parseInt(minHeight);
+		console.log(e.y+ "= " + swatchMinHeight);
+		Ti.App.Properties.setString('swatchMinHeight', swatchMinHeight);
+		from += 3;
+ 
+		details = library.getCategoryListByType("2",from);
+		generateTable();
+	}
+	
+    
+   // Ti.API.info('near bottom', ($.TheScrollView.getRect().height - e.y) <= ($.TheScrollView.getRect().height + tolerance));
+});
+
+/****************Tutorial View***************/
+//$.win.show();
+$.win.hide();
+
+var removeIcon = Ti.UI.createImageView({
+	   				image: "/images/icon_remove.png", 
+	   				width:30, 
+	   				height:30,
+	   				top:0, 
+	   				right:0
+	   			});
+
+$.view3.add(removeIcon);
+
+removeIcon.addEventListener( "click", function(){
+	$.win.hide();
+	console.log($.checkBox.value);
+});

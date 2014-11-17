@@ -4,7 +4,7 @@
 			<View id="toggle" layout="horizontal" height="80" top="0" >
 				<Require src="toggle"></Require>
 				<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">DIY Paint</Label>
-				
+		
 			</View>
 			 
 			<WebView top="80" id='canvas' url="/html/canvas-paint-bucket.html" height="80%" enableZoomControls="false" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" disableBounce="true" />
@@ -12,9 +12,7 @@
 				<ImageView image="/images/scroll_up.png" backgroundColor="transparent" width="Titanium.UI.FILL" />
 				<View id="bottomColorBar" layout="vertical" backgroundColor="white">
 					<Label class="smallTitle" color="black" width="90%" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" bottom="10" >FAVOURITE COLOURS</Label>
-					<ScrollView id="recommendView" backgroundColor="white" layout="horizontal" scrollType="horizontal" height="50" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
-						<!--<Button id="savePicture" onClick="savePicture">Save</Button>-->
-					</ScrollView>
+					<ScrollView id="recommendView" backgroundColor="white" layout="horizontal" scrollType="horizontal" height="50" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER"></ScrollView>
 					<ImageView image="/images/scroll_up.png" backgroundColor="transparent" width="Titanium.UI.FILL" />
 					<Label class="smallTitle" color="black" width="90%" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" bottom="10" >COLOUR LIBRARY</Label>
 					<ScrollView id="scrollView" backgroundColor="white" layout="vertical" scrollType="horizontal" height="150" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER"></ScrollView>
@@ -45,6 +43,22 @@
 				</View>
 			</View>
 		</View>
- 
+ 		<View id="win" height="80%" width="80%" backgroundColor="transparent" theme="Theme.NoActionBar" navBarHidden="true" fullscreen="true" borderColor="#A5A5A5" borderWidth="2" visible="false">
+	        <ScrollableView id="scrollableView" showPagingControl="true" pagingControlTimeout="0">
+	            <View id="view1" backgroundColor="white">
+	               <Label color="black">View 1</Label>
+	            </View>
+	            <View id="view2" backgroundColor="white">
+	             <Label color="black">View 2</Label>
+	             </View>
+	            <View id="view3" backgroundColor="white">
+	             <Label color="black">View 3</Label>
+	             	<View layout="horizontal" bottom="10" height="Ti.UI.SIZE" width="Ti.UI.SIZE">
+	             		<Switch id="checkBox" style="Ti.UI.Android.SWITCH_STYLE_CHECKBOX" value="false"></Switch>
+	             		<Label id="showWindow" color="black">Don't show next time</Label>
+	             	</View>
+	             </View>
+	        </ScrollableView>
+	    </View>
 	</View>
 </Alloy>
