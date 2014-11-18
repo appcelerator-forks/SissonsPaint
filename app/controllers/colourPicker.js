@@ -158,8 +158,10 @@ function generateRecommended(){
 	for (var j=0; j<list_colours.length; j++){
 		var colour_details = colour_lib.getColourById(list_colours[j].colour_id);
 		
+		var colours;
+		
 		if(colour_details.thumb != ""){
-			var colours = $.UI.create('ImageView', {  
+	  		colours = $.UI.create('ImageView', {  
 				image: colour_details.thumb,
 				borderColor: "#A5A5A5",
 				borderWidth: 1,
@@ -168,8 +170,8 @@ function generateRecommended(){
 				left: "5",
 				right: "5"
 			});
-		}else{
-			var colours =  $.UI.create('View', {  
+	  	}else{
+	  		 colours = $.UI.create('View', {  
 				backgroundColor: "rgb("+colour_details.rgb +")",
 				borderColor: "#A5A5A5",
 				borderWidth: 1,
@@ -179,6 +181,7 @@ function generateRecommended(){
 				right: "5"
 			});
 		}
+		
 		var cat_colour = category_colour_lib.getCateByColourId(colour_details.id);
 		var cat_details = library.getCategoryById(cat_colour.cate_id, "2");
 		
@@ -202,9 +205,10 @@ function generateColour(){
 	 
 	
 	for (var i=0; i< details.length; i++) {
+		var colours;
 		
 		if(details[i].thumb != ""){
-			var colours = $.UI.create('ImageView', {  
+	  		colours = $.UI.create('ImageView', {  
 				image: details[i].thumb,
 				borderColor: "#A5A5A5",
 				borderWidth: 1,
@@ -213,8 +217,8 @@ function generateColour(){
 				left: "5",
 				right: "5"
 			});
-		}else{
-			var colours =  $.UI.create('View', {  
+	  	}else{
+	  		 colours = $.UI.create('View', {  
 				backgroundColor: "rgb("+details[i].rgb +")",
 				borderColor: "#A5A5A5",
 				borderWidth: 1,
@@ -223,7 +227,7 @@ function generateColour(){
 				left: "5",
 				right: "5"
 			});
-		}
+	  	}
 		
 		var cat_colour = category_colour_lib.getCateByColourId(details[i].id);
 		var cat_details = library.getCategoryById(cat_colour.cate_id, "2");

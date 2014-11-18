@@ -446,9 +446,9 @@ function generateFavourite(){
 	
 	for (var j=0; j<list_favourite.length; j++) {
 		var colour_details = colour_lib.getColourById(list_favourite[j].colour_id);
-		
+		var colours;
 		if(colour_details.thumb != ""){
-			var colours = $.UI.create('ImageView', {  
+	  		colours = $.UI.create('ImageView', {  
 				image: colour_details.thumb,
 				borderColor: "#A5A5A5",
 				borderWidth: 1,
@@ -457,8 +457,8 @@ function generateFavourite(){
 				left: "5",
 				right: "5"
 			});
-		}else{
-			var colours =  $.UI.create('View', {  
+	  	}else{
+	  		 colours = $.UI.create('View', {  
 				backgroundColor: "rgb("+colour_details.rgb +")",
 				borderColor: "#A5A5A5",
 				borderWidth: 1,
@@ -467,9 +467,8 @@ function generateFavourite(){
 				left: "5",
 				right: "5"
 			});
-		}	  		
-		
-		
+	  	}
+
 		createColorEvent(colours, colour_details);
 		favouriteRow.add(colours);	
 	}
@@ -540,8 +539,11 @@ function generateColour(){
 	
 	for (var i=0; i<listArr.length; i++)
 	{
+		//console.log(listArr[i].contrast)
+		var colours;
+			
 		if(listArr[i].thumb != ""){
-			var colours = $.UI.create('ImageView', {  
+	  		colours = $.UI.create('ImageView', {  
 				image: listArr[i].thumb,
 				borderColor: "#A5A5A5",
 				borderWidth: 1,
@@ -550,8 +552,8 @@ function generateColour(){
 				left: "5",
 				right: "5"
 			});
-		}else{
-			var colours =  $.UI.create('View', {  
+	  	}else{
+	  		 colours = $.UI.create('View', {  
 				backgroundColor: "rgb("+listArr[i].rgb +")",
 				borderColor: "#A5A5A5",
 				borderWidth: 1,
@@ -560,8 +562,8 @@ function generateColour(){
 				left: "5",
 				right: "5"
 			});
-		}
-		
+	  	}
+			
 		if((i+1)%3 == 1)
 		{
 			topRow.add(colours);
