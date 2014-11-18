@@ -180,7 +180,8 @@ function generateRecommended(){
 				left: "5",
 				right: "5"
 			});
-
+		}
+		
 		var cat_colour = category_colour_lib.getCateByColourId(colour_details.id);
 		var cat_details = library.getCategoryById(cat_colour.cate_id, "2");
 		
