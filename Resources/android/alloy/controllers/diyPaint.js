@@ -101,7 +101,6 @@ function Controller() {
                         $.canvas.setBottom(toolbarHeight);
                         $.canvas.setHeight(canvasHeight);
                         var nativePath = event.media.nativePath;
-                        console.log(pWidth);
                         ImageFactory.rotateResizeImage(nativePath, pWidth, 100);
                         Ti.App.Properties.setString("image", nativePath);
                         Ti.App.fireEvent("web:loadImage", {

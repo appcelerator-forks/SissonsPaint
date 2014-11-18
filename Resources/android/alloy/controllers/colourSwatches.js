@@ -315,6 +315,8 @@ function Controller() {
         bottom: 60,
         backgroundColor: "#A5A5A5"
     });
+    searchView.hide();
+    $.mainViewContainer.add(searchView);
     var row1 = Ti.UI.createTableViewRow({
         title: "All",
         width: 150,
@@ -347,6 +349,11 @@ function Controller() {
         left: "20%",
         data: tableData
     });
+    $.mainViewContainer.add(table);
+    setTimeout(function() {
+        searchView.hide();
+        table.hide();
+    }, 10);
     var tableListener = function(e) {
         filterFlag = 0;
         $.mainViewContainer.remove(table);
@@ -368,14 +375,14 @@ function Controller() {
     };
     var filter = function() {
         closeWindow();
-        $.mainViewContainer.remove(searchView);
+        searchView.hide();
         searchFlag = 0;
         if (1 == filterFlag) {
             filterFlag = 0;
-            $.mainViewContainer.remove(table);
+            table.hide();
         } else {
             filterFlag = 1;
-            $.mainViewContainer.add(table);
+            table.show();
             table.addEventListener("click", tableListener);
         }
     };
@@ -383,11 +390,11 @@ function Controller() {
         table.removeEventListener("click", tableListener);
     };
     var search = function() {
-        $.mainViewContainer.remove(table);
         filterFlag = 0;
+        table.hide();
         if (1 == searchFlag) {
             searchFlag = 0;
-            $.mainViewContainer.remove(searchView);
+            searchView.hide();
         } else {
             searchFlag = 1;
             var hintTextLabel = Ti.UI.createLabel({
@@ -428,7 +435,7 @@ function Controller() {
             searchWrapper.add(textField);
             searchWrapper.add(searchButton);
             searchView.add(searchWrapper);
-            $.mainViewContainer.add(searchView);
+            searchView.show();
             var searchColours = function() {
                 searchFlag = 0;
                 Ti.UI.Android.hideSoftKeyboard();

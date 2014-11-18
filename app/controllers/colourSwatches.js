@@ -16,7 +16,7 @@ Ti.App.Properties.setString('currentCategory', "All");
  - Using function getCategoryListByType
  */ 
 // var details = library.getCategoryList();
-setTimeout(function(){
+setTimeout(function(){ 
 	
 	generateTable();
 }, 1000);
@@ -36,6 +36,9 @@ var searchView = Titanium.UI.createView({
    		bottom: 60,
    		backgroundColor: '#A5A5A5'
 	});
+searchView.hide();
+$.mainViewContainer.add(searchView);
+
 	
 var row1 = Ti.UI.createTableViewRow({
     title: 'All',
@@ -72,6 +75,12 @@ var table = Titanium.UI.createTableView({
 	data: tableData
 });
 
+$.mainViewContainer.add(table);
+
+setTimeout(function(){ 
+	searchView.hide();
+	table.hide();
+}, 10);
 
 function generateTable(){
 	var data=[];
@@ -226,19 +235,23 @@ var tableListener = function(e){
 };
 
 var filter = function(e){
-	closeWindow();
 	
-	$.mainViewContainer.remove(searchView);
+	closeWindow();
+	searchView.hide();
+	//$.mainViewContainer.remove(searchView);
 	searchFlag = 0;
 	
 	if(filterFlag == 1){
 		filterFlag = 0;
-		$.mainViewContainer.remove(table);
+		//$.mainViewContainer.remove(table);
+		table.hide();
 	}else{
 		filterFlag = 1;
-		$.mainViewContainer.add(table);
+		//$.mainViewContainer.add(table);
+		table.show();
 		table.addEventListener('click', tableListener);
 	}
+	 
 };
  
 
@@ -247,12 +260,13 @@ var closeWindow = function(e){
 };
 
 var search = function(e){
-	$.mainViewContainer.remove(table);
+	//$.mainViewContainer.remove(table);
 	filterFlag = 0;
-	
+	table.hide();
 	if(searchFlag == 1){
 		searchFlag = 0; 
-		$.mainViewContainer.remove(searchView);
+		searchView.hide();
+		//$.mainViewContainer.remove(searchView);
 	}else {
 		searchFlag = 1;
 		 
@@ -288,8 +302,8 @@ var search = function(e){
 		searchWrapper.add(textField);
 		searchWrapper.add(searchButton);
 		searchView.add(searchWrapper);
-		$.mainViewContainer.add(searchView);
-		
+		//$.mainViewContainer.add(searchView);
+		searchView.show();
 		var searchColours = function(e){ 
 			searchFlag = 0;
 			 

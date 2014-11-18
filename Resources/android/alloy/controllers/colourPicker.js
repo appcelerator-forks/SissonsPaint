@@ -22,6 +22,8 @@ function Controller() {
                 success: function(event) {
                     var image = event.media;
                     if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
+                        var nativePath = event.media.nativePath;
+                        ImageFactory.rotateResizeImage(nativePath, pWidth, 100);
                         Ti.App.Properties.setString("colour_picker_image", image.nativePath);
                         Ti.App.fireEvent("web:loadImage", {
                             image: image.nativePath
@@ -418,6 +420,7 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
+    var ImageFactory = require("fh.imagefactory");
     var fb = require("facebook");
     fb.appid = 752094718209236;
     Ti.Platform.displayCaps.platformHeight;
