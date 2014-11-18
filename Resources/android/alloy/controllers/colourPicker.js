@@ -9,6 +9,9 @@ function __processArg(obj, key) {
 
 function Controller() {
     function takePhoto() {
+        $.activityIndicator.hide();
+        $.loadingBar.opacity = "0";
+        $.loadingBar.height = "0";
         var dialog = Titanium.UI.createOptionDialog({
             title: "Choose an image source...",
             options: [ "Camera", "Photo Gallery", "Cancel" ],
@@ -65,7 +68,15 @@ function Controller() {
         });
         for (var j = 0; j < list_colours.length; j++) {
             var colour_details = colour_lib.getColourById(list_colours[j].colour_id);
-            var colours = $.UI.create("View", {
+            if ("" != colour_details.thumb) var colours = $.UI.create("ImageView", {
+                image: colour_details.thumb,
+                borderColor: "#A5A5A5",
+                borderWidth: 1,
+                width: "40",
+                height: "40",
+                left: "5",
+                right: "5"
+            }); else var colours = $.UI.create("View", {
                 backgroundColor: "rgb(" + colour_details.rgb + ")",
                 borderColor: "#A5A5A5",
                 borderWidth: 1,
@@ -89,9 +100,16 @@ function Controller() {
             height: 40,
             width: viewWidth
         });
-        console.log("details: " + details.length);
         for (var i = 0; i < details.length; i++) {
-            var colours = $.UI.create("View", {
+            if ("" != details[i].thumb) var colours = $.UI.create("ImageView", {
+                image: details[i].thumb,
+                borderColor: "#A5A5A5",
+                borderWidth: 1,
+                width: "40",
+                height: "40",
+                left: "5",
+                right: "5"
+            }); else var colours = $.UI.create("View", {
                 backgroundColor: "rgb(" + details[i].rgb + ")",
                 borderColor: "#A5A5A5",
                 borderWidth: 1,
@@ -412,9 +430,14 @@ function Controller() {
     var details = "";
     var library = Alloy.createCollection("category");
     var recommended = library.getCategoryListByType(1);
+    $.activityIndicator.show();
+    $.loadingBar.opacity = "1";
+    $.loadingBar.height = "120";
+    $.loadingBar.top = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) / 2;
     $.colorSelection.hide();
     setTimeout(function() {
         takePhoto();
+        generateRecommended();
     }, 800);
     $.canvas.addEventListener("load", function() {
         $.colorSelection.hide();
@@ -424,7 +447,6 @@ function Controller() {
         });
     });
     1 == Ti.App.Properties.getString("back") && Ti.App.Properties.setString("back", 0);
-    generateRecommended();
     var getColor = function(e) {
         $.activityIndicator.show();
         $.loadingBar.opacity = "1";
@@ -446,7 +468,6 @@ function Controller() {
     $.view3.add(removeIcon);
     removeIcon.addEventListener("click", function() {
         $.win.hide();
-        console.log($.checkBox.value);
     });
     __defers["$.__views.takePhoto!click!takePhoto"] && $.__views.takePhoto.addEventListener("click", takePhoto);
     __defers["$.__views.toggleActivation!click!toggleActivation"] && $.__views.toggleActivation.addEventListener("click", toggleActivation);

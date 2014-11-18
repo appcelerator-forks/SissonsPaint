@@ -1,1 +1,1 @@
-module.exports=[{isApi:!0,priority:1000.007,key:"Label",style:{width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000"}},{isClass:!0,priority:10000.0069,key:"container",style:{backgroundColor:"white"}},{isClass:!0,priority:10000.0071,key:"title",style:{font:{fontSize:22}}}];
+module.exports=[{isApi:!0,priority:1000.0071,key:"Label",style:{width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000"}},{isClass:!0,priority:10000.007,key:"container",style:{backgroundColor:"white"}},{isClass:!0,priority:10000.0072,key:"title",style:{font:{fontSize:22}}}];
