@@ -18,6 +18,7 @@ function Controller() {
                 image: "/images/scroll_up.png"
             });
             "1" == firstRecords ? firstRecords = "0" : $.TheScrollView.add(separator);
+            separator = null;
             var colours = category_colour_lib.getCategoryColourByCategory(details[i]["id"]);
             var categoryHeader = Titanium.UI.createImageView({
                 width: "95%",
@@ -35,6 +36,8 @@ function Controller() {
             });
             $.TheScrollView.add(categoryHeader);
             $.TheScrollView.add(description);
+            categoryHeader = null;
+            description = null;
             var colourView = $.UI.create("View", {
                 textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
                 layout: "horizontal",
@@ -52,8 +55,8 @@ function Controller() {
                     height: Ti.UI.SIZE
                 });
                 var colour_details = colour_lib.getColourById(colour.colour_id);
-                if ("" != colour_details.sample) var subViewColor = $.UI.create("ImageView", {
-                    image: colour_details.sample,
+                if ("" != colour_details.thumb) var subViewColor = $.UI.create("ImageView", {
+                    image: colour_details.thumb,
                     borderColor: "#A5A5A5",
                     borderWidth: 1,
                     width: "97%",
@@ -78,11 +81,17 @@ function Controller() {
                 subView.add(subViewColor);
                 subView.add(subLabelName);
                 subView.add(subLabelCode);
+                subViewColor = null;
+                subLabelName = null;
+                subLabelCode = null;
                 colourView.add(subView);
+                subView = null;
                 counter++;
             });
             $.TheScrollView.add(colourView);
-        }
+            colourView = null;
+        } else totalDetails--;
+        details = null;
     }
     function createColorEvent(subView, colour_details, details) {
         subView.addEventListener("click", function() {
@@ -311,18 +320,22 @@ function Controller() {
         width: 150,
         left: 10,
         touchEnabled: true,
-        height: 60
+        height: 60,
+        className: "DataRow"
     });
     tableData.push(row1);
+    row1 = null;
     category_tag.forEach(function(tags) {
         var row_tag = Ti.UI.createTableViewRow({
             title: tags.tag,
             width: 150,
             left: 10,
             touchEnabled: true,
+            className: "DataRow",
             height: 60
         });
         tableData.push(row_tag);
+        row_tag = null;
     });
     var table = Titanium.UI.createTableView({
         separatorColor: "transparent",
@@ -416,7 +429,7 @@ function Controller() {
             searchWrapper.add(searchButton);
             searchView.add(searchWrapper);
             $.mainViewContainer.add(searchView);
-            searchButton.addEventListener("click", function() {
+            var searchColours = function() {
                 searchFlag = 0;
                 Ti.UI.Android.hideSoftKeyboard();
                 if (0 != textField.value.length) {
@@ -425,7 +438,9 @@ function Controller() {
                     Alloy.Globals.Drawer.setCenterWindow(nav);
                 }
                 $.mainViewContainer.remove(searchView);
-            });
+                searchButton.removeEventListener("click", searchColours);
+            };
+            searchButton.addEventListener("click", searchColours);
         }
     };
     Ti.App.Properties.setString("swatchMinHeight", minHeight);
@@ -438,8 +453,8 @@ function Controller() {
             var currentCategory = Ti.App.Properties.getString("currentCategory");
             if ("All" != currentCategory) {
                 var result = category_type_lib.getCategoryTypeByTag(currentCategory);
-                var data = [];
-                details = [];
+                var data = null;
+                details = null;
                 result.forEach(function(tags) {
                     data = library.getCategoryById(tags.cate_id, "2", from);
                     "" != data && details.push(data);

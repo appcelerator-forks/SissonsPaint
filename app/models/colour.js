@@ -6,7 +6,8 @@ exports.definition = {
 		    "code": "TEXT",
 		    "rgb": "TEXT",
 		    "cmyk": "TEXT", 
-		    "sample": "TEXT"
+		    "sample": "TEXT",
+		    "thumb": "TEXT"
 		},
 		adapter: {
 			type: "sql",
@@ -41,6 +42,7 @@ exports.definition = {
 					    rgb: res.fieldByName('rgb'),
 					    cmyk: res.fieldByName('cmyk'),
 					    sample: res.fieldByName('sample'),
+					    thumb: res.fieldByName('thumb'),
 					    contrast: parseInt(c[0])+parseInt(c[1])+parseInt(c[2])
 					};
 					res.next();
@@ -66,7 +68,8 @@ exports.definition = {
 					    code: res.fieldByName('code'),
 					    rgb: res.fieldByName('rgb'),
 					    cmyk: res.fieldByName('cmyk'),
-					    sample: res.fieldByName('sample')
+					    sample: res.fieldByName('sample'),
+					    thumb: res.fieldByName('thumb')
 					};
 					
 				} 
@@ -98,7 +101,8 @@ exports.definition = {
 					    code: res.fieldByName('code'),
 					    rgb: res.fieldByName('rgb'),
 					    cmyk: res.fieldByName('cmyk'),
-					    sample: res.fieldByName('sample')
+					    sample: res.fieldByName('sample'),
+					    thumb: res.fieldByName('thumb')
 					};
 					res.next();
 					count++;
@@ -152,6 +156,7 @@ exports.definition = {
 								    rgb: res.fieldByName('rgb'),
 								    cmyk: res.fieldByName('cmyk'),
 								    sample: res.fieldByName('sample'),
+					    			thumb: res.fieldByName('thumb'),
 								    diff: diff
 								} 
         					);
