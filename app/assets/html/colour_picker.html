@@ -56,10 +56,9 @@
 			//$('#choosenPhoto').attr('src', e.image);
 			var outlineImage = new Image();
 			var canvas = document.createElement('canvas');
-			var canvasW = screenwidth; 
+			var canvasW = window.innerWidth; 
 			
 			canvasWidth = canvasW;
-			 
 			// Load images 
 			outlineImage.src = e.image; 
 			outlineImage.onload = function (e) { 

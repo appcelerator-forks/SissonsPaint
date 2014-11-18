@@ -65,7 +65,16 @@ function Controller() {
         });
         for (var j = 0; j < list_colours.length; j++) {
             var colour_details = colour_lib.getColourById(list_colours[j].colour_id);
-            var colours = $.UI.create("View", {
+            var colours;
+            colours = "" != colour_details.thumb ? $.UI.create("ImageView", {
+                image: colour_details.thumb,
+                borderColor: "#A5A5A5",
+                borderWidth: 1,
+                width: "40",
+                height: "40",
+                left: "5",
+                right: "5"
+            }) : $.UI.create("View", {
                 backgroundColor: "rgb(" + colour_details.rgb + ")",
                 borderColor: "#A5A5A5",
                 borderWidth: 1,
@@ -91,7 +100,16 @@ function Controller() {
         });
         console.log("details: " + details.length);
         for (var i = 0; i < details.length; i++) {
-            var colours = $.UI.create("View", {
+            var colours;
+            colours = "" != details[i].thumb ? $.UI.create("ImageView", {
+                image: details[i].thumb,
+                borderColor: "#A5A5A5",
+                borderWidth: 1,
+                width: "40",
+                height: "40",
+                left: "5",
+                right: "5"
+            }) : $.UI.create("View", {
                 backgroundColor: "rgb(" + details[i].rgb + ")",
                 borderColor: "#A5A5A5",
                 borderWidth: 1,
