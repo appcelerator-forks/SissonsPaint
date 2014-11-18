@@ -4,7 +4,12 @@ var youtubePlayer = require("titutorial.youtubeplayer");
 var library = Alloy.createCollection('brochure'); 
 var details = library.getBrochureList(); 
 var filterFlag = 0;
- 
+var tableData = [];
+
+setTimeout(function(){
+	displayCover();
+}, 300);
+
 var displayCover = function(){ 
    	var counter = 0;
    	var imagepath, adImage, row, image, cellWrapper, cell = '';
@@ -61,7 +66,6 @@ var displayCover = function(){
 	 }
 };
 
-displayCover();
 
 function createAdImageEvent(adImage, id,content, cell, downloaded, downloadIcon) {
     adImage.addEventListener( "click", function(){
@@ -74,8 +78,6 @@ function createAdImageEvent(adImage, id,content, cell, downloaded, downloadIcon)
 					message:'',
 					font:{fontSize:12},
 					color:'red',
-					//backgroundColor: "#A6A5A5",
-					//opacity: "0.5"
 				});
 				var imageHeight = adImage.size.height;
 				var imageWidth = adImage.size.width;
@@ -89,15 +91,12 @@ function createAdImageEvent(adImage, id,content, cell, downloaded, downloadIcon)
 				  width: imageWidth, height: imageHeight
 				});
 				
-		//cell.add(ind);
-		if(downloaded == "0")
-		{
+	
+		if(downloaded == "0"){
 			cell.add(gray);
 			cell.add(ind);
 			cell.add(label);
-		}
-		else
-		{
+		}else{
 			cell.remove(gray);
 			cell.remove(ind);
 			cell.remove(label);
@@ -105,12 +104,11 @@ function createAdImageEvent(adImage, id,content, cell, downloaded, downloadIcon)
 		
     	pdf(content,true, ind, label, function (err) {
 		    if (err) alert(err);
-		    else
-		    {
+		    else{
 		    	library.updateDownloadedBrochure(id);
 		    	if(downloadIcon != ""){
 		    		cell.remove(downloadIcon);
-		    	}
+		  	}
 		    	
 		    	cell.remove(gray);
 		    	cell.remove(ind);
@@ -127,8 +125,6 @@ function createVideoEvent(adImage, id,content){
 		youtubePlayer.playVideo(content);
 	 });
 }
-
-var tableData = [];
 
 var row1 = Ti.UI.createTableViewRow({
     title: 'LATEST',
@@ -172,35 +168,27 @@ var tableListener = function(e){
 	filterFlag = 0;
 	$.brochureView.remove(table);
 	removeAllChildren($.scrollview);
-	if(e.index == 0)
-	{
+	if(e.index == 0){
 		details = library.getBrochureList(); 
 		displayCover();
-	}
-	else if(e.index == 1)
-	{
+	}else if(e.index == 1){
 		details = library.getDownloadedList(); 
 		displayCover();
-	}
-	else
-	{
+	}else{
 		details = library.getVideoList();
 		displayCover();
 	}
 };
 
 var popWindow = function(e){
-	 
 	closeWindow();
 	if(filterFlag == 1) {
 		filterFlag = 0;
 		$.brochureView.remove(table);
 	}else {
 		filterFlag = 1;
-		
 		$.brochureView.add(table);
 		table.addEventListener('click', tableListener);
-		
 	}
 };
 

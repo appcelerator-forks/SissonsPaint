@@ -167,6 +167,10 @@ function Controller() {
     var library = Alloy.createCollection("brochure");
     var details = library.getBrochureList();
     var filterFlag = 0;
+    var tableData = [];
+    setTimeout(function() {
+        displayCover();
+    }, 300);
     var displayCover = function() {
         var counter = 0;
         var imagepath, adImage, row, image, cellWrapper, cell = "";
@@ -241,8 +245,6 @@ function Controller() {
             counter++;
         }
     };
-    displayCover();
-    var tableData = [];
     var row1 = Ti.UI.createTableViewRow({
         title: "LATEST",
         width: 150,

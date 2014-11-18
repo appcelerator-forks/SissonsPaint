@@ -24,7 +24,7 @@ var sizeShow = 0;
 var colorShow = 0;
 var filterFlag = 0;
 var shareFlag = 0;
-
+var tableData = [];
 var imgPath = "";
 fb.appid = 752094718209236;
 var t = Titanium.UI.create2DMatrix();
@@ -32,7 +32,14 @@ var t = Titanium.UI.create2DMatrix();
 
 $.slider.transform = t;
 
+$.activityIndicator.show();
+$.loadingBar.opacity = "1";
+$.loadingBar.height = "120";
+$.loadingBar.top = (PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight)/2);
+
 setTimeout(function(){
+	generateFavourite();
+	generateColour();
 	takePhoto();
 }, 300);
 	 
@@ -147,8 +154,7 @@ var closeShareWindow = function(e){
 };
 
 
-function shareFunction(e)
-{
+function shareFunction(e){
 	if (fb.loggedIn)
 			{
 		  		shareFacebook();
@@ -165,8 +171,7 @@ function shareFunction(e)
 			}
 }
 
-function shareFacebook()
-{
+function shareFacebook(){
 	var f = Ti.Filesystem.getFile(imgPath);
 	var blob = f.read();
   	var data = {
@@ -230,7 +235,7 @@ function colorSwatches(e){
 	$.colorSwatches.animate(animation);
 }
 
-var tableData = [];
+
 
 var row1 = Ti.UI.createTableViewRow({
     title: 'Bucket',
@@ -336,7 +341,10 @@ function updateAdjustment(e){
 }
 
 function takePhoto(){
-	//Create a dialog with options
+	$.activityIndicator.hide();
+	$.loadingBar.opacity = "0";
+	$.loadingBar.height = "0";
+ 
 	var dialog = Titanium.UI.createOptionDialog({
 	    //title of dialog
 	    title: 'Choose an image source...',
@@ -361,35 +369,29 @@ function takePhoto(){
 	                var image = event.media; 
 	                 
 	                //checking if it is photo
-	                if(event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO)
-	                {
+	                if(event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
 	                    toolbarHeight = $.toolbar.rect.height;
 						canvasHeight = pHeight - toolbarHeight - toggleHeight;
 						$.canvas.setBottom(toolbarHeight);
 						$.canvas.setHeight(canvasHeight);
 	                    var nativePath = event.media.nativePath;
-	                    console.log(pWidth);
+	                   
 						ImageFactory.rotateResizeImage(nativePath, pWidth, 100);
 		                Ti.App.Properties.setString("image", nativePath); 
 		                Ti.App.fireEvent('web:loadImage', { image: nativePath, height:canvasHeight}); 
 		                $.shareButton.touchEnabled = 'true';
 	                }
 	            },
-	            cancel:function()
-	            {
+	            cancel:function(){
 	                //do somehting if user cancels operation
 	            },
-	            error:function(error)
-	            {
+	            error:function(error) {
 	                //error happend, create alert
 	                var a = Titanium.UI.createAlertDialog({title:'Camera'});
 	                //set message
-	                if (error.code == Titanium.Media.NO_CAMERA)
-	                {
+	                if (error.code == Titanium.Media.NO_CAMERA){
 	                    a.setMessage('Device does not have camera');
-	                }
-	                else
-	                {
+	                }else{
 	                    a.setMessage('Unexpected error: ' + error.code);
 	                }
 	 
@@ -399,9 +401,7 @@ function takePhoto(){
 	            allowImageEditing:true,
 	            saveToPhotoGallery:true
 	        });
-	    }
-	    else if(e.index == 1)
-	    {
+	    } else if(e.index == 1){
 	    	 
 	    	//obtain an image from the gallery
 	        Titanium.Media.openPhotoGallery({
@@ -435,17 +435,6 @@ function takePhoto(){
 	dialog.show();
 }
 
-function fireLoadImage(e)
-{
-	console.log('fireLoadImage');
-	Ti.App.fireEvent('foo', {name:'bar'});
-	console.log('fireLoadImage2');
-}
-
-
-// generateFavourite();
-// generateColour();
-
 function generateFavourite(){
 	var viewWidth = (Math.ceil((list_favourite.length)) * 50) + 10;
 	var favouriteRow = Titanium.UI.createView({
@@ -455,8 +444,7 @@ function generateFavourite(){
 	   width: viewWidth
 	});
 	
-	for (var j=0; j<list_favourite.length; j++)
-	{
+	for (var j=0; j<list_favourite.length; j++) {
 		var colour_details = colour_lib.getColourById(list_favourite[j].colour_id);
 		var colours;
 		if(colour_details.thumb != ""){
@@ -480,7 +468,7 @@ function generateFavourite(){
 				right: "5"
 			});
 	  	}
-		
+
 		createColorEvent(colours, colour_details);
 		favouriteRow.add(colours);	
 	}
@@ -503,8 +491,7 @@ function createColorEvent(colours, colour_details){
 			colorSwatches(60);
 			colorShow = 1;
 		}
-		//sizeShow = 1;
-		//sizePop(40);
+		 
 	});
 }
 
@@ -597,12 +584,7 @@ function generateColour(){
 	$.scrollView.add(middleRow);
 	$.scrollView.add(bottomRow);
 }
-
-setTimeout(function(){
-	generateFavourite();
-	generateColour();
-}, 0);
-
+ 
 var save = function(e) {
 	var blob = e.blob;
 	var index = blob.indexOf('base64,');

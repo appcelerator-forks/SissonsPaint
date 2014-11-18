@@ -101,8 +101,7 @@ exports.definition = {
 						};
                  
 				} 
-				
-				console.log(arr);
+				 
 				res.close();
                 db.close();
                 collection.trigger('sync');

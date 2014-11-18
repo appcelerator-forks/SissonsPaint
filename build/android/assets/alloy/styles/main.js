@@ -1,1 +1,1 @@
-/Users/HatsuneMiku/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/alloy/styles/main.js
+module.exports=[{isApi:!0,priority:1000.0056,key:"Label",style:{width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000"}},{isClass:!0,priority:10000.0055,key:"container",style:{backgroundColor:"white"}}];
