@@ -1,9 +1,9 @@
 <Alloy>
 	<View id="diyPaint">
 		<View class="container" >
-			<View id="toggle" layout="horizontal" height="80" top="0" >
+			<View id="toggle" layout="horizontal" height="80" top="0" backgroundImage="/images/banner_paint_diy.jpg">
 				<Require src="toggle"></Require>
-				<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">DIY Paint</Label>
+				<!--<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">DIY Paint</Label>-->
 		
 			</View>
 			 

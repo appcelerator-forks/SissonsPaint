@@ -466,8 +466,12 @@ var paintBucketApp = (function () {
 		saveAndShare = function(e){ 
  			context.globalCompositeOperation = "source-over";
 			clearCanvas();
-			context.drawImage(waterMarkImage, canvasWidth-200, 10, 200, 63);
-			var watermark = context.getImageData(0, 0, canvasWidth, canvasHeight);
+
+			if(e.share == 1)
+			{
+				context.drawImage(waterMarkImage, canvasWidth-200, 10, 200, 63);
+				var watermark = context.getImageData(0, 0, canvasWidth, canvasHeight);
+			}
 			
 			var blueData = colorLayerData;
 			var mixFactor = 0.3; //main image is dominant
@@ -479,20 +483,21 @@ var paintBucketApp = (function () {
 			    outlineLayerData.data[i+2] = outlineLayerData.data[i+2] * mixFactor + blueData.data[i+2] * (1 - mixFactor);
 			   }
 			}
-			
-			//we're using the outlineLayerData buffer as main buffer for this example
-			for(var i = 0; i < outlineLayerData.data.length; i+=4) {
-				if(watermark.data[i+3] == 255){
-			   		outlineLayerData.data[i]   = watermark.data[i];
-			    	outlineLayerData.data[i+1] = watermark.data[i+1];
-			    	outlineLayerData.data[i+2] = watermark.data[i+2];
-			   }else if(watermark.data[i+3] != 0){
-			   		outlineLayerData.data[i]   = outlineLayerData.data[i]   * mixFactor + watermark.data[i]   * (1 - mixFactor);
-			    	outlineLayerData.data[i+1] = outlineLayerData.data[i+1] * mixFactor + watermark.data[i+1] * (1 - mixFactor);
-			    	outlineLayerData.data[i+2] = outlineLayerData.data[i+2] * mixFactor + watermark.data[i+2] * (1 - mixFactor);
-			   }
+			if(e.share == 1)
+			{
+				//we're using the outlineLayerData buffer as main buffer for this example
+				for(var i = 0; i < outlineLayerData.data.length; i+=4) {
+					if(watermark.data[i+3] == 255){
+				   		outlineLayerData.data[i]   = watermark.data[i];
+				    	outlineLayerData.data[i+1] = watermark.data[i+1];
+				    	outlineLayerData.data[i+2] = watermark.data[i+2];
+				   }else if(watermark.data[i+3] != 0){
+				   		outlineLayerData.data[i]   = outlineLayerData.data[i]   * mixFactor + watermark.data[i]   * (1 - mixFactor);
+				    	outlineLayerData.data[i+1] = outlineLayerData.data[i+1] * mixFactor + watermark.data[i+1] * (1 - mixFactor);
+				    	outlineLayerData.data[i+2] = outlineLayerData.data[i+2] * mixFactor + watermark.data[i+2] * (1 - mixFactor);
+				   }
+				}
 			}
-				
 
 			context.putImageData(outlineLayerData, 0, 0);
 			

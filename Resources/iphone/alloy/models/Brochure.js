@@ -25,7 +25,7 @@ exports.definition = {
         _.extend(Collection.prototype, {
             getBrochureList: function() {
                 var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + "  order by id DESC";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + "  order by id";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];
