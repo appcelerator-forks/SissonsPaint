@@ -22,6 +22,8 @@ function Controller() {
                 success: function(event) {
                     var image = event.media;
                     if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
+                        var nativePath = event.media.nativePath;
+                        ImageFactory.rotateResizeImage(nativePath, pWidth, 100);
                         Ti.App.Properties.setString("colour_picker_image", image.nativePath);
                         Ti.App.fireEvent("web:loadImage", {
                             image: image.nativePath
@@ -68,12 +70,8 @@ function Controller() {
         });
         for (var j = 0; j < list_colours.length; j++) {
             var colour_details = colour_lib.getColourById(list_colours[j].colour_id);
-<<<<<<< HEAD
             var colours;
             colours = "" != colour_details.thumb ? $.UI.create("ImageView", {
-=======
-            if ("" != colour_details.thumb) var colours = $.UI.create("ImageView", {
->>>>>>> FETCH_HEAD
                 image: colour_details.thumb,
                 borderColor: "#A5A5A5",
                 borderWidth: 1,
@@ -81,11 +79,7 @@ function Controller() {
                 height: "40",
                 left: "5",
                 right: "5"
-<<<<<<< HEAD
             }) : $.UI.create("View", {
-=======
-            }); else var colours = $.UI.create("View", {
->>>>>>> FETCH_HEAD
                 backgroundColor: "rgb(" + colour_details.rgb + ")",
                 borderColor: "#A5A5A5",
                 borderWidth: 1,
@@ -110,12 +104,8 @@ function Controller() {
             width: viewWidth
         });
         for (var i = 0; i < details.length; i++) {
-<<<<<<< HEAD
             var colours;
             colours = "" != details[i].thumb ? $.UI.create("ImageView", {
-=======
-            if ("" != details[i].thumb) var colours = $.UI.create("ImageView", {
->>>>>>> FETCH_HEAD
                 image: details[i].thumb,
                 borderColor: "#A5A5A5",
                 borderWidth: 1,
@@ -123,11 +113,7 @@ function Controller() {
                 height: "40",
                 left: "5",
                 right: "5"
-<<<<<<< HEAD
             }) : $.UI.create("View", {
-=======
-            }); else var colours = $.UI.create("View", {
->>>>>>> FETCH_HEAD
                 backgroundColor: "rgb(" + details[i].rgb + ")",
                 borderColor: "#A5A5A5",
                 borderWidth: 1,
@@ -436,6 +422,7 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
+    var ImageFactory = require("fh.imagefactory");
     var fb = require("facebook");
     fb.appid = 752094718209236;
     Ti.Platform.displayCaps.platformHeight;

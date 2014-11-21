@@ -65,6 +65,7 @@ function Controller() {
         }
     }
     function updateAdjustment(e) {
+        alert(e.value);
         if ("bucket" == tools) {
             bucketWidth = parseInt(e.value);
             Ti.App.fireEvent("web:setSensetive", {
@@ -101,7 +102,6 @@ function Controller() {
                         $.canvas.setBottom(toolbarHeight);
                         $.canvas.setHeight(canvasHeight);
                         var nativePath = event.media.nativePath;
-                        console.log(pWidth);
                         ImageFactory.rotateResizeImage(nativePath, pWidth, 100);
                         Ti.App.Properties.setString("image", nativePath);
                         Ti.App.fireEvent("web:loadImage", {
@@ -150,12 +150,8 @@ function Controller() {
         });
         for (var j = 0; j < list_favourite.length; j++) {
             var colour_details = colour_lib.getColourById(list_favourite[j].colour_id);
-<<<<<<< HEAD
             var colours;
             colours = "" != colour_details.thumb ? $.UI.create("ImageView", {
-=======
-            if ("" != colour_details.thumb) var colours = $.UI.create("ImageView", {
->>>>>>> FETCH_HEAD
                 image: colour_details.thumb,
                 borderColor: "#A5A5A5",
                 borderWidth: 1,
@@ -163,11 +159,7 @@ function Controller() {
                 height: "40",
                 left: "5",
                 right: "5"
-<<<<<<< HEAD
             }) : $.UI.create("View", {
-=======
-            }); else var colours = $.UI.create("View", {
->>>>>>> FETCH_HEAD
                 backgroundColor: "rgb(" + colour_details.rgb + ")",
                 borderColor: "#A5A5A5",
                 borderWidth: 1,
@@ -231,12 +223,8 @@ function Controller() {
             listArr.splice(index, 0, list_colours[i]);
         }
         for (var i = 0; i < listArr.length; i++) {
-<<<<<<< HEAD
             var colours;
             colours = "" != listArr[i].thumb ? $.UI.create("ImageView", {
-=======
-            if ("" != listArr[i].thumb) var colours = $.UI.create("ImageView", {
->>>>>>> FETCH_HEAD
                 image: listArr[i].thumb,
                 borderColor: "#A5A5A5",
                 borderWidth: 1,
@@ -244,11 +232,7 @@ function Controller() {
                 height: "40",
                 left: "5",
                 right: "5"
-<<<<<<< HEAD
             }) : $.UI.create("View", {
-=======
-            }); else var colours = $.UI.create("View", {
->>>>>>> FETCH_HEAD
                 backgroundColor: "rgb(" + listArr[i].rgb + ")",
                 borderColor: "#A5A5A5",
                 borderWidth: 1,
