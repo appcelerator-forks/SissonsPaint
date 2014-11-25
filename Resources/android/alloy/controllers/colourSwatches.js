@@ -82,6 +82,7 @@ function Controller() {
                 subView.add(subViewColor);
                 subView.add(subLabelName);
                 subView.add(subLabelCode);
+                colour_details = null;
                 subViewColor = null;
                 subLabelName = null;
                 subLabelCode = null;
@@ -403,8 +404,7 @@ function Controller() {
         removeAllChildren($.TheScrollView);
         setTimeout(function() {
             Ti.App.Properties.setString("swatchMinHeight", 2797);
-            var swatchMinHeight = Ti.App.Properties.getString("swatchMinHeight");
-            console.log("Generate table: " + swatchMinHeight);
+            Ti.App.Properties.getString("swatchMinHeight");
         }, 1e3);
         if ("All" == e.source.title) {
             details = library.getCategoryListByType("2", 0);
@@ -502,7 +502,6 @@ function Controller() {
     Ti.App.Properties.setString("swatchMinHeight", minHeight);
     $.TheScrollView.addEventListener("scroll", function(e) {
         var swatchMinHeight = Ti.App.Properties.getString("swatchMinHeight");
-        console.log(swatchMinHeight + "==" + e.y);
         if (e.y >= swatchMinHeight) {
             swatchMinHeight = parseInt(swatchMinHeight) + parseInt(minHeight);
             Ti.App.Properties.setString("swatchMinHeight", swatchMinHeight);
@@ -510,7 +509,6 @@ function Controller() {
             var currentCategory = Ti.App.Properties.getString("currentCategory");
             if ("All" != currentCategory) ; else {
                 details = library.getCategoryListByType("2", from);
-                console.log(details);
                 generateTable();
             }
         }

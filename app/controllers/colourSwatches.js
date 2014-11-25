@@ -194,6 +194,7 @@ function generateTable(){
 				subView.add(subLabelName);		 
 				subView.add(subLabelCode);	
 				
+				colour_details = null;
 				subViewColor = null;
 				subLabelName = null;
 				subLabelCode = null;
@@ -239,7 +240,6 @@ var tableListener = function(e){
 	setTimeout(function(){ 
 		Ti.App.Properties.setString('swatchMinHeight', 2797); 
 		var swatchMinHeight = Ti.App.Properties.getString('swatchMinHeight');
-		 console.log("Generate table: "+swatchMinHeight );
 	}, 1000);
 
 	if(e.source.title == "All"){
@@ -361,7 +361,7 @@ Ti.App.Properties.setString('swatchMinHeight', minHeight);
 $.TheScrollView.addEventListener('scroll', function (e) {  
 	
 	var swatchMinHeight = Ti.App.Properties.getString('swatchMinHeight');
-	 console.log(swatchMinHeight +"=="+e.y);
+	
 	if( e.y >= swatchMinHeight  ){ 
 		swatchMinHeight = parseInt(swatchMinHeight) + parseInt(minHeight); 
 		Ti.App.Properties.setString('swatchMinHeight', swatchMinHeight);
@@ -382,7 +382,6 @@ $.TheScrollView.addEventListener('scroll', function (e) {
 			**/ 
  		}else{
  			details = library.getCategoryListByType("2",from);
- 			console.log(details);
  			generateTable();
  		}
 		 
