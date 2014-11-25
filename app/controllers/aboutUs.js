@@ -18,8 +18,7 @@ var submitContactForm = function(){
 			cancel: 1
 		});
 		alert.addEventListener('click', function(e){
-			if (e.cancel === e.index || e.cancel === true)
-			{
+			if (e.cancel === e.index || e.cancel === true) {
 				return false;
 			}
 		});
@@ -35,8 +34,7 @@ var submitContactForm = function(){
 			cancel: 1
 		});
 		alert.addEventListener('click', function(e){
-			if (e.cancel === e.index || e.cancel === true)
-			{
+			if (e.cancel === e.index || e.cancel === true) {
 				return false;
 			}
 		});
@@ -52,8 +50,7 @@ var submitContactForm = function(){
 			cancel: 1
 		});
 		alert.addEventListener('click', function(e){
-			if (e.cancel === e.index || e.cancel === true)
-			{
+			if (e.cancel === e.index || e.cancel === true) {
 				return false;
 			}
 		});

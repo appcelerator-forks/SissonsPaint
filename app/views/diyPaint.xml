@@ -24,7 +24,7 @@
 			</View> 
 			<View height="250" bottom="-250" width="100" id="sizeBar">
 				<ImageView image="/images/pop_window2.png" height="250" width="100"></ImageView>
-				<Slider id="slider" min="0" max="100"  value="20" onStop="updateAdjustment" thumbImage="/images/size_toggle.png" width="180" />
+				<Slider id="slider" min="0" max="100"  value="30" onStop="updateAdjustment" thumbImage="/images/size_toggle.png" width="180" />
 			</View>
 			<View height="60" bottom="0" id="toolbar" width="100%" backgroundImage="/images/tool_bar.jpg">
 				<View layout="horizontal" width="100%">

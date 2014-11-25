@@ -55,7 +55,7 @@ exports.definition = {
 				}
 				var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE type='" + type + "' order by position LIMIT "+ from +", 3";
-                
+ 				
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = []; 
@@ -74,7 +74,7 @@ exports.definition = {
 					res.next();
 					count++;
 				}
-				
+				 
 				res.close();
                 db.close();
                 collection.trigger('sync');
@@ -86,7 +86,7 @@ exports.definition = {
 				}
 				var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "' AND `type` = '"+cateType+"' order by position LIMIT "+ from +", 3";
-                
+          
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var arr = []; 

@@ -10,24 +10,28 @@
 				<Button class="button" color="white" backgroundColor="black" id="zoneB" width="40%" height="65" left="2%" right="8%" top="5%" onClick="listState">Kedah</Button>
 			</View>
 			<View id="row2" layout="horizontal" height="Ti.UI.SIZE" width="100%">
-				<Button class="button" color="white" backgroundColor="black" id="zoneC" width="40%" height="65" left="8%" right="2%" top="5%" onClick="listState">Kuala Terengganu</Button>
-				<Button class="button" color="white" backgroundColor="black" id="zoneD" width="40%" height="65" left="2%" right="8%" top="5%" onClick="listState">Melaka</Button>
+				<Button class="button" color="white" backgroundColor="black" id="zoneC" width="40%" height="65" left="8%" right="2%" top="5%" onClick="listState">Kelantan</Button>
+				<Button class="button" color="white" backgroundColor="black" id="zoneD" width="40%" height="65" left="2%" right="8%" top="5%" onClick="listState">Kuala Terengganu</Button>
 			</View>
 			<View id="row3" layout="horizontal" height="Ti.UI.SIZE" width="100%">
-				<Button class="button" color="white" backgroundColor="black" id="zoneE" width="40%" height="65" left="8%" right="2%" top="5%" onClick="listState">Negeri Sembilan</Button>
-				<Button class="button" color="white" backgroundColor="black" id="zoneF" width="40%" height="65" left="2%" right="8%" top="5%" onClick="listState">Pahang</Button>
+				<Button class="button" color="white" backgroundColor="black" id="zoneE" width="40%" height="65" left="8%" right="2%" top="5%" onClick="listState">Melaka</Button>
+				<Button class="button" color="white" backgroundColor="black" id="zoneF" width="40%" height="65" left="2%" right="8%" top="5%" onClick="listState">Negeri Sembilan</Button>
 			</View>
 			<View id="row4" layout="horizontal" height="Ti.UI.SIZE" width="100%">
-				<Button class="button" color="white" backgroundColor="black" id="zoneG" width="40%" height="65" left="8%" right="2%" top="5%" onClick="listState">Penang</Button>
-				<Button class="button" color="white" backgroundColor="black" id="zoneH" width="40%" height="65" left="2%" right="8%" top="5%" onClick="listState">Perak</Button>
+				<Button class="button" color="white" backgroundColor="black" id="zoneG" width="40%" height="65" left="8%" right="2%" top="5%" onClick="listState">Pahang</Button>
+				<Button class="button" color="white" backgroundColor="black" id="zoneH" width="40%" height="65" left="2%" right="8%" top="5%" onClick="listState">Penang</Button>
 			</View>
 			<View id="row5" layout="horizontal" height="Ti.UI.SIZE" width="100%">
-				<Button class="button" color="white" backgroundColor="black" id="zoneI" width="40%" height="65" left="8%" right="2%" top="5%" onClick="listState">Sabah</Button>
-				<Button class="button" color="white" backgroundColor="black" id="zoneJ" width="40%" height="65" left="2%" right="8%" top="5%" onClick="listState">Sarawak</Button>
+				<Button class="button" color="white" backgroundColor="black" id="zoneI" width="40%" height="65" left="8%" right="2%" top="5%" onClick="listState">Perak</Button>
+				<Button class="button" color="white" backgroundColor="black" id="zoneJ" width="40%" height="65" left="2%" right="8%" top="5%" onClick="listState">Perlis</Button>
 			</View>
 			<View id="row6" layout="horizontal" height="Ti.UI.SIZE" width="100%">
-				<Button class="button" color="white" backgroundColor="black" id="zoneK" width="40%" height="65" left="8%" right="2%" top="5%" onClick="listState">Selangor</Button>
-				<Button class="button" color="white" backgroundColor="black" id="zoneL" width="40%" height="65" left="2%" right="8%" top="5%" onClick="listState">Wilayah Persekutuan</Button>
+				<Button class="button" color="white" backgroundColor="black" id="zoneK" width="40%" height="65" left="8%" right="2%" top="5%" onClick="listState">Sabah</Button>
+				<Button class="button" color="white" backgroundColor="black" id="zoneL" width="40%" height="65" left="2%" right="8%" top="5%" onClick="listState">Sarawak</Button>
+			</View>
+			<View id="row7" layout="horizontal" height="Ti.UI.SIZE" width="100%">
+				<Button class="button" color="white" backgroundColor="black" id="zoneM" width="40%" height="65" left="8%" right="2%" top="5%" onClick="listState">Selangor</Button>
+				<Button class="button" color="white" backgroundColor="black" id="zoneN" width="40%" height="65" left="2%" right="8%" top="5%" onClick="listState">Wilayah Persekutuan</Button>
 			</View>
 		</ScrollView>
 	</View>

@@ -42,12 +42,11 @@ function shareFunction(e)
 			}
 }
 
-function shareFacebook()
-{
+function shareFacebook(){
 	var f = Ti.Filesystem.getFile(imgPath);
 	var blob = f.read();
   	var data = {
-  		message : 'Sissons Omnicolor',
+  	//	message : 'Sissons Omnicolor',
   		picture : blob
   	};
   	
@@ -55,9 +54,7 @@ function shareFacebook()
 	  	if (e.success && e.result)
 	   	{
 	   		$.loadingBar.hide();
-	   		$.loadingBar.opacity = "0";
-	   		//alert("Success : " + e.result);
-	   		console.log("Success : " + e.result);
+	   		$.loadingBar.opacity = "0"; 
 	   		alert("Successfully posted on Facebook");
 	   	}	
 	   	else
@@ -65,8 +62,7 @@ function shareFacebook()
 	   		if (e.error) {
 	   			$.loadingBar.hide();
 	   			$.loadingBar.opacity = "0";
-	   			alert(e.error);
-	   			console.log(e.error);
+	   			alert(e.error); 
 	   		}
 	   		else
 	   		{

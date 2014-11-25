@@ -1,11 +1,13 @@
 <Alloy>
  
 	<View class="container" id="mainViewContainer" >
+		
 		<View layout="vertical">
 			<View layout="horizontal" height="80" backgroundImage="/images/banner_colour_swatches.jpg">
 				<Require src="toggle"></Require>
 				<!--<Label id="titleLabel" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Colour Swatches</Label>-->
 			</View>
+			
 			<ScrollView id="TheScrollView" backgroundColor="white" width="100%" layout="vertical" contentHeight=Ti.UI.SIZE height="80%" top="0" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
 			</ScrollView>
 			 <!--<Label class="title"  textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">COLOR CATEGORIES</Label>-->
@@ -32,6 +34,10 @@
 				</View>
 			</View>
 		</View>	
+		<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" top="0" opacity="1" backgroundColor="#2E2E2E" >
+			<ActivityIndicator  id="activityIndicator" />
+			<Label text="Loading" color="#ffffff" />
+		</View>
 		<View id="win" height="80%" width="80%" backgroundColor="transparent" theme="Theme.NoActionBar" navBarHidden="true" fullscreen="true" borderColor="#A5A5A5" borderWidth="2" visible="false">
 	        <ScrollableView id="scrollableView" showPagingControl="true" pagingControlTimeout="0">
 	            <View id="view1" backgroundColor="white">
@@ -50,4 +56,5 @@
 	        </ScrollableView>
 	    </View>
 	</View>
+	
 </Alloy>

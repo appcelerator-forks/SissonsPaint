@@ -34,20 +34,22 @@ exports.definition = {
                 var count = 0;
                 while (res.isValidRow()){
                 	var c = res.fieldByName('rgb').split(/,\s*/);
-                	
-					listArr[count] = {
-					    id: res.fieldByName('id'),
-					    name: res.fieldByName('name'),
-					    code: res.fieldByName('code'),
-					    rgb: res.fieldByName('rgb'),
-					    cmyk: res.fieldByName('cmyk'),
-					    sample: res.fieldByName('sample'),
-					    thumb: res.fieldByName('thumb'),
-					    contrast: parseInt(c[0])+parseInt(c[1])+parseInt(c[2])
-					};
+                	 
+					listArr[count] = { 
+							id: res.fieldByName('id'),
+						    name: res.fieldByName('name'),
+						    code: res.fieldByName('code'),
+						    rgb: res.fieldByName('rgb'),
+						    cmyk: res.fieldByName('cmyk'),
+						    sample: res.fieldByName('sample'),
+						    thumb: res.fieldByName('thumb'),
+						    contrast: parseInt(c[0])+parseInt(c[1])+parseInt(c[2])
+					};	
+					 
 					res.next();
 					count++;
 				} 
+			 
 				res.close();
                 db.close();
                 collection.trigger('sync');
@@ -131,24 +133,20 @@ exports.definition = {
                 	var diff = Math.max(diff_r, diff_g, diff_b);
                 	
                 	// if (diff_r<=diff_min && diff_g<=diff_min && diff_b<=diff_min)
-                	if (diff<=diff_min)
-                		{
-                			for (var i=0; i<listArr.length; i++)
-                			{
-                				if (diff <= listArr[i].diff)
-                				{
+                	if (diff<=diff_min) {
+                			for (var i=0; i<listArr.length; i++) {
+                				if (diff <= listArr[i].diff) {
                 					index = i;
                 					break;
                 				}	
                 			}
                 			
-							if (index < 0)
-							{
+							if (index < 0){
 								index = listArr.length;
 							}
 							
 							
-							listArr.splice(index, 0,
+								listArr.splice(index, 0,
         						{
 								    id: res.fieldByName('id'),
 								    name: res.fieldByName('name'),

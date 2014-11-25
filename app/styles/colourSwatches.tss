@@ -40,5 +40,11 @@
 	font: {
         fontSize: '22'
    }
+},
+"#activityIndicator" : {
+	 style: Ti.UI.ActivityIndicatorStyle.BIG,
+	 top:15,
+	 left:30,
+	 width:60,
 }
  

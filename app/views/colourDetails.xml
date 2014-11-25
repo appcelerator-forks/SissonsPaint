@@ -7,7 +7,7 @@
 				<View layout="vertical" width="150" top="5" height="150" bottom="45" id="boxDetails" opacity="0.6" >
 				 	<Label class="title" left="10" id="colourCode" top="10" />
 				 	<Label class="title" left="10" id="colourName" />
-				 	<View layout="horizontal" width="100%" height="20"  >
+				 	<!--<View layout="horizontal" width="100%" height="20"  >
 				 		<Label class="cCodeTitle" left="10" >C </Label>
 				 		<Label class="cCode" right="5" id="colourC" ></Label>
 				 	</View>
@@ -26,14 +26,15 @@
 				 		<Label class="cCodeTitle" left="10" >K </Label>
 				 		<Label class="cCode" right="10" id="colourK"   ></Label>
 					</View>
+				-->
 				</View>
 			</View>
 
 			
 		</View>
 		<View  layout="vertical" bottom="60" height="Ti.UI.SIZE" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
-			<View layout="vertical" height="Titanium.UI.SIZE">
-				<ImageView image="/images/scroll_up.png" width="Titanium.UI.FILL" />
+			<View layout="vertical"  height="30" backgroundImage="/images/scroll_up.png">
+				 
 			</View>
 			<View layout="vertical" height="Titanium.UI.SIZE" backgroundColor="#ffffff">
 				<Label class="titleLabel" color="black" width="95%" >Colour Category</Label>

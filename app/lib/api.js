@@ -82,7 +82,23 @@ exports.loadCategory = function(ex){
 	       if(res.status == "success"){
 	       		var checker = Alloy.createCollection('updateChecker'); 
 				var isUpdate = checker.getCheckerById("3");
-				 
+				
+				/*** Category ***/
+				var lib_type = Alloy.createCollection('type'); 
+					
+				lib_type.resetType();
+			    var categoriestypes = res.type;
+			    var typePriority = 1;
+			    categoriestypes.forEach(function(catetypes) {
+			    	var category_type = Alloy.createModel('type', { 
+						id: typePriority, 
+						ctype: catetypes.type
+					});
+					 console.log(catetypes.type);
+					category_type.save(); 
+					typePriority++;
+			   }); 
+				
 				if(isUpdate == "" || (res.last_updated != isUpdate.updated)){
 					checker.updateModule("3","category",res.last_updated);
 					
@@ -91,9 +107,10 @@ exports.loadCategory = function(ex){
 			       	var lib_type = Alloy.createCollection('category_type'); 
 			       	var lib_colour = Alloy.createCollection('category_colour'); 
 			       	
-					lib_cate.resetCategory();
+			       	lib_cate.resetCategory();
 					lib_type.resetCategoryType();
 					lib_colour.resetCategoryColour();
+					
 					
 					/**load new set of category from API**/
 			       	var arr = res.data;
@@ -132,6 +149,8 @@ exports.loadCategory = function(ex){
 			       		});
 					});
 					
+					
+			       	
 				}
 		       
 				Ti.App.Properties.setString('loadCategory', '1');

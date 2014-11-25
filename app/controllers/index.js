@@ -1,5 +1,5 @@
 var pWidth = Ti.Platform.displayCaps.platformWidth;//PixelsToDPUnits(800);
-console.log(pWidth);
+ 
 if(pWidth > 800){
 	$.whiteLogo.setOpacity(1);
 }else{

@@ -31,16 +31,19 @@ var t = Titanium.UI.create2DMatrix();
     t = t.rotate(-90);
 
 $.slider.transform = t;
-
+ 
 $.activityIndicator.show();
 $.loadingBar.opacity = "1";
 $.loadingBar.height = "120";
-$.loadingBar.top = (PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight)/2);
+$.loadingBar.top = ((PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight)/2)-($.loadingBar.getHeight()/2));
+
+
 
 setTimeout(function(){
 	generateFavourite();
 	generateColour();
 	takePhoto();
+	
 }, 300);
 	 
 $.toolbar.addEventListener('postlayout', function(e) { 
@@ -115,37 +118,35 @@ var tableShare = Titanium.UI.createTableView({
 	data: tableDataShare
 });
 
+$.diyPaint.add(tableShare);
+
 var share = function(e){
-	
+	 
 	closeShareWindow();
 	if(shareFlag == 1) {
 		shareFlag = 0;
-		$.diyPaint.remove(tableShare);
+		//$.diyPaint.remove(tableShare);
+		tableShare.hide();
 	}else {
 		shareFlag = 1;
 		
-		$.diyPaint.add(tableShare);
+		tableShare.show();
+		//$.diyPaint.add(tableShare);
 		tableShare.addEventListener('click', tableShareListener);
 		
 	} 
 };
 
-var tableShareListener = function(e){
-	console.log(e.index);
+var tableShareListener = function(e){ 
 	shareFlag = 0;
-	$.diyPaint.remove(tableShare);
+	//$.diyPaint.remove(tableShare);
+	tableShare.hide();
 	Ti.App.addEventListener('app:saveToGallery', save); 
-	if(e.index == 0)
-	{
+	if(e.index == 0){
 		Ti.App.fireEvent('web:saveAndShare',{'share': 0 });
-	}
-	else
-	{
+	}else{
 		Ti.App.fireEvent('web:saveAndShare',{'share': 1 });
-		//shareFunction();
-		/****KM FB testing*****/
-		//console.log("before new view "+imgPath);
-		//setTimeout(function(){var nav = Alloy.createController("share",{imgPath:imgPath}).getView(); nav.open();},5000);
+		
 	}
 };
 
@@ -277,10 +278,13 @@ var table = Titanium.UI.createTableView({
 	overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
 	data: tableData
 });
-	
+ 
+$.diyPaint.add(table);
+
 var tableListener = function(e){
 	filterFlag = 0;
-	$.diyPaint.remove(table);
+	table.hide();
+	//$.diyPaint.remove(table);
 	if(e.index == 0){
 		tools = "bucket";
 		$.slider.setValue(bucketWidth);
@@ -309,14 +313,16 @@ function toolspop(e){
 	closeWindow();
 	if(filterFlag == 1) {
 		filterFlag = 0;
-		$.diyPaint.remove(table);
+		table.hide();
+		//$.diyPaint.remove(table);
 	}else {
 		filterFlag = 1;
 		colorSwatches(-330);
 		sizePop(-250);
 		colorShow = 0;
 		sizeShow = 0;
-		$.diyPaint.add(table);
+		table.show();
+		//$.diyPaint.add(table);
 		table.addEventListener('click', tableListener);
 		
 	}
@@ -521,30 +527,47 @@ function generateColour(){
 			
 	var index = -1;
 	var listArr = [];
-	for (var i=0; i<list_colours.length; i++)
-	{
-		index = listArr.length;
-		
-		for (var j=0; j<listArr.length; j++)
-        {
-			if (list_colours[i].contrast >= listArr[j].contrast)
-			{
-				index = j;
-				break;
-			}	
+	//console.log(list_colours);
+	for (var i=0; i<list_colours.length; i++) {
+		if(list_colours[i].contrast <= 730){
+		 
+			index = listArr.length;
+			 
+			for (var j=0; j<listArr.length; j++) {
+				if (list_colours[i].contrast >= listArr[j].contrast) {
+					index = j;
+					break;
+				}	
+			}
+			
+			listArr.splice(index, 0, list_colours[i]);
 		}
-		
-		listArr.splice(index, 0, list_colours[i]);
 	}
 	
-	for (var i=0; i<listArr.length; i++)
-	{
-		//console.log(listArr[i].contrast)
+	var whiteListArr = [];
+	for (var i=0; i<list_colours.length; i++) {
+		if(list_colours[i].contrast >= 730){
+			index = whiteListArr.length;
+			 
+			for (var j=0; j<whiteListArr.length; j++) {
+				if (list_colours[i].contrast >= whiteListArr[j].contrast) {
+					index = j;
+					break;
+				}	
+			}
+			
+			whiteListArr.splice(index, 0, list_colours[i]);
+		}
+	}
+	
+	var finalList = listArr.concat(whiteListArr);
+	for (var i=0; i<finalList.length; i++) {
+		 
 		var colours;
 			
-		if(listArr[i].thumb != ""){
+		if(finalList[i].thumb != ""){
 	  		colours = $.UI.create('ImageView', {  
-				image: listArr[i].thumb,
+				image: finalList[i].thumb,
 				borderColor: "#A5A5A5",
 				borderWidth: 1,
 				width: "40", 
@@ -554,7 +577,7 @@ function generateColour(){
 			});
 	  	}else{
 	  		 colours = $.UI.create('View', {  
-				backgroundColor: "rgb("+listArr[i].rgb +")",
+				backgroundColor: "rgb("+finalList[i].rgb +")",
 				borderColor: "#A5A5A5",
 				borderWidth: 1,
 				width: "40", 
@@ -577,7 +600,7 @@ function generateColour(){
 			bottomRow.add(colours);
 		}
 		
-		createColorEvent(colours, listArr[i]);
+		createColorEvent(colours, finalList[i]);
 	}
 	
 	$.scrollView.add(topRow);
@@ -644,6 +667,9 @@ var removeIcon = Ti.UI.createImageView({
 $.view3.add(removeIcon);
 
 removeIcon.addEventListener( "click", function(){
-	$.win.hide();
-	console.log($.checkBox.value);
+	$.win.hide(); 
 });
+setTimeout(function(){
+	table.hide();
+	tableShare.hide();
+}, 3);
