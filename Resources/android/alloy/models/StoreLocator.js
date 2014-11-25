@@ -1,3 +1,33 @@
+function mysql_real_escape_string(str) {
+    return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function(char) {
+        switch (char) {
+          case "\x00":
+            return "\\0";
+
+          case "\b":
+            return "\\b";
+
+          case "	":
+            return "\\t";
+
+          case "":
+            return "\\z";
+
+          case "\n":
+            return "\\n";
+
+          case "\r":
+            return "\\r";
+
+          case '"':
+          case "'":
+          case "\\":
+          case "%":
+            return "\\" + char;
+        }
+    });
+}
+
 var Alloy = require("alloy"), _ = require("alloy/underscore")._, model, collection;
 
 exports.definition = {
@@ -125,6 +155,18 @@ exports.definition = {
                 db.close();
                 collection.trigger("sync");
                 return arr;
+            },
+            addStores: function(arr) {
+                var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                db.execute("BEGIN");
+                arr.forEach(function(entry) {
+                    sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "(id, outlet, area, state, address,mobile, fax, email, latitude, longitude, category ) VALUES ('" + entry.f_id + "', '" + mysql_real_escape_string(entry.f_outlet) + "', '" + entry.f_area + "', '" + entry.f_state + "', '" + mysql_real_escape_string(entry.f_address) + "', '" + entry.f_mobile + "', '" + entry.f_fax + "', '" + entry.f_email + "', '" + entry.f_lat + "', '" + entry.f_lng + "', '" + entry.f_category + "')";
+                    db.execute(sql_query);
+                });
+                db.execute("COMMIT");
+                db.close();
+                collection.trigger("sync");
             },
             resetStore: function() {
                 var collection = this;

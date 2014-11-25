@@ -65,7 +65,6 @@ function Controller() {
         }
     }
     function updateAdjustment(e) {
-        alert(e.value);
         if ("bucket" == tools) {
             bucketWidth = parseInt(e.value);
             Ti.App.fireEvent("web:setSensetive", {

@@ -38,20 +38,10 @@ exports.loadColour = function() {
                     var library = Alloy.createCollection("colour");
                     library.resetColour();
                     var arr = res.data;
-                    arr.forEach(function(entry) {
-                        var colour = Alloy.createModel("colour", {
-                            id: entry.id,
-                            name: entry.name,
-                            code: entry.code,
-                            rgb: entry.RGB,
-                            cmyk: entry.CMYK,
-                            sample: entry.sample,
-                            thumb: entry.thumb
-                        });
-                        colour.save();
-                    });
+                    library.addColours(arr);
                 }
                 Ti.App.Properties.setString("loadColour", "1");
+                console.log("color finish");
             }
         },
         onerror: function() {
@@ -162,22 +152,7 @@ exports.loadStoreLocator = function() {
                     var library = Alloy.createCollection("storeLocator");
                     library.resetStore();
                     var arr = res.data;
-                    arr.forEach(function(entry) {
-                        var storeLocator = Alloy.createModel("storeLocator", {
-                            id: entry.f_id,
-                            outlet: entry.f_outlet,
-                            area: entry.f_area,
-                            state: entry.f_state,
-                            address: entry.f_address,
-                            mobile: entry.f_mobile,
-                            fax: entry.f_fax,
-                            email: entry.f_email,
-                            latitude: entry.f_lat,
-                            longitude: entry.f_lng,
-                            category: entry.f_category
-                        });
-                        storeLocator.save();
-                    });
+                    library.addStores(arr);
                 }
                 Ti.App.Properties.setString("loadStoreLocator", "1");
             }
