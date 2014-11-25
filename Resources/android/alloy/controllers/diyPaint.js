@@ -65,6 +65,7 @@ function Controller() {
         }
     }
     function updateAdjustment(e) {
+        alert(e.value);
         if ("bucket" == tools) {
             bucketWidth = parseInt(e.value);
             Ti.App.fireEvent("web:setSensetive", {
@@ -221,6 +222,7 @@ function Controller() {
             }
             listArr.splice(index, 0, list_colours[i]);
         }
+<<<<<<< HEAD
         var whiteListArr = [];
         for (var i = 0; i < list_colours.length; i++) if (list_colours[i].contrast >= 730) {
             index = whiteListArr.length;
@@ -235,6 +237,12 @@ function Controller() {
             var colours;
             colours = "" != finalList[i].thumb ? $.UI.create("ImageView", {
                 image: finalList[i].thumb,
+=======
+        for (var i = 0; i < listArr.length; i++) {
+            var colours;
+            colours = "" != listArr[i].thumb ? $.UI.create("ImageView", {
+                image: listArr[i].thumb,
+>>>>>>> FETCH_HEAD
                 borderColor: "#A5A5A5",
                 borderWidth: 1,
                 width: "40",
@@ -242,7 +250,11 @@ function Controller() {
                 left: "5",
                 right: "5"
             }) : $.UI.create("View", {
+<<<<<<< HEAD
                 backgroundColor: "rgb(" + finalList[i].rgb + ")",
+=======
+                backgroundColor: "rgb(" + listArr[i].rgb + ")",
+>>>>>>> FETCH_HEAD
                 borderColor: "#A5A5A5",
                 borderWidth: 1,
                 width: "40",

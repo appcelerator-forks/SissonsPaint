@@ -71,6 +71,7 @@ exports.loadCategory = function() {
             if ("success" == res.status) {
                 var checker = Alloy.createCollection("updateChecker");
                 var isUpdate = checker.getCheckerById("3");
+<<<<<<< HEAD
                 var lib_type = Alloy.createCollection("type");
                 lib_type.resetType();
                 var categoriestypes = res.type;
@@ -84,6 +85,8 @@ exports.loadCategory = function() {
                     category_type.save();
                     typePriority++;
                 });
+=======
+>>>>>>> FETCH_HEAD
                 if ("" == isUpdate || res.last_updated != isUpdate.updated) {
                     checker.updateModule("3", "category", res.last_updated);
                     var lib_cate = Alloy.createCollection("category");
