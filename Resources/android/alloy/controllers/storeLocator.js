@@ -37,18 +37,18 @@ function Controller() {
         width: "100%"
     });
     $.__views.mainWindow && $.addTopLevelView($.__views.mainWindow);
-    $.__views.__alloyId131 = Ti.UI.createView({
+    $.__views.__alloyId139 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
         backgroundImage: "/images/banner_store_locator.jpg",
-        id: "__alloyId131"
+        id: "__alloyId139"
     });
-    $.__views.mainWindow.add($.__views.__alloyId131);
-    $.__views.__alloyId132 = Alloy.createController("toggle", {
-        id: "__alloyId132",
-        __parentSymbol: $.__views.__alloyId131
+    $.__views.mainWindow.add($.__views.__alloyId139);
+    $.__views.__alloyId140 = Alloy.createController("toggle", {
+        id: "__alloyId140",
+        __parentSymbol: $.__views.__alloyId139
     });
-    $.__views.__alloyId132.setParent($.__views.__alloyId131);
+    $.__views.__alloyId140.setParent($.__views.__alloyId139);
     $.__views.subWindow = Ti.UI.createScrollView({
         id: "subWindow",
         layout: "vertical",
@@ -112,7 +112,7 @@ function Controller() {
     listState ? $.__views.zoneC.addEventListener("click", listState) : __defers["$.__views.zoneC!click!listState"] = true;
     $.__views.zoneD = Ti.UI.createButton({
         color: "white",
-        title: "Kuala Terengganu",
+        title: "Melaka",
         backgroundColor: "black",
         id: "zoneD",
         width: "40%",
@@ -132,7 +132,7 @@ function Controller() {
     $.__views.subWindow.add($.__views.row3);
     $.__views.zoneE = Ti.UI.createButton({
         color: "white",
-        title: "Melaka",
+        title: "Negeri Sembilan",
         backgroundColor: "black",
         id: "zoneE",
         width: "40%",
@@ -145,7 +145,7 @@ function Controller() {
     listState ? $.__views.zoneE.addEventListener("click", listState) : __defers["$.__views.zoneE!click!listState"] = true;
     $.__views.zoneF = Ti.UI.createButton({
         color: "white",
-        title: "Negeri Sembilan",
+        title: "Pahang",
         backgroundColor: "black",
         id: "zoneF",
         width: "40%",
@@ -165,7 +165,7 @@ function Controller() {
     $.__views.subWindow.add($.__views.row4);
     $.__views.zoneG = Ti.UI.createButton({
         color: "white",
-        title: "Pahang",
+        title: "Penang",
         backgroundColor: "black",
         id: "zoneG",
         width: "40%",
@@ -178,7 +178,7 @@ function Controller() {
     listState ? $.__views.zoneG.addEventListener("click", listState) : __defers["$.__views.zoneG!click!listState"] = true;
     $.__views.zoneH = Ti.UI.createButton({
         color: "white",
-        title: "Penang",
+        title: "Perak",
         backgroundColor: "black",
         id: "zoneH",
         width: "40%",
@@ -198,7 +198,7 @@ function Controller() {
     $.__views.subWindow.add($.__views.row5);
     $.__views.zoneI = Ti.UI.createButton({
         color: "white",
-        title: "Perak",
+        title: "Perlis",
         backgroundColor: "black",
         id: "zoneI",
         width: "40%",
@@ -211,7 +211,7 @@ function Controller() {
     listState ? $.__views.zoneI.addEventListener("click", listState) : __defers["$.__views.zoneI!click!listState"] = true;
     $.__views.zoneJ = Ti.UI.createButton({
         color: "white",
-        title: "Perlis",
+        title: "Sabah",
         backgroundColor: "black",
         id: "zoneJ",
         width: "40%",
@@ -231,7 +231,7 @@ function Controller() {
     $.__views.subWindow.add($.__views.row6);
     $.__views.zoneK = Ti.UI.createButton({
         color: "white",
-        title: "Sabah",
+        title: "Sarawak",
         backgroundColor: "black",
         id: "zoneK",
         width: "40%",
@@ -244,7 +244,7 @@ function Controller() {
     listState ? $.__views.zoneK.addEventListener("click", listState) : __defers["$.__views.zoneK!click!listState"] = true;
     $.__views.zoneL = Ti.UI.createButton({
         color: "white",
-        title: "Sarawak",
+        title: "Selangor",
         backgroundColor: "black",
         id: "zoneL",
         width: "40%",
@@ -264,7 +264,7 @@ function Controller() {
     $.__views.subWindow.add($.__views.row7);
     $.__views.zoneM = Ti.UI.createButton({
         color: "white",
-        title: "Selangor",
+        title: "Terengganu",
         backgroundColor: "black",
         id: "zoneM",
         width: "40%",
