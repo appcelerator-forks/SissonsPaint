@@ -169,15 +169,14 @@ function generateStoreTable(details){
    		layout: 'composite',
    		width: "100%",
    		height: 80,
-   		bottom: 0,
-   		backgroundColor: '#A5A5A5'
+   		bottom: 0, 
+   		backgroundImage: '/images/tool_bar.jpg'
 	});
 	
 	var hintTextLabel = Ti.UI.createLabel({
 	    text : 'Enter Colour, Name or Colour Code',
 	    color : '#A5A5A5',
-	    font : 
-	    {
+	    font : {
 	        fontSize : 14
 	    },
 	    backgroundColor : 'transparent',

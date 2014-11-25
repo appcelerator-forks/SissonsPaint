@@ -16,7 +16,7 @@
 		</TableViewRow>
 		
 		<TableViewRow height="50">
-			<Label width="Ti.UI.FILL" left="10">Brochure</Label>
+			<Label width="Ti.UI.FILL" left="10">Brochures</Label>
 		</TableViewRow>
 		
 		<TableViewRow height="50">

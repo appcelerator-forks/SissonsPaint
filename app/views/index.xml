@@ -21,11 +21,11 @@
 				</TableViewRow>
 				
 				<TableViewRow height="50">
-					<Label width="Ti.UI.FILL" left="30" color="white">Favourite Colour</Label>
+					<Label width="Ti.UI.FILL" left="30" color="white">Favourite Colours</Label>
 				</TableViewRow>
 				
 				<TableViewRow height="50">
-					<Label width="Ti.UI.FILL" left="30" color="white">Brochure</Label>
+					<Label width="Ti.UI.FILL" left="30" color="white">Brochures</Label>
 				</TableViewRow>
 				
 				<TableViewRow height="50">

@@ -17,38 +17,15 @@ var TheScrollView = Titanium.UI.createScrollView({
 		overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
 });
 	
-/*var bottomBar = Titanium.UI.createView({ 
-   bottom: 0, 
-   height: 60,
-   width: Ti.Platform.displayCaps.platformWidth
-});
-
-var buttonWrapper = Titanium.UI.createView({
-	layout: 'horizontal',
-	left : (Ti.Platform.displayCaps.platformWidth-220) / 2,
-	width: 120
-});
-
-var backgroundImg = Ti.UI.createImageView({
-	height: 60,
-	width: Ti.UI.FILL,
-  	image:'/images/tool_bar.jpg'
-});
-
-var unFavButton = Ti.UI.createImageView({
-  	width: 50,
-  	height: 40, 
-  	top: 10,
-  	bottom: 5,
-  	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-  	image:'/images/icon_fav_remove.png', 
-
-});
-buttonWrapper.add(unFavButton);
-bottomBar.add(backgroundImg);
-bottomBar.add(buttonWrapper);*/
 loadFavouriteList();
 
+
+favourite_list.forEach(function(fav) { 
+	favourite_list.colour_details = colour_lib.getColourById(fav.colour_id);
+	favourite_list.colour_cate = category_colour_lib.getCateByColourId(fav.colour_id);
+	//favourite_list.details = cate_lib.getCategoryById(colour_cate.cate_id, "2");
+});
+console.log(favourite_list);
 function loadFavouriteList(){
 	var data=[];
 	removeAllChildren(TheScrollView);
@@ -185,14 +162,7 @@ function removeFavEvent(removeIcon, colour_id, colour_code){
 	});
 }
 	
-function removeAllChildren(viewObject){
-    //copy array of child object references because view's "children" property is live collection of child object references
-    var children = viewObject.children.slice(0);
  
-    for (var i = 0; i < children.length; ++i) {
-        viewObject.remove(children[i]);
-    }
-}
 
 function createColorEvent(subView, colour_details, details){
  
