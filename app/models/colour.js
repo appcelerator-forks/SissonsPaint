@@ -114,6 +114,29 @@ exports.definition = {
                 collection.trigger('sync');
                 return listArr;
 			},
+			addColours : function(arr) {
+				var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+	           
+	            db.execute("BEGIN");
+				arr.forEach(function(entry) {
+		       		sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "(id, name, code,RGB, CMYK,sample, thumb ) VALUES ('"+entry.id+"', '"+entry.name+"', '"+entry.code+"', '"+entry.RGB+"', '"+entry.CMYK+"', '"+entry.sample+"', '"+entry.thumb+"')";
+					/*var colour = Alloy.createModel('colour', {
+				        id: entry.id,
+					    name: entry.name,
+					    code: entry.code,
+					    rgb: entry.RGB,
+					    cmyk: entry.CMYK,
+					    sample: entry.sample,
+					    thumb: entry.thumb
+				    });
+				    colour.save();*/
+				    db.execute(sql_query);
+				});
+                db.execute("COMMIT");
+	            db.close();
+	            collection.trigger('sync');
+            },
 			getClosestColourList: function(closest_r, closest_g, closest_b){
 				var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name +"  order by id DESC";
