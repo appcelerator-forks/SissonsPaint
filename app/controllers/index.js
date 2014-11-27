@@ -50,7 +50,7 @@ function checkLoadStatus(){
 		$.loadingBar.opacity = "0";
 		var nav = Alloy.createController("aboutUs").getView(); 
 		Alloy.Globals.Drawer.setCenterWindow(nav);  
-		//Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
+		Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
 		
 	}else{
 		setTimeout(function(){

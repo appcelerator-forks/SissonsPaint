@@ -328,7 +328,7 @@ function Controller() {
     var type_lib = Alloy.createCollection("type");
     var from = 0;
     var firstRecords = "1";
-    var minHeight = 2797;
+    var minHeight = 112797;
     var tableData = [];
     var details = library.getCategoryListByType("2", from);
     $.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 140;
@@ -350,7 +350,7 @@ function Controller() {
         width: "100%",
         height: 80,
         bottom: 60,
-        backgroundColor: "#A5A5A5"
+        backgroundImage: "/images/tool_bar.jpg"
     });
     searchView.hide();
     $.mainViewContainer.add(searchView);

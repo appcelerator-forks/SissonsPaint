@@ -138,7 +138,7 @@ function Controller() {
             width: "100%",
             height: 80,
             bottom: 0,
-            backgroundColor: "#A5A5A5"
+            backgroundImage: "/images/tool_bar.jpg"
         });
         var hintTextLabel = Ti.UI.createLabel({
             text: "Enter Colour, Name or Colour Code",
@@ -213,17 +213,17 @@ function Controller() {
         id: "storeLocatorByState"
     });
     $.__views.storeLocatorByState && $.addTopLevelView($.__views.storeLocatorByState);
-    $.__views.__alloyId141 = Ti.UI.createView({
+    $.__views.__alloyId140 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId141"
+        id: "__alloyId140"
     });
-    $.__views.storeLocatorByState.add($.__views.__alloyId141);
-    $.__views.__alloyId142 = Alloy.createController("toggle", {
-        id: "__alloyId142",
-        __parentSymbol: $.__views.__alloyId141
+    $.__views.storeLocatorByState.add($.__views.__alloyId140);
+    $.__views.__alloyId141 = Alloy.createController("toggle", {
+        id: "__alloyId141",
+        __parentSymbol: $.__views.__alloyId140
     });
-    $.__views.__alloyId142.setParent($.__views.__alloyId141);
+    $.__views.__alloyId141.setParent($.__views.__alloyId140);
     $.__views.stateName = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -234,7 +234,7 @@ function Controller() {
         id: "stateName",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
-    $.__views.__alloyId141.add($.__views.stateName);
+    $.__views.__alloyId140.add($.__views.stateName);
     $.__views.tableContainer = Ti.UI.createView({
         backgroundColor: "white",
         id: "tableContainer",
