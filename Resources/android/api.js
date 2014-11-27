@@ -41,7 +41,6 @@ exports.loadColour = function() {
                     library.addColours(arr);
                 }
                 Ti.App.Properties.setString("loadColour", "1");
-                console.log("color finish");
             }
         },
         onerror: function() {
@@ -70,7 +69,6 @@ exports.loadCategory = function() {
                         id: typePriority,
                         ctype: catetypes.type
                     });
-                    console.log(catetypes.type);
                     category_type.save();
                     typePriority++;
                 });

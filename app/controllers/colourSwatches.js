@@ -7,7 +7,7 @@ var type_lib = Alloy.createCollection('type');
 
 var from = 0;
 var firstRecords = "1";
-var minHeight = 112797;
+var minHeight = 2797;
 var tableData = [];
 var details = library.getCategoryListByType("2",from); 
 $.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 140;
@@ -361,11 +361,7 @@ Ti.App.Properties.setString('swatchMinHeight', minHeight);
 $.TheScrollView.addEventListener('scroll', function (e) {  
 	
 	var swatchMinHeight = Ti.App.Properties.getString('swatchMinHeight');
-<<<<<<< HEAD
-	 //console.log(swatchMinHeight +"=="+e.y);
-=======
-	
->>>>>>> FETCH_HEAD
+ 
 	if( e.y >= swatchMinHeight  ){ 
 		swatchMinHeight = parseInt(swatchMinHeight) + parseInt(minHeight); 
 		Ti.App.Properties.setString('swatchMinHeight', swatchMinHeight);
