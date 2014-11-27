@@ -385,6 +385,7 @@ function Controller() {
         drawerFlag = 1;
     });
     $.drawer.addEventListener("windowDidClose", function() {
+        console.log("a");
         $.destroy();
         drawerFlag = 0;
     });
