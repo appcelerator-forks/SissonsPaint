@@ -51,23 +51,9 @@ var TheScrollView = Titanium.UI.createScrollView({
 });
 
 
-<<<<<<< HEAD
-favourite_list.forEach(function(fav) { 
-	favourite_list.colour_details = colour_lib.getColourById(fav.colour_id);
-	favourite_list.colour_cate = category_colour_lib.getCateByColourId(fav.colour_id);
-	//favourite_list.details = cate_lib.getCategoryById(colour_cate.cate_id, "2");
-});
-
-function loadFavouriteList(){
-	var data=[];
-	
-	if( favourite_list.length > 0){
-		
-=======
 function loadFavouriteList(){
 	var data=[]; 
 	if( geo.length > 0){
->>>>>>> FETCH_HEAD
 		var colourView = $.UI.create('View', { 
 			textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 			layout: 'horizontal',
@@ -86,21 +72,16 @@ function loadFavouriteList(){
 				height: Ti.UI.SIZE
 			});
 			 
-<<<<<<< HEAD
-			if(colour_details.sample != ""){
+
+			if(fav.colour_details.sample != ""){
 				var subViewColor = $.UI.create('View', {
-=======
-			if(fav.sample != ""){
-				var subViewColor = $.UI.create('View', {  
-					backgroundImage: fav.sample,
->>>>>>> FETCH_HEAD
 					borderColor: "#A5A5A5",
 					borderWidth: 1,
 					width: "97%", 
 					height: "80"
 				});
 				var img = Ti.UI.createImageView({
-				  	image: colour_details.sample,
+				  	image: fav.colour_details.sample,
 				  	borderColor: "#A5A5A5",
 					borderWidth: 1,
 					width: "97%", 
@@ -215,38 +196,3 @@ function createColorEvent(subView, colour_details, details){
 	});
 
 }
-
-$.drawer.addEventListener('android:back', function (e) {
-	mod = Ti.App.Properties.getString('module');
-	if(mod == "storeLocator"){
-		Ti.App.Properties.setString('module', 'index');
-		var nav = Alloy.createController("storeLocator").getView(); 
-		Alloy.Globals.Drawer.setCenterWindow(nav);  
-	}else if(mod == "search"){
-		from = Ti.App.Properties.getString('from');
-		Ti.App.Properties.setString('module', 'index');
-		var nav = Alloy.createController(from).getView(); 
-		Alloy.Globals.Drawer.setCenterWindow(nav);  
-	}else if(drawerFlag == 1){
-		var dialog = Ti.UI.createAlertDialog({
-		    cancel: 1,
-		    buttonNames: ['Cancel','Confirm'],
-		    message: 'Would you like to exit Sissons Paint?',
-		    title: 'Exit app'
-		});
-		dialog.addEventListener('click', function(e){
-		  
-	    	if (e.index === e.source.cancel){
-		      //Do nothing
-		    }
-		    if (e.index === 1){
-		    	var activity = Titanium.Android.currentActivity;
-				activity.finish();
-		    }
-		});
-		dialog.show(); 
-	}else{
-		 toggle();
-	}
-  	
-});
