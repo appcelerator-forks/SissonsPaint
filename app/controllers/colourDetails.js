@@ -13,7 +13,7 @@ if(colour.sample != ""){
 //$.colourDetails.backgroundColor = "rgb("+colour.rgb +")";
 $.boxDetails.backgroundColor = "rgb("+colour.rgb +")";
 $.colourCode.text = colour.code;
-$.colourName.text = colour.name;  
+$.colourName.text = colour.name; 
  
 //var cmyk = colour.cmyk;
 //var res = cmyk.split(",");
