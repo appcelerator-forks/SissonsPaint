@@ -3,8 +3,41 @@ var args = arguments[0] || {};
 var library = Alloy.createCollection('favourite'); 
 var category_colour_lib = Alloy.createCollection('category_colour');
 var colour_lib = Alloy.createCollection('colour');
-var cate_lib = Alloy.createCollection('category');
-var favourite_list = library.getFavouriteList();
+var cate_lib = Alloy.createCollection('category'); 
+var geo = [];
+
+
+setTimeout(function(){ 
+	getFav();
+	loadFavouriteList();
+}, 500);
+
+function  getFav(){
+	var count = 0;
+
+	var favourite_list = library.getFavouriteList();
+	geo = [];
+	favourite_list.forEach(function(favs) { 
+		f_colour_details = colour_lib.getColourById(favs.colour_id);
+		f_colour_cate = category_colour_lib.getCateByColourId(favs.colour_id);
+		f_details = cate_lib.getCategoryById(f_colour_cate.cate_id, "2"); 
+		geo[count] = { 
+			colour_id: favs.colour_id,
+			cate_id: f_colour_cate.cate_id,
+			sample: f_colour_details.sample,
+			name: f_colour_details.name,
+			code: f_colour_details.code,
+			rgb: f_colour_details.rgb,
+			colour_details :f_colour_details,
+			details :f_details
+		};	
+		//favourite_list.details = cate_lib.getCategoryById(colour_cate.cate_id, "2");
+		count++;
+	});
+	favourite_list = null;
+	console.log(geo);
+}
+
 
 var removeFlag = "0"; 
 var TheScrollView = Titanium.UI.createScrollView({
@@ -16,10 +49,9 @@ var TheScrollView = Titanium.UI.createScrollView({
 		top: 80,
 		overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
 });
-	
-loadFavouriteList();
 
 
+<<<<<<< HEAD
 favourite_list.forEach(function(fav) { 
 	favourite_list.colour_details = colour_lib.getColourById(fav.colour_id);
 	favourite_list.colour_cate = category_colour_lib.getCateByColourId(fav.colour_id);
@@ -31,6 +63,11 @@ function loadFavouriteList(){
 	
 	if( favourite_list.length > 0){
 		
+=======
+function loadFavouriteList(){
+	var data=[]; 
+	if( geo.length > 0){
+>>>>>>> FETCH_HEAD
 		var colourView = $.UI.create('View', { 
 			textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 			layout: 'horizontal',
@@ -40,11 +77,7 @@ function loadFavouriteList(){
 		});
 		var counter = 0;
 			
-		favourite_list.forEach(function(fav) { 
-			var colour_details = colour_lib.getColourById(fav.colour_id);
-			var colour_cate = category_colour_lib.getCateByColourId(fav.colour_id);
-			var details = cate_lib.getCategoryById(colour_cate.cate_id, "2");
-			 
+		geo.forEach(function(fav) {  
 			var subView = $.UI.create('View', { 
 				textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
 				layout: 'vertical',
@@ -53,8 +86,14 @@ function loadFavouriteList(){
 				height: Ti.UI.SIZE
 			});
 			 
+<<<<<<< HEAD
 			if(colour_details.sample != ""){
 				var subViewColor = $.UI.create('View', {
+=======
+			if(fav.sample != ""){
+				var subViewColor = $.UI.create('View', {  
+					backgroundImage: fav.sample,
+>>>>>>> FETCH_HEAD
 					borderColor: "#A5A5A5",
 					borderWidth: 1,
 					width: "97%", 
@@ -70,7 +109,7 @@ function loadFavouriteList(){
 				subViewColor.add(img);
 			}else{
 				var subViewColor = $.UI.create('View', {  
-					backgroundColor: "rgb("+colour_details.rgb +")",
+					backgroundColor: "rgb("+fav.rgb +")",
 					borderColor: "#A5A5A5",
 					borderWidth: 1,
 					width: "97%", 
@@ -80,12 +119,12 @@ function loadFavouriteList(){
 			
 			
 			var subLabelName = $.UI.create('Label', { 
-				text: colour_details.name , 
+				text: fav.name , 
 				classes: ['colorDesc'],
 			});
 			
 			var subLabelCode = $.UI.create('Label', { 
-				text: colour_details.code , 
+				text: fav.code , 
 				classes: ['colorDesc'],
 			});  
 			
@@ -99,10 +138,11 @@ function loadFavouriteList(){
 	   				right:0
 	   			});
 	   			
-	   			removeFavEvent(subView,fav.colour_id,colour_details.code);	
+	   			removeFavEvent(subView,fav.colour_id,fav.code);	
 	   			subViewColor.add(removeIcon);  
 			}else{
-				createColorEvent(subView, colour_details, details);
+				console.log(fav.details);
+				createColorEvent(subView, fav.colour_details, fav.details);
 			}
 			
 			subView.add(subViewColor);		
@@ -127,13 +167,10 @@ function loadFavouriteList(){
 
 var unFavButton = function(e){
 	if(removeFlag == "1"){
-		removeFlag ="0";
-		unFavButton.image = "/images/icon_fav_remove.png";
+		removeFlag ="0"; 
 		
 	}else{
-		removeFlag ="1";
-		//unFavButton.image = "/images/icon_favourite.png";
-		unFavButton.image = "/images/icon_fav_remove.png";
+		removeFlag ="1"; 
 	}
 	
 	loadFavouriteList();
@@ -159,8 +196,7 @@ function removeFavEvent(removeIcon, colour_id, colour_code){
 		  if (e.index === 1){
 		  	library.removeFavouriteColour(colour_id);
 			//alert("Colour removed!");
-			library = Alloy.createCollection('favourite');
-			favourite_list = library.getFavouriteList(); 
+			getFav();
 			loadFavouriteList();
 		  }
 		});
@@ -173,7 +209,7 @@ function createColorEvent(subView, colour_details, details){
  
 	subView.addEventListener( "click", function(){
 		Ti.App.Properties.setString('from', 'favourite');
-		var nav = Alloy.createController("colourDetails",{colour_details:colour_details, details:details}).getView(); 
+		var nav = Alloy.createController("colourDetails",{colour_details:colour_details, details:details,isRefresh : 1}).getView(); 
 		//Alloy.Globals.Drawer.setCenterWindow(nav);
 		nav.open();
 	});

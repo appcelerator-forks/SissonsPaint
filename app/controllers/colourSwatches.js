@@ -7,7 +7,7 @@ var type_lib = Alloy.createCollection('type');
 
 var from = 0;
 var firstRecords = "1";
-var minHeight = 112797;
+var minHeight = 2797;
 var tableData = [];
 var details = library.getCategoryListByType("2",from); 
 $.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 140;

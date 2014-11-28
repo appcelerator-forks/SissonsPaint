@@ -4,7 +4,7 @@ var category   = args.details;
 var colour   = args.colour_details;
 var library = Alloy.createCollection('favourite');  
 var isFav   = library.checkFavouriteByColourId(colour.id); 
- 
+var isRefresh = args.isRefresh || {};
  
 if(colour.sample != ""){
 	$.colourDetails.backgroundImage = colour.sample;
@@ -14,7 +14,7 @@ if(colour.sample != ""){
 //$.colourDetails.backgroundColor = "rgb("+colour.rgb +")";
 $.boxDetails.backgroundColor = "rgb("+colour.rgb +")";
 $.colourCode.text = colour.code;
-$.colourName.text = colour.name;  
+$.colourName.text = colour.name; 
  
 //var cmyk = colour.cmyk;
 //var res = cmyk.split(",");
@@ -86,4 +86,13 @@ function addToFavourite(){
 	$.favButton.image = "/images/icon_fav_remove.png"; 
 	isFav ="1";
 }
+
+$.colourDetails.addEventListener('android:back', function (e) {
+	$.colourDetails.close();
+	if(isRefresh == 1){  
+		var nav = Alloy.createController("favourite").getView(); 
+		Alloy.Globals.Drawer.setCenterWindow(nav);  
+	}
+ 
+});
 

@@ -42,8 +42,7 @@ exports.loadColour = function (ex){
 				
 				library.addColours(arr);
 			}
-			Ti.App.Properties.setString('loadColour', '1');
-		    console.log('color finish');
+			Ti.App.Properties.setString('loadColour', '1'); 
 	       }
 	       
 	     },
@@ -81,8 +80,7 @@ exports.loadCategory = function(ex){
 			    	var category_type = Alloy.createModel('type', { 
 						id: typePriority, 
 						ctype: catetypes.type
-					});
-					 console.log(catetypes.type);
+					}); 
 					category_type.save(); 
 					typePriority++;
 			   }); 
