@@ -28,9 +28,7 @@ function download(url, cookies, done) {
             if (200 != e.source.status) throw new Error("http status " + e.source.status);
             file.write(e.source.responseData);
             return done(null, file, base, url);
-        } catch (e) {
-            return done(e);
-        }
+        } catch (e) {}
     };
     client.onerror = function(e) {
         return done(e);
@@ -38,6 +36,7 @@ function download(url, cookies, done) {
     client.ondatastream = function(e) {
         ind.value = e.progress;
         label.text = (100 * ind.value).toFixed(0) + "% Downloading";
+        if (100 * ind.value == 100) return done();
     };
     client.setRequestHeader("Cookie", cookies);
     client.open("GET", url);

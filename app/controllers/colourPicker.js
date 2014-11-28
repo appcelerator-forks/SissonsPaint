@@ -182,8 +182,9 @@ function generateRecommended(){
 			});
 		}
 		
-		var cat_colour = category_colour_lib.getCateByColourId(colour_details.id);
-		var cat_details = library.getCategoryById(cat_colour.cate_id, "2");
+		var cat_colour = category_colour_lib.getCateByColourId(colour_details.id, "2");
+		
+		var cat_details = library.getCategoryByIdOnly(cat_colour.cate_id);
 		
 		createColorEvent(colours, colour_details, cat_details);
 		recommendedRow.add(colours);	
@@ -229,7 +230,7 @@ function generateColour(){
 			});
 	  	}
 		
-		var cat_colour = category_colour_lib.getCateByColourId(details[i].id);
+		var cat_colour = category_colour_lib.getCateByColourId(details[i].id, "2");
 		var cat_details = library.getCategoryById(cat_colour.cate_id, "2");
 			 
 		createColorEvent(colours, details[i], cat_details);
@@ -268,8 +269,9 @@ var MESSAGE = "#sissons_paint";
  
 function createColorEvent(colours, colour_details, details){
 	colours.addEventListener( "click", function(){
+		console.log("color detail"+JSON.stringify(details));
 		Ti.App.Properties.setString('from', 'colourPicker');
-		var nav = Alloy.createController("colourDetails",{colour_details:colour_details, details:details}).getView(); 
+		var nav = Alloy.createController("colourDetails", {colour_details:colour_details, details:details}).getView(); 
 		//Alloy.Globals.Drawer.setCenterWindow(nav);
 		nav.open();
 	});

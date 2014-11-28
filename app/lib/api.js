@@ -131,7 +131,8 @@ exports.loadCategory = function(ex){
 			       		colours.forEach(function(colour) {
 			       			var category_colour = Alloy.createModel('category_colour', { 
 							    cate_id: entry.id, 
-							    colour_id: colour
+							    colour_id: colour,
+							    type: entry.type
 						    });
 						    category_colour.save();
 			       		});

@@ -25,10 +25,10 @@ favourite_list.forEach(function(fav) {
 	favourite_list.colour_cate = category_colour_lib.getCateByColourId(fav.colour_id);
 	//favourite_list.details = cate_lib.getCategoryById(colour_cate.cate_id, "2");
 });
-console.log(favourite_list);
+
 function loadFavouriteList(){
 	var data=[];
-	removeAllChildren(TheScrollView);
+	
 	if( favourite_list.length > 0){
 		
 		var colourView = $.UI.create('View', { 
@@ -54,14 +54,20 @@ function loadFavouriteList(){
 			});
 			 
 			if(colour_details.sample != ""){
-				var subViewColor = $.UI.create('View', {  
-					backgroundImage: colour_details.sample,
+				var subViewColor = $.UI.create('View', {
 					borderColor: "#A5A5A5",
 					borderWidth: 1,
 					width: "97%", 
 					height: "80"
 				});
-				
+				var img = Ti.UI.createImageView({
+				  	image: colour_details.sample,
+				  	borderColor: "#A5A5A5",
+					borderWidth: 1,
+					width: "97%", 
+					height: "80"
+				});
+				subViewColor.add(img);
 			}else{
 				var subViewColor = $.UI.create('View', {  
 					backgroundColor: "rgb("+colour_details.rgb +")",
@@ -100,7 +106,7 @@ function loadFavouriteList(){
 			}
 			
 			subView.add(subViewColor);		
-			subView.add(subLabelName);		 
+			subView.add(subLabelName);
 			subView.add(subLabelCode);	
 			
 			colourView.add(subView);	 
@@ -110,11 +116,12 @@ function loadFavouriteList(){
 		 keanmeng - 20141031
 		 - move removeAllChildren to top
 		 */
-		// removeAllChildren(TheScrollView);
+		removeAllChildren(TheScrollView);
 		TheScrollView.add(colourView); 
 	}
 	
 	$.mainFavContainer.add(TheScrollView); 
+	
 	//$.mainFavContainer.add(bottomBar); 
 }
 
@@ -161,8 +168,6 @@ function removeFavEvent(removeIcon, colour_id, colour_code){
 		return false;
 	});
 }
-	
- 
 
 function createColorEvent(subView, colour_details, details){
  
@@ -174,4 +179,38 @@ function createColorEvent(subView, colour_details, details){
 	});
 
 }
-	
+
+$.drawer.addEventListener('android:back', function (e) {
+	mod = Ti.App.Properties.getString('module');
+	if(mod == "storeLocator"){
+		Ti.App.Properties.setString('module', 'index');
+		var nav = Alloy.createController("storeLocator").getView(); 
+		Alloy.Globals.Drawer.setCenterWindow(nav);  
+	}else if(mod == "search"){
+		from = Ti.App.Properties.getString('from');
+		Ti.App.Properties.setString('module', 'index');
+		var nav = Alloy.createController(from).getView(); 
+		Alloy.Globals.Drawer.setCenterWindow(nav);  
+	}else if(drawerFlag == 1){
+		var dialog = Ti.UI.createAlertDialog({
+		    cancel: 1,
+		    buttonNames: ['Cancel','Confirm'],
+		    message: 'Would you like to exit Sissons Paint?',
+		    title: 'Exit app'
+		});
+		dialog.addEventListener('click', function(e){
+		  
+	    	if (e.index === e.source.cancel){
+		      //Do nothing
+		    }
+		    if (e.index === 1){
+		    	var activity = Titanium.Android.currentActivity;
+				activity.finish();
+		    }
+		});
+		dialog.show(); 
+	}else{
+		 toggle();
+	}
+  	
+});
