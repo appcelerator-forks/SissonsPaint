@@ -107,13 +107,9 @@ exports.definition = {
 				if(typeof from === "undefined"){
 					from = 0;
 				}
-				var collection = this;
-<<<<<<< HEAD
+				var collection = this; 
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "' AND `type` = '"+cateType+"' order by position LIMIT "+ from +", 300";
-=======
-
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "' AND `type` = '"+cateType+"' order by position LIMIT "+ from +", 3";
->>>>>>> FETCH_HEAD
+ 
           
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
