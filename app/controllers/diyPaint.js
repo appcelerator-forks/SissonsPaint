@@ -615,8 +615,8 @@ var save = function(e) {
 	var img_view =Ti.Utils.base64decode(blob);
 
 	var filename = "sissons_diy"+printDate()+".png";
-	
-	var imgDir = Titanium.Filesystem.getFile(Titanium.Filesystem.externalStorageDirectory );
+	var mediaPath = "file://storage/sdcard0"+ Ti.Filesystem.separator + 'Pictures' + Ti.Filesystem.separator + 'Sissons Omnicolor';
+	var imgDir = Titanium.Filesystem.getFile(mediaPath );
 	if (!imgDir.exists()){
 		imgDir.createDirectory();
 	}
@@ -639,8 +639,7 @@ var save = function(e) {
 		toast.show();
 	} 
 	//Share!
-	if(e.share == 1){
-		console.log("share");
+	if(e.share == 1){ 
 		var nav = Alloy.createController("share",{imgPath:imgPath}).getView(); 
 		nav.open();
 	}
@@ -648,7 +647,7 @@ var save = function(e) {
 	// dispose of file handles
 	imageFile = null;
 	imgDir = null;
-	
+	Ti.Media.Android.scanMediaFiles([mediaPath],[],function(e){});
 	Ti.App.removeEventListener('app:saveToGallery', save);
 };
 

@@ -73,7 +73,7 @@ function loadFavouriteList(){
 			});
 			 
 			if(fav.sample != ""){
-				var subViewColor = $.UI.create('View', {  
+				var subViewColor = Ti.UI.createImageView({  
 					backgroundImage: fav.sample,
 					borderColor: "#A5A5A5",
 					borderWidth: 1,

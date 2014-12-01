@@ -11,19 +11,19 @@
 					 
 					<View layout="horizontal" height="40" top="10" bottom="15" width="94%" horizontalWrap="true">
 						<Label class="description_content" color="#6E6E6E" width="40%">Name</Label>	
-						<TextField id="name" hintText="Name" class="inputField" width="60%" />
+						<TextField id="name" hintText="Required" class="inputField" width="60%" />
 					</View>
 					<View layout="horizontal" height="40" top="10" bottom="15" width="94%" horizontalWrap="true">
 						<Label class="description_content" color="#6E6E6E" width="40%">Email</Label>	
-						<TextField id="email" hintText="Email Address" class="inputField" width="60%" />
+						<TextField id="email" hintText="Required" class="inputField" width="60%" />
 					</View> 
 					<View layout="horizontal" height="40" top="10" bottom="15" width="94%" horizontalWrap="true">
 						<Label class="description_content" color="#6E6E6E" width="40%">Phone Number</Label>	
-						<TextField id="phone" hintText="Phone Number" class="inputField" width="60%" />
+						<TextField id="phone" hintText="Optional" class="inputField" width="60%" />
 					</View>
 					<View  layout="horizontal" height="100" top="10" bottom="15" width="94%" horizontalWrap="true">
 						<Label class="description_content" color="#6E6E6E" width="40%">Message</Label>	
-						<TextField id="message" hintText="Message" class="inputField" width="60%" />
+						<TextField id="message" hintText="Required" class="inputField" width="60%" />
 					</View>
 					 
 			    </View>
