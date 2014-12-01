@@ -1,3 +1,4 @@
+
 var args = arguments[0] || {};
 var category   = args.details;
 var colour   = args.colour_details;
@@ -22,6 +23,7 @@ $.colourName.text = colour.name;
 //$.colourM.text =  (res[1] * 100).toFixed(2);
 //$.colourY.text =  (res[2] * 100).toFixed(2);
 //$.colourK.text =  (res[3] * 100).toFixed(2);
+console.log(JSON.stringify(args.details));
 
 $.colourCategoryImage.image = category.image;
 $.colourCategoryImage.width = "80%";
@@ -93,3 +95,4 @@ $.colourDetails.addEventListener('android:back', function (e) {
 	}
  
 });
+

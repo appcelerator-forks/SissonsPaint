@@ -361,7 +361,7 @@ Ti.App.Properties.setString('swatchMinHeight', minHeight);
 $.TheScrollView.addEventListener('scroll', function (e) {  
 	
 	var swatchMinHeight = Ti.App.Properties.getString('swatchMinHeight');
- 
+
 	if( e.y >= swatchMinHeight  ){ 
 		swatchMinHeight = parseInt(swatchMinHeight) + parseInt(minHeight); 
 		Ti.App.Properties.setString('swatchMinHeight', swatchMinHeight);

@@ -3,7 +3,8 @@ exports.definition = {
 		columns: {
 		    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
 		    "cate_id": "TEXT",
-		    "colour_id": "TEXT"
+		    "colour_id": "TEXT",
+		    "type": "TEXT"
 		},
 		adapter: {
 			type: "sql",
@@ -63,10 +64,13 @@ exports.definition = {
                 collection.trigger('sync');
                 return listArr;
 			},
-			getCateByColourId: function(colour_id){
+			getCateByColourId: function(colour_id, type){
+				if(typeof type === "undefined"){
+					type = 2;
+				}
 				 
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE colour_id='"+ colour_id+ "'" ;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE colour_id='"+ colour_id+ "' and type ='"+type+"'";
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);

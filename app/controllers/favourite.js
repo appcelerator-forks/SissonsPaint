@@ -72,15 +72,28 @@ function loadFavouriteList(){
 				height: Ti.UI.SIZE
 			});
 			 
+<<<<<<< HEAD
 			if(fav.sample != ""){
 				var subViewColor = Ti.UI.createImageView({  
 					backgroundImage: fav.sample,
+=======
+
+			if(fav.colour_details.sample != ""){
+				var subViewColor = $.UI.create('View', {
+>>>>>>> FETCH_HEAD
 					borderColor: "#A5A5A5",
 					borderWidth: 1,
 					width: "97%", 
 					height: "80"
 				});
-				
+				var img = Ti.UI.createImageView({
+				  	image: fav.colour_details.sample,
+				  	borderColor: "#A5A5A5",
+					borderWidth: 1,
+					width: "97%", 
+					height: "80"
+				});
+				subViewColor.add(img);
 			}else{
 				var subViewColor = $.UI.create('View', {  
 					backgroundColor: "rgb("+fav.rgb +")",
@@ -120,7 +133,7 @@ function loadFavouriteList(){
 			}
 			
 			subView.add(subViewColor);		
-			subView.add(subLabelName);		 
+			subView.add(subLabelName);
 			subView.add(subLabelCode);	
 			
 			colourView.add(subView);	 
@@ -135,6 +148,7 @@ function loadFavouriteList(){
 	}
 	
 	$.mainFavContainer.add(TheScrollView); 
+	
 	//$.mainFavContainer.add(bottomBar); 
 }
 
@@ -177,8 +191,6 @@ function removeFavEvent(removeIcon, colour_id, colour_code){
 		return false;
 	});
 }
-	
- 
 
 function createColorEvent(subView, colour_details, details){
  
@@ -190,4 +202,3 @@ function createColorEvent(subView, colour_details, details){
 	});
 
 }
-	
