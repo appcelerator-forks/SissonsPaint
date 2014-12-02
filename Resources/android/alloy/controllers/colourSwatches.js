@@ -128,23 +128,23 @@ function Controller() {
         id: "mainViewContainer"
     });
     $.__views.mainViewContainer && $.addTopLevelView($.__views.mainViewContainer);
-    $.__views.__alloyId38 = Ti.UI.createView({
+    $.__views.__alloyId36 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId38"
+        id: "__alloyId36"
     });
-    $.__views.mainViewContainer.add($.__views.__alloyId38);
-    $.__views.__alloyId39 = Ti.UI.createView({
+    $.__views.mainViewContainer.add($.__views.__alloyId36);
+    $.__views.__alloyId37 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
         backgroundImage: "/images/banner_colour_swatches.jpg",
-        id: "__alloyId39"
+        id: "__alloyId37"
     });
-    $.__views.__alloyId38.add($.__views.__alloyId39);
-    $.__views.__alloyId40 = Alloy.createController("toggle", {
-        id: "__alloyId40",
-        __parentSymbol: $.__views.__alloyId39
+    $.__views.__alloyId36.add($.__views.__alloyId37);
+    $.__views.__alloyId38 = Alloy.createController("toggle", {
+        id: "__alloyId38",
+        __parentSymbol: $.__views.__alloyId37
     });
-    $.__views.__alloyId40.setParent($.__views.__alloyId39);
+    $.__views.__alloyId38.setParent($.__views.__alloyId37);
     $.__views.TheScrollView = Ti.UI.createScrollView({
         id: "TheScrollView",
         backgroundColor: "white",
@@ -155,7 +155,7 @@ function Controller() {
         top: "0",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
-    $.__views.__alloyId38.add($.__views.TheScrollView);
+    $.__views.__alloyId36.add($.__views.TheScrollView);
     $.__views.toolbar = Ti.UI.createView({
         height: "60",
         bottom: "0",
@@ -163,23 +163,23 @@ function Controller() {
         width: "100%",
         backgroundImage: "/images/tool_bar.jpg"
     });
-    $.__views.__alloyId38.add($.__views.toolbar);
-    $.__views.__alloyId41 = Ti.UI.createView({
+    $.__views.__alloyId36.add($.__views.toolbar);
+    $.__views.__alloyId39 = Ti.UI.createView({
         layout: "horizontal",
         width: "100%",
+        id: "__alloyId39"
+    });
+    $.__views.toolbar.add($.__views.__alloyId39);
+    $.__views.__alloyId40 = Ti.UI.createView({
+        width: "30%",
+        id: "__alloyId40"
+    });
+    $.__views.__alloyId39.add($.__views.__alloyId40);
+    $.__views.__alloyId41 = Ti.UI.createView({
+        width: "20%",
         id: "__alloyId41"
     });
-    $.__views.toolbar.add($.__views.__alloyId41);
-    $.__views.__alloyId42 = Ti.UI.createView({
-        width: "30%",
-        id: "__alloyId42"
-    });
-    $.__views.__alloyId41.add($.__views.__alloyId42);
-    $.__views.__alloyId43 = Ti.UI.createView({
-        width: "20%",
-        id: "__alloyId43"
-    });
-    $.__views.__alloyId41.add($.__views.__alloyId43);
+    $.__views.__alloyId39.add($.__views.__alloyId41);
     $.__views.filterButton = Ti.UI.createImageView({
         id: "filterButton",
         image: "/images/icon_filter.png",
@@ -188,13 +188,13 @@ function Controller() {
         top: "10",
         bottom: "10"
     });
-    $.__views.__alloyId43.add($.__views.filterButton);
+    $.__views.__alloyId41.add($.__views.filterButton);
     filter ? $.__views.filterButton.addEventListener("click", filter) : __defers["$.__views.filterButton!click!filter"] = true;
-    $.__views.__alloyId44 = Ti.UI.createView({
+    $.__views.__alloyId42 = Ti.UI.createView({
         width: "20%",
-        id: "__alloyId44"
+        id: "__alloyId42"
     });
-    $.__views.__alloyId41.add($.__views.__alloyId44);
+    $.__views.__alloyId39.add($.__views.__alloyId42);
     $.__views.searchButton = Ti.UI.createImageView({
         id: "searchButton",
         image: "/images/icon_search.png",
@@ -203,13 +203,13 @@ function Controller() {
         top: "10",
         bottom: "10"
     });
-    $.__views.__alloyId44.add($.__views.searchButton);
+    $.__views.__alloyId42.add($.__views.searchButton);
     search ? $.__views.searchButton.addEventListener("click", search) : __defers["$.__views.searchButton!click!search"] = true;
-    $.__views.__alloyId45 = Ti.UI.createView({
+    $.__views.__alloyId43 = Ti.UI.createView({
         width: "30%",
-        id: "__alloyId45"
+        id: "__alloyId43"
     });
-    $.__views.__alloyId41.add($.__views.__alloyId45);
+    $.__views.__alloyId39.add($.__views.__alloyId43);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -229,18 +229,18 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId46 = Ti.UI.createLabel({
+    $.__views.__alloyId44 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#ffffff",
         text: "Loading",
-        id: "__alloyId46"
+        id: "__alloyId44"
     });
-    $.__views.loadingBar.add($.__views.__alloyId46);
+    $.__views.loadingBar.add($.__views.__alloyId44);
     $.__views.win = Ti.UI.createView({
         id: "win",
-        height: "80%",
-        width: "80%",
+        height: "90%",
+        width: "90%",
         backgroundColor: "transparent",
         theme: "Theme.NoActionBar",
         navBarHidden: "true",
@@ -250,60 +250,41 @@ function Controller() {
         visible: "false"
     });
     $.__views.mainViewContainer.add($.__views.win);
-    var __alloyId47 = [];
+    var __alloyId45 = [];
     $.__views.view1 = Ti.UI.createView({
         id: "view1",
-        backgroundColor: "white"
+        backgroundImage: "/images/Color Swatches/tutorial1.jpg"
     });
-    __alloyId47.push($.__views.view1);
-    $.__views.__alloyId48 = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "black",
-        text: "View 1",
-        id: "__alloyId48"
-    });
-    $.__views.view1.add($.__views.__alloyId48);
+    __alloyId45.push($.__views.view1);
     $.__views.view2 = Ti.UI.createView({
         id: "view2",
-        backgroundColor: "white"
+        backgroundImage: "/images/Color Swatches/tutorial2.jpg"
     });
-    __alloyId47.push($.__views.view2);
-    $.__views.__alloyId49 = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "black",
-        text: "View 2",
-        id: "__alloyId49"
-    });
-    $.__views.view2.add($.__views.__alloyId49);
+    __alloyId45.push($.__views.view2);
     $.__views.view3 = Ti.UI.createView({
         id: "view3",
-        backgroundColor: "white"
+        backgroundImage: "/images/Color Swatches/tutorial3.jpg"
     });
-    __alloyId47.push($.__views.view3);
-    $.__views.__alloyId50 = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "black",
-        text: "View 3",
-        id: "__alloyId50"
+    __alloyId45.push($.__views.view3);
+    $.__views.view4 = Ti.UI.createView({
+        id: "view4",
+        backgroundImage: "/images/Color Swatches/tutorial4.jpg"
     });
-    $.__views.view3.add($.__views.__alloyId50);
-    $.__views.__alloyId51 = Ti.UI.createView({
+    __alloyId45.push($.__views.view4);
+    $.__views.__alloyId46 = Ti.UI.createView({
         layout: "horizontal",
-        bottom: "10",
+        bottom: "0",
         height: Ti.UI.SIZE,
         width: Ti.UI.SIZE,
-        id: "__alloyId51"
+        id: "__alloyId46"
     });
-    $.__views.view3.add($.__views.__alloyId51);
+    $.__views.view4.add($.__views.__alloyId46);
     $.__views.checkBox = Ti.UI.createSwitch({
         value: false,
         id: "checkBox",
         style: Ti.UI.Android.SWITCH_STYLE_CHECKBOX
     });
-    $.__views.__alloyId51.add($.__views.checkBox);
+    $.__views.__alloyId46.add($.__views.checkBox);
     $.__views.showWindow = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -311,9 +292,9 @@ function Controller() {
         text: "Don't show next time",
         id: "showWindow"
     });
-    $.__views.__alloyId51.add($.__views.showWindow);
+    $.__views.__alloyId46.add($.__views.showWindow);
     $.__views.scrollableView = Ti.UI.createScrollableView({
-        views: __alloyId47,
+        views: __alloyId45,
         id: "scrollableView",
         showPagingControl: "true",
         pagingControlTimeout: "0",
@@ -522,7 +503,7 @@ function Controller() {
         top: 0,
         right: 0
     });
-    $.view3.add(removeIcon);
+    $.view4.add(removeIcon);
     removeIcon.addEventListener("click", function() {
         $.win.hide();
         1 == $.checkBox.value && Ti.App.Properties.setString("swatchesCheckBox", 1);

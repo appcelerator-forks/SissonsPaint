@@ -412,7 +412,7 @@ var removeIcon = Ti.UI.createImageView({
 	   				right:0
 	   			});
 
-$.view3.add(removeIcon);
+$.view4.add(removeIcon);
 
 removeIcon.addEventListener( "click", function(){
 	$.win.hide();

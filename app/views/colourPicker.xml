@@ -37,17 +37,12 @@
 				</View>
 			</View>
 		</View>
-		<View id="win" height="80%" width="80%" backgroundColor="transparent" theme="Theme.NoActionBar" navBarHidden="true" fullscreen="true" borderColor="#A5A5A5" borderWidth="2" visible="false">
+		<View id="win" height="90%" width="90%" backgroundColor="transparent" theme="Theme.NoActionBar" navBarHidden="true" fullscreen="true" borderColor="#A5A5A5" borderWidth="2" visible="false">
 	        <ScrollableView id="scrollableView" showPagingControl="true" pagingControlTimeout="0" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
-	            <View id="view1" backgroundColor="white">
-	            	<Label color="black">View 1</Label>
-	            </View>
-	            <View id="view2" backgroundColor="white">
-	            	<Label color="black">View 2</Label>
-	            </View>
-	            <View id="view3" backgroundColor="white">
-	            	<Label color="black">View 3</Label>
-	             	<View layout="horizontal" bottom="10" height="Ti.UI.SIZE" width="Ti.UI.SIZE">
+	            <View id="view1" backgroundImage="/images/Color Picker/tutorial_picker1.jpg"></View>
+	            <View id="view2" backgroundImage="/images/Color Picker/tutorial_picker2.jpg"></View>
+	            <View id="view3" backgroundImage="/images/Color Picker/tutorial_picker3.jpg">
+	             	<View layout="horizontal" bottom="0" height="Ti.UI.SIZE" width="Ti.UI.SIZE">
 	             		<Switch id="checkBox" style="Ti.UI.Android.SWITCH_STYLE_CHECKBOX" value="false"></Switch>
 	             		<Label id="showWindow" color="black">Don't show next time</Label>
 	             	</View>
