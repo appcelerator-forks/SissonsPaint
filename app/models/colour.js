@@ -6,7 +6,8 @@ exports.definition = {
 		    "code": "TEXT",
 		    "rgb": "TEXT",
 		    "cmyk": "TEXT", 
-		    "sample": "TEXT"
+		    "sample": "TEXT",
+		    "thumb": "TEXT"
 		},
 		adapter: {
 			type: "sql",
@@ -33,19 +34,22 @@ exports.definition = {
                 var count = 0;
                 while (res.isValidRow()){
                 	var c = res.fieldByName('rgb').split(/,\s*/);
-                	
-					listArr[count] = {
-					    id: res.fieldByName('id'),
-					    name: res.fieldByName('name'),
-					    code: res.fieldByName('code'),
-					    rgb: res.fieldByName('rgb'),
-					    cmyk: res.fieldByName('cmyk'),
-					    sample: res.fieldByName('sample'),
-					    contrast: parseInt(c[0])+parseInt(c[1])+parseInt(c[2])
-					};
+                	 
+					listArr[count] = { 
+							id: res.fieldByName('id'),
+						    name: res.fieldByName('name'),
+						    code: res.fieldByName('code'),
+						    rgb: res.fieldByName('rgb'),
+						    cmyk: res.fieldByName('cmyk'),
+						    sample: res.fieldByName('sample'),
+						    thumb: res.fieldByName('thumb'),
+						    contrast: parseInt(c[0])+parseInt(c[1])+parseInt(c[2])
+					};	
+					 
 					res.next();
 					count++;
 				} 
+			 
 				res.close();
                 db.close();
                 collection.trigger('sync');
@@ -66,7 +70,8 @@ exports.definition = {
 					    code: res.fieldByName('code'),
 					    rgb: res.fieldByName('rgb'),
 					    cmyk: res.fieldByName('cmyk'),
-					    sample: res.fieldByName('sample')
+					    sample: res.fieldByName('sample'),
+					    thumb: res.fieldByName('thumb')
 					};
 					
 				} 
@@ -98,7 +103,8 @@ exports.definition = {
 					    code: res.fieldByName('code'),
 					    rgb: res.fieldByName('rgb'),
 					    cmyk: res.fieldByName('cmyk'),
-					    sample: res.fieldByName('sample')
+					    sample: res.fieldByName('sample'),
+					    thumb: res.fieldByName('thumb')
 					};
 					res.next();
 					count++;
@@ -108,6 +114,29 @@ exports.definition = {
                 collection.trigger('sync');
                 return listArr;
 			},
+			addColours : function(arr) {
+				var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+	           
+	            db.execute("BEGIN");
+				arr.forEach(function(entry) {
+		       		sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "(id, name, code,RGB, CMYK,sample, thumb ) VALUES ('"+entry.id+"', '"+entry.name+"', '"+entry.code+"', '"+entry.RGB+"', '"+entry.CMYK+"', '"+entry.sample+"', '"+entry.thumb+"')";
+					/*var colour = Alloy.createModel('colour', {
+				        id: entry.id,
+					    name: entry.name,
+					    code: entry.code,
+					    rgb: entry.RGB,
+					    cmyk: entry.CMYK,
+					    sample: entry.sample,
+					    thumb: entry.thumb
+				    });
+				    colour.save();*/
+				    db.execute(sql_query);
+				});
+                db.execute("COMMIT");
+	            db.close();
+	            collection.trigger('sync');
+            },
 			getClosestColourList: function(closest_r, closest_g, closest_b){
 				var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name +"  order by id DESC";
@@ -127,24 +156,20 @@ exports.definition = {
                 	var diff = Math.max(diff_r, diff_g, diff_b);
                 	
                 	// if (diff_r<=diff_min && diff_g<=diff_min && diff_b<=diff_min)
-                	if (diff<=diff_min)
-                		{
-                			for (var i=0; i<listArr.length; i++)
-                			{
-                				if (diff <= listArr[i].diff)
-                				{
+                	if (diff<=diff_min) {
+                			for (var i=0; i<listArr.length; i++) {
+                				if (diff <= listArr[i].diff) {
                 					index = i;
                 					break;
                 				}	
                 			}
                 			
-							if (index < 0)
-							{
+							if (index < 0){
 								index = listArr.length;
 							}
 							
 							
-							listArr.splice(index, 0,
+								listArr.splice(index, 0,
         						{
 								    id: res.fieldByName('id'),
 								    name: res.fieldByName('name'),
@@ -152,6 +177,7 @@ exports.definition = {
 								    rgb: res.fieldByName('rgb'),
 								    cmyk: res.fieldByName('cmyk'),
 								    sample: res.fieldByName('sample'),
+					    			thumb: res.fieldByName('thumb'),
 								    diff: diff
 								} 
         					);

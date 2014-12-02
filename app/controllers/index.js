@@ -1,5 +1,5 @@
 var pWidth = Ti.Platform.displayCaps.platformWidth;//PixelsToDPUnits(800);
-console.log(pWidth);
+ 
 if(pWidth > 800){
 	$.whiteLogo.setOpacity(1);
 }else{
@@ -48,9 +48,9 @@ function checkLoadStatus(){
 	if(loadStoreLocator == "1" && loadBrochure == "1" && loadColour == "1" && loadCategory == "1"){
 		
 		$.loadingBar.opacity = "0";
-		var nav = Alloy.createController("diyPaint").getView(); 
+		var nav = Alloy.createController("aboutUs").getView(); 
 		Alloy.Globals.Drawer.setCenterWindow(nav);  
-		//Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
+		Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
 		
 	}else{
 		setTimeout(function(){
@@ -69,31 +69,35 @@ function doMenuClick(e){
 	switch(e.index){
 		
 		case 0: 
+			navigation('aboutUs');
+			Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
+			break;
+		case 1: 
 			navigation('diyPaint');
 			Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_NONE);
 			break;
-		case 1: 
+		case 2: 
 			navigation('colourPicker');
 			Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
 			break;
-		case 2: 
+		case 3: 
 			navigation('colourSwatches');
 			Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
 			break;
-		case 3: 
+		case 4: 
 			navigation('favourite');
 			Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
 			break;
-		case 4: 
+		case 5: 
 			navigation('brochure');
 			Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
 			break;
-		case 5: 
+		case 6: 
 			navigation('storeLocator');
 			Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
 			break;
-		case 6: 
-			navigation('aboutUs');
+		case 7: 
+			navigation('contactUs');
 			Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
 			break;
 	}

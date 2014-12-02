@@ -38,7 +38,7 @@ function loadSearchList(){
 			var colour_cate = category_colour_lib.getCateByColourId(search.id);
 
 			var details = cate_lib.getCategoryById(colour_cate.cate_id, "2");
-	
+		
 			var subView = $.UI.create('View', { 
 				textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
 				layout: 'vertical',
@@ -47,13 +47,24 @@ function loadSearchList(){
 				height: Ti.UI.SIZE
 			});
 			 
-			var subViewColor = $.UI.create('View', {  
-				backgroundColor: "rgb("+search.rgb +")",
-				borderColor: "#A5A5A5",
-				borderWidth: 1,
-				width: "97%", 
-				height: "80"
-			});
+			if(search.thumb != ""){
+			  	var subViewColor = $.UI.create('ImageView', {  
+					image: search.thumb,
+					borderColor: "#A5A5A5",
+					borderWidth: 1,
+					width: "97%", 
+					height: "80"
+				});
+			  }else{
+			  	var subViewColor = $.UI.create('View', {  
+					backgroundColor: "rgb("+search.rgb +")",
+					borderColor: "#A5A5A5",
+					borderWidth: 1,
+					width: "97%", 
+					height: "80"
+				});
+			} 
+			
 			
 			var subLabelName = $.UI.create('Label', { 
 				text: search.name , 

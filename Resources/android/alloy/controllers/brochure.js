@@ -90,29 +90,29 @@ function Controller() {
         backgroundImage: "/images/wood_background.jpg"
     });
     $.__views.brochureView && $.addTopLevelView($.__views.brochureView);
-    $.__views.__alloyId17 = Ti.UI.createView({
+    $.__views.__alloyId4 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId17"
+        id: "__alloyId4"
     });
-    $.__views.brochureView.add($.__views.__alloyId17);
-    $.__views.__alloyId18 = Ti.UI.createView({
+    $.__views.brochureView.add($.__views.__alloyId4);
+    $.__views.__alloyId5 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
         backgroundImage: "/images/banner_brochure.jpg",
-        id: "__alloyId18"
+        id: "__alloyId5"
     });
-    $.__views.__alloyId17.add($.__views.__alloyId18);
-    $.__views.__alloyId19 = Alloy.createController("toggle", {
-        id: "__alloyId19",
-        __parentSymbol: $.__views.__alloyId18
+    $.__views.__alloyId4.add($.__views.__alloyId5);
+    $.__views.__alloyId6 = Alloy.createController("toggle", {
+        id: "__alloyId6",
+        __parentSymbol: $.__views.__alloyId5
     });
-    $.__views.__alloyId19.setParent($.__views.__alloyId18);
+    $.__views.__alloyId6.setParent($.__views.__alloyId5);
     $.__views.scrollview = Ti.UI.createScrollView({
         id: "scrollview",
         layout: "vertical",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
-    $.__views.__alloyId17.add($.__views.scrollview);
+    $.__views.__alloyId4.add($.__views.scrollview);
     $.__views.mainView = Ti.UI.createView({
         id: "mainView",
         layout: "vertical",
@@ -128,22 +128,22 @@ function Controller() {
         backgroundImage: "/images/tool_bar.jpg"
     });
     $.__views.brochureView.add($.__views.toolbar);
-    $.__views.__alloyId20 = Ti.UI.createView({
+    $.__views.__alloyId7 = Ti.UI.createView({
         layout: "horizontal",
         width: "100%",
-        id: "__alloyId20"
+        id: "__alloyId7"
     });
-    $.__views.toolbar.add($.__views.__alloyId20);
-    $.__views.__alloyId21 = Ti.UI.createView({
+    $.__views.toolbar.add($.__views.__alloyId7);
+    $.__views.__alloyId8 = Ti.UI.createView({
         width: "40%",
-        id: "__alloyId21"
+        id: "__alloyId8"
     });
-    $.__views.__alloyId20.add($.__views.__alloyId21);
-    $.__views.__alloyId22 = Ti.UI.createView({
+    $.__views.__alloyId7.add($.__views.__alloyId8);
+    $.__views.__alloyId9 = Ti.UI.createView({
         width: "20%",
-        id: "__alloyId22"
+        id: "__alloyId9"
     });
-    $.__views.__alloyId20.add($.__views.__alloyId22);
+    $.__views.__alloyId7.add($.__views.__alloyId9);
     $.__views.filterButton = Ti.UI.createImageView({
         id: "filterButton",
         image: "/images/icon_filter.png",
@@ -152,13 +152,13 @@ function Controller() {
         top: "10",
         bottom: "10"
     });
-    $.__views.__alloyId22.add($.__views.filterButton);
+    $.__views.__alloyId9.add($.__views.filterButton);
     popWindow ? $.__views.filterButton.addEventListener("click", popWindow) : __defers["$.__views.filterButton!click!popWindow"] = true;
-    $.__views.__alloyId23 = Ti.UI.createView({
+    $.__views.__alloyId10 = Ti.UI.createView({
         width: "40%",
-        id: "__alloyId23"
+        id: "__alloyId10"
     });
-    $.__views.__alloyId20.add($.__views.__alloyId23);
+    $.__views.__alloyId7.add($.__views.__alloyId10);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -167,6 +167,10 @@ function Controller() {
     var library = Alloy.createCollection("brochure");
     var details = library.getBrochureList();
     var filterFlag = 0;
+    var tableData = [];
+    setTimeout(function() {
+        displayCover();
+    }, 300);
     var displayCover = function() {
         var counter = 0;
         var imagepath, adImage, row, image, cellWrapper, cell = "";
@@ -241,8 +245,6 @@ function Controller() {
             counter++;
         }
     };
-    displayCover();
-    var tableData = [];
     var row1 = Ti.UI.createTableViewRow({
         title: "LATEST",
         width: 150,

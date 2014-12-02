@@ -8,8 +8,7 @@
 },
  
 ".title": { 
-	height: 20,
-	textAlign: "left",
+	height: 20, 
 	color: "black",
 	width: "75%"
 },
@@ -17,8 +16,7 @@
 	font: {
         //fontSize: '12'
    },
-   color: '#6E6E6E',
-   textAlign: "Ti.UI.TEXT_ALIGNMENT_LEFT",
+   color: '#6E6E6E', 
    width:"100%",
    bottom: 10
 },
@@ -42,5 +40,11 @@
 	font: {
         fontSize: '22'
    }
+},
+"#activityIndicator" : {
+	 style: Ti.UI.ActivityIndicatorStyle.BIG,
+	 top:15,
+	 left:30,
+	 width:60,
 }
  

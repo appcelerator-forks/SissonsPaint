@@ -39,22 +39,10 @@ exports.loadColour = function (ex){
 				
 				/**load new set of category from API**/
 		       	var arr = res.data;
-		       
-		       	arr.forEach(function(entry) {
-					var colour = Alloy.createModel('colour', {
-				        id: entry.id,
-					    name: entry.name,
-					    code: entry.code,
-					    rgb: entry.RGB,
-					    cmyk: entry.CMYK,
-					    sample: entry.sample
-				    });
-				    colour.save();
-				});
 				
+				library.addColours(arr);
 			}
-			Ti.App.Properties.setString('loadColour', '1');
-		       	
+			Ti.App.Properties.setString('loadColour', '1'); 
 	       }
 	       
 	     },
@@ -81,7 +69,22 @@ exports.loadCategory = function(ex){
 	       if(res.status == "success"){
 	       		var checker = Alloy.createCollection('updateChecker'); 
 				var isUpdate = checker.getCheckerById("3");
-				 
+				
+				/*** Category ***/
+				var lib_type = Alloy.createCollection('type'); 
+					
+				lib_type.resetType();
+			    var categoriestypes = res.type;
+			    var typePriority = 1;
+			    categoriestypes.forEach(function(catetypes) {
+			    	var category_type = Alloy.createModel('type', { 
+						id: typePriority, 
+						ctype: catetypes.type
+					}); 
+					category_type.save(); 
+					typePriority++;
+			   }); 
+				
 				if(isUpdate == "" || (res.last_updated != isUpdate.updated)){
 					checker.updateModule("3","category",res.last_updated);
 					
@@ -90,9 +93,10 @@ exports.loadCategory = function(ex){
 			       	var lib_type = Alloy.createCollection('category_type'); 
 			       	var lib_colour = Alloy.createCollection('category_colour'); 
 			       	
-					lib_cate.resetCategory();
+			       	lib_cate.resetCategory();
 					lib_type.resetCategoryType();
 					lib_colour.resetCategoryColour();
+					
 					
 					/**load new set of category from API**/
 			       	var arr = res.data;
@@ -125,12 +129,15 @@ exports.loadCategory = function(ex){
 			       		colours.forEach(function(colour) {
 			       			var category_colour = Alloy.createModel('category_colour', { 
 							    cate_id: entry.id, 
-							    colour_id: colour
+							    colour_id: colour,
+							    type: entry.type
 						    });
 						    category_colour.save();
 			       		});
 					});
 					
+					
+			       	
 				}
 		       
 				Ti.App.Properties.setString('loadCategory', '1');
@@ -214,6 +221,8 @@ exports.loadStoreLocator = function (ex){
 					
 					/**load new set of category from API**/
 			       	var arr = res.data; 
+			       	library.addStores(arr);
+			       	/*
 			       	arr.forEach(function(entry) {
 						var storeLocator = Alloy.createModel('storeLocator', {
 					        
@@ -232,7 +241,7 @@ exports.loadStoreLocator = function (ex){
 					    storeLocator.save();
 					 
 					});
-					
+					*/
 				}
 		       
 				

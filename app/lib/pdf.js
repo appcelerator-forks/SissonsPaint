@@ -8,7 +8,7 @@ function exists (file) {
       return true;
     }
   } catch (e) {
-    console.log(e);
+ 
   }
  
   return false;
@@ -31,7 +31,7 @@ function isPdf (file) {
     if (blob.indexOf("%PDF") === 0) return true;
  
   } catch (e) {
-    console.log(e);
+    
   }
  	 
   return false;
@@ -64,7 +64,7 @@ function download (url, cookies, done) {
       file.write(e.source.responseData);
       return done(null, file, base, url);
     } catch (e) {
-      return done(e);
+      //return done(e);
     } 
   };
  
@@ -75,7 +75,9 @@ function download (url, cookies, done) {
   	client.ondatastream = function(e) {
 		ind.value = e.progress ;
 		label.text = (ind.value*100).toFixed(0)+"% Downloading";
-		Ti.API.info('ONSENDSTREAM - PROGRESS: ' + e.progress);
+		if((ind.value*100) == 100){
+			return done();
+		}
 	};
 	
 	

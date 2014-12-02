@@ -56,18 +56,16 @@
 			//$('#choosenPhoto').attr('src', e.image);
 			var outlineImage = new Image();
 			var canvas = document.createElement('canvas');
-			var canvasW = screenwidth; 
+			var canvasW = window.innerWidth; 
 			
 			canvasWidth = canvasW;
-			 
 			// Load images 
 			outlineImage.src = e.image; 
 			outlineImage.onload = function (e) { 
 				var screenwidth = window.innerWidth;
 				canvasWidth = screenwidth;
 				var ratio = this.naturalWidth / canvasWidth;
-				var newheight = this.naturalHeight / ratio;
-				console.log("newheight : " +newheight);
+				var newheight = this.naturalHeight / ratio; 
 				canvas.setAttribute('width', canvasW);
 				canvas.setAttribute('height', newheight);
 				canvas.setAttribute('id', 'canvas');

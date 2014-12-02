@@ -65,7 +65,7 @@
 		};
 		
 		var setBackgroundSize = function(e){
-			$('#parent').css('background-size', '"' + e.width + ' ' + e.height + '"');
+			$('#parent').css('background-size', '100% auto');
 			$('#parent').css('background-repeat', 'no-repeat'); 
 		};
 		
@@ -95,6 +95,29 @@
 			paintBucketApp.saveAndShare(e); 
 		};
 
+		var drawRotated = function(degrees){
+			canvas = document.createElement("canvas");
+		    var ctx=canvas.getContext("2d");
+		    canvas.style.width="100%";
+		    
+		   if(degrees == 90 || degrees == 270) {
+				canvas.width = outlineImage.height;
+				canvas.height = outlineImage.width;
+		    } else {
+				canvas.width = outlineImage.width;
+				canvas.height = outlineImage.height;
+		    }
+		    
+		    ctx.clearRect(0,0,canvas.width,canvas.height);
+		    if(degrees == 90 || degrees == 270) {
+				ctx.translate(outlineImage.height/2,outlineImage.width/2);
+		    } else {
+			    ctx.translate(outlineImage.width/2,outlineImage.height/2);
+		   }
+		    ctx.rotate(degrees*Math.PI/180);
+		    ctx.drawImage(outlineImage,-outlineImage.width/2,-outlineImage.height/2);
+		    document.body.appendChild(canvas);
+		};
 		
 		Ti.App.addEventListener("web:changeTools", changeTools);
 		Ti.App.addEventListener("web:initCanvasSize", initCanvasSize);
@@ -123,38 +146,18 @@ var paintBucketApp = (function () {
 		isDrawing,
 		canvasWidth = 350,
 		canvasHeight = 220,
-		colorPurple = {
+		colorWhite = {
 			r: 255,
 			g: 255,
 			b: 255,
 			hex: "#FFFFFF"
 		},
-		colorGreen = {
-			r: 101,
-			g: 155,
-			b: 65,
-			hex: "#659B41"
-		},
-		colorYellow = {
-			r: 255,
-			g: 207,
-			b: 51,
-			hex: "#FFCF33"
-		},
-		colorBrown = {
-			r: 152,
-			g: 105,
-			b: 40,
-			hex: "#986928"
-		},
 		lineWidth = 10,
-		curColor = colorPurple,
+		curColor = colorWhite,
 		curOutlineColor = new Array(),
 		outlineImage = new Image(),
 		waterMarkImage = new Image(),
-		swatchImage = new Image(),
 		backgroundImage = new Image(),
-		
 		drawingAreaX = 0,
 		drawingAreaY = 0,
 		drawingAreaWidth = 250,
@@ -163,9 +166,7 @@ var paintBucketApp = (function () {
 		outlineLayerData,
 		totalLoadResources = 3,
 		curLoadResNum = 0,
-		bucketSensetive = 15,
-		
-		
+		bucketSensetive = 30,
 		
 		// Clears the canvas.
 		clearCanvas = function () {
@@ -178,22 +179,6 @@ var paintBucketApp = (function () {
 		 if (event.pageX != null && event.pageY != null) return {pageX: event.pageX, pageY: event.pageY};
 		 var element = (!document.compatMode || document.compatMode == 'CSS1Compat') ? document.documentElement : document.body;
 		 return {pageX: event.clientX + element.scrollLeft, pageY: event.clientY + element.scrollTop};
-		},
-
-		// Draw a color swatch
-		drawColorSwatch = function (color, x, y) {
-
-			context.beginPath();
-			context.arc(x + 46, y + 23, 18, 0, Math.PI * 2, true);
-			context.closePath();
-			context.fillStyle = "rgb(" + color.r + "," + color.g + "," + color.b + ")";
-			context.fill();
-
-			if (curColor === color) {
-				context.drawImage(swatchImage, 0, 0, 59, swatchImageHeight, x, y, 59, swatchImageHeight);
-			} else {
-				context.drawImage(swatchImage, x, y, swatchImageWidth, swatchImageHeight);
-			}
 		},
 
 		// Draw the elements on the canvas
@@ -481,10 +466,7 @@ var paintBucketApp = (function () {
 		saveAndShare = function(e){ 
  			context.globalCompositeOperation = "source-over";
 			clearCanvas();
-			context.drawImage(outlineImage, 0, 0, canvasWidth, canvasHeight);
-			var red = context.getImageData(0, 0, canvasWidth, canvasHeight);
-			clearCanvas();
-			
+
 			if(e.share == 1)
 			{
 				context.drawImage(waterMarkImage, canvasWidth-200, 10, 200, 63);
@@ -492,41 +474,32 @@ var paintBucketApp = (function () {
 			}
 			
 			var blueData = colorLayerData;
-			var mixFactor = 0.5; //main image is dominant
-				//we're using the red buffer as main buffer for this example
-				
-				for(var i = 0; i < red.data.length; i+=4) {
-				//	console.log(blueData.data[i+3]);
-					if(blueData.data[i+3] == 255){
-				    red.data[i]   = red.data[i]   * mixFactor + blueData.data[i]   * (1 - mixFactor);
-				    red.data[i+1] = red.data[i+1] * mixFactor + blueData.data[i+1] * (1 - mixFactor);
-				    red.data[i+2] = red.data[i+2] * mixFactor + blueData.data[i+2] * (1 - mixFactor);
-				   }else if(blueData.data[i+3] != 0){ 
-				   		red.data[i]   = red.data[i]   * mixFactor + blueData.data[i]   * (1 - mixFactor);
-				    	red.data[i+1] = red.data[i+1] * mixFactor + blueData.data[i+1] * (1 - mixFactor);
-				    	red.data[i+2] = red.data[i+2] * mixFactor + blueData.data[i+2] * (1 - mixFactor);
+			var mixFactor = 0.3; //main image is dominant
+			//we're using the outlineLayerData buffer as main buffer for this example
+			for(var i = 0; i < outlineLayerData.data.length; i+=4) {
+				if(blueData.data[i+3] != 0){
+			    outlineLayerData.data[i]   = outlineLayerData.data[i]   * mixFactor + blueData.data[i]   * (1 - mixFactor);
+			    outlineLayerData.data[i+1] = outlineLayerData.data[i+1] * mixFactor + blueData.data[i+1] * (1 - mixFactor);
+			    outlineLayerData.data[i+2] = outlineLayerData.data[i+2] * mixFactor + blueData.data[i+2] * (1 - mixFactor);
+			   }
+			}
+			if(e.share == 1)
+			{
+				//we're using the outlineLayerData buffer as main buffer for this example
+				for(var i = 0; i < outlineLayerData.data.length; i+=4) {
+					if(watermark.data[i+3] == 255){
+				   		outlineLayerData.data[i]   = watermark.data[i];
+				    	outlineLayerData.data[i+1] = watermark.data[i+1];
+				    	outlineLayerData.data[i+2] = watermark.data[i+2];
+				   }else if(watermark.data[i+3] != 0){
+				   		outlineLayerData.data[i]   = outlineLayerData.data[i]   * mixFactor + watermark.data[i]   * (1 - mixFactor);
+				    	outlineLayerData.data[i+1] = outlineLayerData.data[i+1] * mixFactor + watermark.data[i+1] * (1 - mixFactor);
+				    	outlineLayerData.data[i+2] = outlineLayerData.data[i+2] * mixFactor + watermark.data[i+2] * (1 - mixFactor);
 				   }
 				}
-				
-				//we're using the red buffer as main buffer for this example
-				if(e.share == 1)
-				{
-					for(var i = 0; i < red.data.length; i+=4) {
-						if(watermark.data[i+3] == 255){
-							console.log("255");
-					   		red.data[i]   = watermark.data[i];
-					    	red.data[i+1] = watermark.data[i+1];
-					    	red.data[i+2] = watermark.data[i+2];
-					   }else if(watermark.data[i+3] != 0){
-					   		console.log(watermark.data[i+3]);
-					   		red.data[i]   = red.data[i]   * mixFactor + watermark.data[i]   * (1 - mixFactor);
-					    	red.data[i+1] = red.data[i+1] * mixFactor + watermark.data[i+1] * (1 - mixFactor);
-					    	red.data[i+2] = red.data[i+2] * mixFactor + watermark.data[i+2] * (1 - mixFactor);
-					   }
-					}
-				}
+			}
 
-			context.putImageData(red, 0, 0);
+			context.putImageData(outlineLayerData, 0, 0);
 			
 			 $("#canvasDiv").css("opacity", "1"); 
 			//$("#result").
@@ -549,7 +522,9 @@ var paintBucketApp = (function () {
 				var wmVertical = 50;
 				readyContext.drawImage(waterMark, wmHorizontal, wmVertical,296,80);
 			};	**/			
-			
+			watermark = null;
+			blueData = null;
+			mixFactor = null;
 			 
 			//readyContext = mycanvas.getContext("2d"); 
 			 
@@ -579,10 +554,9 @@ var paintBucketApp = (function () {
 			context = canvas.getContext("2d"); // Grab the 2d canvas context
 			// Note: The above code is a workaround for IE 8 and lower. Otherwise we could have used:
 			//     context = document.getElementById('canvas').getContext("2d");
-
-			// Load images
 			backgroundImage.onload = resourceLoaded;
 			backgroundImage.src = "images/background.png";
+			// Load images
 			waterMarkImage.src = "images/watermark.png";
 			outlineImage.onload = function (e) {
 				var ratio = this.naturalWidth / canvasWidth;

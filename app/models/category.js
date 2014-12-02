@@ -54,8 +54,8 @@ exports.definition = {
 					from = 0;
 				}
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE type='" + type + "' order by position LIMIT "+ from +", 3";
-                
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE type='" + type + "' order by position LIMIT "+ from +", 300";
+ 				
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = []; 
@@ -74,19 +74,15 @@ exports.definition = {
 					res.next();
 					count++;
 				}
-				
+				 
 				res.close();
                 db.close();
                 collection.trigger('sync');
                 return listArr;
 			},
-			getCategoryById : function(id,cateType, from){
-				if(typeof from === "undefined"){
-					from = 0;
-				}
+			getCategoryByIdOnly : function(id){
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "' AND `type` = '"+cateType+"' order by position LIMIT "+ from +", 3";
-                
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "' order by position";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var arr = []; 
@@ -101,8 +97,35 @@ exports.definition = {
 						};
                  
 				} 
-				
-				console.log(arr);
+				 
+				res.close();
+                db.close();
+                collection.trigger('sync');
+                return arr;
+			},
+			getCategoryById : function(id,cateType, from){
+				if(typeof from === "undefined"){
+					from = 0;
+				}
+				var collection = this; 
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "' AND `type` = '"+cateType+"' order by position LIMIT "+ from +", 300";
+ 
+          
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var arr = []; 
+              
+                if (res.isValidRow()){ 
+                		arr = {
+						    id: res.fieldByName('id'),
+						    name: res.fieldByName('name'),
+						    type: res.fieldByName('type'),
+						    image: res.fieldByName('image'),
+						    description: res.fieldByName('description') 
+						};
+                 
+				} 
+				 
 				res.close();
                 db.close();
                 collection.trigger('sync');

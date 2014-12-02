@@ -38,19 +38,7 @@
 	height: '1',
 	backgroundColor: '#6E6E6E',
 },
-".inputField" :{
-	color: "#848484", 
-	//width: "80%",
-	borderColor:'#BDBDBD',
-	textAlign:"center",
-	height:40,
-	keyboardType: Titanium.UI.KEYBOARD_DEFAULT,
-    returnKeyType: Titanium.UI.RETURNKEY_NEXT,
-	clearButtonMode: Titanium.UI.INPUT_BUTTONMODE_ONFOCUS
-},
-"#message": {
-	returnKeyType: Titanium.UI.RETURNKEY_DONE
-},
+
 ".title":{
 	font:{fontSize:22},	
 }

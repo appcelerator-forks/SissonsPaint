@@ -8,6 +8,10 @@
 			</View>
 			 
 			<WebView top="80" id='canvas' url="/html/canvas-paint-bucket.html" height="80%" enableZoomControls="false" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" disableBounce="true" />
+			<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" top="0" opacity="1" backgroundColor="#2E2E2E" >
+				<ActivityIndicator  id="activityIndicator" />
+				<Label text="Loading" color="#ffffff" />
+			</View>
 			<View layout="vertical" height="330" bottom="-330" id="colorSwatches">
 				<ImageView image="/images/scroll_up.png" backgroundColor="transparent" width="Titanium.UI.FILL" />
 				<View id="bottomColorBar" layout="vertical" backgroundColor="white">
@@ -20,7 +24,7 @@
 			</View> 
 			<View height="250" bottom="-250" width="100" id="sizeBar">
 				<ImageView image="/images/pop_window2.png" height="250" width="100"></ImageView>
-				<Slider id="slider" min="0" max="100"  value="20" onStop="updateAdjustment" thumbImage="/images/size_toggle.png" width="180" />
+				<Slider id="slider" min="0" max="100"  value="30" onStop="updateAdjustment" thumbImage="/images/size_toggle.png" width="180" />
 			</View>
 			<View height="60" bottom="0" id="toolbar" width="100%" backgroundImage="/images/tool_bar.jpg">
 				<View layout="horizontal" width="100%">

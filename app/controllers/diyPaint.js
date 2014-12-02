@@ -24,16 +24,26 @@ var sizeShow = 0;
 var colorShow = 0;
 var filterFlag = 0;
 var shareFlag = 0;
-
+var tableData = [];
 var imgPath = "";
 fb.appid = 752094718209236;
 var t = Titanium.UI.create2DMatrix();
     t = t.rotate(-90);
 
 $.slider.transform = t;
+ 
+$.activityIndicator.show();
+$.loadingBar.opacity = "1";
+$.loadingBar.height = "120";
+$.loadingBar.top = ((PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight)/2)-($.loadingBar.getHeight()/2));
+
+
 
 setTimeout(function(){
+	generateFavourite();
+	generateColour();
 	takePhoto();
+	
 }, 300);
 	 
 $.toolbar.addEventListener('postlayout', function(e) { 
@@ -59,8 +69,7 @@ function sizePop(e){
  
 var tableDataShare = [];
 
-var saveRow = Ti.UI.createTableViewRow({
-    title: 'Save',
+var saveRow = Ti.UI.createTableViewRow({ 
     width: 150,
     height: Ti.UI.SIZE,
     left: 10,
@@ -69,14 +78,32 @@ var saveRow = Ti.UI.createTableViewRow({
   });
   
 var shareRow = Ti.UI.createTableViewRow({
-    title: 'Share',
+   
     width: 150,
     height: Ti.UI.SIZE,
     left: 10,
     touchEnabled: true,
     height: 60
   });
+
+var shareImage = Ti.UI.createImageView({
+    image: '/images/fb.png',
+    width: 25,
+    height: Ti.UI.SIZE,
+    left: 20,
+    touchEnabled: true,
+    height: 25
+  });
  
+ var saveImage = Ti.UI.createImageView({
+    image: '/images/save.png',
+    width: 25,
+    height: Ti.UI.SIZE,
+    left: 20,
+    touchEnabled: true,
+    height: 25
+  });
+  
 var saveLabel = Ti.UI.createLabel({
    text:'Save',
    width:150,
@@ -92,7 +119,12 @@ var shareLabel = Ti.UI.createLabel({
    textAlign:'center', 
    height: 60, 
 });
- 
+
+shareRow.add(shareImage);
+shareRow.add(shareLabel);
+saveRow.add(saveImage);
+saveRow.add(saveLabel);
+
 tableDataShare.push(saveRow);
 tableDataShare.push(shareRow);
   
@@ -108,37 +140,35 @@ var tableShare = Titanium.UI.createTableView({
 	data: tableDataShare
 });
 
+$.diyPaint.add(tableShare);
+
 var share = function(e){
-	
+	 
 	closeShareWindow();
 	if(shareFlag == 1) {
 		shareFlag = 0;
-		$.diyPaint.remove(tableShare);
+		//$.diyPaint.remove(tableShare);
+		tableShare.hide();
 	}else {
 		shareFlag = 1;
 		
-		$.diyPaint.add(tableShare);
+		tableShare.show();
+		//$.diyPaint.add(tableShare);
 		tableShare.addEventListener('click', tableShareListener);
 		
 	} 
 };
 
-var tableShareListener = function(e){
-	console.log(e.index);
+var tableShareListener = function(e){ 
 	shareFlag = 0;
-	$.diyPaint.remove(tableShare);
+	//$.diyPaint.remove(tableShare);
+	tableShare.hide();
 	Ti.App.addEventListener('app:saveToGallery', save); 
-	if(e.index == 0)
-	{
+	if(e.index == 0){
 		Ti.App.fireEvent('web:saveAndShare',{'share': 0 });
-	}
-	else
-	{
+	}else{
 		Ti.App.fireEvent('web:saveAndShare',{'share': 1 });
-		//shareFunction();
-		/****KM FB testing*****/
-		//console.log("before new view "+imgPath);
-		//setTimeout(function(){var nav = Alloy.createController("share",{imgPath:imgPath}).getView(); nav.open();},5000);
+		
 	}
 };
 
@@ -147,8 +177,7 @@ var closeShareWindow = function(e){
 };
 
 
-function shareFunction(e)
-{
+function shareFunction(e){
 	if (fb.loggedIn)
 			{
 		  		shareFacebook();
@@ -165,8 +194,7 @@ function shareFunction(e)
 			}
 }
 
-function shareFacebook()
-{
+function shareFacebook(){
 	var f = Ti.Filesystem.getFile(imgPath);
 	var blob = f.read();
   	var data = {
@@ -230,14 +258,14 @@ function colorSwatches(e){
 	$.colorSwatches.animate(animation);
 }
 
-var tableData = [];
+
 
 var row1 = Ti.UI.createTableViewRow({
     title: 'Bucket',
     width: 150,
     left: 10,
     touchEnabled: true,
-    height: 60
+    height: 50
   });
   
 var row2 = Ti.UI.createTableViewRow({
@@ -245,7 +273,7 @@ var row2 = Ti.UI.createTableViewRow({
     width: 150,
     left: 10,
     touchEnabled: true,
-    height: 60
+    height: 50
   });
   
 var row3 = Ti.UI.createTableViewRow({
@@ -253,7 +281,7 @@ var row3 = Ti.UI.createTableViewRow({
 	width: 150,
 	left: 10,
     touchEnabled: true,
-    height: 60
+    height: 50
   });
 
 
@@ -272,10 +300,13 @@ var table = Titanium.UI.createTableView({
 	overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER,
 	data: tableData
 });
-	
+ 
+$.diyPaint.add(table);
+
 var tableListener = function(e){
 	filterFlag = 0;
-	$.diyPaint.remove(table);
+	table.hide();
+	//$.diyPaint.remove(table);
 	if(e.index == 0){
 		tools = "bucket";
 		$.slider.setValue(bucketWidth);
@@ -304,14 +335,16 @@ function toolspop(e){
 	closeWindow();
 	if(filterFlag == 1) {
 		filterFlag = 0;
-		$.diyPaint.remove(table);
+		table.hide();
+		//$.diyPaint.remove(table);
 	}else {
 		filterFlag = 1;
 		colorSwatches(-330);
 		sizePop(-250);
 		colorShow = 0;
 		sizeShow = 0;
-		$.diyPaint.add(table);
+		table.show();
+		//$.diyPaint.add(table);
 		table.addEventListener('click', tableListener);
 		
 	}
@@ -336,7 +369,10 @@ function updateAdjustment(e){
 }
 
 function takePhoto(){
-	//Create a dialog with options
+	$.activityIndicator.hide();
+	$.loadingBar.opacity = "0";
+	$.loadingBar.height = "0";
+ 
 	var dialog = Titanium.UI.createOptionDialog({
 	    //title of dialog
 	    title: 'Choose an image source...',
@@ -361,35 +397,29 @@ function takePhoto(){
 	                var image = event.media; 
 	                 
 	                //checking if it is photo
-	                if(event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO)
-	                {
+	                if(event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
 	                    toolbarHeight = $.toolbar.rect.height;
 						canvasHeight = pHeight - toolbarHeight - toggleHeight;
 						$.canvas.setBottom(toolbarHeight);
 						$.canvas.setHeight(canvasHeight);
 	                    var nativePath = event.media.nativePath;
-	                    console.log(pWidth);
+	                   
 						ImageFactory.rotateResizeImage(nativePath, pWidth, 100);
 		                Ti.App.Properties.setString("image", nativePath); 
 		                Ti.App.fireEvent('web:loadImage', { image: nativePath, height:canvasHeight}); 
 		                $.shareButton.touchEnabled = 'true';
 	                }
 	            },
-	            cancel:function()
-	            {
+	            cancel:function(){
 	                //do somehting if user cancels operation
 	            },
-	            error:function(error)
-	            {
+	            error:function(error) {
 	                //error happend, create alert
 	                var a = Titanium.UI.createAlertDialog({title:'Camera'});
 	                //set message
-	                if (error.code == Titanium.Media.NO_CAMERA)
-	                {
+	                if (error.code == Titanium.Media.NO_CAMERA){
 	                    a.setMessage('Device does not have camera');
-	                }
-	                else
-	                {
+	                }else{
 	                    a.setMessage('Unexpected error: ' + error.code);
 	                }
 	 
@@ -399,9 +429,7 @@ function takePhoto(){
 	            allowImageEditing:true,
 	            saveToPhotoGallery:true
 	        });
-	    }
-	    else if(e.index == 1)
-	    {
+	    } else if(e.index == 1){
 	    	 
 	    	//obtain an image from the gallery
 	        Titanium.Media.openPhotoGallery({
@@ -435,17 +463,6 @@ function takePhoto(){
 	dialog.show();
 }
 
-function fireLoadImage(e)
-{
-	console.log('fireLoadImage');
-	Ti.App.fireEvent('foo', {name:'bar'});
-	console.log('fireLoadImage2');
-}
-
-
-// generateFavourite();
-// generateColour();
-
 function generateFavourite(){
 	var viewWidth = (Math.ceil((list_favourite.length)) * 50) + 10;
 	var favouriteRow = Titanium.UI.createView({
@@ -455,20 +472,31 @@ function generateFavourite(){
 	   width: viewWidth
 	});
 	
-	for (var j=0; j<list_favourite.length; j++)
-	{
+	for (var j=0; j<list_favourite.length; j++) {
 		var colour_details = colour_lib.getColourById(list_favourite[j].colour_id);
-		
-		var colours =  $.UI.create('View', {  
-			backgroundColor: "rgb("+colour_details.rgb +")",
-			borderColor: "#A5A5A5",
-			borderWidth: 1,
-			width: "40", 
-			height: "40",
-			left: "5",
-			right: "5"
-		});
-		
+		var colours;
+		if(colour_details.thumb != ""){
+	  		colours = $.UI.create('ImageView', {  
+				image: colour_details.thumb,
+				borderColor: "#A5A5A5",
+				borderWidth: 1,
+				width: "40", 
+				height: "40",
+				left: "5",
+				right: "5"
+			});
+	  	}else{
+	  		 colours = $.UI.create('View', {  
+				backgroundColor: "rgb("+colour_details.rgb +")",
+				borderColor: "#A5A5A5",
+				borderWidth: 1,
+				width: "40", 
+				height: "40",
+				left: "5",
+				right: "5"
+			});
+	  	}
+
 		createColorEvent(colours, colour_details);
 		favouriteRow.add(colours);	
 	}
@@ -491,8 +519,7 @@ function createColorEvent(colours, colour_details){
 			colorSwatches(60);
 			colorShow = 1;
 		}
-		//sizeShow = 1;
-		//sizePop(40);
+		 
 	});
 }
 
@@ -522,27 +549,47 @@ function generateColour(){
 			
 	var index = -1;
 	var listArr = [];
-	for (var i=0; i<list_colours.length; i++)
-	{
-		index = listArr.length;
-		
-		for (var j=0; j<listArr.length; j++)
-        {
-			if (list_colours[i].contrast >= listArr[j].contrast)
-			{
-				index = j;
-				break;
-			}	
+	//console.log(list_colours);
+	for (var i=0; i<list_colours.length; i++) {
+		if(list_colours[i].contrast <= 730){
+		 
+			index = listArr.length;
+			 
+			for (var j=0; j<listArr.length; j++) {
+				if (list_colours[i].contrast >= listArr[j].contrast) {
+					index = j;
+					break;
+				}	
+			}
+			
+			listArr.splice(index, 0, list_colours[i]);
 		}
-		
-		listArr.splice(index, 0, list_colours[i]);
 	}
 	
-	for (var i=0; i<listArr.length; i++)
-	{
-		//console.log(listArr[i].contrast)
-		var colours =  $.UI.create('View', {  
-				backgroundColor: "rgb("+listArr[i].rgb +")",
+	var whiteListArr = [];
+	for (var i=0; i<list_colours.length; i++) {
+		if(list_colours[i].contrast >= 730){
+			index = whiteListArr.length;
+			 
+			for (var j=0; j<whiteListArr.length; j++) {
+				if (list_colours[i].contrast >= whiteListArr[j].contrast) {
+					index = j;
+					break;
+				}	
+			}
+			
+			whiteListArr.splice(index, 0, list_colours[i]);
+		}
+	}
+	
+	var finalList = listArr.concat(whiteListArr);
+	for (var i=0; i<finalList.length; i++) {
+		 
+		var colours;
+			
+		if(finalList[i].thumb != ""){
+	  		colours = $.UI.create('ImageView', {  
+				image: finalList[i].thumb,
 				borderColor: "#A5A5A5",
 				borderWidth: 1,
 				width: "40", 
@@ -550,6 +597,17 @@ function generateColour(){
 				left: "5",
 				right: "5"
 			});
+	  	}else{
+	  		 colours = $.UI.create('View', {  
+				backgroundColor: "rgb("+finalList[i].rgb +")",
+				borderColor: "#A5A5A5",
+				borderWidth: 1,
+				width: "40", 
+				height: "40",
+				left: "5",
+				right: "5"
+			});
+	  	}
 			
 		if((i+1)%3 == 1)
 		{
@@ -564,19 +622,14 @@ function generateColour(){
 			bottomRow.add(colours);
 		}
 		
-		createColorEvent(colours, listArr[i]);
+		createColorEvent(colours, finalList[i]);
 	}
 	
 	$.scrollView.add(topRow);
 	$.scrollView.add(middleRow);
 	$.scrollView.add(bottomRow);
 }
-
-setTimeout(function(){
-	generateFavourite();
-	generateColour();
-}, 0);
-
+ 
 var save = function(e) {
 	var blob = e.blob;
 	var index = blob.indexOf('base64,');
@@ -584,8 +637,8 @@ var save = function(e) {
 	var img_view =Ti.Utils.base64decode(blob);
 
 	var filename = "sissons_diy"+printDate()+".png";
-	
-	var imgDir = Titanium.Filesystem.getFile(Titanium.Filesystem.externalStorageDirectory );
+	var mediaPath = "file://storage/sdcard0"+ Ti.Filesystem.separator + 'Pictures' + Ti.Filesystem.separator + 'Sissons Omnicolor';
+	var imgDir = Titanium.Filesystem.getFile(mediaPath );
 	if (!imgDir.exists()){
 		imgDir.createDirectory();
 	}
@@ -608,8 +661,7 @@ var save = function(e) {
 		toast.show();
 	} 
 	//Share!
-	if(e.share == 1){
-		console.log("share");
+	if(e.share == 1){ 
 		var nav = Alloy.createController("share",{imgPath:imgPath}).getView(); 
 		nav.open();
 	}
@@ -617,7 +669,7 @@ var save = function(e) {
 	// dispose of file handles
 	imageFile = null;
 	imgDir = null;
-	
+	Ti.Media.Android.scanMediaFiles([mediaPath],[],function(e){});
 	Ti.App.removeEventListener('app:saveToGallery', save);
 };
 
@@ -649,3 +701,8 @@ removeIcon.addEventListener( "click", function(){
 		Ti.App.Properties.setString('diyCheckBox', 1);
 	}
 });
+
+setTimeout(function(){
+	table.hide();
+	tableShare.hide();
+}, 3);

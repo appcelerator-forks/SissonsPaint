@@ -137,6 +137,29 @@ exports.definition = {
                 collection.trigger('sync');
                 return arr;
 			},
+			addStores : function(arr) {
+				var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+	           
+	            db.execute("BEGIN");
+				arr.forEach(function(entry) {
+		       		sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "(id, outlet, area, state, address,mobile, fax, email, latitude, longitude, category ) VALUES ('"+ entry.f_id +"', '"+mysql_real_escape_string(entry.f_outlet)+"', '"+entry.f_area+"', '"+entry.f_state+"', '"+mysql_real_escape_string(entry.f_address)+"', '"+entry.f_mobile+"', '"+entry.f_fax+"', '"+entry.f_email+"', '"+entry.f_lat+"', '"+entry.f_lng+"', '"+entry.f_category+"')";
+					/*var colour = Alloy.createModel('colour', {
+				        id: entry.id,
+					    name: entry.name,
+					    code: entry.code,
+					    rgb: entry.RGB,
+					    cmyk: entry.CMYK,
+					    sample: entry.sample,
+					    thumb: entry.thumb
+				    });
+				    colour.save();*/
+				    db.execute(sql_query);
+				});
+                db.execute("COMMIT");
+	            db.close();
+	            collection.trigger('sync');
+            },
 			resetStore : function(){
 				var collection = this;
                 var sql = "DELETE FROM " + collection.config.adapter.collection_name;
@@ -180,3 +203,28 @@ exports.definition = {
 		return Collection;
 	}
 };
+
+function mysql_real_escape_string (str) {
+    return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function (char) {
+        switch (char) {
+            case "\0":
+                return "\\0";
+            case "\x08":
+                return "\\b";
+            case "\x09":
+                return "\\t";
+            case "\x1a":
+                return "\\z";
+            case "\n":
+                return "\\n";
+            case "\r":
+                return "\\r";
+            case "\"":
+            case "'":
+            case "\\":
+            case "%":
+                return "\\"+char; // prepends a backslash to backslash, percent,
+                                  // and double/single quotes
+        }
+    });
+}

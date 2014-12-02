@@ -1,6 +1,8 @@
 <Alloy>
     <TableView id="menuTable" backgroundColor="#3F3D3D" onClick="doMenuClick">
-    	
+    	<TableViewRow height="50">
+			<Label width="Ti.UI.FILL" left="10">About Us</Label>
+		</TableViewRow>
 		<TableViewRow height="50">
 			<Label width="Ti.UI.FILL" left="10">DIY Paint</Label>
 		</TableViewRow>
@@ -14,14 +16,14 @@
 		</TableViewRow>
 		
 		<TableViewRow height="50">
-			<Label width="Ti.UI.FILL" left="10">Brochure</Label>
+			<Label width="Ti.UI.FILL" left="10">Brochures</Label>
 		</TableViewRow>
 		
 		<TableViewRow height="50">
 			<Label width="Ti.UI.FILL" left="10">Store Locator</Label>
 		</TableViewRow>
 		<TableViewRow height="50">
-			<Label width="Ti.UI.FILL" left="10">About Us</Label>
+			<Label width="Ti.UI.FILL" left="10">Contact Us</Label>
 		</TableViewRow>
     </TableView>
 </Alloy>

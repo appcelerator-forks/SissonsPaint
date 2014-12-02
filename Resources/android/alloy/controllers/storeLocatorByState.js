@@ -72,18 +72,15 @@ function Controller() {
                 textAlign: "left",
                 left: 20
             });
-            if ("" == details[i].email || null == details[i].email) ; else {
-                console.log("email" + details[i].email);
-                console.log("email length" + details[i].email.length);
-                var email = Titanium.UI.createLabel({
-                    text: "E-mail: " + details[i].email,
-                    id: details[i].id,
-                    width: "auto",
-                    color: "#848484",
-                    textAlign: "left",
-                    left: 20
-                });
-            }
+            ("" == details[i].email || null === details[i].email || "null" == details[i].email) && (details[i].email = "-");
+            var email = Titanium.UI.createLabel({
+                text: "E-mail: " + details[i].email,
+                id: details[i].id,
+                width: "auto",
+                color: "#848484",
+                textAlign: "left",
+                left: 20
+            });
             switch (details[i].category) {
               case 1:
                 var categoryName = "Branches";
@@ -138,7 +135,7 @@ function Controller() {
             width: "100%",
             height: 80,
             bottom: 0,
-            backgroundColor: "#A5A5A5"
+            backgroundImage: "/images/tool_bar.jpg"
         });
         var hintTextLabel = Ti.UI.createLabel({
             text: "Enter Colour, Name or Colour Code",

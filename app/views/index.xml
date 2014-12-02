@@ -3,9 +3,13 @@
 
         <Window module="xp.ui" title="test" role="leftWindow" id="mainWindow" backgroundColor="black" fullscreen="true">
             <ImageView id="logo" image="/images/menu_logo.png" width="150" top="30"/>
-            <TableView id="menuTable" top="100" onClick="doMenuClick" separatorColor="black" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
+            <TableView id="menuTable" top="80" onClick="doMenuClick" separatorColor="black" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
 				<TableViewRow height="50">
-					<Label width="Ti.UI.FILL" left="30" color="white">DIY Paint</Label>
+					<Label width="Ti.UI.FILL" left="30" color="white">About Us</Label>
+				</TableViewRow>
+				
+				<TableViewRow height="50">
+					<Label width="Ti.UI.FILL" left="30" color="white">Paint DIY</Label>
 				</TableViewRow>
 				
 				<TableViewRow height="50">
@@ -17,11 +21,11 @@
 				</TableViewRow>
 				
 				<TableViewRow height="50">
-					<Label width="Ti.UI.FILL" left="30" color="white">Favourite Colour</Label>
+					<Label width="Ti.UI.FILL" left="30" color="white">Favourite Colours</Label>
 				</TableViewRow>
 				
 				<TableViewRow height="50">
-					<Label width="Ti.UI.FILL" left="30" color="white">Brochure</Label>
+					<Label width="Ti.UI.FILL" left="30" color="white">Brochures</Label>
 				</TableViewRow>
 				
 				<TableViewRow height="50">
@@ -29,10 +33,10 @@
 				</TableViewRow>
 				
 				<TableViewRow height="50">
-					<Label width="Ti.UI.FILL" left="30" color="white">About Us</Label>
+					<Label width="Ti.UI.FILL" left="30" color="white">Contact Us</Label>
 				</TableViewRow>
 		    </TableView>
-		    <Label id="tnc" color="white" bottom="20" onClick="tnc">TERM & CONDITIONS | 2014 COPYRIGHT</Label>
+		    <Label id="tnc" color="white" bottom="10" onClick="tnc">TERM & CONDITIONS | 2014 COPYRIGHT</Label>
         </Window>
         
         <Window id="centerWindow" module="xp.ui" platform="android" role="centerWindow">
