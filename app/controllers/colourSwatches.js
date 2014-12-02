@@ -326,7 +326,15 @@ $.TheScrollView.addEventListener('scroll', function (e) {
 
 /****************Tutorial View***************/
 //$.win.show();
-$.win.hide();
+//$.win.hide();
+if(Ti.App.Properties.getString('swatchesCheckBox') == 1)
+{
+	$.win.hide();
+}
+else
+{
+	$.win.show();
+}
 
 var removeIcon = Ti.UI.createImageView({
 	   				image: "/images/icon_remove.png", 
@@ -339,6 +347,9 @@ var removeIcon = Ti.UI.createImageView({
 $.view3.add(removeIcon);
 
 removeIcon.addEventListener( "click", function(){
-	$.win.hide(); 
+	$.win.hide();
+	if($.checkBox.value == 1){
+		Ti.App.Properties.setString('swatchesCheckBox', 1);
+	}
 });
 

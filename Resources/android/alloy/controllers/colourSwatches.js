@@ -275,7 +275,8 @@ function Controller() {
         views: __alloyId68,
         id: "scrollableView",
         showPagingControl: "true",
-        pagingControlTimeout: "0"
+        pagingControlTimeout: "0",
+        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.win.add($.__views.scrollableView);
     exports.destroy = function() {};
@@ -448,7 +449,7 @@ function Controller() {
             generateTable();
         }
     });
-    $.win.hide();
+    1 == Ti.App.Properties.getString("swatchesCheckBox") ? $.win.hide() : $.win.show();
     var removeIcon = Ti.UI.createImageView({
         image: "/images/icon_remove.png",
         width: 30,
@@ -459,6 +460,7 @@ function Controller() {
     $.view3.add(removeIcon);
     removeIcon.addEventListener("click", function() {
         $.win.hide();
+        1 == $.checkBox.value && Ti.App.Properties.setString("swatchesCheckBox", 1);
     });
     __defers["$.__views.filterButton!click!filter"] && $.__views.filterButton.addEventListener("click", filter);
     __defers["$.__views.searchButton!click!search"] && $.__views.searchButton.addEventListener("click", search);

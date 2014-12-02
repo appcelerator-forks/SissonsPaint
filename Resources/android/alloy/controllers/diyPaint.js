@@ -538,7 +538,8 @@ function Controller() {
         views: __alloyId86,
         id: "scrollableView",
         showPagingControl: "true",
-        pagingControlTimeout: "0"
+        pagingControlTimeout: "0",
+        overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
     $.__views.win.add($.__views.scrollableView);
     exports.destroy = function() {};
@@ -764,7 +765,7 @@ function Controller() {
         imgDir = null;
         Ti.App.removeEventListener("app:saveToGallery", save);
     };
-    $.win.hide();
+    1 == Ti.App.Properties.getString("diyCheckBox") ? $.win.hide() : $.win.show();
     var removeIcon = Ti.UI.createImageView({
         image: "/images/icon_remove.png",
         width: 30,
@@ -775,7 +776,7 @@ function Controller() {
     $.view3.add(removeIcon);
     removeIcon.addEventListener("click", function() {
         $.win.hide();
-        console.log($.checkBox.value);
+        1 == $.checkBox.value && Ti.App.Properties.setString("diyCheckBox", 1);
     });
     __defers["$.__views.slider!stop!updateAdjustment"] && $.__views.slider.addEventListener("stop", updateAdjustment);
     __defers["$.__views.photoButton!click!takePhoto"] && $.__views.photoButton.addEventListener("click", takePhoto);

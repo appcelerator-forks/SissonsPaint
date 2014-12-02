@@ -623,7 +623,15 @@ var save = function(e) {
 
  /****************Tutorial View***************/
 //$.win.show();
-$.win.hide();
+//$.win.hide();
+if(Ti.App.Properties.getString('diyCheckBox') == 1)
+{
+	$.win.hide();
+}
+else
+{
+	$.win.show();
+}
 
 var removeIcon = Ti.UI.createImageView({
 	   				image: "/images/icon_remove.png", 
@@ -637,5 +645,7 @@ $.view3.add(removeIcon);
 
 removeIcon.addEventListener( "click", function(){
 	$.win.hide();
-	console.log($.checkBox.value);
+	if($.checkBox.value == 1){
+		Ti.App.Properties.setString('diyCheckBox', 1);
+	}
 });

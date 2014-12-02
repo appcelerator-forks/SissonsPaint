@@ -33,20 +33,20 @@
 			</View>
 		</View>	
 		<View id="win" height="80%" width="80%" backgroundColor="transparent" theme="Theme.NoActionBar" navBarHidden="true" fullscreen="true" borderColor="#A5A5A5" borderWidth="2" visible="false">
-	        <ScrollableView id="scrollableView" showPagingControl="true" pagingControlTimeout="0">
+	        <ScrollableView id="scrollableView" showPagingControl="true" pagingControlTimeout="0" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
 	            <View id="view1" backgroundColor="white">
-	               <Label color="black">View 1</Label>
+	            	<Label color="black">View 1</Label>
 	            </View>
 	            <View id="view2" backgroundColor="white">
-	             <Label color="black">View 2</Label>
-	             </View>
+	            	<Label color="black">View 2</Label>
+	            </View>
 	            <View id="view3" backgroundColor="white">
-	             <Label color="black">View 3</Label>
+	            	<Label color="black">View 3</Label>
 	             	<View layout="horizontal" bottom="10" height="Ti.UI.SIZE" width="Ti.UI.SIZE">
 	             		<Switch id="checkBox" style="Ti.UI.Android.SWITCH_STYLE_CHECKBOX" value="false"></Switch>
 	             		<Label id="showWindow" color="black">Don't show next time</Label>
 	             	</View>
-	             </View>
+	            </View>
 	        </ScrollableView>
 	    </View>
 	</View>
