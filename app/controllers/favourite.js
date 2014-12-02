@@ -35,7 +35,6 @@ function  getFav(){
 		count++;
 	});
 	favourite_list = null;
-	console.log(geo);
 }
 
 
@@ -71,16 +70,11 @@ function loadFavouriteList(){
 				top:3,
 				height: Ti.UI.SIZE
 			});
-			 
-<<<<<<< HEAD
+			   
 			if(fav.sample != ""){
-				var subViewColor = Ti.UI.createImageView({  
+				/**var subViewColor = Ti.UI.createImageView({  
 					backgroundImage: fav.sample,
-=======
-
-			if(fav.colour_details.sample != ""){
-				var subViewColor = $.UI.create('View', {
->>>>>>> FETCH_HEAD
+ 
 					borderColor: "#A5A5A5",
 					borderWidth: 1,
 					width: "97%", 
@@ -94,6 +88,14 @@ function loadFavouriteList(){
 					height: "80"
 				});
 				subViewColor.add(img);
+				**/
+				var subViewColor = $.UI.create('View', {  
+					backgroundImage :fav.sample,
+					borderColor: "#A5A5A5",
+					borderWidth: 1,
+					width: "97%", 
+					height: "80"
+				});
 			}else{
 				var subViewColor = $.UI.create('View', {  
 					backgroundColor: "rgb("+fav.rgb +")",
@@ -127,8 +129,7 @@ function loadFavouriteList(){
 	   			
 	   			removeFavEvent(subView,fav.colour_id,fav.code);	
 	   			subViewColor.add(removeIcon);  
-			}else{
-				console.log(fav.details);
+			}else{ 
 				createColorEvent(subView, fav.colour_details, fav.details);
 			}
 			

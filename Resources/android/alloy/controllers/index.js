@@ -130,7 +130,7 @@ function Controller() {
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
-        text: "DIY Paint",
+        text: "Paint DIY",
         left: "30",
         id: "__alloyId101"
     });

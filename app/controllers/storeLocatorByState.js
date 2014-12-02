@@ -88,20 +88,19 @@ function generateStoreTable(details){
 			});
 		}
 		
-		if(details[i].email == "" || details[i].email == null){}
-		else
-		{
-			console.log("email" +details[i].email);
-			console.log("email length" +details[i].email.length);
-			var email =  Titanium.UI.createLabel({
-				text:"E-mail: "+details[i].email,
-				id: details[i].id,  
-				width:'auto',
-				color: "#848484",
-				textAlign:'left', 
-				left:20
-			});
+		if(details[i].email == "" || details[i].email === null || details[i].email == "null"){ 
+			details[i].email = "-"; 
 		}
+		 
+		var email =  Titanium.UI.createLabel({
+			text:"E-mail: "+details[i].email,
+			id: details[i].id,  
+			width:'auto',
+			color: "#848484",
+			textAlign:'left', 
+			left:20
+		});
+		 
 		
 		switch(details[i].category){
 			case 1:

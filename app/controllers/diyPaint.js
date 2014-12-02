@@ -69,8 +69,7 @@ function sizePop(e){
  
 var tableDataShare = [];
 
-var saveRow = Ti.UI.createTableViewRow({
-    title: 'Save',
+var saveRow = Ti.UI.createTableViewRow({ 
     width: 150,
     height: Ti.UI.SIZE,
     left: 10,
@@ -79,14 +78,32 @@ var saveRow = Ti.UI.createTableViewRow({
   });
   
 var shareRow = Ti.UI.createTableViewRow({
-    title: 'Share',
+   
     width: 150,
     height: Ti.UI.SIZE,
     left: 10,
     touchEnabled: true,
     height: 60
   });
+
+var shareImage = Ti.UI.createImageView({
+    image: '/images/fb.png',
+    width: 25,
+    height: Ti.UI.SIZE,
+    left: 20,
+    touchEnabled: true,
+    height: 25
+  });
  
+ var saveImage = Ti.UI.createImageView({
+    image: '/images/save.png',
+    width: 25,
+    height: Ti.UI.SIZE,
+    left: 20,
+    touchEnabled: true,
+    height: 25
+  });
+  
 var saveLabel = Ti.UI.createLabel({
    text:'Save',
    width:150,
@@ -102,7 +119,12 @@ var shareLabel = Ti.UI.createLabel({
    textAlign:'center', 
    height: 60, 
 });
- 
+
+shareRow.add(shareImage);
+shareRow.add(shareLabel);
+saveRow.add(saveImage);
+saveRow.add(saveLabel);
+
 tableDataShare.push(saveRow);
 tableDataShare.push(shareRow);
   
@@ -243,7 +265,7 @@ var row1 = Ti.UI.createTableViewRow({
     width: 150,
     left: 10,
     touchEnabled: true,
-    height: 60
+    height: 50
   });
   
 var row2 = Ti.UI.createTableViewRow({
@@ -251,7 +273,7 @@ var row2 = Ti.UI.createTableViewRow({
     width: 150,
     left: 10,
     touchEnabled: true,
-    height: 60
+    height: 50
   });
   
 var row3 = Ti.UI.createTableViewRow({
@@ -259,7 +281,7 @@ var row3 = Ti.UI.createTableViewRow({
 	width: 150,
 	left: 10,
     touchEnabled: true,
-    height: 60
+    height: 50
   });
 
 

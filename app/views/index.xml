@@ -9,7 +9,7 @@
 				</TableViewRow>
 				
 				<TableViewRow height="50">
-					<Label width="Ti.UI.FILL" left="30" color="white">DIY Paint</Label>
+					<Label width="Ti.UI.FILL" left="30" color="white">Paint DIY</Label>
 				</TableViewRow>
 				
 				<TableViewRow height="50">

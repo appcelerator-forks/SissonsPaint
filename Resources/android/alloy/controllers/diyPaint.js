@@ -651,7 +651,6 @@ function Controller() {
     });
     var tableDataShare = [];
     var saveRow = Ti.UI.createTableViewRow({
-        title: "Save",
         width: 150,
         height: Ti.UI.SIZE,
         left: 10,
@@ -659,25 +658,44 @@ function Controller() {
         height: 60
     });
     var shareRow = Ti.UI.createTableViewRow({
-        title: "Share",
         width: 150,
         height: Ti.UI.SIZE,
         left: 10,
         touchEnabled: true,
         height: 60
     });
-    Ti.UI.createLabel({
+    var shareImage = Ti.UI.createImageView({
+        image: "/images/fb.png",
+        width: 25,
+        height: Ti.UI.SIZE,
+        left: 20,
+        touchEnabled: true,
+        height: 25
+    });
+    var saveImage = Ti.UI.createImageView({
+        image: "/images/save.png",
+        width: 25,
+        height: Ti.UI.SIZE,
+        left: 20,
+        touchEnabled: true,
+        height: 25
+    });
+    var saveLabel = Ti.UI.createLabel({
         text: "Save",
         width: 150,
         textAlign: "center",
         height: 60
     });
-    Ti.UI.createLabel({
+    var shareLabel = Ti.UI.createLabel({
         text: "Share",
         width: 150,
         textAlign: "center",
         height: 60
     });
+    shareRow.add(shareImage);
+    shareRow.add(shareLabel);
+    saveRow.add(saveImage);
+    saveRow.add(saveLabel);
     tableDataShare.push(saveRow);
     tableDataShare.push(shareRow);
     var tableShare = Titanium.UI.createTableView({
@@ -720,21 +738,21 @@ function Controller() {
         width: 150,
         left: 10,
         touchEnabled: true,
-        height: 60
+        height: 50
     });
     var row2 = Ti.UI.createTableViewRow({
         title: "Brush",
         width: 150,
         left: 10,
         touchEnabled: true,
-        height: 60
+        height: 50
     });
     var row3 = Ti.UI.createTableViewRow({
         title: "Eraser",
         width: 150,
         left: 10,
         touchEnabled: true,
-        height: 60
+        height: 50
     });
     tableData.push(row1);
     tableData.push(row2);
