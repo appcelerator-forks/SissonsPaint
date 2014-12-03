@@ -7,7 +7,7 @@ var type_lib = Alloy.createCollection('type');
 
 var from = 0;
 var firstRecords = "1";
-var minHeight = 102797;
+var minHeight = 2797;
 var tableData = [];
 var details = library.getCategoryListByType("2",from); 
 $.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 140;
@@ -391,8 +391,7 @@ $.TheScrollView.addEventListener('scroll', function (e) {
     
    // Ti.API.info('near bottom', ($.TheScrollView.getRect().height - e.y) <= ($.TheScrollView.getRect().height + tolerance));
 });
-
-/****************Tutorial View***************/
+/** **/
 //$.win.show();
 //$.win.hide();
 if(Ti.App.Properties.getString('swatchesCheckBox') == 1)
@@ -403,7 +402,7 @@ else
 {
 	$.win.show();
 }
-
+ 
 var removeIcon = Ti.UI.createImageView({
 	   				image: "/images/icon_remove.png", 
 	   				width:30, 
@@ -416,6 +415,7 @@ $.view4.add(removeIcon);
 
 removeIcon.addEventListener( "click", function(){
 	$.win.hide();
+	removeIcon = null; 
 	if($.checkBox.value == 1){
 		Ti.App.Properties.setString('swatchesCheckBox', 1);
 	}

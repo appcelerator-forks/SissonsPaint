@@ -35,7 +35,6 @@ exports.definition = {
 					res.next();
 					count++;
 				}
-				console.log(listArr); 
 				res.close();
                 db.close();
                 collection.trigger('sync');

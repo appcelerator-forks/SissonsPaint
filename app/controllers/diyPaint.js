@@ -44,7 +44,7 @@ setTimeout(function(){
 	generateColour();
 	takePhoto();
 	
-}, 300);
+}, 1000);
 	 
 $.toolbar.addEventListener('postlayout', function(e) { 
 	toolbarHeight = $.toolbar.rect.height;

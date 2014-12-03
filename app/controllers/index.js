@@ -146,8 +146,7 @@ $.drawer.addEventListener('android:back', function (e) {
   	
 });
 
-$.drawer.addEventListener('windowDidOpen', function (e) {
-	console.log("open");
+$.drawer.addEventListener('windowDidOpen', function (e) { 
 	drawerFlag = 1;
 });
 

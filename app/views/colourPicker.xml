@@ -39,9 +39,14 @@
 		</View>
 		<View id="win" height="90%" width="90%" backgroundColor="transparent" theme="Theme.NoActionBar" navBarHidden="true" fullscreen="true" borderColor="#A5A5A5" borderWidth="2" visible="false">
 	        <ScrollableView id="scrollableView" showPagingControl="true" pagingControlTimeout="0" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
-	            <View id="view1" backgroundImage="/images/Color Picker/tutorial_picker1.jpg"></View>
-	            <View id="view2" backgroundImage="/images/Color Picker/tutorial_picker2.jpg"></View>
-	            <View id="view3" backgroundImage="/images/Color Picker/tutorial_picker3.jpg">
+	            <View id="view1"  backgroundColor="#FFFFFF" >
+	            	<ImageView image="/images/tutorial/colorPicker/tutorial_picker1.jpg" width="100%" />
+	            </View>
+	            <View id="view2" backgroundColor="#FFFFFF" >
+	            	<ImageView image="/images/tutorial/colorPicker/tutorial_picker2.jpg" width="100%" />
+	            </View>
+	            <View id="view3" backgroundColor="#FFFFFF" >
+	            	<ImageView image="/images/tutorial/colorPicker/tutorial_picker3.jpg" width="100%" />
 	             	<View layout="horizontal" bottom="0" height="Ti.UI.SIZE" width="Ti.UI.SIZE">
 	             		<Switch id="checkBox" style="Ti.UI.Android.SWITCH_STYLE_CHECKBOX" value="false"></Switch>
 	             		<Label id="showWindow" color="black">Don't show next time</Label>

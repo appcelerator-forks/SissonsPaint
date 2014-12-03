@@ -22,8 +22,7 @@ $.colourName.text = colour.name;
 //$.colourC.textAlign = Ti.UI.TEXT_ALIGNMENT_RIGHT;
 //$.colourM.text =  (res[1] * 100).toFixed(2);
 //$.colourY.text =  (res[2] * 100).toFixed(2);
-//$.colourK.text =  (res[3] * 100).toFixed(2);
-console.log(JSON.stringify(args.details));
+//$.colourK.text =  (res[3] * 100).toFixed(2); 
 
 $.colourCategoryImage.image = category.image;
 $.colourCategoryImage.width = "80%";

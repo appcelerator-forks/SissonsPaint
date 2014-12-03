@@ -354,33 +354,51 @@ function Controller() {
     var __alloyId34 = [];
     $.__views.view1 = Ti.UI.createView({
         id: "view1",
-        backgroundImage: "/images/Color Picker/tutorial_picker1.jpg"
+        backgroundColor: "#FFFFFF"
     });
     __alloyId34.push($.__views.view1);
+    $.__views.__alloyId35 = Ti.UI.createImageView({
+        image: "/images/tutorial/colorPicker/tutorial_picker1.jpg",
+        width: "100%",
+        id: "__alloyId35"
+    });
+    $.__views.view1.add($.__views.__alloyId35);
     $.__views.view2 = Ti.UI.createView({
         id: "view2",
-        backgroundImage: "/images/Color Picker/tutorial_picker2.jpg"
+        backgroundColor: "#FFFFFF"
     });
     __alloyId34.push($.__views.view2);
+    $.__views.__alloyId36 = Ti.UI.createImageView({
+        image: "/images/tutorial/colorPicker/tutorial_picker2.jpg",
+        width: "100%",
+        id: "__alloyId36"
+    });
+    $.__views.view2.add($.__views.__alloyId36);
     $.__views.view3 = Ti.UI.createView({
         id: "view3",
-        backgroundImage: "/images/Color Picker/tutorial_picker3.jpg"
+        backgroundColor: "#FFFFFF"
     });
     __alloyId34.push($.__views.view3);
-    $.__views.__alloyId35 = Ti.UI.createView({
+    $.__views.__alloyId37 = Ti.UI.createImageView({
+        image: "/images/tutorial/colorPicker/tutorial_picker3.jpg",
+        width: "100%",
+        id: "__alloyId37"
+    });
+    $.__views.view3.add($.__views.__alloyId37);
+    $.__views.__alloyId38 = Ti.UI.createView({
         layout: "horizontal",
         bottom: "0",
         height: Ti.UI.SIZE,
         width: Ti.UI.SIZE,
-        id: "__alloyId35"
+        id: "__alloyId38"
     });
-    $.__views.view3.add($.__views.__alloyId35);
+    $.__views.view3.add($.__views.__alloyId38);
     $.__views.checkBox = Ti.UI.createSwitch({
         value: false,
         id: "checkBox",
         style: Ti.UI.Android.SWITCH_STYLE_CHECKBOX
     });
-    $.__views.__alloyId35.add($.__views.checkBox);
+    $.__views.__alloyId38.add($.__views.checkBox);
     $.__views.showWindow = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -388,7 +406,7 @@ function Controller() {
         text: "Don't show next time",
         id: "showWindow"
     });
-    $.__views.__alloyId35.add($.__views.showWindow);
+    $.__views.__alloyId38.add($.__views.showWindow);
     $.__views.scrollableView = Ti.UI.createScrollableView({
         views: __alloyId34,
         id: "scrollableView",
