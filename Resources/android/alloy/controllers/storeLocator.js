@@ -37,18 +37,18 @@ function Controller() {
         width: "100%"
     });
     $.__views.mainWindow && $.addTopLevelView($.__views.mainWindow);
-    $.__views.__alloyId138 = Ti.UI.createView({
+    $.__views.__alloyId130 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
         backgroundImage: "/images/banner_store_locator.jpg",
-        id: "__alloyId138"
+        id: "__alloyId130"
     });
-    $.__views.mainWindow.add($.__views.__alloyId138);
-    $.__views.__alloyId139 = Alloy.createController("toggle", {
-        id: "__alloyId139",
-        __parentSymbol: $.__views.__alloyId138
+    $.__views.mainWindow.add($.__views.__alloyId130);
+    $.__views.__alloyId131 = Alloy.createController("toggle", {
+        id: "__alloyId131",
+        __parentSymbol: $.__views.__alloyId130
     });
-    $.__views.__alloyId139.setParent($.__views.__alloyId138);
+    $.__views.__alloyId131.setParent($.__views.__alloyId130);
     $.__views.subWindow = Ti.UI.createScrollView({
         id: "subWindow",
         layout: "vertical",

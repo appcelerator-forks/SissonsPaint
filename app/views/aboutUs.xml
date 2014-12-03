@@ -10,7 +10,7 @@
 					<Label class="aboutContent" width="90%">It was in 1959 that SISSONS PAINTS (EAST) SDN BHD first started in Malaysia, although SISSONS' technology in paint making goes back 185 years when Sissons Brothers founded a company in HULL, England in 1803. SISSONS' well-known trademark of 'THE MEN AND PLANK' has been in use since 1910. </Label>	
 				</ScrollView>
 				
-			    
+			    <ImageView image="/images/about_us_image.jpg" bottom="0" right="0" width="Ti.UI.FILL" height="Ti.UI.SIZE"></ImageView>
 		    </ScrollView>
 	    </View>
 		<!--</ScrollView>-->

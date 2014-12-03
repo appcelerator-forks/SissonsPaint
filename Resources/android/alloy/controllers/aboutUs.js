@@ -78,6 +78,15 @@ function Controller() {
         id: "__alloyId3"
     });
     $.__views.main.add($.__views.__alloyId3);
+    $.__views.__alloyId4 = Ti.UI.createImageView({
+        image: "/images/about_us_image.jpg",
+        bottom: "0",
+        right: "0",
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        id: "__alloyId4"
+    });
+    $.__views.mainScroll.add($.__views.__alloyId4);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

@@ -1,7 +1,7 @@
 <Alloy>
 	<View id="mainView" top="10" left="10" right="10" backgroundColor="white" class="container">
 		<View layout="vertical" top="0" height="Ti.UI.SIZE">
-			<View layout="horizontal" height="80" backgroundImage="/images/banner_about_us.jpg">
+			<View layout="horizontal" height="80" backgroundImage="/images/banner_contact_us.jpg">
 				<Require src="toggle"></Require>
 				<!--<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">About Us</Label>-->
 			</View>
