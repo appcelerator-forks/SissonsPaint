@@ -628,7 +628,6 @@ function Controller() {
     $.loadingBar.opacity = "1";
     $.loadingBar.height = "120";
     $.loadingBar.top = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) / 2 - $.loadingBar.getHeight() / 2;
-    s;
     setTimeout(function() {
         generateFavourite();
         generateColour();

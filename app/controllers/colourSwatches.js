@@ -381,6 +381,10 @@ $.TheScrollView.addEventListener('scroll', function (e) {
 			generateTable(); 
 			**/ 
  		}else{
+ 			$.activityIndicator.show();
+			$.loadingBar.opacity = "1";
+			$.loadingBar.height = "120";
+			$.loadingBar.top = ((PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight)/2)-($.loadingBar.getHeight()/2));
  			details = library.getCategoryListByType("2",from);
  			generateTable();
  		}
