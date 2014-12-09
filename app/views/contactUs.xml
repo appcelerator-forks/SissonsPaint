@@ -5,9 +5,8 @@
 				<Require src="toggle"></Require>
 				<!--<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">About Us</Label>-->
 			</View>
-			<ScrollView id="mainScroll" layout="vertical" height="Ti.UI.SIZE" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
 			 
-				<View layout="vertical" backgroundColor="white" height="Titanium.UI.SIZE">
+				<View layout="vertical"  height="Titanium.UI.SIZE">
 					 
 					<View layout="horizontal" height="40" top="10" bottom="15" width="94%" horizontalWrap="true">
 						<Label class="description_content" color="#6E6E6E" width="40%">Name</Label>	
@@ -21,14 +20,19 @@
 						<Label class="description_content" color="#6E6E6E" width="40%">Phone Number</Label>	
 						<TextField id="phone" hintText="Optional" class="inputField" width="60%" />
 					</View>
-					<View  layout="horizontal" height="100" top="10" bottom="15" width="94%" horizontalWrap="true">
+					<View  layout="horizontal" height="40" top="10" bottom="15" width="94%" horizontalWrap="true">
 						<Label class="description_content" color="#6E6E6E" width="40%">Message</Label>	
 						<TextField id="message" hintText="Required" class="inputField" width="60%" />
 					</View>
 					 
 			    </View>
-			    
-		    </ScrollView>
+			     
+		   		<View height="100" layout="horizontal" width="80%"  >
+		   			<View width="20%" left="5" right="5" target="https://www.facebook.com/sissonspaintsmalaysia" onClick="goToWeb"><ImageView target="https://www.facebook.com/sissonspaintsmalaysia" image="/images/sp_fb_icon.png" /></View>
+			    	<View width="20%" left="5" right="5" target="https://www.youtube.com/channel/UCW6NAQE_pyHS0pK2PiqV-sw" onClick="goToWeb"><ImageView target="https://www.youtube.com/channel/UCW6NAQE_pyHS0pK2PiqV-sw" image="/images/sp_yt_icon.png" /></View>
+			    	<View width="20%" left="5" right="5" target="http://instagram.com/sissonspaintsmalaysia" onClick="goToWeb"><ImageView target="http://instagram.com/sissonspaintsmalaysia" image="/images/sp_ig_icon.png" /></View>
+			    	<View width="20%" left="5" right="5" target="http://www.sissonspaints.com.my/" onClick="goToWeb"><ImageView target="http://www.sissonspaints.com.my/" image="/images/sp_wb_icon.png" /></View> 
+			    </View>
 	    </View>
 		<!--</ScrollView>-->
 		<View height="60" bottom="0" id="toolbar" width="100%" backgroundImage="/images/tool_bar.jpg">

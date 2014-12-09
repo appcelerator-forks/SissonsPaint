@@ -78,15 +78,24 @@ function Controller() {
         id: "__alloyId3"
     });
     $.__views.main.add($.__views.__alloyId3);
-    $.__views.__alloyId4 = Ti.UI.createImageView({
-        image: "/images/about_us_image.jpg",
+    $.__views.__alloyId4 = Ti.UI.createLabel({
+        font: {},
+        color: "#6E6E6E",
+        bottom: 10,
+        text: "In 1992, Boustead Holdings Berhad, one of the largest conglomerates in Malaysia acquired then know as Kemira Sissons Paints Sdn Bhd. To reflect a common identity, we have since July 1993 in corporated the name Boustead into our company’s name and is now know as Boustead Sissons Paints Sdn Bhd.",
+        width: "90%",
+        id: "__alloyId4"
+    });
+    $.__views.main.add($.__views.__alloyId4);
+    $.__views.__alloyId5 = Ti.UI.createImageView({
+        image: "/images/about_us_image.png",
         bottom: "0",
         right: "0",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
-        id: "__alloyId4"
+        id: "__alloyId5"
     });
-    $.__views.mainScroll.add($.__views.__alloyId4);
+    $.__views.mainScroll.add($.__views.__alloyId5);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

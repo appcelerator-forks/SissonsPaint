@@ -55,7 +55,7 @@ function shareFacebook(){
 	   	{
 	   		$.loadingBar.hide();
 	   		$.loadingBar.opacity = "0"; 
-	   		alert("Successfully posted on Facebook");
+	   		alert("You have shared successfully on Facebook.");
 	   	}	
 	   	else
 	   	{

@@ -18,14 +18,14 @@ var displayCover = function(){
    		var id = details[i].id; 
    		imagepath = details[i].cover;
 
-		adImage = Ti.UI.createImageView({image: imagepath, bottom: 0, width:90, height: "auto"});
+		adImage = Ti.UI.createImageView({image: imagepath, backgroundImage: "/images/default_cover.jpg" , bottom: 0, width:90});
    		
    		if(counter%3 == 0){
-   			row = $.UI.create('View', {textAlign:'center', bottom: 0, layout: "vertical", height: Ti.UI.SIZE,  width: "100%"});
+   			row = $.UI.create('View', {textAlign:'center', bottom: 0, layout: "vertical", height: 220,  width: "100%" });
    			image = Ti.UI.createImageView({image:'/images/wood_rack.png', top: 0, width: "100%", right: 5, left: 5});
    			cellWrapper = Titanium.UI.createView({layout: "horizontal", height: Ti.UI.SIZE, width: "100%",bottom: 0, left: "5%", right: "5%"});
    		}
-   		cell = $.UI.create('View', {bottom: "0", height: Ti.UI.SIZE, width: "30%", right: 5});
+   		cell = $.UI.create('View', {bottom: 0, height: Ti.UI.SIZE, width: "30%", right: 5});
    		
 		cell.add(adImage);
 		cellWrapper.add(cell); 
@@ -83,23 +83,33 @@ function createAdImageEvent(adImage, id,content, cell, downloaded, downloadIcon)
 				var imageWidth = adImage.size.width;
 				var gray = Titanium.UI.createView({height: imageHeight, width: imageWidth, backgroundColor: "#A5A5A5", opacity:0.5, bottom: 0 });
 				var label = Ti.UI.createLabel({
-				  color: 'black',
-				  font: { fontSize:8, fontWeight:"bold" },
+				  color: '#ffffff',
+				  font: { fontSize:14, fontWeight:"bold" },
 				  text: '',
-				  top: 2,
+				  top: 10,
+				  width:"100%",
 				  textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 				  width: imageWidth, height: imageHeight
 				});
 				
-	
+		var bigView = Titanium.UI.createView({
+			height: "20%", 
+			width: "80%", 
+			backgroundColor: "#525151", 
+			opacity:0.8
+		});
+				
+				
 		if(downloaded == "0"){
-			cell.add(gray);
-			cell.add(ind);
-			cell.add(label);
+			bigView.add(gray);
+			bigView.add(ind);
+			bigView.add(label);
+			$.brochureView.add(bigView);
 		}else{
-			cell.remove(gray);
-			cell.remove(ind);
-			cell.remove(label);
+			bigView.remove(gray);
+			bigView.remove(ind);
+			bigView.remove(label);
+			$.brochureView.remove(bigView);
 		}
 		
     	pdf(content,true, ind, label, function (err) {
@@ -110,12 +120,12 @@ function createAdImageEvent(adImage, id,content, cell, downloaded, downloadIcon)
 		    		cell.remove(downloadIcon);
 		  	}
 		    	
-		    	cell.remove(gray);
-		    	cell.remove(ind);
-		    	cell.remove(label);
-		    	
+		    	bigView.remove(gray);
+		    	bigView.remove(ind);
+		    	bigView.remove(label);
+		    	$.brochureView.remove(bigView);
 		    }
-		  });
+		});
 
     } );
 }

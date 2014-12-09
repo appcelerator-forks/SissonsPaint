@@ -26,7 +26,7 @@ exports.definition = {
 			// extended functions and properties go here
 			getCategoryList: function(){
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" order by position";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" order by position , name";
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
@@ -54,7 +54,7 @@ exports.definition = {
 					from = 0;
 				}
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE type='" + type + "' order by position LIMIT "+ from +", 3";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE type='" + type + "' order by position, name LIMIT "+ from +", 3";
  				
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
@@ -82,7 +82,7 @@ exports.definition = {
 			},
 			getCategoryByIdOnly : function(id){
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "' order by position";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "' order by position, name";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var arr = []; 
@@ -108,7 +108,7 @@ exports.definition = {
 					from = 0;
 				}
 				var collection = this; 
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "' AND `type` = '"+cateType+"' order by position LIMIT "+ from +", 3";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "' AND `type` = '"+cateType+"' order by position, name LIMIT "+ from +", 3";
  
           
                 db = Ti.Database.open(collection.config.adapter.db_name);

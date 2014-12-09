@@ -52,9 +52,9 @@
 	            </View>
 	            <View id="view4" backgroundColor="#FFFFFF" >
 	            	<ImageView image="/images/tutorial/colorSwatches/tutorial4.jpg" width="100%" />
-	             	<View layout="horizontal" bottom="0" height="Ti.UI.SIZE" width="Ti.UI.SIZE">
-	             		<Switch id="checkBox" style="Ti.UI.Android.SWITCH_STYLE_CHECKBOX" value="false"></Switch>
-	             		<Label id="showWindow" color="black">Don't show next time</Label>
+	             	<View layout="horizontal" bottom="4" height="Ti.UI.SIZE" width="Ti.UI.SIZE">
+	             		<Switch id="checkBox" style="Ti.UI.Android.SWITCH_STYLE_CHECKBOX" value="true"></Switch>
+	             		<Label left="10" id="showWindow" color="black">Don't show next time</Label>
 	             	</View>
 	            </View>
 	        </ScrollableView>

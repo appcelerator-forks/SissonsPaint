@@ -24,7 +24,10 @@ $.loadingBar.top = ((PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight)/2)-
 $.colorSelection.hide();
 
 setTimeout(function(){
-	takePhoto();
+	if(Ti.App.Properties.getString('pickerCheckBox') == 1){
+		takePhoto();
+	}
+	
 	generateRecommended();
 }, 800);
 
@@ -280,12 +283,9 @@ function createColorEvent(colours, colour_details, details){
 /****************Tutorial View***************/
 //$.win.show();
 //$.win.hide();
-if(Ti.App.Properties.getString('pickerCheckBox') == 1)
-{
+if(Ti.App.Properties.getString('pickerCheckBox') == 1){
 	$.win.hide();
-}
-else
-{
+}else {
 	$.win.show();
 }
 
@@ -301,6 +301,7 @@ $.view3.add(removeIcon);
 
 removeIcon.addEventListener( "click", function(){
 	$.win.hide();
+	takePhoto();
 	if($.checkBox.value == 1){
 		Ti.App.Properties.setString('pickerCheckBox', 1);
 	}

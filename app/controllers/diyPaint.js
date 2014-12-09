@@ -36,14 +36,13 @@ $.activityIndicator.show();
 $.loadingBar.opacity = "1";
 $.loadingBar.height = "120";
 $.loadingBar.top = ((PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight)/2)-($.loadingBar.getHeight()/2));
-
-
-
+s
 setTimeout(function(){
 	generateFavourite();
 	generateColour();
-	takePhoto();
-	
+	if(Ti.App.Properties.getString('diyCheckBox') == 1){
+		takePhoto();
+	}
 }, 1000);
 	 
 $.toolbar.addEventListener('postlayout', function(e) { 
@@ -637,7 +636,7 @@ var save = function(e) {
 	var img_view =Ti.Utils.base64decode(blob);
 
 	var filename = "sissons_diy"+printDate()+".png";
-	var mediaPath = "file://storage/sdcard0"+ Ti.Filesystem.separator + 'Pictures' + Ti.Filesystem.separator + 'Sissons Omnicolor';
+	var mediaPath = "file://storage/sdcard0"+ Ti.Filesystem.separator + 'Pictures' + Ti.Filesystem.separator + 'DIY';
 	var imgDir = Titanium.Filesystem.getFile(mediaPath );
 	if (!imgDir.exists()){
 		imgDir.createDirectory();
@@ -649,7 +648,7 @@ var save = function(e) {
 	    var toast = Ti.UI.createNotification({
 		    message:"Saved FAILED",
 		    duration: Ti.UI.NOTIFICATION_DURATION_SHORT
-		});
+		}); 
 	    toast.show();
 	}
 	else{
@@ -666,22 +665,20 @@ var save = function(e) {
 		nav.open();
 	}
 	
-	// dispose of file handles
-	imageFile = null;
-	imgDir = null;
-	Ti.Media.Android.scanMediaFiles([mediaPath],[],function(e){});
+	Ti.Media.Android.scanMediaFiles([mediaPath+Ti.Filesystem.separator+filename],["image/png"],function(e){
+		// dispose of file handles
+		imageFile = null;
+		imgDir = null;
+	 });
 	Ti.App.removeEventListener('app:saveToGallery', save);
 };
 
  /****************Tutorial View***************/
 //$.win.show();
 //$.win.hide();
-if(Ti.App.Properties.getString('diyCheckBox') == 1)
-{
+if(Ti.App.Properties.getString('diyCheckBox') == 1){ 
 	$.win.hide();
-}
-else
-{
+}else{
 	$.win.show();
 }
 
@@ -697,6 +694,7 @@ $.view3.add(removeIcon);
 
 removeIcon.addEventListener( "click", function(){
 	$.win.hide();
+	takePhoto();
 	if($.checkBox.value == 1){
 		Ti.App.Properties.setString('diyCheckBox', 1);
 	}

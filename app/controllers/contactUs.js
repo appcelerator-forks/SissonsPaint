@@ -108,4 +108,8 @@ var submitContactForm = function(){
 	 client.send(); 
 };
 
+var goToWeb = function(e){
+	Ti.Platform.openURL(e.source.target);
+};
+
 $.message.addEventListener('return', submitContactForm);
