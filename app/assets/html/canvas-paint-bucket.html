@@ -467,7 +467,7 @@ var paintBucketApp = (function () {
  			context.globalCompositeOperation = "source-over";
 			clearCanvas();
 
-			if(e.share == 1)
+			if(e.share != 0)
 			{
 				context.drawImage(waterMarkImage, canvasWidth-200, 10, 200, 76);
 				var watermark = context.getImageData(0, 0, canvasWidth, canvasHeight);
@@ -483,7 +483,7 @@ var paintBucketApp = (function () {
 			    outlineLayerData.data[i+2] = outlineLayerData.data[i+2] * mixFactor + blueData.data[i+2] * (1 - mixFactor);
 			   }
 			}
-			if(e.share == 1)
+			if(e.share != 0)
 			{
 				//we're using the outlineLayerData buffer as main buffer for this example
 				for(var i = 0; i < outlineLayerData.data.length; i+=4) {

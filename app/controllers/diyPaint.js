@@ -85,6 +85,15 @@ var shareRow = Ti.UI.createTableViewRow({
     height: 60
   });
 
+var instagramRow = Ti.UI.createTableViewRow({
+   
+    width: 150,
+    height: Ti.UI.SIZE,
+    left: 10,
+    touchEnabled: true,
+    height: 60
+  });
+
 var shareImage = Ti.UI.createImageView({
     image: '/images/fb.png',
     width: 25,
@@ -94,6 +103,15 @@ var shareImage = Ti.UI.createImageView({
     height: 25
   });
  
+var instagramImage = Ti.UI.createImageView({
+    image: '/images/icon_sissons_instagram.png',
+    width: 25,
+    height: Ti.UI.SIZE,
+    left: 20,
+    touchEnabled: true,
+    height: 25
+  });
+   
  var saveImage = Ti.UI.createImageView({
     image: '/images/save.png',
     width: 25,
@@ -105,20 +123,32 @@ var shareImage = Ti.UI.createImageView({
   
 var saveLabel = Ti.UI.createLabel({
    text:'Save',
-   width:150,
-   textAlign:'center',
+   width:85,
+   left: 65,
+   textAlign:'left',
    // left: 10,
    height: 60,
    //font:{fontSize:16,fontWeight:'bold'}
 });
 
 var shareLabel = Ti.UI.createLabel({
-   text:'Share',
-   width:150,
-   textAlign:'center', 
+   text:'Facebook',
+   width:85,
+   left: 65,
+   textAlign:'left',
    height: 60, 
 });
 
+var instagramLabel = Ti.UI.createLabel({
+   text:'Instagram',
+   width:85,
+   left: 65,
+   textAlign:'left',
+   height: 60, 
+});
+
+instagramRow.add(instagramImage);
+instagramRow.add(instagramLabel);
 shareRow.add(shareImage);
 shareRow.add(shareLabel);
 saveRow.add(saveImage);
@@ -126,6 +156,7 @@ saveRow.add(saveLabel);
 
 tableDataShare.push(saveRow);
 tableDataShare.push(shareRow);
+tableDataShare.push(instagramRow);
   
 var tableShare = Titanium.UI.createTableView({
 	separatorColor: 'transparent',
@@ -165,8 +196,10 @@ var tableShareListener = function(e){
 	Ti.App.addEventListener('app:saveToGallery', save); 
 	if(e.index == 0){
 		Ti.App.fireEvent('web:saveAndShare',{'share': 0 });
-	}else{
+	}else if(e.index == 1){
 		Ti.App.fireEvent('web:saveAndShare',{'share': 1 });
+	}else{
+		Ti.App.fireEvent('web:saveAndShare',{'share': 2 });
 		
 	}
 };
@@ -177,6 +210,7 @@ var closeShareWindow = function(e){
 
 
 function shareFunction(e){
+	
 	if (fb.loggedIn)
 			{
 		  		shareFacebook();
@@ -194,6 +228,7 @@ function shareFunction(e){
 }
 
 function shareFacebook(){
+	
 	var f = Ti.Filesystem.getFile(imgPath);
 	var blob = f.read();
   	var data = {
@@ -641,7 +676,7 @@ var save = function(e) {
 	if (!imgDir.exists()){
 		imgDir.createDirectory();
 	}
- 
+ 	
 	var imageFile = Titanium.Filesystem.getFile(imgDir.resolve(), filename);
 	if (imageFile.write(img_view)===false) {
 	    // handle write error 
@@ -660,9 +695,27 @@ var save = function(e) {
 		toast.show();
 	} 
 	//Share!
-	if(e.share == 1){ 
+	console.log(e.share);
+	if(e.share == 1){ 	
 		var nav = Alloy.createController("share",{imgPath:imgPath}).getView(); 
 		nav.open();
+	}else if(e.share == 2){
+		var uri = imageFile.nativePath; 
+			console.log(uri);
+			var igIntent = Ti.Android.createIntent({
+				action:Ti.Android.ACTION_SEND,
+				packageName:"com.instagram.android",
+				type:"image/*",
+			});
+		 
+			igIntent.putExtraUri(Titanium.Android.EXTRA_STREAM, uri);
+			setTimeout(function(){
+				try{
+					Ti.Android.currentActivity.startActivity(igIntent);
+				}catch(err){
+					alert("Kindly install the Instagram application on your device.");
+				}
+			}, 400);
 	}
 	
 	Ti.Media.Android.scanMediaFiles([mediaPath+Ti.Filesystem.separator+filename],["image/png"],function(e){
