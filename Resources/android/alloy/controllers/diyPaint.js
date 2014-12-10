@@ -810,7 +810,7 @@ function Controller() {
         blob = blob.substring(index + "base64,".length);
         var img_view = Ti.Utils.base64decode(blob);
         var filename = "sissons_diy" + printDate() + ".png";
-        var mediaPath = "file://storage/sdcard0" + Ti.Filesystem.separator + "Pictures" + Ti.Filesystem.separator + "DIY";
+        var mediaPath = "file://storage/sdcard0" + Ti.Filesystem.separator + "Pictures" + Ti.Filesystem.separator + "Sissons Omnicolor DIY";
         var imgDir = Titanium.Filesystem.getFile(mediaPath);
         imgDir.exists() || imgDir.createDirectory();
         var imageFile = Titanium.Filesystem.getFile(imgDir.resolve(), filename);
