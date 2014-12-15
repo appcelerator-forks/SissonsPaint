@@ -61,7 +61,9 @@ function Controller() {
                 bigView.remove(label);
                 $.brochureView.remove(bigView);
             }
-            pdf(content, true, ind, label, function(err) {
+            pdf(content, true, ind, label, function(err, webview) {
+                console.log(webview);
+                $.brochureView.add(webview);
                 if (err) alert(err); else {
                     library.updateDownloadedBrochure(id);
                     "" != downloadIcon && cell.remove(downloadIcon);
