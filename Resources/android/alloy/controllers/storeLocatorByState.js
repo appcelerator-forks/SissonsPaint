@@ -248,7 +248,8 @@ function Controller() {
     generateStoreTable(details);
     $.stateName.text = state;
     NavigateTo = function(latitude, longitude, name, address) {
-        var url = "geo:" + latitude + "," + longitude + "?q=" + name + " (" + address + ")";
+        if ("0" == latitude && "0" == longitude) var url = "geo:" + latitude + "," + longitude + "?q=" + name + " (" + address + ")"; else var url = "geo:" + latitude + "," + longitude;
+        console.log(url);
         if (Ti.Android) try {
             Ti.API.info("Trying to Launch via Intent");
             var intent = Ti.Android.createIntent({

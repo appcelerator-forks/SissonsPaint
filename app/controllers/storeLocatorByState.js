@@ -225,8 +225,14 @@ function generateStoreTable(details){
 }
 
 NavigateTo = function(latitude, longitude, name, address){
-		  //var url = 'waze://?ll='+latitude+','+longitude+'&navigate=yes';
-		  var url = 'geo:'+latitude+','+longitude+"?q="+name+" (" + address + ")";
+	
+		  if(latitude == "0" && longitude == "0"){
+		  	var url = 'geo:'+latitude+','+longitude+"?q="+name+" (" + address + ")";
+		  }else{
+		  	var url = 'geo:'+latitude+','+longitude;
+		  }
+		  
+		  console.log(url);
 			if (Ti.Android){
 				try {
 					Ti.API.info('Trying to Launch via Intent');
