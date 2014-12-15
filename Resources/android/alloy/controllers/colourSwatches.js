@@ -55,7 +55,14 @@ function Controller() {
                     top: 3,
                     height: Ti.UI.SIZE
                 });
-                var colour_details = colour_lib.getColourById(colour.colour_id);
+                var colour_details = {
+                    thumb: colour.thumb,
+                    rgb: colour.rgb,
+                    name: colour.name,
+                    code: colour.code,
+                    sample: colour.sample,
+                    id: colour.cid
+                };
                 if ("" != colour_details.thumb) var subViewColor = $.UI.create("ImageView", {
                     image: colour_details.thumb,
                     borderColor: "#A5A5A5",
@@ -331,11 +338,11 @@ function Controller() {
     arguments[0] || {};
     var library = Alloy.createCollection("category");
     var category_colour_lib = Alloy.createCollection("category_colour");
-    var colour_lib = Alloy.createCollection("colour");
+    Alloy.createCollection("colour");
     var type_lib = Alloy.createCollection("type");
     var from = 0;
     var firstRecords = "1";
-    var minHeight = 2797;
+    var minHeight = 3797;
     var tableData = [];
     var details = library.getCategoryListByType("2", from);
     $.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 140;
@@ -410,7 +417,7 @@ function Controller() {
         table.hide();
         removeAllChildren($.TheScrollView);
         setTimeout(function() {
-            Ti.App.Properties.setString("swatchMinHeight", 2797);
+            Ti.App.Properties.setString("swatchMinHeight", 3797);
             Ti.App.Properties.getString("swatchMinHeight");
         }, 1e3);
         if ("All" == e.source.title) {

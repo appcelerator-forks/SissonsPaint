@@ -55,17 +55,12 @@ function copyToTemp(srcFile, base, url) {
 }
 
 function launch(file) {
-    Ti.Filesystem.getFile(file.getNativePath());
-    var pdfViewer = Ti.UI.createWebView({
-        data: "testing",
-        width: 1024,
-        height: 450,
-        touchEnabled: false,
-        enableZoomControls: false,
-        scalesPageToFit: true,
-        loading: true
+    var intent = Ti.Android.createIntent({
+        action: Ti.Android.ACTION_VIEW,
+        data: file.getNativePath(),
+        type: "application/pdf"
     });
-    return pdfViewer;
+    Ti.Android.currentActivity.startActivity(intent);
 }
 
 function pdf(url, cookies, inds, labels, done) {
@@ -75,8 +70,8 @@ function pdf(url, cookies, inds, labels, done) {
     download(url, cookies, function(err, file, base, url) {
         if (err) return done(err);
         var tempFile = copyToTemp(file, base, url);
-        var webview = launch(tempFile);
-        done(null, webview);
+        launch(tempFile);
+        done();
     });
 }
 

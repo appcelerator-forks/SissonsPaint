@@ -21,7 +21,7 @@ exports.definition = {
         _.extend(Collection.prototype, {
             getCategoryColourByCategory: function(cate_id) {
                 var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE cate_id='" + cate_id + "'";
+                var sql = "SELECT category_colour.*, colour.thumb, colour.rgb, colour.name, colour.code, colour.sample, colour.id AS cid FROM " + collection.config.adapter.collection_name + " LEFT OUTER JOIN colour ON category_colour.colour_id = colour.id WHERE cate_id='" + cate_id + "'";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];
@@ -29,7 +29,13 @@ exports.definition = {
                 while (res.isValidRow()) {
                     listArr[count] = {
                         id: res.fieldByName("id"),
-                        colour_id: res.fieldByName("colour_id")
+                        colour_id: res.fieldByName("colour_id"),
+                        thumb: res.fieldByName("thumb"),
+                        rgb: res.fieldByName("rgb"),
+                        name: res.fieldByName("name"),
+                        code: res.fieldByName("code"),
+                        sample: res.fieldByName("sample"),
+                        cid: res.fieldByName("cid")
                     };
                     res.next();
                     count++;

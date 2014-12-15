@@ -7,7 +7,7 @@ var type_lib = Alloy.createCollection('type');
 
 var from = 0;
 var firstRecords = "1";
-var minHeight = 2797;
+var minHeight = 3797;
 var tableData = [];
 var details = library.getCategoryListByType("2",from); 
 $.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 140;
@@ -100,7 +100,6 @@ function generateTable(){
  	 
 	for (var i=0; i< totalDetails; i++) { 
 		if(details[i] != ""){
-			 
 			var separator = Titanium.UI.createImageView({ 
 				width : Titanium.UI.FILL,
 				height : 30,
@@ -156,8 +155,16 @@ function generateTable(){
 					height: Ti.UI.SIZE
 				});
 				
-			  	var colour_details = colour_lib.getColourById(colour.colour_id);
-			  	
+				var colour_details = {
+					thumb: colour.thumb,
+					rgb: colour.rgb,
+					name: colour.name,
+					code: colour.code,
+					sample: colour.sample,
+					id: colour.cid
+				};
+			  	//var colour_details = colour_lib.getColourById(colour.colour_id);
+			  	 
 			  	if(colour_details.thumb != ""){
 			  		var subViewColor = $.UI.create('ImageView', {  
 						image: colour_details.thumb,
@@ -202,7 +209,7 @@ function generateTable(){
 				subView=null; 
 				counter++; 
 			});
-		 
+		 	
 		 	$.TheScrollView.add(colourView); 
 			colourView =null;
 		}else{
@@ -238,7 +245,7 @@ var tableListener = function(e){
  	
 	 
 	setTimeout(function(){ 
-		Ti.App.Properties.setString('swatchMinHeight', 2797); 
+		Ti.App.Properties.setString('swatchMinHeight', 3797); 
 		var swatchMinHeight = Ti.App.Properties.getString('swatchMinHeight');
 	}, 1000);
 
@@ -361,7 +368,6 @@ Ti.App.Properties.setString('swatchMinHeight', minHeight);
 $.TheScrollView.addEventListener('scroll', function (e) {  
 	
 	var swatchMinHeight = Ti.App.Properties.getString('swatchMinHeight');
-
 	if( e.y >= swatchMinHeight  ){ 
 		swatchMinHeight = parseInt(swatchMinHeight) + parseInt(minHeight); 
 		Ti.App.Properties.setString('swatchMinHeight', swatchMinHeight);

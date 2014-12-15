@@ -33,7 +33,7 @@
 					</View>
 				</View>
 			</View>
-		</View>	
+		</View>
 		<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" top="0" opacity="1" backgroundColor="#2E2E2E" >
 			<ActivityIndicator  id="activityIndicator" />
 			<Label text="Loading" color="#ffffff" />
