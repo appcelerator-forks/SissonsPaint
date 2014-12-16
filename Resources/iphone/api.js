@@ -38,17 +38,7 @@ exports.loadColour = function() {
                     var library = Alloy.createCollection("colour");
                     library.resetColour();
                     var arr = res.data;
-                    arr.forEach(function(entry) {
-                        var colour = Alloy.createModel("colour", {
-                            id: entry.id,
-                            name: entry.name,
-                            code: entry.code,
-                            rgb: entry.RGB,
-                            cmyk: entry.CMYK,
-                            sample: entry.sample
-                        });
-                        colour.save();
-                    });
+                    library.addColours(arr);
                 }
                 Ti.App.Properties.setString("loadColour", "1");
             }
@@ -70,6 +60,18 @@ exports.loadCategory = function() {
             if ("success" == res.status) {
                 var checker = Alloy.createCollection("updateChecker");
                 var isUpdate = checker.getCheckerById("3");
+                var lib_type = Alloy.createCollection("type");
+                lib_type.resetType();
+                var categoriestypes = res.type;
+                var typePriority = 1;
+                categoriestypes.forEach(function(catetypes) {
+                    var category_type = Alloy.createModel("type", {
+                        id: typePriority,
+                        ctype: catetypes.type
+                    });
+                    category_type.save();
+                    typePriority++;
+                });
                 if ("" == isUpdate || res.last_updated != isUpdate.updated) {
                     checker.updateModule("3", "category", res.last_updated);
                     var lib_cate = Alloy.createCollection("category");
@@ -101,7 +103,8 @@ exports.loadCategory = function() {
                         colours.forEach(function(colour) {
                             var category_colour = Alloy.createModel("category_colour", {
                                 cate_id: entry.id,
-                                colour_id: colour
+                                colour_id: colour,
+                                type: entry.type
                             });
                             category_colour.save();
                         });
@@ -161,22 +164,7 @@ exports.loadStoreLocator = function() {
                     var library = Alloy.createCollection("storeLocator");
                     library.resetStore();
                     var arr = res.data;
-                    arr.forEach(function(entry) {
-                        var storeLocator = Alloy.createModel("storeLocator", {
-                            id: entry.f_id,
-                            outlet: entry.f_outlet,
-                            area: entry.f_area,
-                            state: entry.f_state,
-                            address: entry.f_address,
-                            mobile: entry.f_mobile,
-                            fax: entry.f_fax,
-                            email: entry.f_email,
-                            latitude: entry.f_lat,
-                            longitude: entry.f_lng,
-                            category: entry.f_category
-                        });
-                        storeLocator.save();
-                    });
+                    library.addStores(arr);
                 }
                 Ti.App.Properties.setString("loadStoreLocator", "1");
             }

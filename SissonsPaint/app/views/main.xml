@@ -1,0 +1,6 @@
+<Alloy>
+	<View class="container">
+	  	<!-- main page content here -->
+		<Label>THIS IS MAIN</Label>
+	</View>
+</Alloy>

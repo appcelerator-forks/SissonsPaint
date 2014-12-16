@@ -23,7 +23,7 @@ exports.definition = {
         _.extend(Collection.prototype, {
             getCategoryList: function() {
                 var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " order by position";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " order by position , name";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];
@@ -47,7 +47,7 @@ exports.definition = {
             getCategoryListByType: function(type, from) {
                 "undefined" == typeof from && (from = 0);
                 var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE type='" + type + "' order by position LIMIT " + from + ", 3";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE type='" + type + "' order by position, name LIMIT " + from + ", 3";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];
@@ -68,9 +68,9 @@ exports.definition = {
                 collection.trigger("sync");
                 return listArr;
             },
-            getCategoryById: function(id, cateType) {
+            getCategoryByIdOnly: function(id) {
                 var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='" + id + "' AND `type` = '" + cateType + "' ";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='" + id + "' order by position, name";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var arr = [];
@@ -81,7 +81,25 @@ exports.definition = {
                     image: res.fieldByName("image"),
                     description: res.fieldByName("description")
                 });
-                console.log(arr);
+                res.close();
+                db.close();
+                collection.trigger("sync");
+                return arr;
+            },
+            getCategoryById: function(id, cateType, from) {
+                "undefined" == typeof from && (from = 0);
+                var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='" + id + "' AND `type` = '" + cateType + "' order by position, name LIMIT " + from + ", 3";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var arr = [];
+                res.isValidRow() && (arr = {
+                    id: res.fieldByName("id"),
+                    name: res.fieldByName("name"),
+                    type: res.fieldByName("type"),
+                    image: res.fieldByName("image"),
+                    description: res.fieldByName("description")
+                });
                 res.close();
                 db.close();
                 collection.trigger("sync");

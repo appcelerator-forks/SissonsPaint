@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Colour Picker</title>
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="html2canvas.js"></script>
+    <style>
+    	html {-webkit-text-size-adjust: none; margin:0; padding:0; }
+    	body {margin:0; padding:0;}
+    	#parent{ 
+			background-repeat:no-repeat;
+			background-size: 100% auto;
+		}
+		* {
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			-webkit-text-size-adjust: none;
+			-webkit-user-select: none;
+			-webkit-touch-callout: none;	
+		}
+		#canvasDiv{
+		}
+    </style>
+  </head>
+  <body>
+   <div id="parent">
+   		<img id="imgZoom" src="images/color_picker.png"style="width:60px;height:50px;top:0; left:0;z-index:99;position:absolute;visibility: hidden;"/>
+    	<div id="canvasDiv">
+    		<!--<img src="images/water_mark.png" style="width:50%;margin: auto;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;" />-->
+    		
+    	</div> 
+    </div>
+	 <script type="text/javascript">  
+		document.ontouchmove = function(event){ event.preventDefault(); };
+		
+		var screenwidth = window.innerWidth;
+		var initCanvasSize = function(e){
+			var canvasHeight = e.height; 
+			$('#parent').css('height', e.height);
+			//$('#choosenPhoto').css('height', e.height);
+			$('#myCanvas').css('width', '100%');
+			
+      	};
+		
+		var clearCanvas = function(){
+			context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+		};
+		
+		var setBackgroundSize = function(e){
+			$('#parent').css('background-size', '"' + e.width + ' ' + e.height + '"');
+			$('#parent').css('background-repeat', 'no-repeat');
+		};
+		
+		var loadImage = function(e){
+			$("#canvasDiv").html("");
+			//$('#choosenPhoto').attr('src', e.image);
+			var outlineImage = new Image();
+			var canvas = document.createElement('canvas');
+			var canvasW = window.innerWidth; 
+			
+			canvasWidth = canvasW;
+			// Load images 
+			outlineImage.src = e.image; 
+			outlineImage.onload = function (e) { 
+				var screenwidth = window.innerWidth;
+				canvasWidth = screenwidth;
+				var ratio = this.naturalWidth / canvasWidth;
+				var newheight = this.naturalHeight / ratio; 
+				canvas.setAttribute('width', canvasW);
+				canvas.setAttribute('height', newheight);
+				canvas.setAttribute('id', 'canvas');
+				document.getElementById('canvasDiv').appendChild(canvas);
+				
+				if (typeof G_vmlCanvasManager !== "undefined") {
+					canvas = G_vmlCanvasManager.initElement(canvas);
+				}
+				context = canvas.getContext("2d"); // Grab the 2d canvas context
+				canvasHeight = newheight;
+				setBackgroundSize({width: canvasWidth, height: newheight});
+				
+				context.drawImage(outlineImage, 0, 0,canvasWidth,newheight);
+				
+				// Test for cross origin security error (SECURITY_ERR: DOM Exception 18)
+				try {
+					outlineLayerData = context.getImageData(0, 0, canvasWidth, canvasHeight);
+					/***var waterMark = new Image();
+					waterMark.src = "images/water_mark.png"; 
+					waterMark.onload = function (e) { 
+						setBackgroundSize({width: canvasWidth, height: canvasHeight});
+						var wmHorizontal = canvasWidth - 300;
+						var wmVertical = canvasHeight - 100;
+						context.drawImage(waterMark, wmHorizontal, wmVertical,296,80);
+					};	
+					***/
+				} catch (ex) {
+					window.alert("Application cannot be run locally. Please run on a server.");
+					return;
+				}
+				
+			};
+			
+		};
+		
+	
+		$(function() { 
+			Ti.App.addEventListener("web:initCanvasSize", initCanvasSize);
+			Ti.App.addEventListener("web:loadImage", loadImage);
+			
+			$("#canvasDiv").click(function(e){ 
+				var mouseX = (Boolean(e.pageX))?e.pageX:e.originalEvent.targetTouches[0].pageX;
+				var mouseY = (Boolean(e.pageY))?e.pageY:e.originalEvent.targetTouches[0].pageY;
+				
+				$("#imgZoom").css({top: mouseY-18 + 'px', left: mouseX-18 + 'px', visibility: 'visible'});
+		
+				var pixelPos = (mouseX + canvasWidth * mouseY) * 4,
+				
+				r = outlineLayerData.data[pixelPos],
+				g = outlineLayerData.data[pixelPos + 1],
+				b = outlineLayerData.data[pixelPos + 2],
+				a = outlineLayerData.data[pixelPos + 3];
+				Ti.App.fireEvent('app:getColour', {r: r, g: g, b : b, a : a});
+			//	$('#canvasDiv').css('background-color', 'rgba(' + r + ', ' + g + ', ' + b + ', ' + a + ')');
+			});
+			
+			$(window).unload(function() {
+			    Ti.App.removeEventListener("web:initCanvasSize", initCanvasSize);
+			    Ti.App.removeEventListener("web:loadImage", loadImage);
+			});
+		});
+		
+</script>
+  </body>
+</html>

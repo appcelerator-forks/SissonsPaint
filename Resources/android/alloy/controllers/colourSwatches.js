@@ -56,19 +56,6 @@ function Controller() {
                     height: Ti.UI.SIZE
                 });
                 var colour_details = colour_lib.getColourById(colour.colour_id);
-                if ("" != colour_details.thumb) var subViewColor = $.UI.create("ImageView", {
-                    image: colour_details.thumb,
-                    borderColor: "#A5A5A5",
-                    borderWidth: 1,
-                    width: "97%",
-                    height: "80"
-                }); else var subViewColor = $.UI.create("View", {
-                    backgroundColor: "rgb(" + colour_details.rgb + ")",
-                    borderColor: "#A5A5A5",
-                    borderWidth: 1,
-                    width: "97%",
-                    height: "80"
-                });
                 var subLabelName = $.UI.create("Label", {
                     text: colour_details.name,
                     classes: [ "colorDesc" ]
@@ -79,11 +66,7 @@ function Controller() {
                     bottom: 10
                 });
                 createColorEvent(subView, colour_details, details[i]);
-                subView.add(subViewColor);
-                subView.add(subLabelName);
-                subView.add(subLabelCode);
                 colour_details = null;
-                subViewColor = null;
                 subLabelName = null;
                 subLabelCode = null;
                 colourView.add(subView);
@@ -335,7 +318,7 @@ function Controller() {
     var type_lib = Alloy.createCollection("type");
     var from = 0;
     var firstRecords = "1";
-    var minHeight = 2797;
+    var minHeight = 5797;
     var tableData = [];
     var details = library.getCategoryListByType("2", from);
     $.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 140;
@@ -410,7 +393,7 @@ function Controller() {
         table.hide();
         removeAllChildren($.TheScrollView);
         setTimeout(function() {
-            Ti.App.Properties.setString("swatchMinHeight", 2797);
+            Ti.App.Properties.setString("swatchMinHeight", 5797);
             Ti.App.Properties.getString("swatchMinHeight");
         }, 1e3);
         if ("All" == e.source.title) {

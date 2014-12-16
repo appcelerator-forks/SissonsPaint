@@ -32,33 +32,43 @@ function Controller() {
                 bottom: 0
             });
             var label = Ti.UI.createLabel({
-                color: "black",
+                color: "#ffffff",
                 font: {
-                    fontSize: 8,
+                    fontSize: 14,
                     fontWeight: "bold"
                 },
                 text: "",
-                top: 2,
+                top: 10,
+                width: "100%",
                 textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
                 width: imageWidth,
                 height: imageHeight
             });
+            var bigView = Titanium.UI.createView({
+                height: "20%",
+                width: "80%",
+                backgroundColor: "#525151",
+                opacity: .8
+            });
             if ("0" == downloaded) {
-                cell.add(gray);
-                cell.add(ind);
-                cell.add(label);
+                bigView.add(gray);
+                bigView.add(ind);
+                bigView.add(label);
+                $.brochureView.add(bigView);
             } else {
-                cell.remove(gray);
-                cell.remove(ind);
-                cell.remove(label);
+                bigView.remove(gray);
+                bigView.remove(ind);
+                bigView.remove(label);
+                $.brochureView.remove(bigView);
             }
             pdf(content, true, ind, label, function(err) {
                 if (err) alert(err); else {
                     library.updateDownloadedBrochure(id);
                     "" != downloadIcon && cell.remove(downloadIcon);
-                    cell.remove(gray);
-                    cell.remove(ind);
-                    cell.remove(label);
+                    bigView.remove(gray);
+                    bigView.remove(ind);
+                    bigView.remove(label);
+                    $.brochureView.remove(bigView);
                 }
             });
         });
@@ -90,40 +100,30 @@ function Controller() {
         backgroundImage: "/images/wood_background.jpg"
     });
     $.__views.brochureView && $.addTopLevelView($.__views.brochureView);
-    $.__views.__alloyId23 = Ti.UI.createView({
+    $.__views.__alloyId6 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId23"
+        id: "__alloyId6"
     });
-    $.__views.brochureView.add($.__views.__alloyId23);
-    $.__views.__alloyId24 = Ti.UI.createView({
+    $.__views.brochureView.add($.__views.__alloyId6);
+    $.__views.__alloyId7 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId24"
+        backgroundImage: "/images/banner_brochure.jpg",
+        id: "__alloyId7"
     });
-    $.__views.__alloyId23.add($.__views.__alloyId24);
-    $.__views.__alloyId25 = Alloy.createController("toggle", {
-        id: "__alloyId25",
-        __parentSymbol: $.__views.__alloyId24
+    $.__views.__alloyId6.add($.__views.__alloyId7);
+    $.__views.__alloyId8 = Alloy.createController("toggle", {
+        id: "__alloyId8",
+        __parentSymbol: $.__views.__alloyId7
     });
-    $.__views.__alloyId25.setParent($.__views.__alloyId24);
-    $.__views.__alloyId26 = Ti.UI.createLabel({
-        width: "75%",
-        height: Ti.UI.SIZE,
-        color: "black",
-        font: {
-            fontSize: 22
-        },
-        text: "Brochure",
-        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-        id: "__alloyId26"
-    });
-    $.__views.__alloyId24.add($.__views.__alloyId26);
+    $.__views.__alloyId8.setParent($.__views.__alloyId7);
     $.__views.scrollview = Ti.UI.createScrollView({
+        top: "15",
         id: "scrollview",
         layout: "vertical",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
-    $.__views.__alloyId23.add($.__views.scrollview);
+    $.__views.__alloyId6.add($.__views.scrollview);
     $.__views.mainView = Ti.UI.createView({
         id: "mainView",
         layout: "vertical",
@@ -139,22 +139,22 @@ function Controller() {
         backgroundImage: "/images/tool_bar.jpg"
     });
     $.__views.brochureView.add($.__views.toolbar);
-    $.__views.__alloyId27 = Ti.UI.createView({
+    $.__views.__alloyId9 = Ti.UI.createView({
         layout: "horizontal",
         width: "100%",
-        id: "__alloyId27"
+        id: "__alloyId9"
     });
-    $.__views.toolbar.add($.__views.__alloyId27);
-    $.__views.__alloyId28 = Ti.UI.createView({
+    $.__views.toolbar.add($.__views.__alloyId9);
+    $.__views.__alloyId10 = Ti.UI.createView({
         width: "40%",
-        id: "__alloyId28"
+        id: "__alloyId10"
     });
-    $.__views.__alloyId27.add($.__views.__alloyId28);
-    $.__views.__alloyId29 = Ti.UI.createView({
+    $.__views.__alloyId9.add($.__views.__alloyId10);
+    $.__views.__alloyId11 = Ti.UI.createView({
         width: "20%",
-        id: "__alloyId29"
+        id: "__alloyId11"
     });
-    $.__views.__alloyId27.add($.__views.__alloyId29);
+    $.__views.__alloyId9.add($.__views.__alloyId11);
     $.__views.filterButton = Ti.UI.createImageView({
         id: "filterButton",
         image: "/images/icon_filter.png",
@@ -163,13 +163,13 @@ function Controller() {
         top: "10",
         bottom: "10"
     });
-    $.__views.__alloyId29.add($.__views.filterButton);
+    $.__views.__alloyId11.add($.__views.filterButton);
     popWindow ? $.__views.filterButton.addEventListener("click", popWindow) : __defers["$.__views.filterButton!click!popWindow"] = true;
-    $.__views.__alloyId30 = Ti.UI.createView({
+    $.__views.__alloyId12 = Ti.UI.createView({
         width: "40%",
-        id: "__alloyId30"
+        id: "__alloyId12"
     });
-    $.__views.__alloyId27.add($.__views.__alloyId30);
+    $.__views.__alloyId9.add($.__views.__alloyId12);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -178,6 +178,10 @@ function Controller() {
     var library = Alloy.createCollection("brochure");
     var details = library.getBrochureList();
     var filterFlag = 0;
+    var tableData = [];
+    setTimeout(function() {
+        displayCover();
+    }, 300);
     var displayCover = function() {
         var counter = 0;
         var imagepath, adImage, row, image, cellWrapper, cell = "";
@@ -187,16 +191,16 @@ function Controller() {
             imagepath = details[i].cover;
             adImage = Ti.UI.createImageView({
                 image: imagepath,
+                backgroundImage: "/images/default_cover.jpg",
                 bottom: 0,
-                width: 90,
-                height: "auto"
+                width: 90
             });
             if (counter % 3 == 0) {
                 row = $.UI.create("View", {
                     textAlign: "center",
                     bottom: 0,
                     layout: "vertical",
-                    height: Ti.UI.SIZE,
+                    height: 220,
                     width: "100%"
                 });
                 image = Ti.UI.createImageView({
@@ -216,7 +220,7 @@ function Controller() {
                 });
             }
             cell = $.UI.create("View", {
-                bottom: "0",
+                bottom: 0,
                 height: Ti.UI.SIZE,
                 width: "30%",
                 right: 5
@@ -252,8 +256,6 @@ function Controller() {
             counter++;
         }
     };
-    displayCover();
-    var tableData = [];
     var row1 = Ti.UI.createTableViewRow({
         title: "LATEST",
         width: 150,

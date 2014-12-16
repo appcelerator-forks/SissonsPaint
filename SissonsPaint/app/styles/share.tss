@@ -1,0 +1,12 @@
+".container": {
+	backgroundColor:"black"
+},
+"#activityIndicator" : {
+	 style: Ti.UI.ActivityIndicatorStyle.BIG,
+	 top:15,
+	 left:30,
+	 width:60,
+},
+".title":{
+	font:{fontSize:22},	
+}
