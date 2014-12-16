@@ -55,7 +55,31 @@ function Controller() {
                     top: 3,
                     height: Ti.UI.SIZE
                 });
+<<<<<<< HEAD
                 var colour_details = colour_lib.getColourById(colour.colour_id);
+=======
+                var colour_details = {
+                    thumb: colour.thumb,
+                    rgb: colour.rgb,
+                    name: colour.name,
+                    code: colour.code,
+                    sample: colour.sample,
+                    id: colour.cid
+                };
+                if ("" != colour_details.thumb) var subViewColor = $.UI.create("ImageView", {
+                    image: colour_details.thumb,
+                    borderColor: "#A5A5A5",
+                    borderWidth: 1,
+                    width: "97%",
+                    height: "80"
+                }); else var subViewColor = $.UI.create("View", {
+                    backgroundColor: "rgb(" + colour_details.rgb + ")",
+                    borderColor: "#A5A5A5",
+                    borderWidth: 1,
+                    width: "97%",
+                    height: "80"
+                });
+>>>>>>> FETCH_HEAD
                 var subLabelName = $.UI.create("Label", {
                     text: colour_details.name,
                     classes: [ "colorDesc" ]
@@ -314,11 +338,15 @@ function Controller() {
     arguments[0] || {};
     var library = Alloy.createCollection("category");
     var category_colour_lib = Alloy.createCollection("category_colour");
-    var colour_lib = Alloy.createCollection("colour");
+    Alloy.createCollection("colour");
     var type_lib = Alloy.createCollection("type");
     var from = 0;
     var firstRecords = "1";
+<<<<<<< HEAD
     var minHeight = 5797;
+=======
+    var minHeight = 3797;
+>>>>>>> FETCH_HEAD
     var tableData = [];
     var details = library.getCategoryListByType("2", from);
     $.TheScrollView.height = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight) - 140;
@@ -393,7 +421,11 @@ function Controller() {
         table.hide();
         removeAllChildren($.TheScrollView);
         setTimeout(function() {
+<<<<<<< HEAD
             Ti.App.Properties.setString("swatchMinHeight", 5797);
+=======
+            Ti.App.Properties.setString("swatchMinHeight", 3797);
+>>>>>>> FETCH_HEAD
             Ti.App.Properties.getString("swatchMinHeight");
         }, 1e3);
         if ("All" == e.source.title) {
