@@ -47,7 +47,7 @@ exports.definition = {
             getCategoryListByType: function(type, from) {
                 "undefined" == typeof from && (from = 0);
                 var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE type='" + type + "' order by position, name LIMIT " + from + ", 3";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE type='" + type + "' order by position, name LIMIT " + from + ", 999";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];
@@ -89,7 +89,7 @@ exports.definition = {
             getCategoryById: function(id, cateType, from) {
                 "undefined" == typeof from && (from = 0);
                 var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='" + id + "' AND `type` = '" + cateType + "' order by position, name LIMIT " + from + ", 3";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='" + id + "' AND `type` = '" + cateType + "' order by position, name LIMIT " + from + ", 999";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var arr = [];

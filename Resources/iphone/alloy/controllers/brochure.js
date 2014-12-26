@@ -181,7 +181,7 @@ function Controller() {
     var tableData = [];
     setTimeout(function() {
         displayCover();
-    }, 300);
+    }, 700);
     var displayCover = function() {
         var counter = 0;
         var imagepath, adImage, row, image, cellWrapper, cell = "";

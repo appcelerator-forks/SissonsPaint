@@ -4,8 +4,7 @@ var pHeight = PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight);
 var pWidth = PixelsToDPUnits(Ti.Platform.displayCaps.platformWidth);
 var fb = require('facebook');
 fb.appid = 752094718209236;
-
-console.log(imgPath);
+ 
 $.saveImage.width = pWidth;
 $.saveImage.height = pHeight - 140;
 $.saveImage.image = imgPath;

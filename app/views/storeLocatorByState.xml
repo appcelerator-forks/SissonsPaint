@@ -10,7 +10,7 @@
 					<TextField id="textField" class="inputField" borderStyle="Ti.UI.INPUT_BORDERSTYLE_ROUNDED" hintText="Search by Store Name" backgroundColor="white" borderColor="A5A5A5" borderRadius="5" color="#336699" width="70%" height="60" left="10" top="10" />
 					<Button id="searchButton" backgroundColor="white" color="#A5A5A5" textAlign="Titanium.UI.TEXT_ALIGNMENT_CENTER" title="SEARCH" borderColor="#A5A5A5" borderRadius="5" left="5" top="10" height="60"></Button>
 				</View>
-		</View>-->
+			</View>-->
 		</View>	
 	</View>
 </Alloy>

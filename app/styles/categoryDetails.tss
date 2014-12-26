@@ -1,0 +1,50 @@
+".container": {
+	backgroundColor:"white"
+},
+"Label": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	color: "#000"
+},
+ 
+".title": { 
+	height: 20, 
+	color: "black",
+	width: "75%"
+},
+".aboutContent" : {
+	font: {
+        //fontSize: '12'
+   },
+   color: '#6E6E6E', 
+   width:"100%",
+   bottom: 10
+},
+".colorDesc" : {
+	font: {
+        fontSize: '12'
+   },
+   color: '#6E6E6E',
+   width: "100%",
+   textAlign:Ti.UI.TEXT_ALIGNMENT_RIGHT,  
+},
+"#main" :{
+	backgroundColor: "white", 
+	width:"95%"
+},
+"#main2" :{
+	backgroundColor: "white", 
+	width:"95%"
+},
+"#titleLabel": {
+	font: {
+        fontSize: '22'
+   }
+},
+"#activityIndicator" : {
+	 style: Ti.UI.ActivityIndicatorStyle.BIG,
+	 top:15,
+	 left:30,
+	 width:60,
+}
+ 

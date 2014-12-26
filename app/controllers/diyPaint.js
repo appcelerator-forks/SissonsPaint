@@ -243,8 +243,7 @@ function shareFacebook(){
 	   	else
 	   	{
 	   		if (e.error) {
-	   			//alert(e.error);
-	   			console.log(e.error);
+	   			//alert(e.error); 
 	   		}
 	   		else
 	   		{

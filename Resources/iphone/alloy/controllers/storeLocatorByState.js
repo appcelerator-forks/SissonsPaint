@@ -210,17 +210,17 @@ function Controller() {
         id: "storeLocatorByState"
     });
     $.__views.storeLocatorByState && $.addTopLevelView($.__views.storeLocatorByState);
-    $.__views.__alloyId149 = Ti.UI.createView({
+    $.__views.__alloyId151 = Ti.UI.createView({
         layout: "horizontal",
         height: "80",
-        id: "__alloyId149"
+        id: "__alloyId151"
     });
-    $.__views.storeLocatorByState.add($.__views.__alloyId149);
-    $.__views.__alloyId150 = Alloy.createController("toggle", {
-        id: "__alloyId150",
-        __parentSymbol: $.__views.__alloyId149
+    $.__views.storeLocatorByState.add($.__views.__alloyId151);
+    $.__views.__alloyId152 = Alloy.createController("toggle", {
+        id: "__alloyId152",
+        __parentSymbol: $.__views.__alloyId151
     });
-    $.__views.__alloyId150.setParent($.__views.__alloyId149);
+    $.__views.__alloyId152.setParent($.__views.__alloyId151);
     $.__views.stateName = Ti.UI.createLabel({
         width: "75%",
         height: Ti.UI.SIZE,
@@ -231,7 +231,7 @@ function Controller() {
         id: "stateName",
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
     });
-    $.__views.__alloyId149.add($.__views.stateName);
+    $.__views.__alloyId151.add($.__views.stateName);
     $.__views.tableContainer = Ti.UI.createView({
         backgroundColor: "white",
         id: "tableContainer",
@@ -249,7 +249,6 @@ function Controller() {
     $.stateName.text = state;
     NavigateTo = function(latitude, longitude, name, address) {
         if ("0" == latitude && "0" == longitude) var url = "geo:" + latitude + "," + longitude + "?q=" + name + " (" + address + ")"; else var url = "geo:" + latitude + "," + longitude;
-        console.log(url);
         if (Ti.Android) try {
             Ti.API.info("Trying to Launch via Intent");
             var intent = Ti.Android.createIntent({

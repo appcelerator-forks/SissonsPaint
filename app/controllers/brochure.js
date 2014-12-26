@@ -8,7 +8,7 @@ var tableData = [];
 
 setTimeout(function(){
 	displayCover();
-}, 300);
+}, 700);
 
 var displayCover = function(){ 
    	var counter = 0;

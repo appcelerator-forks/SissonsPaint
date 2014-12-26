@@ -100,14 +100,7 @@ exports.loadCategory = function() {
                             category_type.save();
                         });
                         var colours = entry.arr_colour;
-                        colours.forEach(function(colour) {
-                            var category_colour = Alloy.createModel("category_colour", {
-                                cate_id: entry.id,
-                                colour_id: colour,
-                                type: entry.type
-                            });
-                            category_colour.save();
-                        });
+                        lib_colour.addStores(colours, entry.id, entry.type);
                     });
                 }
                 Ti.App.Properties.setString("loadCategory", "1");
