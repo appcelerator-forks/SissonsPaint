@@ -61,6 +61,18 @@ exports.definition = {
                 collection.trigger("sync");
                 return result;
             },
+            addStores: function(arr, cate_id, cate_type) {
+                var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                db.execute("BEGIN");
+                arr.forEach(function(colour) {
+                    sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "( cate_id, colour_id, type ) VALUES ('" + cate_id + "', '" + colour + "', '" + cate_type + "')";
+                    db.execute(sql_query);
+                });
+                db.execute("COMMIT");
+                db.close();
+                collection.trigger("sync");
+            },
             resetCategoryColour: function() {
                 var collection = this;
                 var sql = "DELETE FROM " + collection.config.adapter.collection_name;

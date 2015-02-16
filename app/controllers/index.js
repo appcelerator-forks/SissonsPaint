@@ -30,14 +30,18 @@ $.loadingBar.top = ((PixelsToDPUnits(Ti.Platform.displayCaps.platformHeight)/2)-
 // Load API function
 setTimeout(function(){
  
-	API.loadStoreLocator();
- 	API.loadBrochure();
-	API.loadColour();
-	API.loadCategory();
+	API.loadStoreLocator(); 
+	
+ 	API.loadBrochure(); 
+ 	
+	API.loadColour(); 
+	
+	API.loadCategory(); 
+	
 	Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_NONE);
 	 
 	checkLoadStatus();
-}, 500);
+}, 200);
 
 function checkLoadStatus(){
 	var loadStoreLocator = Ti.App.Properties.getString('loadStoreLocator');
@@ -116,6 +120,10 @@ $.drawer.addEventListener('android:back', function (e) {
 	if(mod == "storeLocator"){
 		Ti.App.Properties.setString('module', 'index');
 		var nav = Alloy.createController("storeLocator").getView(); 
+		Alloy.Globals.Drawer.setCenterWindow(nav);  
+	}else if(mod == "colourSwatches"){
+		Ti.App.Properties.setString('module', 'index');
+		var nav = Alloy.createController(mod).getView(); 
 		Alloy.Globals.Drawer.setCenterWindow(nav);  
 	}else if(mod == "search"){
 		from = Ti.App.Properties.getString('from');

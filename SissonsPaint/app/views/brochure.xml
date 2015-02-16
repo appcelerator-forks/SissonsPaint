@@ -1,0 +1,28 @@
+<Alloy>
+	 
+		<View id="brochureView" class="container" backgroundImage="/images/wood_background.jpg">
+			<View layout="vertical">
+			<View layout="horizontal" height="80" backgroundImage="/images/banner_brochure.jpg">
+				<Require src="toggle"></Require>
+				<!--<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Brochure</Label>-->
+			</View>
+			<ScrollView id="scrollview" layout="vertical" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
+				<View id="mainView" layout="vertical" height="Ti.UI.SIZE" width="80%">
+					
+				</View>
+			</ScrollView>
+			</View>
+		    <View height="60" bottom="0" id="toolbar" width="100%" backgroundImage="/images/tool_bar.jpg">
+				<View layout="horizontal" width="100%">
+					<View width="40%">
+					</View>
+					<View width="20%">
+						<ImageView id="filterButton" image="/images/icon_filter.png" onClick="popWindow" height="40" width="50" top="10" bottom="10" />
+					</View>
+					<View width="40%">
+				</View>
+			</View>
+		</View>
+		</View>
+	 
+</Alloy>

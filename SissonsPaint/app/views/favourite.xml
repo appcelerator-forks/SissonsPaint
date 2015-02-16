@@ -1,0 +1,21 @@
+<Alloy>
+	
+	<View class="container" id="mainFavContainer"> 
+		<View layout="horizontal" height="80" top="0" backgroundImage="/images/banner_favourite_colour.jpg">
+			<Require src="toggle"></Require>
+			<!--<Label id="titleLabel" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Favourite Colour</Label>-->
+		</View>
+		<View height="60" bottom="0" id="toolbar" width="100%" backgroundImage="/images/tool_bar.jpg">
+			<View layout="horizontal" width="100%">
+				<View width="40%">
+				</View>
+				<View width="20%">
+					<ImageView id="unFavButton" image="/images/icon_fav_remove.png" onClick="unFavButton" height="40" width="50" top="10" bottom="10" />
+				</View>
+				<View width="40%">
+				</View>
+			</View>
+		</View>
+	</View> 
+	 
+</Alloy>

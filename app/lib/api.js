@@ -41,7 +41,7 @@ exports.loadColour = function (ex){
 		       	var arr = res.data;
 				
 				library.addColours(arr);
-			}
+			} 
 			Ti.App.Properties.setString('loadColour', '1'); 
 	       }
 	       
@@ -126,20 +126,14 @@ exports.loadCategory = function(ex){
 						
 						/*** Category Colour***/
 						var colours = entry.arr_colour;
-			       		colours.forEach(function(colour) {
-			       			var category_colour = Alloy.createModel('category_colour', { 
-							    cate_id: entry.id, 
-							    colour_id: colour,
-							    type: entry.type
-						    });
-						    category_colour.save();
-			       		});
+			       		
+			       		lib_colour.addStores(colours,entry.id,entry.type);
 					});
 					
 					
 			       	
 				}
-		       
+		        
 				Ti.App.Properties.setString('loadCategory', '1');
 	       }
 	     },
@@ -182,8 +176,7 @@ exports.loadBrochure = function (ex){
 					});
 					
 				}
-		       	
-				
+		       	 
 				Ti.App.Properties.setString('loadBrochure', '1');
 	       }
 	     },
@@ -243,8 +236,7 @@ exports.loadStoreLocator = function (ex){
 					});
 					*/
 				}
-		       
-				
+		        
 				Ti.App.Properties.setString('loadStoreLocator', '1');
 	       }
 	     },

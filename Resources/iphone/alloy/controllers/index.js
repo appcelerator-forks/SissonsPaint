@@ -15,7 +15,7 @@ function Controller() {
         var loadCategory = Ti.App.Properties.getString("loadCategory");
         if ("1" == loadStoreLocator && "1" == loadBrochure && "1" == loadColour && "1" == loadCategory) {
             $.loadingBar.opacity = "0";
-            var nav = Alloy.createController("diyPaint").getView();
+            var nav = Alloy.createController("aboutUs").getView();
             Alloy.Globals.Drawer.setCenterWindow(nav);
             Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
         } else setTimeout(function() {
@@ -28,31 +28,43 @@ function Controller() {
     function doMenuClick(e) {
         switch (e.index) {
           case 0:
-            navigation("diyPaint");
+            navigation("aboutUs");
+            Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
             break;
 
           case 1:
-            navigation("colourPicker");
+            navigation("diyPaint");
+            Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_NONE);
             break;
 
           case 2:
-            navigation("colourSwatches");
+            navigation("colourPicker");
+            Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
             break;
 
           case 3:
-            navigation("favourite");
+            navigation("colourSwatches");
+            Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
             break;
 
           case 4:
-            navigation("brochure");
+            navigation("favourite");
+            Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
             break;
 
           case 5:
-            navigation("storeLocator");
+            navigation("brochure");
+            Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
             break;
 
           case 6:
-            navigation("aboutUs");
+            navigation("storeLocator");
+            Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
+            break;
+
+          case 7:
+            navigation("contactUs");
+            Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_ALL);
         }
     }
     function navigation(target) {
@@ -94,109 +106,123 @@ function Controller() {
         top: "30"
     });
     $.__views.mainWindow.add($.__views.logo);
-    var __alloyId110 = [];
-    $.__views.__alloyId111 = Ti.UI.createTableViewRow({
+    var __alloyId111 = [];
+    $.__views.__alloyId112 = Ti.UI.createTableViewRow({
         height: "50",
-        id: "__alloyId111"
-    });
-    __alloyId110.push($.__views.__alloyId111);
-    $.__views.__alloyId112 = Ti.UI.createLabel({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        color: "white",
-        text: "DIY Paint",
-        left: "30",
         id: "__alloyId112"
     });
-    $.__views.__alloyId111.add($.__views.__alloyId112);
-    $.__views.__alloyId113 = Ti.UI.createTableViewRow({
-        height: "50",
-        id: "__alloyId113"
-    });
-    __alloyId110.push($.__views.__alloyId113);
-    $.__views.__alloyId114 = Ti.UI.createLabel({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        color: "white",
-        text: "Colour Picker",
-        left: "30",
-        id: "__alloyId114"
-    });
-    $.__views.__alloyId113.add($.__views.__alloyId114);
-    $.__views.__alloyId115 = Ti.UI.createTableViewRow({
-        height: "50",
-        id: "__alloyId115"
-    });
-    __alloyId110.push($.__views.__alloyId115);
-    $.__views.__alloyId116 = Ti.UI.createLabel({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        color: "white",
-        text: "Colour Swatches",
-        left: "30",
-        id: "__alloyId116"
-    });
-    $.__views.__alloyId115.add($.__views.__alloyId116);
-    $.__views.__alloyId117 = Ti.UI.createTableViewRow({
-        height: "50",
-        id: "__alloyId117"
-    });
-    __alloyId110.push($.__views.__alloyId117);
-    $.__views.__alloyId118 = Ti.UI.createLabel({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        color: "white",
-        text: "Favourite Colour",
-        left: "30",
-        id: "__alloyId118"
-    });
-    $.__views.__alloyId117.add($.__views.__alloyId118);
-    $.__views.__alloyId119 = Ti.UI.createTableViewRow({
-        height: "50",
-        id: "__alloyId119"
-    });
-    __alloyId110.push($.__views.__alloyId119);
-    $.__views.__alloyId120 = Ti.UI.createLabel({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        color: "white",
-        text: "Brochure",
-        left: "30",
-        id: "__alloyId120"
-    });
-    $.__views.__alloyId119.add($.__views.__alloyId120);
-    $.__views.__alloyId121 = Ti.UI.createTableViewRow({
-        height: "50",
-        id: "__alloyId121"
-    });
-    __alloyId110.push($.__views.__alloyId121);
-    $.__views.__alloyId122 = Ti.UI.createLabel({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        color: "white",
-        text: "Store Locator",
-        left: "30",
-        id: "__alloyId122"
-    });
-    $.__views.__alloyId121.add($.__views.__alloyId122);
-    $.__views.__alloyId123 = Ti.UI.createTableViewRow({
-        height: "50",
-        id: "__alloyId123"
-    });
-    __alloyId110.push($.__views.__alloyId123);
-    $.__views.__alloyId124 = Ti.UI.createLabel({
+    __alloyId111.push($.__views.__alloyId112);
+    $.__views.__alloyId113 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
         text: "About Us",
         left: "30",
+        id: "__alloyId113"
+    });
+    $.__views.__alloyId112.add($.__views.__alloyId113);
+    $.__views.__alloyId114 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId114"
+    });
+    __alloyId111.push($.__views.__alloyId114);
+    $.__views.__alloyId115 = Ti.UI.createLabel({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        color: "white",
+        text: "Paint DIY",
+        left: "30",
+        id: "__alloyId115"
+    });
+    $.__views.__alloyId114.add($.__views.__alloyId115);
+    $.__views.__alloyId116 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId116"
+    });
+    __alloyId111.push($.__views.__alloyId116);
+    $.__views.__alloyId117 = Ti.UI.createLabel({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        color: "white",
+        text: "Colour Picker",
+        left: "30",
+        id: "__alloyId117"
+    });
+    $.__views.__alloyId116.add($.__views.__alloyId117);
+    $.__views.__alloyId118 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId118"
+    });
+    __alloyId111.push($.__views.__alloyId118);
+    $.__views.__alloyId119 = Ti.UI.createLabel({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        color: "white",
+        text: "Colour Swatches",
+        left: "30",
+        id: "__alloyId119"
+    });
+    $.__views.__alloyId118.add($.__views.__alloyId119);
+    $.__views.__alloyId120 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId120"
+    });
+    __alloyId111.push($.__views.__alloyId120);
+    $.__views.__alloyId121 = Ti.UI.createLabel({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        color: "white",
+        text: "Favourite Colours",
+        left: "30",
+        id: "__alloyId121"
+    });
+    $.__views.__alloyId120.add($.__views.__alloyId121);
+    $.__views.__alloyId122 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId122"
+    });
+    __alloyId111.push($.__views.__alloyId122);
+    $.__views.__alloyId123 = Ti.UI.createLabel({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        color: "white",
+        text: "Brochures",
+        left: "30",
+        id: "__alloyId123"
+    });
+    $.__views.__alloyId122.add($.__views.__alloyId123);
+    $.__views.__alloyId124 = Ti.UI.createTableViewRow({
+        height: "50",
         id: "__alloyId124"
     });
-    $.__views.__alloyId123.add($.__views.__alloyId124);
+    __alloyId111.push($.__views.__alloyId124);
+    $.__views.__alloyId125 = Ti.UI.createLabel({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        color: "white",
+        text: "Store Locator",
+        left: "30",
+        id: "__alloyId125"
+    });
+    $.__views.__alloyId124.add($.__views.__alloyId125);
+    $.__views.__alloyId126 = Ti.UI.createTableViewRow({
+        height: "50",
+        id: "__alloyId126"
+    });
+    __alloyId111.push($.__views.__alloyId126);
+    $.__views.__alloyId127 = Ti.UI.createLabel({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        color: "white",
+        text: "Contact Us",
+        left: "30",
+        id: "__alloyId127"
+    });
+    $.__views.__alloyId126.add($.__views.__alloyId127);
     $.__views.menuTable = Ti.UI.createTableView({
-        data: __alloyId110,
+        data: __alloyId111,
         id: "menuTable",
-        top: "100",
+        top: "80",
         separatorColor: "black",
         overScrollMode: Titanium.UI.Android.OVER_SCROLL_NEVER
     });
@@ -211,7 +237,7 @@ function Controller() {
         },
         text: "TERM & CONDITIONS | 2014 COPYRIGHT",
         id: "tnc",
-        bottom: "20"
+        bottom: "10"
     });
     $.__views.mainWindow.add($.__views.tnc);
     tnc ? $.__views.tnc.addEventListener("click", tnc) : __defers["$.__views.tnc!click!tnc"] = true;
@@ -226,7 +252,6 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     var pWidth = Ti.Platform.displayCaps.platformWidth;
-    console.log(pWidth);
     $.whiteLogo.setOpacity(pWidth > 800 ? 1 : 0);
     $.drawer.open({
         navBarHidden: true,
@@ -251,13 +276,17 @@ function Controller() {
         API.loadCategory();
         Alloy.Globals.Drawer.setOpenDrawerGestureMode(module.OPEN_MODE_NONE);
         checkLoadStatus();
-    }, 500);
+    }, 200);
     Alloy.Globals.Drawer = $.drawer;
     $.drawer.addEventListener("android:back", function() {
         mod = Ti.App.Properties.getString("module");
         if ("storeLocator" == mod) {
             Ti.App.Properties.setString("module", "index");
             var nav = Alloy.createController("storeLocator").getView();
+            Alloy.Globals.Drawer.setCenterWindow(nav);
+        } else if ("colourSwatches" == mod) {
+            Ti.App.Properties.setString("module", "index");
+            var nav = Alloy.createController(mod).getView();
             Alloy.Globals.Drawer.setCenterWindow(nav);
         } else if ("search" == mod) {
             from = Ti.App.Properties.getString("from");
@@ -282,11 +311,10 @@ function Controller() {
         } else toggle();
     });
     $.drawer.addEventListener("windowDidOpen", function() {
-        console.log("open");
         drawerFlag = 1;
     });
     $.drawer.addEventListener("windowDidClose", function() {
-        console.log("close");
+        $.destroy();
         drawerFlag = 0;
     });
     var module = require("dk.napp.drawer");

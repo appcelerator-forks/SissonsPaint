@@ -50,9 +50,7 @@ var get_clip = function(params, callback) {
 		});
 	});
 
-	req.on('error', function(e) {
-		console.log('problem with request: ' + e.message);
-		console.log(e.stack);
+	req.on('error', function(e) { 
 	});
 
 	req.end();

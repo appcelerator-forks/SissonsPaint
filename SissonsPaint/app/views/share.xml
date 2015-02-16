@@ -1,0 +1,21 @@
+<Alloy> 
+	<Window class="container" id="sharePage">
+	<View  id="shareView" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">
+		<View id="toggle" height="80" top="0" backgroundColor="white" >
+			<Label class="title" color="black" width="100%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">Preview</Label>
+		</View>
+		<ImageView id="saveImage" top="80"></ImageView>
+		<View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15" opacity="1" backgroundColor="#2E2E2E" >
+				<ActivityIndicator  id="activityIndicator" />
+				<Label text="Loading" color="#ffffff" />
+		</View>
+		<View height="60" bottom="0" backgroundColor="white">
+		</View>
+		<!--<View height="60" bottom="0">
+				<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
+				<ImageView id="shareButton" image="/images/icon_share.png" onClick="share" height="40" width="50" width="50" top="10" bottom="10" />
+		</View>-->
+		
+	</View> 
+	</Window>
+</Alloy>

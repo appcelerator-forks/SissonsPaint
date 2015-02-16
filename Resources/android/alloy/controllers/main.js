@@ -28,14 +28,14 @@ function Controller() {
         id: "main"
     });
     $.__views.main && $.addTopLevelView($.__views.main);
-    $.__views.__alloyId129 = Ti.UI.createLabel({
+    $.__views.__alloyId131 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
         text: "THIS IS MAIN",
-        id: "__alloyId129"
+        id: "__alloyId131"
     });
-    $.__views.main.add($.__views.__alloyId129);
+    $.__views.main.add($.__views.__alloyId131);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

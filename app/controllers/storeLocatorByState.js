@@ -231,8 +231,7 @@ NavigateTo = function(latitude, longitude, name, address){
 		  }else{
 		  	var url = 'geo:'+latitude+','+longitude;
 		  }
-		  
-		  console.log(url);
+		   
 			if (Ti.Android){
 				try {
 					Ti.API.info('Trying to Launch via Intent');

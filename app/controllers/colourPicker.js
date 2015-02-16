@@ -271,8 +271,7 @@ var app = {
 var MESSAGE = "#sissons_paint";
  
 function createColorEvent(colours, colour_details, details){
-	colours.addEventListener( "click", function(){
-		console.log("color detail"+JSON.stringify(details));
+	colours.addEventListener( "click", function(){ 
 		Ti.App.Properties.setString('from', 'colourPicker');
 		var nav = Alloy.createController("colourDetails", {colour_details:colour_details, details:details}).getView(); 
 		//Alloy.Globals.Drawer.setCenterWindow(nav);

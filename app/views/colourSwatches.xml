@@ -10,29 +10,13 @@
 			
 			<ScrollView id="TheScrollView" backgroundColor="white" width="100%" layout="vertical" contentHeight=Ti.UI.SIZE height="80%" top="0" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
 			</ScrollView>
-			 <!--<Label class="title"  textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">COLOR CATEGORIES</Label>-->
-			 <!--<View height="60" bottom="0">
-					<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />
-					<View layout="horizontal" height="60" width="Titanium.UI.FILL" >
-						<ImageView id="filterButton" image="/images/icon_filter.png" height="40" right="50" />
-						<ImageView id="searchButton" image="/images/icon_search.png" height="40" left="50" />
-					</View>
-			</View>-->
-			<View height="60" bottom="0" id="toolbar" width="100%" backgroundImage="/images/tool_bar.jpg">
-				<View layout="horizontal" width="100%">
-					<!--<ImageView image="/images/tool_bar.jpg" height="60" width="Titanium.UI.FILL" />-->
-					<View width="30%">
-					</View>
-					<View width="20%">
-						<ImageView id="filterButton" image="/images/icon_filter.png" onClick="filter" height="40" width="50" top="10" bottom="10" />
-					</View>
-					<View width="20%">
-						<ImageView id="searchButton" image="/images/icon_search.png" onClick="search" height="40" width="50" top="10" bottom="10" />
-					</View>
-					<View width="30%">
-					</View>
+			 <View width="100%" height="80" backgroundColor="#A5A5A5" bottom="0">
+				<View layout="horizontal">
+					<TextField id="textField" class="inputField" borderStyle="Ti.UI.INPUT_BORDERSTYLE_ROUNDED" hintText="Search Colour, Name or Colour Code" backgroundColor="white" borderColor="A5A5A5" borderRadius="5" color="#336699" width="70%" height="60" left="10" top="10" />
+					<Button onClick="searchButton" backgroundColor="white" color="#A5A5A5" textAlign="Titanium.UI.TEXT_ALIGNMENT_CENTER" title="SEARCH" borderColor="#A5A5A5" borderRadius="5" left="5" top="10" height="60"></Button>
 				</View>
 			</View>
+			 
 		</View>
 		<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" top="0" opacity="1" backgroundColor="#2E2E2E" >
 			<ActivityIndicator  id="activityIndicator" />
