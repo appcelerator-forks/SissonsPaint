@@ -1,1 +1,0 @@
-/Users/HatsuneMiku/Documents/Titanium_Studio_Workspace/SissonsPaint/Resources/android/alloy/controllers/aboutUs.js
