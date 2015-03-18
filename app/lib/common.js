@@ -5,3 +5,4 @@ exports.createAlert = function(tt,msg){
 	});
 	box.show();
 };
+

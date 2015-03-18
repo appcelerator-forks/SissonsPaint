@@ -1,5 +1,14 @@
-".tncContent" : {
-   color: '#6E6E6E'
+".bold" : {
+   color: '#6E6E6E',
+   width: Titanium.UI.FILL,
+   top: 10,
+   textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
+   font:{
+   	fontWeight: 'bold'
+   }
+},
+".normal" : {
+   color: '#6E6E6E',
 },
 ".title":{
 	font:{fontSize:22},	

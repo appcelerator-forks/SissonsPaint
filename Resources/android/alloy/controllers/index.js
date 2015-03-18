@@ -186,7 +186,7 @@ function Controller() {
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
-        text: "Brochures",
+        text: "Library",
         left: "30",
         id: "__alloyId123"
     });
