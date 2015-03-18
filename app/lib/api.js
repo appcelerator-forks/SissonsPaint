@@ -39,7 +39,6 @@ exports.loadColour = function (ex){
 				
 				/**load new set of category from API**/
 		       	var arr = res.data;
-				
 				library.addColours(arr);
 			} 
 			Ti.App.Properties.setString('loadColour', '1'); 
