@@ -12,7 +12,7 @@
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
     <analytics>true</analytics>
-    <guid>D92F6F36-5C18-4D57-BA8B-367C7BB391F4</guid>
+    <guid>11D56498-0AC2-4704-A627-5A2C028D3C71</guid>
     <property name="ti.ui.defaultunit" type="string">dp</property>
     <ios>
         <plist>
@@ -112,8 +112,9 @@
         <target device="iphone">true</target>
         <target device="mobileweb">false</target>
         <target device="tizen">false</target>
-    </deployment-targets>
+    </deployment-targets> 
     <sdk-version>3.5.1.GA</sdk-version>
+ 
     <plugins>
         <plugin version="1.0">ti.alloy</plugin>
     </plugins>

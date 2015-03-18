@@ -14,3 +14,5 @@ Resources/android/alloy/controllers/diyPaint.js
 Resources/android/alloy/controllers/*.js
 
 Resources/android/alloy/styles/*.js 
+
+tiapp.xml
