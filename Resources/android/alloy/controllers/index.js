@@ -68,9 +68,11 @@ function Controller() {
         }
     }
     function navigation(target) {
+        Ti.App.fireEvent("clearObject");
         var win = Alloy.createController(target).getView();
         Alloy.Globals.Drawer.setCenterWindow(win);
         Alloy.Globals.Drawer.closeLeftWindow();
+        win = null;
     }
     function tnc() {
         var nav = Alloy.createController("tnc").getView();

@@ -193,7 +193,7 @@ function Controller() {
     });
     __alloyId51.push($.__views.view1);
     $.__views.__alloyId52 = Ti.UI.createImageView({
-        image: "/images/tutorial/colorSwatches/tutorial1.jpg",
+        image: "/images/tutorial/colorSwatches/tutorial1.png",
         width: "100%",
         id: "__alloyId52"
     });
@@ -204,7 +204,7 @@ function Controller() {
     });
     __alloyId51.push($.__views.view2);
     $.__views.__alloyId53 = Ti.UI.createImageView({
-        image: "/images/tutorial/colorSwatches/tutorial2.jpg",
+        image: "/images/tutorial/colorSwatches/tutorial2.png",
         width: "100%",
         id: "__alloyId53"
     });
@@ -215,7 +215,7 @@ function Controller() {
     });
     __alloyId51.push($.__views.view3);
     $.__views.__alloyId54 = Ti.UI.createImageView({
-        image: "/images/tutorial/colorSwatches/tutorial3.jpg",
+        image: "/images/tutorial/colorSwatches/tutorial3.png",
         width: "100%",
         id: "__alloyId54"
     });
@@ -226,7 +226,7 @@ function Controller() {
     });
     __alloyId51.push($.__views.view4);
     $.__views.__alloyId55 = Ti.UI.createImageView({
-        image: "/images/tutorial/colorSwatches/tutorial4.jpg",
+        image: "/images/tutorial/colorSwatches/tutorial4.png",
         width: "100%",
         id: "__alloyId55"
     });

@@ -536,7 +536,7 @@ function Controller() {
     });
     __alloyId96.push($.__views.view1);
     $.__views.__alloyId97 = Ti.UI.createImageView({
-        image: "/images/tutorial/paintDiy/tutorial_paintDIY1.jpg",
+        image: "/images/tutorial/colorPicker/tutorial_paintdiy1.jpg",
         width: "100%",
         id: "__alloyId97"
     });
@@ -547,7 +547,7 @@ function Controller() {
     });
     __alloyId96.push($.__views.view2);
     $.__views.__alloyId98 = Ti.UI.createImageView({
-        image: "/images/tutorial/paintDiy/tutorial_paintDIY2.jpg",
+        image: "/images/tutorial/colorPicker/tutorial_paintdiy2.jpg",
         width: "100%",
         id: "__alloyId98"
     });
@@ -558,7 +558,7 @@ function Controller() {
     });
     __alloyId96.push($.__views.view3);
     $.__views.__alloyId99 = Ti.UI.createImageView({
-        image: "/images/tutorial/paintDiy/tutorial_paintDIY3.jpg",
+        image: "/images/tutorial/colorPicker/tutorial_paintdiy3.jpg",
         width: "100%",
         id: "__alloyId99"
     });
@@ -608,9 +608,9 @@ function Controller() {
     var brushWidth = 10;
     var eraseWidth = 10;
     var tools = "bucket";
-    Alloy.createCollection("category_colour");
+    var category_colour_lib = Alloy.createCollection("category_colour");
     var colour_lib = Alloy.createCollection("colour");
-    Alloy.createCollection("category");
+    var library = Alloy.createCollection("category");
     var favourite_lib = Alloy.createCollection("favourite");
     var list_favourite = favourite_lib.getFavouriteList();
     var list_colours = colour_lib.getColourList();
@@ -904,6 +904,53 @@ function Controller() {
         table.hide();
         tableShare.hide();
     }, 3);
+    var clearObject = function() {
+        console.log("clear!!!");
+        fb = null;
+        ImageFactory = null;
+        pWidth = null;
+        pHeight = null;
+        toolbarHeight = null;
+        toggleHeight = null;
+        canvasHeight = null;
+        bucketWidth = null;
+        brushWidth = null;
+        eraseWidth = null;
+        tools = null;
+        category_colour_lib = null;
+        colour_lib = null;
+        library = null;
+        favourite_lib = null;
+        list_favourite = null;
+        list_colours = null;
+        sizeShow = null;
+        colorShow = null;
+        filterFlag = null;
+        shareFlag = null;
+        tableData = null;
+        imgPath = null;
+        tableDataShare = null;
+        saveRow = null;
+        shareRow = null;
+        instagramRow = null;
+        shareImage = null;
+        instagramImage = null;
+        saveImage = null;
+        saveLabel = null;
+        shareLabel = null;
+        instagramLabel = null;
+        tableShare = null;
+        share = null;
+        tableShareListener = null;
+        closeShareWindow = null;
+        row1 = null;
+        row2 = null;
+        row3 = null;
+        table = null;
+        tableListener = null;
+        Ti.App.removeEventListener("clearObject", clearObject);
+    };
+    Ti.App.addEventListener("clearObject", clearObject);
     __defers["$.__views.slider!stop!updateAdjustment"] && $.__views.slider.addEventListener("stop", updateAdjustment);
     __defers["$.__views.photoButton!click!takePhoto"] && $.__views.photoButton.addEventListener("click", takePhoto);
     __defers["$.__views.tools!click!toolspop"] && $.__views.tools.addEventListener("click", toolspop);

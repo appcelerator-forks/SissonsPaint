@@ -6,7 +6,6 @@
 				<!--<Label class="title" color="black" width="75%" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER">DIY Paint</Label>-->
 		
 			</View>
-			 
 			<WebView top="80" id='canvas' url="/html/canvas-paint-bucket.html" height="80%" enableZoomControls="false" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER" disableBounce="true" />
 			<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" top="0" opacity="1" backgroundColor="#2E2E2E" >
 				<ActivityIndicator  id="activityIndicator" />
@@ -49,14 +48,14 @@
 		</View>
  		<View id="win" height="90%" width="90%" backgroundColor="transparent" theme="Theme.NoActionBar" navBarHidden="true" fullscreen="true" borderColor="#A5A5A5" borderWidth="2" visible="false">
 	        <ScrollableView id="scrollableView" showPagingControl="true" pagingControlTimeout="0" overScrollMode="Titanium.UI.Android.OVER_SCROLL_NEVER">
-	            <View id="view1" backgroundColor="#FFFFFF" >
-	            	<ImageView image="/images/tutorial/paintDiy/tutorial_paintDIY1.jpg" width="100%" />
+	           <View id="view1"  backgroundColor="#FFFFFF" >
+	            	<ImageView image="/images/tutorial/colorPicker/tutorial_paintdiy1.jpg" width="100%" />
 	            </View>
-	            <View id="view2" backgroundColor="#FFFFFF">
-	            	<ImageView image="/images/tutorial/paintDiy/tutorial_paintDIY2.jpg" width="100%" />
+	            <View id="view2" backgroundColor="#FFFFFF" >
+	            	<ImageView image="/images/tutorial/colorPicker/tutorial_paintdiy2.jpg" width="100%" />
 	            </View>
-	            <View id="view3" backgroundColor="#FFFFFF">
-	            	<ImageView image="/images/tutorial/paintDiy/tutorial_paintDIY3.jpg" width="100%" />
+	             <View id="view3" backgroundColor="#FFFFFF" >
+	            	<ImageView image="/images/tutorial/colorPicker/tutorial_paintdiy3.jpg" width="100%" />
 	             	<View layout="horizontal" bottom="4" height="Ti.UI.SIZE" width="Ti.UI.SIZE">
 	             		<Switch id="checkBox" style="Ti.UI.Android.SWITCH_STYLE_CHECKBOX"  value="true"></Switch>
 	             		<Label left="10" id="showWindow" color="black">Don't show next time</Label>

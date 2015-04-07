@@ -12,7 +12,7 @@
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
     <analytics>true</analytics>
-    <guid>C56C236D-5427-4111-B703-DB3FD07500B3</guid>
+    <guid>fe4633ad-a640-4881-b95e-06673ce33b64</guid>
     <property name="ti.ui.defaultunit" type="string">dp</property>
     <ios>
         <plist>
@@ -41,10 +41,12 @@
     </ios>
     <android xmlns:android="http://schemas.android.com/apk/res/android">
         <manifest android:versionCode="2" android:versionName="1.1">
+        	
             <application android:theme="@style/Theme.NoActionBar"/>
             <!-- Need to specify at least API level 11 for Titanium SDK 3.2.x and prior -->
             <uses-sdk android:minSdkVersion="14"/>
-            <application android:debuggable="false"
+            
+            <application android:debuggable="true"
                 android:hardwareAccelerated="true"
                 android:icon="@drawable/appicon"
                 android:label="Sissons Omnicolor"
