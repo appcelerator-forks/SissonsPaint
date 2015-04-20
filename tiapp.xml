@@ -2,7 +2,7 @@
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <id>com.mnc.sissons</id>
     <name>Sissons Omnicolor</name>
-    <version>1.0</version>
+    <version>1.1</version>
     <publisher>geomilano</publisher>
     <url>http://</url>
     <description>not specified</description>
@@ -12,7 +12,7 @@
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
     <analytics>true</analytics>
-    <guid>D92F6F36-5C18-4D57-BA8B-367C7BB391F4</guid>
+    <guid>fe4633ad-a640-4881-b95e-06673ce33b64</guid>
     <property name="ti.ui.defaultunit" type="string">dp</property>
     <ios>
         <plist>
@@ -40,11 +40,17 @@
         </plist>
     </ios>
     <android xmlns:android="http://schemas.android.com/apk/res/android">
-        <manifest>
+        <manifest android:versionCode="2" android:versionName="1.1">
+        	
             <application android:theme="@style/Theme.NoActionBar"/>
             <!-- Need to specify at least API level 11 for Titanium SDK 3.2.x and prior -->
             <uses-sdk android:minSdkVersion="14"/>
+<<<<<<< HEAD
             <application android:debuggable="false"
+=======
+            
+            <application android:debuggable="true"
+>>>>>>> origin/master
                 android:hardwareAccelerated="true"
                 android:icon="@drawable/appicon"
                 android:label="Sissons Omnicolor"
@@ -113,7 +119,11 @@
         <target device="mobileweb">false</target>
         <target device="tizen">false</target>
     </deployment-targets>
+<<<<<<< HEAD
     <sdk-version>3.5.0.GA</sdk-version>
+=======
+    <sdk-version>3.4.1.GA</sdk-version>
+>>>>>>> origin/master
     <plugins>
         <plugin version="1.0">ti.alloy</plugin>
     </plugins>

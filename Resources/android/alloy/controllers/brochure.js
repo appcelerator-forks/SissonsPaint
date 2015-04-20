@@ -10,67 +10,71 @@ function __processArg(obj, key) {
 function Controller() {
     function createAdImageEvent(adImage, id, content, cell, downloaded, downloadIcon) {
         adImage.addEventListener("click", function() {
-            var ind = Titanium.UI.createProgressBar({
-                width: "90%",
-                height: Ti.UI.FILL,
-                min: 0,
-                max: 1,
-                value: 0,
-                message: "",
-                font: {
-                    fontSize: 12
-                },
-                color: "red"
-            });
-            var imageHeight = adImage.size.height;
-            var imageWidth = adImage.size.width;
-            var gray = Titanium.UI.createView({
-                height: imageHeight,
-                width: imageWidth,
-                backgroundColor: "#A5A5A5",
-                opacity: .5,
-                bottom: 0
-            });
-            var label = Ti.UI.createLabel({
-                color: "#ffffff",
-                font: {
-                    fontSize: 14,
-                    fontWeight: "bold"
-                },
-                text: "",
-                top: 10,
-                width: "100%",
-                textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-                width: imageWidth,
-                height: imageHeight
-            });
-            var bigView = Titanium.UI.createView({
-                height: "20%",
-                width: "80%",
-                backgroundColor: "#525151",
-                opacity: .8
-            });
-            if ("0" == downloaded) {
-                bigView.add(gray);
-                bigView.add(ind);
-                bigView.add(label);
-                $.brochureView.add(bigView);
-            } else {
+            confirmBox(adImage, id, content, cell, downloaded, downloadIcon);
+        });
+    }
+    function downloadBrochure(adImage, id, content, cell, downloaded, downloadIcon) {
+        console.log(id);
+        var ind = Titanium.UI.createProgressBar({
+            width: "90%",
+            height: Ti.UI.FILL,
+            min: 0,
+            max: 1,
+            value: 0,
+            message: "",
+            font: {
+                fontSize: 12
+            },
+            color: "red"
+        });
+        var imageHeight = adImage.size.height;
+        var imageWidth = adImage.size.width;
+        var gray = Titanium.UI.createView({
+            height: imageHeight,
+            width: imageWidth,
+            backgroundColor: "#A5A5A5",
+            opacity: .5,
+            bottom: 0
+        });
+        var label = Ti.UI.createLabel({
+            color: "#ffffff",
+            font: {
+                fontSize: 14,
+                fontWeight: "bold"
+            },
+            text: "",
+            top: 10,
+            width: "100%",
+            textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+            width: imageWidth,
+            height: imageHeight
+        });
+        var bigView = Titanium.UI.createView({
+            height: "20%",
+            width: "80%",
+            backgroundColor: "#525151",
+            opacity: .8
+        });
+        if ("0" == downloaded) {
+            bigView.add(gray);
+            bigView.add(ind);
+            bigView.add(label);
+            $.brochureView.add(bigView);
+        } else {
+            bigView.remove(gray);
+            bigView.remove(ind);
+            bigView.remove(label);
+            $.brochureView.remove(bigView);
+        }
+        pdf(content, true, ind, label, function(err) {
+            if (err) alert(err); else {
+                library.updateDownloadedBrochure(id);
+                "" != downloadIcon && cell.remove(downloadIcon);
                 bigView.remove(gray);
                 bigView.remove(ind);
                 bigView.remove(label);
                 $.brochureView.remove(bigView);
             }
-            pdf(content, true, ind, label, function(err) {
-                if (err) alert(err); else {
-                    library.updateDownloadedBrochure(id);
-                    "" != downloadIcon && cell.remove(downloadIcon);
-                    bigView.remove(gray);
-                    bigView.remove(ind);
-                    bigView.remove(label);
-                    $.brochureView.remove(bigView);
-                }
-            });
         });
     }
     function createVideoEvent(adImage, id, content) {
@@ -317,6 +321,21 @@ function Controller() {
     };
     var closeWindow = function() {
         table.removeEventListener("click", tableListener);
+    };
+    var confirmBox = function(adImage, id, content, cell, downloaded, downloadIcon) {
+        var dialog = Ti.UI.createAlertDialog({
+            cancel: 1,
+            buttonNames: [ "Yes", "Cancel" ],
+            message: "Would you like to download the brochure?",
+            title: "Download"
+        });
+        dialog.addEventListener("click", function(e) {
+            e.index === e.source.cancel ? Ti.API.info("The cancel button was clicked") : downloadBrochure(adImage, id, content, cell, downloaded, downloadIcon);
+            Ti.API.info("e.cancel: " + e.cancel);
+            Ti.API.info("e.source.cancel: " + e.source.cancel);
+            Ti.API.info("e.index: " + e.index);
+        });
+        dialog.show();
     };
     __defers["$.__views.filterButton!click!popWindow"] && $.__views.filterButton.addEventListener("click", popWindow);
     _.extend($, exports);

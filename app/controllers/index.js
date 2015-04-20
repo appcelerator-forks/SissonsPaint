@@ -109,9 +109,13 @@ function doMenuClick(e){
 }
 
 function navigation(target){
+	//clear current window cache
+	Ti.App.fireEvent("clearObject");
+	
 	var win = Alloy.createController(target).getView();
 	Alloy.Globals.Drawer.setCenterWindow(win); 
 	Alloy.Globals.Drawer.closeLeftWindow();
+	win = null;
 }
 
 

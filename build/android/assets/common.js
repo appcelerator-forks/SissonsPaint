@@ -1,1 +1,0 @@
-exports.createAlert=function(e,t){var i=Titanium.UI.createAlertDialog({title:e,message:t});i.show()};

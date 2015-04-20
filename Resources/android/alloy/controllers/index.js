@@ -68,9 +68,11 @@ function Controller() {
         }
     }
     function navigation(target) {
+        Ti.App.fireEvent("clearObject");
         var win = Alloy.createController(target).getView();
         Alloy.Globals.Drawer.setCenterWindow(win);
         Alloy.Globals.Drawer.closeLeftWindow();
+        win = null;
     }
     function tnc() {
         var nav = Alloy.createController("tnc").getView();
@@ -186,7 +188,7 @@ function Controller() {
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
-        text: "Brochures",
+        text: "Library",
         left: "30",
         id: "__alloyId123"
     });

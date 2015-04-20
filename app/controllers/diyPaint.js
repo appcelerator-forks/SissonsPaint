@@ -111,7 +111,7 @@ var instagramImage = Ti.UI.createImageView({
     touchEnabled: true,
     height: 25
   });
-   
+  
  var saveImage = Ti.UI.createImageView({
     image: '/images/save.png',
     width: 25,
@@ -120,7 +120,7 @@ var instagramImage = Ti.UI.createImageView({
     touchEnabled: true,
     height: 25
   });
-  
+ 
 var saveLabel = Ti.UI.createLabel({
    text:'Save',
    width:85,
@@ -130,7 +130,7 @@ var saveLabel = Ti.UI.createLabel({
    height: 60,
    //font:{fontSize:16,fontWeight:'bold'}
 });
-
+ 
 var shareLabel = Ti.UI.createLabel({
    text:'Facebook',
    width:85,
@@ -138,7 +138,7 @@ var shareLabel = Ti.UI.createLabel({
    textAlign:'left',
    height: 60, 
 });
-
+ 
 var instagramLabel = Ti.UI.createLabel({
    text:'Instagram',
    width:85,
@@ -207,7 +207,6 @@ var tableShareListener = function(e){
 var closeShareWindow = function(e){
 	tableShare.removeEventListener('click', tableShareListener);
 };
-
 
 function shareFunction(e){
 	
@@ -315,9 +314,7 @@ var row3 = Ti.UI.createTableViewRow({
 	left: 10,
     touchEnabled: true,
     height: 50
-  });
-
-
+ });
 
 tableData.push(row1);
 tableData.push(row2);
@@ -756,3 +753,52 @@ setTimeout(function(){
 	table.hide();
 	tableShare.hide();
 }, 3);
+
+var clearObject = function(){
+	console.log("clear!!!");
+	 fb = null;
+	 ImageFactory = null;
+	 pWidth = null;
+	 pHeight = null;
+	 toolbarHeight = null;
+	 toggleHeight = null;
+	 canvasHeight = null;
+	 bucketWidth = null;
+	 brushWidth = null;
+	 eraseWidth = null;
+	 tools = null;
+	 category_colour_lib = null;
+	 colour_lib = null; 
+	 library = null;
+	 favourite_lib = null;
+	 list_favourite = null;
+	 list_colours = null;
+	 sizeShow = null;
+	 colorShow = null;
+	 filterFlag = null;
+	 shareFlag = null;
+	 tableData = null;
+	 imgPath = null;
+	tableDataShare = null;
+	  saveRow = null;
+	  shareRow = null;
+	  instagramRow = null;
+	  shareImage= null; 
+	  instagramImage= null;
+	  saveImage = null;
+	  saveLabel = null;
+	  shareLabel = null;
+	  instagramLabel = null;
+	  tableShare = null;
+	  share = null;
+	  tableShareListener = null;
+	  closeShareWindow = null;
+	  row1 = null;
+	  row2 = null;
+	  row3 = null;
+	  table = null;
+	  tableListener = null;
+	Ti.App.removeEventListener("clearObject", clearObject);
+};
+
+Ti.App.addEventListener("clearObject", clearObject);

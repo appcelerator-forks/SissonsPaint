@@ -171,9 +171,7 @@ XHR.prototype.clean = function() {
 XHR.prototype.purge = function() {
     var purgedDocuments = 0;
     for (var key in cacheManager) {
-        {
-            cacheManager[key];
-        }
+        cacheManager[key];
         var file = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory, key);
         delete cacheManager[key];
         file.deleteFile();

@@ -69,7 +69,13 @@ var displayCover = function(){
 
 function createAdImageEvent(adImage, id,content, cell, downloaded, downloadIcon) {
     adImage.addEventListener( "click", function(){
-    	var ind=Titanium.UI.createProgressBar({
+    	confirmBox(adImage,id,content,cell,downloaded,downloadIcon);
+    } );
+}
+
+function downloadBrochure(adImage,id,content,cell,downloaded,downloadIcon){
+	console.log(id);
+	var ind=Titanium.UI.createProgressBar({
 					width: "90%",
 					height:Ti.UI.FILL,
 					min:0,
@@ -126,8 +132,6 @@ function createAdImageEvent(adImage, id,content, cell, downloaded, downloadIcon)
 		    	$.brochureView.remove(bigView);
 		    }
 		});
-
-    } );
 }
 
 function createVideoEvent(adImage, id,content){
@@ -204,4 +208,25 @@ var popWindow = function(e){
 
 var closeWindow = function(e){
 	table.removeEventListener('click', tableListener);
+};
+
+var confirmBox = function(adImage,id,content,cell,downloaded,downloadIcon){
+	var dialog = Ti.UI.createAlertDialog({
+		cancel: 1,
+		buttonNames: ['Yes', 'Cancel'],
+		message: 'Would you like to download the brochure?',
+		title: 'Download'
+	});
+	dialog.addEventListener('click', function(e){
+		if (e.index === e.source.cancel){
+			Ti.API.info('The cancel button was clicked');
+			
+		}else{
+			downloadBrochure(adImage,id,content,cell,downloaded,downloadIcon);
+		}
+			Ti.API.info('e.cancel: ' + e.cancel);
+			Ti.API.info('e.source.cancel: ' + e.source.cancel);
+			Ti.API.info('e.index: ' + e.index);
+	});
+	dialog.show();
 };
